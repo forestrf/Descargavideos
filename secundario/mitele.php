@@ -76,7 +76,7 @@ function mitele_directo(){
 	if($iclip!="")
 		$configs["id2"] = $iclip;
 	
-	$URLFINAL = '/mitelehandler/'.urlencode(base64_encode(json_encode($configs))).'/'.urlencode($titulo).'.mp4';
+	$URLFINAL = '/mitelehandler/'.urlencode(base64_encode(json_encode($configs))).'/'.urlencode(strtr($titulo,'/','-')).'.mp4';
 	//$url='http://www.telecinco.es/mdsvideo/sources.json?contentId='.$id.'&clippingId='.$iclip.'&imageContentId='.$id;
 	dbug($URLFINAL);
 	$obtenido=array(
@@ -177,7 +177,7 @@ function mitele(){
 			$configs = array(
 				"id"=>$id
 			);
-			$url='/mitelehandler/'.urlencode(base64_encode(json_encode($configs))).'/'.urlencode($titulo).'.mp4';
+			$url='/mitelehandler/'.urlencode(base64_encode(json_encode($configs))).'/'.urlencode(strtr($titulo,'/','-')).'.mp4';
 			$obtenido=array(
 				'titulo'  => $titulo,
 				'imagen'  => $imagen,

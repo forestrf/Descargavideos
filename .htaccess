@@ -1,0 +1,113 @@
+<IfModule mod_rewrite.c>  
+
+	RewriteEngine on
+
+	RewriteBase /
+
+
+
+	#####################################
+	# Forzar WWW
+	#####################################
+
+	#convertir ***.com en www.***.com
+	RewriteCond %{HTTP_HOST} ^descargavideos.tv [NC]
+	RewriteRule (.*) http://www.descargavideos.tv/$1 [R=301,L]
+
+
+
+	##############################################################
+	# PAGINAS DE LA WEB
+	##############################################################
+
+	#rectificar /?pag (indicar cada pag)
+	#RewriteRule ^([a-zA-Z]+)/?$ index.php?pag=$1 [NC,L]
+	
+	RewriteRule ^changelog/?$ index.php?pag=changelog&$1 [NC,L]
+	RewriteRule ^faq/?$ index.php?pag=faq&$1 [NC,L]
+	RewriteRule ^lab/?$ index.php?pag=lab&$1 [NC,L]
+	RewriteRule ^contacta/?$ index.php?pag=contacta&$1 [NC,L]
+	RewriteRule ^agradecimientos/?$ index.php?pag=agradecimientos&$1 [NC,L]
+	RewriteRule ^aviso_legal/?$ index.php?pag=legal&$1 [NC,L]
+	RewriteRule ^donar/?$ index.php?pag=donar&$1 [NC,L]
+
+
+
+	##############################################################
+	# Métodos de formulario
+	##############################################################
+
+	RewriteRule ^web/form/(.*)$ index.php$1 [NC,L]
+	RewriteRule ^web/addonf/(.*)$ index.php$1 [NC,L]
+	RewriteRule ^web/iframeform/(.*)$ index.php$1 [NC,L]
+	RewriteRule ^web/bookmarklet/(.*)$ index.php$1 [NC,L]
+	RewriteRule ^web/blog/(.*)$ index.php$1 [NC,L]
+	RewriteRule ^web/(.*)$ index.php$1 [NC,L]
+
+
+
+	##############################################################
+	# Páginas de las cadenas principales
+	##############################################################
+
+	RewriteRule ^telecinco/?$ index2.php?pag=telecinco&$1 [NC,L]
+	RewriteRule ^antena-3/?$ index2.php?pag=antena-3&$1 [NC,L]
+	RewriteRule ^rtve/?$ index2.php?pag=rtve&$1 [NC,L]
+	RewriteRule ^mitele/?$ index2.php?pag=mitele&$1 [NC,L]
+	RewriteRule ^univision/?$ index2.php?pag=univision&$1 [NC,L]
+	RewriteRule ^cuatro/?$ index2.php?pag=cuatro&$1 [NC,L]
+	RewriteRule ^la-sexta/?$ index2.php?pag=la-sexta&$1 [NC,L]
+	RewriteRule ^youtube/?$ index2.php?pag=youtube&$1 [NC,L]
+
+	
+	
+	
+	##############################################################
+	# MITELE HANDLER para vídeos mp4 fake
+	##############################################################
+	
+	RewriteRule ^mitelehandler/(.*)/(.*).mp4$ mitele_handler.php?fullinfo=$1 [NC,L]
+	
+	
+	
+	
+	##############################################################
+	# CSS agrupado
+	##############################################################
+
+	RewriteRule ^css/cssfull.css$ css/css.php [NC,L]
+
+
+
+
+
+	#pasar css a css.php
+	#RewriteRule ^css/(.*).css css/css.php?id=$1 [NC,L]
+
+
+
+	ErrorDocument 404 /404.html
+
+</IfModule>
+
+
+
+#CACHE
+<ifModule mod_headers.c>
+
+	# 1 AÑO
+	<FilesMatch "\.(ico|pdf|flv)$">
+		Header set Cache-Control "max-age=29030400, public"
+	</FilesMatch>
+	
+	# 1 SEMANA
+	<FilesMatch "\.(jpg|jpeg|png|gif|swf)$">
+		Header set Cache-Control "max-age=604800, public"
+	</FilesMatch>
+	
+	# 1 SEMANA
+	<FilesMatch "\.(xml|txt|css|js)$">
+		Header set Cache-Control "max-age=604800, proxy-revalidate"
+	</FilesMatch>
+
+</ifModule>
