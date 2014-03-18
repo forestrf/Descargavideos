@@ -20,6 +20,7 @@ $todos[]=array(
 array(
 	'add:CRTVG. Agregada url m3u8.',
 	'fix:Mitele. Algunos enlaces fallaban con el método nuevo.',
+	'fix:Mitele. Algunos vídeos no tenían imagen.',
 	'fix:Algunos vídeos de ATresPlayer con subtitulos con la opción de descargarlos arreglada (bookmarklet)'
 	)
 );

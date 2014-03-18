@@ -58,7 +58,8 @@ function mitele_directo(){
 		dbug('no hay id imagen');
 	}
 	
-	if(!enString($imagen, ".jpg")){
+
+	if(!enString($imagen, ".jpg") && !enString($imagen, ".png")){
 		//Funciona con los dominios cuatro, mitelekids y telecinco.
 		$imagen = 'http://www.telecinco.es///_'.$id.'_1.jpg';
 	}
