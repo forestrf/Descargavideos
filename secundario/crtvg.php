@@ -25,19 +25,26 @@ dbug('imagen='.$imagen);
 //rtmp://media1.crtvg.es:80/vod
 $p=strpos($ret,'clip:');
 $p=strpos($ret,'url:',$p);
-$p=strpos($ret,'"',$p)+1;
+$p=strposF($ret,'"',$p);
 $f=strpos($ret,'"',$p);
 $url=substr($ret,$p,$f-$p);
+dbug('url='.$url);
 
 //netConnectionUrl: "rtmp://media1.crtvg.es:80/vod"
 $p=strpos($ret,'netConnectionUrl:');
-$p=strpos($ret,'"',$p)+1;
+$p=strposF($ret,'"',$p);
 $f=strpos($ret,'"',$p);
 $preurl=substr($ret,$p,$f-$p);
+dbug('$preurl='.$preurl);
 
-$ret=$preurl.'/'.$url;
 
-dbug('url='.$ret);
+
+//ipadUrl: "http:// m3u8"
+$p=strpos($ret,'ipadUrl:');
+$p=strposF($ret,'"',$p);
+$f=strpos($ret,'"',$p);
+$ipadUrl=substr($ret,$p,$f-$p);
+dbug('$ipadUrl='.$ipadUrl);
 
 
 $obtenido=array(
@@ -51,6 +58,12 @@ $obtenido=array(
 		)
 	)
 );
+if(strlen($ipadUrl) > 10){
+	$obtenido['enlaces'][] = array(
+		'url'  => $ipadUrl,
+		'tipo' => 'm3u8'
+	);
+}
 
 finalCadena($obtenido);
 }

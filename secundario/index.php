@@ -31,7 +31,7 @@ if(!defined("DEBUG")){
 	}
 }
 
-include_once '../Definiciones.php';
+include_once '../definiciones.php';
 include_once '../funciones.php';
 
 

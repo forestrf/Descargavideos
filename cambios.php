@@ -16,6 +16,15 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+"18-Marzo-2014",
+array(
+	'add:CRTVG. Agregada url m3u8.',
+	'fix:Mitele. Algunos enlaces fallaban con el método nuevo.',
+	'fix:Algunos vídeos de ATresPlayer con subtitulos con la opción de descargarlos arreglada (bookmarklet)'
+	)
+);
+
+$todos[]=array(
 "6-Marzo-2014",
 array(
 	'fix:RTPA Actualizado.',

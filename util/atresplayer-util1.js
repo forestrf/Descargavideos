@@ -254,8 +254,17 @@ function continuar(dataU){
 				})
 				.done(function(data){
 					if(data != null)
-						if(data['result'] == "0")
+						if(data['result'] == "0"){
 							urldirect = data['resultDes'];
+							consultaURL = "https://servicios.atresplayer.com/episode/getplayer?callback=subs&episodePk=" + episode;
+							jQuery.ajax({
+								type: "GET",
+								url: consultaURL,
+								crossDomain: true,
+								data: "blabla",
+								dataType: "jsonp"
+							});
+						}
 					
 					esperaResultado();
 				})
@@ -275,14 +284,6 @@ function continuar(dataU){
 	else{
 		error('No se ha podido obtener el enlace al vídeo');
 	}
-	
-	jQuery.ajax({
-		type: "GET",
-		url: "http://www.descargavideos.tv/util/atresplayer-util2.php?ep="+episode,
-		crossDomain: true,
-		data: "blabla",
-		dataType: "jsonp"
-	});
 }
 
 function jorl(a){
@@ -296,6 +297,17 @@ function jorl(a){
 
 function omgggggggg(a){
 	continuar(a);
+}
+
+function subs(a){
+	jQuery.ajax({
+		type: "GET",
+		//url: "http://www.descargavideos.tv/util/atresplayer-util2.php?ep="+episode,
+		url: "http://www.descargavideos.tv/util/atresplayer-util3.php?path="+a["pathData"],
+		crossDomain: true,
+		data: "blabla",
+		dataType: "jsonp"
+	});
 }
 
 

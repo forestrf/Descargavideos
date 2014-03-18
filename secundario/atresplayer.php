@@ -136,6 +136,9 @@ $obtenido=array(
 
 
 
+// Vulnerabilidad xss
+// https://servicios.atresplayer.com/episode/checkEpisode?callback=alert%28%27alert%27%29;jorl&episodePk=20140128-EPISODE-00025-false
+
 // Para ver si tiene subtitulos es necesario cargar el xml
 // http://www.atresplayer.com/episodexml/80000608/80000001/110001214/110001215/2014/02/24/1B1E7AC8-D23A-482C-AD91-523704547B67.xml
 // https://servicios.atresplayer.com/episode/getplayer?callback=jQuery18105513220074448444_1393974286813&episodePk=20140224-EPISODE-00009-false&_=1393974323306
