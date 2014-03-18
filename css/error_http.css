@@ -1,0 +1,10 @@
+/*Errores http: 404 por ahora*/
+.error_http {
+	color:#9D1818;
+	font-size:30px;
+	line-height:30px;
+	position:absolute;
+	text-align:center;
+	top:46%;
+	width:100%;
+}

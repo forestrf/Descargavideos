@@ -1,0 +1,77 @@
+<?php
+//0.5 segundo
+//15 resultados
+//ordenado por relevancia
+//+ preview
+//- bitrate
+//- peso
+//- duración
+//calidad puntuada por usuarios de 0 a 5 (no usada en el script)
+
+/*
+Formato de las respuestas:
+array(
+	'buscador'	=>	nombre del buscador,
+	'enlaces'	=>	array(
+		n => array(
+			'titulo'	=>	nombre de la canción,
+			'url'		=>	direccion de la descarga,
+			'duracion'	=>	tiempo en h:m:ss,
+			'peso'		=>	en MB,
+			'bitrate'	=>	en kbps,
+			'preview'	=>	1=si, 0=no
+		)
+	)
+);
+
+*/
+
+function dilandau(){
+global $web;
+$res=CargaWebCurl('http://es.dilandau.eu/canciones-mp3/'.urlencode($web).'/1.html');
+
+//recortar a solo los enlaces
+$p=strposF($res,'<div class="mbottom20 links-list">');
+if(enString($res,"groove_row")){
+	$p=strposF($res,'<tr class="groove_row"',$p);
+	$p=strposF($res,'<tr',$p);
+}
+$f=strpos($res,'<div class="pagination">',$p);
+$res=substr($res,$p,$f-$p);
+
+while(enString($res,"<iframe"))
+	$res=ReemplazaDeAPor($res,"<iframe",0,"</iframe","");
+
+$resultados=array(
+	'buscador'=>'dilandau.eu',
+	'enlaces'=>array()
+);
+
+$p=0;
+for($i=0;$i<15 && $p=strpos($res,'<h4>',$p);$i++){
+	$p+=4;
+	$f=strpos($res,'</h4>',$p);
+	$tit=strip_tags(substr($res,$p,$f-$p));
+
+	//href="http://n1.vmuzike.ne" url="t/a/skrillex/Kill_Everybody_(Original_Mix)"
+	$p=strposF($res,'<a href="http',$p)-4;
+	$f=strpos($res,'"',$p);
+	$url=substr($res,$p,$f-$p);
+
+	$p=strposF($res,'url="',$p);
+	$f=strpos($res,'"',$p);
+	$url.=substr($res,$p,$f-$p);
+
+	$r=array(
+		'url'=>$url,
+		'titulo'=>$tit,
+		'preview'=>1
+	);
+	$resultados['enlaces'][]=$r;
+}
+
+dbug_r($resultados);
+
+return $resultados;
+}
+?>

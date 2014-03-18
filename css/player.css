@@ -1,0 +1,20 @@
+body {
+	background: #050500;
+}
+#page {
+	height: 100%;
+}
+#player {
+	background: none repeat scroll 0 0 #000000;
+	border: 0 solid #4F4E4E;
+	box-shadow: 0 0 30px 0 #000000, 0 0 300px 0 #858585;
+	display: block;
+	height: 480px;
+	left: 50%;
+	margin-left: -420px;
+	margin-top: -260px;
+	padding: 20px;
+	position: absolute;
+	top: 50%;
+	width: 800px;
+}

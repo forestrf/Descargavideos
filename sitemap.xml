@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+<url>
+  <loc>http://www.descargavideos.tv/</loc>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>http://www.descargavideos.tv/faq</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://www.descargavideos.tv/lab</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://www.descargavideos.tv/changelog</loc>
+  <priority>0.60</priority>
+</url>
+<url>
+  <loc>http://www.descargavideos.tv/agradecimientos</loc>
+  <priority>0.40</priority>
+</url>
+<url>
+  <loc>http://www.descargavideos.tv/contacta</loc>
+  <priority>0.60</priority>
+</url>
+<url>
+  <loc>http://www.descargavideos.tv/telecinco</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://www.descargavideos.tv/antena-3</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://www.descargavideos.tv/rtve</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://www.descargavideos.tv/mitele</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://www.descargavideos.tv/univision</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://www.descargavideos.tv/cuatro</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://www.descargavideos.tv/la-sexta</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://www.descargavideos.tv/youtube</loc>
+  <priority>0.80</priority>
+</url>
+</urlset>

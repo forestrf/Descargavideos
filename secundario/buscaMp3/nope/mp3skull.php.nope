@@ -1,0 +1,33 @@
+<?php
+//No hecho
+//---- segundos
+//---- resultados
+//---- preview
+//---- bitrate
+//---- duración
+//---- peso
+
+/*
+Formato de las respuestas:
+array(
+	'buscador'  => nombre del buscador,
+	'enlaces' => array(
+		n => array(
+			'titulo'	=>	nombre de la canción,
+			'url'		=>	direccion de la descarga,
+			'duracion'	=>	tiempo en h:m:ss,
+			'peso'		=>	en MB,
+			'bitrate'	=>	en kbps,
+			'preview'	=>	1=si, 0=no
+		)
+	)
+);
+
+*/
+
+function mp3skull(){
+global $web;
+$res=CargaWebCurl('http://mp3skull.com/mp3/'.urlencode($web));
+
+
+?>

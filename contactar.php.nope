@@ -1,0 +1,42 @@
+<?php
+error_reporting(-1);
+include_once 'funciones.php';
+
+$impresion='<center><br><br><br><br><br><h1>';
+
+$error='';$name='';$email='';$subject='';$message='';
+
+if(isset($_REQUEST['send'])){
+	$name=$_REQUEST['nombre'];
+	$email=$_REQUEST['correo'];
+	$message=$_REQUEST['mensaje'];
+
+	if(trim($name)=='')$error='Por favor escriba su nombre!';
+
+	elseif(trim($email)=='')$error='Por favor indique su direccion Email!';
+	elseif(!isEmail($email))$error='Su Email no es valido, por favor intente de nuevo!';
+
+	if(trim($message)=='')$error='Escriba su mensaje!';
+
+	if($error==''){
+		if(get_magic_quotes_gpc())$message=stripslashes($message);
+
+		$to="info@descargavideos.tk";
+
+		$subject='(Contacto web) '.$name;
+
+		$msg="From : $name \r\ne-Mail : $email \r\nSubject : $subject \r\n\n" . "Message : \r\n".utf8_encode($message);
+
+		$header="Reply-To: $email <$email>\r\nReturn-Path: $email <$email>\r\nFrom: $email <$email>\r\nOrganization: Descargavideos\r\nContent-Type: text/plain\r\n";
+
+		mail($to,$subject,$msg,$header);
+
+		$impresion=$impresion.'
+		<div style="text-align:center;"><h1>Enviado</h1><p>Gracias, le responderemos lo antes posible!</p></div>';
+	}
+}
+if(!isset($_REQUEST['send'])||$error!='')
+	$impresion=$impresion.$error;
+$impresion=$impresion.'</h1>';
+echo $impresion;
+?>

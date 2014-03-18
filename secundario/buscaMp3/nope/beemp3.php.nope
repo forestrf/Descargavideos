@@ -1,0 +1,79 @@
+<?php
+//1.5 segundo
+//25 resultados
+//Usa captcha, por lo que no acabé el script. Falta por indicar la url de descarga, peso, calidad, etc. Solo nombre
+
+
+/*
+Formato de las respuestas:
+array(
+	'buscador'  => nombre del buscador,
+	'enlaces' => array(
+		n => array(
+			'titulo'	=>	nombre de la canción,
+			'url'		=>	direccion de la descarga,
+			'duracion'	=>	tiempo en h:m:ss,
+			'peso'		=>	en MB,
+			'bitrate'	=>	en kbps,
+			'preview'	=>	1=si, 0=no
+		)
+	)
+);
+
+*/
+
+function beemp3(){
+global $web;
+$res=CargaWebCurl('http://beemp3.com/index.php?q='.urlencode($web).'&st=all');
+
+//recortar a solo los enlaces
+$p=strposF($res,'<ol class="results-list">');
+$f=strpos($res,'</ol>',$p);
+$res=substr($res,$p,$f-$p);
+
+dbug($res);
+
+$resultados=array(
+	'buscador'=>'beemp3.com',
+	'enlaces'=>array()
+);
+
+$p=0;
+for($i=0;$i<25 && $p1=strpos($res,'<li>',$p);$i++){
+	$p=strposF($res,'Download song:',$p1);
+	$f=strpos($res,'</div>',$p);
+	$url=substr($res,$p,$f-$p);
+	
+	$url="http://";
+	
+
+	$p=strposF($res,'File name:',$p1);
+	$f=strpos($res,'</div>',$p);
+	$tit=strip_tags(substr($res,$p,$f-$p));
+	$tit=substr($tit,1,strlen($tit)-1);
+	
+	$tit=strtr($tit.'#',array(' mp3#'=>''));
+	$tit=strtr($tit,array('#'=>''));
+
+	
+	
+	$r=array(
+		'url'=>$url,
+		'titulo'=>$tit,
+		'preview'=>01
+	);
+
+/*
+	$p=$f+6;
+	$f=strpos($res,')',$p);
+	$r['duracion']=substr($res,$p,$f-$p);
+*/
+	$resultados['enlaces'][]=$r;
+	
+}
+
+dbug_r($resultados);
+
+return $resultados;
+}
+?>

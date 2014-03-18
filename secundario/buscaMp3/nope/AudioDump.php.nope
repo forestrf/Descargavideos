@@ -1,0 +1,65 @@
+<?php
+//4 segundos
+//60 segundos entre búsquedas
+//100 resultados.
+//el servidor hace bypass de la música. Requiere de redirección mediante Google. Mala opción.
+//falla más que una escopeta de feria
+//+ duración
+//- peso
+//- bitrate
+//- preview
+
+/*
+Formato de las respuestas:
+array(
+	'buscador'  => nombre del buscador,
+	'enlaces' => array(
+		n => array(
+			'titulo'	=>	nombre de la canción,
+			'url'		=>	direccion de la descarga,
+			'duracion'	=>	tiempo en h:m:ss,
+			'peso'		=>	en MB,
+			'bitrate'	=>	en kbps,
+			'preview'	=>	1=si, 0=no
+		)
+	)
+);
+
+*/
+
+function AudioDump(){
+global $web;
+$res=CargaWebCurl('http://www.audiodump.com/search.php?p=1&v=0&q='.urlencode($web).'&x=56&y=15');
+
+$resultados=array(
+	'buscador'=>'audiodump.com',
+	'enlaces'=>array()
+);
+
+
+for($i=99;$i>=0&&$p=strpos($res,$i.'. <a href="');$i--){
+	$p+=strlen($i.'. <a href="');
+	$f=strpos($res,'"',$p);
+	$url=substr($res,$p,$f-$p);
+
+	$url=strtr($url,array('http://www.audiodump.com/1/'=>'http://www.audiodump.org/'));
+
+	$url='http://www.google.es/url?sa=t&cd=2&url='.urlencode($url);
+	$r=array('url'=>$url,'preview'=>0);
+
+	$p=$f+2;
+	$f=strpos($res,'</a>',$p);
+	$r['titulo']=substr($res,$p,$f-$p);
+
+	$p=$f+6;
+	$f=strpos($res,')',$p);
+	$r['duracion']=substr($res,$p,$f-$p);
+
+	$resultados['enlaces'][]=$r;
+}
+
+dbug_r($resultados);
+
+return $resultados;
+}
+?>

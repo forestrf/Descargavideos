@@ -1,0 +1,1 @@
+<?php echo TXT_LEGAL_FULL?>
