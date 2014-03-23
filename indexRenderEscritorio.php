@@ -129,11 +129,13 @@ var css_user='<?php echo $css_modo?>';
 		</div>
 	</div>
 
-	<?php if($resultado!="")
-		echo '<div id="resultado" class="hx100"><script type="text/javascript">$.scrollTo("#resultado",500);</script>'.$resultado.'</div>';
-	else
-		echo '<div id="resultado"></div>';
-	?>
+	<?php if($resultado!=""){ ?>
+		<div id="resultado" class="hx100"><script type="text/javascript">$.scrollTo("#resultado",500);</script>
+            <?php include_once 'plantillaResultado.php';?>
+        </div>
+	<?php }else{ ?>
+		<div id="resultado"></div>
+	<?php } ?>
 
 	<div id="contenido">
 		<div class="menu_hueco">
