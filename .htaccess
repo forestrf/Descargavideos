@@ -85,6 +85,10 @@
 	#RewriteRule ^css/(.*).css css/css.php?id=$1 [NC,L]
 
 
+	# Ocultar archivos que comiencen por .
+	RedirectMatch 404 "(?:.*)/(?:\.git|file_or_dir)(?:/.*)?$"
+	
+	
 
 	ErrorDocument 404 /404.html
 
