@@ -418,6 +418,6 @@ function jsonRemoveUnicodeSequences($struct){
 }
 
 function jsonRemoveUnicodeSequences2($entrada){
-	return json_decode('"'.$entrada[1].'"');
+	return json_decode('"\u'.$entrada[1].'"');
 }
 ?>
