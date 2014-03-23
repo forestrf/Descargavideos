@@ -98,11 +98,12 @@ var css_user='<?php echo $css_modo?>';
 		</div>
 
 		<div class="stats">
-			<script type="text/javascript" src="http://s10.histats.com/js15.js"></script>
 			<a href="http://www.histats.com" target="_blank" title="contador flash">
 				<script type="text/javascript">
-				try {Histats.start(1,2419951,4,111,175,25,"00000001");
-				Histats.track_hits();}catch(err){};
+    				$(document).ready(function() {
+                    try {Histats.start(1,2419951,4,111,175,25,"00000001");
+                    Histats.track_hits();}catch(err){};
+                    });
 				</script>
 			</a>
 			<noscript>
@@ -187,7 +188,7 @@ function setModoPic(d){if(d==1){document.getElementById('web').placeholder="<?ph
 <script type="text/javascript" src="/advertisement.js"></script>
 <script type="text/javascript">_gaq.push(["_trackEvent","Adblock","Estado",adblock?"Con Adblock":"Sin Adblock"]);</script>
 
-
+<script type="text/javascript" src="http://s10.histats.com/js15.js"></script>
 
 
 
