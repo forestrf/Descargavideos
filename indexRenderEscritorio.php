@@ -98,19 +98,17 @@ var css_user='<?php echo $css_modo?>';
 		</div>
 
 		<div class="stats">
-			<a href="http://www.histats.com" target="_blank" title="contador flash">
-				<script type="text/javascript">
-    				$(document).ready(function() {
-                    try {Histats.start(1,2419951,4,111,175,25,"00000001");
-                    Histats.track_hits();}catch(err){};
-                    });
-				</script>
-			</a>
-			<noscript>
-				<a href="http://www.histats.com" target="_blank">
-					<img src="http://sstatic1.histats.com/0.gif?2419951%26101" alt="contador flash" style="border:0">
-				</a>
-			</noscript>
+		    <div id="histats_counter"></div>
+			<script type="text/javascript">var _Hasync= _Hasync|| [];
+            _Hasync.push(['Histats.start', '1,2419951,4,111,175,25,00000001']);
+            _Hasync.push(['Histats.fasi', '1']);
+            _Hasync.push(['Histats.track_hits', '']);
+            (function() {
+            var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+            hs.src = ('http://s10.histats.com/js15_as.js');
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+            })();</script>
+            <noscript><a href="http://www.histats.com" target="_blank"><img  src="http://sstatic1.histats.com/0.gif?2419951&101" alt="contador gratis" border="0"></a></noscript>
 		</div>
 		<div class="social">
 			<!--tw, fb, +1-->
@@ -187,8 +185,6 @@ function setModoPic(d){if(d==1){document.getElementById('web').placeholder="<?ph
 <script type="text/javascript">var adblock=true;</script>
 <script type="text/javascript" src="/advertisement.js"></script>
 <script type="text/javascript">_gaq.push(["_trackEvent","Adblock","Estado",adblock?"Con Adblock":"Sin Adblock"]);</script>
-
-<script type="text/javascript" src="http://s10.histats.com/js15.js"></script>
 
 
 
