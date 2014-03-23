@@ -16,13 +16,20 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+"23-Marzo-2014",
+array(
+    'fix:Univisión actualizado para soportar los nuevos vídeos.'
+    )
+);
+
+$todos[]=array(
 "18-Marzo-2014",
 array(
-	'add:CRTVG. Agregada url m3u8.',
-	'fix:Mitele. Algunos enlaces fallaban con el método nuevo.',
-	'fix:Mitele. Algunos vídeos no tenían imagen.',
-	'fix:Algunos vídeos de ATresPlayer con subtitulos con la opción de descargarlos arreglada (bookmarklet)'
-	)
+    'add:CRTVG. Agregada url m3u8.',
+    'fix:Mitele. Algunos enlaces fallaban con el método nuevo.',
+    'fix:Mitele. Algunos vídeos no tenían imagen.',
+    'fix:Algunos vídeos de ATresPlayer con subtitulos con la opción de descargarlos arreglada (bookmarklet).'
+    )
 );
 
 $todos[]=array(
