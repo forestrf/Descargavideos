@@ -420,4 +420,10 @@ function jsonRemoveUnicodeSequences($struct){
 function jsonRemoveUnicodeSequences2($entrada){
 	return json_decode('"\u'.$entrada[1].'"');
 }
+
+
+function plantillaInclude($cual){
+	global $path_plantilla;
+	return $path_plantilla.$cual;
+}
 ?>

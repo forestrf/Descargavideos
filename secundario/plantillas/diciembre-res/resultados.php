@@ -17,10 +17,11 @@ _gaq.push(["_trackEvent","Descargas","Realizadas","<?php echo $R['CANAL'];?>"]);
 
 <div id="enlaces" class="bloque">
 
-{resultados}
 <?php
 
 // Aquí va la selección de qué tipo de resultado(s) van para luego completarlos
+
+generaInnerResultado();
 
 ?>
 

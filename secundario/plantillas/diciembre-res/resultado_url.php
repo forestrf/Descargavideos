@@ -1,11 +1,11 @@
 <div>
-	<span id="id<?php echo $R['random_id'];?>" class="Descarga2"></span>
-	<a class="TV" target="_blank" href="/player/?img=<?php echo $R['url_img_res'];?>&ext=<?php echo $R['extension_res'];?>&video=<?php echo $R['dir_resultado_reproductor'];?>"></a>
+	<span id="id<?php echo $R2['random_id'];?>" class="Descarga2"></span>
+	<a class="TV" target="_blank" href="/player/?img=<?php echo $R['url_img_res'];?>&ext=<?php echo $R2['extension_res'];?>&video=<?php echo $R2['dir_resultado_reproductor'];?>"></a>
 </div>
 <script>
-	document.getElementById('id<?php echo $R['random_id'];?>').innerHTML=ReferrerKiller.linkHtml(
-		'<?php echo $R['dir_resultado'];?>',
-		'<?php echo $R['dir_resultado_txt_esc_simplecoma'];?>',
+	document.getElementById('id<?php echo $R2['random_id'];?>').innerHTML=ReferrerKiller.linkHtml(
+		'<?php echo $R2['dir_resultado'];?>',
+		'<?php echo $R2['dir_resultado_txt_esc_simplecoma'];?>',
 		{target:'_blank'},
 		{verticalAlign:'bottom'},
 		'.link{'+

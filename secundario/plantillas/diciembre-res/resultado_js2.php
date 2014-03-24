@@ -1,15 +1,15 @@
 <div>
-	<span id="id{random_id}" class="Descarga2"></span>
-	<a class="TV" id="id{random_id}2" target="_blank" href="/player/?img={url_img_res}"></a>
+	<span id="id<?php echo $R2['random_id'];?>" class="Descarga2"></span>
+	<a class="TV" id="id<?php echo $R2['random_id'];?>2" target="_blank" href="/player/?img=<?php echo $R['url_img_res'];?>"></a>
 </div>
 <script>
-	{dir_resultado}
+	<?php echo $R2['dir_resultado'];?>
 
 	
 	function finalizar(linkfinal, txtfinal, extension, extraHead){
 		if(!extension)
 			extension = "mp4";
-		document.getElementById('id{random_id}').innerHTML=ReferrerKiller.linkHtml(
+		document.getElementById('id<?php echo $R2['random_id'];?>').innerHTML=ReferrerKiller.linkHtml(
 			linkfinal,
 			txtfinal,
 			{target:'_blank'},

@@ -63,10 +63,7 @@ if(!isset($web)){
 
 
 //API. devolver SOLO el enlace (1/2)
-if(isset($_REQUEST["modoApi"]))
-	$modoApi=$_REQUEST["modoApi"];//0=no 1=si
-else
-	$modoApi="0";
+define('MODO_API', isset($_REQUEST["modoApi"]));
 
 
 
@@ -96,7 +93,7 @@ else
 
 if(isset($_REQUEST["plantilla"]))
 	$path_plantilla="plantillas/".$_REQUEST["plantilla"]."/";
-elseif($modoApi=="1"){
+elseif(MODO_API){
 	//API. devolver SOLO el enlace (2/2)
 	$path_plantilla="plantillas/".$plantillaApi."/";
 	dbug("plantilla api");
@@ -108,16 +105,6 @@ elseif($path_plantilla=="")
 
 $fallo_plantilla=template2('fallo.html');
 $index_plantilla=template2('index.html');
-$resultado_texto_plantilla=template2('resultado_texto.html');
-$resultado_url_plantilla=template2('resultado_url.html');
-$resultado_m3u8_plantilla=template2('resultado_m3u8.html');
-$resultado_srt_plantilla=template2('resultado_srt.html');
-$resultado_js_plantilla=template2('resultado_js.html');
-$resultado_js2_plantilla=template2('resultado_js2.html');
-$resultados_plantilla=template2('resultados.html');
-$resultado_rtmp_plantilla=template2('resultado_rtmp.html');
-$resultado_rtmpConcreto_plantilla=template2('resultado_rtmpConcreto.html');
-$resultado_rtmpConcretoHTTP_plantilla=template2('resultado_rtmpConcretoHTTP.html');
 
 
 /*
@@ -366,6 +353,7 @@ $cadenas=array(
 //hora de descargar y mostrar el resultado
 //AVERIGUAR SERVIDOR
 if($modo==1){
+	$R = array();
 	if(validar_enlace($web)){
 		//La función anterior, si es exitosa, finaliza la web. Si falla (url de un server no válido o la función del canal se acabó antes de lo previsto, se ejecuta lo próximo
 		if(!averiguaCadena($web)){
@@ -458,11 +446,10 @@ if($fallourlinterna!=""){
 
 // pantalla principal
 $pagina_actual=$fallo_plantilla;
-$impresion=$index_plantilla;
 
 // imprimir web
 if($web==""||$errorImprimible!="")
-	imprimeTodoHandler();
+	generaR();
 
 /*
 function lanzaBusquedaGoogle(){
@@ -474,171 +461,20 @@ function lanzaBusquedaGoogle(){
 }
 */
 
-function imprimeTodoHandler(){
-	global $resultado_de_secundario;
-	$resultado_de_secundario = imprimeTodo();
-}
 
-function imprimeTodo(){
-	global $modoApi,$resultado,$pagina_actual,$resultados,$contenido_plantilla,$errorImprimible,$impresion,$Cadena_elegida,$web;
+function generaR(){
+	global $Cadena_elegida, $web, $R;
 
-	$sustituir=array(
-		"{pagina_actual}"=>$pagina_actual,
-		"{url_img_res}"=>$resultado['imagen'],
-		"{titulo_res}"=>html_entity_decode($resultado['titulo']),
-		"{resultados}"=>$resultados,
-		"{contenido}"=>$contenido_plantilla,
-		"{error_texto}"=>$errorImprimible,
-		"{CANAL}"=>$Cadena_elegida,
-		"{WEB}"=>$web
-	);
-	$sustituir_length=count($sustituir);
-	for($i=0;$i<$sustituir_length;$i++)
-		$impresion=strtr($impresion,$sustituir);
-
-	if($modoApi === "1"){
-		echo $impresion;
-		exit;
-	}
-
-	return $impresion;
+	$R['url_img_res'] = $R['BASE']['imagen'];
+	$R['titulo_res'] = html_entity_decode($R['BASE']['titulo']);
+	$R['contenido'] = array();
+	$R['error_texto'] = $errorImprimible;
+	$R['CANAL'] = $Cadena_elegida;
+	$R['WEB'] = $web;
 }
 
 
-function RESULTADOS(){
-	global $modoApi,$pagina_actual,$resultados_plantilla,$resultado,$resultados,$resultado_texto_plantilla,$resultado_rtmp_plantilla,$resultado_rtmpConcreto_plantilla,$resultado_rtmpConcretoHTTP_plantilla,$resultado_m3u8_plantilla,$resultado_srt_plantilla,$resultado_js_plantilla,$resultado_js2_plantilla,$resultado_url_plantilla,$index_plantilla,$impresion;
-	$impresion=$index_plantilla;
 
-	if($resultado['titulo']=="")
-		$resultado['titulo']="Sin título";
-
-	if(isset($resultado['imagen']))
-		if($resultado['imagen']=="")
-			$resultado['imagen']="/img/picture_unrelated.jpg";
-
-	$pagina_actual=$resultados_plantilla;
-	$resultados="";
-
-	$num=0;
-	foreach($resultado['enlaces'] as $res){
-		$url=isset($res['url'])?$res['url']:"";
-		$rtmpdump=isset($res['rtmpdump'])?$res['rtmpdump']:"";
-		$rtmpdumpHTTP=isset($res['rtmpdumpHTTP'])?$res['rtmpdumpHTTP']:"";
-		$m3u8_pass=isset($res['m3u8_pass'])?$res['m3u8_pass']:"";
-		$url_txt=isset($res['url_txt'])?$res['url_txt']:"";
-		$extension=isset($res['extension'])?$res['extension']:"";
-		$titulo=isset($res['titulo'])?html_entity_decode($res['titulo']):"";
-		$otros_datos_mp3=isset($res['otros_datos_mp3'])?$res['otros_datos_mp3']:"";
-		$nombre_archivo=isset($res['nombre_archivo'])?$res['nombre_archivo']:"";
-		dbug('$url='.$url);
-		dbug('$rtmpdump='.$rtmpdump);
-		dbug('$rtmpdumpHTTP='.$rtmpdumpHTTP);
-		dbug('$m3u8_pass='.$m3u8_pass);
-		dbug('$url_txt='.$url_txt);
-		dbug('$extension='.$extension);
-		dbug('$titulo='.$titulo);
-		dbug('$otros_datos_mp3='.$otros_datos_mp3);
-		dbug('$nombre_archivo='.$nombre_archivo);
-
-		if($titulo||($modoApi&&$url_txt)){
-			$resultados.=$resultado_texto_plantilla;
-			$sustituir=array(
-				"{dir_resultado}"=>$titulo,
-				"{dir_resultado_2}"=>$url_txt
-			);
-			$resultados=strtr($resultados,$sustituir);
-		}
-
-		//$tipo = "http" o "rtmp"
-		if($url){
-			if($res['tipo']==='rtmp'){
-				$resultados.=$resultado_rtmp_plantilla;
-				//{extension_res}
-				if(!$extension)
-					$extension=extraeExtension($url,":");
-			}
-			elseif($res['tipo']==='rtmpConcreto'){
-				$resultados.=$resultado_rtmpConcreto_plantilla;
-				
-				if($nombre_archivo === ""){
-					preg_match('@-o.*?"(.*?)"@i',$rtmpdump,$matches);
-					$nombre_archivo=$matches[1];
-				}
-				
-				if(!$extension)
-					$extension=extraeExtension($url,".");
-			}
-			elseif($res['tipo']==='rtmpConcretoHTTP'){
-				$resultados.=$resultado_rtmpConcretoHTTP_plantilla;
-				
-				if($nombre_archivo == "")
-					$nombre_archivo="video.mp4";
-				
-				if(!$extension)
-					$extension=extraeExtension($url,".");
-			}
-			elseif($res['tipo']==='m3u8'){
-				$resultados.=$resultado_m3u8_plantilla;
-
-				if(!$extension)
-					$extension='m3u8';
-			}
-			elseif($res['tipo']==='js'){
-				$resultados.=$resultado_js_plantilla;
-
-				if(!$extension)
-					$extension='m3u8';
-			}
-			elseif($res['tipo']==='js2'){
-				$resultados.=$resultado_js2_plantilla;
-
-				if(!$extension)
-					$extension='mp4';
-			}
-			elseif($res['tipo']==='srt'){
-				$resultados.=$resultado_srt_plantilla;
-			}
-			else{
-			//if($res['tipo']=='http'){
-				$resultados.=$resultado_url_plantilla;
-
-				if(!$extension)
-					$extension=extraeExtension($url,".");
-			}
-			if($url_txt)
-				$url_txt=$url_txt;
-			else
-				$url_txt=$url;
-		}
-
-		global $lastID;
-		if(!$lastID)
-			$lastID = 1;
-		
-		$sustituir=array(
-			"{dir_resultado}"								=> $url,
-			"{dir_resultado_reproductor}"					=> urlencode($url),
-			"{dir_resultado_urlencode}"						=> urlencode($url),
-			"{dir_resultado_txt}"							=> htmlentities($url_txt),
-			"{dir_resultado_txt_esc_simplecoma}"			=> htmlentities(strtr($url_txt,array("'"=>"\\'"))),
-			"{dir_resultado_enc_rtmpdump}"					=> $url,
-			"{dir_resultado_rtmpdump_manual}"				=> $rtmpdump,
-			"{dir_resultado_rtmpdump_manual_esc_doblecoma}"	=> strtr($rtmpdump,array('"'=>'&quot;')),
-			"{dir_resultado_rtmpdumpHTTP}"					=> $rtmpdumpHTTP,
-			"{dir_resultado_rtmpdumpHTTP_esc_doblecoma}"	=> strtr($rtmpdumpHTTP,array('"'=>'&quot;')),
-			"{dir_resultado_enc_rtmpdump_manual}"			=> urlencode($rtmpdump),
-			"{nombre_resultado_rtmpdump_manual}"			=> $nombre_archivo,
-			"{pass_m3u8}"									=> $m3u8_pass,
-			"{extension_res}"								=> $extension,
-			"{otros_datos_mp3}"								=> $otros_datos_mp3,
-			"{num}"											=> $num,
-			"{random_id}"									=> $lastID
-		);
-		++$lastID;
-		$resultados=strtr($resultados,$sustituir);
-		++$num;
-	}
-}
 
 //Se seta $Cadena_elegida
 function averiguaCadena($web){
@@ -731,7 +567,8 @@ function addError($web,$extra){
 //$obtenido -> array con los resultados
 //$asegurate -> boolean: verdadero=comprobar si los enlaces son válidos. Falso=no comprobar
 function finalCadena($obtenido,$asegurate=true){
-	global $resultado;
+	global $resultado, $R;
+
 	$ind=(!isset($obtenido['enlaces'][0]['url']))?0:1;
 	if(isset($obtenido['enlaces'][$ind]['url']))
 		$duda1=esVideoAudioAnon($obtenido['enlaces'][$ind]['url']);
@@ -747,19 +584,21 @@ function finalCadena($obtenido,$asegurate=true){
 			print_r($obtenido);
 
 			$resultado=$obtenido;
+			$R['BASE'] = $obtenido;
 
-			RESULTADOS();
+			generaR();
 
-			imprimeTodoHandler();
-
+			define('HAY_RESULTADO', true);
+			
 			exit;
 		}
 		else{
 			$resultado=$obtenido;
+			$R['BASE'] = $obtenido;
 
-			RESULTADOS();
-
-			imprimeTodoHandler();
+			generaR();
+			
+			define('HAY_RESULTADO', true);
 		}
 	}
 	else{
