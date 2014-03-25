@@ -119,17 +119,6 @@ function pagina($cual){
 function template($cual){
 	return corrige(file_get_contents("paginas/".$cual));
 }
-
-function insertaPubliAfter($donde){
-if(enString($donde,'"contendor_publi_res"')){
-	global $publis;
-	$p=strpos($donde,'"contendor_publi_res"');
-	$f=strposF($donde,">",$p);
-	$entreMedias=substr($donde,$p,$f-$p);
-	$donde=ReemplazaDeAPor($donde,'"contendor_publi_res"',0,">",$entreMedias.$publis[1]);
-}
-return $donde;
-}
 ?>
 
 <!DOCTYPE html>

@@ -115,7 +115,7 @@ if(isset($web)){
 	require_once 'index.php';
 	
 	//esta variable cogerá el valor del resultado para mostrarlo en la página completa. Solo tendrá algo en ese caso.
-	$resultado = insertaPubliAfter($resultado_de_secundario);
+	$resultado = $resultado_de_secundario;
 	chdir("..");
 }
 
