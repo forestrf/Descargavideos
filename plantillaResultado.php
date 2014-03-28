@@ -2,7 +2,17 @@
 
 //print_r($R);
 
-include 'secundario/'.plantillaInclude('resultados.php');
+
+switch($R['MODO']){
+	case 'RESULTADO':
+		include 'secundario/'.plantillaInclude('resultados.php');
+	break;
+	case 'ERROR':
+		include 'secundario/'.plantillaInclude('fallo.php');
+	break;
+}
+
+
 
 // Únicamente necesita de la variable $R
 function generaInnerResultado(){

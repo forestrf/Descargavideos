@@ -71,7 +71,7 @@ var css_user='<?php echo $css_modo?>';
 		<div class="centro">
 			<form action="/" method="get" name="formCalculador" id="formCalculador">
 				<div class="fondo_input_web">
-					<input type="text" name="web" id="web" class="entrada" placeholder="Pega la URL del vídeo..." value="<?php if($web!="")echo htmlentities($web)?>" title="URL a obtener">
+					<input type="text" name="web" id="web" class="entrada" placeholder="Pega la URL del vídeo..." value="<?php if(isset($web) && $web!="")echo htmlentities($web)?>" title="URL a obtener">
 				</div>
 				<input type="submit" id="submit" value=" " class="boton">
 				
