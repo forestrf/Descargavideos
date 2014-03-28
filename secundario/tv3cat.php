@@ -307,7 +307,7 @@ if(enString($retfull,"insertaEVP(")||$modelo==0){
 	$server3='http://www.tv3.cat/pvideo/FLV_bbd_media.jsp?'.'ID='.$id.'&QUALITY=H&FORMAT='.$formato;
 	dbug('server3='.$server3);
 	$server4='http://www.tv3.cat/pvideo/FLV_bbd_media.jsp?'.'ID='.$id.'&QUALITY=H&PROFILE=APPMOB&FORMAT='.$formato;
-	dbug('server3='.$server4);
+	dbug('server4='.$server4);
 
 	$ret=CargaWebCurl($server4);
 	dbug('obtenido='.$ret);
@@ -316,12 +316,16 @@ if(enString($retfull,"insertaEVP(")||$modelo==0){
 		//a sacer el video. si falla la busqueda, entonces hay un error
 		
 		//<media videoname="La Costa Brava en caiac/Thalassa/13042012/BB_THALASS">
-		//rtmp://mp4-500-str.tv3.cat/ondemand/mp4:g/tvcatalunya/2/2/1334322726322.mp4
+		//http://mp4-medium-dwn.media.tv3.cat/g/tvcatalunya/0/2/1394113435120.mp4
 		//</media>
 		$p=strrpos($ret,'<media');
 		$ret=entre1y2_a($ret,$p,'>','<');
 
 		dbug('urlFinal='.$ret);
+		if(strpos($ret, 'rtmp://') === 0){
+			$ret = preg_replace('@rtmp://.*?mp4:(.*?)$@', 'http://mp4-medium-dwn.media.tv3.cat/$1', $ret);
+			dbug('urlFinal (mediante preg replace='.$ret);
+		}
 		
 		$obtenido['enlaces'][] = array(
 			'titulo'  => "Calidad media",

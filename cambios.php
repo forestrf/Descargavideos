@@ -16,6 +16,13 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+"28-Marzo-2014",
+array(
+    'fix:Algunos vídeos de TV3 usaban rtmp en lugar de http.'
+    )
+);
+
+$todos[]=array(
 "23-Marzo-2014",
 array(
     'fix:Univisión actualizado para soportar los nuevos vídeos.'
