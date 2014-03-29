@@ -20,6 +20,7 @@ function limpiar($que){
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 
+	<script type="text/javascript" src="extra/flowplayer-3.2.12.min.js"></script>
 	<link rel="stylesheet" href="/css/reset.css" />
 	<link rel="stylesheet" href="/css/player.css" />
 	
@@ -63,8 +64,8 @@ function limpiar($que){
 </head>
 <body>
 	<script>
-		if(!detectflash()){
-		    alert("Flash is enabled");
+		if(detectflash()){
+		    dibujarReproductorFlash();
 		} else{
 		    dibujarReproductorHTML5();
 		}
@@ -75,6 +76,42 @@ function limpiar($que){
 			 	data-setup="{}">\
 			 	<source src=\'<?php echo $url?>\' type=\'video/<?php echo $ext?>\'>\
 			</video>';
+		}
+		
+		function dibujarReproductorFlash(){
+			document.body.innerHTML = '<a href="#" id="player"><img src=\'<?php echo $img?>\' style="width:100%; height:100%"/><div class="overlay"></div><div class="boton_play"></div></a>';
+			
+			flowplayer("player", "http://releases.flowplayer.org/swf/flowplayer-3.2.16.swf", {
+				clip: {
+					url: '<?php echo $url?>',
+					coverImage: '<?php echo $img?>',
+					<?php if($ext) echo "type: '$ext',"?>
+					scaling: "fit",
+					autoPlay: false
+				},
+				plugins: {
+					controls: {
+						url: "http://releases.flowplayer.org/swf/flowplayer.controls-3.2.15.swf",
+						 
+						backgroundColor: "transparent",
+						backgroundGradient: "none",
+						sliderColor: '#FFFFFF',
+						sliderBorder: '1.5px solid rgba(160,160,160,0.7)',
+						volumeSliderColor: '#FFFFFF',
+						volumeBorder: '1.5px solid rgba(160,160,160,0.7)',
+	
+						timeColor: '#ffffff',
+						durationColor: '#535353',
+	
+						tooltipColor: 'rgba(255, 255, 255, 0.7)',
+						tooltipTextColor: '#000000'
+					}
+				},
+				canvas: {
+					backgroundColor:'#000000',
+					backgroundGradient: [0, 0]
+				}
+			});
 		}
 	</script>
 	
