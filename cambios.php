@@ -18,7 +18,6 @@ function cambios($max=-1){
 $todos[]=array(
 "31-Marzo-2014",
 array(
-	'fix:Los vídeos de ATresPlayer premium no informaban de error.',
 	'fix:Las urls con caracteres no-ascii provocaban fallo de url inválida.'
 	)
 );

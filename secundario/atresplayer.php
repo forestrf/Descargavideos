@@ -34,7 +34,6 @@ exit;
 
 global $web,$web_descargada;
 
-
 preg_match('@<div.*?capa_modulo_player.*?episode ?= ?"(.*?)">@i', $web_descargada, $matches);
 
 if(!$matches[1]){
@@ -44,25 +43,6 @@ if(!$matches[1]){
 
 $episode = $matches[1];
 dbug('episode = '.$episode);
-
-
-
-
-
-
-// Intentamos sacar ya los subtítulos ya que, de ser un vídeo premium, lo pondrá en el resultado
-$WebSubtitulos = CargaWebCurl("https://servicios.atresplayer.com/episode/getplayer?episodePk=".$episode);
-dbug($WebSubtitulos);
-$WebSubtitulos = JSON_decode($WebSubtitulos, true);
-dbug_r($WebSubtitulos);
-
-
-if(isset($WebSubtitulos['typeOfEpisode']) && $WebSubtitulos['typeOfEpisode'] === 'PREMIUM'){
-	setErrorWebIntera('Los vídeos premium (de pago) no están soportados');
-	return;
-}
-
-
 
 
 $key = "puessepavuestramerced";
@@ -163,7 +143,10 @@ $obtenido=array(
 // Para ver si tiene subtitulos es necesario cargar el xml
 // http://www.atresplayer.com/episodexml/80000608/80000001/110001214/110001215/2014/02/24/1B1E7AC8-D23A-482C-AD91-523704547B67.xml
 // https://servicios.atresplayer.com/episode/getplayer?callback=jQuery18105513220074448444_1393974286813&episodePk=20140224-EPISODE-00009-false&_=1393974323306
-
+$WebSubtitulos = CargaWebCurl("https://servicios.atresplayer.com/episode/getplayer?episodePk=".$episode);
+dbug($WebSubtitulos);
+$WebSubtitulos = JSON_decode($WebSubtitulos, true);
+dbug_r($WebSubtitulos);
 if(isset($WebSubtitulos['pathData']) && strlen($WebSubtitulos['pathData'])>1){
 	$WebSubtitulos = CargaWebCurl("http://www.atresplayer.com/episodexml/".$WebSubtitulos['pathData']);
 	dbug($WebSubtitulos);
@@ -177,7 +160,7 @@ if(isset($WebSubtitulos['pathData']) && strlen($WebSubtitulos['pathData'])>1){
 				'url'     => $urlSubtitulos,
 				'tipo'    => 'srt'
 			);
-			dbug("LEEEEEEEL");
+			dbug("Hay subtítulos");
 		}
 	}
 }
