@@ -16,6 +16,13 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+"31-Marzo-2014",
+array(
+    'fix:Los vídeos de ATresPlayer premium no informaban de error.'
+    )
+);
+
+$todos[]=array(
 "30-Marzo-2014",
 array(
     'add:Reproductor HTML5 en caso de no encontrarse el plugin de flash.'
