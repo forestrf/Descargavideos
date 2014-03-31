@@ -358,7 +358,7 @@ if($modo==1){
 		//La función anterior, si es exitosa, finaliza la web. Si falla (url de un server no válido o la función del canal se acabó antes de lo previsto, se ejecuta lo próximo
 		if(!averiguaCadena($web)){
 			//no es una url aceptada de una web permitida
-			$errorImprimible='Has introducido un enlace de un servidor no válido. Pon solo enlaces de los servidores permitidos';
+			$errorImprimible='Has introducido un enlace de una página web no soportada. Puedes consultar el listado de webs soportadas en el siguiente enlace:<br><a href="http://www.descargavideos.tv/faq#p_q_c_s_d">http://www.descargavideos.tv/faq#p_q_c_s_d</a>';
 
 			//informar de fallo
 			addError($web, 'URL correcta, pero de un server no soportado');

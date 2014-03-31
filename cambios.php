@@ -16,34 +16,43 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+"31-Marzo-2014",
+array(
+	'fix:Las urls con caracteres no-ascii provocaban fallo de url inválida.',
+	'fix:nuevo formato de vídeos incorporado a EITB.',
+	'fix:Cambiado el mensaje de error por introducir una URL de una web no soportada.'
+	)
+);
+
+$todos[]=array(
 "30-Marzo-2014",
 array(
-    'add:Reproductor HTML5 en caso de no encontrarse el plugin de flash.'
-    )
+	'add:Reproductor HTML5 en caso de no encontrarse el plugin de flash.'
+	)
 );
 
 $todos[]=array(
 "28-Marzo-2014",
 array(
-    'fix:Algunos vídeos de TV3 usaban rtmp en lugar de http.'
-    )
+	'fix:Algunos vídeos de TV3 usaban rtmp en lugar de http.'
+	)
 );
 
 $todos[]=array(
 "23-Marzo-2014",
 array(
-    'fix:Univisión actualizado para soportar los nuevos vídeos.'
-    )
+	'fix:Univisión actualizado para soportar los nuevos vídeos.'
+	)
 );
 
 $todos[]=array(
 "18-Marzo-2014",
 array(
-    'add:CRTVG. Agregada url m3u8.',
-    'fix:Mitele. Algunos enlaces fallaban con el método nuevo.',
-    'fix:Mitele. Algunos vídeos no tenían imagen.',
-    'fix:Algunos vídeos de ATresPlayer con subtitulos con la opción de descargarlos arreglada (bookmarklet).'
-    )
+	'add:CRTVG. Agregada url m3u8.',
+	'fix:Mitele. Algunos enlaces fallaban con el método nuevo.',
+	'fix:Mitele. Algunos vídeos no tenían imagen.',
+	'fix:Algunos vídeos de ATresPlayer con subtitulos con la opción de descargarlos arreglada (bookmarklet).'
+	)
 );
 
 $todos[]=array(

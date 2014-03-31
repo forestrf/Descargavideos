@@ -38,6 +38,7 @@ preg_match('@<div.*?capa_modulo_player.*?episode ?= ?"(.*?)">@i', $web_descargad
 
 if(!$matches[1]){
 	setErrorWebIntera('No se encontró ningún vídeo');
+	return;
 }
 
 $episode = $matches[1];
@@ -159,7 +160,7 @@ if(isset($WebSubtitulos['pathData']) && strlen($WebSubtitulos['pathData'])>1){
 				'url'     => $urlSubtitulos,
 				'tipo'    => 'srt'
 			);
-			dbug("LEEEEEEEL");
+			dbug("Hay subtítulos");
 		}
 	}
 }
