@@ -120,8 +120,12 @@ function stringContains($donde, $que){
 
 
 
-//Aquí se rellena web_descargada
-function url_exists_full($url, $preg_match_prerealizado = false){
+function urlencode_noAscii($c){
+	return urlencode($c[0]);
+}
+
+//Aquí se rellena web_descargada. también se corrige $url en caso de ser corregible.
+function url_exists_full(&$url, $preg_match_prerealizado = false){
 	dbug('Comprobando URL => '.$url);
 	if(!$preg_match_prerealizado){
 		if(!preg_match('@^https?://(([^/^\.]+\.)+?[^/^\.]+?)(/.*)?$@i',$url)){
@@ -129,7 +133,7 @@ function url_exists_full($url, $preg_match_prerealizado = false){
 		}
 	}
 
-	
+	$url = preg_replace_callback('/[^(\x20-\x7F)]/', 'urlencode_noAscii', $url);
 	
 	$context =
 		array("http"=>
