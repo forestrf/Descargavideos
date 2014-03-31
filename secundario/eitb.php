@@ -33,24 +33,51 @@ detalle_video_1258848
 http://www.eitb.com/es/get/multimedia/video/id/1258848/size/grande/
 <media:content url="http://hdstreameitb-f.akamaihd.net/z/multimediahd/videos/2013/02/15/1045086/20130215_15532024_0005703037_001_001____T1_METEOR.mp4/manifest.f4m" type="video/x-flv"/>
 http://www.eitb.com/multimediahd/videos/2013/02/15/1045086/20130215_15532024_0005703037_001_001____T1_METEOR.mp4
+http://www.eitb.com/multimedia/videos/2011/10/24/558362/PIRINEOS_ES_20111024_101408.flv
 */
 
 
 
 $p=strpos($retfull,'<div class="player">');
-$p=strpos($retfull,'detalle_video_',$p)+14;
-$f=strpos($retfull,'"',$p);
-$id=substr($retfull,$p,$f-$p);
+$id=entre1y2_a($retfull,$p,'detalle_video_','"');
+dbug('id='.$id);
 $ret=CargaWebCurl("http://www.eitb.com/es/get/multimedia/video/id/".$id."/size/grande/");
 
 $imagen=entre1y2($ret,'thumbnail url="','"');
 
-$p=strpos($ret,'<media:content url="');
-$p=strpos($ret,'url="',$p);
-$p=strpos($ret,'z/',$p)+2;
-$f=strpos($ret,'/manifest.f4m',$p);
-$url="http://www.eitb.com/".substr($ret,$p,$f-$p);
-
+if(enString($ret, 'manifest.f4m')){
+	$p=strpos($ret,'<media:content url="');
+	$p=strpos($ret,'url="',$p);
+	$p=strposF($ret,'z/',$p);
+	$f=strpos($ret,'/manifest.f4m',$p);
+	$url="http://www.eitb.com/".substr($ret,$p,$f-$p);
+	
+	$obtenido=array(
+		'titulo'  => $titulo,
+		'imagen'  => $imagen,
+		'enlaces' => array(
+			array(
+				'url'  => $url,
+				'tipo' => 'http'
+			)
+		)
+	);
+}
+elseif(enString($ret, '.mp4') || enString($ret, '.flv')){
+	$url="http://www.eitb.com/".entre1y2($ret,'<media:content url="','"');
+	
+	$obtenido=array(
+		'titulo'  => $titulo,
+		'imagen'  => $imagen,
+		'enlaces' => array(
+			array(
+				'url'  => $url,
+				'tipo' => 'http',
+				'extension' => substr($url,-3,3)
+			)
+		)
+	);
+}
 
 //a la carta: Ni idea
 /*
@@ -61,16 +88,7 @@ http://www.eitb.tv/es/get/videoplaylist/2142574288001/
 */
 
 
-$obtenido=array(
-	'titulo'  => $titulo,
-	'imagen'  => $imagen,
-	'enlaces' => array(
-		array(
-			'url'  => $url,
-			'tipo' => 'http'
-		)
-	)
-);
+
 
 finalCadena($obtenido);
 }
