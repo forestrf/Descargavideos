@@ -39,6 +39,10 @@ http://www.eitb.com/multimedia/videos/2011/10/24/558362/PIRINEOS_ES_20111024_101
 
 
 $p=strpos($retfull,'<div class="player">');
+if(!enString($retfull, 'detalle_video_')){
+	setErrorWebIntera('No se puede encontrar ningún vídeo.');
+	return;
+}
 $id=entre1y2_a($retfull,$p,'detalle_video_','"');
 dbug('id='.$id);
 $ret=CargaWebCurl("http://www.eitb.com/es/get/multimedia/video/id/".$id."/size/grande/");
