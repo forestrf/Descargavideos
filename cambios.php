@@ -18,7 +18,8 @@ function cambios($max=-1){
 $todos[]=array(
 "31-Marzo-2014",
 array(
-	'fix:Las urls con caracteres no-ascii provocaban fallo de url inválida.'
+	'fix:Las urls con caracteres no-ascii provocaban fallo de url inválida.',
+	'fix:Cambiado el mensaje de error por introducir una URL de una web no soportada.'
 	)
 );
 
