@@ -359,6 +359,11 @@ $cadenas=array(
 		array("ideal.es"),
 		array("ideal.php"),
 		"ideal"
+	),
+	array(
+		array("magnovideo.com"),
+		array("magnovideo.php"),
+		"magnovideo"
 	)
 );
 

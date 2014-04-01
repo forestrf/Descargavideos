@@ -18,6 +18,7 @@ function cambios($max=-1){
 $todos[]=array(
 "1-Abril-2014",
 array(
+	'add:Magnovideo.com.',
 	'fix:Los enlaces RTMP de Aragon TV se calculaban con partes de la url mal obtenidas.',
 	'fix:Los enlaces RTMP de EITB.tv eran incorrectos en cuando pertenecian a brightcove.',
 	'fix:Optimizaciones para consumir menos ram.'

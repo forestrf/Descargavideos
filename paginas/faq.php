@@ -91,52 +91,53 @@ La web únicamente almacena los siguientes datos de los usuarios:<p>
 <div class="respuesta">
 A continuación se puede ver el listado de las webs y los canales soportados:<br>
 <ol>
-	<li><a href="/antena-3">antena3.com</a>
-	<li><a href="/telecinco">telecinco.es</a>
-	<li><a href="/la-sexta">lasexta.com</a>
-	<li><a href="/rtve">rtve.es</a>
-	<li><a href="/cuatro">cuatro.com</a>
-	<li><a href="/mitele">mitele.es</a>
-	<li><a href="/youtube">youtube.com</a>
-	<li>canalriasbaixas.com
-	<li>divinity.es
-	<li>aragontelevision.es
-	<li>rtvv.es
-	<li>canalsur.es
-	<li>tv3.cat
-	<li>esport3.cat
-	<li>orm.es
-	<li>7rm.es
-	<li>rtpa.es
-	<li>canalextremadura.es
-	<li>soundcloud.com
-	<li>veoh.com
-	<li>rtvcm.es
-	<li>rt.com
-	<li><a href="/univision">univision.com</a>
-	<li>vtelevision.es
-	<li>medici.tv
-	<li>goear.com
-	<li>canaldehistoria.es
-	<li>crtvgtvg.es
-	<li>mtv.es
-	<li>intereconomia.com
-	<li>vimeo.com
-	<li>cope.es
-	<li>cadenaser.com
-	<li>mitelekids.es
-	<li>esmas.com
-	<li>televisa.com
-	<li>eitb.com
-	<li>eitb.tv
-	<li>telemadrid.es
-	<li>ATresPlayer.com (Consultar el blog)
-	<li>Adnstrean.com
-	<li>netd.com
-	<li>telefe.com
-	<li>toons.tv
-	<li>tvmelilla.es
-	<li>tune.pk
-	<li>ideal.es
+	<li><a href="/antena-3">antena3.com</a></li>
+	<li><a href="/telecinco">telecinco.es</a></li>
+	<li><a href="/la-sexta">lasexta.com</a></li>
+	<li><a href="/rtve">rtve.es</a></li>
+	<li><a href="/cuatro">cuatro.com</a></li>
+	<li><a href="/mitele">mitele.es</a></li>
+	<li><a href="/youtube">youtube.com</a></li>
+	<li>canalriasbaixas.com</li>
+	<li>divinity.es</li>
+	<li>aragontelevision.es</li>
+	<li>rtvv.es</li>
+	<li>canalsur.es</li>
+	<li>tv3.cat</li>
+	<li>esport3.cat</li>
+	<li>orm.es</li>
+	<li>7rm.es</li>
+	<li>rtpa.es</li>
+	<li>canalextremadura.es</li>
+	<li>soundcloud.com</li>
+	<li>veoh.com</li>
+	<li>rtvcm.es</li>
+	<li>rt.com</li>
+	<li><a href="/univision">univision.com</a></li>
+	<li>vtelevision.es</li>
+	<li>medici.tv</li>
+	<li>goear.com</li>
+	<li>canaldehistoria.es</li>
+	<li>crtvgtvg.es</li>
+	<li>mtv.es</li>
+	<li>intereconomia.com</li>
+	<li>vimeo.com</li>
+	<li>cope.es</li>
+	<li>cadenaser.com</li>
+	<li>mitelekids.es</li>
+	<li>esmas.com</li>
+	<li>televisa.com</li>
+	<li>eitb.com</li>
+	<li>eitb.tv</li>
+	<li>telemadrid.es</li>
+	<li>ATresPlayer.com</li>
+	<li>Adnstrean.com</li>
+	<li>netd.com</li>
+	<li>telefe.com</li>
+	<li>toons.tv</li>
+	<li>tvmelilla.es</li>
+	<li>tune.pk</li>
+	<li>ideal.es</li>
+	<li>magnovideo.com</li>
 </ol>
 </div>
