@@ -87,11 +87,19 @@ finalCadena($obtenido, false);
 function SacarVideo($retfull, $titulo){
 	//url:'mp4%3A%2Fweb%2F4311%2F4311.mp4',
 
+	$retfull = strtr($retfull,array(' '=>''));
+	
 	$url = entre1y2($retfull,"url:'","'");
 
 	//urldecode(
 	$url=urldecode($url);
 	dbug($url);
+	
+	$rtmpbase = entre1y2($retfull,"netConnectionUrl:'","'");
+
+	//urldecode(
+	$rtmpbase=urldecode($rtmpbase);
+	dbug($rtmpbase);
 
 	/*if(enString($url,'_archivos/videos/'))
 		$url='http://alacarta.aragontelevision.es/'.$url;
@@ -101,7 +109,7 @@ function SacarVideo($retfull, $titulo){
 
 	$videos=array(
 		'url'=> 'rtmp://aragontvvodfs.fplive.net/aragontvvod'.$url,
-		'rtmpdump'=> '-r "rtmp://aragontvvodfs.fplive.net/aragontvvod" -y "'.$url.'" -o "'.generaNombreWindowsValido($titulo).'.mp4"',
+		'rtmpdump'=> '-r "'.$rtmpbase.'" -y "'.$url.'" -o "'.generaNombreWindowsValido($titulo).'.mp4"',
 		'tipo'    => 'rtmpConcreto',
 		'extension'=>'mp4'
 	);
