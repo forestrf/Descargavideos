@@ -207,7 +207,7 @@ function dbug($msg){
 ';
 }
 
-function dbug_r($arr){
+function dbug_r(&$arr){
 	if(defined("DEBUG"))
 		print_r($arr);
 }

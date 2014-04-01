@@ -26,7 +26,7 @@ preg_match('@defaultServiceUrl.*?\'(.*?)\'.*?path.*?\'(.*?)\'@', $ret, $matches)
 dbug_r($matches);
 
 $url=$matches[1].'/'.$matches[2];
-dbug_r('URL = '.$url);
+dbug('URL = '.$url);
 
 
 $obtenido=array(
