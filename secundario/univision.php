@@ -2,7 +2,6 @@
 
 function univisionMovil() {
     global $web, $web_descargada;
-    $retfull = $web_descargada;
     //$retfull=CargaWebCurl($web);
 
     $id = entre1y2($web . 'FINAL', '?id=', 'FINAL');
@@ -12,16 +11,15 @@ function univisionMovil() {
 
 function univision() {
     global $web, $web_descargada;
-    $retfull = $web_descargada;
     //$retfull=CargaWebCurl($web);
 
-    if (enString($retfull, 'video_id=')) {
-        $id = entre1y2($retfull, 'video_id=', ',');
-    } elseif (enString($retfull, 'fw_video_asset_id')) {
-        preg_match("@fw_video_asset_id.*?([0-9]+)@", $retfull, $match);
+    if (enString($web_descargada, 'video_id=')) {
+        $id = entre1y2($web_descargada, 'video_id=', ',');
+    } elseif (enString($web_descargada, 'fw_video_asset_id')) {
+        preg_match("@fw_video_asset_id.*?([0-9]+)@", $web_descargada, $match);
         $id = $match[1];
-    } elseif (enString($retfull, 'videoEmbedCode')) {
-        preg_match("@videoEmbedCode.*?([0-9]+)@", $retfull, $match);
+    } elseif (enString($web_descargada, 'videoEmbedCode')) {
+        preg_match("@videoEmbedCode.*?([0-9]+)@", $web_descargada, $match);
         $id = $match[1];
     } else {
         return;
