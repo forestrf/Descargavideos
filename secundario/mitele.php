@@ -7,9 +7,12 @@ function mitele_directo(){
 	global $web,$web_descargada;
 	dbug('divinity, cuatro, telecinco o mitelekids');
 
-	$retfull=$web_descargada;
-	if(strlen($retfull)<500)
-		$retfull=CargaWebCurl($web);
+	if(strlen($web_descargada) < 500){
+		$retfull = CargaWebCurl($web);
+	}
+	else{
+		$retfull = $web_descargada;
+	}
 
 	//titulo
 	if(enString($web,"mitelekids")){
@@ -101,21 +104,20 @@ function mitele(){
 	global $titulo,$imagen,$geoB,$web_descargada;
 
 
-	$retfull=$ret=$web_descargada;
-	//$retfull=$ret=CargaWebCurl($web);
+	//$ret=$ret=CargaWebCurl($web);
 
 	//titulo
-	$p=strpos($retfull,"<title>")+7;
-	$f=strpos($retfull,'<',$p);
-	$titulo=substr($retfull,$p,$f-$p);
+	$p=strpos($web_descargada,"<title>")+7;
+	$f=strpos($web_descargada,'<',$p);
+	$titulo=substr($web_descargada,$p,$f-$p);
 	$titulo=limpiaTitulo($titulo);
 	dbug('titulo='.$titulo);
 
 
 	//comprobar que no es premium
-	$p=strpos($ret,'<div class="videoEmbed">');
-	$f=strpos($ret,'</div>',$p);
-	$premium=substr($ret,$p,$f-$p);
+	$p=strpos($web_descargada,'<div class="videoEmbed">');
+	$f=strpos($web_descargada,'</div>',$p);
+	$premium=substr($web_descargada,$p,$f-$p);
 
 	//el video es premium. Dar error
 	if(enString($premium,'<span class="premium">')){
@@ -123,19 +125,19 @@ function mitele(){
 		return;
 	}
 
-	$p=strpos($ret,'class="videoEmbed"');
-	$f=strpos($ret,'>',$p);
-	$resYa=substr($ret,$p,$f-$p);
+	$p=strpos($web_descargada,'class="videoEmbed"');
+	$f=strpos($web_descargada,'>',$p);
+	$resYa=substr($web_descargada,$p,$f-$p);
 	if(enString($resYa,'data-video')){
 		$p=strpos($resYa,'data-video="')+12;
 		$f=strpos($resYa,'"',$p);
 		$id=substr($resYa,$p,$f-$p);
 		dbug($id);
 		//imagen
-		$p=strpos($ret,'class="videoEmbed"');
-		$p=strpos($ret,'<img src="',$p)+10;
-		$f=strpos($ret,'"',$p);
-		$imagen=substr($ret,$p,$f-$p);
+		$p=strpos($web_descargada,'class="videoEmbed"');
+		$p=strpos($web_descargada,'<img src="',$p)+10;
+		$f=strpos($web_descargada,'"',$p);
+		$imagen=substr($web_descargada,$p,$f-$p);
 		dbug('imagen='.$imagen);
 		
 		//$id=str_replace("/geo/","/nogeo/",$id);
