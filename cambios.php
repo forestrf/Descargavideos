@@ -19,7 +19,8 @@ $todos[]=array(
 "1-Abril-2014",
 array(
 	'fix:Los enlaces RTMP de Aragon TV se calculaban con partes de la url mal obtenidas.',
-	'fix:Los enlaces RTMP de EITB.tv eran incorrectos en cuando pertenecian a brightcove.'
+	'fix:Los enlaces RTMP de EITB.tv eran incorrectos en cuando pertenecian a brightcove.',
+	'fix:Optimizaciones para consumir menos ram.'
 	)
 );
 
