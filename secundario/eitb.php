@@ -276,7 +276,7 @@ function URLSDelArrayBrightCove($r, $tipo, &$obtenido_enlaces, $titulo){
 			preg_match('@://.*?/(.*?)[\?&].*?mp4:(.*?)$@', $r["defaultURL"], $matches);
 			$a = $matches[1];
 			$CS = $matches[2];
-			$extra = '-a "'.$a.'" -C "B:0" -C "S:'.$CS;
+			$extra = '-a "'.$a.'" -C "B:0" -C "S:'.$CS.'" ';
 		}
 		else{ //else edgefcs
 			$extra = '';
