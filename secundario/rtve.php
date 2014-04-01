@@ -17,20 +17,18 @@ if($p!=strlen($web)-1){
 //modo alacarta
 if(enString($web,"/audios/")){
 	dbug('modo audio');
-	$retfull=$web_descargada;
 	//$retfull=CargaWebCurl($web);
 	$audio=1;
 }
 elseif(enString($web,"/infantil/")){
 	dbug('modo infantil');
-	$retfull=$web_descargada;
 	$p=strrposF($web,"/",strrposF($web,"/")-2-strlen($web));
 	$f=strpos($web,"/",$p);
 	$asset=substr($web,$p,$f-$p);
 	dbug('asset='.$asset);
 	
 	if(!is_numeric($asset)){
-		$preIDURL=entre1y2($retfull,"/#/",'"');
+		$preIDURL=entre1y2($web_descargada,"/#/",'"');
 		dbug('preIDURL='.$preIDURL);
 		$p=strpos($preIDURL,"/",strlen($preIDURL)-12);
 		$asset=entre1y2_a($preIDURL,$p,"/","/");
@@ -40,15 +38,14 @@ elseif(enString($web,"/infantil/")){
 }
 else{
 	dbug('modo normal');
-	$retfull=$web_descargada;
 	//$retfull=CargaWebCurl($web);
 	
 	//assetID=974036_
 	$asset = "Por rellenar";
-	if(enString($retfull, "assetID=")){
-		$p=strposF($retfull,"assetID=");
-		$f=strpos($retfull,"_",$p);
-		$asset=substr($retfull,$p,$f-$p);
+	if(enString($web_descargada, "assetID=")){
+		$p=strposF($web_descargada,"assetID=");
+		$f=strpos($web_descargada,"_",$p);
+		$asset=substr($web_descargada,$p,$f-$p);
 	}
 	dbug('asset, prueba 1: '.$asset);
 	if(stringContains($asset,array('"','{','}','<','>',' '))){
@@ -56,11 +53,11 @@ else{
 		dbug('asset, prueba 2: '.$asset);
 	}
 	if(stringContains($asset,array('"','{','}','<','>',' '))){
-		if(enString($retfull,'lass="imgT"')&&enString($retfull,'href="')){
-			$p=strpos($retfull,'lass="imgT"');
-			$p=strpos($retfull,'href="',$p)+6;
-			$f=strpos($retfull,'"',$p);
-			$asset=substr($retfull,$p,$f-$p);
+		if(enString($web_descargada,'lass="imgT"')&&enString($web_descargada,'href="')){
+			$p=strpos($web_descargada,'lass="imgT"');
+			$p=strpos($web_descargada,'href="',$p)+6;
+			$f=strpos($web_descargada,'"',$p);
+			$asset=substr($web_descargada,$p,$f-$p);
 			dbug('extraer asset de url: '.$asset);
 			
 			preg_match_all('@/(\d+)/@', $asset, $coincidencias);
@@ -71,7 +68,7 @@ else{
 			dbug('asset, prueba 3. No se realiza.');
 	}
 	if(stringContains($asset,array('"','{','}','<','>',' '))){
-		preg_match_all('@DC.identifier" ?content="(\d+)"@', $retfull, $coincidencias);
+		preg_match_all('@DC.identifier" ?content="(\d+)"@', $web_descargada, $coincidencias);
 		$asset=$coincidencias[1][0];
 		dbug('asset, prueba 4: '.$asset);
 	}
@@ -92,10 +89,10 @@ if(isset($audio)){
 	//file:'/resources/TE_SENTREN/mp3/0/3/1329728190030.mp3'
 	
 	//obtener url (boton descargar en pagina)
-	$p=strpos($retfull,'class="download"');
-	$p=strpos($retfull,'href="',$p)+6;
-	$f=strpos($retfull,'"',$p);
-	$ret='http://www.rtve.es'.substr($retfull,$p,$f-$p);
+	$p=strpos($web_descargada,'class="download"');
+	$p=strpos($web_descargada,'href="',$p)+6;
+	$f=strpos($web_descargada,'"',$p);
+	$ret='http://www.rtve.es'.substr($web_descargada,$p,$f-$p);
 
 
 	if(enString($ret,".mp3"))
@@ -104,9 +101,9 @@ if(isset($audio)){
 		dbug('toca sacar el audio por metodo nuevo');
 
 		//$ret=assetdataid
-		$p=strposF($retfull,'data-assetID="');
-		$f=strpos($retfull,'_',$p);
-		$asset=substr($retfull,$p,$f-$p);
+		$p=strposF($web_descargada,'data-assetID="');
+		$f=strpos($web_descargada,'_',$p);
+		$asset=substr($web_descargada,$p,$f-$p);
 		$ret=convierteID($asset,array('audio','video'));
 		if($ret === false)
 			return;
@@ -161,18 +158,18 @@ if(isset($asset)){
 }
 else{
 	//titulo
-	$p=strpos($retfull,'class="header"');
-	$p=strpos($retfull,'titu',$p);
-	$p=strpos($retfull,'>',$p)+1;
-	$f=strpos($retfull,'<',$p);
-	$titulo=substr($retfull,$p,$f-$p);
+	$p=strpos($web_descargada,'class="header"');
+	$p=strpos($web_descargada,'titu',$p);
+	$p=strpos($web_descargada,'>',$p)+1;
+	$f=strpos($web_descargada,'<',$p);
+	$titulo=substr($web_descargada,$p,$f-$p);
 	$titulo=limpiaTitulo($titulo);
 	
 	//imagen
-	$p=strpos($retfull,'imgPrograma');
-	$p=strpos($retfull,'src="',$p)+5;
-	$f=strpos($retfull,'"',$p);
-	$imagen=substr($retfull,$p,$f-$p);
+	$p=strpos($web_descargada,'imgPrograma');
+	$p=strpos($web_descargada,'src="',$p)+5;
+	$f=strpos($web_descargada,'"',$p);
+	$imagen=substr($web_descargada,$p,$f-$p);
 }
 dbug('titulo='.$titulo);
 dbug('imagen='.$imagen);
