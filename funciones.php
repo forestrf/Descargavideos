@@ -213,7 +213,7 @@ function dbug_r(&$arr){
 }
 
 //url, contenido post a enviar, retornar cabecera, cabecera custom
-function CargaWebCurl($url,$post="",$cabecera=0,$cookie="",$cabeceras=array(),$sigueLocation=true,$esquivarCache=false){
+function CargaWebCurl($url,$post='',$cargarHeaders=0,$cookie='',$cabeceras=array(),$sigueLocation=true,$esquivarCache=false){
 	dbug('cargando web (file_get_contents as CURL):'.$url);
 	if(!$esquivarCache){
 		$t=carga_web_curl_obtenida($url,$post,$cookie,$cabeceras,$sigueLocation);
@@ -258,7 +258,7 @@ function CargaWebCurl($url,$post="",$cabecera=0,$cookie="",$cabeceras=array(),$s
 		$t = gzdecode($t);
 	}
 	
-	if($cabecera!=0)
+	if($cargarHeaders!=0)
 		$t = parsea_headers($http_response_header).$t;
 
 	
