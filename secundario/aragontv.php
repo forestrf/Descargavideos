@@ -19,29 +19,29 @@ $imagen='/canales/aragontv.png';
 $obtenido=array('enlaces' => array());
 
 //un solo video
-if(enString($retfull,"flowplayer(")){
+if(enString($web_descargada,"flowplayer(")){
 	dbug('simple');
-	$titulo=entre1y2($retfull,'<div class="apartado"><h2>','</h2>');
+	$titulo=entre1y2($web_descargada,'<div class="apartado"><h2>','</h2>');
 	$titulo=limpiaTitulo($titulo);
 	
 	if(enString($titulo, '</')){
 		dbug('titulo fallido, usando <title>');
-		$titulo=entre1y2($retfull,'<title>','</');
+		$titulo=entre1y2($web_descargada,'<title>','</');
 		$titulo=limpiaTitulo($titulo);
 	}
 	dbug('titulo='.$titulo);
 	
-	array_push($obtenido['enlaces'],SacarVideo($retfull, $titulo));
+	array_push($obtenido['enlaces'],SacarVideo($web_descargada, $titulo));
 }
 
 //muchos videos
-elseif(enString($retfull,"list-not-even")){
+elseif(enString($web_descargada,"list-not-even")){
 	dbug('multi');
 
-	$p=strpos($retfull,'<div class="apartado">');
-	$p=strpos($retfull,'<h2>',$p)+4;
-	$f=strpos($retfull,"</h2>",$p);
-	$titulo=substr($retfull,$p,$f-$p);
+	$p=strpos($web_descargada,'<div class="apartado">');
+	$p=strpos($web_descargada,'<h2>',$p)+4;
+	$f=strpos($web_descargada,"</h2>",$p);
+	$titulo=substr($web_descargada,$p,$f-$p);
 	
 	//en la pagina principal y otras el titulo estará mal, por lo que poner uno genérico
 	if(enString($titulo,"<"))
@@ -51,21 +51,21 @@ elseif(enString($retfull,"list-not-even")){
 	dbug('titulo='.$titulo);
 
 
-	$videos=substr_count($retfull,'<span>Ver video</span>');
+	$videos=substr_count($web_descargada,'<span>Ver video</span>');
 	dbug('total videos='.$videos);
 
 	$last=0;
 	for($i=0;$i<$videos;$i++){
-		$p=strpos($retfull,'<div id="idv',$last);
-		$p=strpos($retfull,'_',$p)+1;
-		$f=strpos($retfull,'"',$p);
+		$p=strpos($web_descargada,'<div id="idv',$last);
+		$p=strpos($web_descargada,'_',$p)+1;
+		$f=strpos($web_descargada,'"',$p);
 		$last=$f;
-		$url=substr($retfull,$p,$f-$p);
+		$url=substr($web_descargada,$p,$f-$p);
 		$url='http://alacarta.aragontelevision.es/ajax/ajax.php?id='.$url;
 
 		//encontrar ya el titulo del vídeo
-		$f=strpos($retfull,'fecha',$p);
-		$parte=substr($retfull,$p,$f-$p);
+		$f=strpos($web_descargada,'fecha',$p);
+		$parte=substr($web_descargada,$p,$f-$p);
 		$p=strrpos($parte,'<a');
 		$p=strpos($parte,'title="',$p)+7;
 		$f=strpos($parte,'"',$p);
@@ -84,10 +84,10 @@ finalCadena($obtenido, false);
 }
 
 
-function SacarVideo($retfull, $titulo){
+function SacarVideo(&$entrada, $titulo){
 	//url:'mp4%3A%2Fweb%2F4311%2F4311.mp4',
 
-	$retfull = strtr($retfull,array(' '=>''));
+	$retfull = strtr($entrada,array(' '=>''));
 	
 	$url = entre1y2($retfull,"url:'","'");
 
@@ -118,13 +118,13 @@ function SacarVideo($retfull, $titulo){
 }
 
 
-function SacarVideoPorId($retfull,$subtitulo=''){
+function SacarVideoPorId(&$entrada,$subtitulo=''){
 //titulo
 if($subtitulo==''){
 	//<div class="apartado"><h2>ARAGÓN NOTICIAS 1 - 05/05/2012 14:00</h2></div> 
-	$p=strpos($retfull,'<h1>')+4;
-	$f=strpos($retfull,"<",$p);
-	$nombre=substr($retfull,$p,$f-$p);
+	$p=strpos($entrada,'<h1>')+4;
+	$f=strpos($entrada,"<",$p);
+	$nombre=substr($entrada,$p,$f-$p);
 	dbug('nombre. Obtenido en la web ID='.$nombre);
 }else{
 	$nombre=$subtitulo;
@@ -133,10 +133,10 @@ if($subtitulo==''){
 
 //url:'mp4%3A%2Fweb%2F4311%2F4311.mp4',
 
-$p=strrpos($retfull,"playlist:");
-$p=strrpos($retfull,"url: 'mp4",$p)+6;
-$f=strpos($retfull,"'",$p);
-$url=substr($retfull,$p,$f-$p);
+$p=strrpos($entrada,"playlist:");
+$p=strrpos($entrada,"url: 'mp4",$p)+6;
+$f=strpos($entrada,"'",$p);
+$url=substr($entrada,$p,$f-$p);
 
 //urldecode(
 $url=urldecode($url);
