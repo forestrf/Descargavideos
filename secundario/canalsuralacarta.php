@@ -1,7 +1,7 @@
 <?php
 function canalsuralacarta(){
 global $web,$web_descargada;
-$ret=$web_descargada;
+
 //$ret=CargaWebCurl($web);
 
 $obtenido=array('enlaces' => array());
@@ -9,24 +9,24 @@ $obtenido=array('enlaces' => array());
 //http://www.canalsuralacarta.es/television/video/presenta-enrique-romero/7718/44
 
 //video no admitido
-if(enString($ret,"_url_xml_datos")){
+if(enString($web_descargada,"_url_xml_datos")){
 	dbug("_url_xml_datos encontrado");
 
 	//<param name="flashVars" value="_width=630&_height=354&_url_xml_datos=http://www.canalsuralacarta.es/webservice/video/7718" />
 	//flashVars="_width=630&_height=354&_url_xml_datos="
 
-	$p=strrpos($ret,"_url_xml_datos=")+15;
-	$f=strpos($ret,'"',$p);
-	$xml=substr($ret,$p,$f-$p);
+	$p=strrpos($web_descargada,"_url_xml_datos=")+15;
+	$f=strpos($web_descargada,'"',$p);
+	$xml=substr($web_descargada,$p,$f-$p);
 
 	dbug("xml=".$xml);
 	//http://www.canalsuralacarta.es/webservice/video/7718
 
 
 
-	$p=strpos($ret,"<title>")+7;
-	$f=strpos($ret,' ::',$p);
-	$titulo=substr($ret,$p,$f-$p);
+	$p=strpos($web_descargada,"<title>")+7;
+	$f=strpos($web_descargada,' ::',$p);
+	$titulo=substr($web_descargada,$p,$f-$p);
 	//$titulo=utf8_encode($titulo);
 	$titulo=limpiaTitulo($titulo);
 	dbug('titulo='.$titulo);
@@ -94,10 +94,10 @@ if(enString($ret,"_url_xml_datos")){
 		));
 	}
 }
-elseif(enString($ret,"var elementos = [];")){
+elseif(enString($web_descargada,"var elementos = [];")){
 	dbug('var elementos = [];');
 	
-	$ret = utf8_encode($ret);
+	$ret = utf8_encode($web_descargada);
 	$ret = strtr($ret,array('\\"'=>"'"));
 
 	$videos=substr_count($ret,'elementos.push');
