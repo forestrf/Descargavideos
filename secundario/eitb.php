@@ -270,10 +270,26 @@ function URLSDelArrayBrightCove($r, $tipo, &$obtenido_enlaces, $titulo){
 			'tipo'    => $tipo
 		);
 		
+		//rtmpdump --rtmp "rtmp://brightcove.fcod.llnwd.net/a500/e1/uds/rtmp/ondemand/&mp4:102076681001/102076681001_1194607581001_40628-20111001-193913.mp4&1396378800000&8ea0d55b8390f639ceb5d6cb0012f5a1" --app="a500/e1/uds/rtmp/ondemand?videoId=1194575820001&lineUpId=&pubId=102076681001&playerId=2202962695001" --swfUrl="http://admin.brightcove.com/viewer/us20121218.1107/federatedVideoUI/BrightcovePlayer.swf?uid=1355158765470" --playpath="mp4:102076681001/102076681001_1194607581001_40628-20111001-193913.mp4?videoId=1194575820001&lineUpId=&pubId=102076681001&playerId=2202962695001" --pageUrl="http://www.eitb.tv/es/video/escepticos/1162371025001/1194575820001/-todo-esta-escrito-/" -C "B:0" -C "S:mp4:102076681001/102076681001_1194607581001_40628-20111001-193913.mp4&1396378800000&8ea0d55b8390f639ceb5d6cb0012f5a1" -o "Escepticos_-3-.mp4"
+		
+		if(enString($r["defaultURL"], 'brightcove')){
+			preg_match('@://.*?/(.*?)[\?&].*?mp4:(.*?)$@', $r["defaultURL"], $matches);
+			$a = $matches[1];
+			$CS = $matches[2];
+			$extra = '-a "'.$a.'" -C "B:0" -C "S:'.$CS;
+		}
+		else{ //else edgefcs
+			$extra = '';
+		}
+		
+		//print_r($matches);
+		
+		
+		
 		if($tipo === "rtmpConcreto"){
 			preg_match_all('@(mp4:.*?\.mp4)@i', $r["defaultURL"], $match);
 			$y = $match[0][0];
-			$arrayTemp['rtmpdump'] = '-r "'.strtr($r["defaultURL"],array('&'.$y=>'')).'" -y "'.$y.'" -o "'.generaNombreWindowsValido($titulo." - ".floor($r["encodingRate"]/1000)." Kbps".'.mp4').'"';
+			$arrayTemp['rtmpdump'] = '-r "'.strtr($r["defaultURL"],array('&'.$y=>'')).'" -y "'.$y.'" '.$extra.' -o "'.generaNombreWindowsValido($titulo." - ".floor($r["encodingRate"]/1000)." Kbps".'.mp4').'"';
 		}
 		
 		$obtenido_enlaces[] = $arrayTemp;
