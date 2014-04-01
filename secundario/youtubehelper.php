@@ -1,13 +1,12 @@
 <?php
 function youtubehelper(){
 	global $web,$web_descargada;
-	$retfull=$web_descargada;
 	
 	$encontrado = false;
 	$intentos = 5;
 	
 	$tube=new youtube();
-	$links=$tube->parse($retfull);
+	$links=$tube->parse($web_descargada);
 	dbug_r($links);
 	
 	while(($links === false || count($links) == 0) && $intentos > 0){
@@ -15,9 +14,8 @@ function youtubehelper(){
 		dbug('reintentando en 1s');
 		sleep(1);
 		
-		$retfull = CargaWebCurl($web,"",0,"",array(),true,true);
 		$tube=new youtube();
-		$links=$tube->parse($retfull);
+		$links=$tube->parse(CargaWebCurl($web,"",0,"",array(),true,true));
 		dbug_r($links);
 		--$intentos;
 	}
@@ -35,9 +33,9 @@ function youtubehelper(){
 		$imagen='https://i1.ytimg.com/vi/'.$vars['v'].'/0.jpg';
 		dbug($imagen);
 
-		$p=strpos($retfull,'<meta name="title" content="')+28;
-		$f=strpos($retfull,'"',$p);
-		$titulo=substr($retfull,$p,$f-$p);
+		$p=strpos($web_descargada,'<meta name="title" content="')+28;
+		$f=strpos($web_descargada,'"',$p);
+		$titulo=substr($web_descargada,$p,$f-$p);
 		$titulo=limpiaTitulo($titulo);
 
 		foreach($links as $link){
