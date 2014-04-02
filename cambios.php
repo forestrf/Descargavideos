@@ -16,6 +16,13 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+"2-Abril-2014",
+array(
+	'add:vk.com.'
+	)
+);
+
+$todos[]=array(
 "1-Abril-2014",
 array(
 	'add:Magnovideo.com.',
