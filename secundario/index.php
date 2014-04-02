@@ -364,11 +364,6 @@ $cadenas=array(
 		array("magnovideo.com"),
 		array("magnovideo.php"),
 		"magnovideo"
-	),
-	array(
-		array("allmyvideos.net"),
-		array("allmyvideos.php"),
-		"allmyvideos"
 	)
 );
 
