@@ -139,5 +139,6 @@ A continuación se puede ver el listado de las webs y los canales soportados:<br
 	<li>tune.pk</li>
 	<li>ideal.es</li>
 	<li>magnovideo.com</li>
+	<li>vk.com</li>
 </ol>
 </div>
