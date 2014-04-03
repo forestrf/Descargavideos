@@ -192,7 +192,7 @@ finalCadena($obtenido);
 function convierteID($asset,$modo=array('video','audio')){
 	$ret="";
 	$modo_length=count($modo);
-	for($i=0;$i<$modo_length&&$ret=="";$i++){
+	for($i=0;$i<$modo_length&&$ret=='';$i++){
 		$codificado=$asset.'_banebdyede_'.$modo[$i].'_es';
 		$codificado=encripta($codificado);
 		$server5='http://ztnr.rtve.es/ztnr/res/'.$codificado;
@@ -204,9 +204,13 @@ function convierteID($asset,$modo=array('video','audio')){
 		
 		dbug($ret);
 		if(enString($ret,"code='state-not-valid'")){
-			$ret="";
+			$ret='';
 			dbug('vídeo posíblemente borrado. Marcar error');
 			setErrorWebIntera('El vídeo ya no está disponible en RTVE. Lo sentimos.');
+			return false;
+		}
+		elseif(enString($ret, 'video-id-not-valid')){
+			setErrorWebIntera("No se ha podido encontrar ningún vídeo.");
 			return false;
 		}
 		else

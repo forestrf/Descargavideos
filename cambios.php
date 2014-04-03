@@ -16,6 +16,13 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'3-Abril-2014',
+array(
+	'fix:Algunos resultados de RTVE mostraban un resultado incorrecto al no existir un vídeo en lugar de informar del fallo.'
+	)
+);
+
+$todos[]=array(
 '2-Abril-2014',
 array(
 	'add:vk.com.'

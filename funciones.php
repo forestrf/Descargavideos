@@ -36,9 +36,15 @@ function esVideoAudioAnon($enlace){
 	return false;
 }
 
+// No se puede hacer varios resultados a la vez, entre otras razones, por que esta función es llamada dentro de cadenas
 function setErrorWebIntera($error = "A ocurrido un error"){
 	global $fallourlinterna;
 	$fallourlinterna = $error;
+	if(defined('DEBUG')){
+		dbug('----------------------------------');
+		dbug('ERROR: '.$fallourlinterna);
+		exit;
+	}
 }
 
 function comienzaPor($que,$por){
