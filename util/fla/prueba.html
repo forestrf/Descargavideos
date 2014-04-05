@@ -1,25 +1,7 @@
 <html>
 <body>
-	
-	<object id="descargador_archivos"
-     classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
-     codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0"
-     width="0" height="0">
-      
-      <param name="allowScriptAccess" value="sameDomain" />
-      <param name="movie" value="descargador_archivos.swf" />
-
-      <embed src="descargador_archivos.swf" name="descargador_archivos"
-        width="0" height="0"
-        allowScriptAccess="sameDomain"
-        type="application/x-shockwave-flash"
-        pluginspage="http://www.macromedia.com/go/getflashplayer" />
-    </object>
-	
-	
-	
-	<script type="text/javascript">
-
+<embed src="descargador_archivos.swf" name="descargador_archivos" width="0" height="0"/>
+<script type="text/javascript">
 	function getFlashMovie(movieName) {
 		var isIE = navigator.appName.indexOf("Microsoft") != -1;
 		return (isIE) ? window[movieName] : document[movieName];
