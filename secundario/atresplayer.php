@@ -45,7 +45,7 @@ $episode = $matches[1];
 dbug('episode = '.$episode);
 
 
-$key = "puessepavuestramerced";
+$key = 'puessepavuestramerced';
 
 $tiempo = time()+3000;
 
@@ -56,63 +56,63 @@ $hmac = bin2hex(custom_hmac('md5', $msg, $key, true));
 
 
 $urljs = 
-	"function lanzaA3P(){".
-		"jQuery.support.cors=true;".
+	'function lanzaA3P(){'.
+		'jQuery.support.cors=true;'.
 		
-		"apiUrl='http://servicios.atresplayer.com/api/urlVideo/".$episode."/android_tablet/".$episode."|".$tiempo."|".$hmac."';".
-		"jQuery.ajax({".
-			"type:'GET',".
-			"url:apiUrl,".
-			"data:'blabla',".
-			"crossDomain:true,".
-			"cache:false,".
-			"dataType:'jsonp'".
-		"})".
-		".done(function(data){".
-			"if(data!=null){".
-				"if(data['resultDes']=='OK'){".
-					"mostrarResultado(data['resultObject']['es']);".
-				"}".
-				"else{".
-					"apiUrl = 'https://servicios.atresplayer.com/api/urlVideoLanguage/".$episode."/android_tablet/".$episode."|".$tiempo."|".$hmac."/es.json';".
-					"jQuery.ajax({".
-						"type:'GET',".
-						"url:apiUrl,".
-						"data:'blabla',".
-						"crossDomain:true,".
-						"cache:false,".
-						"dataType:'jsonp'".
-					"})".
-					".done(function(data){".
-						"if(data != null)".
-							"if(data['result'] == '0'){".
-								"mostrarResultado(data['resultDes']);".
-							"}".
-							"else{".
-								"mostrarFallo();".
-							"}".
-					"}).fail(".
-						"mostrarFallo".
-					");".
-				"}".
-			"}".
-			"else{".
-				"mostrarFallo();".
-			"}".
-		"}).fail(".
-			"mostrarFallo".
-		");".
-	"}".
+		"apiUrl='http://servicios.atresplayer.com/api/urlVideo/$episode/android_tablet/$episode|$tiempo|$hmac';".
+		'jQuery.ajax({'.
+			'type:"GET",'.
+			'url:apiUrl,'.
+			'data:"blabla",'.
+			'crossDomain:true,'.
+			'cache:false,'.
+			'dataType:"jsonp"'.
+		'})'.
+		'.done(function(data){'.
+			'if(data!=null){'.
+				'if(data["resultDes"]==="OK"){'.
+					'mostrarResultado(data["resultObject"]["es"]);'.
+				'}'.
+				'else{'.
+					"apiUrl = 'https://servicios.atresplayer.com/api/urlVideoLanguage/$episode/android_tablet/$episode|$tiempo|$hmac/es.json';".
+					'jQuery.ajax({'.
+						'type:"GET",'.
+						'url:apiUrl,'.
+						'data:"blabla",'.
+						'crossDomain:true,'.
+						'cache:false,'.
+						'dataType:"jsonp"'.
+					'})'.
+					'.done(function(data){'.
+						'if(data != null)'.
+							'if(data["result"] == "0"){'.
+								'mostrarResultado(data["resultDes"]);'.
+							'}'.
+							'else{'.
+								'mostrarFallo();'.
+							'}'.
+					'}).fail('.
+						'mostrarFallo'.
+					');'.
+				'}'.
+			'}'.
+			'else{'.
+				'mostrarFallo();'.
+			'}'.
+		'}).fail('.
+			'mostrarFallo'.
+		');'.
+	'}'.
 	
-	"function mostrarResultado(entrada){".
-		"finalizar(entrada,'Descargar');".
-	"}".
+	'function mostrarResultado(entrada){'.
+		'finalizar(entrada,"Descargar");'.
+	'}'.
 	
-	"function mostrarFallo(){".
-		"finalizar('','Necesitas iniciar sesión en ATresPlayer para descargar este vídeo o bien el vídeo no existe');".
-	"}".
+	'function mostrarFallo(){'.
+		'finalizar("","Necesitas iniciar sesión en ATresPlayer para descargar este vídeo o bien el vídeo no existe");'.
+	'}'.
 	
-	"lanzaA3P();";
+	'lanzaA3P();';
 
 
 
@@ -143,24 +143,24 @@ $obtenido=array(
 // Para ver si tiene subtitulos es necesario cargar el xml
 // http://www.atresplayer.com/episodexml/80000608/80000001/110001214/110001215/2014/02/24/1B1E7AC8-D23A-482C-AD91-523704547B67.xml
 // https://servicios.atresplayer.com/episode/getplayer?callback=jQuery18105513220074448444_1393974286813&episodePk=20140224-EPISODE-00009-false&_=1393974323306
-$WebSubtitulos = CargaWebCurl("https://servicios.atresplayer.com/episode/getplayer?episodePk=".$episode);
+$WebSubtitulos = CargaWebCurl('https://servicios.atresplayer.com/episode/getplayer?episodePk='.$episode);
 dbug($WebSubtitulos);
 $WebSubtitulos = JSON_decode($WebSubtitulos, true);
 dbug_r($WebSubtitulos);
 if(isset($WebSubtitulos['pathData']) && strlen($WebSubtitulos['pathData'])>1){
-	$WebSubtitulos = CargaWebCurl("http://www.atresplayer.com/episodexml/".$WebSubtitulos['pathData']);
+	$WebSubtitulos = CargaWebCurl('http://www.atresplayer.com/episodexml/'.$WebSubtitulos['pathData']);
 	dbug($WebSubtitulos);
-	if(enString($WebSubtitulos, "<subtitle>")){
+	if(enString($WebSubtitulos, '<subtitle>')){
 		// Puede que tenga subtitulos
-		$urlSubtitulos = entre1y2($WebSubtitulos, "<subtitle><![CDATA[", "]");
+		$urlSubtitulos = entre1y2($WebSubtitulos, '<subtitle><![CDATA[', ']');
 		dbug($urlSubtitulos);
-		if(enString($urlSubtitulos, ".srt")){
+		if(enString($urlSubtitulos, '.srt')){
 			$obtenido['enlaces'][] = array(
-				'url_txt' => "Subtitulos",
+				'url_txt' => 'Subtitulos',
 				'url'     => $urlSubtitulos,
 				'tipo'    => 'srt'
 			);
-			dbug("Hay subtítulos");
+			dbug('Hay subtítulos');
 		}
 	}
 }
