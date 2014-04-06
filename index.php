@@ -84,9 +84,8 @@ function esPagina($a){
 
 //para el gestor. No será usado porque el gestor accede directamente a los servidores secundarios
 //Ahora ya no hay server secundarios. Sí es utilizado
-if(isset($_GET["modoApi"])){
-	$modoApi="1";
-}
+define('MODO_API', isset($_REQUEST["modoApi"]));
+
 
 
 
@@ -115,8 +114,6 @@ if(isset($web)){
 	chdir("secundario");
 	require_once 'index.php';
 	
-	//esta variable cogerá el valor del resultado para mostrarlo en la página completa. Solo tendrá algo en ese caso.
-	$resultado = insertaPubliAfter($resultado_de_secundario);
 	chdir("..");
 }
 

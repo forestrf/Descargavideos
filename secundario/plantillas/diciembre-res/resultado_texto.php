@@ -1,0 +1,1 @@
+<br><div class="txt"><?php echo $R2['dir_resultado'];?></div>

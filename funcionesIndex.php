@@ -80,15 +80,4 @@ function preparaPagina($cual="pag_principal"){
 		break;
 	}
 }
-
-function insertaPubliAfter($donde){
-	if(enString($donde,'"contendor_publi_res"')){
-		global $publis;
-		$p=strpos($donde,'"contendor_publi_res"');
-		$f=strposF($donde,">",$p);
-		$entreMedias=substr($donde,$p,$f-$p);
-		$donde=ReemplazaDeAPor($donde,'"contendor_publi_res"',0,">",$entreMedias.getPubli(1));
-	}
-	return $donde;
-}
 ?>
