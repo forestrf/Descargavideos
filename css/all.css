@@ -273,11 +273,11 @@ input[type=radio]{
 }
 /*Par el width poner el de la imagen*/
 @-webkit-keyframes moveSlideshow{
-	0%{ -webkit-transform:translateX(0); }    
+	0%{ -webkit-transform:translateX(0); }
 	100%{ -webkit-transform:translateX(-4070px); }
 }
 @-moz-keyframes moveSlideshow{
-	0%{ -moz-transform:translateX(0); }    
+	0%{ -moz-transform:translateX(0); }
 	100%{ -moz-transform:translateX(-4070px); }
 }
 .publi_cabecera{
@@ -532,12 +532,12 @@ input[type=radio]{
 	display:inline-block;
 }
 #resultado #enlaces .aviso_m3u8 {
-    background:none repeat scroll 0 0 #851B1B;
-    border-radius:0 0 20px 20px;
-    color:#FFF;
-    display:block;
-    font-size:12px;
-    padding:5px;
+	background:none repeat scroll 0 0 #851B1B;
+	border-radius:0 0 20px 20px;
+	color:#FFF;
+	display:block;
+	font-size:12px;
+	padding:5px;
 }
 #resultado #enlaces .aviso_m3u8 a{
 	font-size:12px;
@@ -763,7 +763,7 @@ input[type=radio]{
 	font-size:100%;
 	text-align:center;
 	margin-left:auto; 
-    margin-right:auto;
+	margin-right:auto;
 }
 
 .comparativa{
@@ -814,9 +814,9 @@ input[type=radio]{
 /*lab*/
 /*LAB Y FAQ*/
 .creaform{
-    height:300px;
-    position:relative;
-    /*width:850px;*/
+	height:300px;
+	position:relative;
+	/*width:850px;*/
 	max-width:850px;
 	margin:0px;
 	padding:0px;
@@ -824,19 +824,19 @@ input[type=radio]{
 
 .der{
 	background:#888888;
-    display:block;
-    position:absolute;
-    right:0;
-    text-align:right;
+	display:block;
+	position:absolute;
+	right:0;
+	text-align:right;
 	padding:15px;
 	width:470px;
 }
 
 #selector{
-    display:inline;
-    left:0;
-    position:absolute;
-    width:400px;
+	display:inline;
+	left:0;
+	position:absolute;
+	width:400px;
 }
 
 #codigo{
@@ -881,7 +881,7 @@ ul.puntuado, ul.puntuado li{
 	position:relative;
 }
 #fondos_opciones>a>img:hover{
-    z-index:10;
+	z-index:10;
 	box-shadow:0 0 10px 6px #DAFEFF, 0 0 0px 4px #FFF;
 }
 

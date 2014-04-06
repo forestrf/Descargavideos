@@ -108,9 +108,9 @@ function SacarVideo(&$entrada, $titulo){
 	*/
 
 	$videos=array(
-		'url'=> 'rtmp://aragontvvodfs.fplive.net/aragontvvod'.$url,
-		'rtmpdump'=> '-r "'.$rtmpbase.'" -y "'.$url.'" -o "'.generaNombreWindowsValido($titulo).'.mp4"',
-		'tipo'    => 'rtmpConcreto',
+		'url'      => 'rtmp://aragontvvodfs.fplive.net/aragontvvod'.$url,
+		'rtmpdump' => '-r "'.$rtmpbase.'" -y "'.$url.'" -o "'.generaNombreWindowsValido($titulo).'.mp4"',
+		'tipo'     => 'rtmpConcreto',
 		'extension'=>'mp4'
 	);
 
@@ -155,10 +155,10 @@ else
 
 
 $videos=array(
-	'url'=> 'rtmp://aragontvvodfs.fplive.net/aragontvvod'.$url,
-	'rtmpdump'=> '-r "rtmp://aragontvvodfs.fplive.net/aragontvvod'.$url.'" -o "'.generaNombreWindowsValido($nombre).'.mp4"',
-	'tipo'    => 'rtmpConcreto',
-	'titulo' => $nombre,
+	'url'      => 'rtmp://aragontvvodfs.fplive.net/aragontvvod'.$url,
+	'rtmpdump' => '-r "rtmp://aragontvvodfs.fplive.net/aragontvvod'.$url.'" -o "'.generaNombreWindowsValido($nombre).'.mp4"',
+	'tipo'     => 'rtmpConcreto',
+	'titulo'   => $nombre,
 	'extension'=>'mp4'
 );
 

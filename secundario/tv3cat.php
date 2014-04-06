@@ -353,10 +353,10 @@ if(enString($web_descargada,"insertaEVP(")||$modelo==0){
 		dbug('urlFinal='.$ret);
 		
 		$obtenido['enlaces'][] = array(
-			'titulo'  => "Calidad alta",
-			'url'=> $ret,
-			'rtmpdump'=> '-r "'.$matches[1].'" -y "'.$matches[2].'" -o "'.generaNombreWindowsValido($titulo).'.mp4"',
-			'tipo'    => 'rtmpConcreto',
+			'titulo'   => "Calidad alta",
+			'url'      => $ret,
+			'rtmpdump' => '-r "'.$matches[1].'" -y "'.$matches[2].'" -o "'.generaNombreWindowsValido($titulo).'.mp4"',
+			'tipo'     => 'rtmpConcreto',
 			'extension'=>'mp4'
 		);
 	}

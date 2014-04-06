@@ -34,12 +34,12 @@ function limpiar($que){
 	  	.vjs-default-skin .vjs-big-play-button {
 	  		background: rgba(0, 0, 0, 0.51);
 	  		border: 0.1em solid #DCDCDC;
-		    box-shadow: 0 0 1em rgba(255, 255, 255, 0.63);
-		    left: 50%;
-		    margin-left: -2em;
-		    margin-top: -1.3em;
-		    top: 50%;
-		    width: 4em;
+			box-shadow: 0 0 1em rgba(255, 255, 255, 0.63);
+			left: 50%;
+			margin-left: -2em;
+			margin-top: -1.3em;
+			top: 50%;
+			width: 4em;
   		}
 	  	.vjs-default-skin .vjs-slider { background: rgba(0,7,21,0.2333333333333333) }
   		.vjs-default-skin .vjs-control-bar { font-size: 95% }
@@ -47,27 +47,27 @@ function limpiar($que){
 	
 	<script>
 		function detectflash(){
-		    if (navigator.plugins != null && navigator.plugins.length > 0){
-		        return navigator.plugins["Shockwave Flash"] && true;
-		    }
-		    if(~navigator.userAgent.toLowerCase().indexOf("webtv")){
-		        return true;
-		    }
-		    if(~navigator.appVersion.indexOf("MSIE") && !~navigator.userAgent.indexOf("Opera")){
-		        try{
-		            return new ActiveXObject("ShockwaveFlash.ShockwaveFlash") && true;
-		        } catch(e){}
-		    }
-		    return false;
+			if (navigator.plugins != null && navigator.plugins.length > 0){
+				return navigator.plugins["Shockwave Flash"] && true;
+			}
+			if(~navigator.userAgent.toLowerCase().indexOf("webtv")){
+				return true;
+			}
+			if(~navigator.appVersion.indexOf("MSIE") && !~navigator.userAgent.indexOf("Opera")){
+				try{
+					return new ActiveXObject("ShockwaveFlash.ShockwaveFlash") && true;
+				} catch(e){}
+			}
+			return false;
 		}
 	</script>
 </head>
 <body>
 	<script>
 		if(detectflash()){
-		    dibujarReproductorFlash();
+			dibujarReproductorFlash();
 		} else{
-		    dibujarReproductorHTML5();
+			dibujarReproductorHTML5();
 		}
 		
 		function dibujarReproductorHTML5(){

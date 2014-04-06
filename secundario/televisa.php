@@ -115,9 +115,9 @@ include 'brightcove-funciones.php';
 
 $a_encodear = array
 (
-    "target"	=> "com.brightcove.experience.ExperienceRuntimeFacade.getDataForExperience",
-    "response"	=> "/1",
-    "data"		=> array
+	"target"	=> "com.brightcove.experience.ExperienceRuntimeFacade.getDataForExperience",
+	"response"	=> "/1",
+	"data"		=> array
 	(
 		"0" => "7290ba5e943dc42b7d686a562f96d5b40b4f1792",
 		"1" => new SabreAMF_AMF3_Wrapper

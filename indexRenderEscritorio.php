@@ -98,7 +98,7 @@ var css_user='<?php echo $css_modo?>';
 		</div>
 
 		<div class="stats">
-		    <div id="histats_counter"></div>
+			<div id="histats_counter"></div>
 			<script type="text/javascript">var _Hasync= _Hasync|| [];
 			_Hasync.push(['Histats.startgif', '1,2419951,4,10045,"div#histatsC {position: absolute;top:0px;left:0px;}body>div#histatsC {position: fixed;}"']);
 			_Hasync.push(['Histats.fasi', '1']);
@@ -131,9 +131,9 @@ var css_user='<?php echo $css_modo?>';
 
 	<?php if(defined('HAY_RESULTADO')){ ?>
 		<div id="resultado" class="hx100">
-            <?php include_once 'plantillaResultado.php';?>
-            <script type="text/javascript">$.scrollTo("#resultado",500);</script>
-        </div>
+			<?php include_once 'plantillaResultado.php';?>
+			<script type="text/javascript">$.scrollTo("#resultado",500);</script>
+		</div>
 	<?php }else{ ?>
 		<div id="resultado"></div>
 	<?php } ?>

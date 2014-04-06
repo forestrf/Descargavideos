@@ -5,15 +5,15 @@ body {
 	height: 100%;
 }
 #player {
-    background: none repeat scroll 0 0 #000000;
-    border: 0 solid #4F4E4E;
-    box-shadow: 0 0 30px 0 #000000, 0 0 200px 0 #858585;
-    display: block;
-    height: 70% !important;
-    left: 15%;
-    position: absolute;
-    top: 15%;
-    width: 70% !important;
+	background: none repeat scroll 0 0 #000000;
+	border: 0 solid #4F4E4E;
+	box-shadow: 0 0 30px 0 #000000, 0 0 200px 0 #858585;
+	display: block;
+	height: 70% !important;
+	left: 15%;
+	position: absolute;
+	top: 15%;
+	width: 70% !important;
 }
 
 #player>.overlay {
@@ -28,14 +28,14 @@ body {
 	background-color: rgba(0, 0, 0, 0.5);
 }
 .boton_play {
-    background-image: url("/img/play.png");
-    height: 150px;
-    left: 50%;
-    margin-left: -75px;
-    margin-top: -75px;
-    position: absolute;
-    top: 50%;
-    width: 150px;
+	background-image: url("/img/play.png");
+	height: 150px;
+	left: 50%;
+	margin-left: -75px;
+	margin-top: -75px;
+	position: absolute;
+	top: 50%;
+	width: 150px;
 }
 #player:hover>.boton_play {
 	background-position: 0 150px;
