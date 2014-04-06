@@ -18,7 +18,8 @@ function cambios($max=-1){
 $todos[]=array(
 '6-Abril-2014',
 array(
-	'fix:Cambios internos que posibilitan la traducción del sitio.'
+	'fix:Cambios internos que posibilitan la traducción del sitio.',
+	'fix:Mejora de la interfaz para la usabilidad de la web móvil.'
 	)
 );
 

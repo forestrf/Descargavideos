@@ -2,6 +2,7 @@ body{
 	background:#000;
 	font-family:Verdana;
 	color:#FFF;
+	font-size:1.5em;
 }
 td{
 	vertical-align:top;
@@ -25,19 +26,12 @@ b{
 h1{
 	text-align:center;
 	padding-top:30px;
-	font-size:30px;
+	font-size:2em;
 	font-family:'Yesteryear', serif, Georgia;
 	color:#FFF;
 	text-shadow:2px 2px 2px #000;
 	font-style:normal;
 	font-weight:normal;
-}
-h2{
-	text-align:center;
-	margin-top:20px;
-	font-size:13px;
-	font-family:'Source Sans Pro', sans-serif;
-	color:#FFF;
 }
 .tv{
 	background-color:#F00;
@@ -46,12 +40,20 @@ h2{
     box-shadow:0 0 15px #000, 0 0 20px -5px #000 inset;
     color:#FFF;
     font-family:Georgia,serif,'Times New Roman';
-    font-size:15px;
+    font-size:0.5em;
     padding:5px 10px;
     position:relative;
     text-shadow:0 0 6px #000;
     top:-4px;
 	margin-left:5px;
+}
+h2{
+	text-align:center;
+	margin-top:20px;
+	font-size:1em;
+	font-family:'Source Sans Pro', sans-serif;
+	color:#FFF;
+	margin-bottom:40px;
 }
 #formCalculador{
 	text-align: center;
@@ -62,6 +64,7 @@ h2{
 	margin-left: 10%;
 	padding: 7px 0;
 	width: 80%;
+	font-size:1em;
 }
 #formCalculador .boton {
 	display: block;
@@ -71,6 +74,7 @@ h2{
 	margin-top: 10px;
 	width: 50%;
 	height: 50px;
+	font-size:1.4em;
 }
 .formRadio{
 	color:#FFF;
@@ -78,6 +82,8 @@ h2{
 	text-shadow:1px 1px 3px #7A4E15;
 	display:inline-block;
 	margin:2px 0 0;
+	height:65px;
+	line-height:65px;
 }
 .invisible{opacity:0;}
 
@@ -118,9 +124,7 @@ h2{
 #resultado {
 	text-align: center;
 }
-.hx100 {
-	
-}
+.hx100 {}
 #resultado:empty{
 	padding:0;
 }
