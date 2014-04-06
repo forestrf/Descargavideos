@@ -100,7 +100,7 @@
 <ifModule mod_headers.c>
 
 	# 1 AÑO
-	<FilesMatch "\.(ico|pdf|flv)$">
+	<FilesMatch "\.(ico|pdf|flv|woff|eot|ttf|svg)$">
 		Header set Cache-Control "max-age=29030400, public"
 	</FilesMatch>
 	
