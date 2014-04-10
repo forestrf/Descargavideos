@@ -356,6 +356,11 @@ $cadenas=array(
 		array('vk.com'),
 		array('vk.php'),
 		'vk'
+	),
+	array(
+		array('played.to'),
+		array('playedto.php'),
+		'playedto'
 	)
 );
 
