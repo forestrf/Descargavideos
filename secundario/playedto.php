@@ -33,6 +33,14 @@ function playedto(){
 		return;
 	}
 	
+	
+	
+	dbug(CargaWebCurl('http://played.to/embed-49qyhpnfhgip-640x360.html'));
+	
+	exit;
+	
+	
+	
 	$imagen = '';
 	
 	$titulo = entre1y2($web_descargada, '<h1 class="pagename">', '<');
@@ -56,13 +64,17 @@ function playedto(){
 			
 		'var regex = /<input.*?name="(.*?)".*?value="(.*?)".*?>/ig;'.
 		
-		'var post = {};'.
+		'var post = "";'.
 		'var res = [];'.
 		'while((res = regex.exec(txt)) != null){'.
-			'post[res[1]] = res[2];'.
+			'if(res[1] === "referer")res[2] = "";'.
+			'post += res[1] + "=" + res[2] +"&";'.
 		'}'.
 		
-		'getFlashMovie("descargador_archivos").CargaWeb({'.
+		'PPP = post;'.
+		
+		'getFlashMovie("descargador_archivos").CargaWeb({
+			'.
 			'"url":"'.$web.'",'.
 			'"metodo":"POST",'.
 			'"post":post'.
