@@ -10,26 +10,13 @@ http://89.238.150.210:8777/i/01/00655/p769fztivvp3.jpg
 
 http://89.238.150.210:8777/repynsknbsie2cbd4oq3tex3lnwvammyu6aslyky4y7n7sflz2plxumqga/v.mp4.flv?start=0
 
-DESCARGA:
 
-
-
-http://o1.magnovideo.com:8080/storage/files/part1/0/15/111/175/1.mp4?burst=3000k&u=600k&md=1bVi10TyubRRLgKy3UsEjA&e=1393897743
-
-
-<tile_thumbs>http://o1.magnovideo.com:8080//storage/files/part1/0/15/111/175/tmpsmall/tiles.jpg</tile_thumbs>
-
-<video_name>1.mp4</video_name>
-<storage_path>http://o1.magnovideo.com:8080/</storage_path>
-<sto>md=xqBNmNJjsMILgDz7p3J7IQ&e=1393897903</sto>
-
-http://o1.magnovideo.com:8080/storage/files/part1/0/15/111/175/1.mp4?md=xqBNmNJjsMILgDz7p3J7IQ&e=1393897903
 
 
 BLOQUEADO POR IP.
 
-Usan un flash que cargue el xml ya que el flash podría cargarlo gracias al crossdomain
-http://www.magnovideo.com/crossdomain.xml
+Usan un flash que cargue el html por POST ya que el flash podría cargarlo gracias al crossdomain
+http://played.to/crossdomain.xml
 
 Flash hecho, solo falta implementarlo
 
@@ -46,69 +33,49 @@ function playedto(){
 		return;
 	}
 	
-	preg_match_all('@<input.*?name="(.*?)".*?value="(.*?)".*?>@i', $web_descargada, $matches);
-	//dbug_r($matches);
+	$imagen = '';
 	
-	$post_form = array();
-	
-	for($i = 0; $i < $i_t = count($matches[1]); ++$i){
-		$post_form[$matches[1][$i]] = $matches[2][$i];
-	}
-	
-	dbug_r($post_form);
-	
-	$post_form_txt = http_build_query($post_form);
+	$titulo = entre1y2($web_descargada, '<h1 class="pagename">', '<');
 
-	$retfull = CargaWebCurl($web, $post_form_txt);
-	
-	dbug($retfull);
-	
-	exit;
-	
-	
-	
-	
-	
-	
-	/*
-	// En caso de que No hubiera bloqueo de IP
-	$retfull = CargaWebCurl('http://www.magnovideo.com/player_config.php?mdid='.$idVideo);
-	
-
-	
-	$imagen = entre1y2($retfull,'<tile_thumbs>','</tile_thumbs>');
-	dbug('imagen='.$imagen);
-	
-	
-	$video_name = entre1y2($retfull,'<video_name>','</video_name>');
-	$sto = entre1y2($retfull,'<sto>','</sto>');
-	
-	
-	$url = substr($imagen, 0, -18).$video_name.'?'.$sto;
-	*/
-	
+	// FALLA EN EL CALLBACK DEL SWF. EDITAR EL SWF
 	
 	$urlJS = 
-	'function lanzaMagnovideo(){'.
+	'function lanzaPlayedTo(){'.
 		'if(typeof DESCARGADOR_ARCHIVOS_SWF === "undefined"){'.
-			'setTimeout(lanzaMagnovideo, 200)'.
+			'setTimeout(lanzaPlayedTo, 200)'.
 		'}'.
 		'else if(DESCARGADOR_ARCHIVOS_SWF === true){'.
-			'getFlashMovie("descargador_archivos").CargaWeb("http://www.magnovideo.com/player_config.php?mdid='.$idVideo.'", "procesaMagnovideo");'.
+			'getFlashMovie("descargador_archivos").CargaWeb({'.
+				'"url":"'.$web.'",'.
+				'"metodo":"GET"'.
+			'}, "procesaPlayedTo1");'.
 		'}'.
 	'}'.
 	
-	'function procesaMagnovideo(txt){'.
+	'function procesaPlayedTo1(txt){'.
+			
+		'var regex = /<input.*?name="(.*?)".*?value="(.*?)".*?>/ig;'.
+		
+		'var post = {};'.
+		'var res = [];'.
+		'while((res = regex.exec(txt)) != null){'.
+			'post[res[1]] = res[2];'.
+		'}'.
+		
+		'getFlashMovie("descargador_archivos").CargaWeb({'.
+			'"url":"'.$web.'",'.
+			'"metodo":"POST",'.
+			'"post":post'.
+		'}, "procesaPlayedTo2");'.
+	'}
+	'.
+			
+			
+	'function procesaPlayedTo2(txt){'.
+		'AAAAAAAAAA = txt;'.
 		//'console.log(txt);'.
-		'var imagen = txt.split("<tile_thumbs>")[1].split("</tile_thumbs>")[0];'.
-		//'console.log(imagen);'.
 		
-		'var video_name = txt.split("<video_name>")[1].split("</video_name>")[0];'.
-		//'console.log(video_name);'.
-		'var sto = txt.split("<sto>")[1].split("</sto>")[0];'.
-		//'console.log(sto);'.
-		
-		'var url = imagen.split("tmpsmall/tiles.jpg")[0] +video_name + "?" + sto;'.
+		'var url = txt.split("file: \"")[1].split("\"")[0];'.
 		//'console.log(url);'.
 		'mostrarResultado(url);'.
 	'}'.
@@ -131,7 +98,7 @@ function playedto(){
 	//'descargadorArchivosEmbed.setAttribute("allowScriptAccess","sameDomain");'.
 	'document.body.appendChild(descargadorArchivosEmbed);'.
 	
-	'lanzaMagnovideo();';
+	'lanzaPlayedTo();';
 	
 	$obtenido=array(
 		'titulo'  => $titulo,

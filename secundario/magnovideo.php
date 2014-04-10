@@ -76,7 +76,7 @@ function magnovideo(){
 			'setTimeout(lanzaMagnovideo, 200)'.
 		'}'.
 		'else if(DESCARGADOR_ARCHIVOS_SWF === true){'.
-			'getFlashMovie("descargador_archivos").CargaWeb("http://www.magnovideo.com/player_config.php?mdid='.$idVideo.'", "procesaMagnovideo");'.
+			'getFlashMovie("descargador_archivos").CargaWeb({"url":"http://www.magnovideo.com/player_config.php?mdid='.$idVideo.'"}, "procesaMagnovideo");'.
 		'}'.
 	'}'.
 	
