@@ -21,6 +21,15 @@ http://played.to/crossdomain.xml
 Flash hecho, solo falta implementarlo
 
 
+ES NECESARIO CAMBIAR EL SWF A UN IFRAME QUE NO ENVIE REFERER, COMO CON LOS BOTONES
+
+
+CON PONER EN EL REFERER http://played.to/ ya funciona.
+
+
+
+iframe.src = 'javascript:\'<embed src="/util/fla/f/http://played.to/1234" name="descargador_archivos"></embed><script>function lanzaPlayedTo(){	if(typeof DESCARGADOR_ARCHIVOS_SWF === "undefined"){	    var d = setTimeout(lanzaPlayedTo, 200);}else if(DESCARGADOR_ARCHIVOS_SWF === true){        descargador_archivos.CargaWeb(            {"url":"http://played.to/49qyhpnfhgip",            "metodo":"GET"},            "procesaPlayedTo1");     }}function procesaPlayedTo1(txt){var regex = /<input.*?name="(.*?)".*?value="(.*?)".*?>/ig;var postA = [];var res = [];while((res = regex.exec(txt)) != null){    if(res[1] === "referer")res[2] = "";    postA.push(res[1] + "=" + res[2].split(" ").join("+"));}console.log(postA);var post = postA.join("&");	console.log(post);	descargador_archivos.CargaWeb({		"url":"http://played.to/49qyhpnfhgip",		"metodo":"POST",		"post":post	}, "procesaPlayedTo2");}function procesaPlayedTo2(txt){    console.log(txt);}        lanzaPlayedTo();</script>\'';
+
 
 */
 
@@ -33,10 +42,12 @@ function playedto(){
 		return;
 	}
 	
+	$id = substr($web, strposF($web, 'played.to/'));
+	dbug('id = '.$id);
 	
-	
-	dbug(CargaWebCurl('http://played.to/embed-49qyhpnfhgip-640x360.html'));
-	
+	// 
+	$retfull = CargaWebCurl('http://played.to/embed-'.$id.'-640x360.html','',array('referer'=>'http://web.com'));
+	dbug($retfull);
 	exit;
 	
 	
@@ -103,7 +114,7 @@ function playedto(){
 	'function getFlashMovie(movieName){var isIE=navigator.appName.indexOf("Microsoft")!=-1;return(isIE)?window[movieName]:document[movieName];}'.
 	
 	'var descargadorArchivosEmbed = document.createElement("embed");'.
-	'descargadorArchivosEmbed.setAttribute("src","/util/fla/descargador_archivos.swf");'.
+	'descargadorArchivosEmbed.setAttribute("src","/util/fla/f/http://played.to/");'.
 	'descargadorArchivosEmbed.setAttribute("name","descargador_archivos");'.
 	'descargadorArchivosEmbed.setAttribute("width","0");'.
 	'descargadorArchivosEmbed.setAttribute("height","0");'.
