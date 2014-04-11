@@ -16,6 +16,13 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'11-Abril-2014',
+array(
+	'add:Played.to. Requiere tener flash instalado por problemas con IP.'
+	)
+);
+
+$todos[]=array(
 '6-Abril-2014',
 array(
 	'fix:Cambios internos que posibilitan la traducción del sitio.',

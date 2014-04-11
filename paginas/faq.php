@@ -140,5 +140,6 @@ A continuación se puede ver el listado de las webs y los canales soportados:<br
 	<li>ideal.es</li>
 	<li>magnovideo.com (requiere flash)</li>
 	<li>vk.com</li>
+	<li>played.to (requiere flash)</li>
 </ol>
 </div>
