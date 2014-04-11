@@ -18,7 +18,8 @@ function cambios($max=-1){
 $todos[]=array(
 '11-Abril-2014',
 array(
-	'add:Played.to. Requiere tener flash instalado por problemas con IP.'
+	'add:Played.to. Requiere tener flash instalado por problemas con IP.',
+	'add:AllMyVideos.net. Requiere tener flash instalado por problemas con IP.'
 	)
 );
 

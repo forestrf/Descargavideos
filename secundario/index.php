@@ -361,6 +361,11 @@ $cadenas=array(
 		array('played.to'),
 		array('playedto.php'),
 		'playedto'
+	),
+	array(
+		array('allmyvideos.net'),
+		array('allmyvideosnet.php'),
+		'allmyvideosnet'
 	)
 );
 
