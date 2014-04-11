@@ -180,9 +180,9 @@ function url_exists_full(&$url, $preg_match_prerealizado = false){
 		$web_descargada = gzdecode($web_descargada);
 	}
 	
-	$web_descargada = parsea_headers($http_response_header, $responde_code).$web_descargada;
+	$web_descargada = parsea_headers($http_response_header, $response_code).$web_descargada;
 	
-	$z=intval($responde_code);
+	$z=intval($response_code);
 	
 	if(($z>=200 && $z<350) || $z===409 || $z===410 || $z===0)
 		return true;
@@ -265,7 +265,7 @@ function CargaWebCurl($url,$post="",$cabecera=0,$cookie="",$cabeceras=array(),$s
 	}
 	
 	if($cabecera!=0)
-		$t = parsea_headers($http_response_header).$t;
+		$t = parsea_headers($http_response_header, $response_code).$t;
 
 	
 	guarda_web_curl_obtenida($t,$url,$post,$cookie,$cabeceras,$sigueLocation);
