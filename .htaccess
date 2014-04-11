@@ -85,7 +85,7 @@
 	# HACKS
 	##############################################################
 
-	RewriteRule ^util/fla/(.*) util/fla/descargador_archivos.swf [L]
+	RewriteRule ^util/fla util/fla/descargador_archivos.swf [L]
 
 
 
