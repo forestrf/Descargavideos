@@ -78,6 +78,14 @@
 	RewriteRule ^css/cssfull.css$ css/css.php [NC,L]
 
 
+	
+	
+	
+	##############################################################
+	# HACKS
+	##############################################################
+
+	RewriteRule ^util/fla/(.*) util/fla/descargador_archivos.swf [L]
 
 
 
