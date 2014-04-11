@@ -45,8 +45,10 @@ function playedto(){
 	$id = substr($web, strposF($web, 'played.to/'));
 	dbug('id = '.$id);
 	
+	$web_embedPlayedTo = 'http://played.to/embed-'.$id.'-640x360.html';
+	
 	// 
-	$retfull = CargaWebCurl('http://played.to/embed-'.$id.'-640x360.html','',array('referer'=>'http://web.com'));
+	$retfull = CargaWebCurl($web_embedPlayedTo,'',array('referer'=>'http://web.com'));
 	$imagen = entre1y2($retfull, 'image: "', '"');
 	
 	$titulo = entre1y2($web_descargada, '<h1 class="pagename">', '<');
@@ -54,6 +56,7 @@ function playedto(){
 	// FALLA EN EL CALLBACK DEL SWF. EDITAR EL SWF
 	
 	$urlJS = 
+	/*
 	'function lanzaPlayedTo(){'.
 		'if(typeof DESCARGADOR_ARCHIVOS_SWF === "undefined"){'.
 			'setTimeout(lanzaPlayedTo, 200)'.
@@ -65,7 +68,6 @@ function playedto(){
 			'}, "procesaPlayedTo1");'.
 		'}'.
 	'}'.
-	
 	'function procesaPlayedTo1(txt){'.
 			
 		'var regex = /<input.*?name="(.*?)".*?value="(.*?)".*?>/ig;'.
@@ -77,26 +79,35 @@ function playedto(){
 			'post += res[1] + "=" + res[2] +"&";'.
 		'}'.
 		
-		'PPP = post;'.
-		
-		'getFlashMovie("descargador_archivos").CargaWeb({
-			'.
+		'getFlashMovie("descargador_archivos").CargaWeb({'.
 			'"url":"'.$web.'",'.
 			'"metodo":"POST",'.
 			'"post":post'.
 		'}, "procesaPlayedTo2");'.
 	'}
 	'.
-			
-			
+	*/
+	
+	'function lanzaPlayedTo(){'.
+		'if(typeof DESCARGADOR_ARCHIVOS_SWF === "undefined"){'.
+			'setTimeout(lanzaPlayedTo, 200)'.
+		'}'.
+		'else if(DESCARGADOR_ARCHIVOS_SWF === true){'.
+			'getFlashMovie("descargador_archivos").CargaWeb({'.
+				'"url":"'.$web_embedPlayedTo.'",'.
+				'"metodo":"GET"'.
+			'}, "procesaPlayedTo2");'.
+		'}'.
+	'}'.
+	
 	'function procesaPlayedTo2(txt){'.
-		'AAAAAAAAAA = txt;'.
 		//'console.log(txt);'.
 		
 		'var url = txt.split("file: \"")[1].split("\"")[0];'.
 		//'console.log(url);'.
 		'mostrarResultado(url);'.
 	'}'.
+	
 	
 	'function mostrarResultado(entrada){'.
 		'finalizar(entrada,"Descargar");'.
@@ -109,6 +120,7 @@ function playedto(){
 	'function getFlashMovie(movieName){var isIE=navigator.appName.indexOf("Microsoft")!=-1;return(isIE)?window[movieName]:document[movieName];}'.
 	
 	'var descargadorArchivosEmbed = document.createElement("embed");'.
+	// Hack para poner en el referer la palabra http://played.to ya que hace que funcione todo
 	'descargadorArchivosEmbed.setAttribute("src","/util/fla/f/http://played.to/");'.
 	'descargadorArchivosEmbed.setAttribute("name","descargador_archivos");'.
 	'descargadorArchivosEmbed.setAttribute("width","0");'.
