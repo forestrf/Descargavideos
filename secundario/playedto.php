@@ -47,12 +47,7 @@ function playedto(){
 	
 	// 
 	$retfull = CargaWebCurl('http://played.to/embed-'.$id.'-640x360.html','',array('referer'=>'http://web.com'));
-	dbug($retfull);
-	exit;
-	
-	
-	
-	$imagen = '';
+	$imagen = entre1y2($retfull, 'image: "', '"');
 	
 	$titulo = entre1y2($web_descargada, '<h1 class="pagename">', '<');
 
