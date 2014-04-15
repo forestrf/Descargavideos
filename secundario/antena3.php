@@ -117,16 +117,6 @@ else{
 		foreach(parseaXMLNormal($xml) as $individual)
 			$obtenido['enlaces'][]=$individual;
 	}
-	elseif(enString($web_descargada,"playContainer")){
-		dbug('playContainer');
-		$p=strpos($web_descargada,"playContainer");
-		$p=strpos($web_descargada,".xml='",$p)+6; //devuelve sin /
-		$f=strpos($web_descargada,'.xml',$p)+4;
-		$xml=substr($web_descargada,$p,$f-$p);
-		$xml='http://www.antena3.com/'.$xml;
-		foreach(parseaXMLNormal($xml) as $individual)
-			$obtenido['enlaces'][]=$individual;
-	}
 	elseif(enString($web_descargada, 'http://www.antena3.com/videosnuevosxml')){
 		preg_match_all('@http://www.antena3.com/videosnuevosxml[^ ^" ^\']*@', $web_descargada, $matches);
 		/*
@@ -151,11 +141,28 @@ else{
 		dbug_r($obtenido);
 		*/
 		$videos = $matches[0];
+		$videos_cargados = array();
 		foreach($videos as $xml){
-			$xml = strtr($xml, array('videosnuevosxml' => 'videoxml'));
-			foreach(parseaXMLNormal($xml) as $individual)
-				$obtenido['enlaces'][]=$individual;
+			if(in_array($xml, $videos_cargados)){
+				continue;	
+			}
+			//$xml = strtr($xml, array('videosnuevosxml' => 'videoxml'));
+			$obtenido['enlaces'][]=parseaXMLNuevo($xml);
+			$videos_cargados[] = $xml;
 		}
+		$titulo = entre1y2($web_descargada, '<title>','<');
+		$imagen = 'http://www.antena3.com/clipping/'.entre1y2($web_descargada, '"http://www.antena3.com/clipping/', '"');
+		$imagen = substr($imagen, 0, strrposF($imagen, '/')).'45.jpg';
+	}
+	elseif(enString($web_descargada,"playContainer")){
+		dbug('playContainer');
+		$p=strpos($web_descargada,"playContainer");
+		$p=strpos($web_descargada,".xml='",$p)+6; //devuelve sin /
+		$f=strpos($web_descargada,'.xml',$p)+4;
+		$xml=substr($web_descargada,$p,$f-$p);
+		$xml='http://www.antena3.com/'.$xml;
+		foreach(parseaXMLNormal($xml) as $individual)
+			$obtenido['enlaces'][]=$individual;
 	}
 	//.addVariable("xml"
 	elseif(enString($web_descargada,'.addVariable("xml"')){
@@ -353,7 +360,7 @@ function parseaXMLF1(&$entrada){
 	return $arrayR;
 }
 
-/*
+
 function parseaXMLNuevo(&$entrada){
 	global $imagen;
 	$ret_full = CargaWebCurl($entrada);
@@ -362,9 +369,9 @@ function parseaXMLNuevo(&$entrada){
 	}
 	return array(
 		'url'     => entre1y2($ret_full, '<videoSource><![CDATA[',']]'),
-		'tipo'    => 'http',
-		'url_txt' => entre1y2($ret_full, '<title><![CDATA[',']]')
+		'tipo'    => 'http'/*,
+		'url_txt' => entre1y2($ret_full, '<title><![CDATA[',']]')*/
 	);
 }
-*/
+
 ?>
