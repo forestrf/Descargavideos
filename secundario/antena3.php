@@ -116,7 +116,8 @@ else{
 		$xml='http://www.antena3.com/'.$xml;
 		foreach(parseaXMLNormal($xml) as $individual)
 			$obtenido['enlaces'][]=$individual;
-	}elseif(enString($web_descargada,"playContainer")){
+	}
+	elseif(enString($web_descargada,"playContainer")){
 		dbug('playContainer');
 		$p=strpos($web_descargada,"playContainer");
 		$p=strpos($web_descargada,".xml='",$p)+6; //devuelve sin /
@@ -125,6 +126,36 @@ else{
 		$xml='http://www.antena3.com/'.$xml;
 		foreach(parseaXMLNormal($xml) as $individual)
 			$obtenido['enlaces'][]=$individual;
+	}
+	elseif(enString($web_descargada, 'http://www.antena3.com/videosnuevosxml')){
+		preg_match_all('@http://www.antena3.com/videosnuevosxml[^ ^" ^\']*@', $web_descargada, $matches);
+		/*
+		$videos = $matches[0];
+		$videos_cargados = array();
+		foreach($videos as $xml){
+			if(in_array($xml, $videos_cargados)){
+				continue;	
+			}
+			dbug($xml);
+			$obtenido['enlaces'][]=parseaXMLNuevo($xml);
+			$videos_cargados[] = $xml;
+		}
+		if(count($videos_cargados)>1){
+			$titulo = 'Grupo de vídeos de Antena 3';
+		}
+		else{
+			$titulo = $videos_cargados[0]['url_txt'];
+		}
+		$imagen = 
+		
+		dbug_r($obtenido);
+		*/
+		$videos = $matches[0];
+		foreach($videos as $xml){
+			$xml = strtr($xml, array('videosnuevosxml' => 'videoxml'));
+			foreach(parseaXMLNormal($xml) as $individual)
+				$obtenido['enlaces'][]=$individual;
+		}
 	}
 	//.addVariable("xml"
 	elseif(enString($web_descargada,'.addVariable("xml"')){
@@ -314,11 +345,26 @@ function parseaXMLF1(&$entrada){
 				'tipo'    => 'http',
 				'url_txt' => 'parte '.$i
 			);
-			$i++;
+			++$i;
 		}
 		else
 			$total=$i;
 	}
 	return $arrayR;
 }
+
+/*
+function parseaXMLNuevo(&$entrada){
+	global $imagen;
+	$ret_full = CargaWebCurl($entrada);
+	if($imagen == ''){
+		$imagen = entre1y2($ret_full, '<image><![CDATA[',']]');
+	}
+	return array(
+		'url'     => entre1y2($ret_full, '<videoSource><![CDATA[',']]'),
+		'tipo'    => 'http',
+		'url_txt' => entre1y2($ret_full, '<title><![CDATA[',']]')
+	);
+}
+*/
 ?>

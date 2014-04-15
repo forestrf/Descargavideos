@@ -16,6 +16,13 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'15-Abril-2014',
+array(
+	'fix:Antena 3, nuevo formato de vídeos.'
+	)
+);
+
+$todos[]=array(
 '11-Abril-2014',
 array(
 	'add:Played.to. Requiere tener flash instalado por problemas con IP.',
