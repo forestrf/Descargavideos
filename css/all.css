@@ -355,10 +355,13 @@ input[type=radio]{
 	margin:2.5% 2.5% 0 2.5%;
 	width:45%;
 }
-#resultado .img{
-	background:none repeat scroll 0 0 #E3E3E3;
-	box-shadow:0 0 10px 5px #73532B;
-	float:left;
+#resultado .img {
+	/*background-color: #343438;*/
+	background-image: url("/img/loading.gif");
+	background-position: center center;
+	background-repeat: no-repeat;
+	box-shadow: 0 0 10px 5px #73532B;
+	float: left;
 	/*max-width:500px;*/
 }
 #resultado .titulo_res{
