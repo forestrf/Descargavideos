@@ -1,7 +1,7 @@
 <?php
 function mtv(){
 global $web;
-$retfull=CargaWebCurlProxy($web,"ESP");
+$retfull=CargaWebCurlProxy($web,'ESP');
 
 
 //titulo
@@ -16,15 +16,17 @@ dbug('titulo='.$titulo);
 //imagen
 //<meta property="og:image" content="http://....jpg?height=106&amp;quality=0.91"/>
 $p=strpos($retfull,'og:image');
-$p=strpos($retfull,'content="',$p)+9;
+$p=strposF($retfull,'content="',$p);
 $f=strpos($retfull,'?',$p);
 $imagen=substr($retfull,$p,$f-$p);
-if(enString($imagen,'mtvnimages.com'))
-	$imagen=$imagen.'?height=180&quality=1';
-else
-	$imagen=substr($imagen,0,strpos($imagen,'"'));
+if(enString($imagen,'mtvnimages.com')){
+	$imagen = $imagen.'?height=180&quality=1';
+}
+else{
+	$imagen = substr($imagen,0,strpos($imagen,'"'));
+}
 
-if($imagen == ""){
+if($imagen == '' || enString($imagen,'<')){
 	$imagen = entre1y2($retfull, 'rel="image_src" href="', '"');
 }
 
@@ -41,11 +43,11 @@ dbug('id='.$id);
 $url='http://intl.esperanto.mtvi.com/www/xml/media/mediaGen.jhtml?uri=mgid:uma:video:mtv.es:'.$id;
 dbug('url='.$url);
 
-$ret=CargaWebCurlProxy($url,"ESP");
+$ret=CargaWebCurlProxy($url,'ESP');
 dbug($ret);
 
 //Por situación geográfica del servidor (supongo) da error. Usar pydowntv :(
-if(!enString($ret,"copyright_error.flv")){
+if(!enString($ret,'copyright_error.flv')){
 	$p=strpos($ret,'<rendition');
 	$f=strpos($ret,'<beacons>',$p);
 	$extracto=substr($ret,$p,$f-$p);
@@ -57,7 +59,7 @@ if(!enString($ret,"copyright_error.flv")){
 }
 else{
 	dbug('Usando pydowntv');
-	$ret=CargaWebCurl("http://www.pydowntv.com/api?url=".$web);
+	$ret=CargaWebCurl('http://www.pydowntv.com/api?url='.$web);
 	dbug($ret);
 	$p=strpos($ret,'"url_video": ["')+15;
 	$f=strpos($ret,'"',$p);

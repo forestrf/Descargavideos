@@ -22,7 +22,8 @@ array(
 	'fix:vk.com. La mayor parte de los vídeos no funcionaban.',
 	'fix:rtve.es. Soporte para algunas páginas sin vídeo con imagen que redirecciona al vídeo.',
 	'fix:Los resultados con imagen erronea ya no muestran una imagen de color blanco.',
-	'fix:Imágenes en algunos resultados de mitele no funcionaba.'
+	'fix:Imágenes en algunos resultados de mitele no funcionaba.',
+	'fix:Imágenes en mtv.es no funcionaban en algunas resultados.'
 	)
 );
 
