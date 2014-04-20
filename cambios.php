@@ -16,6 +16,14 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'20-Abril-2014',
+array(
+	'add:Soporte para buscar a partir de un iframe',
+	'fix:vk.com.'
+	)
+);
+
+$todos[]=array(
 '15-Abril-2014',
 array(
 	'fix:Antena 3, nuevo formato de vídeos.'

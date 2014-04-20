@@ -552,6 +552,18 @@ function validar_enlace($link){
 	
 	// http:// está en el enlace. Si no, lo agregamos
 	if(enString($link,'http://')||enString($link,'https://')){
+		// Comprobar si estamos con un iframe
+		if(enString($link,'<iframe')){
+			dbug('Detectado iframe');
+			preg_match('@src.*?=.*?["\'](.*?)["\']@', $link, $matches);
+			dbug_r($matches);
+			if(isset($matches[1])){
+				$link = $matches[1];
+			}
+			else{
+				return false;
+			}
+		}
 		$enlace = $link;
 	}
 	else{
