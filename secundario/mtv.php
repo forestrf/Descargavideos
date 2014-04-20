@@ -72,7 +72,7 @@ $obtenido = array(
 	'enlaces' => array(
 		array(
 			'url'  => $url,
-			'rtmpdump' => '-r "'.$url.'" -o "'.$titulo.'"',
+			'rtmpdump' => '-r "'.$url.'" -o "'.generaNombreWindowsValido($titulo).'.'.(enString($url,'.mp4')?'mp4':'flv').'"',
 			'tipo' => 'rtmpConcreto'
 		)
 	)
