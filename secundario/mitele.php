@@ -33,7 +33,7 @@ function mitele_directo(){
 	dbug('titulo='.$titulo);
 
 	$preID=entre1y2($retfull,'class="videoEmbed"','Share');
-	dbug($preID);
+	//dbug($preID);
 	
 	$id=entre1y2($retfull,'MDS.embedObj(video, "','"');
 	if(stringContains($id,"<",">",";"," ")||!enString($id,'_'))
@@ -64,7 +64,8 @@ function mitele_directo(){
 
 	if(!enString($imagen, ".jpg") && !enString($imagen, ".png")){
 		//Funciona con los dominios cuatro, mitelekids y telecinco.
-		$imagen = 'http://www.telecinco.es///_'.$id.'_1.jpg';
+		$imagen = 'http://telecincostatic-a.akamaihd.net/a_'.$id.'_1.png';
+		//http://telecincostatic-a.akamaihd.net/a_MDSVID20140416_0177_9.png
 	}
 	
 	$modo="t5=1";
