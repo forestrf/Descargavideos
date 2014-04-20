@@ -41,44 +41,7 @@ else{
 	//$retfull=CargaWebCurl($web);
 	
 	//assetID=974036_
-	$asset = "Por rellenar";
-	if(enString($web_descargada, "assetID=")){
-		$p=strposF($web_descargada,"assetID=");
-		$f=strpos($web_descargada,"_",$p);
-		$asset=substr($web_descargada,$p,$f-$p);
-	}
-	dbug('asset, prueba 1: '.$asset);
-	if(stringContains($asset,array('"','{','}','<','>',' '))){
-		$asset=substr($asset,1,strlen($asset)-1);
-		dbug('asset, prueba 2: '.$asset);
-	}
-	if(stringContains($asset,array('"','{','}','<','>',' '))){
-		if(enString($web_descargada,'lass="imgT"')&&enString($web_descargada,'href="')){
-			$p=strpos($web_descargada,'lass="imgT"');
-			$p=strpos($web_descargada,'href="',$p)+6;
-			$f=strpos($web_descargada,'"',$p);
-			$asset=substr($web_descargada,$p,$f-$p);
-			dbug('extraer asset de url: '.$asset);
-			
-			preg_match_all('@/(\d+)/@', $asset, $coincidencias);
-			$asset=$coincidencias[1][0];
-			dbug('asset, prueba 3: '.$asset);
-		}
-		else
-			dbug('asset, prueba 3. No se realiza.');
-	}
-	if(stringContains($asset,array('"','{','}','<','>',' '))){
-		preg_match_all('@DC.identifier" ?content="(\d+)"@', $web_descargada, $coincidencias);
-		$asset=$coincidencias[1][0];
-		dbug('asset, prueba 4: '.$asset);
-	}
-	if(stringContains($asset,array('"','{','}','<','>',' '))){
-		preg_match_all('@/(\d+)/@', $web, $coincidencias);
-		$asset=$coincidencias[1][0];
-		dbug('asset, prueba 3 (de la url): '.$asset);
-	}
-	
-	dbug('asset='.$asset);
+	$asset = encuentraAssetEnContenido($web_descargada);
 }
 
 
@@ -219,45 +182,91 @@ function convierteID($asset,$modo=array('video','audio')){
 	return $ret;
 }
 
-function encripta($que){
-$key='hul#Lost';
-$iv='12345678';
-$cipher=mcrypt_module_open(MCRYPT_BLOWFISH,'','ecb','');
-
-$modulo = strlen($que)%8;
-$completar = (8 - $modulo);
-$k = "";
-for($j = 0;$j<$completar;$j++){
-$k = $k.chr(7);
+function encuentraAssetEnContenido($web_descargada){
+	global $web;
+	$asset = "Por rellenar";
+	if(enString($web_descargada, "assetID=")){
+		$asset=entre1y2($web_descargada,'assetID=','_');
+	}
+	dbug('asset, prueba 1: '.$asset);
+	if(stringContains($asset,array('"','{','}','<','>',' '))){
+		$asset=substr($asset,1);
+		dbug('asset, prueba 2: '.$asset);
+	}
+	if(stringContains($asset,array('"','{','}','<','>',' '))){
+		if(enString($web_descargada,'lass="imgT"')&&enString($web_descargada,'href="')){
+			$p=strpos($web_descargada,'lass="imgT"');
+			$asset=entre1y2_a($web_descargada, $p, 'href="', '"');
+			dbug('extraer asset de url: '.$asset);
+			
+			if(enString($asset, '.shtml')){
+				$assetW = CargaWebCurl($asset);
+				dbug('lanzando encuentraAssetEnContenido() con el contenido de '.$asset);
+				$asset = encuentraAssetEnContenido($assetW);
+			}
+			else{
+				preg_match_all('@/(\d+)/@', $asset, $matches);
+				$asset=$matches[1][0];
+			}
+			dbug('asset, prueba 3: '.$asset);
+		}
+		else
+			dbug('asset, prueba 3. No se realiza.');
+	}
+	if(stringContains($asset,array('"','{','}','<','>',' '))){
+		preg_match_all('@DC.identifier" ?content="(\d+)"@', $web_descargada, $matches);
+		$asset=$matches[1][0];
+		dbug('asset, prueba 4: '.$asset);
+	}
+	if(stringContains($asset,array('"','{','}','<','>',' '))){
+		preg_match_all('@/(\d+)/@', $web, $matches);
+		$asset=$matches[1][0];
+		dbug('asset, prueba 3 (de la url): '.$asset);
+	}
+	
+	dbug('asset='.$asset);
+	return $asset;
 }
 
-mcrypt_generic_init($cipher,$key,$iv);
-$encrypted=mcrypt_generic($cipher,$que.$k);
-mcrypt_generic_deinit($cipher);
-
-$encrypted=base64_encode($encrypted);
-$encrypted=strtr($encrypted,array('+'=>'-','/'=>'_'));
-
-return $encrypted;
+function encripta($que){
+	$key='hul#Lost';
+	$iv='12345678';
+	$cipher=mcrypt_module_open(MCRYPT_BLOWFISH,'','ecb','');
+	
+	$modulo = strlen($que)%8;
+	$completar = (8 - $modulo);
+	$k = "";
+	for($j = 0;$j<$completar;$j++){
+		$k = $k.chr(7);
+	}
+	
+	mcrypt_generic_init($cipher,$key,$iv);
+	$encrypted=mcrypt_generic($cipher,$que.$k);
+	mcrypt_generic_deinit($cipher);
+	
+	$encrypted=base64_encode($encrypted);
+	$encrypted=strtr($encrypted,array('+'=>'-','/'=>'_'));
+	
+	return $encrypted;
 }
 
 //http://www.rtve.es/ztnr/decrypt.jsp
 function desencripta($que){
-$key='hul#Lost';
-$iv='12345678';
-$cipher=mcrypt_module_open(MCRYPT_BLOWFISH,'','ecb','');
-
-mcrypt_generic_init($cipher,$key,$iv);
-$decrypted=mdecrypt_generic($cipher,b64d($que));
-mcrypt_generic_deinit($cipher);
-return $decrypted;
+	$key='hul#Lost';
+	$iv='12345678';
+	$cipher=mcrypt_module_open(MCRYPT_BLOWFISH,'','ecb','');
+	
+	mcrypt_generic_init($cipher,$key,$iv);
+	$decrypted=mdecrypt_generic($cipher,b64d($que));
+	mcrypt_generic_deinit($cipher);
+	return $decrypted;
 }
 
 function b64d($encoded){
-$decoded="";
-$base64=strtr($encoded,'-_','+/');
-for($i=0;$i<ceil(strlen($base64)/64);$i++)
-   $decoded.=base64_decode(substr($base64,$i*64,64));
-return $decoded;
+	$decoded="";
+	$base64=strtr($encoded,'-_','+/');
+	for($i=0;$i<ceil(strlen($base64)/64);$i++)
+	   $decoded.=base64_decode(substr($base64,$i*64,64));
+	return $decoded;
 }
 ?>
