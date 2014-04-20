@@ -61,18 +61,19 @@ else{
 	dbug('Usando pydowntv');
 	$ret=CargaWebCurl('http://www.pydowntv.com/api?url='.$web);
 	dbug($ret);
-	$p=strpos($ret,'"url_video": ["')+15;
+	$p=strposF($ret,'"url_video": ["');
 	$f=strpos($ret,'"',$p);
 	$url=substr($ret,$p,$f-$p);
 }
 
-$obtenido=array(
+$obtenido = array(
 	'titulo'  => $titulo,
 	'imagen'  => $imagen,
 	'enlaces' => array(
 		array(
 			'url'  => $url,
-			'tipo' => 'rtmp'
+			'rtmpdump' => '-r "'.$url.'" -o "'.$titulo.'"',
+			'tipo' => 'rtmpConcreto'
 		)
 	)
 );
