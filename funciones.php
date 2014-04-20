@@ -3,15 +3,15 @@ function esVideoAudio($enlace){
 	global $web;
 	//comprobar que es una url
 
-	if(stringContains($enlace, array(/*" ",*/"<",">"))){
+	if(stringContains($enlace, array(/*" ",*/'<','>'))){
 		//no es correcto
 		//informar de fallo
-		addError($web, "El enlace obtenido no era una url");
+		addError($web, 'El enlace obtenido no era una url');
 		return false;
 	}
 	else{
 		//comprobar que la url contiene .mp4 .mp3 .wmv .avi .f4v .flv .mov .3gp .3g2 .aac .m4a .ogv .ogg
-		if(stringContains($enlace, array(".mp4",".mp3",".wmv",".avi",".f4v",".flv",".mov",".3gp",".3g2",".aac",".m4a",".ogv",".ogg",".fll"))||strlen(strstr($enlace,'|'))>0){
+		if(stringContains($enlace, array('.mp4','.mp3','.wmv','.avi','.f4v','.flv','.mov','.3gp','.3g2','.aac','.m4a','.ogv','.ogg','.fll'))||strlen(strstr($enlace,'|'))>0){
 			//es un enlace. todo correcto
 			//informar de correcto
 			dbug('agregado perfect');
@@ -19,7 +19,7 @@ function esVideoAudio($enlace){
 		}
 		else{
 			//informar de fallo
-			addError($web, "El enlace obtenido era una URL, pero no la que se pretendia");
+			addError($web, 'El enlace obtenido era una URL, pero no la que se pretendia');
 			return false;
 		}
 	}
@@ -29,15 +29,15 @@ function esVideoAudio($enlace){
 function esVideoAudioAnon($enlace){
 	if(!preg_match('@^https?://(([^/^\.]+\.)+?[^/^\.]+?)(/.*)?$@i',$enlace))
 		return false;
-	elseif(stringContains($enlace,array(" ","<",">")))
+	elseif(stringContains($enlace,array(' ','<','>')))
 		return false;
-	elseif(stringContains($enlace,array(".mp4",".mp3",".wmv",".avi",".f4v",".flv",".mov",".3gp",".3g2",".aac",".m4a",".ogv",".ogg")))
+	elseif(stringContains($enlace,array('.mp4','.mp3','.wmv','.avi','.f4v','.flv','.mov','.3gp','.3g2','.aac','.m4a','.ogv','.ogg')))
 		return true;
 	return false;
 }
 
 // No se puede hacer varios resultados a la vez, entre otras razones, por que esta función es llamada dentro de cadenas
-function setErrorWebIntera($error = "A ocurrido un error"){
+function setErrorWebIntera($error = 'A ocurrido un error'){
 	global $fallourlinterna;
 	$fallourlinterna = $error;
 	if(defined('DEBUG')){
@@ -63,21 +63,21 @@ function ReemplazaDeAPor($donde, $desde, $i1, $hasta, $por){
 	else
 		$f=strposF($donde, $hasta, $p);
 	$extracto=substr($donde, $p, $f-$p);
-	dbug("recortado desde ".$p." hasta ".$f);
+	dbug('recortado desde '.$p.' hasta '.$f);
 	return strtr($donde,array($extracto=>$por));
 }
 
-function extraeExtension($de="", $separador="."){
+function extraeExtension($de='', $separador='.'){
 	$p = strrpos($de, '/')+1;
 	$ext = substr($de, $p, strlen($de)-$p);
 	if(enString($ext, $separador)){
 		$p = strpos($ext, $separador)+1;
 		$ext = substr($ext, $p, strlen($ext) -$p);
-		if(enString($ext,"?"))
-			$ext = substr($ext, 0, strpos($ext, "?"));
+		if(enString($ext,'?'))
+			$ext = substr($ext, 0, strpos($ext, '?'));
 	}
-	if($ext=="m4v")
-		$ext = "mp4";
+	if($ext=='m4v')
+		$ext = 'mp4';
 	return $ext;
 }
 
@@ -86,13 +86,13 @@ function generaNombreWindowsValido($filename){
 		array_map('chr',range(0,31)),
 		array('<','>',':','"','/','\\','|','?','*')
 	);
-	return str_replace($bad, "", $filename);
+	return str_replace($bad, '', $filename);
 }
 
 function limpiaTitulo($titulo, $max=1000){
 	if(strlen($titulo) > $max)
 		$titulo = substr($titulo, 0, $max).'...';
-	return strtr($titulo, array("%27"=>"", "*"=>"","'"=>""));
+	return strtr($titulo, array('%27'=>'', '*'=>'',"'"=>''));
 }
 
 function strposF($donde, $que, $desde=0){
@@ -142,18 +142,19 @@ function url_exists_full(&$url, $preg_match_prerealizado = false){
 	$url = preg_replace_callback('/[^(\x20-\x7F)]/', 'urlencode_noAscii', $url);
 	
 	$context =
-		array("http"=>
+		array('http'=>
 			array(
-				"method" => "GET",
-				"header" => "User-agent: Mozilla/5.0 (Windows NT 6.1; rv:11.0) Gecko/20100101 Firefox/11.0\r\n".
+				'method' => 'GET',
+				'header' => "User-agent: Mozilla/5.0 (Windows NT 6.1; rv:11.0) Gecko/20100101 Firefox/11.0\r\n".
 							"Connection: close\r\n".
 							"Accept-Language: es-ES,es;en-US;en\r\n".
 							"Accept: text/html,application/xhtml+xml,application/xml\r\n".
 							"Accept-Encoding: gzip\r\n",
-				"timeout" => 15,
-				'follow_location' => true/*,
-				"ssl" => array(
-					"verify_peer" => false
+				'timeout' => 15,
+				'follow_location' => true,
+				'ignore_errors' => '1' /*,
+				'ssl' => array(
+					'verify_peer' => false
 				)*/
 			)
 		);
@@ -168,13 +169,13 @@ function url_exists_full(&$url, $preg_match_prerealizado = false){
 		return false;
 	}
 	
-	if(in_array("Content-Encoding: deflate", $http_response_header)){
+	if(in_array('Content-Encoding: deflate', $http_response_header)){
 		dbug_r($http_response_header);
 		dbug('web en formato deflate. Deflateando.');
 		$web_descargada = gzuncompress($web_descargada);
 	}
 	
-	if(in_array("Content-Encoding: gzip", $http_response_header)){
+	if(in_array('Content-Encoding: gzip', $http_response_header)){
 		dbug_r($http_response_header);
 		dbug('web en formato gzip. De-gzip-eando.');
 		$web_descargada = gzdecode($web_descargada);
@@ -184,7 +185,7 @@ function url_exists_full(&$url, $preg_match_prerealizado = false){
 	
 	$z=intval($response_code);
 	
-	if(($z>=200 && $z<350) || $z===409 || $z===410 || $z===0)
+	if(($z>=200 && $z<350) || $z===403 || $z===409 || $z===410 || $z===0)
 		return true;
 	
 	return false;
@@ -208,43 +209,47 @@ function parsea_headers($http_response_header, &$responde_code){
 }
 
 function dbug($msg){
-	if(defined("DEBUG"))
+	if(defined('DEBUG'))
 		echo $msg.'<br>
 ';
 }
 
 function dbug_r(&$arr){
-	if(defined("DEBUG"))
+	if(defined('DEBUG'))
 		print_r($arr);
 }
 
 //url, contenido post a enviar, retornar cabecera, cabecera custom
-function CargaWebCurl($url,$post="",$cabecera=0,$cookie="",$cabeceras=array(),$sigueLocation=true,$esquivarCache=false){
+function CargaWebCurl($url,$post='',$cabecera=0,$cookie='',$cabeceras=array(),$sigueLocation=true,$esquivarCache=false,$ignoraErrores = 0){
 	dbug('cargando web (file_get_contents as CURL):'.$url);
 	if(!$esquivarCache){
 		$t=carga_web_curl_obtenida($url,$post,$cookie,$cabeceras,$sigueLocation);
-		if($t!=""){
-			dbug("Web cargada anteriormente. Retornando web cacheada.");
+		if($t!=''){
+			dbug('Web cargada anteriormente. Retornando web cacheada.');
 			return $t;
 		}
 	}
 	$context =
-		array("http"=>
+		array('http'=>
 			array(
-				"method" => "GET",
-				"header" => "User-agent: Mozilla/5.0 (Windows NT 6.1; rv:11.0) Gecko/20100101 Firefox/11.0\r\n".
-							($cookie!=""?("Cookie: ".$cookie."\r\n"):'').
-							(count($cabeceras)>0?(implode("\r\n", $cabeceras)."\r\n"):"").
+				'method' => 'GET',
+				'header' => "User-agent: Mozilla/5.0 (Windows NT 6.1; rv:11.0) Gecko/20100101 Firefox/11.0\r\n".
+							($cookie!=''?('Cookie: '.$cookie."\r\n"):'').
+							(count($cabeceras)>0?(implode("\r\n", $cabeceras)."\r\n"):'').
 							"Accept-Encoding: gzip\r\n",
-				"timeout" => 20,
+				'timeout' => 20,
 				'follow_location' => $sigueLocation
 			)
 		);
 	
-	if($post!=""){
-		$context["http"]["method"] = "POST";
-		$context["http"]["content"] = $post;
-		dbug("activando post en la actual curl");
+	if($ignoraErrores == 1){
+		$context['http']['ignore_errors'] = '1';
+	}
+	
+	if($post!=''){
+		$context['http']['method'] = 'POST';
+		$context['http']['content'] = $post;
+		dbug('activando post en la actual curl');
 	}
 	
 	//Llamar URL
@@ -254,12 +259,12 @@ function CargaWebCurl($url,$post="",$cabecera=0,$cookie="",$cabeceras=array(),$s
 		return false;
 	}
 	
-	if(in_array("Content-Encoding: deflate", $http_response_header)){
+	if(in_array('Content-Encoding: deflate', $http_response_header)){
 		dbug('web en formato deflate. Deflateando.');
 		$t = gzuncompress($t);
 	}
 	
-	if(in_array("Content-Encoding: gzip", $http_response_header)){
+	if(in_array('Content-Encoding: gzip', $http_response_header)){
 		dbug('web en formato gzip. De-gzip-eando.');
 		$t = gzdecode($t);
 	}
@@ -273,109 +278,109 @@ function CargaWebCurl($url,$post="",$cabecera=0,$cookie="",$cabeceras=array(),$s
 }
 
 //ESTO ES PARA NO VOLVER A DESCARGAR UNA MISMA URL.
-function guarda_web_curl_obtenida($t="",$url="",$post="",$cookie="",$cabeceras=array(),$sigueLocation=true){
+function guarda_web_curl_obtenida($t='',$url='',$post='',$cookie='',$cabeceras=array(),$sigueLocation=true){
 	global $listado_web_curl_obtenidas;
 	$listado_web_curl_obtenidas[]=array(
-		"t"=>$t,
-		"url"=>$url,
-		"post"=>$post,
-		"cookie"=>$cookie,
-		"cabeceras"=>$cabeceras,
-		"sigueLocation"=>$sigueLocation
+		't'=>$t,
+		'url'=>$url,
+		'post'=>$post,
+		'cookie'=>$cookie,
+		'cabeceras'=>$cabeceras,
+		'sigueLocation'=>$sigueLocation
 	);
-	dbug("Web agregada al caché. Total en caché: ".count($listado_web_curl_obtenidas));
+	dbug('Web agregada al caché. Total en caché: '.count($listado_web_curl_obtenidas));
 }
-function carga_web_curl_obtenida($url="",$post="",$cookie="",$cabeceras=array(),$sigueLocation=true){
+function carga_web_curl_obtenida($url='',$post='',$cookie='',$cabeceras=array(),$sigueLocation=true){
 	global $listado_web_curl_obtenidas;
 	$total=count($listado_web_curl_obtenidas);
-	dbug("Webs cargadas en caché: ".$total);
+	dbug('Webs cargadas en caché: '.$total);
 	for($i=0; $i<$total; $i++){
 		$c=$listado_web_curl_obtenidas[$i];
 		if(
-			$c["url"]==$url&&
-			$c["post"]==$post&&
-			$c["cookie"]==$cookie&&
-			$c["cabeceras"]==$cabeceras&&
-			$c["sigueLocation"]==$sigueLocation
+			$c['url']==$url&&
+			$c['post']==$post&&
+			$c['cookie']==$cookie&&
+			$c['cabeceras']==$cabeceras&&
+			$c['sigueLocation']==$sigueLocation
 		){
-			return $c["t"];
+			return $c['t'];
 		}
 	}
-	return "";
+	return '';
 }
 
-function CargaWebCurlProxy($web,$pais="ESP"){
+function CargaWebCurlProxy($web,$pais='ESP'){
 	$redir='';
 	$actualizaredir='';
 	
-	if($pais=="ESP"){
+	if($pais=='ESP'){
 		$rand = rand(1, 5);
 		switch($rand){
 			case 1:
-				$redir="http://descvid.webcindario.com/redir.php?a=";
-				$actualizaredir="http://descvid.webcindario.com/actualizar.php";
+				$redir='http://descvid.webcindario.com/redir.php?a=';
+				$actualizaredir='http://descvid.webcindario.com/actualizar.php';
 			break;
 			
 			case 2:
-				$redir="http://vddvd.webcindario.com/redir.php?a=";
-				$actualizaredir="http://vddvd.webcindario.com/actualizar.php";
+				$redir='http://vddvd.webcindario.com/redir.php?a=';
+				$actualizaredir='http://vddvd.webcindario.com/actualizar.php';
 			break;
 			
 			case 3:
-				$redir="http://jorll.webcindario.com/redir.php?a=";
-				$actualizaredir="http://jorll.webcindario.com/actualizar.php";
+				$redir='http://jorll.webcindario.com/redir.php?a=';
+				$actualizaredir='http://jorll.webcindario.com/actualizar.php';
 			break;
 			
 			case 4:
-				$redir="http://omgrolff.webcindario.com/redir.php?a=";
-				$actualizaredir="http://omgrolff.webcindario.com/actualizar.php";
+				$redir='http://omgrolff.webcindario.com/redir.php?a=';
+				$actualizaredir='http://omgrolff.webcindario.com/actualizar.php';
 			break;
 			
 			case 5:
-				$redir="http://descv.webcindario.com/redir.php?a=";
-				$actualizaredir="http://descv.webcindario.com/actualizar.php";
+				$redir='http://descv.webcindario.com/redir.php?a=';
+				$actualizaredir='http://descv.webcindario.com/actualizar.php';
 			break;
 		}
 	}
 	
-	elseif($pais=="aleatorio"){
+	elseif($pais=='aleatorio'){
 		$rand = rand(1, 5);
 		switch($rand){
 			case 1:
-				$redir="http://grandenauer.hol.es/redir.php?a=";
-				$actualizaredir="http://grandenauer.hol.es/actualizar.php";
+				$redir='http://grandenauer.hol.es/redir.php?a=';
+				$actualizaredir='http://grandenauer.hol.es/actualizar.php';
 			break;
 			
 			case 2:
-				$redir="http://pphah.hol.es/redir.php?a=";
-				$actualizaredir="http://pphah.hol.es/actualizar.php";
+				$redir='http://pphah.hol.es/redir.php?a=';
+				$actualizaredir='http://pphah.hol.es/actualizar.php';
 			break;
 			
 			case 3:
-				$redir="http://aguaas.pusku.com/redir.php?a=";
-				$actualizaredir="http://aguaas.pusku.com/actualizar.php";
+				$redir='http://aguaas.pusku.com/redir.php?a=';
+				$actualizaredir='http://aguaas.pusku.com/actualizar.php';
 			break;
 			
 			case 4:
-				$redir="http://sebasa.besaba.com/redir.php?a=";
-				$actualizaredir="http://sebasa.besaba.com/actualizar.php";
+				$redir='http://sebasa.besaba.com/redir.php?a=';
+				$actualizaredir='http://sebasa.besaba.com/actualizar.php';
 			break;
 			
 			case 5:
-				$redir="http://ajofeifo.eu5.org/redir.php?a=";
-				$actualizaredir="http://ajofeifo.eu5.org/actualizar.php";
+				$redir='http://ajofeifo.eu5.org/redir.php?a=';
+				$actualizaredir='http://ajofeifo.eu5.org/actualizar.php';
 			break;
 		}
 	}
 	
 	
 	$retfull=CargaWebCurl($redir.urlencode($web));
-	if(enString($retfull,"solicitada no existe") || enString($retfull,'class="error_404"') || enString($retfull,'Page Not Found')){
-		dbug("actualizando redir...");
+	if(enString($retfull,'solicitada no existe') || enString($retfull,'class="error_404"') || enString($retfull,'Page Not Found')){
+		dbug('actualizando redir...');
 		CargaWebCurl($actualizaredir);
-		$retfull=CargaWebCurl($redir.urlencode($web),"",0,"",array(),true,true);
+		$retfull=CargaWebCurl($redir.urlencode($web),'',0,'',array(),true,true);
 	}
-	if($retfull === "" || !$retfull || enString($retfull,"solicitada no existe") || enString($retfull,'class="error_404"') || enString($retfull,'Page Not Found')){
+	if($retfull === '' || !$retfull || enString($retfull,'solicitada no existe') || enString($retfull,'class="error_404"') || enString($retfull,'Page Not Found')){
 		$retfull=CargaWebCurl($web);
 	}
 	
@@ -388,7 +393,7 @@ function enString($cual,$que,$desde=0){
 }
 
 function limpiaCDATAXML($que){
-	return strtr($que,array("<![CDATA["=>"","]]>"=>""));
+	return strtr($que,array('<![CDATA['=>'',']]>'=>''));
 }
 
 //$order has to be either asc or desc
@@ -424,7 +429,7 @@ function limpiaCDATAXML($que){
 // Funciona de PM incluso en appengine
 function jsonRemoveUnicodeSequences($struct){
 	//return preg_replace("/\\\\u([a-f0-9]{4})/","iconv('UCS-4LE','UTF-8',pack('V',hexdec('U$1')))",$struct);
-	return preg_replace_callback("/\\\\u([a-f0-9]{4})/", "jsonRemoveUnicodeSequences2", $struct);
+	return preg_replace_callback("/\\\\u([a-f0-9]{4})/", 'jsonRemoveUnicodeSequences2', $struct);
 }
 
 function jsonRemoveUnicodeSequences2($entrada){
