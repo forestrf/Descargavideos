@@ -1,0 +1,7 @@
+# http://www.htaccesstools.com/articles/htpasswd/
+# http://www.htaccesstools.com/htpasswd-generator/
+AuthUserFile /var/pass/.htpasswd
+AuthName Yep
+AuthType Basic
+
+require valid-user
