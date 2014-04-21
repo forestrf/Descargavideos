@@ -166,7 +166,10 @@ function convierteID($asset,$modo=array('video','audio')){
 		$ret=desencripta($ret);
 		
 		dbug($ret);
-		if(enString($ret,"code='state-not-valid'")){
+		if(preg_match('@http://[^<^>]*?\\.mp4@',$ret)){
+			$ret='http://'.entre1y2($ret,'http://','<');
+		}
+		elseif(enString($ret,"code='state-not-valid'")){
 			$ret='';
 			dbug('vídeo posíblemente borrado. Marcar error');
 			setErrorWebIntera('El vídeo ya no está disponible en RTVE. Lo sentimos.');

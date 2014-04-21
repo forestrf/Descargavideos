@@ -16,9 +16,16 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'21-Abril-2014',
+array(
+	'fix:Algunos vídeos válidos de RTVE indicaban estar borrados.'
+	)
+);
+
+$todos[]=array(
 '20-Abril-2014',
 array(
-	'add:Soporte para buscar a partir de un iframe',
+	'add:Soporte para buscar a partir de un iframe.',
 	'fix:vk.com. La mayor parte de los vídeos no funcionaban.',
 	'fix:rtve.es. Soporte para algunas páginas sin vídeo con imagen que redirecciona al vídeo.',
 	'fix:Los resultados con imagen erronea ya no muestran una imagen de color blanco.',
