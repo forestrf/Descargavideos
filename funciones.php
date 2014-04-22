@@ -441,4 +441,17 @@ function plantillaInclude($cual){
 	global $path_plantilla;
 	return $path_plantilla.$cual;
 }
+
+// Copia de mysql_real_escape_string para uso sin conexión abierta
+// http://es1.php.net/mysql_real_escape_string
+function mysql_escape_mimic($inp) {
+    if(is_array($inp))
+        return array_map(__METHOD__, $inp);
+
+    if(!empty($inp) && is_string($inp)) {
+        return str_replace(array('\\', "\0", "\n", "\r", "'", '"', "\x1a"), array('\\\\', '\\0', '\\n', '\\r', "\\'", '\\"', '\\Z'), $inp);
+    }
+
+    return $inp;
+}
 ?>
