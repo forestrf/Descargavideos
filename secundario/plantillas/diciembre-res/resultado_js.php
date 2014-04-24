@@ -22,7 +22,6 @@
 				'font-size:16px;'+
 				'text-decoration:none;'+
 				'line-height:30px;'+
-				'word-break:break-all;'+
 				'word-wrap:break-word;'+
 				'text-align:center;'+
 				'display:block;'+

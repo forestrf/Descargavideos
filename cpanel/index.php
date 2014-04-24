@@ -36,6 +36,8 @@ else{
 
 ?>
 
+<a href="http://www.descargavideos.tv/cpanel" target="blank">CPanel DV</a><br>
+<a href="http://localhost/cpanel" target="blank">CPanel LH</a><br>
 
 <br>
 Avisos de fallos (rápido):<br>

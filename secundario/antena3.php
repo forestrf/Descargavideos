@@ -151,8 +151,10 @@ else{
 			$videos_cargados[] = $xml;
 		}
 		$titulo = entre1y2($web_descargada, '<title>','<');
-		$imagen = 'http://www.antena3.com/clipping/'.entre1y2($web_descargada, '"http://www.antena3.com/clipping/', '"');
-		$imagen = substr($imagen, 0, strrposF($imagen, '/')).'45.jpg';
+		if(!isset($imagen) || !enString($imagen, '.jpg')){
+			$imagen = 'http://www.antena3.com/clipping/'.entre1y2($web_descargada, '/clipping/', '"');
+			$imagen = substr($imagen, 0, strrposF($imagen, '/')).'45.jpg';
+		}
 	}
 	elseif(enString($web_descargada,"playContainer")){
 		dbug('playContainer');
@@ -364,13 +366,14 @@ function parseaXMLF1(&$entrada){
 function parseaXMLNuevo(&$entrada){
 	global $imagen;
 	$ret_full = CargaWebCurl($entrada);
+	dbug($ret_full);
 	if($imagen == ''){
-		$imagen = entre1y2($ret_full, '<image><![CDATA[',']]');
+		$imagen = entre1y2($ret_full, '<background><![CDATA[',']]');
 	}
 	return array(
 		'url'     => entre1y2($ret_full, '<videoSource><![CDATA[',']]'),
-		'tipo'    => 'http'/*,
-		'url_txt' => entre1y2($ret_full, '<title><![CDATA[',']]')*/
+		'tipo'    => 'http',
+		'url_txt' => entre1y2($ret_full, '<name><![CDATA[',']]')
 	);
 }
 

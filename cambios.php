@@ -16,6 +16,14 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'24-Abril-2014',
+array(
+	'fix:Texto en resultados de Antena3 en lugar de urls.',
+	'fix:Imagen incorrecta en algunos resultados de Antena3.'
+	)
+);
+
+$todos[]=array(
 '21-Abril-2014',
 array(
 	'fix:Algunos vídeos válidos de RTVE indicaban estar borrados.'
