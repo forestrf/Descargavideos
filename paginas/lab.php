@@ -21,8 +21,9 @@
 <div class="respuesta">
 	<?php echo TXT_RTMPDownloader_DESC?><br>
 	<a href="https://github.com/forestrf/RTMP-Downloader">GitHub</a><br>
-	<?php echo TXT_VERSION_RECIENTE?>: <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/0.2b/RTMP-Downloader.V0.2b.zip">0.2b</a><p>
+	<?php echo TXT_VERSION_RECIENTE?>: <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/v0.3.1/RTMP-Downloader.v0.3.1.zip">0.3.1</a><p>
 	<?php echo TXT_VERSION_HISTORIAL?>:<br>
+	0.3.1: <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/v0.3.1/RTMP-Downloader.v0.3.1.zip">GitHub (zip)</a> | <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/v0.3.1/RTMP-Downloader.v0.3.1.7z">GitHub (7z)</a><br>
 	0.2b: <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/0.2b/RTMP-Downloader.V0.2b.zip">GitHub (zip)</a> | <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/0.2b/RTMP-Downloader.V0.2b.7z">GitHub (7z)</a><br>
 	0.2: <a href="http://www.mediafire.com/download/uuj7o8bpbg0n57z/RTMP-Downloader+V0.2.zip">Mediafire (zip)</a> | <a href="http://www.mediafire.com/download/ero1iz9xook4reh/RTMP-Downloader+V0.2.7z">Mediafire (7z)</a><br>
 	0.1: <a href="http://www.mediafire.com/download/9xmc24x4ti94ypm/RTMP-Downloader+V0.1.zip">Mediafire (zip)</a> | <a href="http://www.mediafire.com/download/b52w6obqswwnekc/RTMP-Downloader+V0.1.7z">Mediafire (7z)</a><br>
