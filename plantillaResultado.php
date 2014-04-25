@@ -60,7 +60,7 @@ function generaInnerResultado(){
 		//$tipo = "http" o "rtmp"
 		if($url){
 			if($res['tipo'] === 'rtmp'){
-				$aIncluir = 'secundario/'.plantillaInclude('resultado_texto.php');
+				$aIncluir = 'secundario/'.plantillaInclude('resultado_rtmp.php');
 				//{extension_res}
 				if(!$extension)
 					$extension = extraeExtension($url, ':');

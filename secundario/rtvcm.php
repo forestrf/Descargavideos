@@ -30,7 +30,7 @@ for($i=0;$i<$videos;$i++){
 	
 	array_push($total,array(
 		$vid,
-		$tit
+		utf8_encode($tit)
 	));
 }
 
@@ -45,7 +45,7 @@ for($i=0;$i<$videos;$i++){
 $p=strpos($retfull,'<title>');
 $p=strpos($retfull,' - ',$p)+3;
 $f=strpos($retfull,'<',$p);
-$titulo=substr($retfull,$p,$f-$p);
+$titulo=utf8_encode(substr($retfull,$p,$f-$p));
 $titulo=limpiaTitulo($titulo);
 
 $imagen='http://www.rtvcm.es/img/logos_cab_esq.gif';

@@ -16,6 +16,14 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'25-Abril-2014',
+array(
+	'fix:Algunos resultados rtmp no se mostraban con enlace por lo que no se podrían descargar.',
+	'fix:Codificación utf-8 para rtvcm.'
+	)
+);
+
+$todos[]=array(
 '24-Abril-2014',
 array(
 	'fix:Texto en resultados de Antena3 en lugar de urls.',
