@@ -16,6 +16,14 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'27-Abril-2014',
+array(
+	'fix:RTVE Infantil no funcionaba con enlaces acabados en "/todos".',
+	'fix:Nuevo tipo de enlaces en RTVE.'
+	)
+);
+
+$todos[]=array(
 '25-Abril-2014',
 array(
 	'fix:Algunos resultados rtmp no se mostraban con enlace por lo que no se podrían descargar.',

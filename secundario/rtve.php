@@ -22,17 +22,44 @@ if(enString($web,"/audios/")){
 }
 elseif(enString($web,"/infantil/")){
 	dbug('modo infantil');
-	$p=strrposF($web,"/",strrposF($web,"/")-2-strlen($web));
-	$f=strpos($web,"/",$p);
-	$asset=substr($web,$p,$f-$p);
-	dbug('asset='.$asset);
 	
-	if(!is_numeric($asset)){
-		$preIDURL=entre1y2($web_descargada,"/#/",'"');
-		dbug('preIDURL='.$preIDURL);
-		$p=strpos($preIDURL,"/",strlen($preIDURL)-12);
-		$asset=entre1y2_a($preIDURL,$p,"/","/");
+	if(strposF($web, '/todos')+2 > strlen($web) || !strpos($web, '/', strposF($web, '/todos')+2)){
+		$web2 = strtr($web, array('/#'=>''));
+		$enlaceInfantil = substr($web2, strpos($web2, '/infantil/'));
+		dbug('$enlaceInfantil = '.$enlaceInfantil);
+		if(enString($web_descargada, $enlaceInfantil)){
+			preg_match('@(TE_[A-Z]+).*?'.$enlaceInfantil.'@', $web_descargada, $matches);
+			dbug_r($matches);
+			$pre_asset=$matches[1];
+			dbug('pre_asset='.$pre_asset);
+			
+			$pre_asset = 'http://www.rtve.es/infantil/components/'.$pre_asset.'/videos/videos-1.inc';
+			$pre_asset = CargaWebCurl($pre_asset);
+			preg_match('@/([0-9]+?)/@', $pre_asset, $matches);
+			dbug_r($matches);
+			$asset = $matches[1];
+			dbug('asset='.$asset);
+			/*
+			$titulo = entre1y2($pre_asset, 'title="', '"');
+			dbug('$titulo='.$titulo);
+			$imagen = entre1y2($pre_asset, '<img src="', '"');
+			dbug('$imagen='.$imagen);
+			*/
+		}
+	}
+	else{
+		$p=strrposF($web,"/",strrposF($web,"/")-2-strlen($web));
+		$f=strpos($web,"/",$p);
+		$asset=substr($web,$p,$f-$p);
 		dbug('asset='.$asset);
+		
+		if(!is_numeric($asset)){
+			$preIDURL=entre1y2($web_descargada,"/#/",'"');
+			dbug('preIDURL='.$preIDURL);
+			$p=strpos($preIDURL,"/",strlen($preIDURL)-12);
+			$asset=entre1y2_a($preIDURL,$p,"/","/");
+			dbug('asset='.$asset);
+		}
 	}
 	
 }
@@ -179,8 +206,12 @@ function convierteID($asset,$modo=array('video','audio')){
 			setErrorWebIntera("No se ha podido encontrar ningún vídeo.");
 			return false;
 		}
-		else
+		else{
+			if(enString($ret, 'rtmpe://rtveod.fms.c.footprint.net/rtveod')){
+				$ret = strtr($ret, array('rtmpe://rtveod.fms.c.footprint.net/rtveod/' => 'http://mvod.lvlt.rtve.es/'));
+			}
 			$ret='http://'.entre1y2($ret,'http://','<');
+		}
 	}
 	return $ret;
 }
@@ -271,5 +302,11 @@ function b64d($encoded){
 	for($i=0;$i<ceil(strlen($base64)/64);$i++)
 	   $decoded.=base64_decode(substr($base64,$i*64,64));
 	return $decoded;
+}
+if(isset($_GET['rtve_desencripta'])){
+	echo desencripta($_GET['rtve_desencripta']);
+}
+if(isset($_GET['rtve_encripta'])){
+	echo encripta($_GET['rtve_encripta']);
 }
 ?>
