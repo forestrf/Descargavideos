@@ -19,7 +19,9 @@ $todos[]=array(
 '27-Abril-2014',
 array(
 	'fix:RTVE Infantil no funcionaba con enlaces acabados en "/todos".',
-	'fix:Nuevo tipo de enlaces en RTVE.'
+	'fix:Nuevo tipo de enlaces en RTVE.',
+	'fix:Canalsur rectificado después de un fallo con uno de los últimos cámbios.',
+	'fix:ATresPlayer, soporte para grupos de vídeos.'
 	)
 );
 

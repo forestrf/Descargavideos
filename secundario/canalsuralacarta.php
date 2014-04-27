@@ -126,19 +126,18 @@ elseif(enString($web_descargada,"var elementos = [];")){
 	}
 }
 else{
+	dbug('último case ifelse');
 	
-	dbug($ret);
+	$titulo = utf8_encode(entre1y2($web_descargada,'<title>','<'));
 	
-	$titulo = utf8_encode(entre1y2($ret,'<title>','<'));
-	
-	if(enString($ret,"og:image")){
-		$p=strpos($ret,"og:image");
-		$imagen=entre1y2_a($ret, 'content="', '"');
+	if(enString($web_descargada,"og:image")){
+		$p=strpos($web_descargada,"og:image");
+		$imagen=entre1y2_a($web_descargada, 'content="', '"');
 	}
 	else
 		$imagen = "/canales/canalsur.png";
 	
-	preg_match("@http://[^ ]*?\.mp4@i", $ret, $matches);
+	preg_match("@http://[^ ]*?\.mp4@i", $web_descargada, $matches);
 	
 	$url=$matches[0];
 	$obtenido['enlaces'][]=array(

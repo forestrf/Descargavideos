@@ -16,7 +16,7 @@ switch($R['MODO']){
 
 // Únicamente necesita de la variable $R
 function generaInnerResultado(){
-	global $R;
+	global $R, $R2;
 	if($R['BASE']['titulo'] == '')
 		$R['BASE']['titulo'] = 'Sin título';
 	
@@ -96,12 +96,6 @@ function generaInnerResultado(){
 	
 				if(!$extension)
 					$extension = 'm3u8';
-			}
-			elseif($res['tipo'] === 'js2'){
-				$aIncluir = 'secundario/'.plantillaInclude('resultado_js2.php');
-	
-				if(!$extension)
-					$extension='mp4';
 			}
 			elseif($res['tipo'] === 'srt'){
 				$aIncluir = 'secundario/'.plantillaInclude('resultado_srt.php');
