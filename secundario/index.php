@@ -333,6 +333,11 @@ $cadenas=array(
 		'youtubehelper'
 	),
 	array(
+		array('youtu.be'),
+		array('youtube.php','youtubehelper.php'),
+		'youtubehelper_urlAcortada'
+	),
+	array(
 		array('tvmelilla.es'),
 		array('tvmelilla.php'),
 		'tvmelilla'

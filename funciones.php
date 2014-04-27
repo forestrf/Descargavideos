@@ -162,7 +162,7 @@ function url_exists_full(&$url, $preg_match_prerealizado = false){
 	
 	
 
-	global $web_descargada;
+	global $web_descargada, $web_descargada_headers;
 	if(($web_descargada = file_get_contents($url, false, $context)) === false){
 		dbug_r($http_response_header);
 		dbug('problema al descargar la url');
@@ -182,6 +182,7 @@ function url_exists_full(&$url, $preg_match_prerealizado = false){
 	}
 	
 	$web_descargada = parsea_headers($http_response_header, $response_code).$web_descargada;
+	$web_descargada_headers = $http_response_header;
 	
 	$z=intval($response_code);
 	

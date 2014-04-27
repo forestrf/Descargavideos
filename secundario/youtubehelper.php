@@ -27,6 +27,7 @@ function youtubehelper(){
 		parse_str(parse_url($web, PHP_URL_QUERY),$vars);
 		//$id=$vars['v']
 
+		dbug_r($vars);
 
 		//imagen
 		//https://i1.ytimg.com/vi/8GLNKyfdnQg/0.jpg
@@ -67,5 +68,19 @@ function youtubehelper(){
 		setErrorWebIntera($tube->error);
 		return;
 	}
+}
+
+function youtubehelper_urlAcortada(){
+	global $web,$web_descargada_headers;
+	foreach($web_descargada_headers as $header){
+		if(strpos($header, 'Location: ') === 0){
+			$web = substr($header, strposF($header, 'Location: '));
+			dbug('Location encontrado = '.$web);
+			$web_descargada = CargaWebCurl($web);
+			youtubehelper();
+			continue;
+		}
+	}
+	//$web = 
 }
 ?>
