@@ -46,9 +46,13 @@ class youtube{
 				$u=urldecode($um[1]);
 				$foundArray[$tm[1]]=$u.'&signature='.$si[1];
 			}
-			elseif(preg_match('/itag=([0-9]+)\\\\u0026/',$url,$tm) && preg_match('/url=(.*?)\\\\u0026/',$url,$um)){
+			elseif(preg_match('/itag=([0-9]+)\\\\u0026/',$url,$tm) && preg_match('/s=(.*?)\\\\u0026/',$url,$si) && preg_match('/url=(.*?)\\\\u0026/',$url,$um)){
 				$u=urldecode($um[1]);
-				$foundArray[$tm[1]]=$u;
+				if(enString($si[1], '=') || strlen($si[1]) < 30){
+					return false;
+				}
+				$signature = $this->de_cipher_yt($html, $si[1]);
+				$foundArray[$tm[1]]=$u.'&signature='.$signature;
 			}
 		}
 		
@@ -116,4 +120,189 @@ class youtube{
 		
 		return $videos;
 	}
+
+	function de_cipher_yt($html, $si){
+		//dbug('$si = '.$si);
+		$js_decipher = 'http://s.ytimg.com/yts/jsbin/html5player-'.entre1y2($html, 'html5player-','"');
+		//$js_decipher = 'http://s.ytimg.com/yts/jsbin/html5player-'.$this->CIPHER_TEST[0].'.js';
+		dbug('$js_decipher = '.$js_decipher);
+		$js_decipher_contenido = CargaWebCurl($js_decipher);
+		// El contenido de $js_decipher_contenido es demasiado grande para imprimirlo, por no tengo idea qué razón
+		
+		$js_decipher_contenido = strtr($js_decipher_contenido, array("\n"=>''));
+		$expr = '@([a-zA-Z])=[a-zA-Z\.]+?\.split\(""\).*?\}+@';
+		preg_match($expr, $js_decipher_contenido, $matches);
+		dbug_r($matches);
+		
+		$var = $matches[1];
+		dbug('$var='.$var);
+		
+		$instrucciones_raw = $matches[0].';';
+		
+		
+		$expr = '@(.*?)(,'.$var.'|;)@';
+		preg_match_all($expr, $instrucciones_raw, $matches);
+		//dbug_r($matches);
+		
+		foreach($matches[1] as $orden){
+			dbug($orden);
+			if(enString($orden,'split'))
+				continue;
+			
+			if(enString($orden,'slice')){
+				$b = intval(entre1y2($orden, '(',')'));
+				dbug('slice: '.$b);
+				dbug($si);
+				$si = substr($si, $b);
+				dbug($si);
+				continue;
+			}
+			elseif(preg_match('@\('.$var.',(\d+?)\)@', $orden, $res)){
+				$b = $res[1];
+				dbug('intercambio: '.$b);
+				dbug($si);
+				$this->swapLetters($si,$b);
+				dbug($si);
+				continue;
+			}
+			elseif(preg_match('@\[(\d+?)%'.$var.'.length\]@', $orden, $res)){
+				$b = $res[1];
+				dbug('intercambio sin función: '.$b);
+				dbug($si);
+				$this->swapLetters($si,$b);
+				dbug($si);
+				continue;
+			}
+			elseif(enString($orden, 'reverse')){
+				dbug('reverse');
+				dbug($si);
+				$si = strrev($si);
+				dbug($si);
+				continue;
+			}
+		}
+		
+		return $si;
+	}
+
+
+
+	function swapLetters(&$a, $b){
+		$c=$a[0];
+		$a[0]=$a[$b % strlen($a)];
+		$a[$b]=$c;
+	}
+
+	// http://www.jwz.org/hacks/youtubedown
+	var $CIPHER_TEST = array(
+		'vflNzKG7n',
+		'vfllMCQWM',
+		'vflJv8FA8',
+		'vflR_cX32',
+		'vflveGye9',
+		'vflj7Fxxt',
+		'vfltM3odl',
+		'vflDG7-a-',
+		'vfl39KBj1',
+		'vflmOfVEX',
+		'vflJwJuHJ',
+		'vfl_ymO4Z',
+		'vfl26ng3K',
+		'vflcaqGO8',
+		'vflQw-fB4',
+		'vflSAFCP9',
+		'vflART1Nf',
+		'vflLC8JvQ',
+		'vflm_D8eE',
+		'vflTWC9KW',
+		'vflRFcHMl',
+		'vflM2EmfJ',
+		'vflz8giW0',
+		'vfl_wGgYV',
+		'vfl1HXdPb',
+		'vflkn6DAl',
+		'vfl2LOvBh',
+		'vfl-bxy_m',
+		'vflZK4ZYR',
+		'vflh9ybst',
+		'vflapUV9V',
+		'vflg0g8PQ',
+		'vflHOr_nV',
+		'vfluy6kdb',
+		'vflkuzxcs',
+		'vflGNjMhJ',
+		'vfldJ8xgI',
+		'vfl79wBKW',
+		'vflg3FZfr',
+		'vflUKrNpT',
+		'vfldWnjUz',
+		'vflP7iCEe',
+		'vflzVne63',
+		'vflO-N-9M',
+		'vflZ4JlpT',
+		'vflDgXSDS',
+		'vflW444Sr',
+		'vflK7RoTQ',
+		'vflKOCFq2',
+		'vflcLL31E',
+		'vflz9bT3N',
+		'vfliZsE79',
+		'vfljOFtAt',
+		'vflqSl9GX',
+		'vflFrKymJ',
+		'vflKz4WoM',
+		'vflhdWW8S',
+		'vfl66X2C5',
+		'vflCXG8Sm',
+		'vfl_3Uag6',
+		'vflQdXVwM',
+		'vflCtc3aO',
+		'vflCt6YZX',
+		'vflG49soT',
+		'vfl4cHApe',
+		'vflwMrwdI',
+		'vfl4AMHqP',
+		'vfln8xPyM',
+		'vflVSLmnY',
+		'vflkLvpg7',
+		'vflbxes4n',
+		'vflmXMtFI',
+		'vflYDqEW1',
+		'vflapGX6Q',
+		'vflLCYwkM',
+		'vflcY_8N0',
+		'vfl9qWoOL',
+		'vfle-mVwz',
+		'vfltdb6U3',
+		'vflLjFx3B',
+		'vfliqjKfF',
+		'ima-vflxBu-5R',
+		'ima-vflrGwWV9',
+		'ima-vflCME3y0',
+		'ima-vfl1LZyZ5',
+		'ima-vfl4_saJa',
+		'ima-en_US-vflP9269H',
+		'ima-en_US-vflkClbFb',
+		'ima-en_US-vflYhChiG',
+		'ima-en_US-vflWnCYSF',
+		'en_US-vflbT9-GA',
+		'en_US-vflAYBrl7',
+		'en_US-vflS1POwl',
+		'en_US-vflLMtkhg',
+		'en_US-vflbJnZqE',
+		'en_US-vflgd5txb',
+		'en_US-vflTm330y',
+		'en_US-vflnwMARr',
+		'en_US-vflTq0XZu',
+		'en_US-vfl8s5-Vs',
+		'en_US-vfl7i9w86',
+		'en_US-vflA-1YdP',
+		'en_US-vflZwcnOf',
+		'en_US-vflFqBlmB',
+		'en_US-vflG0UvOo',
+		'en_US-vflS6PgfC',
+		'en_US-vfl6Q1v_C',
+		'en_US-vflMYwWq8',
+		'en_US-vflGC4r8Z'
+	);
 }

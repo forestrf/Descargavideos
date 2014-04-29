@@ -16,6 +16,13 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'30-Abril-2014',
+array(
+	'fix:Algunos de los vídeos de youtube que antes no funcionaban, ahora funcionan.'
+	)
+);
+
+$todos[]=array(
 '27-Abril-2014',
 array(
 	'fix:RTVE Infantil no funcionaba con enlaces acabados en "/todos".',
