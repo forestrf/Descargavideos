@@ -46,13 +46,18 @@ class youtube{
 				$u=urldecode($um[1]);
 				$foundArray[$tm[1]]=$u.'&signature='.$si[1];
 			}
-			elseif(preg_match('/itag=([0-9]+)\\\\u0026/',$url,$tm) && preg_match('/s=(.*?)\\\\u0026/',$url,$si) && preg_match('/url=(.*?)\\\\u0026/',$url,$um)){
+			elseif(preg_match('/itag=([0-9]+)\\\\u0026/',$url,$tm) && preg_match('/(\\\\u0026|^)s=(.*?)\\\\u0026/',$url,$si) && preg_match('/url=(.*?)\\\\u0026/',$url,$um)){
 				$u=urldecode($um[1]);
-				if(enString($si[1], '=') || strlen($si[1]) < 30){
+				if(enString($si[2], '=') || strlen($si[2]) < 30){
+					dbug('variable s incorrecta');
 					return false;
 				}
-				$signature = $this->de_cipher_yt($html, $si[1]);
+				$signature = $this->de_cipher_yt($html, $si[2]);
 				$foundArray[$tm[1]]=$u.'&signature='.$signature;
+			}
+			elseif(preg_match('/itag=([0-9]+)\\\\u0026/',$url,$tm) && preg_match('/url=(.*?)\\\\u0026/',$url,$um)){
+				$u=urldecode($um[1]);
+				$foundArray[$tm[1]]=$u;
 			}
 		}
 		
