@@ -43,7 +43,7 @@ function youtubehelper(){
 			//'ext','p','axb','2D-3D','audio','url'
 			array_push($obtenido['enlaces'],
 				array(
-					'url'     => $link['url']."&title=".$titulo,
+					'url'     => $link['url']."&title=".urlencode(decode_entities($titulo)),
 					'tipo'    => 'http',
 					'url_txt' => $link['p'].' '.$link['ext'].($link['2D-3D']==='3D'?': 3D':'')
 				)

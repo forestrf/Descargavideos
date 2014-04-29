@@ -455,4 +455,11 @@ function mysql_escape_mimic($inp) {
 
     return $inp;
 }
+
+function decode_entities($text){
+    $text= html_entity_decode($text,ENT_QUOTES,"ISO-8859-1"); #NOTE: UTF-8 does not work!
+    $text= preg_replace_callback('/&#(\d+);/m',function($a){return chr($a[1]);},$text); #decimal notation
+    $text= preg_replace_callback('/&#x([a-f0-9]+);/mi',function($a){return chr('0x'.$a[1]);},$text);  #hex notation
+    return $text;
+}
 ?>
