@@ -24,14 +24,19 @@ class youtube{
 		//dbug_r($match);
 		
 		$fmt_url=urldecode($match[1]);
-		
-		dbug($fmt_url);
-		
 		$fmt_url = preg_replace('/codecs="(.*?)"/','codecs=""',$fmt_url);
-		
 		dbug($fmt_url);
-
 		$urls=explode(',',$fmt_url);
+		
+		
+		
+		if(preg_match('/"adaptive_fmts": "(.[^"]*?)"/i',$html,$match)){
+			$fmt_url2=urldecode($match[1]);
+			$fmt_url2 = preg_replace('/codecs="(.*?)"/','codecs=""',$fmt_url2);
+			dbug($fmt_url2);
+			$urls=array_merge($urls, explode(',',$fmt_url2));
+		}
+		
 		
 		$foundArray = array();
 
@@ -73,17 +78,38 @@ class youtube{
 		$typeMap[82] = array("82",	"MP4",	"360p",  "(480x360)",	"3D",	"ACC");
 		$typeMap[83] = array("83",	"MP4",	"240p",  "(320x240)",	"3D",	"ACC");
 
+		//adaptive_fmts
+		$typeMap[171]= array("171",	"WebM",	"Audio",   "Audio",		"2D",	"OGG");
+		/*$typeMap[242]= array("242",	"WebM",	"240p",  "(400x226)",	"2D",	"---");
+		$typeMap[243]= array("243",	"WebM",	"360p",  "(640x360)",	"2D",	"---");
+		$typeMap[244] = array("244","WEBM",	"480p",  "(854x480)",	"2D",	"---");
+		$typeMap[247] = array("247","WEBM",	"720p",  "(1280x720)",	"2D",	"---");*/
+		
 		$videos=array();
 
-		foreach($typeMap as $format => $meta){
-			if(isset($foundArray[$format])){
+		if(!isset($_GET['testing'])){
+			foreach($typeMap as $format => $meta){
+				if(isset($foundArray[$format])){
+					$videos[] = array(
+						'ext' => $meta[1],
+						'p' => $meta[2],
+						'axb' => $meta[3],
+						'2D-3D' => $meta[4],
+						'audio' => $meta[5],
+						'url' => $foundArray[$format]
+					);
+				}
+			}
+		}
+		else{
+			foreach($foundArray as $format=>$url){
 				$videos[] = array(
-					'ext' => $meta[1],
-					'p' => $meta[2],
-					'axb' => $meta[3],
-					'2D-3D' => $meta[4],
-					'audio' => $meta[5],
-					'url' => $foundArray[$format]
+					'ext' => $format,
+					'p' => '',
+					'axb' => '',
+					'2D-3D' => '',
+					'audio' => '',
+					'url' => $url
 				);
 			}
 		}
