@@ -16,6 +16,13 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'9-Mayo-2014',
+array(
+	'fix:Habilitadas nuevas calidades de vídeo en youtube (formato de solo vídeo en WebM).'
+	)
+);
+
+$todos[]=array(
 '30-Abril-2014',
 array(
 	'fix:Algunos de los vídeos de youtube que antes no funcionaban, ahora funcionan.'

@@ -88,13 +88,13 @@ class youtube{
 		$typeMap[83] = array("83",	"MP4",	"240p",  "(320x240)",	"3D",	"ACC");
 
 		//adaptive_fmts. Las calidades más altas de vídeo están aquí en lugar de en el otro listado.
-		$typeMap[171]= array("171",	"WebM",	"Audio",   "Audio",		"2D",	"OGG");
-		/*
-		$typeMap[242]= array("242",	"WebM",	"240p",  "(400x226)",	"2D",	"---");
-		$typeMap[243]= array("243",	"WebM",	"360p",  "(640x360)",	"2D",	"---");
-		$typeMap[244] = array("244","WEBM",	"480p",  "(854x480)",	"2D",	"---");
-		$typeMap[247] = array("247","WEBM",	"720p",  "(1280x720)",	"2D",	"---");
-		*/
+		$typeMap[171]= array("171",	"WebM (Audio solo)",	"Audio",   "Audio",		"2D",	"OGG");
+		
+		$typeMap[242]= array("242",	"WebM (Video solo)",	"240p",  "(400x226)",	"2D",	"---");
+		$typeMap[243]= array("243",	"WebM (Video solo)",	"360p",  "(640x360)",	"2D",	"---");
+		$typeMap[244]= array("244",	"WebM (Video solo)",	"480p",  "(854x480)",	"2D",	"---");
+		$typeMap[247]= array("247",	"WebM (Video solo)",	"720p",  "(1280x720)",	"2D",	"---");
+		
 		
 		$videos=array();
 
