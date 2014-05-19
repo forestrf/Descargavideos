@@ -111,10 +111,10 @@ function resultadoA3PNormal($web, $web_descargada='', $episode='', $title=''){
 
 	$hmac = bin2hex(custom_hmac('md5', $msg, $key, true));
 	dbug('hmac = '.$hmac);
-
+	/*
 	$apiURL = 'https://servicios.atresplayer.com/api/urlVideoLanguage/'.$episode.'/android_tablet/'.urlencode($episode.'|'.$tiempo.'|'.$hmac).'/es.json';
 	dbug($apiURL);
-	/*
+	
 	$apiContent = CargaWebCurl($proxys[$random]['proxy'].urlencode($apiURL), '', 1, '', $cabeceras);
 	//$apiContent = CargaWebCurl($apiURL, '', 1, $cookie, $cabeceras);
 	dbug('-----------------apiContent-----------------');
@@ -221,14 +221,14 @@ function resultadoA3PNormal($web, $web_descargada='', $episode='', $title=''){
 		'}'.
         'function lanzaA3P{{random_id}}(){'.
 			'getFlashMovie("descargador_archivos").CargaWeb({'.
-				"'url':'http://servicios.atresplayer.com/api/urlVideo/$episode/android_tablet/$episode|$tiempo|$hmac',".
+				"'url':'https://servicios.atresplayer.com/api/urlVideoLanguage/$episode/android_tablet/$episode|$tiempo|$hmac/es.json',".
 				'"metodo":"GET"'.
 			'}, "procesaA3P1{{random_id}}");'.
 		'}'.
 		'function procesaA3P1{{random_id}}(data){'.
 			'if(!calculaA3P{{random_id}}(data)){'.
 				'getFlashMovie("descargador_archivos").CargaWeb({'.
-					"'url':'https://servicios.atresplayer.com/api/urlVideoLanguage/$episode/android_tablet/$episode|$tiempo|$hmac/es.json',".
+					"'url':'http://servicios.atresplayer.com/api/urlVideo/$episode/android_tablet/$episode|$tiempo|$hmac',".
 					'"metodo":"GET"'.
 				'}, "procesaA3P2{{random_id}}");'.
 			'}'.
