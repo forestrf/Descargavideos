@@ -103,8 +103,6 @@ function magnovideo(){
 		'finalizar("","Necesitas iniciar sesión en ATresPlayer para descargar este vídeo o bien el vídeo no existe");'.
 	'}'.
 	
-	'function getFlashMovie(movieName){var isIE=navigator.appName.indexOf("Microsoft")!=-1;return(isIE)?window[movieName]:document[movieName];}'.
-	
 	'var descargadorArchivosEmbed = document.createElement("embed");'.
 	'descargadorArchivosEmbed.setAttribute("src","/util/fla/descargador_archivos.swf");'.
 	'descargadorArchivosEmbed.setAttribute("name","descargador_archivos");'.

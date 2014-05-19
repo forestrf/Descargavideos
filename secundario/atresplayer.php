@@ -76,163 +76,233 @@ else{
 finalCadena($obtenido);
 }
 
-function resultadoA3PNormal($web, $web_descargada='', $episode='', $title = ''){
+function resultadoA3PNormal($web, $web_descargada='', $episode='', $title=''){
+	$cabeceras = array(
+		'User-Agent: iOS / Safari 7: Mozilla/5.0 (iPad; CPU OS 7_0_4 like Mac OS X) AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 Mobile/11B554a Safari/9537.53'
+	);
+		
 	if($web_descargada === ''){
-		$web_descargada = CargaWebCurl($web);
+		$web_descargada = CargaWebCurl($web, '', 1, '', $cabeceras);
 		if(!preg_match('@<div.*?capa_modulo_player.*?episode ?= ?"(.*?)">@i', $web_descargada, $matches)){
 			return array();
 		}
 		$episode = $matches[1];
 	}
 	
+	$obtenido = array();
+	
 	
 	dbug('episode = '.$episode);
 	
+	/*
+	$proxys = listado_proxys();
 	
-	$key = 'puessepavuestramerced';
+	$random = rand(0,count($proxys)-1);
 	
-	$tiempo = time()+3000;
+	dbug('proxy elegido: '.$proxys[$random]['proxy']);
+	*/
 	
+	$tiempo = time() +3000;
+	
+	$key = "puessepavuestramerced";
+	$key = "dXN#2nqgo)T2LDPi,5R;3XVK"; // swf
+	//$key = "QWtMLXs414Yo+c#_+Q#K@NN)"; // móvil
 	$msg = $episode.$tiempo;
-	
+
 	$hmac = bin2hex(custom_hmac('md5', $msg, $key, true));
+	dbug('hmac = '.$hmac);
+
+	$apiURL = 'https://servicios.atresplayer.com/api/urlVideoLanguage/'.$episode.'/android_tablet/'.urlencode($episode.'|'.$tiempo.'|'.$hmac).'/es.json';
+	dbug($apiURL);
+	/*
+	$apiContent = CargaWebCurl($proxys[$random]['proxy'].urlencode($apiURL), '', 1, '', $cabeceras);
+	//$apiContent = CargaWebCurl($apiURL, '', 1, $cookie, $cabeceras);
+	dbug('-----------------apiContent-----------------');
+	dbug($apiContent);
 	
 	
-	
-	$urljs = 
-		'function lanzaA3P{{random_id}}(){'.
-			'jQuery.support.cors=true;'.
-			
-			'jQuery.ajax({'.
-				'type:"GET",'.
-				"url:'http://servicios.atresplayer.com/api/urlVideo/$episode/android_tablet/$episode|$tiempo|$hmac',".
-				'data:"blabla",'.
-				'crossDomain:true,'.
-				'cache:false,'.
-				'dataType:"jsonp"'.
-			'})'.
-			'.done(function(data){'.
-				'if(data!=null){'.
-					'if(data["resultDes"]==="OK"){'.
-						'mostrarResultado{{random_id}}(data["resultObject"]["es"]);'.
-					'}'.
-					'else{'.
-						'jQuery.ajax({'.
-							'type:"GET",'.
-							"url:'https://servicios.atresplayer.com/api/urlVideoLanguage/$episode/android_tablet/$episode|$tiempo|$hmac/es.json',".
-							'data:"blabla",'.
-							'crossDomain:true,'.
-							'cache:false,'.
-							'dataType:"jsonp"'.
-						'})'.
-						'.done(function(data){'.
-							'if(data != null)'.
-								'if(data["result"] == "0"){'.
-									'mostrarResultado{{random_id}}(data["resultDes"]);'.
-								'}'.
-								'else{'.
-									'mostrarFallo{{random_id}}();'.
-								'}'.
-						'}).fail('.
-							'mostrarFallo{{random_id}}'.
-						');'.
-					'}'.
-				'}'.
-				'else{'.
-					'mostrarFallo{{random_id}}();'.
-				'}'.
-			'}).fail('.
-				'mostrarFallo{{random_id}}'.
-			');'.
-		'}'.
-		
-		'function mostrarResultado{{random_id}}(entrada){'.
-			'finalizar{{random_id}}(entrada,"Descargar");'.
-		'}'.
-		
-		'function mostrarFallo{{random_id}}(){'.
-			'finalizar{{random_id}}("","Necesitas iniciar sesión en ATresPlayer para descargar este vídeo o bien el vídeo no existe");'.
-		'}'.
-		
-		'lanzaA3P{{random_id}}();';
+	$url = 'http://'.entre1y2($apiContent, 'http://', '"');
 	
 	
 	
 	
-	
-	
-	
-	
-	$obtenido = array();
 	if($title != ''){
 		$obtenido[] = array(
 					'titulo'  => $title,
-					'url'  => $urljs,
-					'tipo' => 'js'
+					'url'  => $url,
+					'tipo' => 'http',
+					'url_txt' => 'Descargar'
 				);
 	}
 	else{
 		$obtenido[] = array(
+					'url'  => $url,
+					'tipo' => 'http',
+					'url_txt' => 'Descargar'
+				);
+	}
+	*/
+	/*
+	global $rnd_a3p;
+	if($rnd_a3p==null)
+		$rnd_a3p = 0;
+	else
+		++$rnd_a3p;
+	
+	$js = 'function lanzaA3P'.$rnd_a3p.'(){'.
+		'if(typeof DESCARGADOR_ARCHIVOS_SWF === "undefined"){'.
+			'setTimeout(lanzaA3P'.$rnd_a3p.', 200)'.
+		'}'.
+		'else if(DESCARGADOR_ARCHIVOS_SWF === true){'.
+			'getFlashMovie("descargador_archivos").CargaWeb({'.
+				'"url":"'.$apiURL.'",'.
+				'"metodo":"GET"'.
+			'}, "procesaA3P'.$rnd_a3p.'");'.
+		'}'.
+	'}'.
+	
+	'function procesaA3P'.$rnd_a3p.'(txt){'.
+		//'console.log(txt);'.
+		'var url = JSON.parse(txt)["resultDes"]'.
+		//'console.log(url);'.
+		'mostrarResultado(url);'.
+	'}'.
+	
+	
+	'function mostrarResultado(entrada){'.
+		'finalizar(entrada,"Descargar");'.
+	'}'.
+	
+	'function mostrarFallo(){'.
+		'finalizar("","Necesitas iniciar sesión en ATresPlayer para descargar este vídeo o bien el vídeo no existe");'.
+	'}'.
+	
+	
+	
+	'lanzaA3P'.$rnd_a3p.'();';
+	*/
+	
+	
+	
+	
+	
+	
+	
+	    
+    $urljs = 
+		'function preLanzaA3P{{random_id}}(){'.
+            'if(typeof DESCARGADOR_ARCHIVOS_SWF === "undefined"){'.
+				'setTimeout(preLanzaA3P{{random_id}}, 200)'.
+			'}'.
+			'else if(DESCARGADOR_ARCHIVOS_SWF === true){'.
+				'lanzaA3P{{random_id}}()'.
+			'}'.
+		'}'.
+		'function calculaA3P{{random_id}}(data){'.
+			'if(data.indexOf("{") !== -1){'.
+				'data = JSON.parse(data);'.
+				'if(data != "" && data["result"] == "0"){'.
+					'mostrarResultado{{random_id}}(data["resultDes"]);'.
+					'return true;'.
+				'}'.
+				'else{'.
+					'return false;'.
+				'}'.
+			'}'.
+			'else{'.
+				'if(data != "" && data.indexOf("<resultDes>OK</resultDes>")!==-1){'.
+					'mostrarResultado{{random_id}}(data.slice(data.indexOf("http")).split("<")[0]);'.
+					'return true;'.
+				'}'.
+				'else{'.
+					'return false;'.
+				'}'.
+			'}'.
+		'}'.
+        'function lanzaA3P{{random_id}}(){'.
+			'getFlashMovie("descargador_archivos").CargaWeb({'.
+				"'url':'http://servicios.atresplayer.com/api/urlVideo/$episode/android_tablet/$episode|$tiempo|$hmac',".
+				'"metodo":"GET"'.
+			'}, "procesaA3P1{{random_id}}");'.
+		'}'.
+		'function procesaA3P1{{random_id}}(data){'.
+			'if(!calculaA3P{{random_id}}(data)){'.
+				'getFlashMovie("descargador_archivos").CargaWeb({'.
+					"'url':'https://servicios.atresplayer.com/api/urlVideoLanguage/$episode/android_tablet/$episode|$tiempo|$hmac/es.json',".
+					'"metodo":"GET"'.
+				'}, "procesaA3P2{{random_id}}");'.
+			'}'.
+		'}'.
+		'function procesaA3P2{{random_id}}(data){'.
+			'if(!calculaA3P{{random_id}}(data)){'.
+				'mostrarFallo{{random_id}}();'.
+			'}'.
+        '}'.
+        
+        'function mostrarResultado{{random_id}}(entrada){'.
+            'finalizar{{random_id}}(entrada,"Descargar");'.
+        '}'.
+        
+        'function mostrarFallo{{random_id}}(){'.
+            'finalizar{{random_id}}("","Necesitas iniciar sesión en ATresPlayer para descargar este vídeo o bien el vídeo no existe");'.
+        '}'.
+        
+		'if(typeof descargadorArchivosEmbed === "undefined"){'.
+			'var descargadorArchivosEmbed = document.createElement("embed");'.
+			// Hack para poner en el referer la palabra http://played.to ya que hace que funcione todo
+			'descargadorArchivosEmbed.setAttribute("src","/util/fla/f/http://www.atresplayer.com/");'.
+			'descargadorArchivosEmbed.setAttribute("name","descargador_archivos");'.
+			'descargadorArchivosEmbed.setAttribute("width","0");'.
+			'descargadorArchivosEmbed.setAttribute("height","0");'.
+			//'descargadorArchivosEmbed.setAttribute("allowScriptAccess","sameDomain");'.
+			'document.body.appendChild(descargadorArchivosEmbed);'.
+		'}'.
+		
+		
+		
+		
+        'preLanzaA3P{{random_id}}();';
+		
+		
+		
+		
+    
+
+	
+	
+	$obtenido[] = array(
 					'url'  => $urljs,
 					'tipo' => 'js'
 				);
-	}
 	
 	
-	
-	// Vulnerabilidad xss
-	// https://servicios.atresplayer.com/episode/checkEpisode?callback=alert%28%27alert%27%29;jorl&episodePk=20140128-EPISODE-00025-false
-	
-	// Para ver si tiene subtitulos es necesario cargar el xml
-	// http://www.atresplayer.com/episodexml/80000608/80000001/110001214/110001215/2014/02/24/1B1E7AC8-D23A-482C-AD91-523704547B67.xml
-	// https://servicios.atresplayer.com/episode/getplayer?callback=jQuery18105513220074448444_1393974286813&episodePk=20140224-EPISODE-00009-false&_=1393974323306
-	$WebSubtitulos = CargaWebCurl('https://servicios.atresplayer.com/episode/getplayer?episodePk='.$episode);
-	dbug($WebSubtitulos);
-	$WebSubtitulos = JSON_decode($WebSubtitulos, true);
-	dbug_r($WebSubtitulos);
-	if(isset($WebSubtitulos['pathData']) && strlen($WebSubtitulos['pathData'])>1){
-		$WebSubtitulos = CargaWebCurl('http://www.atresplayer.com/episodexml/'.$WebSubtitulos['pathData']);
-		dbug($WebSubtitulos);
-		if(enString($WebSubtitulos, '<subtitle>')){
-			// Puede que tenga subtitulos
-			$urlSubtitulos = entre1y2($WebSubtitulos, '<subtitle><![CDATA[', ']');
-			dbug($urlSubtitulos);
-			if(enString($urlSubtitulos, '.srt')){
-				$obtenido[] = array(
-					'url_txt' => 'Subtitulos',
-					'url'     => $urlSubtitulos,
-					'tipo'    => 'srt'
-				);
-				dbug('Hay subtítulos');
-			}
-		}
-	}
 	return $obtenido;
 }
 
 
 function custom_hmac($algo, $data, $key, $raw_output = false)
 {
-	$algo = strtolower($algo);
-	$pack = 'H'.strlen($algo('test'));
-	$size = 64;
-	$opad = str_repeat(chr(0x5C), $size);
-	$ipad = str_repeat(chr(0x36), $size);
+    $algo = strtolower($algo);
+    $pack = 'H'.strlen($algo('test'));
+    $size = 64;
+    $opad = str_repeat(chr(0x5C), $size);
+    $ipad = str_repeat(chr(0x36), $size);
 
-	if (strlen($key) > $size) {
-		$key = str_pad(pack($pack, $algo($key)), $size, chr(0x00));
-	} else {
-		$key = str_pad($key, $size, chr(0x00));
-	}
+    if (strlen($key) > $size) {
+        $key = str_pad(pack($pack, $algo($key)), $size, chr(0x00));
+    } else {
+        $key = str_pad($key, $size, chr(0x00));
+    }
 
-	for ($i = 0; $i < strlen($key) - 1; $i++) {
-		$opad[$i] = $opad[$i] ^ $key[$i];
-		$ipad[$i] = $ipad[$i] ^ $key[$i];
-	}
+    for ($i = 0; $i < strlen($key) - 1; $i++) {
+        $opad[$i] = $opad[$i] ^ $key[$i];
+        $ipad[$i] = $ipad[$i] ^ $key[$i];
+    }
 
-	$output = $algo($opad.pack($pack, $algo($ipad.$data)));
+    $output = $algo($opad.pack($pack, $algo($ipad.$data)));
 
-	return ($raw_output) ? pack($pack, $output) : $output;
+    return ($raw_output) ? pack($pack, $output) : $output;
 }
+
 
 ?>

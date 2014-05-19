@@ -10,3 +10,5 @@ function mueveMenu(){var aboveHeight=$('#contenido').offset().top;if($(window).s
 $(document).ready(function(){mueveMenu();$(window).scroll(function(){mueveMenu();});document.getElementById('radio1').onclick=function(){setModoPic(1);};document.getElementById('radio2').onclick=function(){setModoPic(2);};var m="invisible";var b=jQuery('#ayuda2');var c=jQuery('#ayuda1');var a=jQuery('.entrada');var f=function(){if(a.val().length>0){b.removeClass(m);c.addClass(m);}else{b.addClass(m);c.removeClass(m);}};a.blur(f);a.each(f);a.focus(function(){b.removeClass(m);c.addClass(m);});});
 
 $("#formCalculador").submit(function(event){if(web!=""){$("#resultado").addClass("hx100");$("#resultado").html('<div class="cargando"></div>');$.scrollTo('#resultado',800);}});
+
+function getFlashMovie(movieName){var isIE=navigator.appName.indexOf("Microsoft")!=-1;return(isIE)?window[movieName]:document[movieName];}

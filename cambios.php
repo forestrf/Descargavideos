@@ -16,6 +16,13 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'19-Mayo-2014',
+array(
+	'fix:Arreglado ATresPlayer (Requiere flash).'
+	)
+);
+
+$todos[]=array(
 '9-Mayo-2014',
 array(
 	'fix:Habilitadas nuevas calidades de vídeo en youtube (formato de solo vídeo en WebM).'

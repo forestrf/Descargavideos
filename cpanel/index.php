@@ -39,6 +39,20 @@ else{
 <a href="http://www.descargavideos.tv/cpanel" target="blank">CPanel DV</a><br>
 <a href="http://localhost/cpanel" target="blank">CPanel LH</a><br>
 
+<table border="1">
+	<tr>
+		<?php
+		include_once '../funciones.php';
+		$proxyes = listado_proxys();
+		foreach($proxyes as $proxy){
+			echo '<td>'.$proxy['dominio'].'<br><img style="background-color:#F00;width:30px;height:30px" src="http://'.$proxy['dominio'].'/favicon.ico"></td>';
+		}
+		?>
+	</tr>
+</table>
+<br>
+
+
 <br>
 Avisos de fallos (rápido):<br>
 <table border="1">

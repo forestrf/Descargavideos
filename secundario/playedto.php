@@ -117,8 +117,6 @@ function playedto(){
 		'finalizar("","Necesitas iniciar sesión en ATresPlayer para descargar este vídeo o bien el vídeo no existe");'.
 	'}'.
 	
-	'function getFlashMovie(movieName){var isIE=navigator.appName.indexOf("Microsoft")!=-1;return(isIE)?window[movieName]:document[movieName];}'.
-	
 	'var descargadorArchivosEmbed = document.createElement("embed");'.
 	// Hack para poner en el referer la palabra http://played.to ya que hace que funcione todo
 	'descargadorArchivosEmbed.setAttribute("src","/util/fla/f/http://played.to/");'.

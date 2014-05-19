@@ -1,4 +1,19 @@
 <?php
+// Los proxys de este listado deben respetar los header enviados por DV (ejem: Si DV envñia user-agent movil, el proxy usa ese user agent en la llamada que haga).
+function listado_proxys(){
+	global $listado_proxys_array;
+	if($listado_proxys_array === null){
+		$listado_proxys_array = array(
+			array(
+				'dominio'=>'webproxy.net',
+				'pais'=>'',
+				'proxy'=>'https://webproxy.net/view?q='
+			)
+		);
+	}
+	return $listado_proxys_array;
+}
+
 function esVideoAudio($enlace){
 	global $web;
 	//comprobar que es una url
