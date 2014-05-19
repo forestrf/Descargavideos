@@ -211,7 +211,7 @@ function resultadoA3PNormal($web, $web_descargada='', $episode='', $title=''){
 			'}'.
 			'else{'.
 				'if(data != "" && data.indexOf("<resultDes>OK</resultDes>")!==-1){'.
-					'mostrarResultado{{random_id}}(data.slice(data.indexOf("http")).split("<")[0]);'.
+					'mostrarResultado{{random_id}}(data.slice(data.indexOf("http")).split("<")[0].replace("&amp;","&"));'.
 					'return true;'.
 				'}'.
 				'else{'.
