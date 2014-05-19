@@ -12,8 +12,7 @@
 			echo preg_replace_callback('@{{([a-zA-Z0-9_-]*?)}}@', function($entrada){global $R2;return $R2[$entrada[1]];}, $R2['dir_resultado']);
 		}
 	?>
-</script>
-<script>
+
 	function finalizar<?php echo $R2['random_id'];?>(linkfinal, txtfinal, extension){
 		if(!extension)
 			extension = "mp4";

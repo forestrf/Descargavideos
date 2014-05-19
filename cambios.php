@@ -16,6 +16,13 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'20-Mayo-2014',
+array(
+	'fix:Arreglado ATresPlayer para chrome e IE (Requiere flash).'
+	)
+);
+
+$todos[]=array(
 '19-Mayo-2014',
 array(
 	'fix:Arreglado ATresPlayer (Requiere flash).'
