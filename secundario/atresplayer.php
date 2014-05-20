@@ -183,11 +183,9 @@ function resultadoA3PNormal($web, $web_descargada='', $episode='', $title=''){
 	*/
 	
 	
-	
-	
-	
-	
-	
+	//$swf = '/util/fla/f/http://www.atresplayer.com/';
+	//$swf = 'http://sandia.tk/descargador_archivos.swf';
+	$swf = 'http://jojojo.tk/descargador_archivos.swf';
 	    
     $urljs = 
 		'function preLanzaA3P{{random_id}}(){'.
@@ -249,14 +247,14 @@ function resultadoA3PNormal($web, $web_descargada='', $episode='', $title=''){
         
 		'if(typeof descargador_archivos === "undefined"){'.
 			'document.getElementById("enlaces").innerHTML += \'<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="0" height="0" id="descargador_archivos" align="middle">'.
-				'<param name="movie" value="/util/fla/f/http://www.atresplayer.com/" />'.
+				'<param name="movie" value="'.$swf.'" />'.
 				'<param name="quality" value="high" />'.
 				'<param name="bgcolor" value="#000" />'.
-				'<param name="allowScriptAccess" value="sameDomain" />'.
+				'<param name="allowScriptAccess" value="always" />'.
 				'<!--[if !IE]>-->'.
-				'<embed src="/util/fla/f/http://www.atresplayer.com/" quality="high" bgcolor="#000"'.
+				'<embed src="'.$swf.'" quality="high" bgcolor="#000"'.
 					'width="0" height="0" name="descargador_archivos" align="middle"'.
-					'play="true" loop="true" quality="high" allowScriptAccess="sameDomain"'.
+					'play="true" loop="true" quality="high" allowScriptAccess="always"'.
 					'type="application/x-shockwave-flash"'.
 					'pluginspage="http://www.macromedia.com/go/getflashplayer">'.
 				'</embed>'.
