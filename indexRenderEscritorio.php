@@ -125,13 +125,10 @@ var css_user='<?php echo $css_modo?>';
 			</div>
 		</div>
 	</div>
-	
-	<script type="text/javascript" src="/js/all.js"></script>
 
 	<?php if(defined('HAY_RESULTADO')){ ?>
 		<div id="resultado" class="hx100">
 			<?php include_once 'plantillaResultado.php';?>
-			<script>scrollTo(document.getElementById("resultado"),500);</script>
 		</div>
 	<?php }else{ ?>
 		<div id="resultado"></div>
@@ -188,6 +185,17 @@ function setModoPic(d){if(d==1){document.getElementById('web').placeholder="<?ph
 <script type="text/javascript">var adblock=true;</script>
 <script type="text/javascript" src="/advertisement.js"></script>
 <script type="text/javascript">_gaq.push(["_trackEvent","Adblock","Estado",adblock?"Con Adblock":"Sin Adblock"]);</script>
+
+
+<script type="text/javascript" src="/js/all.js"></script>
+
+<?php if(defined('HAY_RESULTADO')){ ?>
+	<script>scrollTo(document.getElementById("resultado"),500);</script>
+<?php } ?>
+
+
+
+
 
 
 </body>

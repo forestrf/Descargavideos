@@ -4,7 +4,6 @@
 </div>
 <script>
 	<?php
-		error_reporting(E_ALL);
 		if(!preg_match('@{{([a-zA-Z0-9_-]*?)}}@', $R2['dir_resultado'])){
 			echo $R2['dir_resultado'];
 		}

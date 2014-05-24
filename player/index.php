@@ -20,7 +20,7 @@ function limpiar($que){
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 
-	<script type="text/javascript" src="extra/flowplayer-3.2.12.min.js"></script>
+	<script src="extra/flowplayer-3.2.12.min.js"></script>
 	<link rel="stylesheet" href="/css/reset.css" />
 	<link rel="stylesheet" href="/css/player.css" />
 	
