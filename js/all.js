@@ -4,7 +4,7 @@ function scrollTo(e,d){if(d<0)return;var h=document.documentElement;if(h.scrollT
 
 function lcs(a){if(document.createStyleSheet)document.createStyleSheet(a);else document.head.innerHTML+='<link rel="stylesheet" type="text/css" href="'+a+'" />';}function rcs(a){var l=document.querySelectorAll('link');for(var i=0;i<l.length;++i)if(l[i].attributes['href'] != null && l[i].attributes['href'].textContent.indexOf(a)!=-1)l[i].remove();}function lcss(n,a){if(n!=a){lcs("/css/modos/"+n+".css");if(a!=-1)rcss(a,-1);}}function rcss(n,a){if(n!=a){rcs("/css/modos/"+n+".css");if(a!=-1)lcss(a,-1);}}
 
-function mueveMenu(){var aboveHeight=$('#contenido').offset().top;if($(window).scrollTop()>aboveHeight)$('#menu_scroll').addClass('menu_fixed');else $('#menu_scroll').removeClass('menu_fixed');}
+function mueveMenu(){if((document.body.scrollTop||document.documentElement.scrollTop)>document.getElementById('contenido').offsetTop){if(!mueveMenu.m){mueveMenu.f.className+=" menu_fixed";mueveMenu.m=1;}}else if(mueveMenu.m){mueveMenu.f.className=mueveMenu.f.className.split(" menu_fixed").join("");mueveMenu.m=0;}}mueveMenu.m=0;mueveMenu.f=document.getElementById('menu_scroll');
 
 $(document).ready(function(){mueveMenu();$(window).scroll(function(){mueveMenu();});document.getElementById('radio1').onclick=function(){setModoPic(1);};document.getElementById('radio2').onclick=function(){setModoPic(2);};var m="invisible";var b=jQuery('#ayuda2');var c=jQuery('#ayuda1');var a=jQuery('.entrada');var f=function(){if(a.val().length>0){b.removeClass(m);c.addClass(m);}else{b.addClass(m);c.removeClass(m);}};a.blur(f);a.each(f);a.focus(function(){b.removeClass(m);c.addClass(m);});});
 

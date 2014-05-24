@@ -27,7 +27,6 @@ var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-29252510-1"]);_gaq.push(["_trackP
 </script>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script type="text/javascript" src="/js/all.js"></script>
 
 <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
 <script type="text/javascript">
@@ -191,9 +190,7 @@ function setModoPic(d){if(d==1){document.getElementById('web').placeholder="<?ph
 <script type="text/javascript">_gaq.push(["_trackEvent","Adblock","Estado",adblock?"Con Adblock":"Sin Adblock"]);</script>
 
 
-
-
-
+<script type="text/javascript" src="/js/all.js"></script>
 
 
 </body>
