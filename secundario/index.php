@@ -472,7 +472,7 @@ if($fallourlinterna!=''){
 
 // imprimir web
 if($web=='')
-	generaR();
+	generaF();
 elseif($errorImprimible!='')
 	generaF();
 
@@ -499,6 +499,7 @@ function generaR(){
 	$R['MODO'] = 'RESULTADO';
 	
 	define('HAY_RESULTADO', true);
+	dbug('HAY_RESULTADO generado en generaR');
 }
 
 function generaF(){
@@ -511,6 +512,7 @@ function generaF(){
 	$R['MODO'] = 'ERROR';
 	
 	define('HAY_RESULTADO', true);
+	dbug('HAY_RESULTADO generado en generaF');
 }
 
 
