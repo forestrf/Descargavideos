@@ -16,6 +16,13 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'24-Mayo-2014',
+array(
+	'add:Youtube soporte para urls del tipo https://www.youtube.com/v/ID_VIDEO.'
+	)
+);
+
+$todos[]=array(
 '20-Mayo-2014',
 array(
 	'fix:Arreglado ATresPlayer para chrome e IE (Requiere flash).'

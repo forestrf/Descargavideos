@@ -2,6 +2,16 @@
 function youtubehelper(){
 	global $web,$web_descargada;
 	
+	if(enString($web, '.com/v/')){
+		$web = 'https://www.youtube.com/watch?v='.substr($web,strposF($web,'.com/v/'));
+	}
+	
+	//id
+	parse_str(parse_url($web, PHP_URL_QUERY),$vars);
+	//$id=$vars['v']
+
+	dbug_r($vars);
+		
 	$encontrado = false;
 	$intentos = 5;
 	
@@ -23,11 +33,7 @@ function youtubehelper(){
 	$obtenido=array('enlaces' => array());
 
 	if($links){
-		//id
-		parse_str(parse_url($web, PHP_URL_QUERY),$vars);
-		//$id=$vars['v']
-
-		dbug_r($vars);
+		
 
 		//imagen
 		//https://i1.ytimg.com/vi/8GLNKyfdnQg/0.jpg
