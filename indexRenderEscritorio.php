@@ -20,18 +20,13 @@
 <link href="/favicon.ico" rel="icon" type="image/x-icon"/>
 <link rel="stylesheet" href="/css/cssfull.css"/>
 <link rel="stylesheet" href="/css/modos/<?php echo $css_modo?>.css"/>
+<script type="text/javascript" src="/js/ReferrerKiller.js"></script>
 
-
-<script type="text/javascript">
+<script>
 var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-29252510-1"]);_gaq.push(["_trackPageview"]);(function(){var ga=document.createElement("script");ga.type="text/javascript";ga.async=true;ga.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga,s);})();
 </script>
 
-<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
-<script type="text/javascript">
-{lang: 'es'}
-</script>
-
-<script type="text/javascript">
+<script>
 var css_user='<?php echo $css_modo?>';
 </script>
 
@@ -42,7 +37,6 @@ var css_user='<?php echo $css_modo?>';
 
 <!--fb (si no se pone aquí mueve todo)-->
 <div id="fb-root"></div>
-<script type="text/javascript">(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="//connect.facebook.net/es_ES/all.js#xfbml=1&appId=235486993147003";fjs.parentNode.insertBefore(js, fjs);}(document,'script','facebook-jssdk'));</script>
 
 
 <div class="todo">
@@ -96,26 +90,12 @@ var css_user='<?php echo $css_modo?>';
 
 		<div class="stats">
 			<div id="histats_counter"></div>
-			<script type="text/javascript">var _Hasync= _Hasync|| [];
-			_Hasync.push(['Histats.startgif', '1,2419951,4,10045,"div#histatsC {position: absolute;top:0px;left:0px;}body>div#histatsC {position: fixed;}"']);
-			_Hasync.push(['Histats.fasi', '1']);
-			_Hasync.push(['Histats.track_hits', '']);
-			(function() {
-			var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
-			hs.src = ('http://s10.histats.com/js15_gif_as.js');
-			(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
-			})();</script>
-			<noscript><a href="http://www.histats.com" alt="contadores" target="_blank" ><div id="histatsC"><img border="0" src="http://s4is.histats.com/stats/i/2419951.gif?2419951&103"></div></a>
-			</noscript>
 		</div>
 		<div class="social">
-			<!--tw, fb, +1-->
 			<div class="elem">
 				<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.descargavideos.tv" data-text="Descarga vídeos de RTVE, Antena3, Mitele, TV3 y muchas más." data-via="descargavids" data-lang="es" data-count="vertical">Tweet</a>
-				<script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 			</div>
 
-			<script type="text/javascript">(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="//connect.facebook.net/es_ES/all.js#xfbml=1&appId=235486993147003";fjs.parentNode.insertBefore(js,fjs);}(document,'script','facebook-jssdk'));</script>
 			<div class="elem">
 				<div class="fb-like" data-href="https://www.facebook.com/descargavids" data-width="450" data-layout="box_count" data-show-faces="false" data-send="false"></div>
 			</div>
@@ -180,22 +160,43 @@ function setModoPic(d){if(d==1){document.getElementById('web').placeholder="<?ph
 
 
 
-<script type="text/javascript">_gaq.push(["_trackEvent","Interfaz","En uso","<?php echo $css_modo_cookie;?>"]);</script>
+<script>
+_gaq.push(["_trackEvent","Interfaz","En uso","<?php echo $css_modo_cookie;?>"]);
+var adblock=true;
+</script>
+<script src="/advertisement.js"></script>
+<script>_gaq.push(["_trackEvent","Adblock","Estado",adblock?"Con Adblock":"Sin Adblock"]);</script>
 
-<script type="text/javascript">var adblock=true;</script>
-<script type="text/javascript" src="/advertisement.js"></script>
-<script type="text/javascript">_gaq.push(["_trackEvent","Adblock","Estado",adblock?"Con Adblock":"Sin Adblock"]);</script>
 
-
-<script type="text/javascript" src="/js/all.js"></script>
+<script src="/js/all.js"></script>
 
 <?php if(defined('HAY_RESULTADO')){ ?>
-	<script>scrollTo(document.getElementById("resultado"),500);</script>
+	<script>scrollTo(document.getElementById("resultado"),20);</script>
 <?php } ?>
 
 
 
 
+<script type="text/javascript">var _Hasync= _Hasync|| [];
+_Hasync.push(['Histats.startgif', '1,2419951,4,10045,"div#histatsC {position: absolute;top:0px;left:0px;}body>div#histatsC {position: fixed;}"']);
+_Hasync.push(['Histats.fasi', '1']);
+_Hasync.push(['Histats.track_hits', '']);
+(function() {
+var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+hs.src = ('http://s10.histats.com/js15_gif_as.js');
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+})();</script>
+
+
+
+<script>
+setTimeout(function(){
+	(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="//connect.facebook.net/es_ES/all.js#xfbml=1&appId=235486993147003";fjs.parentNode.insertBefore(js, fjs);}(document,'script','facebook-jssdk'));
+	!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+	(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="//connect.facebook.net/es_ES/all.js#xfbml=1&appId=235486993147003";fjs.parentNode.insertBefore(js,fjs);}(document,'script','facebook-jssdk'));
+	getScript("https://apis.google.com/js/plusone.js");
+},1000);
+</script>
 
 
 </body>
