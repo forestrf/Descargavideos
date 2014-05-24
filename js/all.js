@@ -11,6 +11,6 @@ mueveMenu(document.body.scrollTop||document.documentElement.scrollTop);window.ad
 
 document.getElementById('radio1').onclick=function(){setModoPic(1);};document.getElementById('radio2').onclick=function(){setModoPic(2);};webI=document.getElementById('web');function f(e){var a=document.getElementById('ayuda1');var b=document.getElementById('ayuda2');if(webI.value.length>0||e==1){qC(b,"invisible");aC(a,"invisible");}else{aC(b,"invisible");qC(a,"invisible");}}webI.onblur=f;f();webI.onfocus=function(){f(1);};
 
-$("#formCalculador").submit(function(event){if(web!=""){aC(document.getElementById('resultado'),"hx100");document.getElementById('resultado').innerHTML = '<div class="cargando"></div>';scrollTo(document.getElementById('resultado'),800);}});
+document.getElementById("formCalculador").onsubmit=function(e){if(e.target['web'].value=="")return false;aC(document.getElementById('resultado'),"hx100");document.getElementById('resultado').innerHTML='<div class="cargando"></div>';scrollTo(document.getElementById('resultado'),500);};
 
 function getFlashMovie(movieName){var isIE=navigator.appName.indexOf("Microsoft")!=-1;return(isIE)?window[movieName]:document[movieName];}
