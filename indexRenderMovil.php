@@ -21,7 +21,6 @@
 <link href="/favicon.ico" rel="icon" type="image/x-icon"/>
 <link rel="stylesheet" href="/css/reset.css"/>
 <link rel="stylesheet" href="/css/allMovil.css"/>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script type="text/javascript" src="/js/ReferrerKiller.js"></script>
 <link href="/css/font/fuentes.css" rel="stylesheet" type="text/css"/>
 

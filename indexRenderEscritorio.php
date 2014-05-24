@@ -26,8 +26,6 @@
 var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-29252510-1"]);_gaq.push(["_trackPageview"]);(function(){var ga=document.createElement("script");ga.type="text/javascript";ga.async=true;ga.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga,s);})();
 </script>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-
 <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
 <script type="text/javascript">
 {lang: 'es'}
@@ -127,6 +125,8 @@ var css_user='<?php echo $css_modo?>';
 			</div>
 		</div>
 	</div>
+	
+	<script type="text/javascript" src="/js/all.js"></script>
 
 	<?php if(defined('HAY_RESULTADO')){ ?>
 		<div id="resultado" class="hx100">
@@ -188,9 +188,6 @@ function setModoPic(d){if(d==1){document.getElementById('web').placeholder="<?ph
 <script type="text/javascript">var adblock=true;</script>
 <script type="text/javascript" src="/advertisement.js"></script>
 <script type="text/javascript">_gaq.push(["_trackEvent","Adblock","Estado",adblock?"Con Adblock":"Sin Adblock"]);</script>
-
-
-<script type="text/javascript" src="/js/all.js"></script>
 
 
 </body>
