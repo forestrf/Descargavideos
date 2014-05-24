@@ -1,7 +1,7 @@
 $("#formCalculador").submit(function(event){
 	if(web!=""){
-		$("#resultado").addClass("hx100");
-		$("#resultado").html('<div class="cargando"></div>');
-		$.scrollTo('#resultado',800);
+		document.getElementById("resultado").className += " hx100";
+		document.getElementById("resultado").innerHTML = '<div class="cargando"></div>';
+		scrollTo(document.getElementById('resultado'),800);
 	}
 });
