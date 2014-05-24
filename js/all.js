@@ -14,3 +14,5 @@ document.getElementById('radio1').onclick=function(){setModoPic(1);};document.ge
 document.getElementById("formCalculador").onsubmit=function(e){if(e.target['web'].value=="")return false;aC(document.getElementById('resultado'),"hx100");document.getElementById('resultado').innerHTML='<div class="cargando"></div>';scrollTo(document.getElementById('resultado'),500);};
 
 function getFlashMovie(movieName){var isIE=navigator.appName.indexOf("Microsoft")!=-1;return(isIE)?window[movieName]:document[movieName];}
+
+function getScript(url,callback){var script=document.createElement('script');script.type='text/javascript';script.src=url;script.onload=callback;script.onreadystatechange=function(){if(this.readyState=='complete'){callback();}};document.getElementsByTagName('head')[0].appendChild(script);}

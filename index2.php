@@ -221,8 +221,6 @@ a:hover{
 					Busca el enlace del vídeo
 				</div>
 			</form>
-			
-			<script src="/js/mod1.js"></script>
 		</div>
 
 		<div class="stats">
@@ -257,6 +255,9 @@ a:hover{
 		</div>
 	</div>
 </div>
+
+
+<script src="/js/all.js"></script>
 
 </body>
 </html>

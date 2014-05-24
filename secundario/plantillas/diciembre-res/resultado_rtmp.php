@@ -20,8 +20,8 @@ Mac OS X y GNU/Linux: El programa Easy-Rtmpdump de PyDownTV te permitirá descar
 	</form>
 </div>
 <script>
-	$.getScript('http://127.0.0.1:25432/rtmpdownloader.js',f<?php echo $R2['random_id'];?>);
-	$.getScript('http://127.0.0.1:25431/static/js/imrunning.js',f2<?php echo $R2['random_id'];?>);
+	getScript('http://127.0.0.1:25432/rtmpdownloader.js',f<?php echo $R2['random_id'];?>);
+	getScript('http://127.0.0.1:25431/static/js/imrunning.js',f2<?php echo $R2['random_id'];?>);
 	function f<?php echo $R2['random_id'];?>(){
 		if(rtmpdownloader){
 			document.getElementById('rtmp<?php echo $R2['random_id'];?>').innerHTML="<a style=\"cursor:pointer\" onclick=\"muestra<?php echo $R2['random_id'];?>()\">Descargar usando RTMP-Downloader</a>";
