@@ -132,7 +132,7 @@ var css_user='<?php echo $css_modo?>';
 	<?php if(defined('HAY_RESULTADO')){ ?>
 		<div id="resultado" class="hx100">
 			<?php include_once 'plantillaResultado.php';?>
-			<script type="text/javascript">$.scrollTo("#resultado",500);</script>
+			<script>scrollTo(document.getElementById("resultado"),500);</script>
 		</div>
 	<?php }else{ ?>
 		<div id="resultado"></div>
