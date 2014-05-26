@@ -46,15 +46,15 @@ var css_user='<?php echo $css_modo?>';
 
 		<div id="esquina" class="esquina">
 			<div class="interior_esquina"><div>
-				<a href="/cambiaCabecera.php?modo=1" onmouseover="lcss(1,css_user)" onmouseout="rcss(1,css_user)"><span class="m1 img"></span></a>
-				<a href="/cambiaCabecera.php?modo=2" onmouseover="lcss(2,css_user)" onmouseout="rcss(2,css_user)"><span class="m2 img"></span></a>
-				<a href="/cambiaCabecera.php?modo=3" onmouseover="lcss(3,css_user)" onmouseout="rcss(3,css_user)"><span class="m3 img"></span></a>
-				<a href="/cambiaCabecera.php?modo=4" onmouseover="lcss(4,css_user)" onmouseout="rcss(4,css_user)"><span class="m4 img"></span></a></div><div>
-				<a href="/cambiaCabecera.php?modo=5" onmouseover="lcss(5,css_user)" onmouseout="rcss(5,css_user)"><span class="m5 img"></span></a>
-				<a href="/cambiaCabecera.php?modo=6" onmouseover="lcss(6,css_user)" onmouseout="rcss(6,css_user)"><span class="m6 img"></span></a>
-				<a href="/cambiaCabecera.php?modo=7" onmouseover="lcss(7,css_user)" onmouseout="rcss(7,css_user)"><span class="m7 img"></span></a></div><div>
-				<a href="/cambiaCabecera.php?modo=8" onmouseover="lcss(8,css_user)" onmouseout="rcss(8,css_user)"><span class="m8 img"></span></a>
-				<a href="/cambiaCabecera.php?modo=9" onmouseover="lcss(9,css_user)" onmouseout="rcss(9,css_user)"><span class="m9 img"></span></a></div><div>
+				<a href="/cambiaCabecera.php?modo=1"  onmouseover="lcss(1,css_user)" onmouseout="rcss(1,css_user)"><span class="m1 img"></span></a>
+				<a href="/cambiaCabecera.php?modo=2"  onmouseover="lcss(2,css_user)" onmouseout="rcss(2,css_user)"><span class="m2 img"></span></a>
+				<a href="/cambiaCabecera.php?modo=3"  onmouseover="lcss(3,css_user)" onmouseout="rcss(3,css_user)"><span class="m3 img"></span></a>
+				<a href="/cambiaCabecera.php?modo=4"  onmouseover="lcss(4,css_user)" onmouseout="rcss(4,css_user)"><span class="m4 img"></span></a></div><div>
+				<a href="/cambiaCabecera.php?modo=5"  onmouseover="lcss(5,css_user)" onmouseout="rcss(5,css_user)"><span class="m5 img"></span></a>
+				<a href="/cambiaCabecera.php?modo=6"  onmouseover="lcss(6,css_user)" onmouseout="rcss(6,css_user)"><span class="m6 img"></span></a>
+				<a href="/cambiaCabecera.php?modo=7"  onmouseover="lcss(7,css_user)" onmouseout="rcss(7,css_user)"><span class="m7 img"></span></a></div><div>
+				<a href="/cambiaCabecera.php?modo=8"  onmouseover="lcss(8,css_user)" onmouseout="rcss(8,css_user)"><span class="m8 img"></span></a>
+				<a href="/cambiaCabecera.php?modo=9"  onmouseover="lcss(9,css_user)" onmouseout="rcss(9,css_user)"><span class="m9 img"></span></a></div><div>
 				<a href="/cambiaCabecera.php?modo=10" onmouseover="lcss(10,css_user)" onmouseout="rcss(10,css_user)"><span class="m10 img"></span></a>
 			</div></div>
 		</div>
@@ -93,7 +93,7 @@ var css_user='<?php echo $css_modo?>';
 		</div>
 		<div class="social">
 			<div class="elem">
-				<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.descargavideos.tv" data-text="Descarga vídeos de RTVE, Antena3, Mitele, TV3 y muchas más." data-via="descargavids" data-lang="es" data-count="vertical">Tweet</a>
+				<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.descargavideos.tv" data-text="Descarga vídeos de RTVE, Antena3, Mitele, TV3 y muchas más." data-via="descargavids" data-lang="es" data-count="vertical"></a>
 			</div>
 
 			<div class="elem">
@@ -171,7 +171,11 @@ var adblock=true;
 <script src="/js/all.js"></script>
 
 <?php if(defined('HAY_RESULTADO')){ ?>
-	<script>scrollTo(document.getElementById("resultado"),20);</script>
+	<script>
+	setTimeout(function(){
+		scrollTo(document.getElementById("resultado"),300);
+	},100);
+	</script>
 <?php } ?>
 
 
@@ -190,12 +194,14 @@ hs.src = ('http://s10.histats.com/js15_gif_as.js');
 
 
 <script>
+
 setTimeout(function(){
 	(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="//connect.facebook.net/es_ES/all.js#xfbml=1&appId=235486993147003";fjs.parentNode.insertBefore(js, fjs);}(document,'script','facebook-jssdk'));
 	!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 	(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="//connect.facebook.net/es_ES/all.js#xfbml=1&appId=235486993147003";fjs.parentNode.insertBefore(js,fjs);}(document,'script','facebook-jssdk'));
 	getScript("https://apis.google.com/js/plusone.js");
-},1000);
+},1500);
+
 </script>
 
 

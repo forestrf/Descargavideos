@@ -45,7 +45,6 @@
 <div class="columna_der">
 	<div class="bloque_pagina bloqueMargin txt_centrado">
 		<a class="twitter-timeline"  href="https://twitter.com/descargavids"  data-widget-id="367404729648705536">Tweets por @descargavids</a>
-		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 	</div>
 	<div class="bloque_pagina bloqueMargin txt_centrado">
 		<?php echo TXT_BLOQUE_DV_EN_TU_WEB?>
