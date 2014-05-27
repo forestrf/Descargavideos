@@ -13,14 +13,14 @@ $etag = '"'.$cssTimeAll.$cssTiempoFuentes.'"';
 
 $if_none_match = isset($_SERVER["HTTP_IF_NONE_MATCH"]) ? $_SERVER["HTTP_IF_NONE_MATCH"] : false;
 
+header("Content-Type: text/css; charset=UTF-8");
+
 if($if_none_match && $if_none_match === $etag){
 	header("HTTP/1.1 304 Not Modified");
 	exit;
 }
 else{
 	header('ETag: '.$etag);
-	
-	header("Content-Type: text/css; charset=UTF-8");
 	
 	$encoding = $_SERVER["HTTP_ACCEPT_ENCODING"];
 	

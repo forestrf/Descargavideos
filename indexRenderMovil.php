@@ -79,7 +79,7 @@ var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-29252510-1"]);_gaq.push(["_trackP
 <?php if(defined('HAY_RESULTADO')){ ?>
 	<div id="resultado" class="hx100">
 		<?php include_once 'plantillaResultado.php';?>
-		<script>scrollTo(document.getElementById("resultado"),500);</script>
+		<script>scrollTo(document.getElementById("resultado"),20);</script>
 	</div>
 <?php }else{ ?>
 	<div id="resultado"></div>

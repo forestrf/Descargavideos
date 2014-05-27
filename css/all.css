@@ -312,15 +312,15 @@ input[type=radio]{
 	bottom:2px;
 	left:2px;
 }
-.cargando{
-	background:url("/img/loading.gif") repeat scroll 0 0 transparent;
-	height:400px;
-	left:50%;
-	margin-left:-140px;
-	margin-top:-200px;
-	position:absolute;
-	top:50%;
-	width:281px;
+.cargando {
+	background-image: url("/img/loading.gif");
+	height: 144px;
+	left: 50%;
+	margin-left: -126px;
+	margin-top: -72px;
+	position: absolute;
+	top: 50%;
+	width: 252px;
 }
 .hx100{
 	min-height:100%;
