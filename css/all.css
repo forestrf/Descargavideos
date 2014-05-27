@@ -46,19 +46,26 @@ input[type=radio]+label{
 	height:20px;
 	line-height:20px;
 	padding:0 0 0 25px;
+	cursor: pointer;
 }
 input[type=radio]+label:hover{
 	background:url("/img/radio.png") no-repeat scroll 0 -20px transparent;
 }
-input[type=radio]:checked+label{
+input[type=radio][checked]+label{
 	background:url("/img/radio.png") no-repeat scroll 0 -40px transparent;
 }
-input[type=radio]:checked+label:hover{
+input[type=radio][checked]+label:hover{
 	background:url("/img/radio.png") no-repeat scroll 0 -60px transparent;
 }
-input[type=radio]{
-	display:none;
+input[type="radio"] {
+	display: block;
+	float: left;
+	height: 0;
+	margin: 0 -100px 0;
+	padding: 0;
+	width: 20px;
 }
+
 .todo{
 	/*Lo mínimo que se puede reducir la página*/
 	min-width:360px;
@@ -185,11 +192,14 @@ input[type=radio]{
 	background:url("/img/pack1.png") no-repeat scroll -634px 0 transparent;
 	outline:none;
 }
-.formRadio{
-	color:#FFF;
-	text-shadow:1px 1px 3px #7A4E15;
-	display:inline-block;
-	margin:2px 0 0 20px;
+.formRadio {
+	color: #FFFFFF;
+	display: inline-block;
+	height: 25px;
+	margin: 2px 20px 0;
+	overflow: hidden;
+	position: relative;
+	text-shadow: 1px 1px 3px #7A4E15;
 }
 #ayuda1{
 	height:150px;
