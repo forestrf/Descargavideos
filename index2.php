@@ -148,7 +148,7 @@ function template($cual){
 <link href="/css/font/fuentes.css" rel="stylesheet" type="text/css"/>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script type="text/javascript" src="/js/all.js"></script>
+<script type="text/javascript" src="/js/all.min.js"></script>
 
 
 <script>
@@ -255,9 +255,6 @@ a:hover{
 		</div>
 	</div>
 </div>
-
-
-<script src="/js/all.js"></script>
 
 </body>
 </html>

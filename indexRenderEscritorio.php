@@ -163,13 +163,11 @@ var adblock=true;
 <script>_gaq.push(["_trackEvent","Adblock","Estado",adblock?"Con Adblock":"Sin Adblock"]);</script>
 
 
-<script src="/js/all.js"></script>
+<script src="/js/all.min.js"></script>
 
 <?php if(defined('HAY_RESULTADO')){ ?>
 	<script>
-	setTimeout(function(){
-		scrollTo(document.getElementById("resultado"),300);
-	},100);
+	scrollTo(document.getElementById("resultado"),20);
 	</script>
 <?php } ?>
 
