@@ -226,7 +226,7 @@ a:hover{
 		<div class="stats">
 			<div id="histats_counter"></div>
 			<script type="text/javascript">var _Hasync= _Hasync|| [];
-			_Hasync.push(['Histats.startgif', '1,2419951,4,10045,"div#histatsC {position: absolute;top:0px;left:0px;}body>div#histatsC {position: fixed;}"']);
+			_Hasync.push(['Histats.startgif', '1,2419951,4,10045,"div#histatsC {position: absolute;top:0;left:0;}body>div#histatsC {position: fixed;}"']);
 			_Hasync.push(['Histats.fasi', '1']);
 			_Hasync.push(['Histats.track_hits', '']);
 			(function() {

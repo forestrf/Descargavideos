@@ -250,7 +250,7 @@ h2{
 	background:none repeat scroll 0 0 #58A2D0;
 	border:2px outset #60B2E4;
 	border-radius:30px 30px 30px 30px;
-	box-shadow:0 0 10px #3B6C8B, inset 0px 10px 10px #4B8AB1, inset 0px -10px 10px #7ACCFF;
+	box-shadow:0 0 10px #3B6C8B, inset 0 10px 10px #4B8AB1, inset 0 -10px 10px #7ACCFF;
 	color:#F4F4F4;
 	font-size:16px;
 	font-style:normal;
