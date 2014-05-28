@@ -151,10 +151,25 @@ var css_user='<?php echo $css_modo?>';
 
 
 
+<script src="/js/all.min.js"></script>
+
+
+
 <script>
 setModoPic(<?php echo $modo?>);
 function setModoPic(d){if(d==1){document.getElementById('web').placeholder="<?php echo TXT_PEGA_URL_VIDEO?>";document.getElementById('ayuda1txt').innerHTML="<?php echo TXT_COPIA_URL_VIDEO?>";document.getElementById('ayuda2txt').innerHTML="<?php echo TXT_BUSCA_URL_VIDEO?>";}else{document.getElementById('web').placeholder="<?php echo TXT_BUSCAR_CANCION?>";document.getElementById('ayuda1txt').innerHTML="<?php echo TXT_ESCRIBE_NOMBRE_CANCION?>";document.getElementById('ayuda2txt').innerHTML="<?php echo TXT_BUSCA_CANCION?>";}}
 
+var _Hasync=_Hasync||[];_Hasync.push(['Histats.startgif','1,2419951,4,10045,"div#histatsC{position:absolute;top:0px;left:0px;}body>div#histatsC{position:fixed;}"']);_Hasync.push(['Histats.fasi','1']);_Hasync.push(['Histats.track_hits','']);(function(){var hs=document.createElement('script');hs.type='text/javascript';hs.async=true;hs.src=('http://s10.histats.com/js15_gif_as.js');(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(hs);})();
+
+setTimeout(function(){
+	(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="//connect.facebook.net/es_ES/all.js#xfbml=1&appId=235486993147003";fjs.parentNode.insertBefore(js,fjs);}(document,'script','facebook-jssdk'));
+	!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+	getScript("https://apis.google.com/js/plusone.js");
+},1500);
+
+<?php if(defined('HAY_RESULTADO')){ ?>
+	scrollTo(document.getElementById("resultado"),20);
+<?php } ?>
 
 _gaq.push(["_trackEvent","Interfaz","En uso","<?php echo $css_modo_cookie;?>"]);
 var adblock=true;
@@ -162,38 +177,6 @@ var adblock=true;
 <script src="/advertisement.js"></script>
 <script>_gaq.push(["_trackEvent","Adblock","Estado",adblock?"Con Adblock":"Sin Adblock"]);</script>
 
-
-<script src="/js/all.min.js"></script>
-
-<?php if(defined('HAY_RESULTADO')){ ?>
-	<script>
-	scrollTo(document.getElementById("resultado"),20);
-	</script>
-<?php } ?>
-
-
-
-
-<script type="text/javascript">var _Hasync= _Hasync|| [];
-_Hasync.push(['Histats.startgif', '1,2419951,4,10045,"div#histatsC {position: absolute;top:0px;left:0px;}body>div#histatsC {position: fixed;}"']);
-_Hasync.push(['Histats.fasi', '1']);
-_Hasync.push(['Histats.track_hits', '']);
-(function() {
-var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
-hs.src = ('http://s10.histats.com/js15_gif_as.js');
-(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
-})();</script>
-
-
-
-<script>
-setTimeout(function(){
-	(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="//connect.facebook.net/es_ES/all.js#xfbml=1&appId=235486993147003";fjs.parentNode.insertBefore(js, fjs);}(document,'script','facebook-jssdk'));
-	!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-	(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="//connect.facebook.net/es_ES/all.js#xfbml=1&appId=235486993147003";fjs.parentNode.insertBefore(js,fjs);}(document,'script','facebook-jssdk'));
-	getScript("https://apis.google.com/js/plusone.js");
-},1500);
-</script>
 
 
 </body>
