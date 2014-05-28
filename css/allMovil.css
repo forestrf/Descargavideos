@@ -35,16 +35,16 @@ h1{
 }
 .tv{
 	background-color:#F00;
-    border:2px solid #FFF;
-    border-radius:10px;
-    box-shadow:0 0 15px #000, 0 0 20px -5px #000 inset;
-    color:#FFF;
-    font-family:Georgia,serif,'Times New Roman';
-    font-size:0.5em;
-    padding:5px 10px;
-    position:relative;
-    text-shadow:0 0 6px #000;
-    top:-4px;
+	border:2px solid #FFF;
+	border-radius:10px;
+	box-shadow:0 0 15px #000, 0 0 20px -5px #000 inset;
+	color:#FFF;
+	font-family:Georgia,serif,'Times New Roman';
+	font-size:0.5em;
+	padding:5px 10px;
+	position:relative;
+	text-shadow:0 0 6px #000;
+	top:-4px;
 	margin-left:5px;
 }
 h2{
@@ -149,10 +149,10 @@ h2{
 	display:none;
 }
 #resultado .publi_res {
-    left:50%;
-    margin-left:-168px;
-    position:relative;
-    width:336px;
+	left:50%;
+	margin-left:-168px;
+	position:relative;
+	width:336px;
 }
 .rtmpdump{
 	background:#502E70;
