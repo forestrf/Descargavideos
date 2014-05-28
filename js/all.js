@@ -62,33 +62,7 @@ function getFlashMovie(m) {
 }
 
 function lcs(a) {
-	if (document.createStyleSheet)
-		document.createStyleSheet(a);
-	else
-		document.head.innerHTML += '<link rel="stylesheet" type="text/css" href="' + a + '" />';
-}
-
-function rcs(a) {
-	var l = document.querySelectorAll('link');
-	for (var i = 0; i < l.length; ++i)
-		if (l[i].attributes['href'] != null && l[i].attributes['href'].textContent && l[i].attributes['href'].value.indexOf(a) != -1)
-			l[i].remove();
-}
-
-function lcss(n, a) {
-	if (n != a) {
-		lcs("/css/modos/" + n + ".css");
-		if (a != -1)
-			rcss(a, -1);
-	}
-}
-
-function rcss(n, a) {
-	if (n != a) {
-		rcs("/css/modos/" + n + ".css");
-		if (a != -1)
-			lcss(a, -1);
-	}
+	document.getElementById('css2').href="/css/modos/" + a + ".css";
 }
 
 function mueveMenu() {
