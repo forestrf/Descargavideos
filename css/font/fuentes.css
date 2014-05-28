@@ -1,30 +1,30 @@
 @font-face {
-	font-family: 'Sacramento';
-	src: url('/css/font/Sacramento.eot');
-	src: url('/css/font/Sacramento.eot?#iefix') format('embedded-opentype'),
+	font-family:'Sacramento';
+	src:url('/css/font/Sacramento.eot');
+	src:url('/css/font/Sacramento.eot?#iefix') format('embedded-opentype'),
 		 url('/css/font/Sacramento.woff') format('woff'),
 		 url('/css/font/Sacramento.ttf') format('truetype'),
 		 url('/css/font/Sacramento.svg#sacramento') format('svg');
-	font-weight: 400;
-	font-style: normal;
+	font-weight:400;
+	font-style:normal;
 }
 @font-face {
-	font-family: 'Source Sans Pro';
-	src: url('/css/font/SourceSansProLight.eot');
-	src: url('/css/font/SourceSansProLight.eot?#iefix') format('embedded-opentype'),
+	font-family:'Source Sans Pro';
+	src:url('/css/font/SourceSansProLight.eot');
+	src:url('/css/font/SourceSansProLight.eot?#iefix') format('embedded-opentype'),
 		 url('/css/font/SourceSansProLight.woff') format('woff'),
 		 url('/css/font/SourceSansProLight.ttf') format('truetype'),
 		 url('/css/font/SourceSansProLight.svg#source_sans_prolight') format('svg');
-	font-weight: 300;
-	font-style: normal;
+	font-weight:300;
+	font-style:normal;
 }
 @font-face {
-	font-family: 'Yesteryear';
-	src: url('/css/font/Yesteryear2.eot');
-	src: url('/css/font/Yesteryear2.eot?#iefix') format('embedded-opentype'),
+	font-family:'Yesteryear';
+	src:url('/css/font/Yesteryear2.eot');
+	src:url('/css/font/Yesteryear2.eot?#iefix') format('embedded-opentype'),
 		 url('/css/font/Yesteryear2.woff') format('woff'),
 		 url('/css/font/Yesteryear2.ttf') format('truetype'),
 		 url('/css/font/Yesteryear2.svg#yesteryear') format('svg');
-	font-weight: 400;
-	font-style: normal;
+	font-weight:400;
+	font-style:normal;
 }

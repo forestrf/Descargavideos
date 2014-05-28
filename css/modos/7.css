@@ -1,45 +1,45 @@
-body {
-	background: url("/img/backs/7.jpg") repeat scroll 0 0 #581D19;
-	color: #FFF;
+body{
+	background:url("/img/backs/7.jpg") repeat scroll 0 0 #581D19;
+	color:#FFF;
 }
-a {
-	color: #C3FFFE;
-	text-shadow: 1px 1px 5px #5EBACF;
+a{
+	color:#C3FFFE;
+	text-shadow:1px 1px 5px #5EBACF;
 }
-a:hover {
-	color: #95ACFF;
-	text-shadow: 1px 1px 5px #5EBACF;
+a:hover{
+	color:#95ACFF;
+	text-shadow:1px 1px 5px #5EBACF;
 }
 /*RESULTADOS*/
-#resultado .img {
-	box-shadow: 0 0 10px 5px #411818;
+#resultado .img{
+	box-shadow:0 0 10px 5px #411818;
 }
 /*CONTENIDO*/
-.menu {
-	background: rgba(0, 0, 0, 0.5);
+.menu{
+	background:rgba(0, 0, 0, 0.5);
 }
-.menu a:hover {
-	text-shadow: none;
+.menu a:hover{
+	text-shadow:none;
 }
-.listado_preguntas, .listado_preguntas a, .pregunta, .tit {
-	color: #FFF;
+.listado_preguntas, .listado_preguntas a, .pregunta, .tit{
+	color:#FFF;
 }
-.fix, .add, .del {
-	background-color: rgba(0,0,0,0.5);
+.fix, .add, .del{
+	background-color:rgba(0,0,0,0.5);
 }
-.bloque_pagina {
-	box-shadow: 0 3px 0 3px rgba(205, 70, 22, 0.68) inset, 0 30px 35px -15px rgba(255, 0, 0, 0.31) inset;
+.bloque_pagina{
+	box-shadow:0 3px 0 3px rgba(205, 70, 22, 0.68) inset, 0 30px 35px -15px rgba(255, 0, 0, 0.31) inset;
 }
-.interior {
-	color: #FFF;
-	text-shadow: 1px 1px 2px #000;
+.interior{
+	color:#FFF;
+	text-shadow:1px 1px 2px #000;
 }
 /*PIE*/
-#pie {
-	background: none repeat scroll 0 0 rgba(0, 0, 0, 0.1);
+#pie{
+	background:none repeat scroll 0 0 rgba(0, 0, 0, 0.1);
 }
 
-#pie, #pie a {
-	color: #FFF;
-	text-shadow: none;
+#pie, #pie a{
+	color:#FFF;
+	text-shadow:none;
 }

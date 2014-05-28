@@ -1,42 +1,42 @@
-body {
-	background: url("/img/backs/3.jpg") no-repeat scroll 0 0 #F5DFCE;
-	background-size: cover;
+body{
+	background:url("/img/backs/3.jpg") no-repeat scroll 0 0 #F5DFCE;
+	background-size:cover;
 }
 
-a {
-	color: #0064FF;
-	text-shadow: 1px 1px 0 #FFF;
+a{
+	color:#0064FF;
+	text-shadow:1px 1px 0 #FFF;
 }
 
-a:hover {
-	text-shadow: 1px 1px 0 #000;
+a:hover{
+	text-shadow:1px 1px 0 #000;
 }
 /*RESULTADOS*/
-#resultado .img {
-	box-shadow: 0 0 10px 5px #73532B;
+#resultado .img{
+	box-shadow:0 0 10px 5px #73532B;
 }
 /*CONTENIDO*/
-.menu a:hover {
-	text-shadow: none;
+.menu a:hover{
+	text-shadow:none;
 }
 
-#resultado {
-	color: #000;
+#resultado{
+	color:#000;
 }
 /*CONTENIDO*/
-.bloque_pagina {
-	box-shadow: 0 3px 0 3px rgba(126, 63, 0, 0.4) inset, 0 30px 35px -15px rgba(108, 36, 0, 0.31) inset;
+.bloque_pagina{
+	box-shadow:0 3px 0 3px rgba(126, 63, 0, 0.4) inset, 0 30px 35px -15px rgba(108, 36, 0, 0.31) inset;
 }
 
-.interior {
-	color: #000;
+.interior{
+	color:#000;
 }
 /*PIE*/
-#pie {
-	background: none repeat scroll 0 0 rgba(0, 0, 0, 0.1);
+#pie{
+	background:none repeat scroll 0 0 rgba(0, 0, 0, 0.1);
 }
 
-#pie, #pie a {
-	color: #000;
-	text-shadow: none;
+#pie, #pie a{
+	color:#000;
+	text-shadow:none;
 }
