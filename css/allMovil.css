@@ -56,24 +56,24 @@ h2{
 	margin-bottom:40px;
 }
 #formCalculador{
-	text-align: center;
+	text-align:center;
 }
 #formCalculador .entrada {
-	display: block;
-	margin: 0;
-	margin-left: 10%;
-	padding: 7px 0;
-	width: 80%;
+	display:block;
+	margin:0;
+	margin-left:10%;
+	padding:7px 0;
+	width:80%;
 	font-size:1em;
 }
 #formCalculador .boton {
-	display: block;
-	margin: 0;
-	padding: 5px;
-	margin-left: 25%;
-	margin-top: 10px;
-	width: 50%;
-	height: 50px;
+	display:block;
+	margin:0;
+	padding:5px;
+	margin-left:25%;
+	margin-top:10px;
+	width:50%;
+	height:50px;
 	font-size:1.4em;
 }
 .formRadio{
@@ -107,22 +107,22 @@ h2{
 
 #informaFalloRapido{
 	cursor:pointer;
-	background: #F00;
-	box-shadow: 0 0 5px 0 #000;
-	color: #FFF;
-	font-size: 12px;
-	padding: 3px;
-	margin: 10px 0;
+	background:#F00;
+	box-shadow:0 0 5px 0 #000;
+	color:#FFF;
+	font-size:12px;
+	padding:3px;
+	margin:10px 0;
 	display:inline-block;
 	
 }
 #informaFalloRapido:hover{
-	background: none repeat scroll 0 0 #800;
-	box-shadow: 0 0 8px 3px #f00;
+	background:none repeat scroll 0 0 #800;
+	box-shadow:0 0 8px 3px #f00;
 }
 
 #resultado {
-	text-align: center;
+	text-align:center;
 }
 .hx100 {}
 #resultado:empty{
@@ -133,26 +133,26 @@ h2{
 	font-style:normal;
 }
 #resultado .img {
-	background: none repeat scroll 0 0 #E3E3E3;
-	box-shadow: 0 0 10px 5px #343434;
-	width: 80%;
+	background:none repeat scroll 0 0 #E3E3E3;
+	box-shadow:0 0 10px 5px #343434;
+	width:80%;
 }
 
 #resultado .titulo_res {
-	padding: 40px 20px;
-	text-shadow: 1px 1px 2px #282828;
+	padding:40px 20px;
+	text-shadow:1px 1px 2px #282828;
 }
 #resultado #enlaces {
-	text-align: center;
+	text-align:center;
 }
 #resultado .instrucciones_descarga{
-	display: none;
+	display:none;
 }
 #resultado .publi_res {
-    left: 50%;
-    margin-left: -168px;
-    position: relative;
-    width: 336px;
+    left:50%;
+    margin-left:-168px;
+    position:relative;
+    width:336px;
 }
 .rtmpdump{
 	background:#502E70;
@@ -160,8 +160,8 @@ h2{
 	padding:10px;
 	border:#FFF solid 2px;
 	word-wrap:break-word;
-	margin: auto;
-	width: 60%;
+	margin:auto;
+	width:60%;
 }
 #resultado .titulo_res_mp3{
 	font-size:28px;
@@ -183,51 +183,51 @@ h2{
 	font-weight:900;
 }
 #resultado #enlaces iframe{
-	width: 100%;
+	width:100%;
 }
 #resultado #enlaces .TV, #resultado .enlace .TV {
-	display: none;
+	display:none;
 }
 
 #resultado #enlaces .Descarga, #resultado .enlace .Descarga {
-	background: url("/img/flecha.png") no-repeat scroll 5px 5px #ED8D2D;
-	border-radius: 10px;
-	color: #F8F8F8;
-	display: inline-block;
-	margin: auto;
-	padding: 5px 5px 5px 50px;
-	width: 60%;
+	background:url("/img/flecha.png") no-repeat scroll 5px 5px #ED8D2D;
+	border-radius:10px;
+	color:#F8F8F8;
+	display:inline-block;
+	margin:auto;
+	padding:5px 5px 5px 50px;
+	width:60%;
 }
 
 #resultado #enlaces .aviso_m3u8 {
-	background: none repeat scroll 0 0 #FF0000;
-	border: 1px solid #FFFFFF;
-	display: block;
-	font-size: 12px;
-	padding: 2px;
-	color: #FFF;
-	margin: auto;
-	width: 60%;
+	background:none repeat scroll 0 0 #F00;
+	border:1px solid #FFFFFF;
+	display:block;
+	font-size:12px;
+	padding:2px;
+	color:#FFF;
+	margin:auto;
+	width:60%;
 }
 #resultado #enlaces .aviso_m3u8 a {
-	font-size: 12px;
-	color: #FFF;
+	font-size:12px;
+	color:#FFF;
 }
 #resultado #enlaces .aviso_m3u8 a:hover {
-	color: #DDD;
+	color:#DDD;
 }
 
 #resultado .error_res {
-    background: none repeat scroll 0 0 #C11A00;
-    color: #FFDACC;
-    display: inline-block;
-    font-size: 22px;
-    line-height: 26px;
-    margin: auto;
-    padding: 20px 0;
-    position: relative;
-    text-align: center;
-    width: 60%;
+	background:none repeat scroll 0 0 #C11A00;
+	color:#FFDACC;
+	display:inline-block;
+	font-size:22px;
+	line-height:26px;
+	margin:auto;
+	padding:20px 0;
+	position:relative;
+	text-align:center;
+	width:60%;
 }
 .wrapp{
 	padding:0 20px;

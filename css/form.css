@@ -1,1 +1,100 @@
-/*FORMULARIO*/#form_dv #formCalculador {	position: relative;	width: 100%;	height: 100%;}.f1 {	height: 70px;}.f2 {	height: 46px;}.f3 {	height: 30px;}#form_dv #formCalculador .fondo_input_web {	border-radius: 5px 5px 5px 5px;	height: 100%;	width: 100%;}.negro #formCalculador .fondo_input_web {	background: none repeat scroll 0 0 #4F4F4F;}.blanco #formCalculador .fondo_input_web {	background: none repeat scroll 0 0 #F4F4F4;}#formCalculador .entrada {	background: none repeat scroll 0 0 transparent;	border: 0 none;	color: #B4B4B4;	font-family: Verdana;	height: 100%;	left: 5px;	position: absolute;	width: 90%;}.blanco #formCalculador .entrada:hover, .blanco #formCalculador .entrada:focus {		color: #6F6F6F;	outline: none;}.negro #formCalculador .entrada:hover, .negro #formCalculador .entrada:focus {		color: #DDDDDD;	outline: none;}.f1 #formCalculador .e {	font-size: 20px;}.f2 #formCalculador .e {	font-size: 18px;}.f3 #formCalculador .e {	font-size: 14px;}#form_dv #formCalculador .boton {	border: 0 none;	cursor: pointer;	position: absolute;}#form_dv #formCalculador .boton:hover, #form_dv #formCalculador .boton:active {	outline: none;}.f1 #formCalculador .b {	background: url("/img/b1.png") no-repeat scroll 0 0 transparent;	height: 57px;	right: 5px;	top: 6px;	width: 57px;}.f2 #formCalculador .b {	background: url("/img/b2.png") no-repeat scroll 0 0 transparent;	height: 36px;	right: 5px;	top: 5px;	width: 36px;}.f3 #formCalculador .b {	background: url("/img/b3.png") no-repeat scroll 0 0 transparent;	height: 21px;	right: 5px;	top: 4px;	width: 21px;}.f1 #formCalculador .b:hover {	background: url("/img/b1.png") no-repeat scroll -57px 0 transparent;}.f1 #formCalculador .b:active {	background: url("/img/b1.png") no-repeat scroll -114px 0 transparent;}.f2 #formCalculador .b:hover {	background: url("/img/b2.png") no-repeat scroll -36px 0 transparent;}.f2 #formCalculador .b:active {	background: url("/img/b2.png") no-repeat scroll -72px 0 transparent;}.f3 #formCalculador .b:hover {	background: url("/img/b3.png") no-repeat scroll -21px 0 transparent;}.f3 #formCalculador .b:active {	background: url("/img/b3.png") no-repeat scroll -42px 0 transparent;}
+/*FORMULARIO*/
+#form_dv #formCalculador{
+	position:relative;
+	width:100%;
+	height:100%;
+}
+.f1{
+	height:70px;
+}
+.f2 {
+	height:46px;
+}
+.f3{
+	height:30px;
+}
+#form_dv #formCalculador .fondo_input_web{
+	border-radius:5px 5px 5px 5px;
+	height:100%;
+	width:100%;
+}
+.negro #formCalculador .fondo_input_web{
+	background:none repeat scroll 0 0 #4F4F4F;
+}
+.blanco #formCalculador .fondo_input_web{
+	background:none repeat scroll 0 0 #F4F4F4;
+}
+#formCalculador .entrada{
+	background: none repeat scroll 0 0 transparent;
+	border:0 none;
+	color:#B4B4B4;
+	font-family:Verdana;
+	height:100%;
+	left:5px;
+	position:absolute;
+	width:90%;
+}
+.blanco #formCalculador .entrada:hover, .blanco #formCalculador .entrada:focus{
+	color:#6F6F6F;
+	outline:none;
+}
+.negro #formCalculador .entrada:hover, .negro #formCalculador .entrada:focus{
+	color:#DDD;
+	outline:none;
+}
+.f1 #formCalculador .e{
+	font-size:20px;
+}
+.f2 #formCalculador .e{
+	font-size:18px;
+}
+.f3 #formCalculador .e{
+	font-size:14px;
+}
+#form_dv #formCalculador .boton{
+	border:0 none;
+	cursor:pointer;
+	position:absolute;
+}
+#form_dv #formCalculador .boton:hover, #form_dv #formCalculador .boton:active{
+	outline:none;
+}
+.f1 #formCalculador .b{
+	background:url("/img/b1.png") no-repeat scroll 0 0 transparent;
+	height:57px;
+	right:5px;
+	top:6px;
+	width:57px;
+}
+.f2 #formCalculador .b{
+	background:url("/img/b2.png") no-repeat scroll 0 0 transparent;
+	height:36px;
+	right:5px;
+	top:5px;
+	width:36px;
+}
+.f3 #formCalculador .b{
+	background:url("/img/b3.png") no-repeat scroll 0 0 transparent;
+	height:21px;
+	right:5px;
+	top:4px;
+	width:21px;
+}
+.f1 #formCalculador .b:hover{
+	background:url("/img/b1.png") no-repeat scroll -57px 0 transparent;
+}
+.f1 #formCalculador .b:active{
+	background:url("/img/b1.png") no-repeat scroll -114px 0 transparent;
+}
+.f2 #formCalculador .b:hover{
+	background:url("/img/b2.png") no-repeat scroll -36px 0 transparent;
+}
+.f2 #formCalculador .b:active{
+	background:url("/img/b2.png") no-repeat scroll -72px 0 transparent;
+}
+.f3 #formCalculador .b:hover{
+	background:url("/img/b3.png") no-repeat scroll -21px 0 transparent;
+}
+.f3 #formCalculador .b:active{
+	background:url("/img/b3.png") no-repeat scroll -42px 0 transparent;
+}

@@ -5,9 +5,9 @@ body {
 	height: 100%;
 }
 #player {
-	background: none repeat scroll 0 0 #000000;
+	background: none repeat scroll 0 0 #000;
 	border: 0 solid #4F4E4E;
-	box-shadow: 0 0 30px 0 #000000, 0 0 200px 0 #858585;
+	box-shadow: 0 0 30px 0 #000, 0 0 200px 0 #858585;
 	display: block;
 	height: 70% !important;
 	left: 15%;

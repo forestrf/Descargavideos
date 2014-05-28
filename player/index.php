@@ -95,20 +95,20 @@ function limpiar($que){
 						 
 						backgroundColor: "transparent",
 						backgroundGradient: "none",
-						sliderColor: '#FFFFFF',
+						sliderColor: '#FFF',
 						sliderBorder: '1.5px solid rgba(160,160,160,0.7)',
 						volumeSliderColor: '#FFFFFF',
 						volumeBorder: '1.5px solid rgba(160,160,160,0.7)',
 	
-						timeColor: '#ffffff',
+						timeColor: '#fff',
 						durationColor: '#535353',
 	
 						tooltipColor: 'rgba(255, 255, 255, 0.7)',
-						tooltipTextColor: '#000000'
+						tooltipTextColor: '#000'
 					}
 				},
 				canvas: {
-					backgroundColor:'#000000',
+					backgroundColor:'#000',
 					backgroundGradient: [0, 0]
 				}
 			});

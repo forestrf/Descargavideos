@@ -46,7 +46,7 @@ input[type=radio]+label{
 	height:20px;
 	line-height:20px;
 	padding:0 0 0 25px;
-	cursor: pointer;
+	cursor:pointer;
 }
 input[type=radio]+label:hover{
 	background:url("/img/radio.png") no-repeat scroll 0 -20px transparent;
@@ -58,12 +58,12 @@ input[type=radio][checked]+label:hover{
 	background:url("/img/radio.png") no-repeat scroll 0 -60px transparent;
 }
 input[type="radio"] {
-	display: block;
-	float: left;
-	height: 0;
-	margin: 0 -100px 0;
-	padding: 0;
-	width: 20px;
+	display:block;
+	float:left;
+	height:0;
+	margin:0 -100px 0;
+	padding:0;
+	width:20px;
 }
 
 .todo{
@@ -193,13 +193,13 @@ input[type="radio"] {
 	outline:none;
 }
 .formRadio {
-	color: #FFFFFF;
-	display: inline-block;
-	height: 25px;
-	margin: 2px 0 0 20px;
-	overflow: hidden;
-	position: relative;
-	text-shadow: 1px 1px 3px #7A4E15;
+	color:#FFF;
+	display:inline-block;
+	height:25px;
+	margin:2px 0 0 20px;
+	overflow:hidden;
+	position:relative;
+	text-shadow:1px 1px 3px #7A4E15;
 }
 #ayuda1{
 	height:150px;
@@ -323,14 +323,14 @@ input[type="radio"] {
 	left:2px;
 }
 .cargando {
-	background-image: url("/img/loading.gif");
-	height: 144px;
-	left: 50%;
-	margin-left: -126px;
-	margin-top: -72px;
-	position: absolute;
-	top: 50%;
-	width: 252px;
+	background-image:url("/img/loading.gif");
+	height:144px;
+	left:50%;
+	margin-left:-126px;
+	margin-top:-72px;
+	position:absolute;
+	top:50%;
+	width:252px;
 }
 .hx100{
 	min-height:100%;
@@ -366,12 +366,12 @@ input[type="radio"] {
 	width:45%;
 }
 #resultado .img {
-	/*background-color: #343438;*/
-	background-image: url("/img/loading.gif");
-	background-position: center center;
-	background-repeat: no-repeat;
-	box-shadow: 0 0 10px 5px #73532B;
-	float: left;
+	/*background-color:#343438;*/
+	background-image:url("/img/loading.gif");
+	background-position:center center;
+	background-repeat:no-repeat;
+	box-shadow:0 0 10px 5px #73532B;
+	float:left;
 	/*max-width:500px;*/
 }
 #resultado .titulo_res{
@@ -555,7 +555,7 @@ input[type="radio"] {
 #resultado #enlaces .aviso_m3u8 a{
 	font-size:12px;
 	color:#FFF;
-	text-decoration: underline;
+	text-decoration:underline;
 }
 #resultado #enlaces .aviso_m3u8 a:hover{
 	color:#DDD;
@@ -919,7 +919,7 @@ ul.puntuado, ul.puntuado li{
 }
 
 .tit{
-	color:#000000;
+	color:#000;
 	font-weight:bolder;
 	margin-bottom:5px;
 	margin-top:20px;
@@ -1000,7 +1000,7 @@ ul.puntuado, ul.puntuado li{
 	
 	.menu{
 		border-bottom:0;
-		padding: 5px;
+		padding:5px;
 		position:relative;
 	}
 	.menu_hueco{
@@ -1048,7 +1048,7 @@ ul.puntuado, ul.puntuado li{
 		height:100%;
 	}
 	.esquina .interior_esquina div{
-		display: inline;
+		display:inline;
 	}
 	
 	#scroll_cadenas{
