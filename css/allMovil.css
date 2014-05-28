@@ -58,7 +58,7 @@ h2{
 #formCalculador{
 	text-align:center;
 }
-#formCalculador .entrada {
+#formCalculador .entrada{
 	display:block;
 	margin:0;
 	margin-left:10%;
@@ -66,7 +66,7 @@ h2{
 	width:80%;
 	font-size:1em;
 }
-#formCalculador .boton {
+#formCalculador .boton{
 	display:block;
 	margin:0;
 	padding:5px;
@@ -121,10 +121,10 @@ h2{
 	box-shadow:0 0 8px 3px #f00;
 }
 
-#resultado {
+#resultado{
 	text-align:center;
 }
-.hx100 {}
+.hx100{}
 #resultado:empty{
 	padding:0;
 }
@@ -132,23 +132,23 @@ h2{
 	text-shadow:none;
 	font-style:normal;
 }
-#resultado .img {
+#resultado .img{
 	background:none repeat scroll 0 0 #E3E3E3;
 	box-shadow:0 0 10px 5px #343434;
 	width:80%;
 }
 
-#resultado .titulo_res {
+#resultado .titulo_res{
 	padding:40px 20px;
 	text-shadow:1px 1px 2px #282828;
 }
-#resultado #enlaces {
+#resultado #enlaces{
 	text-align:center;
 }
 #resultado .instrucciones_descarga{
 	display:none;
 }
-#resultado .publi_res {
+#resultado .publi_res{
 	left:50%;
 	margin-left:-168px;
 	position:relative;
@@ -185,11 +185,11 @@ h2{
 #resultado #enlaces iframe{
 	width:100%;
 }
-#resultado #enlaces .TV, #resultado .enlace .TV {
+#resultado #enlaces .TV, #resultado .enlace .TV{
 	display:none;
 }
 
-#resultado #enlaces .Descarga, #resultado .enlace .Descarga {
+#resultado #enlaces .Descarga, #resultado .enlace .Descarga{
 	background:url("/img/flecha.png") no-repeat scroll 5px 5px #ED8D2D;
 	border-radius:10px;
 	color:#F8F8F8;
@@ -199,7 +199,7 @@ h2{
 	width:60%;
 }
 
-#resultado #enlaces .aviso_m3u8 {
+#resultado #enlaces .aviso_m3u8{
 	background:none repeat scroll 0 0 #F00;
 	border:1px solid #FFFFFF;
 	display:block;
@@ -209,15 +209,15 @@ h2{
 	margin:auto;
 	width:60%;
 }
-#resultado #enlaces .aviso_m3u8 a {
+#resultado #enlaces .aviso_m3u8 a{
 	font-size:12px;
 	color:#FFF;
 }
-#resultado #enlaces .aviso_m3u8 a:hover {
+#resultado #enlaces .aviso_m3u8 a:hover{
 	color:#DDD;
 }
 
-#resultado .error_res {
+#resultado .error_res{
 	background:none repeat scroll 0 0 #C11A00;
 	color:#FFDACC;
 	display:inline-block;
