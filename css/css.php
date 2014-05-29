@@ -1,6 +1,8 @@
 <?php
-$cssNombreAll		= "all.css";
-$cssNombreFuentes	= "font/fuentes.css";
+$cssNombreReset		= 'reset.min.css';
+
+$cssNombreAll		= 'all.min.css';
+$cssNombreFuentes	= 'font/fuentes.min.css';
 
 $cssTimeAll			= filemtime($cssNombreAll);
 $cssTiempoFuentes	= filemtime($cssNombreFuentes);
@@ -11,12 +13,12 @@ $etag = '"'.$cssTimeAll.$cssTiempoFuentes.'"';
 //print_r($_SERVER);
 
 
-$if_none_match = isset($_SERVER["HTTP_IF_NONE_MATCH"]) ? $_SERVER["HTTP_IF_NONE_MATCH"] : false;
+$if_none_match = isset($_SERVER['HTTP_IF_NONE_MATCH']) ? $_SERVER['HTTP_IF_NONE_MATCH'] : false;
 
-header("Content-Type: text/css; charset=UTF-8");
+header('Content-Type: text/css; charset=UTF-8');
 
 if($if_none_match && $if_none_match === $etag){
-	header("HTTP/1.1 304 Not Modified");
+	header('HTTP/1.1 304 Not Modified');
 	exit;
 }
 else{
@@ -24,13 +26,13 @@ else{
 	header('Cache-Control: public, max-age=604800');
 	header('Expires: '.gmdate('D, d M Y H:i:s \G\M\T', time() + 604800));
 	
-	$encoding = $_SERVER["HTTP_ACCEPT_ENCODING"];
+	$encoding = $_SERVER['HTTP_ACCEPT_ENCODING'];
 	
-	if(strpos($encoding, "gzip") >= 0){
+	if(strpos($encoding, 'gzip') >= 0){
 	
-		header("Content-Encoding: gzip");
+		header('Content-Encoding: gzip');
 		
-		$aComprimir = file_get_contents("reset.css");
+		$aComprimir = file_get_contents($cssNombreReset);
 		$aComprimir .= file_get_contents($cssNombreAll);
 		$aComprimir .= file_get_contents($cssNombreFuentes);
 		
@@ -38,7 +40,7 @@ else{
 		
 	}
 	else{
-		include "reset.css";
+		include $cssNombreReset;
 		include $cssNombreAll;
 		include $cssNombreFuentes;
 	}
