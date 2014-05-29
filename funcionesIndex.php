@@ -1,11 +1,11 @@
 <?php
 //Indicamos el idioma. Es la carpeta a usar dentro de idiomas.
-// define("IDIOMA", "castellano");
+// define('IDIOMA', 'castellano');
 function seteaIdioma(){
-	define("IDIOMA", "castellano");
+	define('IDIOMA', 'castellano');
 }
 
-function imprimePagina($cual="pag_principal"){
+function imprimePagina($cual='pag_principal'){
 	global $seccion;
 	if($cual == '')
 		$cual = 'pag_principal';
@@ -30,7 +30,7 @@ function imprimePagina($cual="pag_principal"){
 	}
 }
 
-function preparaPagina($cual="pag_principal"){
+function preparaPagina($cual='pag_principal'){
 	global $palabras_clave,$descripcion,$seccion;
 
 	if($cual == '')
