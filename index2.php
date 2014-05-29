@@ -142,8 +142,8 @@ function template($cual){
 
 
 <link href="/favicon.ico" rel="icon" type="image/x-icon"/>
-<link rel="stylesheet" href="/css/reset.css"/>
-<link rel="stylesheet" href="/css/all.css"/>
+<link rel="stylesheet" href="/css/reset.min.css"/>
+<link rel="stylesheet" href="/css/all.min.css"/>
 <link rel="stylesheet" href="/css/<?php echo $css_extra?>"/>
 <link href="/css/font/fuentes.css" rel="stylesheet" type="text/css"/>
 

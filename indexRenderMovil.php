@@ -19,7 +19,7 @@
 <meta name="viewport" content="width=device-width, user-scalable=no">
 
 <link href="/favicon.ico" rel="icon" type="image/x-icon"/>
-<link rel="stylesheet" href="/css/reset.css"/>
+<link rel="stylesheet" href="/css/reset.min.css"/>
 <link rel="stylesheet" href="/css/allMovil.css"/>
 <script type="text/javascript" src="/js/ReferrerKiller.js"></script>
 <link href="/css/font/fuentes.css" rel="stylesheet" type="text/css"/>
