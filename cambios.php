@@ -16,6 +16,20 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'29-Mayo-2014',
+array(
+	'fix:Telefe.com.'
+	)
+);
+
+$todos[]=array(
+'28-Mayo-2014',
+array(
+	'add:Dailymotion.com.'
+	)
+);
+
+$todos[]=array(
 '24-Mayo-2014',
 array(
 	'add:Youtube soporte para urls del tipo https://www.youtube.com/v/ID_VIDEO.'

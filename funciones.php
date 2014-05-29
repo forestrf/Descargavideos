@@ -230,6 +230,12 @@ function dbug($msg){
 ';
 }
 
+function dbug_(&$msg){
+	if(defined('DEBUG'))
+		echo $msg.'<br>
+';
+}
+
 function dbug_r(&$arr){
 	if(defined('DEBUG'))
 		print_r($arr);

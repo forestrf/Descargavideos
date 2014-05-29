@@ -121,6 +121,11 @@ array(
 );
 */
 
+/*
+Dominio(s)
+PHP(s) a incluir
+Función a llamar
+*/
 $cadenas=array(
 	array(
 		array('rtve.es'),
@@ -371,6 +376,11 @@ $cadenas=array(
 		array('allmyvideos.net'),
 		array('allmyvideosnet.php'),
 		'allmyvideosnet'
+	),
+	array(
+		array('dailymotion.com'),
+		array('dailymotioncom.php'),
+		'dailymotioncom'
 	)
 );
 
