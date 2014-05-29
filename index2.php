@@ -147,8 +147,7 @@ function template($cual){
 <link rel="stylesheet" href="/css/<?php echo $css_extra?>"/>
 <link href="/css/font/fuentes.css" rel="stylesheet" type="text/css"/>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script type="text/javascript" src="/js/all.min.js"></script>
+<script type="text/javascript" src="/js/funciones.min.js"></script>
 
 
 <script>
@@ -255,6 +254,26 @@ a:hover{
 		</div>
 	</div>
 </div>
+
+<script>
+	webI = document.getElementById('web');
+	function webF(e) {
+		var a = document.getElementById('ayuda1');
+		var b = document.getElementById('ayuda2');
+		if (webI.value.length > 0 || e == 1) {
+			qC(b, "invisible");
+			aC(a, "invisible");
+		} else {
+			aC(b, "invisible");
+			qC(a, "invisible");
+		}
+	}
+	webI.onblur = webF;
+	webF();
+	webI.onfocus = function() {
+		webF(1);
+	};
+</script>
 
 </body>
 </html>
