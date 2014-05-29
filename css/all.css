@@ -402,7 +402,6 @@ input[type="radio"] {
 .rtmpdump{
 	background-color:#502E70;
 	border:2px solid #FFF;
-	cursor:not-allowed;
 	font-size:15px;
 	font-style:italic;
 	font-weight:600;
