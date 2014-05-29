@@ -16,6 +16,13 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'29-Mayo-2014',
+array(
+	'fix:Telefe.com.'
+	)
+);
+
+$todos[]=array(
 '28-Mayo-2014',
 array(
 	'add:Dailymotion.com.'
