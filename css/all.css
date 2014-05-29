@@ -617,7 +617,6 @@ input[type="radio"] {
 	border-radius:15px;
 	color:#ED8D2D;
 	display:inline-block;
-	/*box-shadow:3px 3px 4px -3px #8F5419 inset;*/
 	font-family:Helvetica;
 	font-size:16px;
 	font-style:normal;
@@ -751,6 +750,7 @@ input[type="radio"] {
 #preloader{
 	/* la lista de imágenes a cargar */
 	background-image:url("/img/loading.gif");
+	background-image:url("/img/warning.png");
 	/*background-image:url(URL_imagen_2);*/
 	/*background-image:url(URL_imagen_3);*/
 	/* y ocultaremos todo */
