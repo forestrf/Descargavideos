@@ -1,9 +1,6 @@
-<div class="rtmpdump" id="rtmp<?php echo $R2['random_id'];?>">Este resultado RTMP requiere de RTMP-Downloader o Easy-Rtmpdump</div>
+<div class="rtmpdump" id="rtmp<?php echo $R2['random_id'];?>">Necesita el programa RTMP-Downloader o Easy-Rtmpdump para poder descargar el vídeo</div>
 <div class="aviso_m3u8" id="rtmp<?php echo $R2['random_id'];?>2">
-Windows: El programa RTMP-Downloader te permitirá descargar este vídeo facilmente. <a href="/lab#lab_rtmp-downloader">Descárgalo aquí</a>.<br>
-<a href="http://www.youtube.com/watch?v=Jb0mt2qRXGw">video-tutorial en youtube</a>.<p>
-Mac OS X y GNU/Linux: El programa Easy-Rtmpdump de PyDownTV te permitirá descargar este vídeo facilmente. <a href="http://www.pydowntv.com/ayuda#DescargarRtmpEasy">Descárgalo aquí</a>.<br>
-<a href="https://www.youtube.com/watch?v=Z-hsPc_Bb7A">video-tutorial en youtube</a>.
+<?php echo INTERIOR_AVISO_RTMP?>
 </div>
 
 <div class="fondo_negro" id="rtmp<?php echo $R2['random_id'];?>dfb" style="display:none"></div>

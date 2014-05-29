@@ -37,6 +37,7 @@ function preparaPagina($cual='pag_principal'){
 		$cual = 'pag_principal';
 	
 	include_once 'idiomas/'.IDIOMA.'/'.$cual.'.php';
+	include_once 'idiomas/'.IDIOMA.'/resultados.php';
 	
 	switch($cual){
 		case 'pag_principal':
