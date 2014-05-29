@@ -401,9 +401,11 @@ input[type="radio"] {
 }
 .rtmpdump{
 	background:#502E70;
+	border:2px solid #FFF;
 	font-size:15px;
+	font-style:italic;
+	font-weight:600;
 	padding:10px;
-	border:#FFF solid 2px;
 	word-wrap:break-word;
 }
 .rtmpdump > a{

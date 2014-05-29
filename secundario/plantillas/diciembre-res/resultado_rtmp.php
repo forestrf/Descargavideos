@@ -1,4 +1,4 @@
-<b><i><div class="rtmpdump" id="rtmp<?php echo $R2['random_id'];?>">rtmpdump -r "<?php echo $R2['dir_resultado_enc_rtmpdump'];?>" -o "<?php echo $R2['extension_res'];?>"</div></i></b>
+<div class="rtmpdump" id="rtmp<?php echo $R2['random_id'];?>">rtmpdump -r "<?php echo $R2['dir_resultado_enc_rtmpdump'];?>" -o "<?php echo $R2['extension_res'];?>"</div>
 <div class="aviso_m3u8" id="rtmp<?php echo $R2['random_id'];?>2">
 Windows: El programa RTMP-Downloader te permitirá descargar este vídeo facilmente. <a href="/lab#lab_rtmp-downloader">Descárgalo aquí</a>.<br>
 <a href="http://www.youtube.com/watch?v=Jb0mt2qRXGw">video-tutorial en youtube</a>.<p>
