@@ -1,4 +1,5 @@
 var D = document;
+D.g = D.getElementById;
 var ReferrerKiller = (function() {
 	PUB = {};
 	function escapeDoubleQuotes(str) {
@@ -121,11 +122,11 @@ function getFlashMovie(m) {
 }
 
 function lcs(a) {
-	D.getElementById('css2').href = "/css/modos/" + a + ".css";
+	D.g('css2').href = "/css/modos/" + a + ".css";
 }
 
 function mueveMenu() {
-	if ((D.body.scrollTop || D.documentElement.scrollTop) > D.getElementById('contenido').offsetTop) {
+	if ((D.body.scrollTop || D.documentElement.scrollTop) > D.g('contenido').offsetTop) {
 		if (!mueveMenu_m) {
 			aC(mueveMenu_f, "menu_fixed");
 			mueveMenu_m = 1;
