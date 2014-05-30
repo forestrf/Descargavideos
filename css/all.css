@@ -237,6 +237,7 @@ input[type="radio"] {
 }
 .letra_ayuda{
 	color:#FFF;
+	cursor:default;
 	font-family:'Sacramento',serif,Georgia;
 	font-size:30px;
 	text-shadow:0 0 1px #FFF;
