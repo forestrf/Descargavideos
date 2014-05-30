@@ -107,7 +107,7 @@ function getScript(url, callback, id) {
 	if (id)
 		script.id = id;
 	script.onreadystatechange = function() {
-		if (this.readyState === 'complete') {
+		if (this.readyState === 'complete' && callback) {
 			callback();
 		}
 	};
