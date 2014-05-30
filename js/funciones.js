@@ -124,7 +124,8 @@ function lcs(a) {
 }
 
 function mueveMenu() {
-	if ((document.body.scrollTop || document.documentElement.scrollTop) > document.getElementById('contenido').offsetTop) {
+	var d = document;
+	if ((d.body.scrollTop || d.documentElement.scrollTop) > d.getElementById('contenido').offsetTop) {
 		if (!mueveMenu_m) {
 			aC(mueveMenu_f, "menu_fixed");
 			mueveMenu_m = 1;
