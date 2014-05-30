@@ -47,6 +47,8 @@ var ReferrerKiller = (function() {
 		html = '<style>' + encodeURIComponent(styleInnerIframe) + '</style><a class="link" rel="noreferrer" href="' + escapeDoubleQuotes(encodeURIComponent(url)) + '" ' + objectToHtmlAttributes(anchorParams) + '>' + innerHTML + '</a>';
 		return htmlString(html, iframeAttributes, headExtra);
 	}
+
+
 	PUB.linkHtml = linkHtml;
 	return PUB;
 })();
@@ -70,7 +72,8 @@ function scrollTo(e, d) {
 		return;
 	var h = document.documentElement;
 	if (h.scrollTop === 0) {
-		var t = h.scrollTop; ++h.scrollTop;
+		var t = h.scrollTop;
+		++h.scrollTop;
 		h = t + 1 === h.scrollTop-- ? h : document.body;
 	}
 	if ( typeof e === "object")
@@ -92,16 +95,19 @@ function scrollToX(e, a, b, t, v, s) {
 		}, s);
 }
 
-function getScript(url, callback) {
+function getScript(url, callback, id) {
 	if ( typeof callback === "undefined")
 		callback = function() {
 		};
 	var script = document.createElement('script');
 	script.type = 'text/javascript';
 	script.src = url;
-	script.onload = callback;
+	if (callback)
+		script.onload = callback;
+	if (id)
+		script.id = id;
 	script.onreadystatechange = function() {
-		if (this.readyState == 'complete') {
+		if (this.readyState === 'complete') {
 			callback();
 		}
 	};
