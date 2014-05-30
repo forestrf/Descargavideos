@@ -16,6 +16,13 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'30-Mayo-2014',
+array(
+	'fix:Dailymotion en formato mp4 en lugar de flv.'
+	)
+);
+
+$todos[]=array(
 '29-Mayo-2014',
 array(
 	'fix:Telefe.com.'
