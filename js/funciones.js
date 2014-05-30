@@ -1,3 +1,4 @@
+var D = document;
 var ReferrerKiller = (function() {
 	PUB = {};
 	function escapeDoubleQuotes(str) {
@@ -54,7 +55,7 @@ var ReferrerKiller = (function() {
 })();
 
 function ready(f) {
-	/in/.test(document.readyState) ? setTimeout(function() {
+	/in/.test(D.readyState) ? setTimeout(function() {
 		ready(f);
 	}, 99) : f();
 }
@@ -70,11 +71,11 @@ function aC(e, c) {
 function scrollTo(e, d) {
 	if (d < 0)
 		return;
-	var h = document.documentElement;
+	var h = D.documentElement;
 	if (h.scrollTop === 0) {
 		var t = h.scrollTop;
 		++h.scrollTop;
-		h = t + 1 === h.scrollTop-- ? h : document.body;
+		h = t + 1 === h.scrollTop-- ? h : D.body;
 	}
 	if ( typeof e === "object")
 		e = e.offsetTop;
@@ -99,7 +100,7 @@ function getScript(url, callback, id) {
 	if ( typeof callback === "undefined")
 		callback = function() {
 		};
-	var script = document.createElement('script');
+	var script = D.createElement('script');
 	script.type = 'text/javascript';
 	script.src = url;
 	if (callback)
@@ -111,21 +112,20 @@ function getScript(url, callback, id) {
 			callback();
 		}
 	};
-	document.getElementsByTagName('head')[0].appendChild(script);
+	D.getElementsByTagName('head')[0].appendChild(script);
 }
 
 function getFlashMovie(m) {
 	var isIE = navigator.appName.indexOf("Microsoft") != -1;
-	return (isIE) ? window[m] : document[m];
+	return (isIE) ? window[m] : D[m];
 }
 
 function lcs(a) {
-	document.getElementById('css2').href = "/css/modos/" + a + ".css";
+	D.getElementById('css2').href = "/css/modos/" + a + ".css";
 }
 
 function mueveMenu() {
-	var d = document;
-	if ((d.body.scrollTop || d.documentElement.scrollTop) > d.getElementById('contenido').offsetTop) {
+	if ((D.body.scrollTop || D.documentElement.scrollTop) > D.getElementById('contenido').offsetTop) {
 		if (!mueveMenu_m) {
 			aC(mueveMenu_f, "menu_fixed");
 			mueveMenu_m = 1;
