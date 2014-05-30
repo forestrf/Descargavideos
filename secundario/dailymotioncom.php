@@ -57,7 +57,8 @@ function dailymotioncom(){
 
 function parseaTemplateDailyMotion($url){
 	return strtr($url, array(
-		'.mnft'=>'.flv',
+		//'.mnft'=>'.flv',
+		'.mnft'=>'.mp4',
 		entre1y2($url,'http://','/sec')=>'vid2.ec.dmcdn.net'
 	));
 }
