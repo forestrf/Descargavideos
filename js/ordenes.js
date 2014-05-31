@@ -35,9 +35,9 @@ webI.onfocus = function() {
 
 D.g("formCalculador").onsubmit = function(e) {
 	var a = D.g('resultado');
-	aC(a, "hx100");
-	a.innerHTML = '<div class="cargando"></div>';
 	scrollTo(a, 500);
+	aC(a, "displaynone");
+	qC(D.g('cargando'), "displaynone");
 };
 window.onscroll = function(e) {
 	mueveMenu();

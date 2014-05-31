@@ -111,6 +111,7 @@ var css_user='<?php echo $css_modo?>';
 	<?php }else{ ?>
 		<div id="resultado"></div>
 	<?php } ?>
+	<div id="cargando" class="cargando displaynone"></div>
 
 	<div id="contenido">
 		<div class="menu_hueco">
