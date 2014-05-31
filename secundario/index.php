@@ -540,14 +540,21 @@ function averiguaCadena($web){
 				//Cadena encontrada
 				dbug($cadenas[$i][0][$j]);
 				$Cadena_elegida=$cadenas[$i][0][$j];
-				//Includes
-				for($k=0;$k<count($cadenas[$i][1]);$k++)
-					include_once $cadenas[$i][1][$k];
-				//Lanzar función cadena
-				dbug('Lanzando función cadena');
-				dbug('--------------------------------------');
-				$cadenas[$i][2]();
-				return true;
+				if(url_exists_full($web, true)){
+					dbug('enlace correcto (se pudo abrir la URL)=>'.$enlace);
+					//Includes
+					for($k=0;$k<count($cadenas[$i][1]);$k++)
+						include_once $cadenas[$i][1][$k];
+					//Lanzar función cadena
+					dbug('Lanzando función cadena');
+					dbug('--------------------------------------');
+					$cadenas[$i][2]();
+					return true;
+				}
+				else{
+					dbug('fallo al abrir la url=>'.$enlace);
+					return false;
+				}
 			}
 		}
 	return false;
@@ -555,6 +562,10 @@ function averiguaCadena($web){
 
 function validar_enlace($link){
 	global $web;
+
+	if(enString($link, 'http://www.descargavideos.tv')){
+		return false;
+	}
 
 	// Quitar espacios y pasarlos a guiones (-) en rtpa.es
 	if(enString($link, 'rtpa.es')){
@@ -595,15 +606,9 @@ function validar_enlace($link){
 		dbug('enlace bien escrito (estructura de un enlace)');
 
 		// url_exists_full descarga la web para comprobar si es un enlace válido. De paso, guarda en web_descargada el resultado, para no tener que re-descargarlo inúltilmente
-		if(url_exists_full($enlace, true)){
-			$web = $enlace;
-			dbug('enlace correcto (es una web existente)=>'.$enlace);
-			return true;
-		}
-		else{
-			dbug('fallo al abrir la url=>'.$enlace);
-			return false;
-		}
+		$web = $enlace;
+		dbug('enlace correcto (pregmatch válido)=>'.$enlace);
+		return true;
 	}
 	else{
 		dbug('fallo en pregmatch de la url (enlace mal construido. No es un enlace)');
