@@ -19,22 +19,12 @@
 
 <link href="/favicon.ico" rel="icon" type="image/x-icon"/>
 <link rel="stylesheet" href="/css/cssfull.css"/>
-<link rel="stylesheet" href="/css/modos/<?php echo $css_modo?>.css"/>
+<link rel="stylesheet" href="/css/modos/<?php echo $css_modo?>.css" id="css2"/>
+<script src="/js/funciones.min.js"></script>
 
+<script>
+var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-29252510-1"]);_gaq.push(["_trackPageview"]);(function(){var ga=document.createElement("script");ga.async=true;ga.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga,s);})();
 
-<script type="text/javascript">
-var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-29252510-1"]);_gaq.push(["_trackPageview"]);(function(){var ga=document.createElement("script");ga.type="text/javascript";ga.async=true;ga.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga,s);})();
-</script>
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script type="text/javascript" src="/js/all.js"></script>
-
-<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
-<script type="text/javascript">
-{lang: 'es'}
-</script>
-
-<script type="text/javascript">
 var css_user='<?php echo $css_modo?>';
 </script>
 
@@ -45,7 +35,6 @@ var css_user='<?php echo $css_modo?>';
 
 <!--fb (si no se pone aquí mueve todo)-->
 <div id="fb-root"></div>
-<script type="text/javascript">(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="//connect.facebook.net/es_ES/all.js#xfbml=1&appId=235486993147003";fjs.parentNode.insertBefore(js, fjs);}(document,'script','facebook-jssdk'));</script>
 
 
 <div class="todo">
@@ -55,16 +44,16 @@ var css_user='<?php echo $css_modo?>';
 
 		<div id="esquina" class="esquina">
 			<div class="interior_esquina"><div>
-				<a href="/cambiaCabecera.php?modo=1" onmouseover="lcss(1,css_user)" onmouseout="rcss(1,css_user)"><span class="m1 img"></span></a>
-				<a href="/cambiaCabecera.php?modo=2" onmouseover="lcss(2,css_user)" onmouseout="rcss(2,css_user)"><span class="m2 img"></span></a>
-				<a href="/cambiaCabecera.php?modo=3" onmouseover="lcss(3,css_user)" onmouseout="rcss(3,css_user)"><span class="m3 img"></span></a>
-				<a href="/cambiaCabecera.php?modo=4" onmouseover="lcss(4,css_user)" onmouseout="rcss(4,css_user)"><span class="m4 img"></span></a></div><div>
-				<a href="/cambiaCabecera.php?modo=5" onmouseover="lcss(5,css_user)" onmouseout="rcss(5,css_user)"><span class="m5 img"></span></a>
-				<a href="/cambiaCabecera.php?modo=6" onmouseover="lcss(6,css_user)" onmouseout="rcss(6,css_user)"><span class="m6 img"></span></a>
-				<a href="/cambiaCabecera.php?modo=7" onmouseover="lcss(7,css_user)" onmouseout="rcss(7,css_user)"><span class="m7 img"></span></a></div><div>
-				<a href="/cambiaCabecera.php?modo=8" onmouseover="lcss(8,css_user)" onmouseout="rcss(8,css_user)"><span class="m8 img"></span></a>
-				<a href="/cambiaCabecera.php?modo=9" onmouseover="lcss(9,css_user)" onmouseout="rcss(9,css_user)"><span class="m9 img"></span></a></div><div>
-				<a href="/cambiaCabecera.php?modo=10" onmouseover="lcss(10,css_user)" onmouseout="rcss(10,css_user)"><span class="m10 img"></span></a>
+				<a href="/cambiaCabecera.php?modo=1"  onmouseover="lcs(1)"  onmouseout="lcs(css_user)"><span class="m1 img"></span></a>
+				<a href="/cambiaCabecera.php?modo=2"  onmouseover="lcs(2)"  onmouseout="lcs(css_user)"><span class="m2 img"></span></a>
+				<a href="/cambiaCabecera.php?modo=3"  onmouseover="lcs(3)"  onmouseout="lcs(css_user)"><span class="m3 img"></span></a>
+				<a href="/cambiaCabecera.php?modo=4"  onmouseover="lcs(4)"  onmouseout="lcs(css_user)"><span class="m4 img"></span></a></div><div>
+				<a href="/cambiaCabecera.php?modo=5"  onmouseover="lcs(5)"  onmouseout="lcs(css_user)"><span class="m5 img"></span></a>
+				<a href="/cambiaCabecera.php?modo=6"  onmouseover="lcs(6)"  onmouseout="lcs(css_user)"><span class="m6 img"></span></a>
+				<a href="/cambiaCabecera.php?modo=7"  onmouseover="lcs(7)"  onmouseout="lcs(css_user)"><span class="m7 img"></span></a></div><div>
+				<a href="/cambiaCabecera.php?modo=8"  onmouseover="lcs(8)"  onmouseout="lcs(css_user)"><span class="m8 img"></span></a>
+				<a href="/cambiaCabecera.php?modo=9"  onmouseover="lcs(9)"  onmouseout="lcs(css_user)"><span class="m9 img"></span></a></div><div>
+				<a href="/cambiaCabecera.php?modo=10" onmouseover="lcs(10)" onmouseout="lcs(css_user)"><span class="m10 img"></span></a>
 			</div></div>
 		</div>
 
@@ -99,26 +88,12 @@ var css_user='<?php echo $css_modo?>';
 
 		<div class="stats">
 			<div id="histats_counter"></div>
-			<script type="text/javascript">var _Hasync= _Hasync|| [];
-			_Hasync.push(['Histats.startgif', '1,2419951,4,10045,"div#histatsC {position: absolute;top:0px;left:0px;}body>div#histatsC {position: fixed;}"']);
-			_Hasync.push(['Histats.fasi', '1']);
-			_Hasync.push(['Histats.track_hits', '']);
-			(function() {
-			var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
-			hs.src = ('http://s10.histats.com/js15_gif_as.js');
-			(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
-			})();</script>
-			<noscript><a href="http://www.histats.com" alt="contadores" target="_blank" ><div id="histatsC"><img border="0" src="http://s4is.histats.com/stats/i/2419951.gif?2419951&103"></div></a>
-			</noscript>
 		</div>
 		<div class="social">
-			<!--tw, fb, +1-->
 			<div class="elem">
-				<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.descargavideos.tv" data-text="Descarga vídeos de RTVE, Antena3, Mitele, TV3 y muchas más." data-via="descargavids" data-lang="es" data-count="vertical">Tweet</a>
-				<script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+				<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.descargavideos.tv" data-text="Descarga vídeos de RTVE, Antena3, Mitele, TV3 y muchas más." data-via="descargavids" data-lang="es" data-count="vertical"></a>
 			</div>
 
-			<script type="text/javascript">(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="//connect.facebook.net/es_ES/all.js#xfbml=1&appId=235486993147003";fjs.parentNode.insertBefore(js,fjs);}(document,'script','facebook-jssdk'));</script>
 			<div class="elem">
 				<div class="fb-like" data-href="https://www.facebook.com/descargavids" data-width="450" data-layout="box_count" data-show-faces="false" data-send="false"></div>
 			</div>
@@ -132,11 +107,11 @@ var css_user='<?php echo $css_modo?>';
 	<?php if(defined('HAY_RESULTADO')){ ?>
 		<div id="resultado" class="hx100">
 			<?php include_once 'plantillaResultado.php';?>
-			<script type="text/javascript">$.scrollTo("#resultado",500);</script>
 		</div>
 	<?php }else{ ?>
 		<div id="resultado"></div>
 	<?php } ?>
+	<div id="cargando" class="cargando displaynone"></div>
 
 	<div id="contenido">
 		<div class="menu_hueco">
@@ -175,24 +150,31 @@ var css_user='<?php echo $css_modo?>';
 
 
 
+<script src="/js/ordenes.min.js"></script>
+
+
+
 <script>
-setModoPic(<?php echo $modo?>);
+setModoPic('<?php echo $modo?>');
 function setModoPic(d){if(d==1){document.getElementById('web').placeholder="<?php echo TXT_PEGA_URL_VIDEO?>";document.getElementById('ayuda1txt').innerHTML="<?php echo TXT_COPIA_URL_VIDEO?>";document.getElementById('ayuda2txt').innerHTML="<?php echo TXT_BUSCA_URL_VIDEO?>";}else{document.getElementById('web').placeholder="<?php echo TXT_BUSCAR_CANCION?>";document.getElementById('ayuda1txt').innerHTML="<?php echo TXT_ESCRIBE_NOMBRE_CANCION?>";document.getElementById('ayuda2txt').innerHTML="<?php echo TXT_BUSCA_CANCION?>";}}
+
+var _Hasync=_Hasync||[];_Hasync.push(['Histats.startgif','1,2419951,4,10045,"div#histatsC{position:absolute;top:0px;left:0px;}body>div#histatsC{position:fixed;}"']);_Hasync.push(['Histats.fasi','1']);_Hasync.push(['Histats.track_hits','']);(function(){var hs=document.createElement('script');hs.async=true;hs.src=('http://s10.histats.com/js15_gif_as.js');(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(hs);})();
+
+setTimeout(function(){
+	getScript("https://connect.facebook.net/es_ES/all.js#xfbml=1&appId=235486993147003",null,'facebook-jssdk');
+	getScript("https://platform.twitter.com/widgets.js",null,"twitter-wjs");
+	getScript("https://apis.google.com/js/plusone.js");
+},2500);
+
+<?php if(defined('HAY_RESULTADO')){ ?>
+	scrollTo(document.getElementById("resultado"),20);
+<?php } ?>
+
+_gaq.push(["_trackEvent","Interfaz","En uso","<?php echo $css_modo_cookie;?>"]);
+var adblock=true;
 </script>
-
-
-
-
-
-<script type="text/javascript">_gaq.push(["_trackEvent","Interfaz","En uso","<?php echo $css_modo_cookie;?>"]);</script>
-
-<script type="text/javascript">var adblock=true;</script>
-<script type="text/javascript" src="/advertisement.js"></script>
-<script type="text/javascript">_gaq.push(["_trackEvent","Adblock","Estado",adblock?"Con Adblock":"Sin Adblock"]);</script>
-
-
-
-
+<script src="/advertisement.js"></script>
+<script>_gaq.push(["_trackEvent","Adblock","Estado",adblock?"Con Adblock":"Sin Adblock"]);</script>
 
 
 

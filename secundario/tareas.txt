@@ -11,13 +11,3 @@ http://www.vidspot.net/zn4vs4f49axk
 
 
 http://wilbi.net/kh771h36hao2
-
-
-
-
-
-
-
-http://localhost/gkplugins_streamcloudeu/
-
-De alguna forma, llama el get y el post de streamcloud con host de streamcloud, como si aprovechara una vulnerabilida de la web. O del flash. Prioridad decompilar plugin y proxy

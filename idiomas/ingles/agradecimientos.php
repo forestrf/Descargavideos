@@ -1,7 +1,7 @@
 <?php
-define("SECCION_AGRADECIMIENTOS","Thanks");
+define('SECCION_AGRADECIMIENTOS','Thanks');
 
-define("TXT_AGRADECIMIENTOS_FULL",'<a target="_blank" href="http://www.carballude.es/blog/2011/11/17/descargar-videos-de-telecinco-mitele-es-de-forma-manual/">Carballude</a>: Thanks to the post of the blog I was able to write the first script of the web, the first and only thing that I had on the web.
+define('TXT_AGRADECIMIENTOS_FULL','<a target="_blank" href="http://www.carballude.es/blog/2011/11/17/descargar-videos-de-telecinco-mitele-es-de-forma-manual/">Carballude</a>: Thanks to the post of the blog I was able to write the first script of the web, the first and only thing that I had on the web.
 	<p><a target="_blank" href="http://zahurda.blogspot.com/2011/01/descargar-videos-de-rtvees-2011.html">Zahurda</a>: Thanks to the post of the blog I was abe to write the first script of RTVE. Unfortunately RTVE changed his functionality later...
 	<p><a target="_blank" href="http://descargavid.blogspot.com.es/2012/09/solucion-para-mitele.html?showComment=1355742944937#c7315317042485455375">Javiero</a> (<a  target="_blank" href="http://eljaviero.com/descargarvideosdelasexta/">Web</a>): The links of Mitele only worked for a few seconds (about 5 seconds). His method to show the links solved the problem with the link\'s time limit.
 	<p>AlguiennFTV (<a target="_blank" href="http://www.elbarco.tk">Web</a>): Showed how to make a RTMP url that allows the download of the videos in HD and in one link.

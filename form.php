@@ -59,8 +59,8 @@ function my_is_integer($val){
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" href="http://www.<?php echo Dominio?>/css/form.css" />
-<link rel="stylesheet" href="http://www.<?php echo Dominio?>/css/reset.css" />
+<link rel="stylesheet" href="http://www.<?php echo Dominio?>/css/form.min.css" />
+<link rel="stylesheet" href="http://www.<?php echo Dominio?>/css/reset.min.css" />
 </head>
 <body>
 <!--Formulario-->

@@ -1,3 +1,3 @@
 <?php
-define("SECCION_FAQ","Preguntas frecuentes");
+define('SECCION_FAQ','Preguntas frecuentes');
 ?>

@@ -19,9 +19,8 @@
 <meta name="viewport" content="width=device-width, user-scalable=no">
 
 <link href="/favicon.ico" rel="icon" type="image/x-icon"/>
-<link rel="stylesheet" href="/css/reset.css"/>
+<link rel="stylesheet" href="/css/reset.min.css"/>
 <link rel="stylesheet" href="/css/allMovil.css"/>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script type="text/javascript" src="/js/ReferrerKiller.js"></script>
 <link href="/css/font/fuentes.css" rel="stylesheet" type="text/css"/>
 
@@ -80,6 +79,7 @@ var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-29252510-1"]);_gaq.push(["_trackP
 <?php if(defined('HAY_RESULTADO')){ ?>
 	<div id="resultado" class="hx100">
 		<?php include_once 'plantillaResultado.php';?>
+		<script>scrollTo(document.getElementById("resultado"),20);</script>
 	</div>
 <?php }else{ ?>
 	<div id="resultado"></div>

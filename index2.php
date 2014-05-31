@@ -142,13 +142,12 @@ function template($cual){
 
 
 <link href="/favicon.ico" rel="icon" type="image/x-icon"/>
-<link rel="stylesheet" href="/css/reset.css"/>
-<link rel="stylesheet" href="/css/all.css"/>
+<link rel="stylesheet" href="/css/reset.min.css"/>
+<link rel="stylesheet" href="/css/all.min.css"/>
 <link rel="stylesheet" href="/css/<?php echo $css_extra?>"/>
 <link href="/css/font/fuentes.css" rel="stylesheet" type="text/css"/>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script type="text/javascript" src="/js/all.js"></script>
+<script type="text/javascript" src="/js/funciones.min.js"></script>
 
 
 <script>
@@ -221,14 +220,12 @@ a:hover{
 					Busca el enlace del vídeo
 				</div>
 			</form>
-			
-			<script src="/js/mod1.js"></script>
 		</div>
 
 		<div class="stats">
 			<div id="histats_counter"></div>
 			<script type="text/javascript">var _Hasync= _Hasync|| [];
-			_Hasync.push(['Histats.startgif', '1,2419951,4,10045,"div#histatsC {position: absolute;top:0px;left:0px;}body>div#histatsC {position: fixed;}"']);
+			_Hasync.push(['Histats.startgif', '1,2419951,4,10045,"div#histatsC {position: absolute;top:0;left:0;}body>div#histatsC {position: fixed;}"']);
 			_Hasync.push(['Histats.fasi', '1']);
 			_Hasync.push(['Histats.track_hits', '']);
 			(function() {
@@ -257,6 +254,26 @@ a:hover{
 		</div>
 	</div>
 </div>
+
+<script>
+	webI = document.getElementById('web');
+	function webF(e) {
+		var a = document.getElementById('ayuda1');
+		var b = document.getElementById('ayuda2');
+		if (webI.value.length > 0 || e == 1) {
+			qC(b, "invisible");
+			aC(a, "invisible");
+		} else {
+			aC(b, "invisible");
+			qC(a, "invisible");
+		}
+	}
+	webI.onblur = webF;
+	webF();
+	webI.onfocus = function() {
+		webF(1);
+	};
+</script>
 
 </body>
 </html>

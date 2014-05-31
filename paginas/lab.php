@@ -51,16 +51,16 @@
 </div>
 <div class="respuesta inline-block">
 	<div id="fondos_opciones">
-		<a href="/cambiaCabecera.php?modo=1" onmouseover="lcss(1,css_user)" onmouseout="rcss(1,css_user)"><img src="/img/prevs_modos/1.jpg"></a>
-		<a href="/cambiaCabecera.php?modo=2" onmouseover="lcss(2,css_user)" onmouseout="rcss(2,css_user)"><img src="/img/prevs_modos/2.jpg"></a>
-		<a href="/cambiaCabecera.php?modo=3" onmouseover="lcss(3,css_user)" onmouseout="rcss(3,css_user)"><img src="/img/prevs_modos/3.jpg"></a>
-		<a href="/cambiaCabecera.php?modo=4" onmouseover="lcss(4,css_user)" onmouseout="rcss(4,css_user)"><img src="/img/prevs_modos/4.jpg"></a>
-		<a href="/cambiaCabecera.php?modo=5" onmouseover="lcss(5,css_user)" onmouseout="rcss(5,css_user)"><img src="/img/prevs_modos/5.jpg"></a>
-		<a href="/cambiaCabecera.php?modo=6" onmouseover="lcss(6,css_user)" onmouseout="rcss(6,css_user)"><img src="/img/prevs_modos/6.jpg"></a>
-		<a href="/cambiaCabecera.php?modo=7" onmouseover="lcss(7,css_user)" onmouseout="rcss(7,css_user)"><img src="/img/prevs_modos/7.jpg"></a>
-		<a href="/cambiaCabecera.php?modo=8" onmouseover="lcss(8,css_user)" onmouseout="rcss(8,css_user)"><img src="/img/prevs_modos/8.jpg"></a>
-		<a href="/cambiaCabecera.php?modo=9" onmouseover="lcss(9,css_user)" onmouseout="rcss(9,css_user)"><img src="/img/prevs_modos/9.jpg"></a>
-		<a href="/cambiaCabecera.php?modo=10" onmouseover="lcss(10,css_user)" onmouseout="rcss(10,css_user)"><img src="/img/prevs_modos/10.jpg"></a>
+		<a href="/cambiaCabecera.php?modo=1"  onmouseover="lcs(1)"  onmouseout="lcs(css_user)"><img src="/img/prevs_modos/1.jpg"></a>
+		<a href="/cambiaCabecera.php?modo=2"  onmouseover="lcs(2)"  onmouseout="lcs(css_user)"><img src="/img/prevs_modos/2.jpg"></a>
+		<a href="/cambiaCabecera.php?modo=3"  onmouseover="lcs(3)"  onmouseout="lcs(css_user)"><img src="/img/prevs_modos/3.jpg"></a>
+		<a href="/cambiaCabecera.php?modo=4"  onmouseover="lcs(4)"  onmouseout="lcs(css_user)"><img src="/img/prevs_modos/4.jpg"></a>
+		<a href="/cambiaCabecera.php?modo=5"  onmouseover="lcs(5)"  onmouseout="lcs(css_user)"><img src="/img/prevs_modos/5.jpg"></a>
+		<a href="/cambiaCabecera.php?modo=6"  onmouseover="lcs(6)"  onmouseout="lcs(css_user)"><img src="/img/prevs_modos/6.jpg"></a>
+		<a href="/cambiaCabecera.php?modo=7"  onmouseover="lcs(7)"  onmouseout="lcs(css_user)"><img src="/img/prevs_modos/7.jpg"></a>
+		<a href="/cambiaCabecera.php?modo=8"  onmouseover="lcs(8)"  onmouseout="lcs(css_user)"><img src="/img/prevs_modos/8.jpg"></a>
+		<a href="/cambiaCabecera.php?modo=9"  onmouseover="lcs(9)"  onmouseout="lcs(css_user)"><img src="/img/prevs_modos/9.jpg"></a>
+		<a href="/cambiaCabecera.php?modo=10" onmouseover="lcs(10)" onmouseout="lcs(css_user)"><img src="/img/prevs_modos/10.jpg"></a>
 	</div>
 </div>
 

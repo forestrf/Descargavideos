@@ -6,7 +6,7 @@ if(isset($_GET['debug']) || isset($_COOKIE['debug'])){
 	ini_set('display_errors',1);
 	ini_set('display_startup_errors',1);
 	error_reporting(-1);
-	define("DEBUG",true);
+	define('DEBUG',true);
 }
 else{
 	error_reporting(0);
@@ -14,7 +14,7 @@ else{
 	
 
 
-$encoding = $_SERVER["HTTP_ACCEPT_ENCODING"];
+$encoding = $_SERVER['HTTP_ACCEPT_ENCODING'];
 
 if(strpos($encoding, "gzip") >= 0){
 	ob_start("ob_gzhandler");
@@ -36,7 +36,7 @@ dbug('<pre>');
 
 
 //Indicamos el idioma. Es la carpeta a usar dentro de idiomas.
-// define("IDIOMA", "castellano");
+// define('IDIOMA', 'castellano');
 seteaIdioma();
 
 
@@ -84,7 +84,7 @@ function esPagina($a){
 
 //para el gestor. No será usado porque el gestor accede directamente a los servidores secundarios
 //Ahora ya no hay server secundarios. Sí es utilizado
-define('MODO_API', isset($_REQUEST["modoApi"]));
+define('MODO_API', isset($_REQUEST['modoApi']));
 
 
 
@@ -105,13 +105,13 @@ páginas ($pag):
 
 
 //no hay petición de ninguna web
-$modo = "1";
+$modo = 1;
 if(isset($web)){
-	$modo=isset($_REQUEST['modo'])?$_REQUEST['modo']:"1";
+	$modo=isset($_REQUEST['modo'])?$_REQUEST['modo']:1;
 	//Aparenta ser una url. Método del formulario de copia/pega o método antiguo o el pavo tiene la web antigua en cache...
 
 	$aPaloSeco=1;
-	chdir("secundario");
+	chdir('secundario');
 	require_once 'index.php';
 	
 	chdir("..");
@@ -131,14 +131,12 @@ include_once 'idiomas/'.IDIOMA.'/index.php';
 
 
 //Leer Cookie para saber el modo para el css
-$css_modo_cookie = isset($_COOKIE["Estilo_modo"]) ? $_COOKIE["Estilo_modo"] : "default";
+$css_modo_cookie = isset($_COOKIE['Estilo_modo']) ? $_COOKIE['Estilo_modo'] : 'defaul';
 
 if(!is_numeric($css_modo_cookie) || $css_modo_cookie<1 || $css_modo_cookie>10)
-	$css_modo_cookie="default";
+	$css_modo_cookie='default';
 
-$css_modo = $css_modo_cookie=="default" ? "2" : $css_modo_cookie;
-
-
+$css_modo = $css_modo_cookie=='default' ? 2 : $css_modo_cookie;
 
 
 
@@ -146,7 +144,9 @@ $css_modo = $css_modo_cookie=="default" ? "2" : $css_modo_cookie;
 
 
 
-$cookie_modoEscritorio = isset($_COOKIE["modoEscritorio"])?true:false;
+
+
+$cookie_modoEscritorio = isset($_COOKIE['modoEscritorio'])?true:false;
 if($cookie_modoEscritorio){
 	$is_mobile = false;
 }

@@ -1,3 +1,3 @@
 <?php
-define("SECCION_CHANGELOG","Changelog");
+define('SECCION_CHANGELOG','Changelog');
 ?>

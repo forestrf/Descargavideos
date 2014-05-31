@@ -1,6 +1,6 @@
 @font-face {
-  font-family: 'Sacramento';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Sacramento'), local('Sacramento-Regular'), url('/css/font/Sacramento.woff') format('woff');
+	font-family:'Sacramento';
+	font-style:normal;
+	font-weight:400;
+	src:local('Sacramento'), local('Sacramento-Regular'), url('/css/font/Sacramento.woff') format('woff');
 }

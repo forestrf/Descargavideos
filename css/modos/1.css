@@ -1,47 +1,47 @@
-body {
-	background: url("/img/backs/1.jpg") repeat scroll 0 0 #E6CB9E;
+body{
+	background:url("/img/backs/1.jpg") repeat scroll 0 0 #E6CB9E;
 }
 
-a {
-	color: #0064FF;
-	text-shadow: 1px 1px 0 #FFF;
+a{
+	color:#0064FF;
+	text-shadow:1px 1px 0 #FFF;
 }
 
-a:hover {
-	text-shadow: 1px 1px 0 #000;
+a:hover{
+	text-shadow:1px 1px 0 #000;
 }
 /*RESULTADOS*/
-#resultado {
-	color: #FFF;
+#resultado{
+	color:#FFF;
 }
 /*RESULTADOS INTERIOR*/
-#resultado a, #resultado a:hover {
-	text-shadow: none;
+#resultado a, #resultado a:hover{
+	text-shadow:none;
 }
 
-#resultado .img {
-	background-color: #E3E3E3;
+#resultado .img{
+	background-color:#E3E3E3;
 }
 
 /*CONTENIDO*/
-.menu a, .menu a:hover {
-	text-shadow: none;
+.menu a, .menu a:hover{
+	text-shadow:none;
 }
 
-.bloque_pagina {
-	box-shadow: 0 3px 0 3px rgba(126, 63, 0, 0.4) inset, 0 30px 35px -15px rgba(108, 36, 0, 0.31) inset;
+.bloque_pagina{
+	box-shadow:0 3px 0 3px rgba(126, 63, 0, 0.4) inset, 0 30px 35px -15px rgba(108, 36, 0, 0.31) inset;
 }
 
-.interior {
-	color: #FFF;
-	text-shadow: #000 2px 2px 6px;
+.interior{
+	color:#FFF;
+	text-shadow:#000 2px 2px 6px;
 }
 /*PIE*/
-#pie {
-	background: none repeat scroll 0 0 rgba(0, 0, 0, 0.1);
+#pie{
+	background:none repeat scroll 0 0 rgba(0, 0, 0, 0.1);
 }
 
-#pie, #pie a {
-	color: #000;
-	text-shadow: none;
+#pie, #pie a{
+	color:#000;
+	text-shadow:none;
 }
