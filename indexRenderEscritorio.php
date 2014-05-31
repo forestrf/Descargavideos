@@ -18,7 +18,7 @@
 
 
 <link href="/favicon.ico" rel="icon" type="image/x-icon"/>
-<link rel="stylesheet" href="/css/cssfull.css"/>
+<link rel="stylesheet" href="/css/cssfull.min.css"/>
 <link rel="stylesheet" href="/css/modos/<?php echo $css_modo?>.css" id="css2"/>
 <script src="/js/funciones.min.js"></script>
 

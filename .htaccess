@@ -76,6 +76,7 @@
 	##############################################################
 
 	RewriteRule ^css/cssfull.css$ css/css.php [NC,L]
+	RewriteRule ^css/cssfull.min.css$ css/css.php [NC,L]
 
 
 	
