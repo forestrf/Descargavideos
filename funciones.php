@@ -366,35 +366,10 @@ function CargaWebCurlProxy($web,$pais='ESP'){
 	}
 	
 	elseif($pais=='aleatorio'){
-		$rand = rand(1, 5);
-		switch($rand){
-			case 1:
-				$redir='http://grandenauer.hol.es/redir.php?a=';
-				$actualizaredir='http://grandenauer.hol.es/actualizar.php';
-			break;
-			
-			case 2:
-				$redir='http://pphah.hol.es/redir.php?a=';
-				$actualizaredir='http://pphah.hol.es/actualizar.php';
-			break;
-			
-			case 3:
-				$redir='http://aguaas.pusku.com/redir.php?a=';
-				$actualizaredir='http://aguaas.pusku.com/actualizar.php';
-			break;
-			
-			case 4:
-				$redir='http://sebasa.besaba.com/redir.php?a=';
-				$actualizaredir='http://sebasa.besaba.com/actualizar.php';
-			break;
-			
-			case 5:
-				$redir='http://ajofeifo.eu5.org/redir.php?a=';
-				$actualizaredir='http://ajofeifo.eu5.org/actualizar.php';
-			break;
-		}
+		return CargaWebCurl($web);
 	}
 	
+	dbug($redir);
 	
 	$retfull=CargaWebCurl($redir.urlencode($web));
 	if(enString($retfull,'solicitada no existe') || enString($retfull,'class="error_404"') || enString($retfull,'Page Not Found')){
