@@ -541,7 +541,7 @@ function averiguaCadena($web){
 				dbug($cadenas[$i][0][$j]);
 				$Cadena_elegida=$cadenas[$i][0][$j];
 				if(url_exists_full($web, true)){
-					dbug('enlace correcto (se pudo abrir la URL)=>'.$enlace);
+					dbug('enlace correcto (se pudo abrir la URL)=>'.$web);
 					//Includes
 					for($k=0;$k<count($cadenas[$i][1]);$k++)
 						include_once $cadenas[$i][1][$k];

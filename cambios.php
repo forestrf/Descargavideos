@@ -16,6 +16,13 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'1-Junio-2014',
+array(
+	'fix:Algunos vídeos de Dailymotion no funcionaban.'
+	)
+);
+
+$todos[]=array(
 '31-Mayo-2014',
 array(
 	'add:Cambios en css y js para mejorar la fluidez de la web.'

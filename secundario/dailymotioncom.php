@@ -22,6 +22,10 @@ http://vid2.ec.dmcdn.net/sec%28c1d480eb58ebac8a06ba174a542e3bdc%29/video/793/312
 function dailymotioncom(){
 	global $web,$web_descargada;
 	
+	if(!enString($web_descargada, 'sequence=')){
+		dbug('Desactivando filtro familiar');
+		$web_descargada = CargaWebCurl($web,'','','ff=off');
+	}
 	$urlContenedor = entre1y2($web_descargada, 'sequence=','"');
 	dbug_($urlContenedor);
 	
@@ -34,8 +38,13 @@ function dailymotioncom(){
 		'enlaces' => array()
 	);
 	
+	foreach($jsonUrlContenedor['sequence'][0]['layerList'][0]['sequenceList'][2]['layerList'] as $preManifest){
+		if(isset($preManifest['param']['autoURL'])){
+			$manifest = $preManifest['param']['autoURL'];
+		}
+	}
 	
-	$preEnlaces = CargaWebCurl($jsonUrlContenedor['sequence'][0]['layerList'][0]['sequenceList'][2]['layerList'][2]['param']['autoURL']);
+	$preEnlaces = CargaWebCurl($manifest,'','','ff=off');
 	dbug_($preEnlaces);
 	
 	$preEnlaces = json_decode($preEnlaces, true);
