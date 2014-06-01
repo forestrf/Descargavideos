@@ -18,6 +18,7 @@ function cambios($max=-1){
 $todos[]=array(
 '1-Junio-2014',
 array(
+	'add:Comentarios para los avisos rápidos.',
 	'fix:Algunos vídeos de Dailymotion no funcionaban.'
 	)
 );

@@ -1,13 +1,6 @@
 <span id="informaFalloRapido">Informar de resultado incorrecto</span>
 <script>
-document.getElementById('informaFalloRapido').onclick = function(){
-	if(confirm("Estás a punto de informar de un resultado incorrecto.\n¿Es incorrecto el resultado mostrado?")){
-		var iframe = document.createElement('iframe');
-		iframe.src = '/flag.php?url='+encodeURIComponent('<?php echo $R['WEB'];?>');
-		document.body.appendChild(iframe);
-		alert('Gracias por el aviso.\nRevisaremos el fallo lo antes posible');
-	}
-};
+<?php include 'plantillas/extras/aviso_rapido_js.php'?>
 
 _gaq.push(["_trackEvent","Descargas","Realizadas","<?php echo $R['CANAL'];?>"]);</script>
 
