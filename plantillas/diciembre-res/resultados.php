@@ -1,8 +1,6 @@
-<span id="informaFalloRapido">Informar de resultado incorrecto</span>
-<script>
 <?php include 'plantillas/extras/aviso_rapido_js.php'?>
 
-_gaq.push(["_trackEvent","Descargas","Realizadas","<?php echo $R['CANAL'];?>"]);</script>
+<script>_gaq.push(["_trackEvent","Descargas","Realizadas","<?php echo $R['CANAL'];?>"]);</script>
 
 <img class="img bloque" src="<?php echo $R['url_img_res'];?>">
 
