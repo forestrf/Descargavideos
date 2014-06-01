@@ -5,10 +5,10 @@
 
 switch($R['MODO']){
 	case 'RESULTADO':
-		include 'secundario/'.plantillaInclude('resultados.php');
+		include plantillaInclude('resultados.php');
 	break;
 	case 'ERROR':
-		include 'secundario/'.plantillaInclude('fallo.php');
+		include plantillaInclude('fallo.php');
 	break;
 }
 
@@ -52,7 +52,7 @@ function generaInnerResultado(){
 		if($titulo || (MODO_API && $url_txt)){
 			$R2['dir_resultado']   = $titulo;
 			$R2['dir_resultado_2'] = $url_txt;
-			include 'secundario/'.plantillaInclude('resultado_texto.php');
+			include plantillaInclude('resultado_texto.php');
 		}
 	
 		$aIncluir = '';
@@ -60,13 +60,13 @@ function generaInnerResultado(){
 		//$tipo = "http" o "rtmp"
 		if($url){
 			if($res['tipo'] === 'rtmp'){
-				$aIncluir = 'secundario/'.plantillaInclude('resultado_rtmp.php');
+				$aIncluir = plantillaInclude('resultado_rtmp.php');
 				//{extension_res}
 				if(!$extension)
 					$extension = extraeExtension($url, ':');
 			}
 			elseif($res['tipo'] === 'rtmpConcreto'){
-				$aIncluir = 'secundario/'.plantillaInclude('resultado_rtmpConcreto.php');
+				$aIncluir = plantillaInclude('resultado_rtmpConcreto.php');
 				
 				if($nombre_archivo === ''){
 					preg_match('@-o.*?"(.*?)"@i', $rtmpdump, $matches);
@@ -77,7 +77,7 @@ function generaInnerResultado(){
 					$extension = extraeExtension($url,".");
 			}
 			elseif($res['tipo'] === 'rtmpConcretoHTTP'){
-				$aIncluir = 'secundario/'.plantillaInclude('resultado_rtmpConcretoHTTP.php');
+				$aIncluir = plantillaInclude('resultado_rtmpConcretoHTTP.php');
 				
 				if($nombre_archivo == '')
 					$nombre_archivo = 'video.mp4';
@@ -86,23 +86,23 @@ function generaInnerResultado(){
 					$extension = extraeExtension($url, '.');
 			}
 			elseif($res['tipo'] === 'm3u8'){
-				$aIncluir = 'secundario/'.plantillaInclude('resultado_m3u8.php');
+				$aIncluir = plantillaInclude('resultado_m3u8.php');
 	
 				if(!$extension)
 					$extension = 'm3u8';
 			}
 			elseif($res['tipo'] === 'js'){
-				$aIncluir = 'secundario/'.plantillaInclude('resultado_js.php');
+				$aIncluir = plantillaInclude('resultado_js.php');
 	
 				if(!$extension)
 					$extension = 'm3u8';
 			}
 			elseif($res['tipo'] === 'srt'){
-				$aIncluir = 'secundario/'.plantillaInclude('resultado_srt.php');
+				$aIncluir = plantillaInclude('resultado_srt.php');
 			}
 			else{
 			// if($res['tipo'] == 'http'){
-				$aIncluir = 'secundario/'.plantillaInclude('resultado_url.php');
+				$aIncluir = plantillaInclude('resultado_url.php');
 	
 				if(!$extension)
 					$extension = extraeExtension($url, '.');
