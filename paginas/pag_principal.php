@@ -7,10 +7,10 @@
 			</div>
 			<img src="/img/prev_video_principal.jpg" id="imageID" style="cursor:pointer" alt="Haz click para ver el vídeo"/>
 			<script>
-			document.getElementById('imageID').onclick = function(){
-				document.getElementById('ytapiplayer2').style.display="inherit";
-				document.getElementById('ytapiplayer2').innerHTML += '<iframe width="560" height="315" src="http://www.youtube.com/embed/7-Xvmz-jNrg?autoplay=1" frameborder="0" allowfullscreen></iframe>';
-				document.getElementById('imageID').style.display="none";
+			D.g('imageID').onclick = function(){
+				D.g('ytapiplayer2').style.display="inherit";
+				D.g('ytapiplayer2').innerHTML += '<iframe width="560" height="315" src="http://www.youtube.com/embed/7-Xvmz-jNrg?autoplay=1" frameborder="0" allowfullscreen></iframe>';
+				D.g('imageID').style.display="none";
 			};
 			</script>
 		</div>

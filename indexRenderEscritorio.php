@@ -158,7 +158,7 @@ var css_user='<?php echo $css_modo?>';
 
 <script>
 setModoPic('<?php echo $modo?>');
-function setModoPic(d){if(d==1){document.getElementById('web').placeholder="<?php echo TXT_PEGA_URL_VIDEO?>";document.getElementById('ayuda1txt').innerHTML="<?php echo TXT_COPIA_URL_VIDEO?>";document.getElementById('ayuda2txt').innerHTML="<?php echo TXT_BUSCA_URL_VIDEO?>";}else{document.getElementById('web').placeholder="<?php echo TXT_BUSCAR_CANCION?>";document.getElementById('ayuda1txt').innerHTML="<?php echo TXT_ESCRIBE_NOMBRE_CANCION?>";document.getElementById('ayuda2txt').innerHTML="<?php echo TXT_BUSCA_CANCION?>";}}
+function setModoPic(d){if(d==1){D.g('web').placeholder="<?php echo TXT_PEGA_URL_VIDEO?>";D.g('ayuda1txt').innerHTML="<?php echo TXT_COPIA_URL_VIDEO?>";D.g('ayuda2txt').innerHTML="<?php echo TXT_BUSCA_URL_VIDEO?>";}else{D.g('web').placeholder="<?php echo TXT_BUSCAR_CANCION?>";D.g('ayuda1txt').innerHTML="<?php echo TXT_ESCRIBE_NOMBRE_CANCION?>";D.g('ayuda2txt').innerHTML="<?php echo TXT_BUSCA_CANCION?>";}}
 
 var _Hasync=_Hasync||[];_Hasync.push(['Histats.startgif','1,2419951,4,10045,"div#histatsC{position:absolute;top:0px;left:0px;}body>div#histatsC{position:fixed;}"']);_Hasync.push(['Histats.fasi','1']);_Hasync.push(['Histats.track_hits','']);(function(){var hs=document.createElement('script');hs.async=true;hs.src=('http://s10.histats.com/js15_gif_as.js');(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(hs);})();
 
@@ -169,7 +169,7 @@ setTimeout(function(){
 },2500);
 
 <?php if(defined('HAY_RESULTADO')){ ?>
-	scrollTo(document.getElementById("resultado"),20);
+	scrollTo(D.g("resultado"),20);
 <?php } ?>
 
 _gaq.push(["_trackEvent","Interfaz","En uso","<?php echo $css_modo_cookie;?>"]);

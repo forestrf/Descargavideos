@@ -15,8 +15,8 @@
 	function finalizar<?php echo $R2['random_id'];?>(linkfinal, txtfinal, extension){
 		if(!extension)
 			extension = "mp4";
-		document.getElementById('id<?php echo $R2['random_id'];?>2').setAttribute('href', document.getElementById('id<?php echo $R2['random_id'];?>2').getAttribute('href') + '&ext='+extension+'&video='+encodeURIComponent(linkfinal));
-		document.getElementById('id<?php echo $R2['random_id'];?>').innerHTML=ReferrerKiller.linkHtml(
+		D.g('id<?php echo $R2['random_id'];?>2').setAttribute('href', D.g('id<?php echo $R2['random_id'];?>2').getAttribute('href') + '&ext='+extension+'&video='+encodeURIComponent(linkfinal));
+		D.g('id<?php echo $R2['random_id'];?>').innerHTML=ReferrerKiller.linkHtml(
 			linkfinal,
 			txtfinal,
 			{target:'_blank'},

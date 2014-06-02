@@ -118,7 +118,7 @@ function playedto(){
 	'}'.
 	
 	'if(typeof descargador_archivos === "undefined"){'.
-		'document.getElementById("enlaces").innerHTML += \'<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="0" height="0" id="descargador_archivos" align="middle">'.
+		'D.g("enlaces").innerHTML += \'<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="0" height="0" id="descargador_archivos" align="middle">'.
 			'<param name="movie" value="/util/fla/f/http://played.to/" />'.
 			'<param name="quality" value="high" />'.
 			'<param name="bgcolor" value="#000" />'.
@@ -132,7 +132,7 @@ function playedto(){
 			'</embed>'.
 			'<!--<![endif]-->'.
 		'</object>\';'.
-		'var descargador_archivos = document.getElementById("descargador_archivos");'.
+		'var descargador_archivos = D.g("descargador_archivos");'.
 	'}'.
 	
 	'lanzaPlayedTo();';

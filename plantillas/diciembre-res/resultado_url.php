@@ -3,7 +3,7 @@
 	<a class="TV" target="_blank" href="/player/?img=<?php echo $R['url_img_res'];?>&ext=<?php echo $R2['extension_res'];?>&video=<?php echo $R2['dir_resultado_reproductor'];?>"></a>
 </div>
 <script>
-	document.getElementById('id<?php echo $R2['random_id'];?>').innerHTML=ReferrerKiller.linkHtml(
+	D.g('id<?php echo $R2['random_id'];?>').innerHTML=ReferrerKiller.linkHtml(
 		'<?php echo $R2['dir_resultado'];?>',
 		'<?php echo $R2['dir_resultado_txt_esc_simplecoma'];?>',
 		{target:'_blank'},

@@ -256,10 +256,10 @@ a:hover{
 </div>
 
 <script>
-	webI = document.getElementById('web');
+	webI = D.g('web');
 	function webF(e) {
-		var a = document.getElementById('ayuda1');
-		var b = document.getElementById('ayuda2');
+		var a = D.g('ayuda1');
+		var b = D.g('ayuda2');
 		if (webI.value.length > 0 || e == 1) {
 			qC(b, "invisible");
 			aC(a, "invisible");
