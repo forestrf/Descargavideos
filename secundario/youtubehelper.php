@@ -25,7 +25,7 @@ function youtubehelper(){
 		sleep(1);
 		
 		$tube=new youtube();
-		$links=$tube->parse(CargaWebCurl($web,"",0,"",array(),true,true));
+		$links=$tube->parse(CargaWebCurl($web,'',0,'',array(),true,true));
 		dbug_r($links);
 		--$intentos;
 	}
