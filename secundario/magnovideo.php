@@ -129,7 +129,7 @@ function magnovideo(){
 		'enlaces' => array(
 			array(
 				'url'  => $urlJS,
-				'tipo' => 'js'
+				'tipo' => 'jsFlash'
 			)
 		)
 	);

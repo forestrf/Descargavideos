@@ -143,7 +143,7 @@ function playedto(){
 		'enlaces' => array(
 			array(
 				'url'  => $urlJS,
-				'tipo' => 'js'
+				'tipo' => 'jsFlash'
 			)
 		)
 	);

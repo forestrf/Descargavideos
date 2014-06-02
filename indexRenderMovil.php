@@ -20,7 +20,7 @@
 
 <link href="/favicon.ico" rel="icon" type="image/x-icon"/>
 <link rel="stylesheet" href="/css/reset.min.css"/>
-<link rel="stylesheet" href="/css/allMovil.css"/>
+<link rel="stylesheet" href="/css/allMovil.min.css"/>
 <script type="text/javascript" src="/js/funciones.min.js"></script>
 <link href="/css/font/fuentes.css" rel="stylesheet" type="text/css"/>
 

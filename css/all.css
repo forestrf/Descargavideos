@@ -385,6 +385,16 @@ input[type="radio"] {
 	position:relative;
 	text-align:center;
 }
+#resultado #enlaces .Descarga2 .enespera{
+	background-color: #5C0000;
+	border: 1px solid #F00;
+	border-radius: 10px;
+	color: #E87A43;
+	display: block;
+	font-size: 18px;
+	padding: 10px 0;
+	width: 99%;
+}
 #resultado .instrucciones_descarga{
 	float:right;
 }

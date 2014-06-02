@@ -54,65 +54,58 @@ function generaInnerResultado(){
 			$R2['dir_resultado_2'] = $url_txt;
 			include plantillaInclude('resultado_texto.php');
 		}
-	
+		
 		$aIncluir = '';
-	
+		
 		//$tipo = "http" o "rtmp"
 		if($url){
-			if($res['tipo'] === 'rtmp'){
-				$aIncluir = plantillaInclude('resultado_rtmp.php');
-				//{extension_res}
-				if(!$extension)
-					$extension = extraeExtension($url, ':');
-			}
-			elseif($res['tipo'] === 'rtmpConcreto'){
-				$aIncluir = plantillaInclude('resultado_rtmpConcreto.php');
-				
-				if($nombre_archivo === ''){
-					preg_match('@-o.*?"(.*?)"@i', $rtmpdump, $matches);
-					$nombre_archivo = $matches[1];
-				}
-				
-				if(!$extension)
-					$extension = extraeExtension($url,".");
-			}
-			elseif($res['tipo'] === 'rtmpConcretoHTTP'){
-				$aIncluir = plantillaInclude('resultado_rtmpConcretoHTTP.php');
-				
-				if($nombre_archivo == '')
-					$nombre_archivo = 'video.mp4';
-				
-				if(!$extension)
-					$extension = extraeExtension($url, '.');
-			}
-			elseif($res['tipo'] === 'm3u8'){
-				$aIncluir = plantillaInclude('resultado_m3u8.php');
-	
-				if(!$extension)
-					$extension = 'm3u8';
-			}
-			elseif($res['tipo'] === 'js'){
-				$aIncluir = plantillaInclude('resultado_js.php');
-	
-				if(!$extension)
-					$extension = 'm3u8';
-			}
-			elseif($res['tipo'] === 'srt'){
-				$aIncluir = plantillaInclude('resultado_srt.php');
-			}
-			else{
-			// if($res['tipo'] == 'http'){
-				$aIncluir = plantillaInclude('resultado_url.php');
-	
-				if(!$extension)
-					$extension = extraeExtension($url, '.');
+			switch($res['tipo']){
+				case 'rtmp':
+					$aIncluir = plantillaInclude('resultado_rtmp.php');
+					if(!$extension)$extension = extraeExtension($url, ':');
+				break;
+				case 'rtmpConcreto':
+					$aIncluir = plantillaInclude('resultado_rtmpConcreto.php');
+					
+					if($nombre_archivo === ''){
+						preg_match('@-o.*?"(.*?)"@i', $rtmpdump, $matches);
+						$nombre_archivo = $matches[1];
+					}
+					
+					if(!$extension)$extension = extraeExtension($url,".");
+				break;
+				case 'rtmpConcretoHTTP':
+					$aIncluir = plantillaInclude('resultado_rtmpConcretoHTTP.php');
+					if($nombre_archivo == '')$nombre_archivo = 'video.mp4';
+					if(!$extension)$extension = extraeExtension($url, '.');
+				break;
+				case 'm3u8':
+					$aIncluir = plantillaInclude('resultado_m3u8.php');
+					if(!$extension)$extension = 'm3u8';
+				break;
+				case 'js':
+					$aIncluir = plantillaInclude('resultado_js.php');
+					if(!$extension)$extension = 'mp4';
+				break;
+				case 'jsFlash':
+					$aIncluir = plantillaInclude('resultado_jsFlash.php');
+					if(!$extension)$extension = 'mp4';
+				break;
+				case 'srt':
+					$aIncluir = plantillaInclude('resultado_srt.php');
+				break;
+				case 'http':
+				default:
+					$aIncluir = plantillaInclude('resultado_url.php');
+					if(!$extension)$extension = extraeExtension($url, '.');
+				break;
 			}
 			if($url_txt)
 				$url_txt = $url_txt;
 			else
 				$url_txt = $url;
 		}
-	
+		
 		global $lastID;
 		if(!$lastID)
 			$lastID = 1;
@@ -134,7 +127,7 @@ function generaInnerResultado(){
 		$R2['otros_datos_mp3']                             = $otros_datos_mp3;
 		$R2['num']                                         = $num;
 		$R2['random_id']                                   = $lastID;
-	
+		
 		++$lastID;
 		++$num;
 		

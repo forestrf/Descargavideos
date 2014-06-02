@@ -186,10 +186,10 @@ function resultadoA3PNormal($web, $web_descargada='', $episode='', $title=''){
 	//$swf = '/util/fla/f/http://www.atresplayer.com/';
 	//$swf = 'http://sandia.tk/descargador_archivos.swf';
 	$swf = 'http://jojojo.tk/descargador_archivos.swf';
-	    
-    $urljs = 
+		
+	$urljs = 
 		'function preLanzaA3P{{random_id}}(){'.
-            'if(typeof DESCARGADOR_ARCHIVOS_SWF === "undefined"){'.
+			'if(typeof DESCARGADOR_ARCHIVOS_SWF === "undefined"){'.
 				'setTimeout(preLanzaA3P{{random_id}}, 200)'.
 			'}'.
 			'else if(DESCARGADOR_ARCHIVOS_SWF === true){'.
@@ -217,7 +217,7 @@ function resultadoA3PNormal($web, $web_descargada='', $episode='', $title=''){
 				'}'.
 			'}'.
 		'}'.
-        'function lanzaA3P{{random_id}}(){'.
+		'function lanzaA3P{{random_id}}(){'.
 			'getFlashMovie("descargador_archivos").CargaWeb({'.
 				"'url':'https://servicios.atresplayer.com/api/urlVideoLanguage/$episode/android_tablet/$episode|$tiempo|$hmac/es.json',".
 				'"metodo":"GET"'.
@@ -235,16 +235,16 @@ function resultadoA3PNormal($web, $web_descargada='', $episode='', $title=''){
 			'if(!calculaA3P{{random_id}}(data)){'.
 				'mostrarFallo{{random_id}}();'.
 			'}'.
-        '}'.
-        
-        'function mostrarResultado{{random_id}}(entrada){'.
-            'finalizar{{random_id}}(entrada,"Descargar");'.
-        '}'.
-        
-        'function mostrarFallo{{random_id}}(){'.
-            'finalizar{{random_id}}("","Necesitas iniciar sesión en ATresPlayer para descargar este vídeo o bien el vídeo no existe");'.
-        '}'.
-        
+		'}'.
+		
+		'function mostrarResultado{{random_id}}(entrada){'.
+			'finalizar{{random_id}}(entrada,"Descargar");'.
+		'}'.
+		
+		'function mostrarFallo{{random_id}}(){'.
+			'finalizar{{random_id}}("","Necesitas iniciar sesión en ATresPlayer para descargar este vídeo o bien el vídeo no existe");'.
+		'}'.
+
 		'if(typeof descargador_archivos === "undefined"){'.
 			'document.getElementById("enlaces").innerHTML += \'<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="0" height="0" id="descargador_archivos" align="middle">'.
 				'<param name="movie" value="'.$swf.'" />'.
@@ -266,18 +266,18 @@ function resultadoA3PNormal($web, $web_descargada='', $episode='', $title=''){
 		
 		
 		
-        'preLanzaA3P{{random_id}}();';
-		
-		
-		
-		
-    
-
+		'preLanzaA3P{{random_id}}();';
+	
+	
+	
+	
+	
+	
 	
 	
 	$obtenido[] = array(
 					'url'  => $urljs,
-					'tipo' => 'js'
+					'tipo' => 'jsFlash'
 				);
 	
 	
@@ -285,28 +285,27 @@ function resultadoA3PNormal($web, $web_descargada='', $episode='', $title=''){
 }
 
 
-function custom_hmac($algo, $data, $key, $raw_output = false)
-{
-    $algo = strtolower($algo);
-    $pack = 'H'.strlen($algo('test'));
-    $size = 64;
-    $opad = str_repeat(chr(0x5C), $size);
-    $ipad = str_repeat(chr(0x36), $size);
-
-    if (strlen($key) > $size) {
-        $key = str_pad(pack($pack, $algo($key)), $size, chr(0x00));
-    } else {
-        $key = str_pad($key, $size, chr(0x00));
-    }
-
-    for ($i = 0; $i < strlen($key) - 1; $i++) {
-        $opad[$i] = $opad[$i] ^ $key[$i];
-        $ipad[$i] = $ipad[$i] ^ $key[$i];
-    }
-
-    $output = $algo($opad.pack($pack, $algo($ipad.$data)));
-
-    return ($raw_output) ? pack($pack, $output) : $output;
+function custom_hmac($algo, $data, $key, $raw_output = false){
+	$algo = strtolower($algo);
+	$pack = 'H'.strlen($algo('test'));
+	$size = 64;
+	$opad = str_repeat(chr(0x5C), $size);
+	$ipad = str_repeat(chr(0x36), $size);
+	
+	if (strlen($key) > $size) {
+		$key = str_pad(pack($pack, $algo($key)), $size, chr(0x00));
+	} else {
+		$key = str_pad($key, $size, chr(0x00));
+	}
+	
+	for ($i = 0; $i < strlen($key) - 1; $i++) {
+		$opad[$i] = $opad[$i] ^ $key[$i];
+		$ipad[$i] = $ipad[$i] ^ $key[$i];
+	}
+	
+	$output = $algo($opad.pack($pack, $algo($ipad.$data)));
+	
+	return ($raw_output) ? pack($pack, $output) : $output;
 }
 
 

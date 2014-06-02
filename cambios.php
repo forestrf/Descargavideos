@@ -16,6 +16,13 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'2-Junio-2014',
+array(
+	'add:Los resultados que requieren flash informan de la necesidad de tener flash para funcionar.'
+	)
+);
+
+$todos[]=array(
 '1-Junio-2014',
 array(
 	'add:Comentarios para los avisos rápidos.',
