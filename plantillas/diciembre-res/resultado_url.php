@@ -5,7 +5,7 @@
 <script>
 	D.g('id<?php echo $R2['random_id'];?>').innerHTML=ReferrerKiller.linkHtml(
 		'<?php echo $R2['dir_resultado'];?>',
-		'<?php echo $R2['dir_resultado_txt_esc_simplecoma'];?>',
+		'<?php echo $R2['dir_resultado_txt'];?>',
 		{target:'_blank'},
 		{verticalAlign:'bottom'},
 		'.link{'+

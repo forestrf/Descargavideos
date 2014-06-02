@@ -20,7 +20,8 @@ $todos[]=array(
 array(
 	'add:Los resultados que requieren flash informan de la necesidad de tener flash para funcionar.',
 	'fix:Problemas con resultados rtmp tras la actualización del css y js',
-	'fix:No todos los vídeos de TV3 tienen enlace de descarga directa'
+	'fix:No todos los vídeos de TV3 tienen enlace de descarga directa',
+	'fix:Resultados con comillas simples en el título podían fallar'
 	)
 );
 
