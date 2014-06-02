@@ -18,7 +18,9 @@ function cambios($max=-1){
 $todos[]=array(
 '2-Junio-2014',
 array(
-	'add:Los resultados que requieren flash informan de la necesidad de tener flash para funcionar.'
+	'add:Los resultados que requieren flash informan de la necesidad de tener flash para funcionar.',
+	'fix:Problemas con resultados rtmp tras la actualización del css y js',
+	'fix:No todos los vídeos de TV3 tienen enlace de descarga directa'
 	)
 );
 

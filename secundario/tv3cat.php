@@ -319,18 +319,19 @@ if(enString($web_descargada,"insertaEVP(")||$modelo==0){
 		//</media>
 		$p=strrpos($ret,'<media');
 		$ret=entre1y2_a($ret,$p,'>','<');
-
-		dbug('urlFinal='.$ret);
-		if(strpos($ret, 'rtmp://') === 0){
-			$ret = preg_replace('@rtmp://.*?mp4:(.*?)$@', 'http://mp4-medium-dwn.media.tv3.cat/$1', $ret);
-			dbug('urlFinal (mediante preg replace='.$ret);
+		if(enString($ret, 'mp4:') || enString($ret, 'http://')){
+			dbug('urlFinal='.$ret);
+			if(strpos($ret, 'rtmp://') === 0){
+				$ret = preg_replace('@rtmp://.*?mp4:(.*?)$@', 'http://mp4-medium-dwn.media.tv3.cat/$1', $ret);
+				dbug('urlFinal (mediante preg replace='.$ret);
+			}
+			
+			$obtenido['enlaces'][] = array(
+				'titulo'  => "Calidad media",
+				'url'  => $ret,
+				'tipo' => "http"
+			);
 		}
-		
-		$obtenido['enlaces'][] = array(
-			'titulo'  => "Calidad media",
-			'url'  => $ret,
-			'tipo' => "http"
-		);
 	}
 	
 	$ret=CargaWebCurl($server3);
@@ -346,19 +347,33 @@ if(enString($web_descargada,"insertaEVP(")||$modelo==0){
 		$p=strrpos($ret,'<media');
 		$ret=entre1y2_a($ret,$p,'>','<');
 
-		preg_match("@^(.*?/)(mp4:.*?)$@", $ret, $matches);
-		dbug_r($matches);
-		
-		// 4/09/2012 metodo rectificado
-		dbug('urlFinal='.$ret);
-		
-		$obtenido['enlaces'][] = array(
-			'titulo'   => "Calidad alta",
-			'url'      => $ret,
-			'rtmpdump' => '-r "'.$matches[1].'" -y "'.$matches[2].'" -o "'.generaNombreWindowsValido($titulo).'.mp4"',
-			'tipo'     => 'rtmpConcreto',
-			'extension'=>'mp4'
-		);
+		if(enString($ret, 'mp4:')){
+			preg_match("@^(.*?/)(mp4:.*?)$@", $ret, $matches);
+			dbug_r($matches);
+			
+			// 4/09/2012 metodo rectificado
+			dbug('urlFinal='.$ret);
+			
+			$obtenido['enlaces'][] = array(
+				'titulo'   => "Calidad alta",
+				'url'      => $ret,
+				'rtmpdump' => '-r "'.$matches[1].'" -y "'.$matches[2].'" -o "'.generaNombreWindowsValido($titulo).'.mp4"',
+				'tipo'     => 'rtmpConcreto',
+				'extension'=>'mp4'
+			);
+		}
+		else{
+			// 2/06/2014
+			dbug('urlFinal='.$ret);
+			$ext = substr($ret,-3,3);
+			
+			$obtenido['enlaces'][] = array(
+				'url'      => $ret,
+				'rtmpdump' => '-r "'.$ret.'" -o "'.generaNombreWindowsValido($titulo).'.'.$ext.'"',
+				'tipo'     => 'rtmpConcreto',
+				'extension'=> '.'.$ext
+			);
+		}
 	}
 	
 }
