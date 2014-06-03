@@ -391,33 +391,42 @@ if($modo==1){
 	$R = array();
 	if(validar_enlace($web)){
 		//La función anterior, si es exitosa, finaliza la web. Si falla (url de un server no válido o la función del canal se acabó antes de lo previsto, se ejecuta lo próximo
-		if(!averiguaCadena($web)){
+		$cadena_elegida_arr = averiguaCadena($web);
+		if($cadena_elegida_arr===false){
 			//no es una url aceptada de una web permitida
-			$errorImprimible='Has introducido un enlace de una página web no soportada. Puedes consultar el listado de webs soportadas en el siguiente enlace:<br><a href="http://www.descargavideos.tv/faq#p_q_c_s_d">http://www.descargavideos.tv/faq#p_q_c_s_d</a>';
-
-			//informar de fallo
-			addError($web, 'URL correcta, pero de un server no soportado');
-			
+			setErrorWebIntera('Has introducido un enlace de una página web no soportada. Puedes consultar el listado de webs soportadas en el siguiente enlace:<br><a href="http://www.descargavideos.tv/faq#p_q_c_s_d">http://www.descargavideos.tv/faq#p_q_c_s_d</a>');
 			
 			//lanzaBusquedaGoogle();
-			
-			
 		}
 		else{
-			if($fallourlinterna==''){
-				if(!isset($resultado['enlaces']) || count($resultado['enlaces'])==0){
-					//no es una url aceptada de una web permitida
-					$errorImprimible='No se pudo encontrar ningún video o audio.';
-					
-					//informar de fallo
-					addError($web,'URL correcta, de server soportado, pero no debería de haber nada dentro');
+			if(url_exists_full($web, true)){
+				dbug('enlace correcto (se pudo abrir la URL)=>'.$web);
+				//Includes
+				for($k=0;$k<count($cadena_elegida_arr[1]);$k++)
+					include_once $cadena_elegida_arr[1][$k];
+				//Lanzar función cadena
+				dbug('Lanzando función cadena');
+				dbug('--------------------------------------');
+				$cadena_elegida_arr[2]();
+				
+				
+				if($fallourlinterna==''){
+					if(!isset($resultado['enlaces']) || count($resultado['enlaces'])==0){
+						//no es una url aceptada de una web permitida
+						setErrorWebIntera('No se pudo encontrar ningún video o audio.');
+						dbug('URL correcta, de server soportado, pero no debería de haber nada dentro');
+					}
 				}
+				
+			}
+			else{
+				setErrorWebIntera('No se ha podido abrir el enlace o no es un enlace válido');
+				dbug('fallo al abrir la url=>'.$web);
 			}
 		}
 	}
 	else{
-		$errorImprimible='URL no válida';
-		addError($web,'URL no válida');
+		setErrorWebIntera('URL no válida');
 		//lanzaBusquedaGoogle();
 	}
 }
@@ -538,23 +547,9 @@ function averiguaCadena($web){
 			preg_match($pattern, $web, $matches);
 			if($matches){
 				//Cadena encontrada
-				dbug($cadenas[$i][0][$j]);
 				$Cadena_elegida=$cadenas[$i][0][$j];
-				if(url_exists_full($web, true)){
-					dbug('enlace correcto (se pudo abrir la URL)=>'.$web);
-					//Includes
-					for($k=0;$k<count($cadenas[$i][1]);$k++)
-						include_once $cadenas[$i][1][$k];
-					//Lanzar función cadena
-					dbug('Lanzando función cadena');
-					dbug('--------------------------------------');
-					$cadenas[$i][2]();
-					return true;
-				}
-				else{
-					dbug('fallo al abrir la url=>'.$web);
-					return false;
-				}
+				dbug($cadenas[$i][0][$j]);
+				return $cadenas[$i];
 			}
 		}
 	return false;
@@ -621,14 +616,6 @@ function validar_enlace($link){
 function template2($cual){
 	global $path_plantilla;
 	return file_get_contents($path_plantilla.$cual);
-}
-
-
-function addError($web,$extra){
-	dbug('funcion addError lanzada: '.$extra);
-	/*if(defined('DEBUG')){
-		exit;
-	}*/
 }
 
 

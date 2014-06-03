@@ -14,32 +14,6 @@ function listado_proxys(){
 	return $listado_proxys_array;
 }
 
-function esVideoAudio($enlace){
-	global $web;
-	//comprobar que es una url
-
-	if(stringContains($enlace, array(/*" ",*/'<','>'))){
-		//no es correcto
-		//informar de fallo
-		addError($web, 'El enlace obtenido no era una url');
-		return false;
-	}
-	else{
-		//comprobar que la url contiene .mp4 .mp3 .wmv .avi .f4v .flv .mov .3gp .3g2 .aac .m4a .ogv .ogg
-		if(stringContains($enlace, array('.mp4','.mp3','.wmv','.avi','.f4v','.flv','.mov','.3gp','.3g2','.aac','.m4a','.ogv','.ogg','.fll'))||strlen(strstr($enlace,'|'))>0){
-			//es un enlace. todo correcto
-			//informar de correcto
-			dbug('agregado perfect');
-			return true;
-		}
-		else{
-			//informar de fallo
-			addError($web, 'El enlace obtenido era una URL, pero no la que se pretendia');
-			return false;
-		}
-	}
-}
-
 //comprobar que es una url y que es de un vídeo/audio.
 function esVideoAudioAnon($enlace){
 	if(!preg_match('@^https?://(([^/^\.]+\.)+?[^/^\.]+?)(/.*)?$@i',$enlace))
