@@ -587,6 +587,11 @@ input[type="radio"] {
 	padding:20px 0;
 	line-height:26px;
 }
+#descargador_archivos{
+	position:absolute;
+	left:0;
+	top:0;	
+}
 .todo #contenido{
 	display:table;
 	height:100%;

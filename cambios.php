@@ -19,7 +19,9 @@ $todos[]=array(
 '3-Junio-2014',
 array(
 	'fix:Fallo en Televisa por culpa de números mayores que int32.',
-	'fix:Vídeos insertados por js de eitb.com fallaban'
+	'fix:Vídeos insertados por js de eitb.com fallaban',
+	'fix:Resultados con más de 10 enlaces no siempre se mostraban correctamente',
+	'fix:Limitados resultados múltiples de ATresPlayer a 30 máximo.'
 	)
 );
 

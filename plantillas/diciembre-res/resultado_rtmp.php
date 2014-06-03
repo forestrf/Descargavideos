@@ -1,5 +1,5 @@
 <div class="rtmpdump" id="rtmp<?php echo $R2['random_id'];?>">rtmpdump -r "<?php echo $R2['dir_resultado_enc_rtmpdump'];?>" -o "<?php echo $R2['extension_res'];?>"</div>
-<div class="aviso_m3u8" id="rtmp<?php echo $R2['random_id'];?>2">
+<div class="aviso_m3u8" id="rtmp<?php echo $R2['random_id'];?>-2">
 <?php echo INTERIOR_AVISO_RTMP?>
 </div>
 
@@ -22,7 +22,7 @@
 	function f<?php echo $R2['random_id'];?>(){
 		if(rtmpdownloader){
 			D.g('rtmp<?php echo $R2['random_id'];?>').innerHTML="<a style=\"cursor:pointer\" onclick=\"muestra<?php echo $R2['random_id'];?>()\">Descargar usando RTMP-Downloader</a>";
-			D.g('rtmp<?php echo $R2['random_id'];?>2').remove();
+			D.g('rtmp<?php echo $R2['random_id'];?>-2').remove();
 			
 			D.g('rtmp<?php echo $R2['random_id'];?>fcommand').remove();
 			D.g('rtmp<?php echo $R2['random_id'];?>forig').remove();
@@ -31,7 +31,7 @@
 	function f2<?php echo $R2['random_id'];?>(){
 		if(EasyRtmpdump){
 			D.g('rtmp<?php echo $R2['random_id'];?>').innerHTML="<a style=\"cursor:pointer\" onclick=\"muestra<?php echo $R2['random_id'];?>()\">Descargar usando Easy-Rtmpdump</a>";
-			D.g('rtmp<?php echo $R2['random_id'];?>2').remove();
+			D.g('rtmp<?php echo $R2['random_id'];?>-2').remove();
 			D.g('rtmp<?php echo $R2['random_id'];?>f').setAttribute('action','http://127.0.0.1:25431/easy-rtmpdump.html');
 			
 			D.g('rtmp<?php echo $R2['random_id'];?>fnombre').setAttribute('name','name');
