@@ -247,8 +247,6 @@ for($i=0; $i<$i_total=Count($obtenido['enlaces']); $i++)
 //sacar 'url-txt' a otro res de solo 'titulo'
 $obtenido_enlaces_temp=array();
 for($i=0; $i<$i_total=Count($obtenido['enlaces']); $i++){
-	$obtenido_enlaces_temp[]=array('titulo' => $obtenido['enlaces'][$i]['url_txt']);
-	unset($obtenido['enlaces'][$i]['url_txt']);
 	$obtenido_enlaces_temp[]=$obtenido['enlaces'][$i];
 }
 $obtenido['enlaces']=$obtenido_enlaces_temp;
@@ -265,7 +263,7 @@ function URLSDelArrayBrightCove($r, $tipo, &$obtenido_enlaces, $titulo){
 	if($r["audioOnly"]!="1"){
 		$arrayTemp=array(
 			'calidad_ordenar'=>$r["encodingRate"],
-			'url_txt' => 'Calidad: '.floor($r["encodingRate"]/1000)." Kbps",
+			'titulo' => 'Calidad: '.floor($r["encodingRate"]/1000)." Kbps",
 			'url'     => $r["defaultURL"],
 			'tipo'    => $tipo
 		);
