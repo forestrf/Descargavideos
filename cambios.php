@@ -16,6 +16,13 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'4-Junio-2014',
+array(
+	'fix:Fix A3P Para chrome.'
+	)
+);
+
+$todos[]=array(
 '3-Junio-2014',
 array(
 	'fix:Fallo en Televisa por culpa de números mayores que int32.',

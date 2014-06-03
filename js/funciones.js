@@ -172,3 +172,19 @@ function mueveMenu() {
 		mueveMenu_m = 0;
 	}
 }
+// Internet Explorer
+if(typeof window.attachEvent !== "undefined")
+	window.attachEvent("onmessage",receiveMessage);
+
+// Opera/Mozilla/Webkit
+if(typeof window.addEventListener !== "undefined")
+	window.addEventListener("message", receiveMessage, false);
+
+function receiveMessage(event){
+	if (/^\{"RESPUESTA_DV":"/.test(event.data)){
+		var respuesta = JSON.parse(event.data);
+		if(respuesta["RESPUESTA_DV"]){
+			window[respuesta["RESPUESTA_DV"]](respuesta["CONTENIDO_DV"]);
+		}
+	}
+}

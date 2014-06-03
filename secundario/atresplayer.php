@@ -114,165 +114,18 @@ function resultadoA3PNormal($web, $web_descargada='', $episode='', $title=''){
 
 	$hmac = bin2hex(custom_hmac('md5', $msg, $key, true));
 	dbug('hmac = '.$hmac);
-	/*
-	$apiURL = 'https://servicios.atresplayer.com/api/urlVideoLanguage/'.$episode.'/android_tablet/'.urlencode($episode.'|'.$tiempo.'|'.$hmac).'/es.json';
-	dbug($apiURL);
-	
-	$apiContent = CargaWebCurl($proxys[$random]['proxy'].urlencode($apiURL), '', 1, '', $cabeceras);
-	//$apiContent = CargaWebCurl($apiURL, '', 1, $cookie, $cabeceras);
-	dbug('-----------------apiContent-----------------');
-	dbug($apiContent);
-	
-	
-	$url = 'http://'.entre1y2($apiContent, 'http://', '"');
-	
-	
-	
-	
-	if($title != ''){
-		$obtenido[] = array(
-					'titulo'  => $title,
-					'url'  => $url,
-					'tipo' => 'http',
-					'url_txt' => 'Descargar'
-				);
-	}
-	else{
-		$obtenido[] = array(
-					'url'  => $url,
-					'tipo' => 'http',
-					'url_txt' => 'Descargar'
-				);
-	}
-	*/
-	/*
-	global $rnd_a3p;
-	if($rnd_a3p==null)
-		$rnd_a3p = 0;
-	else
-		++$rnd_a3p;
-	
-	$js = 'function lanzaA3P'.$rnd_a3p.'(){'.
-		'if(typeof DESCARGADOR_ARCHIVOS_SWF === "undefined"){'.
-			'setTimeout(lanzaA3P'.$rnd_a3p.', 200)'.
-		'}'.
-		'else if(DESCARGADOR_ARCHIVOS_SWF === true){'.
-			'getFlashMovie("descargador_archivos").CargaWeb({'.
-				'"url":"'.$apiURL.'",'.
-				'"metodo":"GET"'.
-			'}, "procesaA3P'.$rnd_a3p.'");'.
-		'}'.
-	'}'.
-	
-	'function procesaA3P'.$rnd_a3p.'(txt){'.
-		//'console.log(txt);'.
-		'var url = JSON.parse(txt)["resultDes"]'.
-		//'console.log(url);'.
-		'mostrarResultado(url);'.
-	'}'.
-	
-	
-	'function mostrarResultado(entrada){'.
-		'finalizar(entrada,"Descargar");'.
-	'}'.
-	
-	'function mostrarFallo(){'.
-		'finalizar("","Necesitas iniciar sesión en ATresPlayer para descargar este vídeo o bien el vídeo no existe");'.
-	'}'.
-	
-	
-	
-	'lanzaA3P'.$rnd_a3p.'();';
-	*/
-	
-	
-	//$swf = '/util/fla/f/http://www.atresplayer.com/';
-	//$swf = 'http://sandia.tk/descargador_archivos.swf';
-	$swf = 'http://jojojo.tk/descargador_archivos.swf';
 		
-	$urljs = 
-		'function preLanzaA3P{{random_id}}(){'.
-			'if(typeof DESCARGADOR_ARCHIVOS_SWF === "undefined"){'.
-				'setTimeout(preLanzaA3P{{random_id}}, 200)'.
-			'}'.
-			'else if(DESCARGADOR_ARCHIVOS_SWF === true){'.
-				'lanzaA3P{{random_id}}()'.
-			'}'.
-		'}'.
-		'function calculaA3P{{random_id}}(data){'.
-			'if(data.indexOf("{") !== -1){'.
-				'data = JSON.parse(data);'.
-				'if(data != "" && data["result"] == "0"){'.
-					'mostrarResultado{{random_id}}(data["resultDes"]);'.
-					'return true;'.
-				'}'.
-				'else{'.
-					'return false;'.
-				'}'.
+	$urljs = 'function A3P{{random_id}}creaboton(que){'.
+			'console.log(que);'.
+			'if(que === false){'.
+				'finalizar{{random_id}}("","Necesitas iniciar sesión en ATresPlayer para descargar este vídeo o bien el vídeo no existe");'.
 			'}'.
 			'else{'.
-				'if(data != "" && data.indexOf("<resultDes>OK</resultDes>")!==-1){'.
-					'mostrarResultado{{random_id}}(data.slice(data.indexOf("http")).split("<")[0].replace("&amp;","&"));'.
-					'return true;'.
-				'}'.
-				'else{'.
-					'return false;'.
-				'}'.
-			'}'.
-		'}'.
-		'function lanzaA3P{{random_id}}(){'.
-			'getFlashMovie("descargador_archivos").CargaWeb({'.
-				"'url':'https://servicios.atresplayer.com/api/urlVideoLanguage/$episode/android_tablet/$episode|$tiempo|$hmac/es.json',".
-				'"metodo":"GET"'.
-			'}, "procesaA3P1{{random_id}}");'.
-		'}'.
-		'function procesaA3P1{{random_id}}(data){'.
-			'if(!calculaA3P{{random_id}}(data)){'.
-				'getFlashMovie("descargador_archivos").CargaWeb({'.
-					"'url':'http://servicios.atresplayer.com/api/urlVideo/$episode/android_tablet/$episode|$tiempo|$hmac',".
-					'"metodo":"GET"'.
-				'}, "procesaA3P2{{random_id}}");'.
-			'}'.
-		'}'.
-		'function procesaA3P2{{random_id}}(data){'.
-			'if(!calculaA3P{{random_id}}(data)){'.
-				'mostrarFallo{{random_id}}();'.
+				'finalizar{{random_id}}(que,"Descargar");'.
 			'}'.
 		'}'.
 		
-		'function mostrarResultado{{random_id}}(entrada){'.
-			'finalizar{{random_id}}(entrada,"Descargar");'.
-		'}'.
-		
-		'function mostrarFallo{{random_id}}(){'.
-			'finalizar{{random_id}}("","Necesitas iniciar sesión en ATresPlayer para descargar este vídeo o bien el vídeo no existe");'.
-		'}'.
-
-		'if(typeof descargador_archivos === "undefined"){'.
-			'D.g("enlaces").innerHTML += \'<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="0" height="0" id="descargador_archivos" align="middle">'.
-				'<param name="movie" value="'.$swf.'" />'.
-				'<param name="quality" value="high" />'.
-				'<param name="bgcolor" value="#000" />'.
-				'<param name="allowScriptAccess" value="always" />'.
-				'<!--[if !IE]>-->'.
-				'<embed src="'.$swf.'" quality="high" bgcolor="#000"'.
-					'width="0" height="0" name="descargador_archivos" align="middle"'.
-					'play="true" loop="true" quality="high" allowScriptAccess="always"'.
-					'type="application/x-shockwave-flash"'.
-					'pluginspage="http://www.macromedia.com/go/getflashplayer">'.
-				'</embed>'.
-				'<!--<![endif]-->'.
-			'</object>\';'.
-			'var descargador_archivos = D.g("descargador_archivos");'.
-		'}'.
-		
-		
-		
-		
-		'preLanzaA3P{{random_id}}();';
-	
-	
-	
+		'D.g("enlaces").innerHTML += \'<iframe width="0" height="0" style="position:absolute" src="http://jojojo.tk/a3p.full.php?o=A3P{{random_id}}creaboton&e='.$episode.'&t='.$tiempo.'&h='.$hmac.'">\';';
 	
 	
 	
