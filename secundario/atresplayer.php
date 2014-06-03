@@ -125,7 +125,7 @@ function resultadoA3PNormal($web, $web_descargada='', $episode='', $title=''){
 			'}'.
 		'}'.
 		
-		'D.g("enlaces").innerHTML += \'<iframe width="0" height="0" style="position:absolute" src="http://jojojo.tk/a3p.full.php?o=A3P{{random_id}}creaboton&e='.$episode.'&t='.$tiempo.'&h='.$hmac.'">\';';
+		'D.g("enlaces").innerHTML += \'<iframe width="0" height="0" style="position:absolute" src="http://jojojo.tk/a3p.php?o=A3P{{random_id}}creaboton&e='.$episode.'&t='.$tiempo.'&h='.$hmac.'">\';';
 	
 	
 	
