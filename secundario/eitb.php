@@ -153,7 +153,7 @@ $a_encodear = array
 					"TTLToken" => null,
 					"deliveryType" => NAN,
 					"URL" => $web, //Innecesario
-					"experienceId" => (int)$experienceID,
+					"experienceId" => $experienceID,
 					"playerKey" => $playerKey,
 					"contentOverrides" => null
 				)

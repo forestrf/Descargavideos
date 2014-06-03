@@ -71,7 +71,7 @@ $a_encodear = array
 								"target" => "videoPlayer",
 								"contentRefIds" => null,
 								"featuredId" => NAN,
-								"contentId" => (int)$contentId
+								"contentId" => $contentId
 							)
 						)
 					),
@@ -79,7 +79,7 @@ $a_encodear = array
 					"TTLToken" => null,
 					"deliveryType" => NAN,
 					"URL" => $web, //Innecesario
-					"experienceId" => (int)$experienceID
+					"experienceId" => $experienceID
 				)
 			)
 		)
