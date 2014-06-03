@@ -173,8 +173,30 @@ function url_exists_full(&$url, $preg_match_prerealizado = false){
 				)*/
 			)
 		);
+	$preContext = $context;
+	$preContext['http']['method'] = 'HEAD';
+
 	$context = stream_context_create($context);
+	$preContext = stream_context_create($preContext);
 	
+	if(file_get_contents($url, false, $preContext) === false){
+		dbug_r($http_response_header);
+		dbug('problema al descargar la url');
+		return false;
+	}
+	
+	$content_type_valido = false;
+	foreach($http_response_header as $header){
+		if(enString(strtolower($header), 'content-type: text')){
+			$content_type_valido = true;
+			continue;
+		}
+	}
+	if(!$content_type_valido){
+		dbug('Petición HEAD indica mimetype DISTINTO a text');
+		return false;
+	}
+	dbug('Petición HEAD indica mimetype text');
 	
 
 	global $web_descargada, $web_descargada_headers;

@@ -552,7 +552,7 @@ function averiguaCadena($web){
 					return true;
 				}
 				else{
-					dbug('fallo al abrir la url=>'.$enlace);
+					dbug('fallo al abrir la url=>'.$web);
 					return false;
 				}
 			}
