@@ -19,9 +19,10 @@ $todos[]=array(
 '3-Junio-2014',
 array(
 	'fix:Fallo en Televisa por culpa de números mayores que int32.',
-	'fix:Vídeos insertados por js de eitb.com fallaban',
-	'fix:Resultados con más de 10 enlaces no siempre se mostraban correctamente',
-	'fix:Limitados resultados múltiples de ATresPlayer a 30 máximo.'
+	'fix:Vídeos insertados por js de eitb.com fallaban.',
+	'fix:Resultados con más de 10 enlaces no siempre se mostraban correctamente.',
+	'fix:Limitados resultados múltiples de ATresPlayer a 30 máximo.',
+	'fix:Puesto título para cada enlace en los resultados múltiples de ATresPlayer.'
 	)
 );
 
@@ -29,9 +30,9 @@ $todos[]=array(
 '2-Junio-2014',
 array(
 	'add:Los resultados que requieren flash informan de la necesidad de tener flash para funcionar.',
-	'fix:Problemas con resultados rtmp tras la actualización del css y js',
-	'fix:No todos los vídeos de TV3 tienen enlace de descarga directa',
-	'fix:Resultados con comillas simples en el título podían fallar'
+	'fix:Problemas con resultados rtmp tras la actualización del css y js.',
+	'fix:No todos los vídeos de TV3 tienen enlace de descarga directa.',
+	'fix:Resultados con comillas simples en el título podían fallar.'
 	)
 );
 

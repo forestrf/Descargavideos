@@ -276,13 +276,15 @@ function resultadoA3PNormal($web, $web_descargada='', $episode='', $title=''){
 	
 	
 	
-	
-	
-	$obtenido[] = array(
+	$resultado = array(
 					'url'  => $urljs,
 					'tipo' => 'jsFlash'
 				);
 	
+	if($title!=='')
+		$resultado['titulo'] = $title;
+	
+	$obtenido[] = &$resultado;
 	
 	return $obtenido;
 }
