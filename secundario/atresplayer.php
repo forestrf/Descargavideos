@@ -114,7 +114,10 @@ function resultadoA3PNormal($web, $web_descargada='', $episode='', $title=''){
 
 	$hmac = bin2hex(custom_hmac('md5', $msg, $key, true));
 	dbug('hmac = '.$hmac);
-		
+	
+	//jojojo.tk
+	//briscaonline.tk
+	
 	$urljs = 'function A3P{{random_id}}creaboton(que){'.
 			'console.log(que);'.
 			'if(que === false){'.
