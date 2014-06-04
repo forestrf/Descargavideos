@@ -130,10 +130,13 @@ function mitele(){
 	$f=strpos($web_descargada,'>',$p);
 	$resYa=substr($web_descargada,$p,$f-$p);
 	if(enString($resYa,'data-video')){
-		$p=strpos($resYa,'data-video="')+12;
-		$f=strpos($resYa,'"',$p);
-		$id=substr($resYa,$p,$f-$p);
-		dbug($id);
+		$preId = strtr(entre1y2($web_descargada, '"host":"','"'), array('\\'=>''));
+		dbug('$preId = '.$preId);
+		$preId = CargaWebCurl($preId);
+		
+		$id = entre1y2_a($preId,strpos($preId,'link',strpos($preId,'videoUrl')),'>','<');
+		dbug('$id = '.$id);
+		
 		//imagen
 		$p=strpos($web_descargada,'class="videoEmbed"');
 		$p=strpos($web_descargada,'<img src="',$p)+10;
