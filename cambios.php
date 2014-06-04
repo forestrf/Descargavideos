@@ -18,6 +18,7 @@ function cambios($max=-1){
 $todos[]=array(
 '4-Junio-2014',
 array(
+	'add:Subtítulos para ATresPlayer.',
 	'fix:Fix A3P Para chrome.',
 	'fix:Algunos vídeos de mitele se obtenían con una ID erronea.'
 	)

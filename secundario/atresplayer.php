@@ -142,6 +142,18 @@ function resultadoA3PNormal($web, $web_descargada='', $episode='', $title=''){
 	
 	$obtenido[] = &$resultado;
 	
+	// Buscar subtitulos
+	$preSubtitulos = CargaWebCurl('http://servicios.atresplayer.com/episode/get?episodePk='.$episode);
+	dbug($preSubtitulos);
+	$preSubtitulos = json_decode($preSubtitulos, true);
+	dbug_r($preSubtitulos);
+	if($preSubtitulos['subtitle']){
+		$obtenido[] = array(
+					'url'  => $preSubtitulos['urlSubtitle'],
+					'tipo' => 'srt'
+				);
+	}
+	
 	return $obtenido;
 }
 
