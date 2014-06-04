@@ -134,7 +134,12 @@ function mitele(){
 		dbug('$preId = '.$preId);
 		$preId = CargaWebCurl($preId);
 		
-		$id = entre1y2_a($preId,strpos($preId,'link',strpos($preId,'videoUrl')),'>','<');
+		if(enString($preId, '<rtmp')){
+			$id = entre1y2_a($preId,strpos($preId,'url',strpos($preId,'videoUrl')),'<![CDATA[',']]');
+		}
+		else{
+			$id = entre1y2_a($preId,strpos($preId,'link',strpos($preId,'videoUrl')),'>','<');
+		}
 		dbug('$id = '.$id);
 		
 		//imagen
