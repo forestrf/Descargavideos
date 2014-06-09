@@ -104,8 +104,15 @@ function mitele(){
 	//web es la variable logal, no una de mitele().
 	global $titulo,$imagen,$geoB,$web_descargada;
 
-
-	//$ret=$ret=CargaWebCurl($web);
+	// Comprobar si la página es una con portada del vídeo
+	if(enString($web_descargada, 'class="Destacado-imagen"')){
+		dbug('Web no final, con video en descatado. Usar ese vídeo.');
+		$urlVideoEmbed = entre1y2_a($web_descargada, strpos($web_descargada, 'class="Destacado-imagen"'), 'href="', '"');
+		if($urlVideoEmbed[0] === '/'){
+			$urlVideoEmbed = 'http://www.mitele.es'.$urlVideoEmbed;
+		}
+		$web_descargada = CargaWebCurl($urlVideoEmbed);
+	}
 
 	//titulo
 	$p=strpos($web_descargada,"<title>")+7;
@@ -116,14 +123,16 @@ function mitele(){
 
 
 	//comprobar que no es premium
-	$p=strpos($web_descargada,'<div class="videoEmbed">');
-	$f=strpos($web_descargada,'</div>',$p);
-	$premium=substr($web_descargada,$p,$f-$p);
-
-	//el video es premium. Dar error
-	if(enString($premium,'<span class="premium">')){
-		setErrorWebIntera('premium');
-		return;
+	if(enString($web_descargada,'<div class="videoEmbed">')){
+		$p=strpos($web_descargada,'<div class="videoEmbed">');
+		$f=strpos($web_descargada,'</div>',$p);
+		$premium=substr($web_descargada,$p,$f-$p);
+	
+		//el video es premium. Dar error
+		if(enString($premium,'<span class="premium">')){
+			setErrorWebIntera('premium');
+			return;
+		}
 	}
 
 	$p=strpos($web_descargada,'class="videoEmbed"');

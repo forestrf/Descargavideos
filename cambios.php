@@ -16,6 +16,13 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'9-Junio-2014',
+array(
+	'add:De no indicar el capítulo de una serie en mitele se usará la destacada en la página.'
+	)
+);
+
+$todos[]=array(
 '4-Junio-2014',
 array(
 	'add:Subtítulos para ATresPlayer.',
