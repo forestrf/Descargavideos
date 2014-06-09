@@ -471,4 +471,8 @@ function genera_swf_object($swf, $id = 'descargador_archivos'){
 		//'<!--<![endif]-->'.
 	'</object>';
 }
+
+function htmlentities2($entrada){
+	return strtr(htmlentities($entrada, ENT_QUOTES), array('%'=>'&#37;'));
+}
 ?>

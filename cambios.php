@@ -18,7 +18,8 @@ function cambios($max=-1){
 $todos[]=array(
 '9-Junio-2014',
 array(
-	'add:De no indicar el capítulo de una serie en mitele se usará la destacada en la página.'
+	'add:De no indicar el capítulo de una serie en mitele se usará la destacada en la página.',
+	'fix:Resultados con títulos con el carácter % no funcionaban correctamente.'
 	)
 );
 

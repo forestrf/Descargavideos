@@ -113,12 +113,12 @@ function generaInnerResultado(){
 		$R2['dir_resultado']                               = $url;
 		$R2['dir_resultado_reproductor']                   = urlencode($url);
 		$R2['dir_resultado_urlencode']                     = urlencode($url);
-		$R2['dir_resultado_txt']                           = htmlentities($url_txt, ENT_QUOTES);
+		$R2['dir_resultado_txt']                           = htmlentities2($url_txt, ENT_QUOTES);
 		$R2['dir_resultado_enc_rtmpdump']                  = $url;
 		$R2['dir_resultado_rtmpdump_manual']               = $rtmpdump;
-		$R2['dir_resultado_rtmpdump_manual_esc_doblecoma'] = htmlentities($rtmpdump, ENT_QUOTES);
+		$R2['dir_resultado_rtmpdump_manual_esc_doblecoma'] = htmlentities2($rtmpdump, ENT_QUOTES);
 		$R2['dir_resultado_rtmpdumpHTTP']                  = $rtmpdumpHTTP;
-		$R2['dir_resultado_rtmpdumpHTTP_esc_doblecoma']    = htmlentities($rtmpdumpHTTP, ENT_QUOTES);
+		$R2['dir_resultado_rtmpdumpHTTP_esc_doblecoma']    = htmlentities2($rtmpdumpHTTP, ENT_QUOTES);
 		$R2['dir_resultado_enc_rtmpdump_manual']           = urlencode($rtmpdump);
 		$R2['nombre_resultado_rtmpdump_manual']            = $nombre_archivo;
 		$R2['pass_m3u8']                                   = $m3u8_pass;
