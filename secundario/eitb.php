@@ -49,7 +49,7 @@ elseif(enString($retfull, 'insertar_player_video(')){
 	$id=entre1y2($retfull,'insertar_player_video(',',');
 	dbug('id='.$id);
 }
-$ret=CargaWebCurl("http://www.eitb.com/es/get/multimedia/video/id/".$id."/size/grande/");
+$ret=CargaWebCurl('http://www.eitb.com/es/get/multimedia/video/id/'.$id.'/size/grande/');
 
 $imagen=entre1y2($ret,'thumbnail url="','"');
 
@@ -58,7 +58,7 @@ if(enString($ret, 'manifest.f4m')){
 	$p=strpos($ret,'url="',$p);
 	$p=strposF($ret,'z/',$p);
 	$f=strpos($ret,'/manifest.f4m',$p);
-	$url="http://www.eitb.com/".substr($ret,$p,$f-$p);
+	$url='http://www.eitb.com/'.substr($ret,$p,$f-$p);
 	
 	$obtenido=array(
 		'titulo'  => $titulo,
@@ -72,7 +72,7 @@ if(enString($ret, 'manifest.f4m')){
 	);
 }
 elseif(enString($ret, '.mp4') || enString($ret, '.flv')){
-	$url="http://www.eitb.com/".entre1y2($ret,'<media:content url="','"');
+	$url='http://www.eitb.com/'.entre1y2($ret,'<media:content url="','"');
 	
 	$obtenido=array(
 		'titulo'  => $titulo,
@@ -122,44 +122,44 @@ $obtenido=array('enlaces' => array());
 if(enString($retfull,'<param name="playerKey"'))
 	$playerKey=entre1y2($retfull,'<param name="playerKey" value="','"');
 if(!isset($playerKey)){
-	setErrorWebIntera("No se ha encontrado ningún vídeo.");
+	setErrorWebIntera('No se ha encontrado ningún vídeo.');
 	return;
 }
-dbug("playerKey -> ".$playerKey);
-$messagebroker="http://c.brightcove.com/services/messagebroker/amf?playerKey=".$playerKey;
+dbug('playerKey -> '.$playerKey);
+$messagebroker='http://c.brightcove.com/services/messagebroker/amf?playerKey='.$playerKey;
 
 
 if(enString($retfull,'<param name="playerID"'))
 	$experienceID=entre1y2($retfull,'<param name="playerID" value="','"');
 if(!isset($experienceID)){
-	setErrorWebIntera("No se ha encontrado ningún vídeo.");
+	setErrorWebIntera('No se ha encontrado ningún vídeo.');
 	return;
 }
-dbug("experienceID -> ".$experienceID);
+dbug('experienceID -> '.$experienceID);
 
 
 include 'brightcove-funciones.php';
 
 $a_encodear = array
 (
-	"target"	=> "com.brightcove.experience.ExperienceRuntimeFacade.getDataForExperience",
-	"response"	=> "/1",
-	"data"		=> array
+	'target'	=> 'com.brightcove.experience.ExperienceRuntimeFacade.getDataForExperience',
+	'response'	=> '/1',
+	'data'		=> array
 	(
-		"0" => "a8cdc396a50ca2415ddd0e33cca179431347adc5",
-		"1" => new SabreAMF_AMF3_Wrapper
+		'0' => 'a8cdc396a50ca2415ddd0e33cca179431347adc5',
+		'1' => new SabreAMF_AMF3_Wrapper
 		(
 			new SabreAMF_TypedObject
 			(
-				"com.brightcove.experience.ViewerExperienceRequest",
+				'com.brightcove.experience.ViewerExperienceRequest',
 				array
 				(
-					"TTLToken" => null,
-					"deliveryType" => NAN,
-					"URL" => $web, //Innecesario
-					"experienceId" => $experienceID,
-					"playerKey" => $playerKey,
-					"contentOverrides" => null
+					'TTLToken' => null,
+					'deliveryType' => NAN,
+					'URL' => $web, //Innecesario
+					'experienceId' => $experienceID,
+					'playerKey' => $playerKey,
+					'contentOverrides' => null
 				)
 			)
 		)
@@ -174,13 +174,13 @@ dbug('a descargar: '.$messagebroker);
 $t=brightcove_curl_web($messagebroker,$post);
 
 $res_decoded=brightcove_decode($t);
-dbug("PRIMERA RESPUESTA BRIGHTCOVE:");
+dbug('PRIMERA RESPUESTA BRIGHTCOVE:');
 dbug_r($res_decoded);
 
 
-$publisherId1=$res_decoded["data"]->getAMFData();
-$publisherId=$publisherId1["publisherId"];
-dbug("publisherId -> ".$publisherId);
+$publisherId1=$res_decoded['data']->getAMFData();
+$publisherId=$publisherId1['publisherId'];
+dbug('publisherId -> '.$publisherId);
 
 preg_match_all('@/([0-9]+)/([0-9]+)/@i', $web, $match); 
 $elem1=$match[1][0];
@@ -189,14 +189,14 @@ $elem2=$match[2][0];
 
 $a_encodear_2 = array
 (
-	"target"	=> "com.brightcove.player.runtime.PlayerMediaFacade.findMediaById",
-	"response"	=> "/1",
-	"data"		=> array
+	'target'	=> 'com.brightcove.player.runtime.PlayerMediaFacade.findMediaById',
+	'response'	=> '/1',
+	'data'		=> array
 	(
-		"0" => "1667452d348dee57623638675cb12b6418e7ccc3",
-		"1" => $experienceID,
-		"2" => $elem2,
-		"3" => $publisherId
+		'0' => '1667452d348dee57623638675cb12b6418e7ccc3',
+		'1' => $experienceID,
+		'2' => $elem2,
+		'3' => $publisherId
 	)
 );
 
@@ -205,31 +205,31 @@ $post = brightcove_encode($a_encodear_2);
 $t=brightcove_curl_web($messagebroker,$post);
 
 $res_decoded=brightcove_decode($t);
-dbug("SEGUNDA RESPUESTA BRIGHTCOVE (enlaces de vídeos aquí):");
+dbug('SEGUNDA RESPUESTA BRIGHTCOVE (enlaces de vídeos aquí):');
 dbug_r($res_decoded);
 
 
 
-$base=$res_decoded["data"]->getAMFData();
-$titulo=$base["displayName"];
-$imagen=$base["videoStillURL"];
+$base=$res_decoded['data']->getAMFData();
+$titulo=$base['displayName'];
+$imagen=$base['videoStillURL'];
 dbug('titulo = '.$titulo);
 dbug('imagen = '.$imagen);
 
 
 dbug('IOSRenditions');//m3u8
-$IOSRenditions = $base["IOSRenditions"];
+$IOSRenditions = $base['IOSRenditions'];
 for($i=0; $i<$i_total=Count($IOSRenditions); $i++){
 	$temp=$IOSRenditions[$i]->getAMFData();
-	URLSDelArrayBrightCove($temp, "m3u8", $obtenido['enlaces'], $titulo);
+	URLSDelArrayBrightCove($temp, 'm3u8', $obtenido['enlaces'], $titulo);
 }
 
 
 dbug('renditions');
-$renditions = $base["renditions"];
+$renditions = $base['renditions'];
 for($i=0; $i<$i_total=Count($renditions); $i++){
 	$temp=$renditions[$i]->getAMFData();
-	URLSDelArrayBrightCove($temp, "rtmpConcreto", $obtenido['enlaces'], $titulo);
+	URLSDelArrayBrightCove($temp, 'rtmpConcreto', $obtenido['enlaces'], $titulo);
 }
 
 //ordenar usando ['calidad_ordenar']
@@ -264,18 +264,18 @@ finalCadena($obtenido,false);
 }
 
 function URLSDelArrayBrightCove($r, $tipo, &$obtenido_enlaces, $titulo){
-	if($r["audioOnly"]!="1"){
+	if($r['audioOnly']!='1'){
 		$arrayTemp=array(
-			'calidad_ordenar' => $r["encodingRate"],
-			'titulo'          => 'Calidad: '.floor($r["encodingRate"]/1000)." Kbps",
-			'url'             => $r["defaultURL"],
+			'calidad_ordenar' => $r['encodingRate'],
+			'titulo'          => 'Calidad: '.floor($r['encodingRate']/1000).' Kbps',
+			'url'             => $r['defaultURL'],
 			'tipo'            => $tipo
 		);
 		
 		//rtmpdump --rtmp "rtmp://brightcove.fcod.llnwd.net/a500/e1/uds/rtmp/ondemand/&mp4:102076681001/102076681001_1194607581001_40628-20111001-193913.mp4&1396378800000&8ea0d55b8390f639ceb5d6cb0012f5a1" --app="a500/e1/uds/rtmp/ondemand?videoId=1194575820001&lineUpId=&pubId=102076681001&playerId=2202962695001" --swfUrl="http://admin.brightcove.com/viewer/us20121218.1107/federatedVideoUI/BrightcovePlayer.swf?uid=1355158765470" --playpath="mp4:102076681001/102076681001_1194607581001_40628-20111001-193913.mp4?videoId=1194575820001&lineUpId=&pubId=102076681001&playerId=2202962695001" --pageUrl="http://www.eitb.tv/es/video/escepticos/1162371025001/1194575820001/-todo-esta-escrito-/" -C "B:0" -C "S:mp4:102076681001/102076681001_1194607581001_40628-20111001-193913.mp4&1396378800000&8ea0d55b8390f639ceb5d6cb0012f5a1" -o "Escepticos_-3-.mp4"
 		
-		if(enString($r["defaultURL"], 'brightcove')){
-			preg_match('@://.*?/(.*?)[\?&].*?mp4:(.*?)$@', $r["defaultURL"], $matches);
+		if(enString($r['defaultURL'], 'brightcove')){
+			preg_match('@://.*?/(.*?)[\?&].*?mp4:(.*?)$@', $r['defaultURL'], $matches);
 			$a = $matches[1];
 			$CS = $matches[2];
 			$extra = '-a "'.$a.'" -C "B:0" -C "S:'.$CS.'" ';
@@ -288,10 +288,10 @@ function URLSDelArrayBrightCove($r, $tipo, &$obtenido_enlaces, $titulo){
 		
 		
 		
-		if($tipo === "rtmpConcreto"){
-			preg_match_all('@(mp4:.*?\.mp4)@i', $r["defaultURL"], $match);
+		if($tipo === 'rtmpConcreto'){
+			preg_match_all('@(mp4:.*?\.mp4)@i', $r['defaultURL'], $match);
 			$y = $match[0][0];
-			$arrayTemp['rtmpdump'] = '-r "'.strtr($r["defaultURL"],array('&'.$y=>'')).'" -y "'.$y.'" '.$extra.' -o "'.generaNombreWindowsValido($titulo." - ".floor($r["encodingRate"]/1000)." Kbps".'.mp4').'"';
+			$arrayTemp['rtmpdump'] = '-r "'.strtr($r['defaultURL'],array('&'.$y=>'')).'" -y "'.$y.'" '.$extra.' -o "'.generaNombreWindowsValido($titulo.' - '.floor($r['encodingRate']/1000).' Kbps'.'.mp4').'"';
 		}
 		
 		$obtenido_enlaces[] = $arrayTemp;
