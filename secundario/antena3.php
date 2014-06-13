@@ -152,7 +152,7 @@ else{
 		}
 		$titulo = entre1y2($web_descargada, '<title>','<');
 		if(!isset($imagen) || !enString($imagen, '.jpg')){
-			$imagen = 'http://www.antena3.com/clipping/'.entre1y2($web_descargada, '/clipping/', '"');
+			$imagen = 'http://www.antena3.com/clipping/'.entre1y2($web_descargada, '/clipping/', '.jpg').'.jpg';
 			$imagen = substr($imagen, 0, strrposF($imagen, '/')).'45.jpg';
 		}
 	}
@@ -171,11 +171,10 @@ else{
 		elseif(enString($web_descargada, 'name="videoDataUrl" value="')){
 			dbug('modo 2');
 			$xml=entre1y2($web_descargada, 'name="videoDataUrl" value="', '"');
-			foreach(parseaXMLNuevo($xml) as $individual)
-				$obtenido['enlaces'][]=$individual;
+			$obtenido['enlaces'][]=parseaXMLNuevo($xml);
 			$titulo = entre1y2($web_descargada, '<title>','<');
 			if(!isset($imagen) || !enString($imagen, '.jpg')){
-				$imagen = 'http://www.antena3.com/clipping/'.entre1y2($web_descargada, '/clipping/', '"');
+				$imagen = 'http://www.antena3.com/clipping/'.entre1y2($web_descargada, '/clipping/', '.jpg').'.jpg';
 				$imagen = substr($imagen, 0, strrposF($imagen, '/')).'45.jpg';
 			}
 		}
