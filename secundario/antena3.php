@@ -166,13 +166,18 @@ else{
 			$xml=substr($web_descargada,$p,$f-$p);
 			$xml='http://www.antena3.com/'.$xml;
 			foreach(parseaXMLNormal($xml) as $individual)
-			$obtenido['enlaces'][]=$individual;
+				$obtenido['enlaces'][]=$individual;
 		}
 		elseif(enString($web_descargada, 'name="videoDataUrl" value="')){
 			dbug('modo 2');
 			$xml=entre1y2($web_descargada, 'name="videoDataUrl" value="', '"');
 			foreach(parseaXMLNuevo($xml) as $individual)
 				$obtenido['enlaces'][]=$individual;
+			$titulo = entre1y2($web_descargada, '<title>','<');
+			if(!isset($imagen) || !enString($imagen, '.jpg')){
+				$imagen = 'http://www.antena3.com/clipping/'.entre1y2($web_descargada, '/clipping/', '"');
+				$imagen = substr($imagen, 0, strrposF($imagen, '/')).'45.jpg';
+			}
 		}
 		
 	}
