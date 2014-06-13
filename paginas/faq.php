@@ -101,7 +101,6 @@ A continuación se puede ver el listado de las webs y los canales soportados:<br
 	<li>canalriasbaixas.com</li>
 	<li>divinity.es</li>
 	<li>aragontelevision.es</li>
-	<li>rtvv.es</li>
 	<li>canalsur.es</li>
 	<li>tv3.cat</li>
 	<li>esport3.cat</li>
