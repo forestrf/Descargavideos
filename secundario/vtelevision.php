@@ -122,7 +122,7 @@ elseif(enString($web_descargada, '<object class="BrightcoveExperience"')){
 	
 	
 	
-	$base=$res_decoded["data"]->getAMFData();
+	$base=$res_decoded['data']->getAMFData();
 	$base=$base['programmedContent']['videoPlayer']->getAMFData();
 	$base=$base['mediaDTO']->getAMFData();
 	
@@ -139,11 +139,12 @@ finalCadena($obtenido);
 }
 
 function URLSDelArrayBrightCove($r, $tipo, &$obtenido_enlaces){
-	if($r["audioOnly"]!="1"){
+	if($r['audioOnly']!='1'){
 		$obtenido_enlaces[]=array(
-			'calidad_ordenar'=>$r["encodingRate"],
-			'url_txt' => 'Calidad: '.floor($r["encodingRate"]/1000)." Kbps",
-			'url'     => strtr($r["defaultURL"], array('videohdvtv-vh.akamaihd.net'=>'progresive.lavozdegalicia.es')),
+			'calidad_ordenar'=>$r['encodingRate'],
+			'titulo' => 'Calidad: '.floor($r['encodingRate']/1000).' Kbps',
+			'url_txt' => 'Descargar',
+			'url'     => strtr($r['defaultURL'], array('videohdvtv-vh.akamaihd.net'=>'progresive.lavozdegalicia.es')),
 			'tipo'    => $tipo
 		);
 	}
