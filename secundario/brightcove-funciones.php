@@ -40,4 +40,41 @@ function brightcove_curl_web($url,$post){
 	return CargaWebCurl($url,$post,0,"",$r);
 }
 
+function brightcove_genera_obtenido($base, $config){
+	$obtenido2 = array();
+	$titulo = '';
+	
+	foreach($config as $pathBase => $tipoObtenido){
+		dbug($pathBase);
+		$IOSRenditions = $base[$pathBase];
+		for($i=0; $i<$i_total=Count($IOSRenditions); $i++){
+			$temp=$IOSRenditions[$i]->getAMFData();
+			URLSDelArrayBrightCove($temp, $tipoObtenido, $obtenido2, $titulo);
+		}
+	}
+	
+	//ordenar usando ['calidad_ordenar']
+	for($i=0; $i<=$i_total=Count($obtenido2)-1; $i++){
+		for($j=$i+1; $j<=$i_total; $j++){
+			//dbug("i:".$i." - j:".$j);
+			if($obtenido2[$i]['calidad_ordenar']<$obtenido2[$j]['calidad_ordenar']){
+				$temp=$obtenido2[$i];
+				$obtenido2[$i]=$obtenido2[$j];
+				$obtenido2[$j]=$temp;
+			}
+		}
+	}
+	dbug_r($obtenido2);
+	//borrar ['calidad_ordenar']
+	for($i=0; $i<$i_total=Count($obtenido2); $i++)
+		unset($obtenido2[$i]['calidad_ordenar']);
+	
+	//sacar 'url-txt' a otro res de solo 'titulo'
+	$obtenido_enlaces_temp=array();
+	for($i=0; $i<$i_total=Count($obtenido2); $i++){
+		$obtenido_enlaces_temp[]=$obtenido2[$i];
+	}
+	return $obtenido_enlaces_temp;
+}
+
 ?>

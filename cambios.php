@@ -18,6 +18,7 @@ function cambios($max=-1){
 $todos[]=array(
 '13-Junio-2014',
 array(
+	'add:Soporte para los vídeos de VTelevisión que usan brightcove.',
 	'fix:Arreglados algunos vídeos de la sexta que funcionan de una nueva forma.'
 	)
 );
