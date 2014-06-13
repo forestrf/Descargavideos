@@ -158,13 +158,23 @@ else{
 	}
 	elseif(enString($web_descargada,"playContainer")){
 		dbug('playContainer');
-		$p=strpos($web_descargada,"playContainer");
-		$p=strpos($web_descargada,".xml='",$p)+6; //devuelve sin /
-		$f=strpos($web_descargada,'.xml',$p)+4;
-		$xml=substr($web_descargada,$p,$f-$p);
-		$xml='http://www.antena3.com/'.$xml;
-		foreach(parseaXMLNormal($xml) as $individual)
+		if(enString($web_descargada, '.xml=')){
+			dbug('modo 1');
+			$p=strpos($web_descargada,"playContainer");
+			$p=strpos($web_descargada,".xml='",$p)+6; //devuelve sin /
+			$f=strpos($web_descargada,'.xml',$p)+4;
+			$xml=substr($web_descargada,$p,$f-$p);
+			$xml='http://www.antena3.com/'.$xml;
+			foreach(parseaXMLNormal($xml) as $individual)
 			$obtenido['enlaces'][]=$individual;
+		}
+		elseif(enString($web_descargada, 'name="videoDataUrl" value="')){
+			dbug('modo 2');
+			$xml=entre1y2($web_descargada, 'name="videoDataUrl" value="', '"');
+			foreach(parseaXMLNuevo($xml) as $individual)
+				$obtenido['enlaces'][]=$individual;
+		}
+		
 	}
 	//.addVariable("xml"
 	elseif(enString($web_descargada,'.addVariable("xml"')){

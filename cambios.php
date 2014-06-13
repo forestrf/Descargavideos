@@ -16,6 +16,13 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'13-Junio-2014',
+array(
+	'fix:Arreglados algunos vídeos de la sexta que funcionan de una nueva forma.'
+	)
+);
+
+$todos[]=array(
 '9-Junio-2014',
 array(
 	'add:De no indicar el capítulo de una serie en mitele se usará la destacada en la página.',

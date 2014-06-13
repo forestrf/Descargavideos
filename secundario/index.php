@@ -401,14 +401,18 @@ if($modo==1){
 		else{
 			if(url_exists_full($web, true)){
 				dbug('enlace correcto (se pudo abrir la URL)=>'.$web);
+				
 				//Includes
-				for($k=0;$k<count($cadena_elegida_arr[1]);$k++)
+				dbug('Incluyendo PHPs');
+				for($k=0;$k<count($cadena_elegida_arr[1]);$k++){
+					dbug('Incluyendo: '.$cadena_elegida_arr[1][$k]);
 					include_once $cadena_elegida_arr[1][$k];
+				}
+				
 				//Lanzar función cadena
-				dbug('Lanzando función cadena');
+				dbug('Lanzando función cadena: '.$cadena_elegida_arr[2]);
 				dbug('--------------------------------------');
 				$cadena_elegida_arr[2]();
-				
 				
 				if($fallourlinterna==''){
 					if(!isset($resultado['enlaces']) || count($resultado['enlaces'])==0){
