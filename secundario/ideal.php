@@ -124,45 +124,10 @@ dbug('titulo = '.$titulo);
 dbug('imagen = '.$imagen);
 
 
-dbug('IOSRenditions');//m3u8
-$IOSRenditions = $base["IOSRenditions"];
-for($i=0; $i<$i_total=Count($IOSRenditions); $i++){
-	$temp=$IOSRenditions[$i]->getAMFData();
-	URLSDelArrayBrightCove($temp, "m3u8", $obtenido['enlaces']);
-}
-
-
-dbug('renditions');
-$renditions = $base["renditions"];
-for($i=0; $i<$i_total=Count($renditions); $i++){
-	$temp=$renditions[$i]->getAMFData();
-	URLSDelArrayBrightCove($temp, "rtmp", $obtenido['enlaces']);
-}
-
-//ordenar usando ['calidad_ordenar']
-for($i=0; $i<=$i_total=Count($obtenido['enlaces'])-1; $i++){
-	for($j=$i+1; $j<=$i_total; $j++){
-		//dbug("i:".$i." - j:".$j);
-		if($obtenido['enlaces'][$i]['calidad_ordenar']<$obtenido['enlaces'][$j]['calidad_ordenar']){
-			$temp=$obtenido['enlaces'][$i];
-			$obtenido['enlaces'][$i]=$obtenido['enlaces'][$j];
-			$obtenido['enlaces'][$j]=$temp;
-		}
-	}
-}
-dbug_r($obtenido['enlaces']);
-//borrar ['calidad_ordenar']
-for($i=0; $i<$i_total=Count($obtenido['enlaces']); $i++)
-	unset($obtenido['enlaces'][$i]['calidad_ordenar']);
-
-//sacar 'url-txt' a otro res de solo 'titulo'
-$obtenido_enlaces_temp=array();
-for($i=0; $i<$i_total=Count($obtenido['enlaces']); $i++){
-	$obtenido_enlaces_temp[]=array('titulo' => $obtenido['enlaces'][$i]['url_txt']);
-	unset($obtenido['enlaces'][$i]['url_txt']);
-	$obtenido_enlaces_temp[]=$obtenido['enlaces'][$i];
-}
-$obtenido['enlaces']=$obtenido_enlaces_temp;
+$obtenido['enlaces'] = brightcove_genera_obtenido($base, array(
+	'IOSRenditions' => 'm3u8',
+	'renditions' => 'rtmp'
+));
 	
 
 
@@ -176,7 +141,7 @@ function URLSDelArrayBrightCove($r, $tipo, &$obtenido_enlaces){
 	if($r["audioOnly"]!="1"){
 		$obtenido_enlaces[]=array(
 			'calidad_ordenar'=>$r["encodingRate"],
-			'url_txt' => 'Calidad: '.floor($r["encodingRate"]/1000)." Kbps",
+			'titulo' => 'Calidad: '.floor($r["encodingRate"]/1000)." Kbps",
 			'url'     => $r["defaultURL"],
 			'tipo'    => $tipo
 		);
