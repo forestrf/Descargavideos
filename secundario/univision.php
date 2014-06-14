@@ -130,6 +130,31 @@ function univisionID($id) {
 
 	$urls_length = count($urls);
 	for ($i = 0; $i < $urls_length; $i++) {
+		if($urls[$i][1] == 2000){
+			$preContext =
+			array('http'=>
+				array(
+					'method' => 'HEAD',
+					'header' => "User-agent: Mozilla/5.0 (Windows NT 6.1; rv:11.0) Gecko/20100101 Firefox/11.0\r\n".
+								"Connection: close\r\n".
+								"Accept-Language: es-ES,es;en-US;en\r\n".
+								"Accept: text/html,application/xhtml+xml,application/xml\r\n",
+					'timeout' => 5,
+					'ignore_errors' => '1'
+				)
+			);
+			
+			$preContext = stream_context_create($preContext);
+			if(file_get_contents($urls[$i][0], false, $preContext) === false){
+				dbug('no se puede abrir la url de calidad 2000');
+				continue;
+			}
+			dbug_r($http_response_header);
+			if(strpos($http_response_header[0], ' 404 ')){
+				dbug('la url de calidad 2000 da 404');
+				continue;
+			}
+		}
 		if (esVideoAudioAnon($urls[$i][0])) {
 			$tit = 'Calidad: ' . $urls[$i][1] . " Kbps";
 			$url = $urls[$i][0];

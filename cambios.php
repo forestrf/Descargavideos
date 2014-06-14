@@ -16,6 +16,13 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'14-Junio-2014',
+array(
+	'fix:Los vídeos de univisión que no tienen calidad 2000kbps no muestran dicha calidad.'
+	)
+);
+
+$todos[]=array(
 '13-Junio-2014',
 array(
 	'add:Soporte para los vídeos de VTelevisión que usan brightcove.',
