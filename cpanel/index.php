@@ -5,7 +5,7 @@ $db = new PDO('sqlite:avisos.sqlite');
 
 $result = $db->query('SELECT * FROM avisos;');
 if($result === false){
-	$db->query('CREATE TABLE avisos (ID INTEGER PRIMARY KEY AUTOINCREMENT, url STRING, comentario STRING, ip STRING, fecha DATETIME DEFAULT current_timestamp);');
+	$db->query('CREATE TABLE avisos (ID INTEGER PRIMARY KEY AUTOINCREMENT, url STRING, comentario STRING, ip STRING, referer STRING, useragent STRING, fecha DATETIME DEFAULT current_timestamp);');
 	echo 'Recarga la página';
 	exit;
 }
@@ -72,6 +72,12 @@ Avisos de fallos (rápido):<br>
 		<th>
 			Fecha
 		</th>
+		<th>
+			Referer
+		</th>
+		<th>
+			User-Agent
+		</th>
 	</tr>
 
 <?php
@@ -83,7 +89,9 @@ foreach($result->fetchAll(PDO::FETCH_ASSOC) as &$elem){
 		'<td><a target="blank" href="http://www.descargavideos.tv/?web='.urlencode($elem['url']).'">[DV]</a> <a target="blank" href="http://localhost/?web='.urlencode($elem['url']).'">[LH]</a> <a href="',$elem['url'],'">',$elem['url'],'</a></td>',
 		'<td>',$elem['comentario'],'</td>',
 		'<td>',$elem['ip'],'</td>',
-		'<td>',$elem['fecha'],'</td><tr>';
+		'<td>',$elem['fecha'],'</td>',
+		'<td>',$elem['referer'],'</td>',
+		'<td>',$elem['useragent'],'</td></tr>';
 	//print_r($elem);
 }
 ?>
