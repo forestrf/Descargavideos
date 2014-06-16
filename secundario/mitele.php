@@ -404,7 +404,8 @@ function mitele3($id,$id2){
 
 	$url='http://www.telecinco.es/mdsvideo/sources.json?contentId='.$id.'&clippingId='.$id2.'&imageContentId='.$id;
 
-	$json=CargaWebCurl($url);
+	//$json=CargaWebCurl($url);
+	$json=CargaWebCurlProxy($url, 'ESP');
 	dbug($json);
 	$json=str_replace("\\","",$json);
 
