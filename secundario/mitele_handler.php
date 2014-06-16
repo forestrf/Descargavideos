@@ -28,7 +28,22 @@ if(isset($_GET['fullinfo'])){
 
 
 
-if(isset($_GET['t5'])){
+//Este imprime la url (rtmpdump comando) y sale.
+if(isset($_GET['rtmp'])){
+	if(isset($_GET['id'])){
+		if(isset($_GET['t5'])){
+			$res=mitele2($_GET['id'], 2);//mitele para rtmp
+		}
+		else{
+			$res=mitele2($_GET['id']);//mitele para rtmp
+		}
+		echo $res;
+		exit;
+	}
+	else
+		$res='';
+}
+elseif(isset($_GET['t5'])){
 	if(isset($_GET['id'])&&isset($_GET['id2']))
 		$res=mitele3($_GET['id'],$_GET['id2']);//telecinco/cuatro/divinity
 	elseif(isset($_GET['id']))
@@ -41,16 +56,6 @@ elseif(isset($_GET['kd'])){
 		$res=mitele4($_GET['id'],$_GET['id2']);//mitelekids
 	elseif(isset($_GET['id']))
 		$res=mitele4($_GET['id'],"");//mitelekids // no id2
-	else
-		$res='';
-}
-//Este imprime la url (rtmpdump comando) y sale.
-elseif(isset($_GET['rtmp'])){
-	if(isset($_GET['id'])){
-		$res=mitele2($_GET['id'],"");//mitele para rtmp
-		echo $res;
-		exit;
-	}
 	else
 		$res='';
 }
