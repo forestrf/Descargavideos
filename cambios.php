@@ -16,6 +16,13 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'17-Junio-2014',
+array(
+	'fix:Telecinco actualizado para funcionar con vídeos rtmp.'
+	)
+);
+
+$todos[]=array(
 '14-Junio-2014',
 array(
 	'fix:Los vídeos de univisión que no tienen calidad 2000kbps no muestran dicha calidad.'
