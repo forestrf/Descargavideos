@@ -46,16 +46,16 @@ var css_user='<?php echo $css_modo?>';
 
 		<div id="esquina" class="esquina">
 			<div class="interior_esquina"><div>
-				<a href="/cambiaCabecera.php?modo=1"  onmouseover="lcs(1)"  onmouseout="lcs(css_user)"><span class="m1 img"></span></a>
-				<a href="/cambiaCabecera.php?modo=2"  onmouseover="lcs(2)"  onmouseout="lcs(css_user)"><span class="m2 img"></span></a>
-				<a href="/cambiaCabecera.php?modo=3"  onmouseover="lcs(3)"  onmouseout="lcs(css_user)"><span class="m3 img"></span></a>
-				<a href="/cambiaCabecera.php?modo=4"  onmouseover="lcs(4)"  onmouseout="lcs(css_user)"><span class="m4 img"></span></a></div><div>
-				<a href="/cambiaCabecera.php?modo=5"  onmouseover="lcs(5)"  onmouseout="lcs(css_user)"><span class="m5 img"></span></a>
-				<a href="/cambiaCabecera.php?modo=6"  onmouseover="lcs(6)"  onmouseout="lcs(css_user)"><span class="m6 img"></span></a>
-				<a href="/cambiaCabecera.php?modo=7"  onmouseover="lcs(7)"  onmouseout="lcs(css_user)"><span class="m7 img"></span></a></div><div>
-				<a href="/cambiaCabecera.php?modo=8"  onmouseover="lcs(8)"  onmouseout="lcs(css_user)"><span class="m8 img"></span></a>
-				<a href="/cambiaCabecera.php?modo=9"  onmouseover="lcs(9)"  onmouseout="lcs(css_user)"><span class="m9 img"></span></a></div><div>
-				<a href="/cambiaCabecera.php?modo=10" onmouseover="lcs(10)" onmouseout="lcs(css_user)"><span class="m10 img"></span></a>
+				<a href="/cambiaCabecera.php?modo=1" id="prevpic1" ><span class="m1 img"></span></a><a
+				href="/cambiaCabecera.php?modo=2"    id="prevpic2" ><span class="m2 img"></span></a><a
+				href="/cambiaCabecera.php?modo=3"    id="prevpic3" ><span class="m3 img"></span></a><a
+				href="/cambiaCabecera.php?modo=4"    id="prevpic4" ><span class="m4 img"></span></a></div><div><a
+				href="/cambiaCabecera.php?modo=5"    id="prevpic5" ><span class="m5 img"></span></a><a
+				href="/cambiaCabecera.php?modo=6"    id="prevpic6" ><span class="m6 img"></span></a><a
+				href="/cambiaCabecera.php?modo=7"    id="prevpic7" ><span class="m7 img"></span></a></div><div><a
+				href="/cambiaCabecera.php?modo=8"    id="prevpic8" ><span class="m8 img"></span></a><a
+				href="/cambiaCabecera.php?modo=9"    id="prevpic9" ><span class="m9 img"></span></a></div><div><a
+				href="/cambiaCabecera.php?modo=10"   id="prevpic10"><span class="m10 img"></span></a>
 			</div></div>
 		</div>
 

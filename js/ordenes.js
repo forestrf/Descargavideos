@@ -42,3 +42,7 @@ D.g("formCalculador").onsubmit = function(e) {
 window.onscroll = function(e) {
 	mueveMenu();
 };
+for(var i = 1; i <= 10; ++i){
+	D.g("prevpic"+i).onmouseover = (function(i){return function(){lcs(i);};})(i);
+	D.g("prevpic"+i).onmouseout = function(){lcs(css_user);};
+}
