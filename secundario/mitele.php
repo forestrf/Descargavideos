@@ -71,19 +71,19 @@ function mitele_directo(){
 	// Algunos vídeos son rtmp. Si se encuentra data video se puede mirar por adelantado si es rtmp y dar la respuesta conveniente.
 	if(enString($retfull, 'data-video="')){
 		$idCompleta = entre1y2($retfull, 'data-video="', '"');
-		if(enString($idCompleta, 'rtmp')){
-			// Es rtmp
-			
-			$obtenido=array(
-				'titulo'  => $titulo,
-				'imagen'  => $imagen,
-				'enlaces' => array(
-					finalCadenaMiteleRTMP($idCompleta, $titulo, 't5&')
-				)
-			);
-			
-			finalCadena($obtenido,0);
-		}
+	}
+	if(isset($idCompleta) && enString($idCompleta, 'rtmp')){
+		// Es rtmp
+		
+		$obtenido=array(
+			'titulo'  => $titulo,
+			'imagen'  => $imagen,
+			'enlaces' => array(
+				finalCadenaMiteleRTMP($idCompleta, $titulo, 't5&')
+			)
+		);
+		
+		finalCadena($obtenido,0);
 	}
 	else{
 		//$xmlInfo = CargaWebCurl('http://www.telecinco.es/mdsvideo/config.xml?contentId='.$id.'&clippingId=1.jpg&clippingWidth=654&clippingHeight=371&clippingContentId='.$id.'&showTitle=0&showSummary=0&moduleId=&boardId=&boardVersionId=&hostname=www.telecinco.es');
@@ -451,7 +451,7 @@ function mitele3($id,$id2){
 	$url='http://www.telecinco.es/mdsvideo/sources.json?contentId='.$id.'&clippingId='.$id2.'&imageContentId='.$id;
 
 	//$json=CargaWebCurl($url);
-	$json=CargaWebCurl($url, 'ESP');
+	$json=CargaWebCurlProxy($url, 'ESP');
 	dbug($json);
 	$json=str_replace("\\",'',$json);
 
