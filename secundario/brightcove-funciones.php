@@ -40,9 +40,8 @@ function brightcove_curl_web($url,$post){
 	return CargaWebCurl($url,$post,0,"",$r);
 }
 
-function brightcove_genera_obtenido($base, $config){
+function brightcove_genera_obtenido($base, $config, $titulo = ''){
 	$obtenido2 = array();
-	$titulo = '';
 	
 	foreach($config as $pathBase => $tipoObtenido){
 		dbug($pathBase);

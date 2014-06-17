@@ -220,7 +220,7 @@ dbug('imagen = '.$imagen);
 $obtenido['enlaces'] = brightcove_genera_obtenido($base, array(
 	'IOSRenditions' => 'm3u8',
 	'renditions' => 'rtmpConcreto'
-));
+), $titulo);
 	
 
 
