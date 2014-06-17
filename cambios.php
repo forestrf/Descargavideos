@@ -16,6 +16,13 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'18-Junio-2014',
+array(
+	'fix:Hogarutil.com actualizado, vuelve a funcionar.'
+	)
+);
+
+$todos[]=array(
 '17-Junio-2014',
 array(
 	'fix:Telecinco actualizado para funcionar con vídeos rtmp.'
