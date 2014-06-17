@@ -309,14 +309,17 @@ function mitele2($id, $tokenN=1){
 	switch($tokenN){
 		case 1:
 		//default:
+			$server2='http://token.mitele.es/clock.php';
 			$server3='http://token.mitele.es/';
+			$host='token.mitele.es';
 		break;
 		case 2:
+			$server2='http://token.telecinco.es/clock.php';
 			$server3='http://token.telecinco.es/';
+			$host='token.telecinco.es';
 		break;
 	}
 	//$server2= 'http://servicios.telecinco.es/tokenizer/clock.php';
-	//$server2='http://token.mitele.es/clock.php';
 	//el time del server es el mismo que el de clock de mitele.
 	//Parece que ya no.
 	// Pues creo que sí.
@@ -325,17 +328,27 @@ function mitele2($id, $tokenN=1){
 
 	dbug('clock: '.$clock);
 
-	$text="".$clock.";".$id.";0;0";
+	$text=$clock.';'.$id.';0;0';
 	$key='xo85kT+QHz3fRMcHMXp9cA';
 
 	dbug('a encriptar: '.$text);
 	$encriptado=AesCtr::encrypt($text,$key,256);
-	$extra = "hash=".urlencode($encriptado);
+	$extra = 'hash='.urlencode($encriptado);
 	
-	$ret=CargaWebCurlHeaders($server3, $extra);
+	$hders=array(
+		'Host: '.$host,
+		'Accept-Charset: ISO-8859-1,UTF-8;q=0.7,*;q=0.7',
+		'Connection: close',
+		'Accept-Language: de,en;q=0.7,en-us;q=0.3',
+		'Content-type: application/x-www-form-urlencoded',
+		'Referer: http://static1.tele-cinco.net/comun/swf/playerMitele.swf',
+		'Content-length: '.strlen($extra)
+	);
+	
+	$ret=CargaWebCurl($server3,$extra,0,'',$hders);
 	dbug('respuesta: '.$ret);
 	
-	if(enString($ret,"rtmpe://"))
+	if(enString($ret,'rtmpe://'))
 		$modo=2;
 	else
 		$modo=1;
@@ -346,7 +359,7 @@ function mitele2($id, $tokenN=1){
 		//aqui caen tmbn las respuestas fallidas
 		dbug('lanzado modo 1');
 
-		if(enString($ret,"http://")){
+		if(enString($ret,'http://')){
 			//es correcta la respuesta
 			dbug('respuesta correcta');
 			
@@ -355,9 +368,9 @@ function mitele2($id, $tokenN=1){
 			$ret=substr($ret,$p,$f-$p);
 			
 			//arreglo para los videos que start= no tiene el 0
-			if(enString($ret.'-',"start=-")) $ret.="0";
+			if(enString($ret.'-','start=-')) $ret.='0';
 			
-			$ret=str_replace("amp;","",$ret);
+			$ret=str_replace('amp;','',$ret);
 		}
 		else $ret='';
 	}
@@ -366,10 +379,10 @@ function mitele2($id, $tokenN=1){
 		//2012
 		dbug('lanzado modo 2');
 
-		$RTMPFile = "mp4:".entre1y2($ret,">mp4:","</");
+		$RTMPFile = 'mp4:'.entre1y2($ret,'>mp4:','</');
 		$RTMPFile = htmlspecialchars_decode($RTMPFile);
 		
-		$RTMPStream = "rtmpe://".entre1y2($ret,"rtmpe://","</");
+		$RTMPStream = 'rtmpe://'.entre1y2($ret,'rtmpe://','</');
 		
 		$p=strposf($RTMPFile,'?');
 		$f=strlen($RTMPFile);
@@ -480,19 +493,6 @@ function mitele4($id){
 	return "";
 }
 
-
-function CargaWebCurlHeaders($url,$extra=''){
-	$hders=array(
-		"Host: token.mitele.es",
-		"Accept-Charset: ISO-8859-1,UTF-8;q=0.7,*;q=0.7",
-		"Connection: close",
-		"Accept-Language: de,en;q=0.7,en-us;q=0.3",
-		"Content-type: application/x-www-form-urlencoded",
-		"Referer: http://static1.tele-cinco.net/comun/swf/playerMitele.swf",
-		"Content-length: ".strlen($extra),
-	);
-	return CargaWebCurl($url,$extra,0,"",$hders);
-}
 
 function finalCadenaMiteleRTMP($id, $titulo, $extra=''){
 	$url="http://".Dominio.'/mitele_handler.php?'.$extra.'rtmp&id='.$id;
