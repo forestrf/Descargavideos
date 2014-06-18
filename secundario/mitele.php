@@ -345,7 +345,7 @@ function mitele2($id, $tokenN=1){
 		'Content-length: '.strlen($extra)*/
 	);
 	
-	$ret=CargaWebCurl($server3,$extra,'',0,'',$hders);
+	$ret=CargaWebCurl($server3,$extra,0,'',$hders);
 	//$ret=CargaWebCurlProxy($server3,'ESP',$extra,$hders);
 	dbug('respuesta: '.$ret);
 	
