@@ -369,11 +369,11 @@ function CargaWebCurlProxy($web,$pais='ESP',$post='',$cabeceras=array()){
 	dbug($redir);
 	$cabecerasString = implode("\r\n",$cabeceras)."\r\n";
 	
-	$retfull=CargaWebCurl($redir.urlencode($web).($post!=''?'&p='.base64_encode($post):'').(count($cabeceras)?'&h='.base64_encode($cabecerasString):''));
+	$retfull=CargaWebCurl($redir.urlencode($web).($post!=''?'&p='.urlencode(base64_encode($post)):'').(count($cabeceras)?'&h='.urlencode(base64_encode($cabecerasString)):''));
 	if(enString($retfull,'solicitada no existe') || enString($retfull,'class="error_404"') || enString($retfull,'Page Not Found')){
 		dbug('actualizando redir...');
 		CargaWebCurl($actualizaredir);
-		$retfull=CargaWebCurl($redir.urlencode($web).($post!=''?'&p='.base64_encode($post):'').(count($cabeceras)?'&h='.base64_encode($cabecerasString):''),'',0,'',array(),true,true);
+		$retfull=CargaWebCurl($redir.urlencode($web).($post!=''?'&p='.urlencode(base64_encode($post)):'').(count($cabeceras)?'&h='.urlencode(base64_encode($cabecerasString)):''),'',0,'',array(),true,true);
 	}
 	if($retfull === '' || !$retfull || enString($retfull,'solicitada no existe') || enString($retfull,'class="error_404"') || enString($retfull,'Page Not Found')){
 		$retfull=CargaWebCurl($web,$post,0,'',$cabeceras);
