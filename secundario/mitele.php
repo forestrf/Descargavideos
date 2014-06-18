@@ -323,7 +323,7 @@ function mitele2($id, $tokenN=1){
 	//el time del server es el mismo que el de clock de mitele.
 	//Parece que ya no.
 	// Pues creo que sí.
-	$clock=time();
+	$clock=time()-5;
 	//$clock=CargaWebCurl($server2);
 
 	dbug('clock: '.$clock);
