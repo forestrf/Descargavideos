@@ -372,7 +372,7 @@ function CargaWebCurlProxy($web,$pais='ESP',$post='',$cabeceras=array()){
 	$urlPreparada = $redir.urlencode($web).($post!=''?'&p='.urlencode(base64_encode($post)):'').(count($cabeceras)?'&h='.urlencode(base64_encode($cabecerasString)):'');
 	dbug($urlPreparada);
 	dbug('<a href="'.$urlPreparada.'">'.$urlPreparada.'</a>');
-	exit;
+
 	$retfull=CargaWebCurl($urlPreparada);
 	if(enString($retfull,'solicitada no existe') || enString($retfull,'class="error_404"') || enString($retfull,'Page Not Found')){
 		dbug('actualizando redir...');
