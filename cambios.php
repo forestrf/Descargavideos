@@ -18,7 +18,8 @@ function cambios($max=-1){
 $todos[]=array(
 '18-Junio-2014',
 array(
-	'fix:Hogarutil.com actualizado, vuelve a funcionar.'
+	'fix:Hogarutil.com actualizado, vuelve a funcionar.',
+	'fix:Mitele rtmp arreglado.'
 	)
 );
 
