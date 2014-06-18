@@ -341,8 +341,8 @@ function mitele2($id, $tokenN=1){
 		'Connection: close',
 		'Accept-Language: de,en;q=0.7,en-us;q=0.3',
 		'Content-type: application/x-www-form-urlencoded',
-		'Referer: http://static1.tele-cinco.net/comun/swf/playerMitele.swf',
-		'Content-length: '.strlen($extra)
+		'Referer: http://static1.tele-cinco.net/comun/swf/playerMitele.swf'/*,
+		'Content-length: '.strlen($extra)*/
 	);
 	
 	$ret=CargaWebCurlProxy($server3,'ESP',$extra,$hders);
