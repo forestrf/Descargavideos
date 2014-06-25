@@ -5,7 +5,9 @@
 <img class="img bloque" src="<?php echo $R['url_img_res'];?>">
 
 <div class="titulo_res bloque"><?php echo $R['titulo_res'];?></div>
-
+<?php if(isset($R['alerta_especifica'])){ ?>
+	<div class="alerta_especifica bloque"><?php echo $R['alerta_especifica'];?></div>
+<?php } ?>
 <div id="enlaces" class="bloque">
 
 <?php

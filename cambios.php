@@ -16,6 +16,15 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'25-Junio-2014',
+array(
+	'add:Alertas para resultados específicos.',
+	'add:Alerta para univisión indicando que se requiere proxy.',
+	'fix:Ligeros cambios de estilo.'
+	)
+);
+
+$todos[]=array(
 '18-Junio-2014',
 array(
 	'fix:Hogarutil.com actualizado, vuelve a funcionar.',

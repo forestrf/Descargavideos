@@ -5,6 +5,7 @@ Formato de las respuestas:
 array(
 	'titulo'  => título principal de la respuesta,
 	'imagen'  => url de la imagen,
+	'alerta_especifica' => 'texto con html', // Optativo
 	'enlaces' => array(
 		n => array(
 			'titulo'  => texto que acompaña el enlace como descripción,
@@ -520,6 +521,10 @@ function generaR(){
 	$R['WEB'] = $web;
 	
 	$R['MODO'] = 'RESULTADO';
+	
+	if(isset($R['BASE']['alerta_especifica'])){
+		$R['alerta_especifica'] = $R['BASE']['alerta_especifica'];
+	}
 	
 	define('HAY_RESULTADO', true);
 	dbug('HAY_RESULTADO generado en generaR');

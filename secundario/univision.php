@@ -166,6 +166,8 @@ function univisionID($id) {
 
 	$obtenido['titulo'] = $titulo;
 	$obtenido['imagen'] = $imagen;
+	
+	$obtenido['alerta_especifica'] = 'Si no puedes descargar el vídeo necesitas usar proxy.<br>Descarga el programa ultrasurf (<a href="https://ultrasurf.us/download/u.zip">Descargar ultrasurf</a>), descomprime el archivo, ejecuta el programa y una vez hecho intenta descargar el vídeo de nuevo.';
 
 	finalCadena($obtenido, false);
 }
