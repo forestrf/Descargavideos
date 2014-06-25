@@ -20,6 +20,7 @@ $todos[]=array(
 array(
 	'add:Alertas para resultados específicos.',
 	'add:Alerta para univisión indicando que se requiere proxy.',
+	'fix:Resultados de ATresPlayer con la letra # en la url daban fallo para múltiples vídeos.',
 	'fix:Ligeros cambios de estilo.'
 	)
 );

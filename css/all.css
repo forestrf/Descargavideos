@@ -382,6 +382,7 @@ input[type="radio"] {
 #resultado .titulo_res{
 	float:right;
 	font-size:28px;
+	line-height:1.1em;
 	position:relative;
 	text-shadow:1px 1px 2px #282828;
 }

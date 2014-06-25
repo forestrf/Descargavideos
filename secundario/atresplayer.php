@@ -47,7 +47,12 @@ if(preg_match('@<div.*?capa_modulo_player.*?episode ?= ?"(.*?)">@i', $web_descar
 	$obtenido['imagen'] = $matches[3];
 }
 else{
-	$carusel = $web.'carousel.json';
+	if(enString($web, '#')){
+		$carusel = entre1y2($web, 0, '#').'carousel.json';
+	}
+	else{
+		$carusel = $web.'carousel.json';
+	}
 	dbug('$carusel = '.$carusel);
 	$carusel = CargaWebCurl($carusel);
 	$carusel = json_decode($carusel, true);
