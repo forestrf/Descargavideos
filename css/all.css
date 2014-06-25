@@ -34,6 +34,7 @@ h1{
 	text-shadow:2px 2px 2px #000;
 	font-style:normal;
 	font-weight:normal;
+	line-height:1em;
 }
 h2{
 	text-align:center;
@@ -41,6 +42,7 @@ h2{
 	font-size:25px;
 	font-family:'Source Sans Pro', sans-serif;
 	color:#FFF;
+	line-height:1em;
 }
 input[type=radio]+label{
 	background:url("/img/radio.png") no-repeat scroll 0 0 transparent;
@@ -244,6 +246,7 @@ input[type="radio"] {
 	font-family:'Sacramento',serif,Georgia;
 	font-size:30px;
 	text-shadow:0 0 1px #FFF;
+	line-height:1em;
 }
 .invisible{opacity:0;}
 #scroll_cadenas{
