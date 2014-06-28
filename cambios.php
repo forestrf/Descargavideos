@@ -19,6 +19,7 @@ $todos[]=array(
 '28-Junio-2014',
 array(
 	'fix:Soporte ampliado para rt.com.',
+	'fix:Algunos vídeos de Telemadrid no funcionaban.',
 	'add:Nuevo mensaje de error para vídeos de eitb.tv.'
 	)
 );
