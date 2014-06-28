@@ -18,7 +18,8 @@ function cambios($max=-1){
 $todos[]=array(
 '28-Junio-2014',
 array(
-	'fix:Soporte ampliado para rt.com.'
+	'fix:Soporte ampliado para rt.com.',
+	'add:Nuevo mensaje de error para vídeos de eitb.tv.'
 	)
 );
 

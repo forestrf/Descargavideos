@@ -208,7 +208,11 @@ $res_decoded=brightcove_decode($t);
 dbug('SEGUNDA RESPUESTA BRIGHTCOVE (enlaces de vídeos aquí):');
 dbug_r($res_decoded);
 
-
+if($res_decoded['data'] === null){
+	// Seguro que el vídeo no funciona en la página oficial.
+	setErrorWebIntera('No se puede reproducir el vídeo desde el enlace que ha indicado.');
+	return;
+}
 
 $base=$res_decoded['data']->getAMFData();
 $titulo=$base['displayName'];
