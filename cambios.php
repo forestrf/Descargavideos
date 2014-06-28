@@ -16,6 +16,13 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'28-Junio-2014',
+array(
+	'fix:Soporte ampliado para rt.com.'
+	)
+);
+
+$todos[]=array(
 '25-Junio-2014',
 array(
 	'add:Alertas para resultados específicos.',
