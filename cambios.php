@@ -18,7 +18,8 @@ function cambios($max=-1){
 $todos[]=array(
 '29-Junio-2014',
 array(
-	'fix:Vídeos que no pueden funcionar de ATresPlayer indicaban funcionar a pesar de no hacerlo.'
+	'fix:Vídeos que no pueden funcionar de ATresPlayer indicaban funcionar a pesar de no hacerlo.',
+	'fix:Audios de rtve.es con el inicio de la url repetida.'
 	)
 );
 

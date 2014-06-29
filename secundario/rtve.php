@@ -82,7 +82,10 @@ if(isset($audio)){
 	$p=strpos($web_descargada,'class="download"');
 	$p=strpos($web_descargada,'href="',$p)+6;
 	$f=strpos($web_descargada,'"',$p);
-	$ret='http://www.rtve.es'.substr($web_descargada,$p,$f-$p);
+	$ret=substr($web_descargada,$p,$f-$p);
+	if(!enString($ret, 'http://www.rtve.es')){
+		$ret = 'http://www.rtve.es'.$ret;
+	}
 
 
 	if(enString($ret,".mp3"))
