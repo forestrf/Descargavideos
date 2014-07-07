@@ -30,7 +30,7 @@ function youtubehelper(){
 		dbug_r($links);
 		--$intentos;
 		
-		if($intentos = 2){
+		if($intentos === 2){
 			$web2 = 'http://www.youtube.com.ipv4.sixxs.org/watch?v='.$vars['v'];
 		}
 	}
