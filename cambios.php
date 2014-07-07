@@ -16,6 +16,13 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'7-Julio-2014',
+array(
+	'fix:Aumentado soporte de vídeos de YouTube.'
+	)
+);
+
+$todos[]=array(
 '29-Junio-2014',
 array(
 	'fix:Vídeos que no pueden funcionar de ATresPlayer indicaban funcionar a pesar de no hacerlo.',
