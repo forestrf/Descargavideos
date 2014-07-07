@@ -21,13 +21,17 @@ function youtubehelper(){
 	
 	while(($links === false || count($links) == 0) && $intentos > 0){
 		dbug("ERROR: ".$tube->error);
-		dbug('reintentando en 1s');
-		sleep(1);
+		dbug('reintentando en 0.1s');
+		usleep(100000);
 		
 		$tube=new youtube();
 		$links=$tube->parse(CargaWebCurl($web,'',0,'',array(),true,true));
 		dbug_r($links);
 		--$intentos;
+		
+		if($intentos = 2){
+			$web = 'http://www.youtube.com.ipv4.sixxs.org/watch?v='.$vars['v'];
+		}
 	}
 	
 	$obtenido=array('enlaces' => array());
