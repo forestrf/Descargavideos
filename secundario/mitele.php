@@ -2,6 +2,8 @@
 require 'crypto/aes.class.php';    // AES PHP implementation
 require 'crypto/aesctr.class.php'; // AES Counter Mode implementation
 
+$mitele_obtenido_alerta = 'Como norma general es necesario estar en España para descargar de mitele. Si no está en España puede hacer uso del programa <a target="_blank" href="http://hola.org">hola.org</a> para simular que está en España.';
+
 function mitele_directo(){
 	dbug('mitele_directo');
 	global $web,$web_descargada;
@@ -83,6 +85,9 @@ function mitele_directo(){
 			)
 		);
 		
+		global $mitele_obtenido_alerta;
+		$obtenido['alerta_especifica'] = $mitele_obtenido_alerta;
+		
 		finalCadena($obtenido,0);
 	}
 	else{
@@ -122,6 +127,9 @@ function mitele_directo(){
 				)
 			)
 		);
+		
+		global $mitele_obtenido_alerta;
+		$obtenido['alerta_especifica'] = $mitele_obtenido_alerta;
 		
 		finalCadena($obtenido,0);
 	}
@@ -202,6 +210,9 @@ function mitele(){
 				)
 			);
 			
+			global $mitele_obtenido_alerta;
+			$obtenido['alerta_especifica'] = $mitele_obtenido_alerta;
+			
 			finalCadena($obtenido,0);
 		}
 		else{
@@ -231,6 +242,9 @@ function mitele(){
 					)
 				)
 			);
+			
+			global $mitele_obtenido_alerta;
+			$obtenido['alerta_especifica'] = $mitele_obtenido_alerta;
 			
 			finalCadena($obtenido,0);
 		}

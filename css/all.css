@@ -387,13 +387,13 @@ input[type="radio"] {
 	text-shadow:1px 1px 2px #282828;
 }
 #resultado .alerta_especifica{
-	background-color: #ff0000;
+	background-color: #eeff00;
 	background-image: url("/img/warning.png");
 	background-position: 5px 5px;
 	background-repeat: no-repeat;
 	border-radius: 5px;
-	box-shadow: 0 0 10px #ff0000;
-	color: #ffffff;
+	box-shadow: 0 0 10px #eeff00;
+	color: #1f1f1f;
 	float: right;
 	min-height: 64px;
 	padding: 5px 0 5px 8%;
@@ -402,11 +402,11 @@ input[type="radio"] {
 	width: 37%;
 }
 #resultado .alerta_especifica a{
-	color:#FFF;
+	color:#000;
 	text-decoration:underline;
 }
 #resultado .alerta_especifica a:hover{
-	color:#DDD;
+	color:#333;
 }
 #resultado #enlaces{
 	float:right;

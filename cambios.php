@@ -16,6 +16,13 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'13-Julio-2014',
+array(
+	'add:Alerta para mitele indicando la necesidad de estar en España para ver algunos vídeos.'
+	)
+);
+
+$todos[]=array(
 '7-Julio-2014',
 array(
 	'fix:Aumentado soporte de vídeos de YouTube.'
