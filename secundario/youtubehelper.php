@@ -41,7 +41,7 @@ function youtubehelper(){
 	
 	if($sixxs){
 		foreach($links as &$link){
-			$link = strtr($link, array('googlevideo.com/' => 'googlevideo.com.ipv4.sixxs.org/'));
+			$link['url'] = strtr($link['url'], array('googlevideo.com/' => 'googlevideo.com.ipv4.sixxs.org/'));
 		}
 	}
 
