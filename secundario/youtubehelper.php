@@ -19,6 +19,7 @@ function youtubehelper(){
 	$links=$tube->parse($web_descargada);
 	dbug_r($links);
 	
+	$sixxs = false;
 	$web2 = $web;
 	while(($links === false || count($links) == 0) && $intentos > 0){
 		dbug("ERROR: ".$tube->error);
@@ -31,11 +32,18 @@ function youtubehelper(){
 		--$intentos;
 		
 		if($intentos === 2){
+			$sixxs = true;
 			$web2 = 'http://www.youtube.com.ipv4.sixxs.org/watch?v='.$vars['v'];
 		}
 	}
 	
 	$obtenido=array('enlaces' => array());
+	
+	if($sixxs){
+		foreach($links as &$link){
+			$link = strtr($link, array('googlevideo.com/' => 'googlevideo.com.ipv4.sixxs.org/'));
+		}
+	}
 
 	if($links){
 		
@@ -50,7 +58,7 @@ function youtubehelper(){
 		$titulo=substr($web_descargada,$p,$f-$p);
 		$titulo=limpiaTitulo($titulo);
 
-		foreach($links as $link){
+		foreach($links as &$link){
 			//'ext','p','axb','2D-3D','audio','url'
 			array_push($obtenido['enlaces'],
 				array(
