@@ -7,4 +7,5 @@
 			</td>
 		</tr>
 	</table>
+	También puedes enviar un correo a <a href="mailto:info@descargavideos.tv">info@descargavideos.tv</a>
 </center>
