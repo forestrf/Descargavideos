@@ -19,7 +19,7 @@
 <?php /*? y un número es para forzar la actualización del script y del css tras cambios*/ ?>
 
 <link href="/favicon.ico" rel="icon" type="image/x-icon"/>
-<link rel="stylesheet" href="/css/cssfull.min.css?4"/>
+<link rel="stylesheet" href="/css/cssfull.min.css?5"/>
 <link rel="stylesheet" href="/css/modos/<?php echo $css_modo?>.css" id="css2"/>
 <script src="/js/funciones.min.js?1"></script>
 
@@ -81,8 +81,6 @@ var css_user='<?php echo $css_modo?>';
 					<span id="ayuda2txt"><?php echo TXT_BUSCA_URL_VIDEO?></span>
 				</div>
 			</form>
-
-			<div id="scroll_cadenas"><div id="scroll_cadenas_render"></div></div>
 		</div>
 
 		<div class="publi_cabecera">

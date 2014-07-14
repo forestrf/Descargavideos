@@ -87,7 +87,7 @@ input[type="radio"] {
 }
 .cabecera .centro{
 	position:absolute;
-	top:40%;
+	top:45%;
 	width:100%;
 }
 .tv{
@@ -249,54 +249,6 @@ input[type="radio"] {
 	line-height:1em;
 }
 .invisible{opacity:0;}
-#scroll_cadenas{
-	height:90px;
-	margin:auto;
-	position:relative;
-	margin-top:30px;
-	width:711px;
-	overflow:hidden;
-}
-#scroll_cadenas, #scroll_cadenas > #scroll_cadenas_render{
-	height:90px;
-}
-/*Par el width poner el de la imagen + 1000px*/
-#scroll_cadenas > #scroll_cadenas_render{
-	background:url("/img/logos_tv.png") repeat scroll 0 0 transparent;
-	position:absolute;
-	width:5000px;
-	top:0;
-	left:0;
-	
-	-moz-transform:translate3d(0, 0, 0);
-	-webkit-transform:translate3d(0, 0, 0);
-	-o-transform:translate3d(0, 0, 0);
-	-ms-transform:translate3d(0, 0, 0);
-	transform:translate3d(0, 0, 0);
-
-
-	-webkit-transition:opacity 0.5s ease-out;
-	-moz-transition:opacity 0.5s ease-out;
-	-ms-transition:opacity 0.5s ease-out;
-	-o-transition:opacity 0.5s ease-out;
-	transition:opacity 0.5s ease-out;
-
-
-	-webkit-animation:moveSlideshow 80s linear infinite;
-	-moz-animation:moveSlideshow 80s linear infinite;
-	-ms-animation:moveSlideshow 80s linear infinite;
-	-o-animation:moveSlideshow 80s linear infinite;
-	animation:moveSlideshow 80s linear infinite;
-}
-/*Par el width poner el de la imagen*/
-@-webkit-keyframes moveSlideshow{
-	0%{ -webkit-transform:translateX(0); }
-	100%{ -webkit-transform:translateX(-4070px); }
-}
-@-moz-keyframes moveSlideshow{
-	0%{ -moz-transform:translateX(0); }
-	100%{ -moz-transform:translateX(-4070px); }
-}
 .publi_cabecera{
 	height:90px;
 	position:absolute;
