@@ -44,7 +44,9 @@ function dailymotioncom(){
 		}
 	}
 	
-	$preEnlaces = CargaWebCurl($manifest,'','','ff=off');
+	// ff=off permite tmbn descargar porno y esto va contra adsense.
+	//$preEnlaces = CargaWebCurl($manifest,'','','ff=off');
+	$preEnlaces = CargaWebCurl($manifest);
 	dbug_($preEnlaces);
 	
 	$preEnlaces = json_decode($preEnlaces, true);
