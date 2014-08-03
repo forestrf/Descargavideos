@@ -2,7 +2,7 @@
 require 'crypto/aes.class.php';    // AES PHP implementation
 require 'crypto/aesctr.class.php'; // AES Counter Mode implementation
 
-$mitele_obtenido_alerta = 'Como norma general es necesario estar en España para descargar de mitele. Si no está en España puede hacer uso del programa <a target="_blank" href="http://hola.org">hola.org</a> para simular que está en España.';
+$mitele_obtenido_alerta = 'Como norma general es necesario encontrarse en España para poder descargar de mitele. Si usted no se encuentra en España puede hacer uso del programa <a target="_blank" href="http://hola.org">hola.org</a> para simular que se encuentra en España.';
 
 function mitele_directo(){
 	dbug('mitele_directo');
