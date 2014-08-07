@@ -31,6 +31,18 @@
 </div>
 
 <div class="pregunta">
+	<div id="lab_f4m-downloader"></div>
+	F4M-Downloader
+</div>
+<div class="respuesta">
+	<?php echo TXT_F4MDownloader_DESC?><br>
+	<a href="https://github.com/forestrf/F4M-Downloader">GitHub</a><br>
+	<?php echo TXT_VERSION_RECIENTE?>: <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.2/F4M-Downloader.v0.0.2.zip">0.0.2</a><p>
+	<?php echo TXT_VERSION_HISTORIAL?>:<br>
+	0.0.2: <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.2/F4M-Downloader.v0.0.2.7z">GitHub (zip)</a> | <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.2/F4M-Downloader.v0.0.2.7z">GitHub (7z)</a><br>
+</div>
+
+<div class="pregunta">
 	<div id="lab_gestor"></div>
 	<?php echo TXT_GESTOR_DESCARGAS_TIT?>
 </div>

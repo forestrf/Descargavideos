@@ -3,6 +3,7 @@ define('SECCION_LAB','Lab');
 
 define('TXT_M3U8Downloader_DESC','Windows Application that allows the download of videos streamed using a m3u8 file thanks to ffmpeg. <a href="http://descargavid.blogspot.com.es/2013/08/m3u8-downloader-descarga-videos-en.html">More info on the blog</a>.');
 define('TXT_RTMPDownloader_DESC','Windows Application that allows the download of videos streamed using the protocol RTMP thanks to rtmpdump. <a href="http://descargavid.blogspot.com/2014/01/rtmp-downloader-v01.html">More info on the blog</a>.');
+define('TXT_F4MDownloader_DESC', 'Windows Application that allows the download of videos streamed using a f4m file thanks to AdobeHDS. <a href="http://descargavid.blogspot.com/2014/08/f4m-downloader.html">More info on the blog</a>.');
 
 define('TXT_VERSION_RECIENTE','Latest version');
 define('TXT_VERSION_HISTORIAL','Version history');

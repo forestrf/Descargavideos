@@ -1,8 +1,9 @@
 <?php
 define('SECCION_LAB','Lab');
 
-define('TXT_M3U8Downloader_DESC','Aplicación para windows que Permite descargar los vídeos distribuidos bajo un archivo m3u8 gracias al programa ffmpeg. <a href="http://descargavid.blogspot.com.es/2013/08/m3u8-downloader-descarga-videos-en.html">Más información en el blog</a>.');
-define('TXT_RTMPDownloader_DESC','Aplicación para windows que Permite descargar los vídeos transmitidos usando el protocolo RTMP gracias al programa rtmpdump. <a href="http://descargavid.blogspot.com/2014/01/rtmp-downloader-v01.html">Más información en el blog</a>.');
+define('TXT_M3U8Downloader_DESC','Aplicación para windows que permite descargar los vídeos distribuidos bajo un archivo m3u8 gracias al programa ffmpeg. <a href="http://descargavid.blogspot.com.es/2013/08/m3u8-downloader-descarga-videos-en.html">Más información en el blog</a>.');
+define('TXT_RTMPDownloader_DESC','Aplicación para windows que permite descargar los vídeos transmitidos usando el protocolo RTMP gracias al programa rtmpdump. <a href="http://descargavid.blogspot.com/2014/01/rtmp-downloader-v01.html">Más información en el blog</a>.');
+define('TXT_F4MDownloader_DESC', 'Aplicación para windows que permite descargar los vídeos distribuidos bajo un archivo f4m gracias al programa AdobeHDS. <a href="http://descargavid.blogspot.com/2014/08/f4m-downloader.html">Más información en el blog</a>.');
 
 define('TXT_VERSION_RECIENTE','Versión más reciente');
 define('TXT_VERSION_HISTORIAL','Historial de versiones');
