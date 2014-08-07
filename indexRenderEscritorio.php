@@ -21,7 +21,7 @@
 <link href="/favicon.ico" rel="icon" type="image/x-icon"/>
 <link rel="stylesheet" href="/css/cssfull.min.css?5"/>
 <link rel="stylesheet" href="/css/modos/<?php echo $css_modo?>.css" id="css2"/>
-<script src="/js/funciones.min.js?1"></script>
+<script src="/js/funciones.min.js?2"></script>
 
 <script>
 var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-29252510-1"]);_gaq.push(["_trackPageview"]);(function(){var ga=document.createElement("script");ga.async=true;ga.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga,s);})();

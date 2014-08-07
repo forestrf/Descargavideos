@@ -88,8 +88,28 @@ var ReferrerKiller = (function() {
 		return D('<style>' + encodeURIComponent(e) + '</style><a class="link" rel="noreferrer" href="' + A(encodeURIComponent(a)) + '" ' + C(c) + '>' + b + '</a>', d, f);
 	}
 
+	var default_css_button = '.link{'+
+		'background:url("http://www.descargavideos.tv/img/flecha.png") no-repeat scroll 5px 5px #ED8D2D;'+
+		'border-radius:10px;'+
+		'font-family:Tahoma,Helvetica;'+
+		'font-size:16px;'+
+		'text-decoration:none;'+
+		'line-height:30px;'+
+		'word-wrap:break-word;'+
+		'text-align:center;'+
+		'display:block;'+
+		'transition:all 0.3s ease 0s;'+
+		'min-height:30px;'+
+		'padding:5px 5px 5px 50px;'+
+		'color:#F8F8F8;'+
+	'}'+
+	'.link:hover{'+
+		'background-color:#F8F8F8;'+
+		'background-position:5px -55px;'+
+		'color:#ED8D2D;'+
+	'}';
 
-	return {linkHtml:E};
+	return {linkHtml:E,css:default_css_button};
 })();
 
 function ready(f) {
