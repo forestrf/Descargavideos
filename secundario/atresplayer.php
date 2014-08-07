@@ -159,34 +159,34 @@ function resultadoA3PNormal($web, $web_descargada='', $episode='', $title=''){
 	}
 	
 	
-	$urljs_f4m = 'getScript("http://127.0.0.1:25435/f4mdownloader.js");'.
+	$urljs_f4m = 'f{{random_id}} = function(){};'.
+	
+		'var tmp{{random_id}} = D.g("rtmp{{random_id}}").innerHTML;'.
+		
+		'D.g("rtmp{{random_id}}").innerHTML = "Se requiere Adobe Flash Player";'.
+		
 		'function A3P{{random_id}}creaboton(que){'.
 			'if(que === false || que === "OK"){'.
-				'finalizar{{random_id}}("","Necesitas iniciar sesión en ATresPlayer para descargar este vídeo, el vídeo no existe o no se puede generar un enlace de descarga");'.
+				'D.g("rtmp{{random_id}}").innerHTML = D.g("rtmp{{random_id}}").innerHTML = "Necesitas iniciar sesión en ATresPlayer para descargar este vídeo, el vídeo no existe o no se puede generar un enlace de descarga";'.
 			'}'.
 			'else{'.
+				'D.g("rtmp{{random_id}}").innerHTML = tmp{{random_id}}.replace(/--manifest ".*?"/, "--manifest \""+que+"\"");'.
 				'if(typeof f4mdownloader !== "undefined"){'.
-					'finalizar{{random_id}}("http://127.0.0.1:25435/?accion=descargar&nombre='.urlencode(generaNombreWindowsValido($preSubtitulos['name'])).'&url="+escape("--manifest \""+que+"\""),"Descargar usando F4M-Downloader");'.
-				'} else {'.
-					'finalizar{{random_id}}("","Necesitas tener abierto el programa F4M-Downloader");'.
+					'D.g("rtmp{{random_id}}furl").value = D.g("rtmp{{random_id}}furl").value.replace(/--manifest ".*?"/, "--manifest \""+que+"\"");'.
+					'activa{{random_id}}();'.
 				'}'.
 			'}'.
 		'}'.
 		
 		'D.g("enlaces").innerHTML += \'<iframe width="0" height="0" style="position:absolute" src="http://sandia.tk/a3p2.php?o=A3P{{random_id}}creaboton&e='.$episode.'&t='.$tiempo.'&h='.$hmac.'">\';';
 	
-	/*
+	
 	// f4m url
 	$obtenido[] = array(
-		'url'            => 'http://'.Dominio.'/a3p_handler.php?url='.$extra.'rtmp&id='.$id,
+		'url'            => '-',
 		'tipo'           => 'f4m',
-		'nombre_archivo' => generaNombreWindowsValido($preSubtitulos['name'])
-	);
-	*/
-	
-	$obtenido[] = array(
-		'url'  => $urljs_f4m,
-		'tipo' => 'jsFlash'
+		'nombre_archivo' => generaNombreWindowsValido($preSubtitulos['name']),
+		'script'         => $urljs_f4m
 	);
 	
 	return $obtenido;

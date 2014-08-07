@@ -36,6 +36,7 @@ function generaInnerResultado(){
 		$titulo          = isset($res['titulo']) ? html_entity_decode($res['titulo']) : '';
 		$otros_datos_mp3 = isset($res['otros_datos_mp3']) ? $res['otros_datos_mp3'] : '';
 		$nombre_archivo  = isset($res['nombre_archivo']) ? $res['nombre_archivo'] : '';
+		$script          = isset($res['script']) ? $res['script'] : '';
 		dbug('$url='.$url);
 		dbug('$rtmpdump='.$rtmpdump);
 		dbug('$rtmpdumpHTTP='.$rtmpdumpHTTP);
@@ -45,6 +46,7 @@ function generaInnerResultado(){
 		dbug('$titulo='.$titulo);
 		dbug('$otros_datos_mp3='.$otros_datos_mp3);
 		dbug('$nombre_archivo='.$nombre_archivo);
+		dbug('$script='.$script);
 	
 		// Array temporal. Se genera por cada ciclo del foreach y se rellena con lo necesario para escribir la plantilla de resultados
 		$R2 = array();
@@ -128,6 +130,7 @@ function generaInnerResultado(){
 		$R2['otros_datos_mp3']                             = $otros_datos_mp3;
 		$R2['num']                                         = $num;
 		$R2['random_id']                                   = $lastID;
+		$R2['script']                                      = $script;
 		
 		++$lastID;
 		++$num;

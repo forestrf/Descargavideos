@@ -16,6 +16,16 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'8-Agosto-2014',
+array(
+	'add:Soporte para vídeos F4M.',
+	'add:Soporte para más vídeos de ATresPlayer y más calidades usando el programa F4M-Downloader. <a href="http://descargavid.blogspot.com/2014/08/f4m-downloader.html">Más información aquí</a>.',
+	'fix:Arreglado Medici.tv.',
+	'fix:Pequeños cambios en el js y css.'
+	)
+);
+
+$todos[]=array(
 '13-Julio-2014',
 array(
 	'add:Alerta para mitele indicando la necesidad de estar en España para ver algunos vídeos.',

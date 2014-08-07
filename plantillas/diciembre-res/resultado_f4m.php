@@ -1,6 +1,6 @@
 <div class="rtmpdump" id="rtmp<?php echo $R2['random_id'];?>">AdobeHDS --manifest "<?php echo $R2['dir_resultado'];?>" --outfile "<?php echo $R2['nombre_resultado_manual'];?>"</div>
 <div class="aviso_m3u8" id="rtmp<?php echo $R2['random_id'];?>-2">
-<?php echo INTERIOR_AVISO_RTMP?>
+<?php echo INTERIOR_AVISO_F4M?>
 </div>
 
 <div class="fondo_negro" id="rtmp<?php echo $R2['random_id'];?>dfb" style="display:none"></div>
@@ -14,12 +14,14 @@
 	</form>
 </div>
 <script>
-	getScript('http://127.0.0.1:25435/f4mdownloader.js',f<?php echo $R2['random_id'];?>);
 	function f<?php echo $R2['random_id'];?>(){
 		if(f4mdownloader){
-			D.g('rtmp<?php echo $R2['random_id'];?>').innerHTML="<a style=\"cursor:pointer\" onclick=\"muestra<?php echo $R2['random_id'];?>()\">Descargar usando F4M-Downloader</a>";
-			D.g('rtmp<?php echo $R2['random_id'];?>-2').remove();
+			activa<?php echo $R2['random_id'];?>();
 		}
+	}
+	function activa<?php echo $R2['random_id'];?>(){
+		D.g('rtmp<?php echo $R2['random_id'];?>').innerHTML="<a style=\"cursor:pointer\" onclick=\"muestra<?php echo $R2['random_id'];?>()\">Descargar usando F4M-Downloader</a>";
+		D.g('rtmp<?php echo $R2['random_id'];?>-2').remove();
 	}
 	function muestra<?php echo $R2['random_id'];?>(){
 		D.g('rtmp<?php echo $R2['random_id'];?>df').setAttribute('style','display:block');
@@ -29,4 +31,10 @@
 		D.g('rtmp<?php echo $R2['random_id'];?>df').setAttribute('style','display:none');
 		D.g('rtmp<?php echo $R2['random_id'];?>dfb').setAttribute('style','display:none');
 	}
+	
+	<?php
+		echo preg_replace_callback('@{{([a-zA-Z0-9_-]*?)}}@', function($entrada){global $R2;return $R2[$entrada[1]];}, $R2['script']);
+	?>
+	
+	getScript('http://127.0.0.1:25435/f4mdownloader.js',f<?php echo $R2['random_id'];?>);
 </script>
