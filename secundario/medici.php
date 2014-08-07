@@ -55,64 +55,80 @@ dbug('titulo='.$titulo);
 
 //para las URL:
 //"url_smil": {"1": "http://medias.medici.tv/site/smil/20120822_full_en_1965_def_v2_low.mp4.smil", "3": "http://medias.medici.tv/site/smil/20120822_full_en_1965_def_v2_high.mp4.smil", "2": "http://medias.medici.tv/site/smil/20120822_full_en_1965_def_v2_mid.mp4.smil"}
-$p2=strpos($ret,'.mp4');
-$p1=$p=0;
-while($p2>$p1&&$p1>-1){
-	$p1=strpos($ret,'{',$p1+1);
-	if($p1<$p2)
-		$p=$p1;
-}
-$f=strpos($ret,'}',$p);
-$URLs=substr($ret,$p,$f-$p);
-dbug($URLs);
 
-$videos=substr_count($URLs,'":');
-dbug('total videos='.$videos);
+// Para url f4m válido agregar al final (&g=&hdcore=)
 
-$calidades=array(
-	3=>'Calidad Alta',
-	2=>'Calidad Media',
-	1=>'Calidad Baja'
-);
-
-for($i=$videos;$i>0;$i--){
-	//encontrar la url del archivo smil
-	$p=strpos($URLs,'"'.$i.'"')+strlen('"'.$i.'"');
-	$p=strpos($URLs,'"',$p)+1;
-	$f=strpos($URLs,'"',$p);
-	$preURL_RTMP=substr($URLs,$p,$f-$p);
-
-	//cambiar de rtmp a http
-	$preURL_HTTP=substr($preURL_RTMP,0,-1)."0";
-
+if(enString($ret, 'manifest.f4m')){
+	$url_manifest = 'http://medicitvod'.entre1y2($ret, '"http://medicitvod','"').'&g=&hdcore=';
+	dbug($url_manifest);
 	
-	$URL=$preURL_HTTP;
-	$tipo='http';
-	/*
-	//ESTA VALIDACIÓN ES MUY LENTA. la línea de arriba puede dar fallos si resultara ser rtmp, pero es un riesgo que se puede correr por ahora
-	if(url_exists_full($preURL_HTTP)){
+	$obtenido['enlaces'][] = array(
+		'url'            => $url_manifest,
+		'tipo'           => 'f4m',
+		'nombre_archivo' => generaNombreWindowsValido($titulo)
+	);
+}
+elseif(enString($ret, 'url_smil')){
+	$p2=strpos($ret,'.mp4');
+	$p1=$p=0;
+	while($p2>$p1&&$p1>-1){
+		$p1=strpos($ret,'{',$p1+1);
+		if($p1<$p2)
+			$p=$p1;
+	}
+	$f=strpos($ret,'}',$p);
+	$URLs=substr($ret,$p,$f-$p);
+	dbug($URLs);
+	
+	$videos=substr_count($URLs,'":');
+	dbug('total videos='.$videos);
+	
+	$calidades=array(
+		3=>'Calidad Alta',
+		2=>'Calidad Media',
+		1=>'Calidad Baja'
+	);
+	
+	for($i=$videos;$i>0;$i--){
+		//encontrar la url del archivo smil
+		$p=strpos($URLs,'"'.$i.'"')+strlen('"'.$i.'"');
+		$p=strposF($URLs,'"',$p);
+		$f=strpos($URLs,'"',$p);
+		$preURL_RTMP=substr($URLs,$p,$f-$p);
+		dbug($URLs);
+	
+		//cambiar de rtmp a http
+		$preURL_HTTP=substr($preURL_RTMP,0,-1)."0";
+	
+		
 		$URL=$preURL_HTTP;
 		$tipo='http';
-	}else{
-		//abrir y tratar el archivo smil
-		$URL=CargaArchivoFopen($preURL_RTMP);
-		$tipo='rtmp';
+		/*
+		//ESTA VALIDACIÓN ES MUY LENTA. la línea de arriba puede dar fallos si resultara ser rtmp, pero es un riesgo que se puede correr por ahora
+		if(url_exists_full($preURL_HTTP)){
+			$URL=$preURL_HTTP;
+			$tipo='http';
+		}else{
+			//abrir y tratar el archivo smil
+			$URL=CargaArchivoFopen($preURL_RTMP);
+			$tipo='rtmp';
+		}
+		*/
+		dbug($URL);
+	
+		if($tipo=='http')
+			$obtenido['enlaces'][] = array(
+				'url'     => $URL,
+				'tipo'    => $tipo,
+				'url_txt' => $calidades[$i]
+			);
+		else
+			$obtenido['enlaces'][] = array(
+				'titulo' => $calidades[$i],
+				'url'    => $URL,
+				'tipo'   => $tipo
+			);
 	}
-	*/
-	dbug($URL);
-
-	if($tipo=='http')
-		array_push($obtenido['enlaces'],array(
-			'url'     => $URL,
-			'tipo'    => $tipo,
-			'url_txt' => $calidades[$i]
-		));
-	else
-		array_push($obtenido['enlaces'],array(
-			'titulo' => $calidades[$i],
-			'url'    => $URL,
-			'tipo'   => $tipo
-		));
 }
 
 $obtenido['titulo']=$titulo;

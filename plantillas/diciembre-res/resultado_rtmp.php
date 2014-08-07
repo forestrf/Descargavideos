@@ -1,4 +1,4 @@
-<div class="rtmpdump" id="rtmp<?php echo $R2['random_id'];?>">rtmpdump -r "<?php echo $R2['dir_resultado_enc_rtmpdump'];?>" -o "<?php echo $R2['extension_res'];?>"</div>
+<div class="rtmpdump" id="rtmp<?php echo $R2['random_id'];?>">rtmpdump -r "<?php echo $R2['dir_resultado'];?>" -o "<?php echo $R2['extension_res'];?>"</div>
 <div class="aviso_m3u8" id="rtmp<?php echo $R2['random_id'];?>-2">
 <?php echo INTERIOR_AVISO_RTMP?>
 </div>
@@ -8,8 +8,8 @@
 	Nombre del archivo:
 	<form method="GET" action="http://127.0.0.1:25432/" id="rtmp<?php echo $R2['random_id'];?>f" target="_blank">
 		<input type="text"   id="rtmp<?php echo $R2['random_id'];?>fnombre"  name="nombre" class="input" value="<?php echo $R2['extension_res'];?>" autocomplete="off"><br>
-		<input type="hidden" id="rtmp<?php echo $R2['random_id'];?>furl"     name="url" value='-r "<?php echo $R2['dir_resultado_enc_rtmpdump'];?>" -o "<?php echo $R2['extension_res'];?>"'>
-		<input type="hidden" id="rtmp<?php echo $R2['random_id'];?>fcommand" name="command" value='rtmpdump -r "<?php echo $R2['dir_resultado_enc_rtmpdump'];?>" -o "<?php echo $R2['extension_res'];?>"'>
+		<input type="hidden" id="rtmp<?php echo $R2['random_id'];?>furl"     name="url" value='-r "<?php echo $R2['dir_resultado'];?>" -o "<?php echo $R2['extension_res'];?>"'>
+		<input type="hidden" id="rtmp<?php echo $R2['random_id'];?>fcommand" name="command" value='rtmpdump -r "<?php echo $R2['dir_resultado'];?>" -o "<?php echo $R2['extension_res'];?>"'>
 		<input type="hidden" id="rtmp<?php echo $R2['random_id'];?>fimg"     name="img" value="<?php echo $R['url_img_res'];?>">
 		<input type="hidden" id="rtmp<?php echo $R2['random_id'];?>forig"    name="orig" value="<?php echo $R['WEB'];?>">
 		<input type="hidden" id="rtmp<?php echo $R2['random_id'];?>faccion"  name="accion" value="descargar">

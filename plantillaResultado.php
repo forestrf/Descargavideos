@@ -83,6 +83,10 @@ function generaInnerResultado(){
 					$aIncluir = plantillaInclude('resultado_m3u8.php');
 					if(!$extension)$extension = 'm3u8';
 				break;
+				case 'f4m':
+					$aIncluir = plantillaInclude('resultado_f4m.php');
+					if(!$extension)$extension = 'f4m';
+				break;
 				case 'js':
 					$aIncluir = plantillaInclude('resultado_js.php');
 					if(!$extension)$extension = 'mp4';
@@ -114,13 +118,11 @@ function generaInnerResultado(){
 		$R2['dir_resultado_reproductor']                   = urlencode($url);
 		$R2['dir_resultado_urlencode']                     = urlencode($url);
 		$R2['dir_resultado_txt']                           = htmlentities2($url_txt, ENT_QUOTES);
-		$R2['dir_resultado_enc_rtmpdump']                  = $url;
 		$R2['dir_resultado_rtmpdump_manual']               = $rtmpdump;
 		$R2['dir_resultado_rtmpdump_manual_esc_doblecoma'] = htmlentities2($rtmpdump, ENT_QUOTES);
 		$R2['dir_resultado_rtmpdumpHTTP']                  = $rtmpdumpHTTP;
 		$R2['dir_resultado_rtmpdumpHTTP_esc_doblecoma']    = htmlentities2($rtmpdumpHTTP, ENT_QUOTES);
-		$R2['dir_resultado_enc_rtmpdump_manual']           = urlencode($rtmpdump);
-		$R2['nombre_resultado_rtmpdump_manual']            = $nombre_archivo;
+		$R2['nombre_resultado_manual']                     = $nombre_archivo;
 		$R2['pass_m3u8']                                   = $m3u8_pass;
 		$R2['extension_res']                               = $extension;
 		$R2['otros_datos_mp3']                             = $otros_datos_mp3;
