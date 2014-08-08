@@ -13,7 +13,9 @@
 <?php
 
 foreach($_SERVER as $key => $value) {
-	dbug($key.' => '.$value);
+	if($key != 'SERVER_ADDR'){
+		dbug($key.' => '.$value);
+	}
 }
 
 $obtenido = array();
