@@ -26,6 +26,8 @@ https://webproxy.net/view?q=
 
 //ES NECESARIO ESTAR LOGUEADO. Crear cuenta falsa.
 
+$atresplayer_obtenido_alerta = 'Como norma general es necesario encontrarse en España para poder descargar de ATresPlayer. Si usted no se encuentra en España puede hacer uso del programa <a target="_blank" href="http://hola.org">hola.org</a> para simular que se encuentra en España.<br/>Es necesario tener habilitadas las <a href="http://es.wikipedia.org/wiki/Cookie_%28inform%C3%A1tica%29#Privacidad_y_cookies_de_terceros">cookies de terceros</a>. Busca cómo habilitarlas dependiendo del navegador que estás usando.';
+
 function atresplayer(){
 /*
 header('Location: http://descargavid.blogspot.com.es/2013/11/segunda-solucion-para-atresplayer.html');
@@ -76,8 +78,8 @@ else{
 	$obtenido['imagen'] = 'http://www.atresplayer.com/'.entre1y2_a($web_descargada, $p, 'src="', '"');
 }
 
-
-
+global $atresplayer_obtenido_alerta;
+$obtenido['alerta_especifica'] = $atresplayer_obtenido_alerta;
 
 
 
