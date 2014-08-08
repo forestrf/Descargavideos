@@ -1,3 +1,6 @@
+<?php
+exit;
+?>
 <!DOCTYPE html>
 <html>
 <body>
