@@ -78,7 +78,7 @@ function generaNombreWindowsValido($filename){
 	return str_replace($bad, '', $filename);
 }
 
-function limpiaTitulo($titulo, $max=1000){
+function limpiaTitulo($titulo, $max=200){
 	if(strlen($titulo) > $max)
 		$titulo = substr($titulo, 0, $max).'...';
 	return strtr($titulo, array('%27'=>'', '*'=>'',"'"=>''));

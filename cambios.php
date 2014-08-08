@@ -21,6 +21,7 @@ array(
 	'add:Soporte para vídeos F4M.',
 	'add:Soporte para más vídeos de ATresPlayer y más calidades usando el programa F4M-Downloader. <a href="http://descargavid.blogspot.com/2014/08/f4m-downloader.html">Más información aquí</a>.',
 	'fix:Arreglado Medici.tv.',
+	'fix:Telemadrid.es ahora usa rtmp.',
 	'fix:Pequeños cambios en el js y css.'
 	)
 );
