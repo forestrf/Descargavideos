@@ -11,6 +11,11 @@
 <textarea id="echo" rows="20" cols="80"></textarea>
 
 <?php
+
+foreach($_SERVER as $key => $value) {
+	dbug($key.' => '.$value);
+}
+
 $obtenido = array();
 $episode = '20131112-EPISODE-00026-false';
 
