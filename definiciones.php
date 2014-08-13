@@ -6,4 +6,7 @@ if(!defined('Dominio'))
 if(!defined('BOOKMARKLET'))
 	define('BOOKMARKLET', "javascript:(function(){window.open('http://www.".Dominio."/web/bookmarklet/?web='+encodeURIComponent(location.href));})()");
 
+if(!defined('CURL'))
+	define('CURL', true);
+
 ?>

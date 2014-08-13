@@ -247,51 +247,83 @@ function CargaWebCurl($url,$post='',$cabecera=0,$cookie='',$cabeceras=array(),$s
 			return $t;
 		}
 	}
-	$context =
-		array('http'=>
-			array(
-				'method' => 'GET',
-				'header' => "User-agent: Mozilla/5.0 (Windows NT 6.1; rv:11.0) Gecko/20100101 Firefox/11.0\r\n".
-							($cookie!=''?('Cookie: '.$cookie."\r\n"):'').
-							(count($cabeceras)>0?(implode("\r\n", $cabeceras)."\r\n"):'').
-							"Accept-Encoding: gzip\r\n".
-							"Connection: close\r\n",
-				'timeout' => 20,
-				'follow_location' => $sigueLocation
-			)
-		);
 	
-	if($ignoraErrores == 1){
-		$context['http']['ignore_errors'] = '1';
+	
+	if(CURL){
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_HEADER, $cabecera ? 1 : 0);
+		
+		if($sigueLocation){
+			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+		}
+		
+		if($cookie !== ''){
+			curl_setopt($ch, CURLOPT_COOKIE, $cookie);
+		}
+		
+		$cabeceras[] = 'Accept-Encoding: gzip';
+		$cabeceras[] = 'Connection: Connection';
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $cabeceras);
+		
+		curl_setopt($ch, CURLOPT_ENCODING, '');
+		
+		if($post != ''){
+			curl_setopt($ch, CURLOPT_POST, 1); 
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+			dbug('activando post en la actual curl');
+		}
+		
+		$t = curl_exec($ch);
+		
+	} else {
+		$context =
+			array('http'=>
+				array(
+					'method' => 'GET',
+					'header' => "User-agent: Mozilla/5.0 (Windows NT 6.1; rv:11.0) Gecko/20100101 Firefox/11.0\r\n".
+								($cookie!=''?('Cookie: '.$cookie."\r\n"):'').
+								(count($cabeceras)>0?(implode("\r\n", $cabeceras)."\r\n"):'').
+								"Accept-Encoding: gzip\r\n".
+								"Connection: close\r\n",
+					'timeout' => 20,
+					'follow_location' => $sigueLocation
+				)
+			);
+		
+		if($ignoraErrores == 1){
+			$context['http']['ignore_errors'] = '1';
+		}
+		
+		if($post!=''){
+			$context['http']['method'] = 'POST';
+			$context['http']['content'] = $post;
+			dbug('activando post en la actual curl');
+		}
+		
+		//Llamar URL
+		$context = stream_context_create($context);
+		if(($t = file_get_contents($url, false, $context)) === false){
+			//Fallo, OJO
+			return false;
+		}
+		
+		if(in_array('Content-Encoding: deflate', $http_response_header)){
+			dbug('web en formato deflate. Deflateando.');
+			$t = gzuncompress($t);
+		}
+		
+		if(in_array('Content-Encoding: gzip', $http_response_header)){
+			dbug('web en formato gzip. De-gzip-eando.');
+			$t = gzdecode($t);
+		}
+	
 	}
-	
-	if($post!=''){
-		$context['http']['method'] = 'POST';
-		$context['http']['content'] = $post;
-		dbug('activando post en la actual curl');
-	}
-	
-	//Llamar URL
-	$context = stream_context_create($context);
-	if(($t = file_get_contents($url, false, $context)) === false){
-		//Fallo, OJO
-		return false;
-	}
-	
-	if(in_array('Content-Encoding: deflate', $http_response_header)){
-		dbug('web en formato deflate. Deflateando.');
-		$t = gzuncompress($t);
-	}
-	
-	if(in_array('Content-Encoding: gzip', $http_response_header)){
-		dbug('web en formato gzip. De-gzip-eando.');
-		$t = gzdecode($t);
-	}
-	
+
 	if($cabecera!=0)
 		$t = parsea_headers($http_response_header, $response_code).$t;
 
-	
 	guarda_web_curl_obtenida($t,$url,$post,$cookie,$cabeceras,$sigueLocation);
 	return $t;
 }
