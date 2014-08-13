@@ -537,7 +537,7 @@ input[type="radio"] {
 	display:inline-block;
 }
 #resultado #enlaces .aviso_m3u8{
-	background:url("/img/warning.png") no-repeat scroll 10px 10px #851B1B;
+	background:url("/img/warning.png") no-repeat scroll 10px 10px #158B4A;
 	border-radius:0 0 20px 20px;
 	color:#FFF;
 	display:block;
@@ -545,6 +545,10 @@ input[type="radio"] {
 	padding:10px 10px 10px 84px;
 	text-align:left;
 	line-height:1.15em;
+	margin-bottom:15px;
+}
+#resultado #enlaces .txt {
+	margin-bottom:10px;
 }
 #resultado #enlaces .aviso_m3u8 a{
 	font-size:12px;
