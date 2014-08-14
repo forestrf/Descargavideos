@@ -6,6 +6,7 @@ include_once 'definiciones.php';
 include_once 'funciones.php';
 
 //guardar en un txt el referer para saber que dominios tienen alojado el buscador.
+/*
 if(isset($_SERVER['HTTP_REFERER'])){
 	$ref=$_SERVER['HTTP_REFERER'];
 	if(!enString($ref,'descargavid.blogspot')&&!enString($ref,Dominio)){
@@ -22,6 +23,7 @@ if(isset($_SERVER['HTTP_REFERER'])){
 		fclose($fp);
 	}
 }
+*/
 
 
 $largo=300;
@@ -63,13 +65,11 @@ function my_is_integer($val){
 <link rel="stylesheet" href="http://www.<?php echo Dominio?>/css/reset.min.css" />
 </head>
 <body>
-<!--Formulario-->
 <div id="form_dv" style="width:<?=$largo?>px" class="<?=$tamano?> <?=$color?>">
 	<form action="http://www.<?php echo Dominio?>/web/iframeform/" method="get" target="_blank" name="formCalculador" id="formCalculador">
 		<div class="fondo_input_web"><input type="text" name="web" id="web" class="entrada e" placeholder="Pega la URL del vídeo..." value="" title="URL a obtener"></div>
 		<input type="submit" id="submit" value=" " class="boton b">
 	</form>
 </div>
-<!--Fin Formulario-->
 </body>
 </html>
