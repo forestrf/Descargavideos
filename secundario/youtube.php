@@ -17,7 +17,7 @@ class youtube{
 		}
 
 		if(!preg_match('/stream_map": "(.[^"]*?)"/i',$html,$match)){
-			$this->error = "No se puede encontrar ninguna URL para descargar el vídeo. Esto puede deberse a una restricción del vídeo en el país donde se encuentra el servidor";
+			$this->error = "No se puede encontrar ninguna URL para descargar el vídeo. Esto puede deberse a una restricción del vídeo en el país donde se encuentra Descargavideos.";
 			return false;
 		}
 
