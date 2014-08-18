@@ -21,7 +21,7 @@
 <link href="/favicon.ico" rel="icon" type="image/x-icon"/>
 <link rel="stylesheet" href="/css/reset.min.css"/>
 <link rel="stylesheet" href="/css/allMovil.min.css"/>
-<script type="text/javascript" src="/js/funciones.min.js"></script>
+<script type="text/javascript" src="/js/funciones.min.js?2"></script>
 <link href="/css/font/fuentes.css" rel="stylesheet" type="text/css"/>
 
 <script type="text/javascript">
@@ -64,15 +64,7 @@ var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-29252510-1"]);_gaq.push(["_trackP
 
 
 
-<div class="stats">
-	<script type="text/javascript">document.write(unescape("%3Cscript src=%27http://s10.histats.com/js15_gif.js%27 type=%27text/javascript%27%3E%3C/script%3E"));</script>
-	<a href="http://www.histats.com" target="_blank" title="contadores de web" ><script  type="text/javascript" >
-	try {Histats.startgif(1,2419951,4,10045,"");
-	Histats.track_hits();} catch(err){};
-	</script></a>
-	<noscript><a href="http://www.histats.com" alt="contadores de web" target="_blank" ><div id="histatsC"><img border="0" src="http://s4is.histats.com/stats/i/2419951.gif?2419951&103"></div></a>
-	</noscript>
-</div>
+<img src="http://sstatic1.histats.com/0.gif?2419951&101" alt="acesso" border="0">
 
 
 

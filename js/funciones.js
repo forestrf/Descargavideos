@@ -1,5 +1,6 @@
 var D = document;
 D.g = D.getElementById;
+D.c = D.createElement;
 
 /*
  // RefererKiller "original"

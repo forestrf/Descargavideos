@@ -21,7 +21,7 @@
 <link href="/favicon.ico" rel="icon" type="image/x-icon"/>
 <link rel="stylesheet" href="/css/cssfull.min.css?7"/>
 <link rel="stylesheet" href="/css/modos/<?php echo $css_modo?>.css" id="css2"/>
-<script src="/js/funciones.min.js?2"></script>
+<script src="/js/funciones.min.js?3"></script>
 
 <script>
 var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-29252510-1"]);_gaq.push(["_trackPageview"]);(function(){var ga=document.createElement("script");ga.async=true;ga.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga,s);})();
@@ -87,9 +87,6 @@ var css_user='<?php echo $css_modo?>';
 			<?php echo getPubli(0);?>
 		</div>
 
-		<div class="stats">
-			<div id="histats_counter"></div>
-		</div>
 		<div class="social">
 			<div class="elem">
 				<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.descargavideos.tv" data-text="Descarga vídeos de RTVE, Antena3, Mitele, TV3 y muchas más." data-via="descargavids" data-lang="es" data-count="vertical"></a>
@@ -159,7 +156,7 @@ var css_user='<?php echo $css_modo?>';
 setModoPic('<?php echo $modo?>');
 function setModoPic(d){if(d==1){D.g('web').placeholder="<?php echo TXT_PEGA_URL_VIDEO?>";D.g('ayuda1txt').innerHTML="<?php echo TXT_COPIA_URL_VIDEO?>";D.g('ayuda2txt').innerHTML="<?php echo TXT_BUSCA_URL_VIDEO?>";}else{D.g('web').placeholder="<?php echo TXT_BUSCAR_CANCION?>";D.g('ayuda1txt').innerHTML="<?php echo TXT_ESCRIBE_NOMBRE_CANCION?>";D.g('ayuda2txt').innerHTML="<?php echo TXT_BUSCA_CANCION?>";}}
 
-var _Hasync=_Hasync||[];_Hasync.push(['Histats.startgif','1,2419951,4,10045,"div#histatsC{position:absolute;top:0px;left:0px;}body>div#histatsC{position:fixed;}"']);_Hasync.push(['Histats.fasi','1']);_Hasync.push(['Histats.track_hits','']);(function(){var hs=document.createElement('script');hs.async=true;hs.src=('http://s10.histats.com/js15_gif_as.js');(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(hs);})();
+var _Hasync=_Hasync||[];_Hasync.push(['Histats.start','1,2419951,4,0,0,0,00010000']);_Hasync.push(['Histats.fasi','1']);_Hasync.push(['Histats.track_hits','']);(function(){var hs=D.c('script');hs.type='text/javascript';hs.async=true;hs.src='http://s10.histats.com/js15_as.js';(D.getElementsByTagName('head')[0]||D.getElementsByTagName('body')[0]).appendChild(hs);})();
 
 setTimeout(function(){
 	getScript("https://connect.facebook.net/es_ES/all.js#xfbml=1&appId=235486993147003",null,'facebook-jssdk');
