@@ -153,7 +153,7 @@ if($cookie_modoEscritorio){
 else{
 	$is_mobile = false;
 	if(isset($_SERVER['HTTP_USER_AGENT'])){
-		$is_mobile = preg_match('@ipod|iphone|ipad|android|opera mini|blackberry|palm os|windows ce|windows mobile|palm|hiptop|avantgo|plucker|xiino|blazer|elaine|iris|3g_t|
+		$is_mobile = preg_match('@playstation|iphone|ipad|android|opera mini|blackberry|palm os|windows ce|windows mobile|palm|hiptop|avantgo|plucker|xiino|blazer|elaine|iris|3g_t|
 		windows ce|opera mobi|windows ce; smartphone;|windows ce; iemobile|mini 9.5|vx1000|lge |m800|e860|u940|ux840|compal|wireless| mobi|ahong|lg380|lgku|lgu900|lg210|lg47|lg920|lg840|lg370|sam-r|mg50|s55|g83|t66|vx400|mk99|d615|d763|el370|sl900|mp500|samu3|
 		samu4|vx10|xda_|samu5|samu6|samu7|samu9|a615|b832|m881|s920|n210|
 		s700|c810|_h797|mobx|sk16d|848b|mowser|s580|r800|471x|v120|rim8|

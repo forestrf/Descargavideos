@@ -130,77 +130,133 @@ function url_exists_full(&$url, $preg_match_prerealizado = false){
 
 	$url = preg_replace_callback('/[^(\x20-\x7F)]/', 'urlencode_noAscii', $url);
 	
-	$context =
-		array('http'=>
-			array(
-				'method' => 'GET',
-				'header' => "User-agent: Mozilla/5.0 (Windows NT 6.1; rv:11.0) Gecko/20100101 Firefox/11.0\r\n".
-							"Connection: close\r\n".
-							"Accept-Language: es-ES,es;en-US;en\r\n".
-							"Accept: text/html,application/xhtml+xml,application/xml\r\n".
-							"Accept-Encoding: gzip\r\n",
-				'timeout' => 15,
-				'follow_location' => true,
-				'ignore_errors' => '1' /*,
-				'ssl' => array(
-					'verify_peer' => false
-				)*/
-			)
-		);
-	$preContext = $context;
-	$preContext['http']['method'] = 'HEAD';
+	if(CURL){
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_HEADER, 1);
+		
+		//CURLOPT_CONNECTTIMEOUT - The number of seconds to wait while trying to connect. Use 0 to wait indefinitely.
+		//CURLOPT_TIMEOUT - The maximum number of seconds to allow cURL functions to execute.
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT ,10); 
+		curl_setopt($ch, CURLOPT_TIMEOUT, 10);
 
-	$context = stream_context_create($context);
-	$preContext = stream_context_create($preContext);
-	
-	if(file_get_contents($url, false, $preContext) === false){
-		dbug_r($http_response_header);
-		dbug('problema al descargar la url');
-		return false;
-	}
-	
-	$content_type_valido = false;
-	foreach($http_response_header as $header){
-		if(enString(strtolower($header), 'content-type: text')){
-			$content_type_valido = true;
-			continue;
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+		
+		// https
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		
+		// auto decoding
+		curl_setopt($ch, CURLOPT_ENCODING, '');
+		
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+			"User-agent: Mozilla/5.0 (Windows NT 6.1; rv:11.0) Gecko/20100101 Firefox/11.0",
+			"Connection: close",
+			"Accept-Language: es-ES,es;en-US;en",
+			"Accept: text/html,application/xhtml+xml,application/xml",
+			"Accept-Encoding: gzip"
+		));
+		
+		$t = curl_exec($ch);
+		
+		if($t === false){
+			dbug('problema al descargar la url');
+			dbug('Curl error: '.curl_error($ch));
+			return false;
 		}
-	}
-	if(!$content_type_valido){
-		dbug('Petición HEAD indica mimetype DISTINTO a text');
+		
+		if(!enString(strtolower($t), 'content-type: text')){
+			dbug('Petición HEAD indica mimetype DISTINTO a text');
+			return false;
+		}
+		
+		dbug('Petición HEAD indica mimetype text');
+		
+		global $web_descargada, $web_descargada_headers;
+		$web_descargada = $t;
+		
+		$web_descargada_headers = explode("\r\n", substr($t, 0, strpos($t, "\r\n\r\n")));
+		
+		$z=intval(substr($web_descargada_headers[0], 9, 3));
+		
+		if(($z>=200 && $z<350) || $z===403 || $z===409 || $z===410 || $z===0)
+			return true;
+		
+		return false;
+	} else {
+		$context =
+			array('http'=>
+				array(
+					'method' => 'GET',
+					'header' => "User-agent: Mozilla/5.0 (Windows NT 6.1; rv:11.0) Gecko/20100101 Firefox/11.0\r\n".
+								"Connection: close\r\n".
+								"Accept-Language: es-ES,es;en-US;en\r\n".
+								"Accept: text/html,application/xhtml+xml,application/xml\r\n".
+								"Accept-Encoding: gzip\r\n",
+					'timeout' => 15,
+					'follow_location' => true,
+					'ignore_errors' => '1' /*,
+					'ssl' => array(
+						'verify_peer' => false
+					)*/
+				)
+			);
+		$preContext = $context;
+		$preContext['http']['method'] = 'HEAD';
+	
+		$context = stream_context_create($context);
+		$preContext = stream_context_create($preContext);
+		
+		if(file_get_contents($url, false, $preContext) === false){
+			dbug_r($http_response_header);
+			dbug('problema al descargar la url');
+			return false;
+		}
+		
+		$content_type_valido = false;
+		foreach($http_response_header as $header){
+			if(enString(strtolower($header), 'content-type: text')){
+				$content_type_valido = true;
+				continue;
+			}
+		}
+		if(!$content_type_valido){
+			dbug('Petición HEAD indica mimetype DISTINTO a text');
+			return false;
+		}
+		dbug('Petición HEAD indica mimetype text');
+		
+	
+		global $web_descargada, $web_descargada_headers;
+		if(($web_descargada = file_get_contents($url, false, $context)) === false){
+			dbug_r($http_response_header);
+			dbug('problema al descargar la url');
+			return false;
+		}
+		
+		if(in_array('Content-Encoding: deflate', $http_response_header)){
+			dbug_r($http_response_header);
+			dbug('web en formato deflate. Deflateando.');
+			$web_descargada = gzuncompress($web_descargada);
+		}
+		
+		if(in_array('Content-Encoding: gzip', $http_response_header)){
+			dbug_r($http_response_header);
+			dbug('web en formato gzip. De-gzip-eando.');
+			$web_descargada = gzdecode($web_descargada);
+		}
+		
+		$web_descargada = parsea_headers($http_response_header, $response_code).$web_descargada;
+		$web_descargada_headers = $http_response_header;
+		
+		$z=intval($response_code);
+		
+		if(($z>=200 && $z<350) || $z===403 || $z===409 || $z===410 || $z===0)
+			return true;
+		
 		return false;
 	}
-	dbug('Petición HEAD indica mimetype text');
-	
-
-	global $web_descargada, $web_descargada_headers;
-	if(($web_descargada = file_get_contents($url, false, $context)) === false){
-		dbug_r($http_response_header);
-		dbug('problema al descargar la url');
-		return false;
-	}
-	
-	if(in_array('Content-Encoding: deflate', $http_response_header)){
-		dbug_r($http_response_header);
-		dbug('web en formato deflate. Deflateando.');
-		$web_descargada = gzuncompress($web_descargada);
-	}
-	
-	if(in_array('Content-Encoding: gzip', $http_response_header)){
-		dbug_r($http_response_header);
-		dbug('web en formato gzip. De-gzip-eando.');
-		$web_descargada = gzdecode($web_descargada);
-	}
-	
-	$web_descargada = parsea_headers($http_response_header, $response_code).$web_descargada;
-	$web_descargada_headers = $http_response_header;
-	
-	$z=intval($response_code);
-	
-	if(($z>=200 && $z<350) || $z===403 || $z===409 || $z===410 || $z===0)
-		return true;
-	
-	return false;
 }
 
 function parsea_headers($http_response_header, &$responde_code){
@@ -269,6 +325,11 @@ function CargaWebCurl($url,$post='',$cabecera=0,$cookie='',$cabeceras=array(),$s
 		
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $cabeceras);
 		
+		// https
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		
+		// auto decoding
 		curl_setopt($ch, CURLOPT_ENCODING, '');
 		
 		if($post != ''){
