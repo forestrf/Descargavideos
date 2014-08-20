@@ -239,7 +239,11 @@ function dbug_r(&$arr){
 
 //url, contenido post a enviar, retornar cabecera, cabecera custom
 function CargaWebCurl($url,$post='',$cabecera=0,$cookie='',$cabeceras=array(),$sigueLocation=true,$esquivarCache=false,$ignoraErrores = 0){
-	dbug('cargando web ('.(CURL ? 'CURL as ' : 'file_get_contents as').' CURL):'.$url);
+	
+	$cabeceras[] = 'Accept-Encoding: gzip';
+	$cabeceras[] = 'Connection: Connection';
+	
+	dbug('cargando web ('.(CURL ? 'CURL as' : 'file_get_contents as').' CURL):'.$url);
 	if(!$esquivarCache){
 		$t=carga_web_curl_obtenida($url,$post,$cookie,$cabeceras,$sigueLocation);
 		if($t!=''){
@@ -263,8 +267,6 @@ function CargaWebCurl($url,$post='',$cabecera=0,$cookie='',$cabeceras=array(),$s
 			curl_setopt($ch, CURLOPT_COOKIE, $cookie);
 		}
 		
-		$cabeceras[] = 'Accept-Encoding: gzip';
-		$cabeceras[] = 'Connection: Connection';
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $cabeceras);
 		
 		curl_setopt($ch, CURLOPT_ENCODING, '');
@@ -328,7 +330,7 @@ function CargaWebCurl($url,$post='',$cabecera=0,$cookie='',$cabeceras=array(),$s
 }
 
 //ESTO ES PARA NO VOLVER A DESCARGAR UNA MISMA URL.
-function guarda_web_curl_obtenida($t='',$url='',$post='',$cookie='',$cabeceras=array(),$sigueLocation=true){
+function guarda_web_curl_obtenida(&$t,$url='',$post='',$cookie='',$cabeceras=array(),$sigueLocation=true){
 	global $listado_web_curl_obtenidas;
 	$listado_web_curl_obtenidas[]=array(
 		't'=>$t,
@@ -345,9 +347,9 @@ function carga_web_curl_obtenida($url='',$post='',$cookie='',$cabeceras=array(),
 	$total=count($listado_web_curl_obtenidas);
 	dbug('Webs cargadas en caché: '.$total);
 	for($i=0; $i<$total; $i++){
-		$c=$listado_web_curl_obtenidas[$i];
+		$c=&$listado_web_curl_obtenidas[$i];
 		if(
-			$c['url']==$url&&
+			$c['url']===$url&&
 			$c['post']==$post&&
 			$c['cookie']==$cookie&&
 			$c['cabeceras']==$cabeceras&&
