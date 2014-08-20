@@ -329,6 +329,7 @@ input[type="radio"] {
 	background-repeat:no-repeat;
 	box-shadow:0 0 10px 5px #73532B;
 	float:left;
+	min-height:250px;
 	/*max-width:500px;*/
 }
 #resultado .titulo_res{

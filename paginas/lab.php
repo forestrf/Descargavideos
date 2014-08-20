@@ -42,7 +42,7 @@
 	0.0.2b: <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.2b/F4M-Downloader.v0.0.2b.zip">GitHub (zip)</a> | <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.2b/F4M-Downloader.v0.0.2b.7z">GitHub (7z)</a><br>
 	0.0.2: <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.2/F4M-Downloader.v0.0.2.7z">GitHub (zip)</a> | <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.2/F4M-Downloader.v0.0.2.7z">GitHub (7z)</a><br>
 </div>
-
+<?php /*
 <div class="pregunta">
 	<div id="lab_gestor"></div>
 	<?php echo TXT_GESTOR_DESCARGAS_TIT?>
@@ -58,7 +58,7 @@
 	<a href="http://www.mediafire.com/download/w5ldaozmu71v4ae/Descargavideos+gestor+0.0.2.rar">0.0.2</a><br>
 	<a href="http://www.mediafire.com/download/98y95cb7zibc7nc/Descargavideos+gestor+0.0.1.rar">0.0.1</a>
 </div>
-
+*/ ?>
 <div class="pregunta">
 	<div id="lab_fondo"></div>
 	<?php echo TXT_IMAGEN_FONDO_TIT?>

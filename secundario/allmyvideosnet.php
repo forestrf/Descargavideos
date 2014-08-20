@@ -10,6 +10,7 @@ http://89.238.150.210:8777/i/01/00655/p769fztivvp3.jpg
 
 http://89.238.150.210:8777/repynsknbsie2cbd4oq3tex3lnwvammyu6aslyky4y7n7sflz2plxumqga/v.mp4.flv?start=0
 
+A veces se cuela un mp4 llamado http://allmyvideos.net/ph.mp4
 
 
 
@@ -103,6 +104,9 @@ function allmyvideosnet(){
 	'function lanzaAllMyVideosNet2(txt){'.
 		//'console.log(txt);'.
 		
+		'if(txt.indexOf(".setup(") !== -1){'.
+			'txt = txt.substr(txt.indexOf(".setup("));'.
+		'}'.
 		'var urls = txt.split("\"sources\" : ")[1].split("]")[0]+"]";'.
 		
 		'var urls = JSON.parse(urls);'.
@@ -120,24 +124,11 @@ function allmyvideosnet(){
 	'}'.
 	
 	'function mostrarFallo(){'.
-		'finalizar("","Necesitas iniciar sesión en ATresPlayer para descargar este vídeo o bien el vídeo no existe");'.
+		'finalizar("","Ha ocurrido un error");'.
 	'}'.
 	
 	'if(typeof descargador_archivos === "undefined"){'.
-		'D.g("enlaces").innerHTML += \'<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="0" height="0" id="descargador_archivos" align="middle">'.
-			'<param name="movie" value="/util/fla/f/ajofeifo.swf" />'.
-			'<param name="quality" value="high" />'.
-			'<param name="bgcolor" value="#000" />'.
-			'<param name="allowScriptAccess" value="sameDomain" />'.
-			'<!--[if !IE]>-->'.
-			'<embed src="/util/fla/f/ajofeifo.swf" quality="high" bgcolor="#000"'.
-				'width="0" height="0" name="descargador_archivos" align="middle"'.
-				'play="true" loop="true" quality="high" allowScriptAccess="sameDomain"'.
-				'type="application/x-shockwave-flash"'.
-				'pluginspage="http://www.macromedia.com/go/getflashplayer">'.
-			'</embed>'.
-			'<!--<![endif]-->'.
-		'</object>\';'.
+		'D.g("enlaces").innerHTML += \''.genera_swf_object('/util/fla/f/ajofeifo.swf').'\';'.
 		'var descargador_archivos = D.g("descargador_archivos");'.
 	'}'.
 	

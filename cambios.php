@@ -16,6 +16,16 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'20-Agosto-2014',
+array(
+	'fix:Allmyvideos.net actualizado.'
+	,'fix:Cambiado mensaje de información de ATresPlayer.'
+	,'fix:Cambiado mensaje de información para el aviso rápido.'
+	,'del:Quitado soporte para gestor de descargas.'
+	)
+);
+
+$todos[]=array(
 '8-Agosto-2014',
 array(
 	'add:Soporte para vídeos F4M.',
