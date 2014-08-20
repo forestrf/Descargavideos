@@ -16,6 +16,13 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'21-Agosto-2014',
+array(
+	'fix:Pequeña mejora en youtube. Pérdida de soporte para algunos vídeos geobloqueados.'
+	)
+);
+
+$todos[]=array(
 '20-Agosto-2014',
 array(
 	'fix:Allmyvideos.net actualizado.'

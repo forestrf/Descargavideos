@@ -130,7 +130,7 @@ class youtube{
 
 	function de_cipher_yt($html, $si){
 		//dbug('$si = '.$si);
-		$js_decipher = 'http://s.ytimg.com/yts/jsbin/html5player-'.entre1y2($html, 'html5player-','"');
+		$js_decipher = 'http://s.ytimg.com/yts/jsbin/html5player-'.strtr(entre1y2($html, 'html5player-','"'), array('\\'=>''));
 		//$js_decipher = 'http://s.ytimg.com/yts/jsbin/html5player-'.$this->CIPHER_TEST[0].'.js';
 		dbug('$js_decipher = '.$js_decipher);
 		$js_decipher_contenido = CargaWebCurl($js_decipher);
@@ -138,17 +138,41 @@ class youtube{
 		
 		$js_decipher_contenido = strtr($js_decipher_contenido, array("\n"=>''));
 		$expr = '@([a-zA-Z])=[a-zA-Z\.]+?\.split\(""\).*?\}+@';
-		preg_match($expr, $js_decipher_contenido, $matches);
+		preg_match($expr, $js_decipher_contenido, $matches, PREG_OFFSET_CAPTURE);
 		dbug_r($matches);
 		
-		$var = $matches[1];
+		if(count($matches) > 0){
+		$var = $matches[1][0];
 		dbug('$var='.$var);
 		
-		$instrucciones_raw = $matches[0].';';
+		$instrucciones_raw = $matches[0][0].';';
+		
+		// Identificar funciones. Ver si están cerca.
+		$txt_cerca = substr($js_decipher_contenido, $matches[0][1]-500, 500);
+		dbug($txt_cerca);
+		
+		$funciones = array();
+		$expr = '@([a-zA-Z]{1,3})[:=]function\(.+?\){(.+?)}@';
+		preg_match_all($expr, $txt_cerca, $m);
+		dbug_r($m);
+		for($i = 0; $i < count($m[0]); $i++){
+			if(strpos($m[2][$i], 'lice') !== false){
+				$funciones[$m[1][$i]] = 'slice';
+			}
+			elseif(strpos($m[2][$i], 'reverse') !== false){
+				$funciones[$m[1][$i]] = 'reverse';
+			}
+			elseif(strpos($m[2][$i], 'var c=a[0];a[0]=a[b%a.length];a[b]=c') !== false){
+				$funciones[$m[1][$i]] = 'switch';
+			}
+		}
+		
+		dbug_r($funciones);
 		
 		
-		$expr = '@(.*?)(,'.$var.'|;)@';
-		preg_match_all($expr, $instrucciones_raw, $matches);
+		
+		
+		preg_match_all('@(.*?)(,'.$var.'|;)@', $instrucciones_raw, $matches);
 		//dbug_r($matches);
 		
 		foreach($matches[1] as $orden){
@@ -156,160 +180,83 @@ class youtube{
 			if(enString($orden,'split'))
 				continue;
 			
+			foreach($funciones as $o=>$f){
+				if(strpos($orden, $o) !== false){
+					switch ($f) {
+						case 'slice':
+							preg_match('@\d+?@', $orden, $n);
+							y_slice($si, $n[0]);
+							break;
+						case 'reverse':
+							y_reverse($si);
+							break;
+						case 'switch':
+							preg_match('@\d+?@', $orden, $n);
+							y_switch($si, $n[0]);
+							break;
+						default:
+							
+							break;
+					}
+					continue 2;
+				}
+			}
+			
 			if(enString($orden,'slice')){
-				$b = intval(entre1y2($orden, '(',')'));
-				dbug('slice: '.$b);
-				dbug($si);
-				$si = substr($si, $b);
-				dbug($si);
+				y_slice($si, intval(entre1y2($orden, '(',')')));
 				continue;
 			}
 			elseif(preg_match('@\('.$var.',(\d+?)\)@', $orden, $res)){
-				$b = $res[1];
-				dbug('intercambio: '.$b);
-				dbug($si);
-				$this->swapLetters($si,$b);
-				dbug($si);
+				y_switch($si, $res[1]);
 				continue;
 			}
 			elseif(preg_match('@\[(\d+?)%'.$var.'.length\]@', $orden, $res)){
-				$b = $res[1];
-				dbug('intercambio sin función: '.$b);
-				dbug($si);
-				$this->swapLetters($si,$b);
-				dbug($si);
+				dbug('switch sin función: '.$b);
+				y_switch($si, $res[1]);
 				continue;
 			}
 			elseif(enString($orden, 'reverse')){
-				dbug('reverse');
-				dbug($si);
-				$si = strrev($si);
-				dbug($si);
+				y_reverse($si);
 				continue;
 			}
 		}
 		
 		return $si;
+		}
+		return false;
 	}
 
-
-
-	function swapLetters(&$a, $b){
-		$c=$a[0];
-		$a[0]=$a[$b % strlen($a)];
-		$a[$b]=$c;
-	}
 
 	// http://www.jwz.org/hacks/youtubedown
 	var $CIPHER_TEST = array(
-		'vflNzKG7n',
-		'vfllMCQWM',
-		'vflJv8FA8',
-		'vflR_cX32',
-		'vflveGye9',
-		'vflj7Fxxt',
-		'vfltM3odl',
-		'vflDG7-a-',
-		'vfl39KBj1',
-		'vflmOfVEX',
-		'vflJwJuHJ',
-		'vfl_ymO4Z',
-		'vfl26ng3K',
-		'vflcaqGO8',
-		'vflQw-fB4',
-		'vflSAFCP9',
-		'vflART1Nf',
-		'vflLC8JvQ',
-		'vflm_D8eE',
-		'vflTWC9KW',
-		'vflRFcHMl',
-		'vflM2EmfJ',
-		'vflz8giW0',
-		'vfl_wGgYV',
-		'vfl1HXdPb',
-		'vflkn6DAl',
-		'vfl2LOvBh',
-		'vfl-bxy_m',
-		'vflZK4ZYR',
-		'vflh9ybst',
-		'vflapUV9V',
-		'vflg0g8PQ',
-		'vflHOr_nV',
-		'vfluy6kdb',
-		'vflkuzxcs',
-		'vflGNjMhJ',
-		'vfldJ8xgI',
-		'vfl79wBKW',
-		'vflg3FZfr',
-		'vflUKrNpT',
-		'vfldWnjUz',
-		'vflP7iCEe',
-		'vflzVne63',
-		'vflO-N-9M',
-		'vflZ4JlpT',
-		'vflDgXSDS',
-		'vflW444Sr',
-		'vflK7RoTQ',
-		'vflKOCFq2',
-		'vflcLL31E',
-		'vflz9bT3N',
-		'vfliZsE79',
-		'vfljOFtAt',
-		'vflqSl9GX',
-		'vflFrKymJ',
-		'vflKz4WoM',
-		'vflhdWW8S',
-		'vfl66X2C5',
-		'vflCXG8Sm',
-		'vfl_3Uag6',
-		'vflQdXVwM',
-		'vflCtc3aO',
-		'vflCt6YZX',
-		'vflG49soT',
-		'vfl4cHApe',
-		'vflwMrwdI',
-		'vfl4AMHqP',
-		'vfln8xPyM',
-		'vflVSLmnY',
-		'vflkLvpg7',
-		'vflbxes4n',
-		'vflmXMtFI',
-		'vflYDqEW1',
-		'vflapGX6Q',
-		'vflLCYwkM',
-		'vflcY_8N0',
-		'vfl9qWoOL',
-		'vfle-mVwz',
-		'vfltdb6U3',
-		'vflLjFx3B',
-		'vfliqjKfF',
-		'ima-vflxBu-5R',
-		'ima-vflrGwWV9',
-		'ima-vflCME3y0',
-		'ima-vfl1LZyZ5',
-		'ima-vfl4_saJa',
-		'ima-en_US-vflP9269H',
-		'ima-en_US-vflkClbFb',
-		'ima-en_US-vflYhChiG',
-		'ima-en_US-vflWnCYSF',
-		'en_US-vflbT9-GA',
-		'en_US-vflAYBrl7',
-		'en_US-vflS1POwl',
-		'en_US-vflLMtkhg',
-		'en_US-vflbJnZqE',
-		'en_US-vflgd5txb',
-		'en_US-vflTm330y',
-		'en_US-vflnwMARr',
-		'en_US-vflTq0XZu',
-		'en_US-vfl8s5-Vs',
-		'en_US-vfl7i9w86',
-		'en_US-vflA-1YdP',
-		'en_US-vflZwcnOf',
-		'en_US-vflFqBlmB',
-		'en_US-vflG0UvOo',
-		'en_US-vflS6PgfC',
-		'en_US-vfl6Q1v_C',
-		'en_US-vflMYwWq8',
-		'en_US-vflGC4r8Z'
+'vflNzKG7n','vfllMCQWM','vflJv8FA8','vflR_cX32','vflveGye9','vflj7Fxxt','vfltM3odl','vflDG7-a-','vfl39KBj1','vflmOfVEX','vflJwJuHJ','vfl_ymO4Z','vfl26ng3K','vflcaqGO8','vflQw-fB4','vflSAFCP9','vflART1Nf','vflLC8JvQ','vflm_D8eE','vflTWC9KW','vflRFcHMl','vflM2EmfJ','vflz8giW0','vfl_wGgYV','vfl1HXdPb','vflkn6DAl','vfl2LOvBh','vfl-bxy_m','vflZK4ZYR','vflh9ybst','vflapUV9V','vflg0g8PQ','vflHOr_nV','vfluy6kdb','vflkuzxcs','vflGNjMhJ','vfldJ8xgI','vfl79wBKW','vflg3FZfr','vflUKrNpT','vfldWnjUz','vflP7iCEe','vflzVne63','vflO-N-9M','vflZ4JlpT','vflDgXSDS','vflW444Sr','vflK7RoTQ','vflKOCFq2','vflcLL31E','vflz9bT3N','vfliZsE79','vfljOFtAt','vflqSl9GX','vflFrKymJ','vflKz4WoM','vflhdWW8S','vfl66X2C5','vflCXG8Sm','vfl_3Uag6','vflQdXVwM','vflCtc3aO','vflCt6YZX','vflG49soT','vfl4cHApe','vflwMrwdI','vfl4AMHqP','vfln8xPyM','vflVSLmnY','vflkLvpg7','vflbxes4n','vflmXMtFI','vflYDqEW1','vflapGX6Q','vflLCYwkM','vflcY_8N0','vfl9qWoOL','vfle-mVwz','vfltdb6U3','vflLjFx3B','vfliqjKfF','ima-vflxBu-5R','ima-vflrGwWV9','ima-vflCME3y0','ima-vfl1LZyZ5','ima-vfl4_saJa','ima-en_US-vflP9269H','ima-en_US-vflkClbFb','ima-en_US-vflYhChiG','ima-en_US-vflWnCYSF','en_US-vflbT9-GA','en_US-vflAYBrl7','en_US-vflS1POwl','en_US-vflLMtkhg','en_US-vflbJnZqE','en_US-vflgd5txb','en_US-vflTm330y','en_US-vflnwMARr','en_US-vflTq0XZu','en_US-vfl8s5-Vs','en_US-vfl7i9w86','en_US-vflA-1YdP','en_US-vflZwcnOf','en_US-vflFqBlmB','en_US-vflG0UvOo','en_US-vflS6PgfC','en_US-vfl6Q1v_C','en_US-vflMYwWq8','en_US-vflGC4r8Z'
 	);
+}
+
+function y_slice(&$si, $b){
+	dbug('s(p)lice: '.$b);
+	dbug($si);
+	$si = substr($si, $b);
+	dbug($si);
+}
+function y_switch(&$si, $b){
+	dbug('switch: '.$b);
+	dbug($si);
+	$c=$si[0];
+	$si[0]=$si[$b % strlen($si)];
+	$si[$b]=$c;
+	y_swapLetters($si,$b);
+	dbug($si);
+}
+function y_reverse(&$si){
+	dbug('reverse');
+	dbug($si);
+	$si = strrev($si);
+	dbug($si);
+}
+
+function y_swapLetters(&$a, $b){
+	$c=$a[0];
+	$a[0]=$a[$b % strlen($a)];
+	$a[$b]=$c;
 }
