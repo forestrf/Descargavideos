@@ -19,6 +19,7 @@ $todos[]=array(
 '20-Agosto-2014',
 array(
 	'fix:Allmyvideos.net actualizado.'
+	,'add:Botón para subir a la cabecera de la web.'
 	,'fix:Cambiado mensaje de información de ATresPlayer.'
 	,'fix:Cambiado mensaje de información para el aviso rápido.'
 	,'del:Quitado soporte para gestor de descargas.'

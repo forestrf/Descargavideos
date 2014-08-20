@@ -19,7 +19,7 @@
 <?php /*? y un número es para forzar la actualización del script y del css tras cambios*/ ?>
 
 <link href="/favicon.ico" rel="icon" type="image/x-icon"/>
-<link rel="stylesheet" href="/css/cssfull.min.css?8"/>
+<link rel="stylesheet" href="/css/cssfull.min.css?9"/>
 <link rel="stylesheet" href="/css/modos/<?php echo $css_modo?>.css" id="css2"/>
 <script src="/js/funciones.min.js?3"></script>
 
@@ -121,6 +121,7 @@ var css_user='<?php echo $css_modo?>';
 				href="/changelog#contenido" class="changelog"><?php echo TXT_MENU_CHANGELOG?></a><a
 				href="/agradecimientos#contenido" class="agradecimientos"><?php echo TXT_MENU_AGRADECIMIENTOS?></a><a
 				href="/contacta#contenido" class="contacta"><?php echo TXT_MENU_CONTACTA?></a>
+				<div id="subir">Subir</div>
 			</div>
 		</div>
 		<div class="wrapp">
@@ -148,7 +149,7 @@ var css_user='<?php echo $css_modo?>';
 
 
 
-<script src="/js/ordenes.min.js"></script>
+<script src="/js/ordenes.min.js?2"></script>
 
 
 

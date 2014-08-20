@@ -46,3 +46,7 @@ for(var i = 1; i <= 10; ++i){
 	D.g("prevpic"+i).onmouseover = (function(i){return function(){lcs(i);};})(i);
 	D.g("prevpic"+i).onmouseout = function(){lcs(css_user);};
 }
+
+D.g("subir").onclick = function() {
+	scrollTo(0, 300);
+};

@@ -608,6 +608,24 @@ input[type="radio"] {
 	top:0;
 	width:100%;
 }
+.menu #subir {
+	color: #FFFFFF;
+	height: 100%;
+	line-height: 4em;
+	position: absolute;
+	right: 0;
+	text-shadow: 1px 1px 0 #000000;
+	box-shadow: 0 0 7px 1px #B6FF04 inset;
+	top: 0;
+	width: 5%;
+	background-color: #65960D;
+	opacity: 0;
+	transition: opacity 1s ease;
+}
+.menu.menu_fixed #subir {
+	cursor: pointer;
+	opacity: 1;
+}
 /*#FF8C00	#BF7F30	#A65B00	#FFA940	#FFC073
   #0969A2	#245A7A	#03436A	#3D9AD1	#64A8D1*/
 .menu a{
@@ -1000,7 +1018,9 @@ ul.puntuado, ul.puntuado li{
 	}
 
 	
-	
+	.menu #subir {
+		display: none;
+	}
 	
 	.menu{
 		border-bottom:0;
