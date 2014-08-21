@@ -174,7 +174,7 @@ function url_exists_full(&$url, $preg_match_prerealizado = false){
 		dbug('Petición HEAD indica mimetype text');
 		
 		global $web_descargada, $web_descargada_headers;
-		$web_descargada = $t;
+		$web_descargada = &$t;
 		
 		$web_descargada_headers = explode("\r\n", substr($t, 0, strpos($t, "\r\n\r\n")));
 		
