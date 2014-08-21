@@ -102,6 +102,8 @@ var css_user='<?php echo $css_modo?>';
 		</div>
 	</div>
 
+	<div id="subir">Subir</div>
+
 	<?php if(defined('HAY_RESULTADO')){ ?>
 		<div id="resultado" class="hx100">
 			<?php include_once 'plantillaResultado.php';?>
@@ -121,7 +123,6 @@ var css_user='<?php echo $css_modo?>';
 				href="/changelog#contenido" class="changelog"><?php echo TXT_MENU_CHANGELOG?></a><a
 				href="/agradecimientos#contenido" class="agradecimientos"><?php echo TXT_MENU_AGRADECIMIENTOS?></a><a
 				href="/contacta#contenido" class="contacta"><?php echo TXT_MENU_CONTACTA?></a>
-				<div id="subir">Subir</div>
 			</div>
 		</div>
 		<div class="wrapp">

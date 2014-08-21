@@ -1,6 +1,9 @@
 mueveMenu_m = 0;
 mueveMenu_f = D.g('menu_scroll');
 mueveMenu();
+mueveSubir_m = 0;
+mueveSubir_f = D.g('subir');
+mueveSubir();
 
 D.g('radio1').onclick = function(e) {
 	setModoPic(1);
@@ -41,6 +44,7 @@ D.g("formCalculador").onsubmit = function(e) {
 };
 window.onscroll = function(e) {
 	mueveMenu();
+	mueveSubir();
 };
 for(var i = 1; i <= 10; ++i){
 	D.g("prevpic"+i).onmouseover = (function(i){return function(){lcs(i);};})(i);

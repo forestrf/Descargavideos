@@ -193,6 +193,17 @@ function mueveMenu() {
 		mueveMenu_m = 0;
 	}
 }
+function mueveSubir() {
+	if ((D.body.scrollTop || D.documentElement.scrollTop) > 100) {
+		if (!mueveSubir_m) {
+			aC(mueveSubir_f, "visible");
+			mueveSubir_m = 1;
+		}
+	} else if (mueveSubir_m) {
+		qC(mueveSubir_f, "visible");
+		mueveSubir_m = 0;
+	}
+}
 // Internet Explorer
 if(typeof window.attachEvent !== "undefined")
 	window.attachEvent("onmessage",receiveMessage);
