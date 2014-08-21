@@ -196,8 +196,9 @@ function convierteID($asset,$modo=array('video','audio')){
 		$ret=desencripta($ret);
 		
 		dbug($ret);
-		if(preg_match('@http://[^<^>]*?\\.mp4@',$ret)){
-			$ret='http://'.entre1y2($ret,'http://','<');
+		if(preg_match('@http://[^<^>]*?\\.(?:mp4|mp3)@',$ret, $m)){
+			//dbug_r($m);
+			$ret=$m[0];
 		}
 		elseif(enString($ret,"code='state-not-valid'")){
 			$ret='';
