@@ -314,7 +314,7 @@ $cadenas=array(
 		'hogarutil'
 	),
 	array(
-		array('telemadrid.es'),
+		array('telemadrid.es', 'telemadrid2020.es'),
 		array('telemadrid.php'),
 		'telemadrid'
 	),

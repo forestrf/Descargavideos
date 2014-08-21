@@ -19,6 +19,8 @@ $todos[]=array(
 '21-Agosto-2014',
 array(
 	'fix:Pequeña mejora en youtube. Pérdida de soporte para algunos vídeos geobloqueados.'
+	,'add:Soporte para telemadrid2020.es.'
+	,'fix:Algunos vídeos rtmp no se descargaban por culpa de no tener un nombre de archivo predefinido.'
 	)
 );
 
