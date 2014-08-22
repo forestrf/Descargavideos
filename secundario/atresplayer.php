@@ -139,8 +139,9 @@ function resultadoA3PNormal($web, $web_descargada='', $episode='', $title=''){
 	
 	
 	$resultado = array(
-					'url'  => $urljs,
-					'tipo' => 'jsFlash'
+					'titulo' => 'Calidad baja',
+					'url'    => $urljs,
+					'tipo'   => 'jsFlash'
 				);
 	
 	if($title!=='')
@@ -185,6 +186,7 @@ function resultadoA3PNormal($web, $web_descargada='', $episode='', $title=''){
 	
 	// f4m url
 	$obtenido[] = array(
+		'titulo'         => 'Calidad alta',
 		'url'            => '-',
 		'tipo'           => 'f4m',
 		'nombre_archivo' => generaNombreWindowsValido($preSubtitulos['name']),
