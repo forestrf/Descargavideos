@@ -393,7 +393,7 @@ input[type="radio"] {
 .rtmpdump{
 	background-color:#502E70;
 	border:2px solid #FFF;
-	font-size:15px;
+	font-size:12px;
 	font-style:italic;
 	font-weight:600;
 	padding:10px;
@@ -538,9 +538,9 @@ input[type="radio"] {
 	display:inline-block;
 }
 #resultado #enlaces .aviso_m3u8{
-	background:url("/img/warning.png") no-repeat scroll 10px 10px #158B4A;
+	background:url("/img/info.png") no-repeat scroll 10px 10px #fff;
 	border-radius:0 0 20px 20px;
-	color:#FFF;
+	color:#000;
 	display:block;
 	font-size:12px;
 	padding:10px 10px 10px 84px;
@@ -553,11 +553,11 @@ input[type="radio"] {
 }
 #resultado #enlaces .aviso_m3u8 a{
 	font-size:12px;
-	color:#FFF;
+	color:#008EB5;
 	text-decoration:underline;
 }
 #resultado #enlaces .aviso_m3u8 a:hover{
-	color:#DDD;
+	color:#3FC0C2;
 }
 #resultado .error_res{
 	text-align:center;

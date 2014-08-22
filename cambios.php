@@ -16,6 +16,13 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'22-Agosto-2014',
+array(
+	'fix:Los avisos para descargar el programa RTMP-Downloader y F4M-Downloader equivalen a "info" y en lugar de "warning".'
+	)
+);
+
+$todos[]=array(
 '21-Agosto-2014',
 array(
 	'fix:Pequeña mejora en youtube. Pérdida de soporte para algunos vídeos geobloqueados.'
