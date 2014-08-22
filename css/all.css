@@ -215,6 +215,7 @@ input[type="radio"] {
 	top:-78px;
 	width:160px;
 	transition:all 1s ease;
+	z-index: -1;
 }
 #ayuda2{
 	height:150px;

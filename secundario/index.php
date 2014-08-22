@@ -596,6 +596,10 @@ function validar_enlace($link){
 				return false;
 			}
 		}
+		if(($i = strpos($link, 'http')) !== 0){
+			$link = substr($link, $i);
+			dbug('Quitado texto existente antes de http(s)://');
+		}
 		$enlace = $link;
 	}
 	else{
