@@ -152,7 +152,7 @@ class youtube{
 		dbug($txt_cerca);
 		
 		$funciones = array();
-		$expr = '@([a-zA-Z]{1,3})[:=]function\(.+?\){(.+?)}@';
+		$expr = '@([a-zA-Z][a-zA-Z0-9]{1,3})[:=]function\(.+?\){(.+?)}@';
 		preg_match_all($expr, $txt_cerca, $m);
 		dbug_r($m);
 		for($i = 0; $i < count($m[0]); $i++){
@@ -184,14 +184,14 @@ class youtube{
 				if(strpos($orden, $o) !== false){
 					switch ($f) {
 						case 'slice':
-							preg_match('@\d+?@', $orden, $n);
+							preg_match('@\d+@', $orden, $n);
 							y_slice($si, $n[0]);
 							break;
 						case 'reverse':
 							y_reverse($si);
 							break;
 						case 'switch':
-							preg_match('@\d+?@', $orden, $n);
+							preg_match('@\d+@', $orden, $n);
 							y_switch($si, $n[0]);
 							break;
 						default:
@@ -242,9 +242,6 @@ function y_slice(&$si, $b){
 function y_switch(&$si, $b){
 	dbug('switch: '.$b);
 	dbug($si);
-	$c=$si[0];
-	$si[0]=$si[$b % strlen($si)];
-	$si[$b]=$c;
 	y_swapLetters($si,$b);
 	dbug($si);
 }
