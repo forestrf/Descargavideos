@@ -26,7 +26,7 @@ https://webproxy.net/view?q=
 
 //ES NECESARIO ESTAR LOGUEADO. Crear cuenta falsa.
 
-$atresplayer_obtenido_alerta = 'Es necesario estar en España para descargar de ATresPlayer. Si no se encuentra en España puede usar el programa <a target="_blank" href="http://hola.org">hola.org</a> para simular que se encuentra en España.<br/>Es necesario tener habilitadas las <a href="http://es.wikipedia.org/wiki/Cookie_%28inform%C3%A1tica%29#Privacidad_y_cookies_de_terceros">cookies de terceros</a>.<br/>Si no puede ver el vídeo desde la web oficial, no lo podrá descargar, no se puede descargar vídeos premium sin serlo.';
+$atresplayer_obtenido_alerta = 'Es necesario estar en España para descargar de ATresPlayer. Si no se encuentra en España puede usar el programa <a target="_blank" href="http://hola.org">hola.org</a>.<br/>Es necesario tener habilitadas las <a href="http://es.wikipedia.org/wiki/Cookie_%28inform%C3%A1tica%29#Privacidad_y_cookies_de_terceros">cookies de terceros</a>.<br/>No se puede descargar vídeos premium sin ser premium.';
 
 function atresplayer(){
 /*
