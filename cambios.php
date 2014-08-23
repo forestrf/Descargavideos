@@ -19,7 +19,7 @@ $todos[]=array(
 '23-Agosto-2014',
 array(
 	'fix:Mejores botones para resultados que requieren el uso de un programa.'
-	,'Soporte para urls de eitb.tv con carácteres extraños (&).'
+	,'fix:Soporte para urls de eitb.tv con carácteres extraños (&).'
 	)
 );
 
