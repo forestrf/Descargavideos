@@ -127,6 +127,10 @@ function url_exists_full(&$url, $preg_match_prerealizado = false){
 			return false;
 		}
 	}
+	
+	if(enString($url, 'eitb.tv')){
+		$url = strtr($url, array('&'=>''));
+	}
 
 	$url = preg_replace_callback('/[^(\x20-\x7F)]/', 'urlencode_noAscii', $url);
 	
@@ -167,11 +171,11 @@ function url_exists_full(&$url, $preg_match_prerealizado = false){
 		}
 		
 		if(!enString(strtolower($t), 'content-type: text')){
-			dbug('Petición HEAD indica mimetype DISTINTO a text');
+			dbug('Petición indica mimetype DISTINTO a text');
 			return false;
 		}
 		
-		dbug('Petición HEAD indica mimetype text');
+		dbug('Petición indica mimetype text');
 		
 		global $web_descargada_headers;
 		$GLOBALS['web_descargada'] = &$t;
@@ -179,6 +183,7 @@ function url_exists_full(&$url, $preg_match_prerealizado = false){
 		$web_descargada_headers = explode("\r\n", substr($t, 0, strpos($t, "\r\n\r\n")));
 		
 		$z=intval(substr($web_descargada_headers[0], 9, 3));
+		dbug('code response: '.$z);
 		
 		if(($z>=200 && $z<350) || $z===403 || $z===409 || $z===410 || $z===0)
 			return true;

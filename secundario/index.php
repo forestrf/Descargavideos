@@ -425,8 +425,8 @@ if($modo==1){
 				
 			}
 			else{
-				setErrorWebIntera('No se ha podido abrir el enlace o no es un enlace válido');
 				dbug('fallo al abrir la url=>'.$web);
+				setErrorWebIntera('No se ha podido abrir el enlace o no es un enlace válido');
 			}
 		}
 	}
