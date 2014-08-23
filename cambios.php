@@ -16,6 +16,14 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'23-Agosto-2014',
+array(
+	'fix:Mejores botones para resultados que requieren el uso de un programa.'
+	,'Soporte para urls de eitb.tv con carácteres extraños (&).'
+	)
+);
+
+$todos[]=array(
 '22-Agosto-2014',
 array(
 	'fix:Los avisos para descargar el programa RTMP-Downloader y F4M-Downloader equivalen a "info" y en lugar de "warning".'

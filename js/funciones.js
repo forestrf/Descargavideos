@@ -224,11 +224,10 @@ function receiveMessage(event){
 function activartmp(random_id){
 	var boton = D.g('rtmp'+random_id);
 	boton.onmouseover = "";
-	boton.innerHTML="Descargar usando F4M-Downloader";
 	boton.onclick=function(){muestrartmp(random_id);};
 	boton.className = boton.className.replace(/infopersistent/g, '');
-	D.g('rtmptxt'+randomID).style = '';
-	D.g('rtmpcontenido'+randomID).style.display = 'display:none';
+	D.g('rtmptxt'+random_id).style = '';
+	D.g('rtmpcontenido'+random_id).style.display = 'display:none';
 }
 function muestrartmp(random_id){
 	D.g('rtmp'+random_id+'df').setAttribute('style','display:block');
@@ -237,4 +236,11 @@ function muestrartmp(random_id){
 function cierrartmp(random_id){
 	D.g('rtmp'+random_id+'df').setAttribute('style','display:none');
 	D.g('rtmp'+random_id+'dfb').setAttribute('style','display:none');
+}
+function changeToInfo(random_id){
+	D.g('rtmp'+random_id).onmouseover = "";
+	D.g('rtmp'+random_id).className += " infopersistent";
+	
+	D.g('rtmptxt'+random_id).style = 'display:none';
+	D.g('rtmpcontenido'+random_id).style.display = '';
 }

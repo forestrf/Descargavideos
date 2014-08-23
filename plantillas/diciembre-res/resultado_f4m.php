@@ -1,6 +1,6 @@
 <div id="rtmp<?php echo $R2['random_id'];?>" class="Descarga" onmouseover="changeToInfo(<?php echo $R2['random_id'];?>)">
 	<div id="rtmptxt<?php echo $R2['random_id'];?>">
-		Descargar
+		Descargar (Necesita programa)
 	</div>
 	<div class="interiorboton" id="rtmpcontenido<?php echo $R2['random_id'];?>" style="display:none">
 		<?php echo INTERIOR_AVISO_F4M?><br>
@@ -24,7 +24,8 @@
 <script>
 	function f<?php echo $R2['random_id'];?>(){
 		if(f4mdownloader){
-			activa<?php echo $R2['random_id'];?>();
+			activartmp('<?php echo $R2['random_id'];?>');
+			D.g('rtmp<?php echo $R2['random_id'];?>').innerHTML="Descargar usando F4M-Downloader";
 		}
 	}
 	
@@ -33,12 +34,4 @@
 	?>
 	
 	getScript('http://127.0.0.1:25435/f4mdownloader.js',f<?php echo $R2['random_id'];?>);
-	
-	function changeToInfo(randomID){
-		D.g('rtmp'+randomID).onmouseover = "";
-		D.g('rtmp'+randomID).className += " infopersistent";
-		
-		D.g('rtmptxt'+randomID).style = 'display:none';
-		D.g('rtmpcontenido'+randomID).style.display = '';
-	}
 </script>
