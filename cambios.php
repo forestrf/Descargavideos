@@ -20,6 +20,7 @@ $todos[]=array(
 array(
 	'fix:Mejores botones para resultados que requieren el uso de un programa.'
 	,'fix:Soporte para urls de eitb.tv con carácteres extraños (&).'
+	,'fix:Los botones redimensionan menos la web.'
 	)
 );
 
