@@ -573,9 +573,20 @@ input[type="radio"] {
 	text-align:left;
 	line-height:1.15em;
 	margin-bottom:15px;
+	min-height: 60px;
 }
 #resultado #enlaces .txt {
-	margin-bottom:10px;
+	border-top: 1px solid #fff;
+	border-left: 1px solid #fff;
+	border-right: 1px solid #fff;
+	border-bottom: 0 none;
+	border-radius: 20px 20px 0 0;
+	box-shadow: 0 5px 5px rgba(255, 255, 255, 0.5) inset;
+	display: inline-block;
+	font-size: 18px;
+	margin-top: 20px;
+	padding: 10px;
+	word-break: break-all;
 }
 #resultado .Descarga.infopersistent a,
 #resultado #enlaces .aviso_m3u8 a{
