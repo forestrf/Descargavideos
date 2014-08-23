@@ -224,11 +224,14 @@ function receiveMessage(event){
 function activartmp(random_id){
 	var boton = D.g('rtmp'+random_id);
 	if(boton.className.indexOf("infopersistent") !== -1){
-		boton.onclick=function(){muestrartmp(random_id);};
 		boton.className = boton.className.replace(/infopersistent/g, '');
-		D.g('rtmptxt'+random_id).style = '';
-		D.g('rtmpcontenido'+random_id).style.display = 'display:none';
 	}
+	D.g('rtmptxt'+random_id).style = '';
+	var c = D.g('rtmpcontenido'+random_id);
+	if(c)c.style.display = 'none';
+	
+	boton.onclick=function(){muestrartmp(random_id);};
+	boton.rtmpactived = true;
 }
 function muestrartmp(random_id){
 	D.g('rtmp'+random_id+'df').setAttribute('style','display:block');
@@ -239,10 +242,12 @@ function cierrartmp(random_id){
 	D.g('rtmp'+random_id+'dfb').setAttribute('style','display:none');
 }
 function changeToInfo(random_id){
-	if(D.g('rtmp'+random_id).className.indexOf("infopersistent") === -1){
-		D.g('rtmp'+random_id).className += " infopersistent";
+	var boton =  D.g('rtmp'+random_id);
+	if(!boton.rtmpactived && boton.className.indexOf("infopersistent") === -1){
+		boton.className += " infopersistent";
 		
 		D.g('rtmptxt'+random_id).style = 'display:none';
-		D.g('rtmpcontenido'+random_id).style.display = '';
+		var c = D.g('rtmpcontenido'+random_id);
+		if(c)c.style.display = '';
 	}
 }
