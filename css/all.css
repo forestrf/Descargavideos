@@ -399,6 +399,7 @@ input[type="radio"] {
 	font-weight:600;
 	padding:10px;
 	word-wrap:break-word;
+	color: #FFFFFF;
 }
 .rtmpdump > a{
 	color:#0DF;
@@ -512,6 +513,35 @@ input[type="radio"] {
 	display:inline-block;
 	width:80%;
 	width:calc(100% - 140px);
+	cursor: pointer;
+}
+#resultado .Descarga:hover{
+	background-color:#F8F8F8;
+	background-position:5px -55px;
+	color:#ED8D2D;
+}
+#resultado .Descarga.infopersistent{
+	background-color: #F8F8F8 !important;
+	background-image: url("/img/info.png");
+	background-position: 10px 10px !important;
+	border-radius: 0 0 0 0;
+	color: #000000 !important;
+	cursor: default;
+	font-size: 0px;
+	font-weight: normal;
+	line-height: 1em;
+	padding-left: 80px;
+	width: calc(100% - 100px);
+	text-align: left;
+	transition:all 0.6s ease 0s;
+}
+#resultado .Descarga.infopersistent .interiorboton{
+	font-size: 14px;
+	line-height: 1em;
+}
+.infopersistent .rtmpdump {
+	font-size: 12px;
+	line-height: 1em;
 }
 #resultado .Descarga2 > iframe{
 	width:100%;
@@ -525,11 +555,6 @@ input[type="radio"] {
 	display:inline-block;
 	width:80%;
 	width:calc(100% - 140px);
-}
-#resultado .Descarga:hover{
-	background-color:#F8F8F8;
-	background-position:5px -55px;
-	color:#ED8D2D;
 }
 #resultado .TV:hover{
 	background-color:#F8F8F8;
@@ -552,11 +577,13 @@ input[type="radio"] {
 #resultado #enlaces .txt {
 	margin-bottom:10px;
 }
+#resultado .Descarga.infopersistent a,
 #resultado #enlaces .aviso_m3u8 a{
 	font-size:12px;
 	color:#008EB5;
 	text-decoration:underline;
 }
+#resultado .Descarga.infopersistent a:hover,
 #resultado #enlaces .aviso_m3u8 a:hover{
 	color:#3FC0C2;
 }

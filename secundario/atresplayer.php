@@ -163,20 +163,19 @@ function resultadoA3PNormal($web, $web_descargada='', $episode='', $title=''){
 	
 	
 	$urljs_f4m = 'f{{random_id}} = function(){};'.
-	
-		'var tmp{{random_id}} = D.g("rtmp{{random_id}}").innerHTML;'.
 		
-		'D.g("rtmp{{random_id}}").innerHTML = "Se requiere Adobe Flash Player";'.
+		'D.g("rtmptxt{{random_id}}").innerHTML = "Se requiere Adobe Flash Player";'.
 		
 		'function A3P{{random_id}}creaboton(que){'.
 			'if(que === false || que === "OK"){'.
 				'D.g("rtmp{{random_id}}").innerHTML = D.g("rtmp{{random_id}}").innerHTML = "Necesitas iniciar sesión en ATresPlayer para descargar este vídeo, el vídeo no existe o no se puede generar un enlace de descarga";'.
 			'}'.
 			'else{'.
-				'D.g("rtmp{{random_id}}").innerHTML = tmp{{random_id}}.replace(/--manifest ".*?"/, "--manifest \""+que+"\"");'.
+				'D.g("rtmptxt{{random_id}}").innerHTML = "Necesitas el programa F4M-Downloader";'.
+				'D.g("rtmpcode{{random_id}}").innerHTML = D.g("rtmpcode{{random_id}}").innerHTML.replace(/--manifest ".*?"/, "--manifest \""+que+"\"");'.
 				'if(typeof f4mdownloader !== "undefined"){'.
 					'D.g("rtmp{{random_id}}furl").value = D.g("rtmp{{random_id}}furl").value.replace(/--manifest ".*?"/, "--manifest \""+que+"\"");'.
-					'activa{{random_id}}();'.
+					'activartmp("{{random_id}}");'.
 				'}'.
 			'}'.
 		'}'.

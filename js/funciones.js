@@ -220,3 +220,21 @@ function receiveMessage(event){
 		}
 	}
 }
+
+function activartmp(random_id){
+	var boton = D.g('rtmp'+random_id);
+	boton.onmouseover = "";
+	boton.innerHTML="Descargar usando F4M-Downloader";
+	boton.onclick=function(){muestrartmp(random_id);};
+	boton.className = boton.className.replace(/infopersistent/g, '');
+	D.g('rtmptxt'+randomID).style = '';
+	D.g('rtmpcontenido'+randomID).style.display = 'display:none';
+}
+function muestrartmp(random_id){
+	D.g('rtmp'+random_id+'df').setAttribute('style','display:block');
+	D.g('rtmp'+random_id+'dfb').setAttribute('style','display:block');
+}
+function cierrartmp(random_id){
+	D.g('rtmp'+random_id+'df').setAttribute('style','display:none');
+	D.g('rtmp'+random_id+'dfb').setAttribute('style','display:none');
+}
