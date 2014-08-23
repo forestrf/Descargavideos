@@ -168,12 +168,13 @@ function resultadoA3PNormal($web, $web_descargada='', $episode='', $title=''){
 		
 		'function A3P{{random_id}}creaboton(que){'.
 			'if(que === false || que === "OK"){'.
-				'D.g("rtmp{{random_id}}").innerHTML = D.g("rtmp{{random_id}}").innerHTML = "Necesitas iniciar sesión en ATresPlayer para descargar este vídeo, el vídeo no existe o no se puede generar un enlace de descarga";'.
+				'D.g("rtmptxt{{random_id}}").innerHTML = "Necesitas iniciar sesión en ATresPlayer para descargar este vídeo, el vídeo no existe o no se puede generar un enlace de descarga";'.
 			'}'.
 			'else{'.
 				'D.g("rtmptxt{{random_id}}").innerHTML = "Necesitas el programa F4M-Downloader";'.
 				'D.g("rtmpcode{{random_id}}").innerHTML = D.g("rtmpcode{{random_id}}").innerHTML.replace(/--manifest ".*?"/, "--manifest \""+que+"\"");'.
 				'if(typeof f4mdownloader !== "undefined"){'.
+					'D.g("rtmptxt{{random_id}}").innerHTML = "Descargar usando RTMP-Downloader";'.
 					'D.g("rtmp{{random_id}}furl").value = D.g("rtmp{{random_id}}furl").value.replace(/--manifest ".*?"/, "--manifest \""+que+"\"");'.
 					'activartmp("{{random_id}}");'.
 				'}'.
