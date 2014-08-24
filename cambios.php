@@ -16,6 +16,15 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'25-Agosto-2014',
+array(
+	'fix:7rm.es arreglado para funcionar con RTMP-Downloader.'
+	,'add:Descripción en los resultados.'
+	,'fix:Nombre de archivo en comando para vídeos rtmp'
+	)
+);
+
+$todos[]=array(
 '24-Agosto-2014',
 array(
 	'fix:Nombre de los vídeos RTMP de eitb.tv.'

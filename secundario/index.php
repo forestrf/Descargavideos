@@ -3,16 +3,23 @@
 /*
 Formato de las respuestas:
 array(
-	'titulo'  => título principal de la respuesta,
-	'imagen'  => url de la imagen,
+	'titulo'            => título principal de la respuesta,
+	'descripcion'       => descripción que acompañe el título, // Optativo
+	'imagen'            => url de la imagen,
 	'alerta_especifica' => 'texto con html', // Optativo
 	'enlaces' => array(
 		n => array(
-			'titulo'  => texto que acompaña el enlace como descripción,
-			'url'     => direccion de la descarga,
-			'tipo'    => http/rtmp, uno de los dos,
-			'url_txt' => texto que se verá en el enlace en lugar de url
-			'extension' => mp4, avi, flv...
+			'titulo'          => texto que acompaña el enlace como descripción,
+			'url'             => direccion de la descarga,
+			'tipo'            => http/rtmp, uno de los dos,
+			'url_txt'         => texto que se verá en el enlace en lugar de url
+			'extension'       => mp4, avi, flv...
+			'rtmpdump'        => comando rtmpdump
+			'rtmpdumpHTTP'    => url http que genera el comando rtmpdump para rtmp-downloader
+			'm3u8_pass'       => pass m3u8 para f4m-downloader
+			'otros_datos_mp3' => resultados mp3 (duración, peso, etc)
+			'nombre_archivo'  => para f4m y rtmp downloader
+			'script'          => js
 		)
 	)
 );
@@ -520,6 +527,7 @@ function generaR(){
 
 	$R['url_img_res'] = $R['BASE']['imagen'];
 	$R['titulo_res'] = html_entity_decode($R['BASE']['titulo']);
+	$R['descripcion_res'] = html_entity_decode($R['BASE']['descripcion']);
 	$R['contenido'] = array();
 	$R['CANAL'] = $Cadena_elegida;
 	$R['WEB'] = $web;

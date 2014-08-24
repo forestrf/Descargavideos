@@ -340,6 +340,10 @@ input[type="radio"] {
 	position:relative;
 	text-shadow:1px 1px 2px #282828;
 }
+#resultado .descripcion_res {
+	color: #DDD;
+	font-size: 11px;
+}
 #resultado .alerta_especifica{
 	background-color: #eeff00;
 	background-image: url("/img/warning.png");

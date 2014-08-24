@@ -64,14 +64,14 @@ function generaInnerResultado(){
 			switch($res['tipo']){
 				case 'rtmp':
 					$aIncluir = plantillaInclude('resultado_rtmp.php');
-					if(!$extension)$extension = extraeExtension($url, ':');
+					if(!$extension)$extension = extraeExtension($url, '.');
 				break;
 				case 'rtmpConcreto':
 					$aIncluir = plantillaInclude('resultado_rtmpConcreto.php');
 					
 					if($nombre_archivo === ''){
 						preg_match('@-o.*?"(.*?)"@i', $rtmpdump, $matches);
-						$nombre_archivo = $matches[1];
+						$nombre_archivo = generaNombreWindowsValido($matches ? $matches[1] : $titulo.'.mp4');
 					}
 					
 					if(!$extension)$extension = extraeExtension($url,".");
