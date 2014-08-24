@@ -41,6 +41,10 @@ seteaIdioma();
 
 
 
+if(isset($_REQUEST["web64"])){
+	$_REQUEST["web"] = base64_decode($_REQUEST["web64"]);
+}
+
 
 
 //url a descargar. Si hay algo toca descargar la url. Usar Request ya que puede venir por GET y POST

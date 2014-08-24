@@ -10,7 +10,7 @@
 	# Forzar WWW
 	#####################################
 
-	#convertir ***.com en www.***.com
+	# convertir ***.com en www.***.com
 	RewriteCond %{HTTP_HOST} ^descargavideos.tv [NC]
 	RewriteRule (.*) http://www.descargavideos.tv/$1 [R=301,L]
 
@@ -30,6 +30,14 @@
 	RewriteRule ^agradecimientos/?$ index.php?pag=agradecimientos&$1 [NC,L]
 	RewriteRule ^aviso_legal/?$ index.php?pag=legal&$1 [NC,L]
 	RewriteRule ^donar/?$ index.php?pag=donar&$1 [NC,L]
+	
+	
+	
+	##############################################################
+	# Método de formulario para google
+	##############################################################
+
+	RewriteRule ^web/b64/.*/(.*)$ index.php?web64=$1 [NC,L]
 
 
 
@@ -66,7 +74,7 @@
 	# MITELE HANDLER para vídeos mp4 fake
 	##############################################################
 	
-	RewriteRule ^mitelehandler/(.*)/(.*).mp4$ mitele_handler.php?fullinfo=$1 [NC,L]
+	RewriteRule ^mitelehandler/(.*)/(.*)\.mp4$ mitele_handler.php?fullinfo=$1 [NC,L]
 	
 	
 	
@@ -75,8 +83,8 @@
 	# CSS agrupado
 	##############################################################
 
-	RewriteRule ^css/cssfull.css$ css/css.php [NC,L]
-	RewriteRule ^css/cssfull.min.css$ css/css.php [NC,L]
+	RewriteRule ^css/cssfull\.css$ css/css.php [NC,L]
+	RewriteRule ^css/cssfull\.min\.css$ css/css.php [NC,L]
 
 
 	
@@ -91,7 +99,7 @@
 
 
 	#pasar css a css.php
-	#RewriteRule ^css/(.*).css css/css.php?id=$1 [NC,L]
+	#RewriteRule ^css/(.*)\.css css/css.php?id=$1 [NC,L]
 
 
 	# Ocultar archivos que comiencen por .

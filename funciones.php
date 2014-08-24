@@ -579,4 +579,37 @@ function genera_swf_object($swf, $id = 'descargador_archivos'){
 function htmlentities2($entrada){
 	return strtr(htmlentities($entrada, ENT_QUOTES), array('%'=>'&#37;'));
 }
+
+function saveDownload($dominio, $url, $titulo){
+	$max_concurrent_saves = 10;
+	error_reporting(-1);
+	$db_filename = '../cpanel/ultimasdescargas.sqlite';
+	if(!file_exists($db_filename)){
+		file_put_contents($db_filename, '');
+	}
+	$db = new PDO('sqlite:'.$db_filename);
+
+	$result = $db->query('SELECT * FROM descargas;');
+	if($result === false){
+		$db->query('CREATE TABLE descargas (ID INTEGER PRIMARY KEY AUTOINCREMENT, web STRING, titulo STRING, fecha DATETIME DEFAULT current_timestamp);');
+	}
+
+	$titulo = limpiaTitulo($titulo);
+	$dominio = strtoupper(substr($dominio, 0, strpos($dominio, '.')));
+
+	$db->query('INSERT INTO descargas (web, titulo) VALUES (\''.mysql_escape_mimic($url).'\', \''.mysql_escape_mimic($dominio.' - '.$titulo).'\');');
+
+	$n = $db->query('SELECT `ID`, count(0) as `n` FROM descargas;')->fetchAll();
+	$n = &$n[0];
+	if(intval($n['n']) > $max_concurrent_saves){
+		$db->query('DELETE FROM descargas WHERE `ID` <= '.($n['ID'] - $max_concurrent_saves ).';');
+	}
+}
+
+function getDownloads(){
+	$db = new PDO('sqlite:cpanel/ultimasdescargas.sqlite');
+
+	return $db->query('SELECT * FROM descargas ORDER BY `ID` DESC;');
+}
+
 ?>

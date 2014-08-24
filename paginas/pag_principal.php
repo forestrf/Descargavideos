@@ -41,6 +41,15 @@
 		<h3><?php echo TXT_NO_PUEDO_DESCARGAR_TIT?></h3><p>
 		<?php echo TXT_NO_PUEDO_DESCARGAR_DESC?>
 	</div>
+	<div class="bloque_pagina bloqueMargin">
+		<h3>Últimos vídeos calculados</h3><p>
+		<?php
+			$old = getDownloads();
+			foreach($old as $elem){
+				echo '<a target="blank" href="/web/b64/'.urlencode($elem['titulo']).'/'.urlencode(base64_encode($elem['web'])).'">'.$elem['titulo'].'</a><br/>';
+			}
+		?>
+	</div>
 </div>
 <div class="columna_der">
 	<div class="bloque_pagina bloqueMargin txt_centrado">

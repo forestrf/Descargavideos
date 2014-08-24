@@ -427,7 +427,6 @@ if($modo==1){
 						dbug('URL correcta, de server soportado, pero no debería de haber nada dentro');
 					}
 				}
-				
 			}
 			else{
 				dbug('fallo al abrir la url=>'.$web);
@@ -640,8 +639,8 @@ function template2($cual){
 
 //$obtenido -> array con los resultados
 //$asegurate -> boolean: verdadero=comprobar si los enlaces son válidos. Falso=no comprobar
-function finalCadena($obtenido,$asegurate=true){
-	global $resultado, $R;
+function finalCadena($obtenido, $asegurate=true){
+	global $web, $Cadena_elegida, $resultado, $R;
 
 	$ind=(!isset($obtenido['enlaces'][0]['url']))?0:1;
 	if(isset($obtenido['enlaces'][$ind]['url']))
@@ -654,8 +653,8 @@ function finalCadena($obtenido,$asegurate=true){
 		$duda2=true;
 	if(!$asegurate || $duda1 || $duda2){
 		if(defined('DEBUG')){
-			echo 'Obtenido!';
-			print_r($obtenido);
+			dbug('Obtenido!');
+			dbug_r($obtenido);
 
 			$resultado=$obtenido;
 			$R['BASE'] = $obtenido;
@@ -669,6 +668,8 @@ function finalCadena($obtenido,$asegurate=true){
 			$R['BASE'] = $obtenido;
 
 			generaR();
+			
+			saveDownload($Cadena_elegida, $web, $obtenido['titulo']);
 		}
 	}
 	else{
