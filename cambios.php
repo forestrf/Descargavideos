@@ -16,6 +16,13 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'24-Agosto-2014',
+array(
+	'fix:Nombre de los vídeos RTMP de eitb.tv.'
+	)
+);
+
+$todos[]=array(
 '23-Agosto-2014',
 array(
 	'fix:Mejores botones para resultados que requieren el uso de un programa.'

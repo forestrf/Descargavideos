@@ -247,8 +247,8 @@ function URLSDelArrayBrightCove($r, $tipo, &$obtenido_enlaces, $titulo){
 		
 		if(enString($r['defaultURL'], 'brightcove')){
 			preg_match('@://.*?/(.*?)[\?&].*?mp4:(.*?)$@', $r['defaultURL'], $matches);
-			$a = $matches[1];
-			$CS = $matches[2];
+			$a = $matches[1] ? $matches[1] : '';
+			$CS = $matches[2] ? $matches[2] : '';
 			$extra = '-a "'.$a.'" -C "B:0" -C "S:'.$CS.'" ';
 		}
 		else{ //else edgefcs
@@ -262,7 +262,9 @@ function URLSDelArrayBrightCove($r, $tipo, &$obtenido_enlaces, $titulo){
 		if($tipo === 'rtmpConcreto'){
 			preg_match_all('@(mp4:.*?\.mp4)@i', $r['defaultURL'], $match);
 			$y = $match[0][0];
-			$arrayTemp['rtmpdump'] = '-r "'.strtr($r['defaultURL'],array('&'.$y=>'')).'" -y "'.$y.'" '.$extra.' -o "'.generaNombreWindowsValido($titulo.' - '.floor($r['encodingRate']/1000).' Kbps'.'.mp4').'"';
+			$filename = generaNombreWindowsValido($titulo.' - '.floor($r['encodingRate']/1000).' Kbps'.'.mp4');
+			$arrayTemp['rtmpdump'] = '-r "'.strtr($r['defaultURL'],array('&'.$y=>'')).'" -y "'.$y.'" '.$extra.' -o "'.$filename.'"';
+			$arrayTemp['nombre_archivo'] = $filename;
 		}
 		
 		$obtenido_enlaces[] = $arrayTemp;
