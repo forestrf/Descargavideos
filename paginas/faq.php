@@ -142,5 +142,6 @@ A continuación se puede ver el listado de las webs y los canales soportados:<br
 	<li>played.to (requiere flash)</li>
 	<li>allmyvideos.net (requiere flash)</li>
 	<li>dailymotion.com</li>
+	<li>liveleak.com</li>
 </ol>
 </div>

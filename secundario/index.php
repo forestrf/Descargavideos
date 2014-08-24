@@ -382,6 +382,11 @@ $cadenas=array(
 		array('dailymotion.com'),
 		array('dailymotioncom.php'),
 		'dailymotioncom'
+	),
+	array(
+		array('liveleak.com'),
+		array('liveleak.php'),
+		'liveleak'
 	)
 );
 

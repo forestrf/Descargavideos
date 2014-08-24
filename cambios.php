@@ -19,6 +19,7 @@ $todos[]=array(
 '24-Agosto-2014',
 array(
 	'fix:Nombre de los vídeos RTMP de eitb.tv.'
+	,'add:Agregado soporte para LiveLeak.com.'
 	)
 );
 

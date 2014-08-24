@@ -1,7 +1,6 @@
 <?php
 function rt(){
 global $web,$web_descargada;
-$web_descargada;
 //$urlfull=CargaWebCurl($web);
 
 $obtenido=array('enlaces' => array());
