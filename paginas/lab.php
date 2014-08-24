@@ -21,8 +21,9 @@
 <div class="respuesta">
 	<?php echo TXT_RTMPDownloader_DESC?><br>
 	<a href="https://github.com/forestrf/RTMP-Downloader">GitHub</a><br>
-	<?php echo TXT_VERSION_RECIENTE?>: <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/v0.3.2/RTMP-Downloader.v0.3.2.zip">0.3.2</a><p>
+	<?php echo TXT_VERSION_RECIENTE?>: <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/v0.3.4/RTMP-Downloader.v0.3.4.zip">0.3.4</a><p>
 	<?php echo TXT_VERSION_HISTORIAL?>:<br>
+	0.3.4: <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/v0.3.4/RTMP-Downloader.v0.3.4.zip">GitHub (zip)</a> | <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/v0.3.4/RTMP-Downloader.v0.3.4.7z">GitHub (7z)</a><br>
 	0.3.2: <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/v0.3.2/RTMP-Downloader.v0.3.2.zip">GitHub (zip)</a> | <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/v0.3.2/RTMP-Downloader.v0.3.2.7z">GitHub (7z)</a><br>
 	0.3.1: <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/v0.3.1/RTMP-Downloader.v0.3.1.zip">GitHub (zip)</a> | <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/v0.3.1/RTMP-Downloader.v0.3.1.7z">GitHub (7z)</a><br>
 	0.2b: <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/0.2b/RTMP-Downloader.V0.2b.zip">GitHub (zip)</a> | <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/0.2b/RTMP-Downloader.V0.2b.7z">GitHub (7z)</a><br>
@@ -37,8 +38,9 @@
 <div class="respuesta">
 	<?php echo TXT_F4MDownloader_DESC?><br>
 	<a href="https://github.com/forestrf/F4M-Downloader">GitHub</a><br>
-	<?php echo TXT_VERSION_RECIENTE?>: <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.3/F4M-Downloader.v0.0.3.zip">0.0.3</a><p>
+	<?php echo TXT_VERSION_RECIENTE?>: <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.3/F4M-Downloader.v0.0.4.zip">0.0.4</a><p>
 	<?php echo TXT_VERSION_HISTORIAL?>:<br>
+	0.0.4: <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.4/F4M-Downloader.v0.0.4.zip">GitHub (zip)</a> | <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.4/F4M-Downloader.v0.0.4.7z">GitHub (7z)</a><br>
 	0.0.3: <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.3/F4M-Downloader.v0.0.3.zip">GitHub (zip)</a> | <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.3/F4M-Downloader.v0.0.3.7z">GitHub (7z)</a><br>
 	0.0.2b: <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.2b/F4M-Downloader.v0.0.2b.zip">GitHub (zip)</a> | <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.2b/F4M-Downloader.v0.0.2b.7z">GitHub (7z)</a><br>
 	0.0.2: <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.2/F4M-Downloader.v0.0.2.7z">GitHub (zip)</a> | <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.2/F4M-Downloader.v0.0.2.7z">GitHub (7z)</a><br>
