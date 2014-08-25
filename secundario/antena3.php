@@ -1,78 +1,27 @@
 <?php
 function a3(){
-global $web,$web_descargada;
-
-//$retfull=$ret=CargaWebCurl($web);
-
-global $xml_ret;
-$xml_ret="";
-
-//video premium
-if(enString($web_descargada,'<div class="premium">')){
-	setErrorWebIntera("premium");
-	return;
-}
-
-//varios vídeos a la vez
-if(enString($web_descargada,'<div class="grid_12 carruContentDoble">')){
-	setErrorWebIntera("full");
-	return;
-}
-
-$obtenido=array();
-$obtenido['enlaces']=array();
-
-$formula1=false;
-//formula 1
-if(enString($web_descargada,"a3_gp_visor_player")){
-	dbug('formula 1');
-	$formula1=true;
-	//titulo
-	$p=strpos($web_descargada,"a3_gp_visor_title");
-	$titulo="<a".entre1y2_a($web_descargada,$p,"<a","</a");
-	$titulo=strip_tags($titulo);
-	$titulo=limpiaTitulo($titulo);
-	dbug('titulo='.$titulo);
+	global $web,$web_descargada;
 	
-	$caps = entre1y2($web_descargada, "a3_gp_visor_menu", "</ul");
-	for($i=0, $d=0; $visor=entre1y2_a($caps,$d,"href=","</li"), !enString($visor,"<li>"); $i++){
-		//dbug($visor);
-		
-		$preUrl="http://www.antena3.com".entre1y2($visor,'"','"');
-		dbug($preUrl);
-		
-		$nombreVisor=entre1y2($visor,">","<");
-		dbug($nombreVisor);
-		
-		$preXML=CargaWebCurl($preUrl);
-		$xmlID=entre1y2($preXML,"id_list=","&");
-		
-		$xml='http://www.antena3.com/gestorf1/xml_visor/'.$xmlID.'_playlist.xml';
-		$xml_ret=CargaWebCurl($xml);
-		
-		$obtenido['enlaces'][] = array('titulo' => $nombreVisor);
-		foreach(parseaXMLF1($xml_ret) as $a)$obtenido['enlaces'][]=$a;
-		
-		$d=strpos($caps, $visor)+1;
+	//$retfull=$ret=CargaWebCurl($web);
+	
+	global $xml_ret;
+	$xml_ret="";
+	
+	//video premium
+	if(enString($web_descargada,'<div class="premium">')){
+		setErrorWebIntera("premium");
+		return;
 	}
-
-	//No volvemos a descargar otra vez este xml gracias al cache de páginas cargadas
-	$xmlN=intval(entre1y2($web_descargada,"id_list=","&"));
-	$xml1='http://www.antena3.com/gestorf1/xml_visor/'.$xmlN.'_playlist.xml';
-	$xml_ret1=CargaWebCurl($xml1);
 	
-	//Imagen
-	$imagen=entre1y2($xml_ret1,"<picture>","<");
-	dbug('imagen='.$imagen);
-
-	$obtenido['titulo']=$titulo;
-	$obtenido['imagen']=$imagen;
-
+	//varios vídeos a la vez
+	if(enString($web_descargada,'<div class="grid_12 carruContentDoble">')){
+		setErrorWebIntera("full");
+		return;
+	}
 	
-	dbug_r($obtenido);
-}
-//Resto de antena 3
-else{
+	$obtenido=array();
+	$obtenido['enlaces']=array();
+
 	//http://www.antena3.com/chapterxml//5/5271378/2012/02/16/00005.xml
 	//http://www.antena3.com/videoxml/2/1324/1003569/1003570/2012/02/15/00044.xml
 	//http://www.antena3.com/.../....xml
@@ -231,12 +180,11 @@ else{
 
 	$obtenido['titulo']=$titulo;
 	$obtenido['imagen']=$imagen;
+
+
+	finalCadena($obtenido);
 }
 
-finalCadena($obtenido);
-}
-
-//!$formula1
 //modo= normal o multi
 function parseaXMLNormal($url,$modo="normal"){
 	dbug('xml='.$url);

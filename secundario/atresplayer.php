@@ -145,7 +145,7 @@ function resultadoA3PNormal($web, $web_descargada='', $episode='', $title=''){
 				);
 	
 	if($title!=='')
-		$resultado['titulo'] = $title;
+		$obtenido[] = array('titulo' => $title);
 	
 	$obtenido[] = &$resultado;
 	

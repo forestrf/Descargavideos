@@ -110,32 +110,32 @@ function generaInnerResultado(){
 				$url_txt = $url_txt;
 			else
 				$url_txt = $url;
+		
+			global $lastID;
+			if(!$lastID)
+				$lastID = 1;
+			
+			$R2['dir_resultado']                               = $url;
+			$R2['dir_resultado_reproductor']                   = urlencode($url);
+			$R2['dir_resultado_urlencode']                     = urlencode($url);
+			$R2['dir_resultado_txt']                           = htmlentities2($url_txt, ENT_QUOTES);
+			$R2['dir_resultado_rtmpdump_manual']               = $rtmpdump;
+			$R2['dir_resultado_rtmpdump_manual_esc_doblecoma'] = htmlentities2($rtmpdump, ENT_QUOTES);
+			$R2['dir_resultado_rtmpdumpHTTP']                  = $rtmpdumpHTTP;
+			$R2['dir_resultado_rtmpdumpHTTP_esc_doblecoma']    = htmlentities2($rtmpdumpHTTP, ENT_QUOTES);
+			$R2['nombre_resultado_manual']                     = $nombre_archivo;
+			$R2['pass_m3u8']                                   = $m3u8_pass;
+			$R2['extension_res']                               = $extension;
+			$R2['otros_datos_mp3']                             = $otros_datos_mp3;
+			$R2['num']                                         = $num;
+			$R2['random_id']                                   = $lastID;
+			$R2['script']                                      = $script;
+			
+			++$lastID;
+			++$num;
+			
+			include $aIncluir;
 		}
-		
-		global $lastID;
-		if(!$lastID)
-			$lastID = 1;
-		
-		$R2['dir_resultado']                               = $url;
-		$R2['dir_resultado_reproductor']                   = urlencode($url);
-		$R2['dir_resultado_urlencode']                     = urlencode($url);
-		$R2['dir_resultado_txt']                           = htmlentities2($url_txt, ENT_QUOTES);
-		$R2['dir_resultado_rtmpdump_manual']               = $rtmpdump;
-		$R2['dir_resultado_rtmpdump_manual_esc_doblecoma'] = htmlentities2($rtmpdump, ENT_QUOTES);
-		$R2['dir_resultado_rtmpdumpHTTP']                  = $rtmpdumpHTTP;
-		$R2['dir_resultado_rtmpdumpHTTP_esc_doblecoma']    = htmlentities2($rtmpdumpHTTP, ENT_QUOTES);
-		$R2['nombre_resultado_manual']                     = $nombre_archivo;
-		$R2['pass_m3u8']                                   = $m3u8_pass;
-		$R2['extension_res']                               = $extension;
-		$R2['otros_datos_mp3']                             = $otros_datos_mp3;
-		$R2['num']                                         = $num;
-		$R2['random_id']                                   = $lastID;
-		$R2['script']                                      = $script;
-		
-		++$lastID;
-		++$num;
-		
-		include $aIncluir;
 	}
 }
 
