@@ -1,8 +1,6 @@
 <?php
 function a3(){
-	global $web,$web_descargada;
-	
-	//$retfull=$ret=CargaWebCurl($web);
+	global $web_descargada;
 	
 	global $xml_ret;
 	$xml_ret='';
@@ -34,9 +32,7 @@ function a3(){
 			$titulo='Grupo de vídeos de Antena 3';
 			$imagen='/canales/a3.png';
 			
-			$p=strpos($web_descargada,'mod_galeria_videos');
-			$f=strpos($web_descargada,'Video Siguiente',$p);
-			$extracto=substr($web_descargada,$p,$f-$p);
+			$extracto=entre1y2($web_descargada, 'mod_galeria_videos', 'Video Siguiente');
 
 			$ult=0;
 			while(enString($extracto,"xml='",$ult)){
@@ -48,10 +44,7 @@ function a3(){
 			}
 		}
 		else{
-			$p=strposF($web_descargada,"xml='");
-			$f=strpos($web_descargada,"'",$p);
-			$xml=substr($web_descargada,$p,$f-$p);
-			$xml='http://www.antena3.com'.$xml;
+			$xml='http://www.antena3.com'.entre1y2($web_descargada,"xml='","'");
 			foreach(parseaXMLNormal($xml) as $individual)
 				$obtenido['enlaces'][]=$individual;
 		}
@@ -59,10 +52,7 @@ function a3(){
 	elseif(enString($web_descargada,'modulo_central')){
 		dbug('módulo central');
 		$p=strpos($web_descargada,'modulo_central');
-		$p=strposF($web_descargada,"player_capitulo.xml='",$p); //devuelve sin /
-		$f=strposF($web_descargada,'.xml',$p);
-		$xml=substr($web_descargada,$p,$f-$p);
-		$xml='http://www.antena3.com/'.$xml;
+		$xml='http://www.antena3.com/'.entre1y2_a($web_descargada, $p, "player_capitulo.xml='", '.xml'); //devuelve sin /
 		foreach(parseaXMLNormal($xml) as $individual)
 			$obtenido['enlaces'][]=$individual;
 	}
@@ -90,10 +80,7 @@ function a3(){
 		if(enString($web_descargada, '.xml=')){
 			dbug('modo 1');
 			$p=strpos($web_descargada,'playContainer');
-			$p=strposF($web_descargada,".xml='",$p); //devuelve sin /
-			$f=strposF($web_descargada,'.xml',$p);
-			$xml=substr($web_descargada,$p,$f-$p);
-			$xml='http://www.antena3.com/'.$xml;
+			$xml='http://www.antena3.com/'.entre1y2_a($web_descargada, $p, ".xml='", '.xml'); //devuelve sin /
 			foreach(parseaXMLNormal($xml) as $individual)
 				$obtenido['enlaces'][]=$individual;
 		}
@@ -112,10 +99,7 @@ function a3(){
 	//.addVariable("xml"
 	elseif(enString($web_descargada,'.addVariable("xml"')){
 		dbug('.addVariable("xml"');
-		$p=strposF($web_descargada,'.addVariable("xml","');
-		$f=strpos($web_descargada,'"',$p);
-		$xml=substr($web_descargada,$p,$f-$p);
-		$xml='http://www.antena3.com'.$xml;
+		$xml='http://www.antena3.com'.entre1y2($web_descargada, '.addVariable("xml","', '"');
 		foreach(parseaXMLNormal($xml) as $individual){
 			$obtenido['enlaces'][]=$individual;
 		}
@@ -127,29 +111,22 @@ function a3(){
 
 		//titulo
 		if(!isset($titulo)){
-			$p=strposF($xml_ret,'<nombre><![CDATA[');
-			$f=strpos($xml_ret,']',$p);
-			$titulo=substr($xml_ret,$p,$f-$p);
+			$titulo=entre1y2($xml_ret,'<nombre><![CDATA[',']');
 
 			if(stringContains($titulo,array('<','>'))){
 				//<title>CarreraBarhein1 </title>
-				$p=strposF($xml_ret,'<title>');
-				$f=strpos($xml_ret,'<',$p);
-				$titulo=substr($xml_ret,$p,$f-$p);
+				$titulo=entre1y2($xml_ret,'<title>','<');
 			}
 
 			$titulo=limpiaTitulo($titulo);
 		}
-		
 		dbug('titulo='.$titulo);
 
 		if(!isset($imagen)){
 			//imagen
 			//<archivoMultimediaMaxi><archivo>clipping/2012/02/08/00127/30.jpg</archivo><alt></alt></archivoMultimediaMaxi>
 			$p=strpos($xml_ret,'archivoMultimediaMaxi');
-			$p=strposF($xml_ret,'A[',$p);
-			$f=strpos($xml_ret,']',$p);
-			$imagen=substr($xml_ret,$p,$f-$p);
+			$imagen=entre1y2_a($xml_ret, $p, 'A[', ']');
 
 			if(!enString($imagen,'antena3.com'))
 				$imagen='http://www.antena3.com/'.$imagen;
@@ -176,27 +153,22 @@ function parseaXMLNormal($url,$modo='normal'){
 		$xml_ret=$xml;
 	}
 
-	$p=strposF($xml,'<urlHttpVideo><![CDATA[');
-	$f=strpos($xml,']]',$p);
-	$ret2=substr($xml,$p,$f-$p);
+	$ret2=entre1y2($xml, '<urlHttpVideo><![CDATA[', ']');
 
 	//fix para evitar geobloqueo.
 	$ret2=strtr($ret2, array('geodesprogresiva'=>'desprogresiva'));
 
 	$p=strpos($xml,'<archivoMultimedia>');
-	$p=strposF($xml,'<archivo><![CDATA[',$p);
-	$f=strpos($xml,']]',$p);
-	$ret=substr($xml,$p,$f-$p);
+	$ret=entre1y2_a($xml,$p,'<archivo><![CDATA[',']');
 
 	//$ret contiene el primer enlace. usandolo podemos saber si hay mas enlaces.
 	//sacamos la extension de $ret y suponiendo que todas las partes tienen la misma extension
 	//buscamos la existencia del mismo principio y aseguramos con el mismo final
 	$p=strposF($ret,'.');
-	$f=strlen($ret);
-	$extension=substr($ret,$p,$f-$p);
+	$extension=substr($ret,$p);
 	dbug('extensión: '.$extension);
 
-	$lastpos=$f=strrpos($ret,'/',0)+1;
+	$lastpos=$f=strrposF($ret,'/',0);
 	$baselimpia=substr($ret,0,$f);
 
 
@@ -208,19 +180,13 @@ function parseaXMLNormal($url,$modo='normal'){
 		$lastpos=$f=strpos($xml,'archivoMultimedia',$p);
 		$rettemp=substr($xml,$p,$f-$p);
 		
-		$p=strposF($rettemp,'<archivo><![CDATA[');
-		$f=strpos($rettemp,']]',$p);
-		$temp=$ret2.substr($rettemp,$p,$f-$p);
+		$temp=$ret2.entre1y2($rettemp,'<archivo><![CDATA[',']');
 		if(enString($temp,$extension)){
 			if($modo=='multi'){
-				$p=strposF($xml,'<nombre><![CDATA[');
-				$f=strpos($xml,']',$p);
-				$urltxt=substr($xml,$p,$f-$p);
+				$urltxt=entre1y2($xml,'<nombre><![CDATA[',']');
 				if(stringContains($urltxt,array('<','>'))){
 					//<title>CarreraBarhein1 </title>
-					$p=strposF($xml,'<title>');
-					$f=strpos($xml,'<',$p);
-					$urltxt=substr($xml,$p,$f-$p);
+					$urltxt=entre1y2($xml,'<title>','<');
 				}
 				$urltxt=limpiaTitulo($urltxt);
 			}
@@ -276,12 +242,12 @@ function parseaXMLNuevo(&$entrada){
 	$ret_full = CargaWebCurl($entrada);
 	dbug($ret_full);
 	if($imagen == ''){
-		$imagen = entre1y2($ret_full, '<background><![CDATA[',']]');
+		$imagen = entre1y2($ret_full, '<background><![CDATA[',']');
 	}
 	return array(
-		'url'     => entre1y2($ret_full, '<videoSource><![CDATA[',']]'),
+		'url'     => entre1y2($ret_full, '<videoSource><![CDATA[',']'),
 		'tipo'    => 'http',
-		'url_txt' => entre1y2($ret_full, '<name><![CDATA[',']]')
+		'url_txt' => entre1y2($ret_full, '<name><![CDATA[',']')
 	);
 }
 
