@@ -52,7 +52,15 @@ function allmyvideosnet(){
 	$retfull = CargaWebCurl($web_embedPlayedTo,'',array('referer'=>'http://web.com'));
 	$imagen = entre1y2($retfull, '"image" : "', '"');
 	
-	$titulo = 'AllMyVideos ID: '.$id;
+	if(enString($web_descargada, 'filename=')){
+		$titulo = entre1y2($web_descargada, 'filename=', '"');
+		if(enString($titulo, '&')){
+			$titulo = substr($titulo, 0, strpos($titulo, '&'));
+		}
+		$titulo = urldecode($titulo);
+	} else {
+		$titulo = 'AllMyVideos ID: '.$id;
+	}
 
 	// FALLA EN EL CALLBACK DEL SWF. EDITAR EL SWF
 	

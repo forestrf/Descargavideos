@@ -23,6 +23,7 @@ array(
 	,'fix:Nombre de archivo en comando para vídeos rtmp.'
 	,'fix:adnstream.com vuelve a funcionar.'
 	,'fix:Texto de error personalizado para los vídeos de TV3 que fueron borrados.'
+	,'fix:Títulos para los vídeos de AllMyVideos en lugar de la id del vídeo'
 	)
 );
 
