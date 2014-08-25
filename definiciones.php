@@ -9,4 +9,7 @@ if(!defined('BOOKMARKLET'))
 if(!defined('CURL'))
 	define('CURL', true);
 
+if(!defined('MAX_ULTIMOS_VIDEOS_CALCULADOS'))
+	define('MAX_ULTIMOS_VIDEOS_CALCULADOS', 25);
+
 ?>

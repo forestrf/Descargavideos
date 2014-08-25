@@ -581,7 +581,6 @@ function htmlentities2($entrada){
 }
 
 function saveDownload($dominio, $url, $titulo){
-	$max_concurrent_saves = 10;
 	error_reporting(-1);
 	$db_filename = '../cpanel/ultimasdescargas.sqlite';
 	if(!file_exists($db_filename)){
@@ -601,8 +600,8 @@ function saveDownload($dominio, $url, $titulo){
 
 	$n = $db->query('SELECT `ID`, count(0) as `n` FROM descargas;')->fetchAll();
 	$n = &$n[0];
-	if(intval($n['n']) > $max_concurrent_saves){
-		$db->query('DELETE FROM descargas WHERE `ID` <= '.($n['ID'] - $max_concurrent_saves ).';');
+	if(intval($n['n']) > MAX_ULTIMOS_VIDEOS_CALCULADOS){
+		$db->query('DELETE FROM descargas WHERE `ID` <= '.($n['ID'] - MAX_ULTIMOS_VIDEOS_CALCULADOS ).';');
 	}
 }
 
