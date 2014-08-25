@@ -309,9 +309,14 @@ if(enString($web_descargada,"insertaEVP(")||$modelo==0){
 	dbug('server4='.$server4);
 
 	$ret=CargaWebCurl($server4);
-	dbug('obtenido='.$ret);
+	dbug('obtenido=');
+	dbug_($ret);
 
-	if(enString($ret,"<media")){
+	if(enString($ret, 'err.service.expired')){
+		setErrorWebIntera('El vídeo fue borrado de TV3');
+		return;
+	}
+	elseif(enString($ret,"<media")){
 		//a sacer el video. si falla la busqueda, entonces hay un error
 		
 		//<media videoname="La Costa Brava en caiac/Thalassa/13042012/BB_THALASS">
@@ -335,7 +340,8 @@ if(enString($web_descargada,"insertaEVP(")||$modelo==0){
 	}
 	
 	$ret=CargaWebCurl($server3);
-	dbug('obtenido='.$ret);
+	dbug('obtenido=');
+	dbug_($ret);
 
 	if(enString($ret,"<media")){
 		//http://www.tv3.cat/feeds/videos/fitxaVideo.jsp?id=4874451&device=and-h&format=xml&version=1
