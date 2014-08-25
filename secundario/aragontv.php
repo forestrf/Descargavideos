@@ -50,20 +50,14 @@ elseif(enString($web_descargada,'list-not-even')){
 
 	$last=0;
 	for($i=0;$i<$videos;$i++){
-		$p=strpos($web_descargada,'<div id="idv',$last);
-		$p=strposF($web_descargada,'_',$p);
-		$f=strpos($web_descargada,'"',$p);
-		$last=$f;
-		$url=substr($web_descargada,$p,$f-$p);
-		$url='http://alacarta.aragontelevision.es/ajax/ajax.php?id='.$url;
+		$last=strposF($web_descargada,'<div id="idv',$last);
+		$url='http://alacarta.aragontelevision.es/ajax/ajax.php?id='.entre1y2_a($web_descargada,$last,'_','"');
 
 		//encontrar ya el titulo del vídeo
-		$f=strpos($web_descargada,'fecha',$p);
-		$parte=substr($web_descargada,$p,$f-$p);
+		$f=strpos($web_descargada,'fecha',$last);
+		$parte=substr($web_descargada,$last,$f-$last);
 		$p=strrpos($parte,'<a');
-		$p=strposF($parte,'title="',$p);
-		$f=strpos($parte,'"',$p);
-		$subtituto=substr($parte,$p,$f-$p);
+		$subtituto=entre1y2_a($parte,$p,'title="','"');
 
 		$extracto=CargaWebCurl($url);
 
