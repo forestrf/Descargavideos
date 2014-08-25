@@ -27,7 +27,7 @@ if(enString($web_descargada,'flowplayer(')){
 	}
 	dbug('titulo='.$titulo);
 	
-	array_push($obtenido['enlaces'],SacarVideo($web_descargada, $titulo));
+	$obtenido['enlaces'][] = SacarVideo($web_descargada, $titulo);
 }
 
 //muchos videos
@@ -61,7 +61,7 @@ elseif(enString($web_descargada,'list-not-even')){
 
 		$extracto=CargaWebCurl($url);
 
-		array_push($obtenido['enlaces'],SacarVideoPorId($extracto,$subtituto));
+		$obtenido['enlaces'][] = SacarVideoPorId($extracto,$subtituto);
 	}
 }
 
@@ -106,49 +106,18 @@ function SacarVideo(&$entrada, $titulo){
 }
 
 
-function SacarVideoPorId(&$entrada,$subtitulo=''){
-//titulo
-if($subtitulo==''){
-	//<div class="apartado"><h2>ARAGÓN NOTICIAS 1 - 05/05/2012 14:00</h2></div> 
-	$p=strposF($entrada,'<h1>');
-	$f=strpos($entrada,'<',$p);
-	$nombre=substr($entrada,$p,$f-$p);
-	dbug('nombre. Obtenido en la web ID='.$nombre);
-}else{
-	$nombre=$subtitulo;
-	dbug('nombre. Obtenido en la web padre='.$nombre);
-}
-
-//url:'mp4%3A%2Fweb%2F4311%2F4311.mp4',
-
-$p=strrpos($entrada,'playlist:');
-$p=strrpos($entrada,"url: 'mp4",$p)+6;
-$f=strpos($entrada,"'",$p);
-$url=substr($entrada,$p,$f-$p);
-
-//urldecode(
-$url=urldecode($url);
-dbug($url);
-
-$p=strrposF($url,'mp4:');
-$url=substr($url,$p);
-
-/*
-if(enString($url,'_archivos/videos/'))
-	$url='http://alacarta.aragontelevision.es/'.$url;
-else
-	$url='http://alacarta.aragontelevision.es/_archivos/videos'.$url;
-*/
-
-
-$videos=array(
-	'url'      => 'rtmp://aragontvvodfs.fplive.net/aragontvvod'.$url,
-	'rtmpdump' => '-r "rtmp://aragontvvodfs.fplive.net/aragontvvod'.$url.'" -o "'.generaNombreWindowsValido($nombre).'.mp4"',
-	'tipo'     => 'rtmpConcreto',
-	'titulo'   => $nombre,
-	'extension'=>'mp4'
-);
-
-return $videos;
+function SacarVideoPorId(&$entrada,$nombre=''){
+	//titulo
+	if($nombre===''){
+		//<div class="apartado"><h2>ARAGÓN NOTICIAS 1 - 05/05/2012 14:00</h2></div> 
+		$nombre=entre1y2($entrada,'<h1>','<');
+		dbug('nombre. Obtenido en la web ID='.$nombre);
+	}else{
+		dbug('nombre. Obtenido en la web padre='.$nombre);
+	}
+	
+	$res = SacarVideo($entrada,$nombre);
+	$res['titulo'] = $nombre;
+	return $res;
 }
 ?>
