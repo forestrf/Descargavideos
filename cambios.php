@@ -16,6 +16,13 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'25-Agosto-2014',
+array(
+	'fix:RTVE vuelve a funcionar con vídeos que requieren autorización por parámetros en la url.'
+	)
+);
+
+$todos[]=array(
 '24-Agosto-2014',
 array(
 	'fix:Nombre de los vídeos RTMP de eitb.tv.'
