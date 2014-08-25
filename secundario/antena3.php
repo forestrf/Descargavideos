@@ -291,40 +291,6 @@ function parseaXMLNormal($url,$modo="normal"){
 	return $retornar;
 }
 
-function parseaXMLF1(&$entrada){
-	$arrayR=array();
-	$total=$lastpos=0;
-	$i=1;
-	while($total==0){
-		$p=strpos($entrada,"<url>",$lastpos)+5;
-		$lastpos=$f=strpos($entrada,'<',$p);
-		$t=substr($entrada,$p,$f-$p);
-		dbug('comprobar rtmp: '.$t);
-
-		if(enString($t,'rtmp')){
-			if(enString($t,'antena3video/'))
-				$p=strpos($t,"antena3video/")+13;
-
-			if(enString($t,'antena3mediateca/'))
-				$p=strpos($t,'antena3mediateca/')+17;
-
-			$f=strlen($t);
-			//$t='http://desprogresiva.antena3.com/'.substr($t,$p,$f-$p);
-			$t='http://deslasexta.antena3.com/'.substr($t,$p,$f-$p);
-			$arrayR[]=array(
-				'url'     => $t,
-				'tipo'    => 'http',
-				'url_txt' => 'parte '.$i
-			);
-			++$i;
-		}
-		else
-			$total=$i;
-	}
-	return $arrayR;
-}
-
-
 function parseaXMLNuevo(&$entrada){
 	global $imagen;
 	$ret_full = CargaWebCurl($entrada);
