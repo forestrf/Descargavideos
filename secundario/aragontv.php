@@ -1,10 +1,6 @@
 <?php
 function aragontv(){
-global $web,$web_descargada;
-
-//cargar la URL
-$retfull=$web_descargada;
-//$retfull=CargaWebCurl($web);
+global $web_descargada;
 
 /*
 "clip":{"url":"mp4:/_archivos/videos/web/4334/4334.mp4"}
@@ -19,7 +15,7 @@ $imagen='/canales/aragontv.png';
 $obtenido=array('enlaces' => array());
 
 //un solo video
-if(enString($web_descargada,"flowplayer(")){
+if(enString($web_descargada,'flowplayer(')){
 	dbug('simple');
 	$titulo=entre1y2($web_descargada,'<div class="apartado"><h2>','</h2>');
 	$titulo=limpiaTitulo($titulo);
@@ -35,16 +31,14 @@ if(enString($web_descargada,"flowplayer(")){
 }
 
 //muchos videos
-elseif(enString($web_descargada,"list-not-even")){
+elseif(enString($web_descargada,'list-not-even')){
 	dbug('multi');
 
 	$p=strpos($web_descargada,'<div class="apartado">');
-	$p=strpos($web_descargada,'<h2>',$p)+4;
-	$f=strpos($web_descargada,"</h2>",$p);
-	$titulo=substr($web_descargada,$p,$f-$p);
+	$titulo=entre1y2_a($web_descargada,$p,'<h2>','</h2>');
 	
 	//en la pagina principal y otras el titulo estará mal, por lo que poner uno genérico
-	if(enString($titulo,"<"))
+	if(enString($titulo,'<'))
 		$titulo='Aragon TV';
 	
 	$titulo=limpiaTitulo($titulo);
@@ -57,7 +51,7 @@ elseif(enString($web_descargada,"list-not-even")){
 	$last=0;
 	for($i=0;$i<$videos;$i++){
 		$p=strpos($web_descargada,'<div id="idv',$last);
-		$p=strpos($web_descargada,'_',$p)+1;
+		$p=strposF($web_descargada,'_',$p);
 		$f=strpos($web_descargada,'"',$p);
 		$last=$f;
 		$url=substr($web_descargada,$p,$f-$p);
@@ -67,7 +61,7 @@ elseif(enString($web_descargada,"list-not-even")){
 		$f=strpos($web_descargada,'fecha',$p);
 		$parte=substr($web_descargada,$p,$f-$p);
 		$p=strrpos($parte,'<a');
-		$p=strpos($parte,'title="',$p)+7;
+		$p=strposF($parte,'title="',$p);
 		$f=strpos($parte,'"',$p);
 		$subtituto=substr($parte,$p,$f-$p);
 
@@ -99,7 +93,7 @@ function SacarVideo(&$entrada, $titulo){
 
 	//urldecode(
 	$rtmpbase=urldecode($rtmpbase);
-	dbug($rtmpbase);
+	dbug_($rtmpbase);
 
 	/*if(enString($url,'_archivos/videos/'))
 		$url='http://alacarta.aragontelevision.es/'.$url;
@@ -122,8 +116,8 @@ function SacarVideoPorId(&$entrada,$subtitulo=''){
 //titulo
 if($subtitulo==''){
 	//<div class="apartado"><h2>ARAGÓN NOTICIAS 1 - 05/05/2012 14:00</h2></div> 
-	$p=strpos($entrada,'<h1>')+4;
-	$f=strpos($entrada,"<",$p);
+	$p=strposF($entrada,'<h1>');
+	$f=strpos($entrada,'<',$p);
 	$nombre=substr($entrada,$p,$f-$p);
 	dbug('nombre. Obtenido en la web ID='.$nombre);
 }else{
@@ -133,7 +127,7 @@ if($subtitulo==''){
 
 //url:'mp4%3A%2Fweb%2F4311%2F4311.mp4',
 
-$p=strrpos($entrada,"playlist:");
+$p=strrpos($entrada,'playlist:');
 $p=strrpos($entrada,"url: 'mp4",$p)+6;
 $f=strpos($entrada,"'",$p);
 $url=substr($entrada,$p,$f-$p);
@@ -142,9 +136,8 @@ $url=substr($entrada,$p,$f-$p);
 $url=urldecode($url);
 dbug($url);
 
-$p=strrpos($url,"mp4:")+4;
-$f=strlen($url);
-$url=substr($url,$p,$f-$p);
+$p=strrposF($url,'mp4:');
+$url=substr($url,$p);
 
 /*
 if(enString($url,'_archivos/videos/'))
