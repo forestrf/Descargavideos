@@ -341,8 +341,9 @@ input[type="radio"] {
 	text-shadow:1px 1px 2px #282828;
 }
 #resultado .descripcion_res {
-	color: #DDD;
+	color: #CCCCCC;
 	font-size: 11px;
+	line-height: 1.2em;
 }
 #resultado .alerta_especifica{
 	background-color: #eeff00;

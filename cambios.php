@@ -20,7 +20,8 @@ $todos[]=array(
 array(
 	'fix:7rm.es arreglado para funcionar con RTMP-Downloader.'
 	,'add:Descripción en los resultados.'
-	,'fix:Nombre de archivo en comando para vídeos rtmp'
+	,'fix:Nombre de archivo en comando para vídeos rtmp.'
+	,'fix:adnstream.com vuelve a funcionar.'
 	)
 );
 

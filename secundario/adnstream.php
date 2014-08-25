@@ -21,55 +21,43 @@ dheWtoYpuJ
 <jwplayer:hd.file>http://82.165.193.211/video/4bba500c634b149cac372353b1913bb6/dheWtoYpuJ.H264-720p.mp4</jwplayer:hd.file>
 */
 function adnstream(){
-global $web,$web_descargada;
-$retfull=$web_descargada;
-//$retfull=CargaWebCurl($web);
+global $web, $web_descargada;
 
 //mirar si hay video
 $obtenido=array();
 
-if(!enString($retfull,'_w320.jpg'))
+if(!enString($web_descargada,'_w320.jpg'))
 	return;
 
 
 
-
-$iframe=$web_descargada;;
-
-$p=strpos($iframe,'og:image');
-$imagen=entre1y2_a($iframe, $p, 'content="', '"');
+$p=strpos($web_descargada,'og:image');
+$imagen=entre1y2_a($web_descargada, $p, 'content="', '"');
 dbug('imagen='.$imagen);
 
-$p=strrposF($imagen,'/');
-$f=strpos($imagen,'_',$p);
-$id=substr($imagen,$p,$f-$p);
-dbug('id='.$id);
+$ret=CargaWebCurl(urldecode(entre1y2($web_descargada, "'file': '", "'")));
 
-$ret=CargaWebCurl('http://www.adnstream.com/get_playlist.php?lista=video&param='.$id);
-
-$p=strpos($ret,'<title>')+7;
-$f=strpos($ret,'<',$p);
-$titulo=substr($ret,$p,$f-$p);
+$titulo=entre1y2($ret, '<title>', '<');
 $titulo=limpiaTitulo($titulo);
 dbug('titulo='.$titulo);
 
+$descripcion=entre1y2($ret, '<description>', '<');
+dbug('descripcion='.$descripcion);
+
 if(enString($ret,'hd.file>')){
-	$p=strpos($ret,'hd.file>')+8;
-	$f=strpos($ret,'<',$p);
-	$ret=substr($ret,$p,$f-$p);
+	$ret=entre1y2($ret, 'hd.file>', '<');
 }elseif(enString($ret,'file>')){
-	$p=strpos($ret,'file>')+5;
-	$f=strpos($ret,'<',$p);
-	$ret=substr($ret,$p,$f-$p);
+	$ret=entre1y2($ret, 'file>', '<');
 }else{
-	$p=strpos($ret,'http://')+7;
+	$p=strpos($ret,'http://');
 	$f=strpos($ret,'<',$p);
 	$ret=substr($ret,$p,$f-$p);
 }
 
 $obtenido=array(
-	'titulo'  => $titulo,
-	'imagen'  => $imagen,
+	'titulo'      => $titulo,
+	'imagen'      => $imagen,
+	'descripcion' => $descripcion,
 	'enlaces' => array(
 		array(
 			'url'  => $ret,
