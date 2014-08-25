@@ -32,7 +32,6 @@ function setErrorWebIntera($error = 'A ocurrido un error'){
 	if(defined('DEBUG')){
 		dbug('----------------------------------');
 		dbug('ERROR: '.$fallourlinterna);
-		exit;
 	}
 }
 

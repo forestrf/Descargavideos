@@ -433,6 +433,14 @@ if($modo==1){
 						setErrorWebIntera('No se pudo encontrar ningún video o audio.');
 						dbug('URL correcta, de server soportado, pero no debería de haber nada dentro');
 					}
+					else{
+						// Tenemos resultado
+						
+						generaR();
+						
+						global $Cadena_elegida;
+						saveDownload($Cadena_elegida, $web, $resultado['titulo']);
+					}
 				}
 			}
 			else{
@@ -444,6 +452,11 @@ if($modo==1){
 	else{
 		setErrorWebIntera('URL no válida');
 		//lanzaBusquedaGoogle();
+	}
+	if(defined('DEBUG')){
+		dbug('-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_');
+		dbug('DEBUG en marcha, terminando.');
+		exit;
 	}
 }
 elseif($modo==2){
@@ -648,7 +661,7 @@ function template2($cual){
 //$obtenido -> array con los resultados
 //$asegurate -> boolean: verdadero=comprobar si los enlaces son válidos. Falso=no comprobar
 function finalCadena($obtenido, $asegurate=true){
-	global $web, $Cadena_elegida, $resultado, $R;
+	global $resultado, $R;
 
 	$ind=(!isset($obtenido['enlaces'][0]['url']))?0:1;
 	if(isset($obtenido['enlaces'][$ind]['url']))
@@ -660,32 +673,15 @@ function finalCadena($obtenido, $asegurate=true){
 	else
 		$duda2=true;
 	if(!$asegurate || $duda1 || $duda2){
-		if(defined('DEBUG')){
-			dbug('Obtenido!');
-			dbug_r($obtenido);
+		dbug('Obtenido!');
+		dbug_r($obtenido);
 
-			$resultado=$obtenido;
-			$R['BASE'] = $obtenido;
-
-			generaR();
-			
-			exit;
-		}
-		else{
-			$resultado=$obtenido;
-			$R['BASE'] = $obtenido;
-
-			generaR();
-			
-			saveDownload($Cadena_elegida, $web, $obtenido['titulo']);
-		}
+		$resultado=$obtenido;
+		$R['BASE'] = $obtenido;
 	}
 	else{
 		dbug('Error!');
-		
-		global $web,$fallourlinterna;
-		$fallourlinterna='Ha ocurrido un error.';
-		$web='';
+		setErrorWebIntera('Ha ocurrido un error.');
 	}
 }
 ?>
