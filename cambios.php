@@ -19,6 +19,7 @@ $todos[]=array(
 '25-Agosto-2014',
 array(
 	'fix:RTVE vuelve a funcionar con vídeos que requieren autorización por parámetros en la url.'
+	,'add:Aviso de error específico para enlaces múltiples'
 	)
 );
 
