@@ -57,11 +57,11 @@ elseif(enString($web_descargada,'list-not-even')){
 		$f=strpos($web_descargada,'fecha',$last);
 		$parte=substr($web_descargada,$last,$f-$last);
 		$p=strrpos($parte,'<a');
-		$subtituto=entre1y2_a($parte,$p,'title="','"');
+		$nombre=entre1y2_a($parte,$p,'title="','"');
 
 		$extracto=CargaWebCurl($url);
 
-		$obtenido['enlaces'][] = SacarVideoPorId($extracto,$subtituto);
+		$obtenido['enlaces'][] = SacarVideoPorId($extracto,$nombre);
 	}
 }
 
@@ -72,7 +72,7 @@ finalCadena($obtenido, false);
 }
 
 
-function SacarVideo(&$entrada, $titulo){
+function SacarVideo(&$entrada, $nombre){
 	//url:'mp4%3A%2Fweb%2F4311%2F4311.mp4',
 
 	$retfull = strtr($entrada,array(' '=>''));
@@ -97,7 +97,7 @@ function SacarVideo(&$entrada, $titulo){
 
 	$videos=array(
 		'url'      => 'rtmp://aragontvvodfs.fplive.net/aragontvvod'.$url,
-		'rtmpdump' => '-r "'.$rtmpbase.'" -y "'.$url.'" -o "'.generaNombreWindowsValido($titulo).'.mp4"',
+		'rtmpdump' => '-r "'.$rtmpbase.'" -y "'.$url.'" -o "'.generaNombreWindowsValido($nombre).'.mp4"',
 		'tipo'     => 'rtmpConcreto',
 		'extension'=>'mp4'
 	);
