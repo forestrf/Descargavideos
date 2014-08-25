@@ -37,8 +37,8 @@ function a3(){
 			$ult=0;
 			while(enString($extracto,"xml='",$ult)){
 				$p=strposF($extracto,"xml='",$ult);
-				$ult=$f=strpos($extracto,"'",$p);
-				$xml='http://www.antena3.com'.substr($extracto,$p,$f-$p);
+				$ult=strpos($extracto,"'",$p);
+				$xml='http://www.antena3.com'.substr($extracto,$p,$ult-$p);
 				foreach(parseaXMLNormal($xml,'multi') as $individual)
 					$obtenido['enlaces'][]=$individual;
 			}
@@ -111,13 +111,11 @@ function a3(){
 
 		//titulo
 		if(!isset($titulo)){
-			$titulo=entre1y2($xml_ret,'<nombre><![CDATA[',']');
-
-			if(stringContains($titulo,array('<','>'))){
-				//<title>CarreraBarhein1 </title>
+			if(enString($titulo, '<nombre><![CDATA[')){
+				$titulo=entre1y2($xml_ret,'<nombre><![CDATA[',']');
+			} else {
 				$titulo=entre1y2($xml_ret,'<title>','<');
 			}
-
 			$titulo=limpiaTitulo($titulo);
 		}
 		dbug('titulo='.$titulo);
@@ -128,7 +126,7 @@ function a3(){
 			$p=strpos($xml_ret,'archivoMultimediaMaxi');
 			$imagen=entre1y2_a($xml_ret, $p, 'A[', ']');
 
-			if(!enString($imagen,'antena3.com'))
+			if(strpos($imagen,'http') !== 0)
 				$imagen='http://www.antena3.com/'.$imagen;
 		}
 		dbug('imagen='.$imagen);
@@ -164,13 +162,15 @@ function parseaXMLNormal($url,$modo='normal'){
 	//$ret contiene el primer enlace. usandolo podemos saber si hay mas enlaces.
 	//sacamos la extension de $ret y suponiendo que todas las partes tienen la misma extension
 	//buscamos la existencia del mismo principio y aseguramos con el mismo final
-	$p=strposF($ret,'.');
-	$extension=substr($ret,$p);
+	$extension=substr($ret, strposF($ret,'.'));
 	dbug('extensión: '.$extension);
+	if($extension === 'f4v'){
+		dbug('Tiene DRM (ext === f4v). No usar resultado.');
+		return array();
+	}
 
-	$lastpos=$f=strrposF($ret,'/',0);
+	$f=strrposF($ret,'/',0);
 	$baselimpia=substr($ret,0,$f);
-
 
 	$lastpos=$total=0;
 	$i=1;
@@ -193,16 +193,12 @@ function parseaXMLNormal($url,$modo='normal'){
 			else
 				$urltxt='parte '.$i;
 			dbug('url encontrada: '.$temp);
-			if($extension=='f4v')
-				$obtenidoT[]=array(
-					'titulo' => 'El siguiente enlace no podrá reproducirse después de descargarlo porque está protegido con DRM.'
-				);
-			$obtenidoT[]=array(
+			
+			$obtenidoT[] = array(
 				'url'     => $temp,
 				'tipo'    => 'http',
 				'url_txt' => $urltxt
 			);
-			
 		}else
 			$total=$i;
 
@@ -211,7 +207,7 @@ function parseaXMLNormal($url,$modo='normal'){
 
 	$retornar=array();
 
-	if(count($obtenidoT)>1 && $extension!='f4v'){
+	if(count($obtenidoT)>1){
 		$retornar[]=array(
 			'titulo' => 'En partes:'
 		);
@@ -219,28 +215,25 @@ function parseaXMLNormal($url,$modo='normal'){
 			$retornar[]=$individual;
 
 		//añadir la versión del vídeo completa. Gracias a doriape@gmail.com, creador de www.elbarco.tk y www.elbarcoxml.tk
-		if($extension=='f4v')
-			array_push($obtenidoT,array(
-				'titulo' => 'El siguiente enlace no podrá reproducirse después de descargarlo porque está protegido con DRM.'
-			));
-		$retornar[]=array(
+		$retornar[] = array(
 			'titulo' => 'Completo:',
 			'url'    => 'rtmp://antena3tvfs.fplive.net/antena3mediateca/'.$baselimpia.'000.'.$extension,
-			'tipo'   => 'rtmp',
+			'tipo'   => 'rtmp'
 		);
 	}else{
-		if($modo=='normal')
+		if($modo === 'normal')
 			unset($obtenidoT[0]['url_txt']);
 		foreach($obtenidoT as $elem)
 			$retornar[]=$elem;
 	}
+	
 	return $retornar;
 }
 
 function parseaXMLNuevo(&$entrada){
 	global $imagen;
 	$ret_full = CargaWebCurl($entrada);
-	dbug($ret_full);
+	dbug_($ret_full);
 	if($imagen == ''){
 		$imagen = entre1y2($ret_full, '<background><![CDATA[',']');
 	}
