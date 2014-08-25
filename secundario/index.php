@@ -445,7 +445,12 @@ if($modo==1){
 			}
 			else{
 				dbug('fallo al abrir la url=>'.$web);
-				setErrorWebIntera('No se ha podido abrir el enlace o no es un enlace válido');
+				// Concretar el tipo de fallo para evitar que, en caso de ser fallo del usuario, no cometa el mismo error.
+				if(substr_count($web, 'http')){
+					setErrorWebIntera('Introduzca un solo enlace. No se permiten calcular varios resultados al mismo tiempo');
+				}else{
+					setErrorWebIntera('No se ha podido abrir el enlace o no es un enlace válido');
+				}
 			}
 		}
 	}

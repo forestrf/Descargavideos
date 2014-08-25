@@ -16,7 +16,7 @@ function cambios($max=-1){
 
 
 $todos[]=array(
-'25-Agosto-2014',
+'26-Agosto-2014',
 array(
 	'fix:7rm.es arreglado para funcionar con RTMP-Downloader.'
 	,'add:Descripción en los resultados.'
@@ -25,6 +25,14 @@ array(
 	,'fix:Texto de error personalizado para los vídeos de TV3 que fueron borrados.'
 	,'fix:Títulos para los vídeos de AllMyVideos en lugar de la id del vídeo.'
 	,'fix:No se mostraban todos los títulos en los resultados múltiples de ATresPlayer.'
+	)
+);
+
+$todos[]=array(
+'25-Agosto-2014',
+array(
+	'fix:RTVE vuelve a funcionar con vídeos que requieren autorización por parámetros en la url.'
+	,'add:Aviso de error específico para enlaces múltiples'
 	)
 );
 

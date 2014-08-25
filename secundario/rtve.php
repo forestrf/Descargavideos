@@ -196,7 +196,7 @@ function convierteID($asset,$modo=array('video','audio')){
 		$ret=desencripta($ret);
 		
 		dbug($ret);
-		if(preg_match('@http://[^<^>]*?\\.(?:mp4|mp3)@',$ret, $m)){
+		if(preg_match('@http://[^<^>]*?\\.(?:mp4|mp3)[^<^>]*@',$ret, $m)){
 			//dbug_r($m);
 			$ret=$m[0];
 		}
