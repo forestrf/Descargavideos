@@ -17,8 +17,12 @@ function a3(){
 		return;
 	}
 	
-	$obtenido=array();
-	$obtenido['enlaces']=array();
+	$imagen = '';
+	$descripcion = '';
+	
+	$obtenido=array(
+		'enlaces' => array()
+	);
 
 	//http://www.antena3.com/chapterxml//5/5271378/2012/02/16/00005.xml
 	//http://www.antena3.com/videoxml/2/1324/1003569/1003570/2012/02/15/00044.xml
@@ -66,7 +70,7 @@ function a3(){
 				continue;	
 			}
 			//$xml = strtr($xml, array('videosnuevosxml' => 'videoxml'));
-			$obtenido['enlaces'][]=parseaXMLNuevo($xml);
+			$obtenido['enlaces'][]=parseaXMLNuevo($xml, $imagen, $descripcion);
 			$videos_cargados[] = $xml;
 		}
 		$titulo = entre1y2($web_descargada, '<title>','<');
@@ -87,7 +91,7 @@ function a3(){
 		elseif(enString($web_descargada, 'name="videoDataUrl" value="')){
 			dbug('modo 2');
 			$xml=entre1y2($web_descargada, 'name="videoDataUrl" value="', '"');
-			$obtenido['enlaces'][]=parseaXMLNuevo($xml);
+			$obtenido['enlaces'][]=parseaXMLNuevo($xml, $imagen, $descripcion);
 			$titulo = entre1y2($web_descargada, '<title>','<');
 			if(!isset($imagen) || !enString($imagen, '.jpg')){
 				$imagen = 'http://www.antena3.com/clipping/'.entre1y2($web_descargada, '/clipping/', '.jpg').'.jpg';
@@ -132,6 +136,11 @@ function a3(){
 		dbug('imagen='.$imagen);
 	}
 
+	if($descripcion !== '')
+		$obtenido['descripcion']=$descripcion;
+
+	$titulo = strtr($titulo, array(' - ANTENA 3 TV' => '', 'ANTENA 3 TV.' => ''));
+	$titulo = limpiaTitulo($titulo);
 
 	$obtenido['titulo']=$titulo;
 	$obtenido['imagen']=$imagen;
@@ -142,6 +151,7 @@ function a3(){
 
 //modo= normal o multi
 function parseaXMLNormal($url,$modo='normal'){
+	dbug('parseaXMLNormal');
 	dbug('xml='.$url);
 	$xml=CargaWebCurl($url);
 	
@@ -230,15 +240,18 @@ function parseaXMLNormal($url,$modo='normal'){
 	return $retornar;
 }
 
-function parseaXMLNuevo(&$entrada){
-	global $imagen;
+function parseaXMLNuevo(&$entrada, &$imagen, &$descripcion){
+	dbug('parseaXMLNuevo');
 	$ret_full = CargaWebCurl($entrada);
 	dbug_($ret_full);
-	if($imagen == ''){
+	if($imagen === ''){
 		$imagen = entre1y2($ret_full, '<background><![CDATA[',']');
 	}
+	if($descripcion === ''){
+		$descripcion = entre1y2($ret_full, '<description><![CDATA[',']');
+	}
 	return array(
-		'url'     => entre1y2($ret_full, '<videoSource><![CDATA[',']'),
+		'url'     => strtr(entre1y2($ret_full, '<videoSource><![CDATA[',']'), array('geodesprogresiva'=>'desprogresiva')),
 		'tipo'    => 'http',
 		'url_txt' => entre1y2($ret_full, '<name><![CDATA[',']')
 	);

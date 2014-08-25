@@ -545,7 +545,7 @@ function generaR(){
 
 	$R['url_img_res'] = $R['BASE']['imagen'];
 	$R['titulo_res'] = html_entity_decode($R['BASE']['titulo']);
-	$R['descripcion_res'] = html_entity_decode($R['BASE']['descripcion']);
+	$R['descripcion_res'] = isset($R['BASE']['descripcion']) ? html_entity_decode($R['BASE']['descripcion']) : '';
 	$R['contenido'] = array();
 	$R['CANAL'] = $Cadena_elegida;
 	$R['WEB'] = $web;
