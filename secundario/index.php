@@ -592,6 +592,10 @@ function validar_enlace($link){
 		$link = strtr($link, array('http//' => ''));
 	}
 	
+	if(strpos($link, '//') === 0){
+		$link = 'http:'.$link;
+	}
+	
 	// http:// está en el enlace. Si no, lo agregamos
 	if(enString($link,'http://')||enString($link,'https://')){
 		// Comprobar si estamos con un iframe
@@ -601,6 +605,9 @@ function validar_enlace($link){
 			dbug_r($matches);
 			if(isset($matches[1])){
 				$link = $matches[1];
+				if(strpos($link, '//') === 0){
+					$link = 'http:'.$link;
+				}
 			}
 			else{
 				return false;

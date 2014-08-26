@@ -20,6 +20,7 @@ $todos[]=array(
 array(
 	'fix:RTVE vuelve a funcionar tras las actualizaciones de rtve.'
 	,'fix:Dailymotion vuelve a funcionar.'
+	,'add:Soporte para Dailymotion de vídeos embedidos por iframe.'
 	)
 );
 

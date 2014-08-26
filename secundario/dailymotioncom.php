@@ -21,15 +21,28 @@ http://vid2.ec.dmcdn.net/sec%28c1d480eb58ebac8a06ba174a542e3bdc%29/video/793/312
 
 function dailymotioncom(){
 	global $web,$web_descargada;
-	
+	/*
+	// Nada de vídeos con filtro parental because adsense
 	if(!enString($web_descargada, 'sequence=')){
 		dbug('Desactivando filtro familiar');
 		$web_descargada = CargaWebCurl($web,'','','ff=off');
 	}
-	$urlContenedor = entre1y2($web_descargada, 'sequence=','"');
+	*/
+	if(strpos($web, 'http://www.dailymotion.com/embed/') === 0){
+		dbug('embed');
+		$preweb = entre1y2($web_descargada, 'var info = ',",\n");
+		$preweb = json_decode($preweb, true);
+		dbug_r($preweb);
+		$ret = CargaWebCurl($preweb['url']);
+	} else {
+		$ret = &$web_descargada;
+	}
+	
+	$urlContenedor = urldecode(entre1y2($ret, 'sequence=','"'));
+	
 	dbug_($urlContenedor);
 	
-	$jsonUrlContenedor = json_decode(urldecode($urlContenedor), true);
+	$jsonUrlContenedor = json_decode($urlContenedor, true);
 	dbug_r($jsonUrlContenedor);
 	
 	$obtenido=array(
