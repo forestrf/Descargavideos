@@ -35,7 +35,13 @@ $p=strpos($web_descargada,'og:image');
 $imagen=entre1y2_a($web_descargada, $p, 'content="', '"');
 dbug('imagen='.$imagen);
 
-$ret=CargaWebCurl(urldecode(entre1y2($web_descargada, "'file': '", "'")));
+$id = entre1y2($imagen, strrposF($imagen, '/'), "_w320.jpg");
+dbug('id='.$id);
+
+// Problemas con geobloqueo.
+//$ret=CargaWebCurl(urldecode(entre1y2($web_descargada, "'file': '", "'")));
+$ret=CargaWebCurl('http://www.adnstream.com/get_playlist.php?lista=video&param='.$id);
+dbug_($ret);
 
 $titulo=entre1y2($ret, '<title>', '<');
 $titulo=limpiaTitulo($titulo);
@@ -52,6 +58,11 @@ if(enString($ret,'hd.file>')){
 	$p=strpos($ret,'http://');
 	$f=strpos($ret,'<',$p);
 	$ret=substr($ret,$p,$f-$p);
+}
+
+if(enString($ret,'.flv')){
+	$ret = substr($ret, 0, strrposF($ret, '/')).$id.'.H264-480p.mp4';
+	$ret = 'http://176.31.233.154'.substr($ret, strpos($ret, '/', 10));
 }
 
 $obtenido=array(
