@@ -7,18 +7,16 @@ https://servicios.atresplayer.com/api/urlVideoLanguage/20130924-EPISODE-00037-fa
 
 
 http://desprogresiva.antena3.com/assets3/2013/10/02/E78E8D76-3735-4BB8-9426-388DDB0ECC9F/video_720_900k_es.mp4
-*/
 
 
-/*
+
 chunklist_b648000.m3u8
 chunklist_b948000.m3u8
 chunklist_b1348000.m3u8
 chunklist_b1548000.m3u8
 chunklist_b1973000.m3u8
-*/
 
-/*
+
 proxys (DV y PyDownTV IPs bloqueadas):
 http://www.gmodules.com/ig/proxy?url=
 https://webproxy.net/view?q=
@@ -29,11 +27,6 @@ https://webproxy.net/view?q=
 $atresplayer_obtenido_alerta = 'Es necesario estar en España para descargar de ATresPlayer. Si no se encuentra en España puede usar el programa <a target="_blank" href="http://hola.org">hola.org</a>.<br/>Es necesario tener habilitadas las <a href="http://es.wikipedia.org/wiki/Cookie_%28inform%C3%A1tica%29#Privacidad_y_cookies_de_terceros">cookies de terceros</a>.<br/>No se puede descargar vídeos premium sin ser premium.';
 
 function atresplayer(){
-/*
-header('Location: http://descargavid.blogspot.com.es/2013/11/segunda-solucion-para-atresplayer.html');
-exit;
-*/
-
 global $web,$web_descargada;
 
 $obtenido=array('enlaces' => array());
