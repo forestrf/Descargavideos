@@ -18,7 +18,8 @@ function cambios($max=-1){
 $todos[]=array(
 '26-Agosto-2014',
 array(
-	'fix:RTVE vuelve a funcionar.'
+	'fix:RTVE vuelve a funcionar tras las actualizaciones de rtve.'
+	,'fix:Dailymotion vuelve a funcionar.'
 	)
 );
 
