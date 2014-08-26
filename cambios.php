@@ -16,6 +16,13 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'26-Agosto-2014',
+array(
+	'fix:RTVE vuelve a funcionar.'
+	)
+);
+
+$todos[]=array(
 '25-Agosto-2014',
 array(
 	'fix:RTVE vuelve a funcionar con vídeos que requieren autorización por parámetros en la url.'

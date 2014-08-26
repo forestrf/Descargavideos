@@ -195,7 +195,7 @@ function convierteID($asset,$modo=array('video','audio')){
 		$ret=CargaWebCurl($server5);
 		$ret=desencripta($ret);
 		
-		dbug($ret);
+		dbug_($ret);
 		if(preg_match('@http://[^<^>]*?\\.(?:mp4|mp3)[^<^>]*@',$ret, $m)){
 			//dbug_r($m);
 			$ret=$m[0];
@@ -267,7 +267,7 @@ function encuentraAssetEnContenido($web_descargada){
 }
 
 function encripta($que){
-	$key='hul#Lost';
+	$key='yeL&daD3';
 	$iv='12345678';
 	$cipher=mcrypt_module_open(MCRYPT_BLOWFISH,'','ecb','');
 	
@@ -290,7 +290,7 @@ function encripta($que){
 
 //http://www.rtve.es/ztnr/decrypt.jsp
 function desencripta($que){
-	$key='hul#Lost';
+	$key='yeL&daD3';
 	$iv='12345678';
 	$cipher=mcrypt_module_open(MCRYPT_BLOWFISH,'','ecb','');
 	
@@ -307,6 +307,8 @@ function b64d($encoded){
 	   $decoded.=base64_decode(substr($base64,$i*64,64));
 	return $decoded;
 }
+// http://localhost/secundario/rtve.php?rtve_desencripta=
+// http://localhost/secundario/rtve.php?rtve_encripta=
 if(isset($_GET['rtve_desencripta'])){
 	echo desencripta($_GET['rtve_desencripta']);
 }
