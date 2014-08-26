@@ -441,7 +441,7 @@ if($modo==1){
 			else{
 				dbug('fallo al abrir la url=>'.$web);
 				// Concretar el tipo de fallo para evitar que, en caso de ser fallo del usuario, no cometa el mismo error.
-				if(substr_count($web, 'http')){
+				if(substr_count($web, 'http') > 1){
 					setErrorWebIntera('Introduzca un solo enlace. No se permiten calcular varios resultados al mismo tiempo');
 				}else{
 					setErrorWebIntera('No se ha podido abrir el enlace o no es un enlace válido');
@@ -607,6 +607,10 @@ function validar_enlace($link){
 		$link = strtr($link, array('http//' => ''));
 	}
 	
+	if(strpos($link, '//') === 0){
+		$link = 'http:'.$link;
+	}
+	
 	// http:// está en el enlace. Si no, lo agregamos
 	if(enString($link,'http://')||enString($link,'https://')){
 		// Comprobar si estamos con un iframe
@@ -616,6 +620,9 @@ function validar_enlace($link){
 			dbug_r($matches);
 			if(isset($matches[1])){
 				$link = $matches[1];
+				if(strpos($link, '//') === 0){
+					$link = 'http:'.$link;
+				}
 			}
 			else{
 				return false;
