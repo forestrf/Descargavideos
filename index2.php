@@ -1,18 +1,6 @@
 <?php
-error_reporting(-1);
 include_once 'funciones.php';
 header('Content-Type: text/html; charset=UTF-8');
-
-
-
-$resultado_en_misma_pagina=true;
-$resultado_incrustado=false;//no va con true
-
-
-
-
-
-
 
 
 
@@ -222,20 +210,6 @@ a:hover{
 			</form>
 		</div>
 
-		<div class="stats">
-			<div id="histats_counter"></div>
-			<script type="text/javascript">var _Hasync= _Hasync|| [];
-			_Hasync.push(['Histats.startgif', '1,2419951,4,10045,"div#histatsC {position: absolute;top:0;left:0;}body>div#histatsC {position: fixed;}"']);
-			_Hasync.push(['Histats.fasi', '1']);
-			_Hasync.push(['Histats.track_hits', '']);
-			(function() {
-			var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
-			hs.src = ('http://s10.histats.com/js15_gif_as.js');
-			(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
-			})();</script>
-			<noscript><a href="http://www.histats.com" alt="contadores" target="_blank" ><div id="histatsC"><img border="0" src="http://s4is.histats.com/stats/i/2419951.gif?2419951&103"></div></a>
-			</noscript>
-		</div>
 		<div class="social">
 			<!--tw, fb, +1-->
 			<div class="elem">
@@ -273,6 +247,8 @@ a:hover{
 	webI.onfocus = function() {
 		webF(1);
 	};
+	
+	var _Hasync=_Hasync||[];_Hasync.push(['Histats.start','1,2419951,4,0,0,0,00010000']);_Hasync.push(['Histats.fasi','1']);_Hasync.push(['Histats.track_hits','']);(function(){var hs=D.c('script');hs.type='text/javascript';hs.async=true;hs.src='http://s10.histats.com/js15_as.js';(D.getElementsByTagName('head')[0]||D.getElementsByTagName('body')[0]).appendChild(hs);})();
 </script>
 
 </body>

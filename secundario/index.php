@@ -136,7 +136,7 @@ Función a llamar
 */
 $cadenas=array(
 	array(
-		array('rtve.es'),
+		array('rtve.es', 'tve.es'),
 		array('rtve.php'),
 		'rtve'
 	),
@@ -144,11 +144,6 @@ $cadenas=array(
 		array('canalriasbaixas.com'),
 		array('canalriasbaixas.php'),
 		'canalriasbaixas'
-	),
-	array(
-		array('tve.es'),
-		array('rtve.php'),
-		'rtve'
 	),
 	array(
 		array('univision.com'),
