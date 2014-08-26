@@ -580,7 +580,7 @@ function htmlentities2($entrada){
 }
 
 function saveDownload($dominio, $url, $titulo){
-	error_reporting(-1);
+	/*
 	$db_filename = '../cpanel/ultimasdescargas.sqlite';
 	if(!file_exists($db_filename)){
 		file_put_contents($db_filename, '');
@@ -602,12 +602,15 @@ function saveDownload($dominio, $url, $titulo){
 	if(intval($n['n']) > MAX_ULTIMOS_VIDEOS_CALCULADOS){
 		$db->query('DELETE FROM descargas WHERE `ID` <= '.($n['ID'] - MAX_ULTIMOS_VIDEOS_CALCULADOS ).';');
 	}
+	*/
 }
 
 function getDownloads(){
+	/*
 	$db = new PDO('sqlite:cpanel/ultimasdescargas.sqlite');
 
 	return $db->query('SELECT * FROM descargas ORDER BY `ID` DESC;');
+	*/
 }
 
 ?>

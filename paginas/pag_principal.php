@@ -41,6 +41,7 @@
 		<h3><?php echo TXT_NO_PUEDO_DESCARGAR_TIT?></h3><p>
 		<?php echo TXT_NO_PUEDO_DESCARGAR_DESC?>
 	</div>
+	<?php /*
 	<div class="bloque_pagina bloqueMargin">
 		<h3>Últimos vídeos calculados</h3><p>
 		<?php
@@ -50,6 +51,7 @@
 			}
 		?>
 	</div>
+	*/ ?>
 </div>
 <div class="columna_der">
 	<div class="bloque_pagina bloqueMargin txt_centrado">
