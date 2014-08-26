@@ -40,7 +40,8 @@ dbug('id='.$id);
 
 // Problemas con geobloqueo.
 //$ret=CargaWebCurl(urldecode(entre1y2($web_descargada, "'file': '", "'")));
-$ret=CargaWebCurl('http://www.adnstream.com/get_playlist.php?lista=video&param='.$id);
+//$ret=CargaWebCurl('http://www.adnstream.com/get_playlist.php?lista=video&param='.$id);
+$ret=CargaWebCurl('http://proxyanonimo.es/browse.php?u='.urlencode('http://www.adnstream.com/get_playlist.php?lista=video&param='.$id).'&b=12&f=norefer', '', 0, '', array('Referer: http://proxyanonimo.es/'));
 dbug_($ret);
 
 $titulo=entre1y2($ret, '<title>', '<');
