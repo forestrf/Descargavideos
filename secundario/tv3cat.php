@@ -25,6 +25,12 @@ if(enString($web_descargada,"arrayVideos = [")){
 	$id=substr($web_descargada,$p,$f-$p);
 	dbug('video de formato admitido en js. id video='.$id);
 }
+elseif(enString($web_descargada,'.videoid')){
+	preg_match('@\.videoid[^0-9^;]+([0-9]+?);@', $web_descargada, $match);
+	dbug_r($match);
+	$id=$match[1];
+	dbug('video de formato admitido en js (.videoid). id video='.$id);
+}
 else{
 	//la id esta en la url
 	$p=strrposF($web,"/videos/");

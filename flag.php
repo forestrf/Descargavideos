@@ -3,7 +3,7 @@
 include_once 'funciones.php';
 
 if(isset($_POST['url'])){
-	if(isset($_REQUEST['comentario']) && $_POST['comentario'] !== 'Insertar comentario...')
+	if(isset($_REQUEST['comentario']) && $_POST['comentario'] !== 'Insertar comentario (indique su correo si es posible)...')
 		$comentario = &$_POST['comentario'];
 	else
 		$comentario = '';
