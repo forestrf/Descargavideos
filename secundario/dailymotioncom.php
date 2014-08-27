@@ -60,9 +60,6 @@ function dailymotioncom(){
 		if(enString($ret, $calidad.'":"h')){
 		$url = strtr(entre1y2($ret, $calidad.'":"','"'), array('\\'=>''));
 		dbug('url '.$nombre.': '.$url);
-		$url=CargaWebCurl($url,'',1,'',null,0);
-		$url=entre1y2($url, 'Location: ',"\r\n");
-		dbug('url '.$nombre.': '.$url);
 			$obtenido['enlaces'][] = array(
 				'titulo'  => $nombre,
 				'url'     => $url,
