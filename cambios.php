@@ -19,6 +19,7 @@ $todos[]=array(
 '27-Agosto-2014'
 ,'fix:vimeo vuelve a funcionar.'
 ,'fix:Soporte para más vídeos de TV3.'
+,'fix:Dailymotion vuelve a funcionar con vídeos mp4.'
 );
 
 $todos[]=array(

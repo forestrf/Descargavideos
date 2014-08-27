@@ -21,69 +21,54 @@ http://vid2.ec.dmcdn.net/sec%28c1d480eb58ebac8a06ba174a542e3bdc%29/video/793/312
 
 function dailymotioncom(){
 	global $web,$web_descargada;
-	/*
-	// Nada de vídeos con filtro parental because adsense
-	if(!enString($web_descargada, 'sequence=')){
-		dbug('Desactivando filtro familiar');
-		$web_descargada = CargaWebCurl($web,'','','ff=off');
-	}
-	*/
-	if(strpos($web, 'http://www.dailymotion.com/embed/') === 0){
-		dbug('embed');
-		$preweb = entre1y2($web_descargada, 'var info = ',",\n");
-		$preweb = json_decode($preweb, true);
-		dbug_r($preweb);
-		$ret = CargaWebCurl($preweb['url']);
+	
+	if(strpos($web, 'dailymotion.com/embed/') === false){
+		dbug('Cargando vídeo embedido.');
+		$ret = CargaWebCurl(strtr($web, array('dailymotion.com/'=>'dailymotion.com/embed/')));
 	} else {
+		dbug('No es necesario cargar vídeo embedido, ya lo tenemos.');
 		$ret = &$web_descargada;
 	}
 	
-	$urlContenedor = urldecode(entre1y2($ret, 'sequence=','"'));
-	
-	dbug_($urlContenedor);
-	
-	$jsonUrlContenedor = json_decode($urlContenedor, true);
-	dbug_r($jsonUrlContenedor);
-	
 	$obtenido=array(
-		'titulo'  => $jsonUrlContenedor['config']['metadata']['title'],
-		'imagen'  => $jsonUrlContenedor['config']['preview_url'],
+		'titulo'  => entre1y2($ret, 'title>','<'),
+		'imagen'  => strtr(entre1y2($ret, '"thumbnail_url":"','"'), array('\\'=>'')),
 		'enlaces' => array()
 	);
 	
-	foreach($jsonUrlContenedor['sequence'][0]['layerList'][0]['sequenceList'][2]['layerList'] as $preManifest){
-		if(isset($preManifest['param']['autoURL'])){
-			$manifest = $preManifest['param']['autoURL'];
+	/*
+	"stream_h264_url",
+	"stream_h264_ld_url",
+	"stream_h264_hq_url",
+	"stream_h264_hd_url",
+	"stream_h264_hd1080_url",
+	"stream_audio_url"
+	
+	"stream_live_hls_url"
+	*/
+	
+	$posibilidades = array(
+		'1080p' => 'stream_h264_hd1080_url',
+		'720p' => 'stream_h264_hd_url',
+		'480p' => 'stream_h264_hq_url',
+		'360p' => 'stream_h264_url',
+		'240p' => 'stream_h264_ld_url'/*,
+		'' => 'stream_audio_url'*/
+	);
+	
+	foreach($posibilidades as $nombre=>$calidad){
+		if(enString($ret, $calidad.'":"h')){
+		$url = strtr(entre1y2($ret, $calidad.'":"','"'), array('\\'=>''));
+		dbug('url '.$nombre.': '.$url);
+			$obtenido['enlaces'][] = array(
+				'titulo'  => $nombre,
+				'url'     => $url,
+				'url_txt' => 'Descargar',
+				'tipo'    => 'http'
+			);
 		}
 	}
 	
-	// ff=off permite tmbn descargar porno y esto va contra adsense.
-	//$preEnlaces = CargaWebCurl($manifest,'','','ff=off');
-	$preEnlaces = CargaWebCurl($manifest);
-	dbug_($preEnlaces);
-	
-	$preEnlaces = json_decode($preEnlaces, true);
-	dbug_r($preEnlaces);
-	
-	// Todas las calidades
-	for($i=count($preEnlaces['alternates'])-1; $i>=0; --$i){
-		$obtenido['enlaces'][] = array(
-			'titulo'  => $preEnlaces['alternates'][$i]['name'].'p',
-			'url'     => parseaTemplateDailyMotion($preEnlaces['alternates'][$i]['template']),
-			'url_txt' => 'Descargar',
-			'tipo'    => 'http'
-		);
-	}
-	
-	
 	finalCadena($obtenido);
-}
-
-function parseaTemplateDailyMotion($url){
-	return strtr($url, array(
-		'.mnft'=>'.flv',
-		//'.mnft'=>'.mp4',
-		entre1y2($url,'http://','/sec')=>'vid2.ec.dmcdn.net'
-	));
 }
 ?>
