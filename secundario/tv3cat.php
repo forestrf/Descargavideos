@@ -231,23 +231,18 @@ if(enString($web_descargada,'insertaEVP(')||$modelo==0){
 		//titulo
 		//<h1>Amb Fidel, passi el que passi</h1>
 		$titulo=entre1y2($web_descargada, '<h1>', '</h1>');
-		$noimagen='si';
 		if(stringContains($titulo, array('<','>'))){
 			$titulo=entre1y2($titulo, 'arrayTitol = ["', '"');
-			$noimagen='no';
-		}
-		$titulo=limpiaTitulo($titulo);
-		dbug('titulo='.$titulo);
-
-
-		//imagen
-		//'/multimedia/jpg/3/6/1336300867363.jpg'
-		if($noimagen!='no'&&strpos($web_descargada,"'/multimedia/")>0){
+		} else {
+			//imagen
+			//'/multimedia/jpg/3/6/1336300867363.jpg'
 			$p=strpos($web_descargada,"'/multimedia/")+1;
 			$f=strpos($web_descargada,"'", $p);
 			$imagen='http://www.tv3.cat'.substr($web_descargada, $p, $f-$p);
 			dbug('imagen='.$imagen);
 		}
+		$titulo=limpiaTitulo($titulo);
+		dbug('titulo='.$titulo);
 	}
 	
 	//insertaEVP("flashcontent", flashvars, params, size );
