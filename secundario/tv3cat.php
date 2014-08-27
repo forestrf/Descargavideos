@@ -13,16 +13,14 @@ $obtenido=array(
 
 //http://www.tv3.cat/pvideo/FLV_bbd_dadesItem.jsp?idint=
 
-if(enString($web,"http://www.tv3.cat/pprogrames/hd/mhdSeccio.jsp")){
-	setErrorWebIntera("Los vídeos en HD pueden descargarse desde TV3.");
+if(enString($web,'http://www.tv3.cat/pprogrames/hd/mhdSeccio.jsp')){
+	setErrorWebIntera('Los vídeos en HD pueden descargarse desde TV3.');
 	return;
 }
 
-$id="";
-if(enString($web_descargada,"arrayVideos = [")){
-	$p=strpos($web_descargada,'arrayVideos = [')+15;
-	$f=strpos($web_descargada,',',$p);
-	$id=substr($web_descargada,$p,$f-$p);
+$id='';
+if(enString($web_descargada,'arrayVideos = [')){
+	$id=entre1y2($web_descargada, 'arrayVideos = [', ',');
 	dbug('video de formato admitido en js. id video='.$id);
 }
 elseif(enString($web_descargada,'.videoid')){
@@ -33,12 +31,12 @@ elseif(enString($web_descargada,'.videoid')){
 }
 else{
 	//la id esta en la url
-	$p=strrposF($web,"/videos/");
-	$f=strrpos($web,"/",$p);
+	$p=strrposF($web,'/videos/');
+	$f=strrpos($web,'/',$p);
 	if(!$f)
 		$f=strlen($web);
 	$id=substr($web,$p,$f-$p);
-	if(stringContains($id,array(" ","<",">","/","."))||$id==""){
+	if(stringContains($id,array(' ','<','>','/','.'))||$id==''){
 		//la id esta en la url, o deberia, pero no esta como siempre. encontrar.
 		$sujeto=$web;
 		//$patron = '/\/[0-9^\/]*\//';
@@ -53,14 +51,13 @@ else{
 }
 
 $tresalacarta=0;
-if(stringContains($id,array(" ","<",">","/","."))||$id==""){
+if(stringContains($id,array(' ','<','>','/','.'))||$id==''){
 	//3alacarta
 	if(enString($web,'3alacarta')){
 		dbug('3alacarta');
 		
-		$p=strpos($web,"/#/")+2;
-		$f=strlen($web);
-		$id=substr($web,$p,$f-$p);
+		$p=strpos($web,'/#/')+2;
+		$id=substr($web,$p);
 		$tresalacarta=1;
 	}
 }
@@ -68,14 +65,12 @@ if(stringContains($id,array(" ","<",">","/","."))||$id==""){
 
 
 
-if(stringContains($id,array("<",">","/","."))||$id==""){
-	$p=strpos($web_descargada,"<object");
-	$p=strposF($web_descargada,"id='EVP",$p);
-	$f=strpos($web_descargada,"'",$p);
-	$id=substr($web_descargada,$p,$f-$p);
+if(stringContains($id,array('<','>','/','.'))||$id==''){
+	$p=strpos($web_descargada,'<object');
+	$id=entre1y2_a($web_descargada,$p,"id='EVP","'");
 
-	$letras=array("A","B","C","D","E","F","G","H","I","J","K","L","M","N","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z");
-	$id=str_replace($letras,"",strtoupper($id));
+	$letras=array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','Ñ','O','P','Q','R','S','T','U','V','W','X','Y','Z');
+	$id=str_replace($letras,'',strtoupper($id));
 }
 
 
@@ -83,40 +78,38 @@ if(stringContains($id,array("<",">","/","."))||$id==""){
 
 
 
-if(!is_numeric($id)||$id==""){
+if(!is_numeric($id)||$id==''){
 	$retfull_no_espacios=str_replace(' ', '', $web_descargada);
 	
 	//la id esta en el html
 	//VIDEO_ID = 4018251;
 
-	$p=strrposF($retfull_no_espacios,"VIDEO_ID=");
-	$f=strpos($retfull_no_espacios,";",$p);
+	$p=strrposF($retfull_no_espacios,'VIDEO_ID=');
+	$f=strpos($retfull_no_espacios,';',$p);
 	$id=substr($retfull_no_espacios,$p,$f-$p);
 
 	
-	if(!is_numeric($id)||$id==""){
+	if(!is_numeric($id)||$id==''){
 		//la id esta en el html
 		//VIDEO_ID = 4018251;
 
-		$p=strrposF($retfull_no_espacios,"videoid=");
-		$f=strpos($retfull_no_espacios,"&",$p);
+		$p=strrposF($retfull_no_espacios,'videoid=');
+		$f=strpos($retfull_no_espacios,'&',$p);
 		$id=substr($retfull_no_espacios,$p,$f-$p);
 		
-		if(!is_numeric($id)||$id==""){
-			$p=strrposF($retfull_no_espacios,"videoid=");
-			$f=strpos($retfull_no_espacios,";",$p);
+		if(!is_numeric($id)||$id==''){
+			$p=strrposF($retfull_no_espacios,'videoid=');
+			$f=strpos($retfull_no_espacios,';',$p);
 			$id=substr($retfull_no_espacios,$p,$f-$p);
 
 			//echo '.'.$retfull_no_espacios.'.';
 
-			if(!is_numeric($id)||$id==""){
+			if(!is_numeric($id)||$id==''){
 				//<span class="id_video">3260890</span>
 
-				$p=strposF($retfull_no_espacios,'<spanclass="id_video">');
-				$f=strpos($retfull_no_espacios,"</span>",$p);
-				$id=substr($retfull_no_espacios,$p,$f-$p);
+				$id=entre1y2($retfull_no_espacios, '<spanclass="id_video">', '</span>');
 
-				if(!is_numeric($id)||$id==""){
+				if(!is_numeric($id)||$id==''){
 					//<span> </span>
 					$sujeto=$retfull_no_espacios;
 					//$patron = '/\/[0-9^\/]*\//';
@@ -127,21 +120,17 @@ if(!is_numeric($id)||$id==""){
 					$id=$coincidencias[1][0][0];
 
 
-					if(!is_numeric($id)||$id==""){
+					if(!is_numeric($id)||$id==''){
 						//<span class="id">3260890</span>
 
-						$p=strposF($retfull_no_espacios,'<spanclass="id">');
-						$f=strpos($retfull_no_espacios,"</span>",$p);
-						$id=substr($retfull_no_espacios,$p,$f-$p);
+						$id=entre1y2($retfull_no_espacios,'<spanclass="id">','</span>');
 
-						if(!is_numeric($id)||$id==""){
+						if(!is_numeric($id)||$id==''){
 							//embedEVPLight(2692490,601)
 
-							$p=strposF($retfull_no_espacios,'embedEVPLight(');
-							$f=strpos($retfull_no_espacios,",",$p);
-							$id=substr($retfull_no_espacios,$p,$f-$p);
+							$id=entre1y2($retfull_no_espacios, 'embedEVPLight(', ',');
 
-							if(!is_numeric($id)||$id=="")
+							if(!is_numeric($id)||$id=='')
 								dbug('fallo');
 						}
 						else
@@ -168,10 +157,10 @@ if(!is_numeric($id)||$id==""){
 else
 	dbug('id sacada con <object ... id="EVP..." -> id video='.$id);
 
-if($id==""){
+if($id==''){
 	//id no encontrada:
 	//fallo url
-	setErrorWebIntera("No se pudo encontrar la ID de ningún vídeo.");
+	setErrorWebIntera('No se pudo encontrar la ID de ningún vídeo.');
 	return;
 }
 /////////usa de estas dos dice que es un video de windows media player...
@@ -180,15 +169,15 @@ if($id==""){
 
 $modelo=0;
 	
-if(enString($web_descargada,"playWMOVideoQualitat")){
+if(enString($web_descargada,'playWMOVideoQualitat')){
 	$modelo=3;
 	dbug('metodo 1');
 	
 	if($tresalacarta!=1){
 		//titulo
 		//<h1>Els ajudants del pare Noel</h1>
-		$p=strrpos($web_descargada,"<h1>")+4;
-		$f=strrpos($web_descargada,"</h1>", $p);
+		$p=strrposF($web_descargada,'<h1>');
+		$f=strrpos($web_descargada,'</h1>', $p);
 		$titulo=substr($web_descargada, $p, $f-$p);
 		$titulo=limpiaTitulo($titulo);
 		dbug('titulo='.$titulo);
@@ -204,18 +193,17 @@ if(enString($web_descargada,"playWMOVideoQualitat")){
 
 
 	///0/2/188877220.wmv
-	$p=strrpos($ret,"!")+8;
-	$f=strrpos($ret,"?",$p);
+	$p=strrpos($ret,'!')+8;
+	$f=strrpos($ret,'?',$p);
 	$ret=substr($ret,$p,$f-$p);
 
-	$p=strrpos($ret,"/")+1;
-	$f=strlen($ret);
-	$ret=substr($ret,$p,$f-$p);
+	$p=strrposF($ret,'/');
+	$ret=substr($ret,$p);
 
 
 	dbug('final='.$ret);
 
-	$f=strrpos($ret,".",0);
+	$f=strrpos($ret,'.',0);
 	$ret2=substr($ret,0,$f);
 	dbug('solonumeros='.$ret2);
 
@@ -231,26 +219,22 @@ if(enString($web_descargada,"playWMOVideoQualitat")){
 	
 	$obtenido['enlaces'][] = array(
 		'url'  => $ret,
-		'tipo' => "http"
+		'tipo' => 'http'
 	);
 }
 
 
-if(enString($web_descargada,"insertaEVP(")||$modelo==0){
+if(enString($web_descargada,'insertaEVP(')||$modelo==0){
 	dbug('metodo 2');
 	
 	if($tresalacarta!=1){
 		//titulo
 		//<h1>Amb Fidel, passi el que passi</h1>
-		$p=strpos($web_descargada,"<h1>")+4;
-		$f=strpos($web_descargada,"</h1>", $p);
-		$titulo=substr($web_descargada, $p, $f-$p);
-		$noimagen="si";
-		if(stringContains($titulo, array("<",">"))){
-			$p=strpos($titulo,'arrayTitol = ["')+15;
-			$f=strpos($titulo,'"',$p);
-			$titulo=substr($titulo,$p,$f-$p);
-			$noimagen="no";
+		$titulo=entre1y2($web_descargada, '<h1>', '</h1>');
+		$noimagen='si';
+		if(stringContains($titulo, array('<','>'))){
+			$titulo=entre1y2($titulo, 'arrayTitol = ["', '"');
+			$noimagen='no';
 		}
 		$titulo=limpiaTitulo($titulo);
 		dbug('titulo='.$titulo);
@@ -258,7 +242,7 @@ if(enString($web_descargada,"insertaEVP(")||$modelo==0){
 
 		//imagen
 		//'/multimedia/jpg/3/6/1336300867363.jpg'
-		if($noimagen!="no"&&strpos($web_descargada,"'/multimedia/")>0){
+		if($noimagen!='no'&&strpos($web_descargada,"'/multimedia/")>0){
 			$p=strpos($web_descargada,"'/multimedia/")+1;
 			$f=strpos($web_descargada,"'", $p);
 			$imagen='http://www.tv3.cat'.substr($web_descargada, $p, $f-$p);
@@ -279,9 +263,7 @@ if(enString($web_descargada,"insertaEVP(")||$modelo==0){
 		//rectificar titulo
 		dbug('rectificar titulo');
 		//<h1>Amb Fidel, passi el que passi</h1>
-		$p=strpos($ret,"<title>")+7;
-		$f=strpos($ret,"</",$p);
-		$titulo=substr($ret,$p,$f-$p);
+		$titulo=entre1y2($ret, '<title>', '</');
 		$titulo=utf8_encode($titulo);
 		$titulo=limpiaTitulo($titulo);
 
@@ -293,19 +275,19 @@ if(enString($web_descargada,"insertaEVP(")||$modelo==0){
 	//http://www.tv3.cat/pvideo/FLV_bbd_media.jsp?ID=3932951&QUALITY=H&FORMAT=MP4GES
 
 
-	if(enString($ret,"<imgsrc>")&&!isset($imagen)){
-		$p=strrpos($ret,"<imgsrc>")+8;
-		$f=strrpos($ret,"</imgsrc>",$p);
+	if(enString($ret,'<imgsrc>')&&!isset($imagen)){
+		$p=strrposF($ret,'<imgsrc>');
+		$f=strrpos($ret,'</imgsrc>',$p);
 		$imagen=substr($ret,$p,$f-$p);
 	}
 
-	$formato="MP4";
-	if(enString($ret,"<format>")){
+	$formato='MP4';
+	if(enString($ret,'<format>')){
 		//ENCUENTRA EL PRIMERO EN LA LISTA; NO EL MEJOR
 		dbug('formato encontrado');
 
-		$p=strrpos($ret,"<format>")+8;
-		$f=strrpos($ret,"</format>",$p);
+		$p=strrposF($ret,'<format>');
+		$f=strrpos($ret,'</format>',$p);
 		$formato=substr($ret,$p,$f-$p);
 	}
 
@@ -322,7 +304,7 @@ if(enString($web_descargada,"insertaEVP(")||$modelo==0){
 		setErrorWebIntera('El vídeo fue borrado de TV3');
 		return;
 	}
-	elseif(enString($ret,"<media")){
+	elseif(enString($ret,'<media')){
 		//a sacer el video. si falla la busqueda, entonces hay un error
 		
 		//<media videoname="La Costa Brava en caiac/Thalassa/13042012/BB_THALASS">
@@ -338,9 +320,9 @@ if(enString($web_descargada,"insertaEVP(")||$modelo==0){
 			}
 			
 			$obtenido['enlaces'][] = array(
-				'titulo'  => "Calidad media",
+				'titulo'  => 'Calidad media',
 				'url'  => $ret,
-				'tipo' => "http"
+				'tipo' => 'http'
 			);
 		}
 	}
@@ -349,7 +331,7 @@ if(enString($web_descargada,"insertaEVP(")||$modelo==0){
 	dbug('obtenido=');
 	dbug_($ret);
 
-	if(enString($ret,"<media")){
+	if(enString($ret,'<media')){
 		//http://www.tv3.cat/feeds/videos/fitxaVideo.jsp?id=4874451&device=and-h&format=xml&version=1
 		//a sacer el video. si falla la busqueda, entonces hay un error
 		
@@ -360,14 +342,14 @@ if(enString($web_descargada,"insertaEVP(")||$modelo==0){
 		$ret=entre1y2_a($ret,$p,'>','<');
 
 		if(enString($ret, 'mp4:')){
-			preg_match("@^(.*?/)(mp4:.*?)$@", $ret, $matches);
+			preg_match('@^(.*?/)(mp4:.*?)$@', $ret, $matches);
 			dbug_r($matches);
 			
 			// 4/09/2012 metodo rectificado
 			dbug('urlFinal='.$ret);
 			
 			$obtenido['enlaces'][] = array(
-				'titulo'   => "Calidad alta",
+				'titulo'   => 'Calidad alta',
 				'url'      => $ret,
 				'rtmpdump' => '-r "'.$matches[1].'" -y "'.$matches[2].'" -o "'.generaNombreWindowsValido($titulo).'.mp4"',
 				'tipo'     => 'rtmpConcreto',
@@ -391,7 +373,7 @@ if(enString($web_descargada,"insertaEVP(")||$modelo==0){
 }
 
 $tipo='http';
-if(enString($ret,"rtmp"))
+if(enString($ret,'rtmp'))
 	$tipo='rtmp';
 
 $obtenido['titulo'] = $titulo;
