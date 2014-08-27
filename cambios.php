@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'27-Agosto-2014'
+,'fix:vimeo vuelve a funcionar.'
+);
+
+$todos[]=array(
 '26-Agosto-2014'
 ,'fix:7rm.es arreglado para funcionar con RTMP-Downloader.'
 ,'add:Descripción en los resultados.'
