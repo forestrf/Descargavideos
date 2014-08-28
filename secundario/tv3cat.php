@@ -236,8 +236,8 @@ if(enString($web_descargada,'insertaEVP(')||$modelo==0){
 		} else {
 			//imagen
 			//'/multimedia/jpg/3/6/1336300867363.jpg'
-			$p=strpos($web_descargada,"'/multimedia/")+1;
-			$f=strpos($web_descargada,"'", $p);
+			$p=strpos($web_descargada,"/multimedia/");
+			$f=strposF($web_descargada,'.jpg', $p);
 			$imagen='http://www.tv3.cat'.substr($web_descargada, $p, $f-$p);
 			dbug('imagen='.$imagen);
 		}
