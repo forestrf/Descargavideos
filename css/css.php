@@ -23,8 +23,7 @@ if($if_none_match && $if_none_match === $etag){
 }
 else{
 	header('ETag: '.$etag);
-	header('Cache-Control: public, max-age=604800');
-	header('Expires: '.gmdate('D, d M Y H:i:s \G\M\T', time() + 604800));
+	header('Cache-Control: public, max-age=2592000'); //30 días
 	
 	$encoding = $_SERVER['HTTP_ACCEPT_ENCODING'];
 	
