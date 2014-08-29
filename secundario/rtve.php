@@ -196,25 +196,34 @@ function convierteID($asset,$modo=array('video','audio')){
 		$ret=desencripta($ret);
 		
 		dbug_($ret);
-		if(preg_match('@http://[^<^>]*?\\.(?:mp4|mp3)[^<^>]*@',$ret, $m)){
-			//dbug_r($m);
-			$ret=$m[0];
-		}
-		elseif(enString($ret,"code='state-not-valid'")){
-			$ret='';
-			dbug('vídeo posíblemente borrado. Marcar error');
-			setErrorWebIntera('El vídeo ya no está disponible en RTVE. Lo sentimos.');
-			return false;
-		}
-		elseif(enString($ret, 'video-id-not-valid')){
-			setErrorWebIntera("No se ha podido encontrar ningún vídeo.");
-			return false;
-		}
-		else{
-			if(enString($ret, 'rtmpe://rtveod.fms.c.footprint.net/rtveod')){
-				$ret = strtr($ret, array('rtmpe://rtveod.fms.c.footprint.net/rtveod/' => 'http://mvod.lvlt.rtve.es/'));
+		if(preg_match_all('@http://[^<^>]*?\\.(?:mp4|mp3)[^<^>]*@',$ret, $m)){
+			dbug_r($m);
+			foreach($m[0] as $i){
+				dbug('Opcion: '.$i);
+				if(!enString($i, '1100000000000')){
+					$ret=$i;
+					dbug('Opcion elejida: '.$i);
+					break;
+				}
 			}
-			$ret='http://'.entre1y2($ret,'http://','<');
+		}
+		if(strpos($ret, 'http') !== 0){
+			if(enString($ret,"code='state-not-valid'")){
+				$ret='';
+				dbug('vídeo posíblemente borrado. Marcar error');
+				setErrorWebIntera('El vídeo ya no está disponible en RTVE. Lo sentimos.');
+				return false;
+			}
+			elseif(enString($ret, 'video-id-not-valid')){
+				setErrorWebIntera("No se ha podido encontrar ningún vídeo.");
+				return false;
+			}
+			else{
+				if(enString($ret, 'rtmpe://rtveod.fms.c.footprint.net/rtveod')){
+					$ret = strtr($ret, array('rtmpe://rtveod.fms.c.footprint.net/rtveod/' => 'http://mvod.lvlt.rtve.es/'));
+				}
+				$ret='http://'.entre1y2($ret,'http://','<');
+			}
 		}
 	}
 	return $ret;
