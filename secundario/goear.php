@@ -1,33 +1,31 @@
 <?php
 function goear(){
-global $web,$web_descargada;
-$retfull=$web_descargada;
-//$retfull=CargaWebCurl($web);
+global $web_descargada;
 
 $obtenido=array('enlaces' => array());
 
 $imagen='canales/goear.png';
 
 //varias canciones (de un usuario)
-if(enString($retfull,'<h3>Audios</h3>')){
+if(enString($web_descargada,'<h3>Audios</h3>')){
 	//titulo generico
 	$titulo="Goear";
 
-	$canciones=substr_count($retfull,'id="sound_');
+	$canciones=substr_count($web_descargada,'id="sound_');
 	dbug('canciones='.$canciones);
 
 	$last=0;
 	for($i=0;$i<$canciones;$i++){
-		$last=strpos($retfull,'id="sound_',$last);
-		$p=strposF($retfull,'id="sound_',$last);
-		$f=strpos($retfull,'"',$p);
-		$id=substr($retfull,$p,$f-$p);
+		$last=strpos($web_descargada,'id="sound_',$last);
+		$p=strposF($web_descargada,'id="sound_',$last);
+		$f=strpos($web_descargada,'"',$p);
+		$id=substr($web_descargada,$p,$f-$p);
 		dbug('id '.$i.'='.$id);
 
-		$p=strpos($retfull,'<a',$last);
-		$p=strposF($retfull,'>',$p);
-		$f=strpos($retfull,'</a',$p);
-		$tit=substr($retfull,$p,$f-$p);
+		$p=strpos($web_descargada,'<a',$last);
+		$p=strposF($web_descargada,'>',$p);
+		$f=strpos($web_descargada,'</a',$p);
+		$tit=substr($web_descargada,$p,$f-$p);
 		$tit=strip_tags($tit);
 		dbug('tit='.$tit);
 
@@ -44,16 +42,16 @@ if(enString($retfull,'<h3>Audios</h3>')){
 }
 
 //varias canciones, de una lista de reproducción
-elseif(enString($retfull,"playlistid = '")){
+elseif(enString($web_descargada,"playlistid = '")){
 	//playlist_title">...<
-	$p=strpos($retfull,'playlist_title');
-	$p=strpos($retfull,'>',$p)+1;
-	$f=strpos($retfull,'<',$p);
-	$titulo=substr($retfull,$p,$f-$p);
+	$p=strpos($web_descargada,'playlist_title');
+	$p=strpos($web_descargada,'>',$p)+1;
+	$f=strpos($web_descargada,'<',$p);
+	$titulo=substr($web_descargada,$p,$f-$p);
 	$titulo=limpiaTitulo($titulo);
-	dbug('titulo='.$titulo);
+	dbug('título='.$titulo);
 
-	$id=entre1y2($retfull,"playlistid = '","'");
+	$id=entre1y2($web_descargada,"playlistid = '","'");
 
 	$xml=CargaWebCurl('http://www.goear.com/elplaylist.php?f='.$id);
 
@@ -86,12 +84,12 @@ elseif(enString($retfull,"playlistid = '")){
 }
 
 //una cancion
-elseif(enString($retfull,"soundid = '")){
-	$titulo=entre1y2($retfull,'class="song_title">','<');
+elseif(enString($web_descargada,"soundid = '")){
+	$titulo=entre1y2($web_descargada,'title>','<');
 	$titulo=limpiaTitulo($titulo);
 	dbug('titulo='.$titulo);
 
-	$id=entre1y2($retfull,"soundid = '","'");
+	$id=entre1y2($web_descargada,"soundid = '","'");
 	dbug('id='.$id);
 
 	$mp3=buscaMP3($id);

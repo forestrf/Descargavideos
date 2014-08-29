@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'29-Agosto-2014'
+,'fix:Títulos en Goear.'
+);
+
+$todos[]=array(
 '27-Agosto-2014'
 ,'fix:vimeo vuelve a funcionar.'
 ,'fix:Soporte para más vídeos de TV3.'
