@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'30-Agosto-2014'
+,'fix:RTVE Geobloqueo quitado.'
+);
+
+$todos[]=array(
 '29-Agosto-2014'
 ,'fix:Títulos en Goear.'
 ,'fix:Fix RTVE para algunos vídeos que no funcionaban al alajir la url de vído incorrecta.'

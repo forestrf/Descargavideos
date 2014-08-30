@@ -182,6 +182,16 @@ $obtenido=array(
 finalCadena($obtenido);
 }
 
+function quita_geobloqueo($url){
+	if(enString($url, 'mvodt.lvlt')){
+		$url = strtr($url, array('mvodt.lvlt'=>'mvod.lvlt'));
+		if(enString($url, '?')){
+			$url = substr($url, 0, strpos($url, '?'));
+		}
+	}
+	return $url;
+}
+
 function convierteID($asset,$modo=array('video','audio')){
 	$ret="";
 	$modo_length=count($modo);
@@ -196,12 +206,23 @@ function convierteID($asset,$modo=array('video','audio')){
 		$ret=desencripta($ret);
 		
 		dbug_($ret);
-		if(preg_match_all('@http://[^<^>]*?\\.(?:flv|mp4|mp3)[^<^>]*@',$ret, $m)){
+		if(preg_match_all('@http://[^<^>]*?\\.(?:mp4|mp3)[^<^>]*@',$ret, $m)){
 			dbug_r($m);
 			foreach($m[0] as $i){
 				dbug('Opcion: '.$i);
 				if(!enString($i, '1100000000000')){
-					$ret=$i;
+					$ret=quita_geobloqueo($i);
+					dbug('Opcion elejida: '.$i);
+					break;
+				}
+			}
+		}
+		elseif(preg_match_all('@http://[^<^>]*?\\.(?:flv)[^<^>]*@',$ret, $m)){
+			dbug_r($m);
+			foreach($m[0] as $i){
+				dbug('Opcion: '.$i);
+				if(!enString($i, '1100000000000')){
+					$ret=quita_geobloqueo($i);
 					dbug('Opcion elejida: '.$i);
 					break;
 				}
