@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'31-Agosto-2014'
+,'fix:Títulos en aragón televisión.'
+);
+
+$todos[]=array(
 '30-Agosto-2014'
 ,'fix:RTVE Geobloqueo quitado.'
 );

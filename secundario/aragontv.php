@@ -20,7 +20,7 @@ if(enString($web_descargada,'flowplayer(')){
 	$titulo=entre1y2($web_descargada,'<div class="apartado"><h2>','</h2>');
 	$titulo=limpiaTitulo($titulo);
 	
-	if(enString($titulo, '</')){
+	if(stringContains($titulo, array('</', 'Server:'))){
 		dbug('titulo fallido, usando <title>');
 		$titulo=entre1y2($web_descargada,'<title>','</');
 		$titulo=limpiaTitulo($titulo);
