@@ -5,7 +5,7 @@
 <div class="respuesta">
 	<?php echo TXT_M3U8Downloader_DESC?><br>
 	<a href="https://github.com/forestrf/M3U8-Downloader">GitHub</a><br>
-	<?php echo TXT_VERSION_RECIENTE?>: <a href="https://github.com/forestrf/M3U8-Downloader/releases/download/v0.3-beta.6/M3U8-Downloader.V0.3.beta6.zip">0.3 beta 6</a><p>
+	<?php echo TXT_VERSION_RECIENTE?>: <a href="https://github.com/forestrf/M3U8-Downloader/releases/download/v0.3-beta.6/M3U8-Downloader.V0.3.beta6.zip">Descargar la última versión</a><p>
 	<?php echo TXT_VERSION_HISTORIAL?>:<br>
 	0.3 beta 6: <a href="https://github.com/forestrf/M3U8-Downloader/releases/download/v0.3-beta.6/M3U8-Downloader.V0.3.beta6.zip">GitHub (zip)</a> | <a href="https://github.com/forestrf/M3U8-Downloader/releases/download/v0.3-beta.6/M3U8-Downloader.V0.3.beta6.7z">GitHub (7z)</a><br>
 	0.3 beta 5: <a href="http://www.mediafire.com/download/rrbqokkw9qil9aa/M3U8-Downloader+V0.3+beta5.zip">Mediafire (zip)</a> | <a href="http://www.mediafire.com/download/x52p9ooia8k2kgk/M3U8-Downloader+V0.3+beta5.7z">Mediafire (7z)</a><br>
@@ -21,7 +21,7 @@
 <div class="respuesta">
 	<?php echo TXT_RTMPDownloader_DESC?><br>
 	<a href="https://github.com/forestrf/RTMP-Downloader">GitHub</a><br>
-	<?php echo TXT_VERSION_RECIENTE?>: <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/v0.3.4/RTMP-Downloader.v0.3.4.zip">0.3.4</a><p>
+	<?php echo TXT_VERSION_RECIENTE?>: <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/v0.3.4/RTMP-Downloader.v0.3.4.zip">Descargar la última versión</a><p>
 	<?php echo TXT_VERSION_HISTORIAL?>:<br>
 	0.3.4: <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/v0.3.4/RTMP-Downloader.v0.3.4.zip">GitHub (zip)</a> | <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/v0.3.4/RTMP-Downloader.v0.3.4.7z">GitHub (7z)</a><br>
 	0.3.2: <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/v0.3.2/RTMP-Downloader.v0.3.2.zip">GitHub (zip)</a> | <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/v0.3.2/RTMP-Downloader.v0.3.2.7z">GitHub (7z)</a><br>
@@ -38,7 +38,7 @@
 <div class="respuesta">
 	<?php echo TXT_F4MDownloader_DESC?><br>
 	<a href="https://github.com/forestrf/F4M-Downloader">GitHub</a><br>
-	<?php echo TXT_VERSION_RECIENTE?>: <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.4/F4M-Downloader.v0.0.4.zip">0.0.4</a><p>
+	<?php echo TXT_VERSION_RECIENTE?>: <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.4/F4M-Downloader.v0.0.4.zip">Descargar la última versión</a><p>
 	<?php echo TXT_VERSION_HISTORIAL?>:<br>
 	0.0.4: <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.4/F4M-Downloader.v0.0.4.zip">GitHub (zip)</a> | <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.4/F4M-Downloader.v0.0.4.7z">GitHub (7z)</a><br>
 	0.0.3: <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.3/F4M-Downloader.v0.0.3.zip">GitHub (zip)</a> | <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.3/F4M-Downloader.v0.0.3.7z">GitHub (7z)</a><br>
