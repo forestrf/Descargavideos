@@ -38,7 +38,7 @@
 <div class="respuesta">
 	<?php echo TXT_F4MDownloader_DESC?><br>
 	<a href="https://github.com/forestrf/F4M-Downloader">GitHub</a><br>
-	<?php echo TXT_VERSION_RECIENTE?>: <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.3/F4M-Downloader.v0.0.4.zip">0.0.4</a><p>
+	<?php echo TXT_VERSION_RECIENTE?>: <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.4/F4M-Downloader.v0.0.4.zip">0.0.4</a><p>
 	<?php echo TXT_VERSION_HISTORIAL?>:<br>
 	0.0.4: <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.4/F4M-Downloader.v0.0.4.zip">GitHub (zip)</a> | <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.4/F4M-Downloader.v0.0.4.7z">GitHub (7z)</a><br>
 	0.0.3: <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.3/F4M-Downloader.v0.0.3.zip">GitHub (zip)</a> | <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.3/F4M-Downloader.v0.0.3.7z">GitHub (7z)</a><br>
