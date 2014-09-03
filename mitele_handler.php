@@ -40,6 +40,16 @@ if(
 		//strpos($_SERVER['HTTP_REFERER'],) !== false ||
 	)
 ){
+	
+	// Guardar referidos
+	$fichero = 'adfly referidos mitele.txt';
+	// La nueva persona a añdir al fichero
+	$data = $_SERVER['HTTP_REFERER']."\r\n";
+	// Escribir los contenidos en el fichero,
+	// usando la bandera FILE_APPEND para añadir el contenido al final del fichero
+	// y la bandera LOCK_EX para evitar que cualquiera escriba en el fichero al mismo tiempo
+	file_put_contents($fichero, $data, FILE_APPEND | LOCK_EX);
+
 	header("HTTP/1.1 302 Moved Temporarily");
 	header('Location: http://adf.ly/3649838/'.urlencode('http://www.descargavideos.tv'.$_SERVER['REQUEST_URI']));
 	exit;
