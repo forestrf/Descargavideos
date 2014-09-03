@@ -64,10 +64,6 @@ var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-29252510-1"]);_gaq.push(["_trackP
 
 
 
-<img src="http://sstatic1.histats.com/0.gif?2419951&101" alt="acesso" border="0">
-
-
-
 <?php if(defined('HAY_RESULTADO')){ ?>
 	<div id="resultado" class="hx100">
 		<?php include_once 'plantillaResultado.php';?>

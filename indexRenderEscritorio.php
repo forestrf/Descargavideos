@@ -158,8 +158,6 @@ var css_user='<?php echo $css_modo?>';
 setModoPic('<?php echo $modo?>');
 function setModoPic(d){if(d==1){D.g('web').placeholder="<?php echo TXT_PEGA_URL_VIDEO?>";D.g('ayuda1txt').innerHTML="<?php echo TXT_COPIA_URL_VIDEO?>";D.g('ayuda2txt').innerHTML="<?php echo TXT_BUSCA_URL_VIDEO?>";}else{D.g('web').placeholder="<?php echo TXT_BUSCAR_CANCION?>";D.g('ayuda1txt').innerHTML="<?php echo TXT_ESCRIBE_NOMBRE_CANCION?>";D.g('ayuda2txt').innerHTML="<?php echo TXT_BUSCA_CANCION?>";}}
 
-var _Hasync=_Hasync||[];_Hasync.push(['Histats.start','1,2419951,4,0,0,0,00010000']);_Hasync.push(['Histats.fasi','1']);_Hasync.push(['Histats.track_hits','']);(function(){var hs=D.c('script');hs.type='text/javascript';hs.async=true;hs.src='http://s10.histats.com/js15_as.js';(D.getElementsByTagName('head')[0]||D.getElementsByTagName('body')[0]).appendChild(hs);})();
-
 setTimeout(function(){
 	getScript("https://connect.facebook.net/es_ES/all.js#xfbml=1&appId=235486993147003",null,'facebook-jssdk');
 	getScript("https://platform.twitter.com/widgets.js",null,"twitter-wjs");

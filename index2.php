@@ -247,8 +247,6 @@ a:hover{
 	webI.onfocus = function() {
 		webF(1);
 	};
-	
-	var _Hasync=_Hasync||[];_Hasync.push(['Histats.start','1,2419951,4,0,0,0,00010000']);_Hasync.push(['Histats.fasi','1']);_Hasync.push(['Histats.track_hits','']);(function(){var hs=D.c('script');hs.type='text/javascript';hs.async=true;hs.src='http://s10.histats.com/js15_as.js';(D.getElementsByTagName('head')[0]||D.getElementsByTagName('body')[0]).appendChild(hs);})();
 </script>
 
 </body>
