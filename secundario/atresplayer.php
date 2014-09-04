@@ -53,7 +53,7 @@ else{
 	$carusel = json_decode($carusel, true);
 	//dbug_r($carusel);
 	if(count($carusel)>0){
-		$max = 30;
+		$max = 10;
 		foreach($carusel as $elem){
 			$obtenido['enlaces'] = array_merge($obtenido['enlaces'], resultadoA3PNormal($elem['hrefHtml'],'','',$elem['title']));
 			if(--$max<=0)
