@@ -103,10 +103,6 @@ function pagina($cual){
 	}
 	$palabras_clave='bajar videos, canal tv, television, series online, tv nacional, video download';
 }
-
-function template($cual){
-	return corrige(file_get_contents("paginas/".$cual));
-}
 ?>
 
 <!DOCTYPE html>

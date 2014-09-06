@@ -112,9 +112,6 @@ elseif($path_plantilla=='')
 	$path_plantilla='plantillas/'.$plantillaDefault.'/';
 
 
-// $fallo_plantilla=template2('fallo.html');
-
-
 /*
 array(
 	n => array(
@@ -657,12 +654,6 @@ function validar_enlace($link){
 
 	return false;
 }
-
-function template2($cual){
-	global $path_plantilla;
-	return file_get_contents($path_plantilla.$cual);
-}
-
 
 
 //$obtenido -> array con los resultados

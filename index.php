@@ -16,10 +16,6 @@ else{
 
 $encoding = $_SERVER['HTTP_ACCEPT_ENCODING'];
 
-if(strpos($encoding, "gzip") >= 0){
-	ob_start("ob_gzhandler");
-}
-
 
 
 require_once 'definiciones.php';

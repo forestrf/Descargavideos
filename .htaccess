@@ -75,16 +75,6 @@
 	##############################################################
 	
 	RewriteRule ^mitelehandler/(.*)/(.*)\.mp4$ mitele_handler.php?fullinfo=$1 [NC,L]
-	
-	
-	
-	
-	##############################################################
-	# CSS agrupado
-	##############################################################
-
-	RewriteRule ^css/cssfull\.css$ css/css.php [NC,L]
-	RewriteRule ^css/cssfull\.min\.css$ css/css.php [NC,L]
 
 
 	
@@ -113,7 +103,7 @@
 
 
 
-#CACHE
+# CACHE
 <ifModule mod_headers.c>
 
 	# 1 AÑO
@@ -132,3 +122,12 @@
 	</FilesMatch>
 
 </ifModule>
+
+
+
+# Compresión
+<IfModule mod_filter.c>
+	<IfModule mod_deflate.c>
+		AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css text/javascript application/javascript application/x-javascript
+	</IfModule>
+</IfModule>
