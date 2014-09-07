@@ -1,15 +1,38 @@
 <?php
 /*
-IMPORTANTE:
-En dos lugares de este script se usa (int)$foo para convertir una cadena de texto en un int y que sabreAMF ponga el tipo correcto (number).
-Al ser números grandes, sólo funciona en máquinas de 64bits. La culpa de php.
+ESTA FALLANDO:
+http://tvolucion.esmas.com/telenovelas/comedia/que-pobres-tan-ricos/247137/que-pobres-tan-ricos-capitulo-42/
 */
 
 
 
+
+
 /*
-ESTA FALLANDO:
-http://tvolucion.esmas.com/telenovelas/comedia/que-pobres-tan-ricos/247137/que-pobres-tan-ricos-capitulo-42/
+http://tvnhds.tvolucion.com/z/lgata/delivery//5a/64/5a6429f9-541d-48dd-8bc5-e4ab8927e1eb/lgata-c090.mp4_,235,480,600,970,k.mp4.csmil/manifest.f4m?g=PFIJJOXYLNCM&hdcore=3.4.0&plugin=aasp-3.4.0.132.124
+http://tvnhds.tvolucion.com/z/lgata/delivery//5a/64/5a6429f9-541d-48dd-8bc5-e4ab8927e1eb/lgata-c090.mp4_,235,480,600,970,k.mp4.csmil/manifest.f4m?hdcore=3.4.0
+
+
+http://www.televisa.com/crossiframes/iframetest-resize.html?height=246&guid=7ad293a6-85de-1032-9c2f-0019b9d72c08
+
+
+http://amp.televisa.com/embed/embed.php?id=272220&w=620&h=345&autoplay=false&canal=es.televisa.video|telenovelas|drama|la-gata
+
+
+http://amp.televisa.com/tvenvivofiles/2.4.0008/amp.premier/config_dvr_vod.xml?rnd=2788165180
+
+
+http://amp.televisa.com/tvenvivofiles/272220/params_dvr.json
+
+
+
+http://tvnhds.tvolucion.com/i/lgata/delivery//5a/64/5a6429f9-541d-48dd-8bc5-e4ab8927e1eb/lgata-c090.mp4_,235,480,600,970,k.mp4.csmil/master.m3u8
+
+http://tvnhds.tvolucion.com/z/lgata/delivery//5a/64/5a6429f9-541d-48dd-8bc5-e4ab8927e1eb/lgata-c090.mp4_,235,480,600,970,k.mp4.csmil/manifest.f4m
+
+http://tvnhds.tvolucion.com/z/lgata/delivery//5a/64/5a6429f9-541d-48dd-8bc5-e4ab8927e1eb/lgata-c090.mp4
+
+http://m4v.tvolucion.com/m4v/tln/lgata/45201db85a8e3a0ffa8d5f77ce9249e8/lgata-c090.jpg
 */
 
 function televisa(){
@@ -35,6 +58,15 @@ dbug($t);
 exit;
 */
 
+if(enString($web, '//m.')){
+	$web = str_replace('//m.', '//www.', $web);
+	dbug('Movil -> escritorio');
+	$retfull=CargaWebCurl($web,'',0,'',array('Referer: '.$web));
+	
+	if(!enString($retfull,'<html'))
+		$retfull=CargaWebCurl($web);
+}
+
 
 
 //usarse a sí mismo como réferer
@@ -44,10 +76,9 @@ if(!enString($retfull,'<html'))
 if(!enString($retfull,'<html'))
 	$retfull=CargaWebCurl($web);
 
-//dbug('AAA: '.$retfull);
+//dbug_($retfull);
 
 $obtenido=array('enlaces' => array());
-
 
 
 
@@ -63,15 +94,49 @@ if(stringContains($retfull,array('showVideo(','data-id="'))){
 	if(isset($match[1])){
 		$idVideo=$match[1];
 		dbug($idVideo);
+		// $web='http://amp.televisa.com/embed/embed.php?id='.$idVideo.'&w=620&h=345';
 		$web='http://tvolucion.esmas.com/embed/embed.php?id='.$idVideo.'&w=620&h=345';
 		$retfull=CargaWebCurl($web,'',0,'',array('Referer: '.$web));
 		if(enString($retfull,'ya no se encuentra disponible')){
 			setErrorWebIntera('Éste vídeo ya no se encuentra disponible.');
 			return;
 		}
-		//dbug($retfull);
+		//dbug_($retfull);
 	}
 }
+
+
+
+if(enString($retfull, 'params_dvr.json')){
+	$hostname = 'tvolucion.esmas.com';
+	$json = "http://{$hostname}/tvenvivofiles/{$idVideo}/params_dvr.json";
+	$json = CargaWebCurl($json);
+	$json = utf8_encode($json);
+	$json = json_decode($json, true);
+	dbug_r($json);
+	
+	$titulo = $json['channel']['item']['title'];
+	$imagen = $json['channel']['item']['media-group']['media-thumbnail']['@attributes']['url'];
+
+	foreach($json['channel']['item']['media-group']['media-content'] as &$elem){
+		if(enString($elem['@attributes']['url'], '.f4m')){
+			$obtenido['enlaces'][] = array(
+				'url'  => $elem['@attributes']['url'],
+				'nombre_archivo' => generaNombreWindowsValido($titulo),
+				'tipo' => 'f4m'
+			);
+		}
+		elseif(enString($elem['@attributes']['url'], '.m3u8')){
+			$obtenido['enlaces'][] = array(
+				'url'  => $elem['@attributes']['url'],
+				'tipo' => 'm3u8'
+			);
+		}
+	}
+	
+	$obtenido['alerta_especifica'] = 'Es necesario usar un proxy de México. El programa F4M-Downloader permite indicar un proxy.';
+}
+else {
 
 
 
@@ -207,12 +272,13 @@ $imagen=$match[0][1];
 $urls_total=count($match[0]);
 for($i=0;$i<$urls_total;$i++){
 	if(esVideoAudioAnon($match[0][$i]))
-		array_push($obtenido['enlaces'],array(
+		$obtenido['enlaces'][] = array(
 			'url'  => strtr($match[0][$i],array('http://tvnhds.tvolucion.com/z/'=>'http://tvnpod.tvolucion.com/')),
 			'tipo' => 'http'
-		));
+		);
 }
 
+}
 
 
 

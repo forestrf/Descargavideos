@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'7-Septiembre-2014'
+,'fix:Televisa. Nuevos tipos de vídeos.'
+);
+
+$todos[]=array(
 '31-Agosto-2014'
 ,'fix:Títulos en aragón televisión.'
 );
