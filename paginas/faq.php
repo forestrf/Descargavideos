@@ -69,6 +69,16 @@ Exceptuando varios tipos de enlaces, no es necesario descargar ningún programa.
 Estos programas pueden descargarse desde esta web en la <a href="/lab#contenido">sección Lab</a>.
 </div>
 
+<div class="pregunta"><div id="p_n_d_a_p"></div>No puedo descargar más de 6 vídeos de mitele a la vez.</div>
+<div class="respuesta">
+Mitele solo permite descargar como máximo 6 vídeos de forma simultánea.
+</div>
+
+<div class="pregunta"><div id="p_n_d_a_p"></div>He informado mediante múltiples avisos rápidos de un problema y este sigue estando.</div>
+<div class="respuesta">
+En ocasiones es necesario aportar más información sobre el problema para poder arreglarlo. Es muy importante indicar el correo electrónico en el mensaje del aviso rápido para que así podamos contactarte. Si no disponemos de un modo para contactarte en caso de que necesitemos más información para arreglar el problema, no podremos arreglar el problema.
+</div>
+
 <div class="pregunta"><div id="p_q_d_a_l_w"></div>¿Qué datos almacena la web?</div>
 <div class="respuesta">
 La web únicamente almacena los siguientes datos de los usuarios:<p>
