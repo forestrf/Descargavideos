@@ -142,7 +142,7 @@ function url_exists_full(&$url, $preg_match_prerealizado = false){
 		//CURLOPT_CONNECTTIMEOUT - The number of seconds to wait while trying to connect. Use 0 to wait indefinitely.
 		//CURLOPT_TIMEOUT - The maximum number of seconds to allow cURL functions to execute.
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT ,10); 
-		curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 20);
 
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 		

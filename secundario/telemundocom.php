@@ -1,5 +1,8 @@
 <?php
 
+// Va: msnlatino.telemundo.com
+// No va: now.telemundo.com, m.telemundo.com
+
 /*
 http://msnlatino.telemundo.com/videos?videoid=4fe391cb-4faf-417d-bc24-8e1ffc78096b&src=v5:pause:titleBar^link:uuids
 
