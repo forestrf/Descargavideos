@@ -136,261 +136,266 @@ $cadenas=array(
 		array('rtve.es', 'tve.es'),
 		array('rtve.php'),
 		'rtve'
-	),
-	array(
+	)
+	,array(
 		array('canalriasbaixas.com'),
 		array('canalriasbaixas.php'),
 		'canalriasbaixas'
-	),
-	array(
+	)
+	,array(
 		array('univision.com'),
 		array('univision.php'),
 		'univision'
-	),
-	array(
+	)
+	,array(
 		array('univision.mobi'),
 		array('univision.php'),
 		'univisionMovil'
-	),
-	array(
+	)
+	,array(
 		array('rtpa.es'),
 		array('rtpa.php'),
 		'rtpa'
-	),
-	array(
+	)
+	,array(
 		array('7rm.es','orm.es'),
 		array('7rm.php'),
 		't7rm'
-	),
-	array(
+	)
+	,array(
 		array('canalextremadura.es'),
 		array('canalextremadura.php'),
 		'canalextremadura'
-	),
-	array(
+	)
+	,array(
 		array('lasexta.com','antena3.com'),
 		array('antena3.php'),
 		'a3'
-	),
-	array(
+	)
+	,array(
 		array('atresplayer.com'),
 		array('atresplayer.php'),
 		'atresplayer'
-	),
-	array(
+	)
+	,array(
 		array('cuatro.com','telecinco.es','divinity.es','mediaset.es','mitelekids.es'),
 		array('mitele.php'),
 		'mitele_directo'
-	),
-	array(
+	)
+	,array(
 		array('mitele.es'),
 		array('mitele.php'),
 		'mitele'
-	),
-	/*array(
+	)
+	/*,array(
 		array('gamespot.com'),
 		array('gamespot.php'),
 		'gamespot'
-	),*/
-	array(
+	)*/
+	,array(
 		array('soundcloud.com'),
 		array('soundcloud.php'),
 		'soundcloud'
-	),
-	array(
+	)
+	,array(
 		array('veoh.com'),
 		array('veoh.php'),
 		'veoh'
-	),
-	array(
+	)
+	,array(
 		array('tv3.cat','324.cat','esport3.cat','3xl.cat','super3.cat'),
 		array('tv3cat.php'),
 		'tv3cat'
-	),
-	array(
+	)
+	,array(
 		array('aragontelevision.es'),
 		array('aragontv.php'),
 		'aragontv'
-	),
-	array(
+	)
+	,array(
 		array('canalsuralacarta.es','canalsur.es'),
 		array('canalsuralacarta.php'),
 		'canalsuralacarta'
-	),
-	array(
+	)
+	,array(
 		array('rtvcm.es'),
 		array('rtvcm.php'),
 		'rtvcm'
-	),
-	array(
+	)
+	,array(
 		array('rt.com'),
 		array('rt.php'),
 		'rt'
-	),
-	array(
+	)
+	,array(
 		array('vtelevision.es'),
 		array('vtelevision.php'),
 		'vtelevision'
-	),
-	array(
+	)
+	,array(
 		array('medici.tv'),
 		array('medici.php'),
 		'medici'
-	),
-	array(
+	)
+	,array(
 		array('goear.com'),
 		array('goear.php'),
 		'goear'
-	),
-	array(
+	)
+	,array(
 		array('canaldehistoria.es'),
 		array('canaldehistoria.php'),
 		'canaldehistoria'
-	),
-	array(
+	)
+	,array(
 		array('adnstream.com'),
 		array('adnstream.php'),
 		'adnstream'
-	),
-	array(
+	)
+	,array(
 		array('crtvg.es'),
 		array('crtvg.php'),
 		'crtvg'
-	),
-	array(
+	)
+	,array(
 		array('mtv.es'),
 		array('mtv.php'),
 		'mtv'
-	),
-	array(
+	)
+	,array(
 		array('eitb.com'),
 		array('eitb.php'),
 		'eitbcom'
-	),
-	array(
+	)
+	,array(
 		array('intereconomia.com'),
 		array('intereconomia.php'),
 		'intereconomia'
-	),
-	array(
+	)
+	,array(
 		array('vimeo.com'),
 		array('vimeo.php'),
 		'vimeo'
-	),
-	/*array(
+	)
+	/*,array(
 		array('grooveshark.com'),
 		array('grooveshark.php'),
 		'grooveshark'
-	),*/
-	array(
+	)*/
+	,array(
 		array('cope.es'),
 		array('cope.php'),
 		'cope'
-	),
-	array(
+	)
+	,array(
 		array('cadenaser.com'),
 		array('cadenaser.php'),
 		'cadenaser'
-	),
-	array(
+	)
+	,array(
 		array('televisa.com','esmas.com'),
 		array('televisa.php'),
 		'televisa'
-	),
-	array(
+	)
+	,array(
 		array('eitb.com'),
 		array('eitb.php'),
 		'eitbcom'
-	),
-	array(
+	)
+	,array(
 		array('eitb.tv'),
 		array('eitb.php'),
 		'eitbtv'
-	),
-	array(
+	)
+	,array(
 		array('hogarutil.com'),
 		array('hogarutil.php'),
 		'hogarutil'
-	),
-	array(
+	)
+	,array(
 		array('telemadrid.es', 'telemadrid2020.es'),
 		array('telemadrid.php'),
 		'telemadrid'
-	),
-	array(
+	)
+	,array(
 		array('netd.com'),
 		array('netdcom.php'),
 		'netdcom'
-	),
-	array(
+	)
+	,array(
 		array('telefe.com'),
 		array('telefe.php'),
 		'telefe'
-	),
-	array(
+	)
+	,array(
 		array('toons.tv'),
 		array('toonstv.php'),
 		'toonstv'
-	),
-	array(
+	)
+	,array(
 		array('youtube.com'),
 		array('youtube.php','youtubehelper.php'),
 		'youtubehelper'
-	),
-	array(
+	)
+	,array(
 		array('youtu.be'),
 		array('youtube.php','youtubehelper.php'),
 		'youtubehelper_urlAcortada'
-	),
-	array(
+	)
+	,array(
 		array('tvmelilla.es'),
 		array('tvmelilla.php'),
 		'tvmelilla'
-	),
-	array(
+	)
+	,array(
 		array('tune.pk'),
 		array('tunepk.php'),
 		'tunepk'
-	),
-	array(
+	)
+	,array(
 		array('ideal.es'),
 		array('ideal.php'),
 		'ideal'
-	),
-	array(
+	)
+	,array(
 		array('magnovideo.com'),
 		array('magnovideo.php'),
 		'magnovideo'
-	),
-	array(
+	)
+	,array(
 		array('vk.com'),
 		array('vk.php'),
 		'vk'
-	),
-	array(
+	)
+	,array(
 		array('played.to'),
 		array('playedto.php'),
 		'playedto'
-	),
-	array(
+	)
+	,array(
 		array('allmyvideos.net'),
 		array('allmyvideosnet.php'),
 		'allmyvideosnet'
-	),
-	array(
+	)
+	,array(
 		array('dailymotion.com'),
 		array('dailymotioncom.php'),
 		'dailymotioncom'
-	),
-	array(
+	)
+	,array(
 		array('liveleak.com'),
 		array('liveleak.php'),
 		'liveleak'
-	),
-	array(
+	)
+	,array(
 		array('crunchyroll.com'),
 		array('crunchyrollcom.php'),
 		'crunchyrollcom'
+	)
+	,array(
+		array('telemundo.com'),
+		array('telemundocom.php'),
+		'telemundocom'
 	)
 );
 

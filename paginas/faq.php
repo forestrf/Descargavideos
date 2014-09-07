@@ -154,5 +154,6 @@ A continuación se puede ver el listado de las webs y los canales soportados:<br
 	<li>dailymotion.com</li>
 	<li>liveleak.com</li>
 	<li>crunchyroll.com</li>
+	<li>telemundo.com</li>
 </ol>
 </div>

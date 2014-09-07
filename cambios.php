@@ -19,6 +19,7 @@ $todos[]=array(
 '7-Septiembre-2014'
 ,'fix:Televisa. Nuevos tipos de vídeos.'
 ,'add:crunchyroll.com'
+,'add:telemundo.com'
 );
 
 $todos[]=array(
