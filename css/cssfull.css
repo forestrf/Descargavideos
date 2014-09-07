@@ -304,11 +304,12 @@ input[type="radio"] {
 	background-position: 0 0;
 	border: 7px solid #4099ff;
 }
-.social .elem .fb:hover {
-	background-color: #fff;
-	border: 7px solid #fff;
+.social .elem .gplus {
+	background-color: #dd4b39;
+	background-position: -24px 0;
+	border: 7px solid #dd4b39;
 }
-.social .elem .tt:hover {
+.social .elem a:hover {
 	background-color: #fff;
 	border: 7px solid #fff;
 }

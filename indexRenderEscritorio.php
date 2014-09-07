@@ -19,7 +19,7 @@
 <?php /*? y un número es para forzar la actualización del script y del css tras cambios*/ ?>
 
 <link href="/favicon.ico" rel="icon" type="image/x-icon"/>
-<link rel="stylesheet" href="/css/cssfull.min.css?16"/>
+<link rel="stylesheet" href="/css/cssfull.min.css?17"/>
 <link rel="stylesheet" href="/css/modos/<?php echo $css_modo?>.css" id="css2"/>
 <script src="/js/funciones.min.js?10"></script>
 
@@ -91,6 +91,10 @@ var css_user='<?php echo $css_modo?>';
 
 			<div class="elem">
 				<a target="_blank" class="fb" href="https://www.facebook.com/descargavids"></a>
+			</div>
+			
+			<div class="elem">
+				<a target="_blank" class="gplus" href="https://plus.google.com/share?url=http://www.descargavideos.tv/"></a>
 			</div>
 		</div>
 	</div>
