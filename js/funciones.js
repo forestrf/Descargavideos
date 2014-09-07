@@ -161,6 +161,7 @@ function getScript(url, callback, id) {
 	var script = D.createElement('script');
 	script.type = 'text/javascript';
 	script.src = url;
+	script.async = true;
 	if (callback)
 		script.onload = callback;
 	if (id)

@@ -19,7 +19,7 @@
 <?php /*? y un número es para forzar la actualización del script y del css tras cambios*/ ?>
 
 <link href="/favicon.ico" rel="icon" type="image/x-icon"/>
-<link rel="stylesheet" href="/css/cssfull.min.css?15"/>
+<link rel="stylesheet" href="/css/cssfull.min.css?16"/>
 <link rel="stylesheet" href="/css/modos/<?php echo $css_modo?>.css" id="css2"/>
 <script src="/js/funciones.min.js?10"></script>
 
@@ -35,9 +35,6 @@ var css_user='<?php echo $css_modo?>';
 
 </head>
 <body>
-
-<!--fb (si no se pone aquí mueve todo)-->
-<div id="fb-root"></div>
 
 
 <div class="todo">
@@ -89,15 +86,11 @@ var css_user='<?php echo $css_modo?>';
 
 		<div class="social">
 			<div class="elem">
-				<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.descargavideos.tv" data-text="Descarga vídeos de RTVE, Antena3, Mitele, TV3 y muchas más." data-via="descargavids" data-lang="es" data-count="vertical"></a>
+				<a target="_blank" class="tt" href="https://twitter.com/descargavids"></a>
 			</div>
 
 			<div class="elem">
-				<div class="fb-like" data-href="https://www.facebook.com/descargavids" data-width="450" data-layout="box_count" data-show-faces="false" data-send="false"></div>
-			</div>
-
-			<div class="elem">
-				<div class="g-plusone" data-size="tall" data-href="http://www.descargavideos.tv"></div>
+				<a target="_blank" class="fb" href="https://www.facebook.com/descargavids"></a>
 			</div>
 		</div>
 	</div>
@@ -159,10 +152,8 @@ setModoPic('<?php echo $modo?>');
 function setModoPic(d){if(d==1){D.g('web').placeholder="<?php echo TXT_PEGA_URL_VIDEO?>";D.g('ayuda1txt').innerHTML="<?php echo TXT_COPIA_URL_VIDEO?>";D.g('ayuda2txt').innerHTML="<?php echo TXT_BUSCA_URL_VIDEO?>";}else{D.g('web').placeholder="<?php echo TXT_BUSCAR_CANCION?>";D.g('ayuda1txt').innerHTML="<?php echo TXT_ESCRIBE_NOMBRE_CANCION?>";D.g('ayuda2txt').innerHTML="<?php echo TXT_BUSCA_CANCION?>";}}
 
 setTimeout(function(){
-	getScript("https://connect.facebook.net/es_ES/all.js#xfbml=1&appId=235486993147003",null,'facebook-jssdk');
 	getScript("https://platform.twitter.com/widgets.js",null,"twitter-wjs");
-	getScript("https://apis.google.com/js/plusone.js");
-},2500);
+},2000);
 
 <?php if(defined('HAY_RESULTADO')){ ?>
 	scrollTo(D.g("resultado"),20);
