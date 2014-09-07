@@ -303,7 +303,7 @@ function CargaWebCurl($url,$post='',$cabecera=0,$cookie='',$cabeceras=array(),$s
 	$cabeceras[] = 'Accept-Encoding: gzip';
 	$cabeceras[] = 'Connection: Connection';
 	
-	dbug('cargando web ('.(CURL ? 'CURL as' : 'file_get_contents as').' CURL):'.$url);
+	dbug('cargando web ('.(CURL ? 'CURL' : 'file_get_contents').'): '.$url);
 	if(!$esquivarCache){
 		$t=carga_web_curl_obtenida($url,$post,$cookie,$cabeceras,$sigueLocation);
 		if($t!=''){

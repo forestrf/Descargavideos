@@ -1,23 +1,21 @@
 <?php
 function cope(){
-global $web,$web_descargada;
-$retfull=$web_descargada;
-//$retfull=CargaWebCurl($web);
+global $web_descargada;
 
 
 //http://www.cope.es/player/id=2013072310430001&activo=6
-if(enString($retfull,"_url_xml_datos:")){
+if(enString($web_descargada,"_url_xml_datos:")){
 	dbug("audio o video por xml");
 	//_url_xml_datos:'/proyecto/fragmentosJSP/playerxml.jsp?id=2013072310430001,1,33,13,,1411',
 	//http://www.cope.es/proyecto/fragmentosJSP/playerxml.jsp?id=2013072310430001,1,33,13,,1411
-	$url="http://www.cope.es".entre1y2($retfull,"_url_xml_datos:'","'");
+	$url="http://www.cope.es".entre1y2($web_descargada,"_url_xml_datos:'","'");
 	
 	//http://www.cope.es/proyecto/fragmentosJSP/playerxml.jsp?id=2013072310430001,1,33,13,,1411
 	$ret=CargaWebCurl($url);
 	//mp3 y mp4: mp4->id=2013051613420001,1,30,,,1411
 	
 	$p=strposF($ret,'type="content"');
-	//$f=strposF($retfull,"'",$p);
+	//$f=strposF($web_descargada,"'",$p);
 	//http://www.cope.es/proyecto/fragmentosJSP/playerxml.jsp?id=2013072310430001,1,33,13,,1411
 	$url=entre1y2_a($ret,$p,"<url>","</url>");
 	//http://vod.cope.es/audio/2013/07/23/audio_13745695177069462491.mp3
@@ -25,11 +23,11 @@ if(enString($retfull,"_url_xml_datos:")){
 	//imagen
 	$imagen="http://www.cope.es/".entre1y2($ret,"<img>","</img>");
 }
-elseif(enString($retfull,"addCustomPlayer(")){
+elseif(enString($web_descargada,"addCustomPlayer(")){
 	//addCustomPlayer('1iynycahpn4lw1ppzh0l6r5z1a', '15wugu5n3ruow1j9kwr3ma3tqz', '177dxsxbyqz8h18z4sldn5awz2', 686, 466, 'perf1iynycahpn4lw1ppzh0l6r5z1a-177dxsxbyqz8h18z4sldn5awz2', 'eplayer17', {age:1354724063000});
 	//xml.eplayer.performgroup.com/eplayer/mrss/1iynycahpn4lw1ppzh0l6r5z1a/15wugu5n3ruow1j9kwr3ma3tqz//7-12
 	//xml.eplayer.performgroup.com/eplayer/mrss/1iynycahpn4lw1ppzh0l6r5z1a/15wugu5n3ruow1j9kwr3ma3tqz
-	preg_match("@addCustomPlayer\('(.*?)',.*?'(.*?)'@", $retfull, $matches);
+	preg_match("@addCustomPlayer\('(.*?)',.*?'(.*?)'@", $web_descargada, $matches);
 	$aCargar = 'http://xml.eplayer.performgroup.com/eplayer/mrss/'.$matches[1].'/'.$matches[2];
 	$xml = CargaWebCurl($aCargar);
 	//dbug($xml);
@@ -67,7 +65,7 @@ else{
 
 
 //titulo
-$titulo=entre1y2($retfull,"<title>","|");
+$titulo=entre1y2($web_descargada,"<title>","|");
 
 
 $obtenido=array(
