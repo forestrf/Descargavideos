@@ -153,5 +153,6 @@ A continuación se puede ver el listado de las webs y los canales soportados:<br
 	<li>allmyvideos.net (requiere flash)</li>
 	<li>dailymotion.com</li>
 	<li>liveleak.com</li>
+	<li>crunchyroll.com</li>
 </ol>
 </div>

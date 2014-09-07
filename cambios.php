@@ -18,6 +18,7 @@ function cambios($max=-1){
 $todos[]=array(
 '7-Septiembre-2014'
 ,'fix:Televisa. Nuevos tipos de vídeos.'
+,'add:crunchyroll.com'
 );
 
 $todos[]=array(

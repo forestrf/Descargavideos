@@ -386,6 +386,11 @@ $cadenas=array(
 		array('liveleak.com'),
 		array('liveleak.php'),
 		'liveleak'
+	),
+	array(
+		array('crunchyroll.com'),
+		array('crunchyrollcom.php'),
+		'crunchyrollcom'
 	)
 );
 
