@@ -58,7 +58,7 @@ var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-29252510-1"]);_gaq.push(["_trackP
 
 	
 	<input type="submit" id="submit" value="Calcular" class="boton">
-	<br>
+	<br/>
 
 	</form>
 
@@ -77,25 +77,25 @@ var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-29252510-1"]);_gaq.push(["_trackP
 
 <!--
 <div class="menu">
-	<a href="/" class="inicio">Inicio</a><br>
-	<a href="/faq#contenido" class="preguntas_frecuentes">Preguntas frecuentes</a><br>
-	<a target="_blank" href="http://descargavid.blogspot.com.es/" class="blog">Blog</a><br>
-	<a href="/lab#contenido" class="lab">Lab</a><br>
-	<a href="/changelog#contenido" class="changelog">Changelog</a><br>
-	<a href="/agradecimientos#contenido" class="agradecimientos">Agradecimientos</a><br>
-	<a href="/contacta#contenido" class="contacta">Contacta</a><br>
+	<a href="/" class="inicio">Inicio</a><br/>
+	<a href="/faq#contenido" class="preguntas_frecuentes">Preguntas frecuentes</a><br/>
+	<a target="_blank" href="http://descargavid.blogspot.com.es/" class="blog">Blog</a><br/>
+	<a href="/lab#contenido" class="lab">Lab</a><br/>
+	<a href="/changelog#contenido" class="changelog">Changelog</a><br/>
+	<a href="/agradecimientos#contenido" class="agradecimientos">Agradecimientos</a><br/>
+	<a href="/contacta#contenido" class="contacta">Contacta</a><br/>
 </div>
 -->
-<br>
-<br>
-<br>
-<br>
+<br/>
+<br/>
+<br/>
+<br/>
 <div class="txt_centrado">
 <a href="/versionEscritorioMovil.php?modo=escritorio">Usar la versión de escritorio</a>
 </div>
 
-<br>
-<br>
+<br/>
+<br/>
 
 
 <div id="pie">

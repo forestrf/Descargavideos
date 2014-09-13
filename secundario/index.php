@@ -409,7 +409,7 @@ if($modo==1){
 		$cadena_elegida_arr = averiguaCadena($web);
 		if($cadena_elegida_arr===false){
 			//no es una url aceptada de una web permitida
-			setErrorWebIntera('Has introducido un enlace de una página web no soportada. Puedes consultar el listado de webs soportadas en el siguiente enlace:<br><a href="http://www.descargavideos.tv/faq#p_q_c_s_d">http://www.descargavideos.tv/faq#p_q_c_s_d</a>');
+			setErrorWebIntera('Has introducido un enlace de una página web no soportada. Puedes consultar el listado de webs soportadas en el siguiente enlace:<br/><a href="http://www.descargavideos.tv/faq#p_q_c_s_d">http://www.descargavideos.tv/faq#p_q_c_s_d</a>');
 			
 			//lanzaBusquedaGoogle();
 		}

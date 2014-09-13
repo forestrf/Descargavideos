@@ -1,7 +1,7 @@
 <div class="columna_izq">
 	<div class="bloque_pagina bloqueMargin txt_centrado">
 		<h3><?php echo TXT_TUTORIAL_YOUTUBE_TIT?></h3>
-		<p>
+		<br/><br/>
 		<div class="video_560 txt_centrado">
 			<div id="ytapiplayer2" style="display:none;">
 			</div>
@@ -14,36 +14,36 @@
 			};
 			</script>
 		</div>
-		<p>
+		<br/><br/>
 		<?php echo TXT_TUTORIAL_YOUTUBE_DESC?>
 	</div>
 
 	<div class="bloque_pagina bloqueMargin">
 		<div class="txt_centrado">
-			<?php echo TXT_ARRASTRA_BOOKMARKLET?><p>
+			<?php echo TXT_ARRASTRA_BOOKMARKLET?><br/><br/>
 			<a href="<?php echo BOOKMARKLET?>" class="bookmarklet" target="_blank"><?php echo TXT_BOOKMARKLET?></a>
-		</div><p>
+		</div><br/><br/>
 		<?php echo TXT_BOOKMARKLET_DESC?>
 	</div>
 	<div class="bloque_pagina bloqueMargin">
-		<h3><?php echo TXT_COMO_DESCARGAR_VIDEOS_TIT?></h3><p>
+		<h3><?php echo TXT_COMO_DESCARGAR_VIDEOS_TIT?></h3><br/><br/>
 		<?php echo TXT_COMO_DESCARGAR_VIDEOS_DESC?>
-		<p>
+		<br/><br/>
 		
-		<h3><?php echo TXT_COMO_DESCARGAR_VIDEOS_2_TIT?></h3><p>
+		<h3><?php echo TXT_COMO_DESCARGAR_VIDEOS_2_TIT?></h3><br/><br/>
 		<?php echo TXT_COMO_DESCARGAR_VIDEOS_2_DESC?>
-		<p>
+		<br/><br/>
 		
-		<h3><?php echo TXT_CANALES_SOPORTADOS_TIT?></h3><p>
+		<h3><?php echo TXT_CANALES_SOPORTADOS_TIT?></h3><br/><br/>
 		<?php echo TXT_CANALES_SOPORTADOS_DESC?>
 	</div>
 	<div class="bloque_pagina bloqueMargin">
-		<h3><?php echo TXT_NO_PUEDO_DESCARGAR_TIT?></h3><p>
+		<h3><?php echo TXT_NO_PUEDO_DESCARGAR_TIT?></h3><br/><br/>
 		<?php echo TXT_NO_PUEDO_DESCARGAR_DESC?>
 	</div>
 	<?php /*
 	<div class="bloque_pagina bloqueMargin">
-		<h3>Últimos vídeos calculados</h3><p>
+		<h3>Últimos vídeos calculados</h3><br/><br/>
 		<?php
 			$old = getDownloads();
 			foreach($old as $elem){

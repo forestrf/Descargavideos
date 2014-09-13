@@ -1,5 +1,5 @@
 <center>
-	<?php echo TXT_CONTACTA_INFO_URLS?><p>
+	<?php echo TXT_CONTACTA_INFO_URLS?><br/><br/>
 	<table cellspacing="0" cellpadding="0" border="0">
 		<tr>
 			<td>

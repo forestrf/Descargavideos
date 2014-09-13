@@ -2,7 +2,7 @@
 error_reporting(-1);
 include_once 'funciones.php';
 
-$impresion='<center><br><br><br><br><br><h1>';
+$impresion='<center><br/><br/><br/><br/><br/><h1>';
 
 $error='';$name='';$email='';$subject='';$message='';
 
@@ -32,7 +32,7 @@ if(isset($_REQUEST['send'])){
 		mail($to,$subject,$msg,$header);
 
 		$impresion=$impresion.'
-		<div style="text-align:center;"><h1>Enviado</h1><p>Gracias, le responderemos lo antes posible!</p></div>';
+		<div style="text-align:center;"><h1>Enviado</h1><br/><br/>Gracias, le responderemos lo antes posible!</p></div>';
 	}
 }
 if(!isset($_REQUEST['send'])||$error!='')

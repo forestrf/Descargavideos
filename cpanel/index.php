@@ -12,7 +12,7 @@ if($result === false){
 
 if(isset($_GET['quitar'])){
 	$db->query('DELETE FROM avisos WHERE ID = '.$_GET['quitar'].';');
-	echo 'ID ',$_GET['quitar'],' quitado<br>';
+	echo 'ID ',$_GET['quitar'],' quitado<br/>';
 }
 
 if(isset($_GET['debug_activar'])){
@@ -28,16 +28,16 @@ if(isset($_GET['debug_desactivar'])){
 }
 
 if(!isset($_COOKIE['debug'])){
-	echo '<a href="?debug_activar">Debug desactivado (Activar)</a><br>';
+	echo '<a href="?debug_activar">Debug desactivado (Activar)</a><br/>';
 }
 else{
-	echo '<a href="?debug_desactivar">Debug activado (Desactivar)</a><br>';
+	echo '<a href="?debug_desactivar">Debug activado (Desactivar)</a><br/>';
 }
 
 ?>
 
-<a href="http://www.descargavideos.tv/cpanel" target="blank">CPanel DV</a><br>
-<a href="http://localhost/cpanel" target="blank">CPanel LH</a><br>
+<a href="http://www.descargavideos.tv/cpanel" target="blank">CPanel DV</a><br/>
+<a href="http://localhost/cpanel" target="blank">CPanel LH</a><br/>
 
 <table border="1">
 	<tr>
@@ -45,16 +45,16 @@ else{
 		include_once '../funciones.php';
 		$proxyes = listado_proxys();
 		foreach($proxyes as $proxy){
-			echo '<td>'.$proxy['dominio'].'<br><img style="background-color:#F00;width:30px;height:30px" src="http://'.$proxy['dominio'].'/favicon.ico"></td>';
+			echo '<td>'.$proxy['dominio'].'<br/><img style="background-color:#F00;width:30px;height:30px" src="http://'.$proxy['dominio'].'/favicon.ico"></td>';
 		}
 		?>
 	</tr>
 </table>
-<br>
+<br/>
 
 
-<br>
-Avisos de fallos (rápido):<br>
+<br/>
+Avisos de fallos (rápido):<br/>
 <table border="1">
 	<tr>
 		<th>

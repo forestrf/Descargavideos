@@ -13,8 +13,8 @@ define('TXT_GESTOR_DESCARGAS_DESC','Windows Application that downloads videos fr
 
 define('TXT_IMAGEN_FONDO_TIT','Select a background');
 
-define('TXT_BOOKMARKLET_DESC','This blue button is a bookmark that opens a new tab/window of Descargavideos with the link of the video that you were seeing.<br>
-	To use it you need to follow this steps:<p>
+define('TXT_BOOKMARKLET_DESC','This blue button is a bookmark that opens a new tab/window of Descargavideos with the link of the video that you were seeing.<br/>
+	To use it you need to follow this steps:<br/><br/>
 	<ol>
 		<li>Save the bookmark. If you don\'t have it, you need to drag the blue button to your bookmark toolbar, or save it as bookmark doing right click and saving it.
 		<li>Navigate to one of the <a href="/faq#p_q_c_s_d">supported webs by Descargavideos</a> where there are a video that we want.
@@ -24,7 +24,7 @@ define('TXT_BOOKMARKLET_DESC','This blue button is a bookmark that opens a new t
 	</ol>');
 
 define('TXT_ADDONFF_TIT','Firefox add-on');
-define('TXT_ADDONFF_DESC','The add-on do the same as the <a href="#lab_bookmarklet">bookmarklet</a><br>
+define('TXT_ADDONFF_DESC','The add-on do the same as the <a href="#lab_bookmarklet">bookmarklet</a><br/>
 	<a href="https://addons.mozilla.org/es-ES/firefox/addon/descargavideos-helper/">Download it here</a>');
 
 define('TXT_BARRADV_IFRAME_TIT','Descargavideos search bar to insert in your web');
@@ -34,6 +34,6 @@ define('TXT_BARRADV_IFRAME_COLOR','Color');
 define('TXT_BARRADV_IFRAME_ANCHO','Length');
 
 define('TXT_FOROCOCHES_TIT','Rastreador de vídeos para Forocoches');
-define('TXT_FOROCOCHES_DESC','Facilitador/Rastreador para obtener de una todos lo vídeos de youtube y canciones de soundcloud de un tema entero de dicho foro.<br>
+define('TXT_FOROCOCHES_DESC','Facilitador/Rastreador para obtener de una todos lo vídeos de youtube y canciones de soundcloud de un tema entero de dicho foro.<br/>
 	Enlace: <a href="http://fchelper.eu5.org/">Utilidad para Forocoches</a>');
 ?>

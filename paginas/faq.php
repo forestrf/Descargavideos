@@ -1,15 +1,15 @@
 <div class="listado_preguntas">
-<a href="#p_q_e_d">¿Qué es Descargavideos?</a><br>
-<a href="#p_c_s_u_d">¿Cómo se usa Descargavideos?</a><br>
-<a href="#p_c_d_e_v">¿Cómo descargo el vídeo?</a><br>
-<a href="#p_c_d_d_l_e_r">¿Cómo descargo de los enlaces RTMP?</a><br>
-<a href="#p_u_v_d_m_d_f_r_c_r">¿Un vídeo de mitele da fallo relacionado con RTMP?</a><br>
-<a href="#p_l_w_f_a_i_d_u_v">La web falla al intentar descargar un vídeo.</a><br>
-<a href="#p_q_d_u_v_p_l_w_d_s_e_n_e_e_e_l_d_c_s">Quiero descargar un vídeo pero la web donde se encuentra no está en el listado de canales soportados.</a><br>
-<a href="#p_n_d_a_p">¿Necesito descargar algún programa?</a><br>
-<a href="#p_q_d_a_l_w">¿Qué datos almacena la web?</a><br>
-<a href="#p_t_u_s_p_l_p">Tengo una sugerencia para la página.</a><br>
-<a href="#p_q_c_s_d">¿Qué canales soporta Descargavideos?</a><br>
+<a href="#p_q_e_d">¿Qué es Descargavideos?</a><br/>
+<a href="#p_c_s_u_d">¿Cómo se usa Descargavideos?</a><br/>
+<a href="#p_c_d_e_v">¿Cómo descargo el vídeo?</a><br/>
+<a href="#p_c_d_d_l_e_r">¿Cómo descargo de los enlaces RTMP?</a><br/>
+<a href="#p_u_v_d_m_d_f_r_c_r">¿Un vídeo de mitele da fallo relacionado con RTMP?</a><br/>
+<a href="#p_l_w_f_a_i_d_u_v">La web falla al intentar descargar un vídeo.</a><br/>
+<a href="#p_q_d_u_v_p_l_w_d_s_e_n_e_e_e_l_d_c_s">Quiero descargar un vídeo pero la web donde se encuentra no está en el listado de canales soportados.</a><br/>
+<a href="#p_n_d_a_p">¿Necesito descargar algún programa?</a><br/>
+<a href="#p_q_d_a_l_w">¿Qué datos almacena la web?</a><br/>
+<a href="#p_t_u_s_p_l_p">Tengo una sugerencia para la página.</a><br/>
+<a href="#p_q_c_s_d">¿Qué canales soporta Descargavideos?</a><br/>
 </div>
 
 <div class="pregunta"><div id="p_q_e_d"></div>¿Qué es Descargavideos?</div>
@@ -24,22 +24,22 @@ Para hacer uso de esta web necesitas la URL de la web donde se aloja el vídeo d
 
 <div class="pregunta"><div id="p_c_d_e_v"></div>¿Cómo descargo el vídeo?</div>
 <div class="respuesta">
-Para descargar los vídeos de los enlaces deberás, dependiendo del navegador que uses, seguir los siguientes pasos:<br>
-Firefox:<br>
--Hacer clic derecho sobre el enlace del resultado.<br>
--Clicar en "Guardar enlace Como..."<p>
-Chrome(opción 1):<br>
--Manten pulsada la tecla "alt" sin soltarla (situada a la derecha del logotipo de windows en el teclado).<br>
--Hacer clic izquierdo sobre el enlace sin soltar alt. Una vez hecho el clic podemos soltar "alt"<p>
-Chrome(opción 2):<br>
--Hacer clic derecho sobre el enlace del resultado.<br>
--Clicar en "Guardar enlace Como..."<p>
-Opera:<br>
--Hacer clic derecho sobre el enlace del resultado.<br>
--Clicar en "Guardar contenido Como..."<p>
-Internet Explorer:<br>
--Hacer clic derecho sobre el enlace del resultado.<br>
--Clicar en "Guardar destino Como..."<p>
+Para descargar los vídeos de los enlaces deberás, dependiendo del navegador que uses, seguir los siguientes pasos:<br/>
+Firefox:<br/>
+-Hacer clic derecho sobre el enlace del resultado.<br/>
+-Clicar en "Guardar enlace Como..."<br/><br/>
+Chrome(opción 1):<br/>
+-Manten pulsada la tecla "alt" sin soltarla (situada a la derecha del logotipo de windows en el teclado).<br/>
+-Hacer clic izquierdo sobre el enlace sin soltar alt. Una vez hecho el clic podemos soltar "alt"<br/><br/>
+Chrome(opción 2):<br/>
+-Hacer clic derecho sobre el enlace del resultado.<br/>
+-Clicar en "Guardar enlace Como..."<br/><br/>
+Opera:<br/>
+-Hacer clic derecho sobre el enlace del resultado.<br/>
+-Clicar en "Guardar contenido Como..."<br/><br/>
+Internet Explorer:<br/>
+-Hacer clic derecho sobre el enlace del resultado.<br/>
+-Clicar en "Guardar destino Como..."<br/><br/>
 </div>
 
 <div class="pregunta"><div id="p_c_d_d_l_e_r"></div>¿Cómo descargo de los enlaces RTMP?</div>
@@ -59,13 +59,13 @@ Es probable que exista un bug que provoque dicho fallo, o bien que la web donde 
 
 <div class="pregunta"><div id="p_q_d_u_v_p_l_w_d_s_e_n_e_e_e_l_d_c_s"></div>Quiero descargar un vídeo pero la web donde se encuentra no está en el listado de canales soportados.</div>
 <div class="respuesta">
-Para descargar un vídeo mediante este portal es necesario que esté en el listado de <a href="#p_q_c_s_d">webs soportadas</a>.<br>
+Para descargar un vídeo mediante este portal es necesario que esté en el listado de <a href="#p_q_c_s_d">webs soportadas</a>.<br/>
 En tal caso el vídeo no se podrá descargar a través de esta web. Si te interesa que la web soporte los vídeos de esa web deberás ponerte en contacto mediante el <a href="/contacta">formulario contacta</a> indicando el canal que te gustaría que se añadiera a Descargavideos. Tras recivir tu petición haremos todo lo posible por incluirlo al listado de canales soportados. Tan pronto como fuera soportado te avisaríamos al correo que indicaras en el mensaje.
 </div>
 
 <div class="pregunta"><div id="p_n_d_a_p"></div>¿Necesito descargar algún programa?</div>
 <div class="respuesta">
-Exceptuando varios tipos de enlaces, no es necesario descargar ningún programa. Únicamente los enlaces que usan RTMP o M3U8 requieren de la descarga de un programa ya que el navegador no es capaz de descargar este tipo de enlaces.<br>
+Exceptuando varios tipos de enlaces, no es necesario descargar ningún programa. Únicamente los enlaces que usan RTMP o M3U8 requieren de la descarga de un programa ya que el navegador no es capaz de descargar este tipo de enlaces.<br/>
 Estos programas pueden descargarse desde esta web en la <a href="/lab#contenido">sección Lab</a>.
 </div>
 
@@ -81,7 +81,7 @@ En ocasiones es necesario aportar más información sobre el problema para poder
 
 <div class="pregunta"><div id="p_q_d_a_l_w"></div>¿Qué datos almacena la web?</div>
 <div class="respuesta">
-La web únicamente almacena los siguientes datos de los usuarios:<p>
+La web únicamente almacena los siguientes datos de los usuarios:<br/><br/>
 <ul class="puntuado">
 <li>Dirección de todas las páginas cargadas y errores de programación provocados (Log automático del servidor. Este registro se hace por razones de seguridad).</li>
 <li>Cuando se genera un resultado correcto, se guarda el dominio de la web (Ej. de un enlace de mitele se guardará "Mitele.es") junto con la hora y día. Esto informa qué webs son las más usadas.</li>
@@ -99,7 +99,7 @@ La web únicamente almacena los siguientes datos de los usuarios:<p>
 
 <div class="pregunta"><div id="p_q_c_s_d"></div>¿Qué canales soporta Descargavideos?</div>
 <div class="respuesta">
-A continuación se puede ver el listado de las webs y los canales soportados:<br>
+A continuación se puede ver el listado de las webs y los canales soportados:<br/>
 <ol>
 	<li><a href="/antena-3">antena3.com</a></li>
 	<li><a href="/telecinco">telecinco.es</a></li>

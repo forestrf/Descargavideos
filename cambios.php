@@ -1216,7 +1216,7 @@ $todos[]=array(
 $todos[]=array(
 '4-Mayo-2012'
 ,'add:Contadores en la web'
-,'add:Soporte para los vídeos del grupo mitele a traves del enlace de insercion:<br>&lt;iframe src=... &gt;&lt;/iframe&gt;'
+,'add:Soporte para los vídeos del grupo mitele a traves del enlace de insercion:<br/>&lt;iframe src=... &gt;&lt;/iframe&gt;'
 ,'add:Los enlaces premium tienen su propio mensaje de error y ya no se guarda dicho enlace en el listado de enlaces fallidos para ser solucionados'
 ,'fix:Mitele'
 );
@@ -1267,7 +1267,7 @@ $todos[]=array(
 
 $todos[]=array(
 '12-Abril-2012'
-,'add:La web cuenta con blog:<br><a id=enl href=http://descargavid.blogspot.com.es/>descargavid.blogspot.com.es</a><br>Si se cae, hay algun fallo o cualquier otro problema, se informará allí'
+,'add:La web cuenta con blog:<br/><a id=enl href=http://descargavid.blogspot.com.es/>descargavid.blogspot.com.es</a><br/>Si se cae, hay algun fallo o cualquier otro problema, se informará allí'
 ,'add:Nuevas secciones (contacta y changelog)'
 );
 

@@ -282,13 +282,13 @@ function parsea_headers($http_response_header, &$responde_code){
 
 function dbug($msg){
 	if(defined('DEBUG'))
-		echo $msg.'<br>
+		echo $msg.'<br/>
 ';
 }
 
 function dbug_(&$msg){
 	if(defined('DEBUG'))
-		echo $msg.'<br>
+		echo $msg.'<br/>
 ';
 }
 

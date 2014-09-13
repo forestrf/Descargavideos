@@ -13,8 +13,8 @@ define('TXT_GESTOR_DESCARGAS_DESC','Aplicación para windows que automatiza la d
 
 define('TXT_IMAGEN_FONDO_TIT','Seleccionar imagen de fondo');
 
-define('TXT_BOOKMARKLET_DESC','El botón azul es un marcador que abre una nueva pestaña/ventana de Descargavideos con el enlace del vídeo que estabas viendo.<br>
-	Para usarlo se deben de seguir estos pasos:<p>
+define('TXT_BOOKMARKLET_DESC','El botón azul es un marcador que abre una nueva pestaña/ventana de Descargavideos con el enlace del vídeo que estabas viendo.<br/>
+	Para usarlo se deben de seguir estos pasos:<br/><br/>
 	<ol>
 		<li>Guardar el marcador. Si no lo tenemos hay que arrastrar el botón azul a la barra de marcadores, o bien guardarlo como favorito haciendo clic derecho en él y guardarlo.
 		<li>Dirigirse a una de las <a href="/faq#p_q_c_s_d">páginas soportadas por Descargavideos</a> en la que esté un vídeo de nuestro interés.
@@ -24,7 +24,7 @@ define('TXT_BOOKMARKLET_DESC','El botón azul es un marcador que abre una nueva 
 	</ol>');
 
 define('TXT_ADDONFF_TIT','Add-on para firefox');
-define('TXT_ADDONFF_DESC','La función del add-on es, por ahora, idéntica a la del <a href="#lab_bookmarklet">bookmarklet</a><br>
+define('TXT_ADDONFF_DESC','La función del add-on es, por ahora, idéntica a la del <a href="#lab_bookmarklet">bookmarklet</a><br/>
 	<a href="https://addons.mozilla.org/es-ES/firefox/addon/descargavideos-helper/">Descárgalo aquí</a>');
 
 define('TXT_BARRADV_IFRAME_TIT','Barra de Descargavideos para insertar en tu web');
@@ -34,6 +34,6 @@ define('TXT_BARRADV_IFRAME_COLOR','Color');
 define('TXT_BARRADV_IFRAME_ANCHO','Ancho');
 
 define('TXT_FOROCOCHES_TIT','Rastreador de vídeos para Forocoches');
-define('TXT_FOROCOCHES_DESC','Facilitador/Rastreador para obtener de una todos lo vídeos de youtube y canciones de soundcloud de un tema entero de dicho foro.<br>
+define('TXT_FOROCOCHES_DESC','Facilitador/Rastreador para obtener de una todos lo vídeos de youtube y canciones de soundcloud de un tema entero de dicho foro.<br/>
 	Enlace: <a href="http://fchelper.eu5.org/">Utilidad para Forocoches</a>');
 ?>

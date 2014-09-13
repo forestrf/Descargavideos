@@ -3,14 +3,14 @@
 	M3U8-Downloader
 </div>
 <div class="respuesta">
-	<?php echo TXT_M3U8Downloader_DESC?><br>
-	<a href="https://github.com/forestrf/M3U8-Downloader">GitHub</a><br>
-	<?php echo TXT_VERSION_RECIENTE?>: <a href="https://github.com/forestrf/M3U8-Downloader/releases/download/v0.3-beta.6/M3U8-Downloader.V0.3.beta6.zip">Descargar la última versión</a><p>
-	<?php echo TXT_VERSION_HISTORIAL?>:<br>
-	0.3 beta 6: <a href="https://github.com/forestrf/M3U8-Downloader/releases/download/v0.3-beta.6/M3U8-Downloader.V0.3.beta6.zip">GitHub (zip)</a> | <a href="https://github.com/forestrf/M3U8-Downloader/releases/download/v0.3-beta.6/M3U8-Downloader.V0.3.beta6.7z">GitHub (7z)</a><br>
-	0.3 beta 5: <a href="http://www.mediafire.com/download/rrbqokkw9qil9aa/M3U8-Downloader+V0.3+beta5.zip">Mediafire (zip)</a> | <a href="http://www.mediafire.com/download/x52p9ooia8k2kgk/M3U8-Downloader+V0.3+beta5.7z">Mediafire (7z)</a><br>
-	0.2b: <a href="http://www.mediafire.com/download/uu35kym0eab1jn6/M3U8-Downloader+V0.2b.zip">Mediafire</a><br>
-	0.2: <a href="http://www.mediafire.com/download/bwi2oc1mfwd8w4p/M3U8-Downloader+V0.2.zip">Mediafire</a><br>
+	<?php echo TXT_M3U8Downloader_DESC?><br/>
+	<a href="https://github.com/forestrf/M3U8-Downloader">GitHub</a><br/>
+	<?php echo TXT_VERSION_RECIENTE?>: <a href="https://github.com/forestrf/M3U8-Downloader/releases/download/v0.3-beta.6/M3U8-Downloader.V0.3.beta6.zip">Descargar la última versión</a><br/><br/>
+	<?php echo TXT_VERSION_HISTORIAL?>:<br/>
+	0.3 beta 6: <a href="https://github.com/forestrf/M3U8-Downloader/releases/download/v0.3-beta.6/M3U8-Downloader.V0.3.beta6.zip">GitHub (zip)</a> | <a href="https://github.com/forestrf/M3U8-Downloader/releases/download/v0.3-beta.6/M3U8-Downloader.V0.3.beta6.7z">GitHub (7z)</a><br/>
+	0.3 beta 5: <a href="http://www.mediafire.com/download/rrbqokkw9qil9aa/M3U8-Downloader+V0.3+beta5.zip">Mediafire (zip)</a> | <a href="http://www.mediafire.com/download/x52p9ooia8k2kgk/M3U8-Downloader+V0.3+beta5.7z">Mediafire (7z)</a><br/>
+	0.2b: <a href="http://www.mediafire.com/download/uu35kym0eab1jn6/M3U8-Downloader+V0.2b.zip">Mediafire</a><br/>
+	0.2: <a href="http://www.mediafire.com/download/bwi2oc1mfwd8w4p/M3U8-Downloader+V0.2.zip">Mediafire</a><br/>
 	0.1: <a href="http://www.mediafire.com/download/l9634bl5r7e1r12/M3U8-Downloader.rar">Mediafire</a>
 </div>
 
@@ -19,16 +19,16 @@
 	RTMP-Downloader
 </div>
 <div class="respuesta">
-	<?php echo TXT_RTMPDownloader_DESC?><br>
-	<a href="https://github.com/forestrf/RTMP-Downloader">GitHub</a><br>
-	<?php echo TXT_VERSION_RECIENTE?>: <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/v0.3.4/RTMP-Downloader.v0.3.4.zip">Descargar la última versión</a><p>
-	<?php echo TXT_VERSION_HISTORIAL?>:<br>
-	0.3.4: <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/v0.3.4/RTMP-Downloader.v0.3.4.zip">GitHub (zip)</a> | <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/v0.3.4/RTMP-Downloader.v0.3.4.7z">GitHub (7z)</a><br>
-	0.3.2: <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/v0.3.2/RTMP-Downloader.v0.3.2.zip">GitHub (zip)</a> | <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/v0.3.2/RTMP-Downloader.v0.3.2.7z">GitHub (7z)</a><br>
-	0.3.1: <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/v0.3.1/RTMP-Downloader.v0.3.1.zip">GitHub (zip)</a> | <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/v0.3.1/RTMP-Downloader.v0.3.1.7z">GitHub (7z)</a><br>
-	0.2b: <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/0.2b/RTMP-Downloader.V0.2b.zip">GitHub (zip)</a> | <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/0.2b/RTMP-Downloader.V0.2b.7z">GitHub (7z)</a><br>
-	0.2: <a href="http://www.mediafire.com/download/uuj7o8bpbg0n57z/RTMP-Downloader+V0.2.zip">Mediafire (zip)</a> | <a href="http://www.mediafire.com/download/ero1iz9xook4reh/RTMP-Downloader+V0.2.7z">Mediafire (7z)</a><br>
-	0.1: <a href="http://www.mediafire.com/download/9xmc24x4ti94ypm/RTMP-Downloader+V0.1.zip">Mediafire (zip)</a> | <a href="http://www.mediafire.com/download/b52w6obqswwnekc/RTMP-Downloader+V0.1.7z">Mediafire (7z)</a><br>
+	<?php echo TXT_RTMPDownloader_DESC?><br/>
+	<a href="https://github.com/forestrf/RTMP-Downloader">GitHub</a><br/>
+	<?php echo TXT_VERSION_RECIENTE?>: <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/v0.3.4/RTMP-Downloader.v0.3.4.zip">Descargar la última versión</a><br/><br/>
+	<?php echo TXT_VERSION_HISTORIAL?>:<br/>
+	0.3.4: <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/v0.3.4/RTMP-Downloader.v0.3.4.zip">GitHub (zip)</a> | <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/v0.3.4/RTMP-Downloader.v0.3.4.7z">GitHub (7z)</a><br/>
+	0.3.2: <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/v0.3.2/RTMP-Downloader.v0.3.2.zip">GitHub (zip)</a> | <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/v0.3.2/RTMP-Downloader.v0.3.2.7z">GitHub (7z)</a><br/>
+	0.3.1: <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/v0.3.1/RTMP-Downloader.v0.3.1.zip">GitHub (zip)</a> | <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/v0.3.1/RTMP-Downloader.v0.3.1.7z">GitHub (7z)</a><br/>
+	0.2b: <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/0.2b/RTMP-Downloader.V0.2b.zip">GitHub (zip)</a> | <a href="https://github.com/forestrf/RTMP-Downloader/releases/download/0.2b/RTMP-Downloader.V0.2b.7z">GitHub (7z)</a><br/>
+	0.2: <a href="http://www.mediafire.com/download/uuj7o8bpbg0n57z/RTMP-Downloader+V0.2.zip">Mediafire (zip)</a> | <a href="http://www.mediafire.com/download/ero1iz9xook4reh/RTMP-Downloader+V0.2.7z">Mediafire (7z)</a><br/>
+	0.1: <a href="http://www.mediafire.com/download/9xmc24x4ti94ypm/RTMP-Downloader+V0.1.zip">Mediafire (zip)</a> | <a href="http://www.mediafire.com/download/b52w6obqswwnekc/RTMP-Downloader+V0.1.7z">Mediafire (7z)</a><br/>
 </div>
 
 <div class="pregunta">
@@ -36,14 +36,14 @@
 	F4M-Downloader
 </div>
 <div class="respuesta">
-	<?php echo TXT_F4MDownloader_DESC?><br>
-	<a href="https://github.com/forestrf/F4M-Downloader">GitHub</a><br>
-	<?php echo TXT_VERSION_RECIENTE?>: <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.4/F4M-Downloader.v0.0.4.zip">Descargar la última versión</a><p>
-	<?php echo TXT_VERSION_HISTORIAL?>:<br>
-	0.0.4: <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.4/F4M-Downloader.v0.0.4.zip">GitHub (zip)</a> | <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.4/F4M-Downloader.v0.0.4.7z">GitHub (7z)</a><br>
-	0.0.3: <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.3/F4M-Downloader.v0.0.3.zip">GitHub (zip)</a> | <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.3/F4M-Downloader.v0.0.3.7z">GitHub (7z)</a><br>
-	0.0.2b: <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.2b/F4M-Downloader.v0.0.2b.zip">GitHub (zip)</a> | <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.2b/F4M-Downloader.v0.0.2b.7z">GitHub (7z)</a><br>
-	0.0.2: <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.2/F4M-Downloader.v0.0.2.7z">GitHub (zip)</a> | <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.2/F4M-Downloader.v0.0.2.7z">GitHub (7z)</a><br>
+	<?php echo TXT_F4MDownloader_DESC?><br/>
+	<a href="https://github.com/forestrf/F4M-Downloader">GitHub</a><br/>
+	<?php echo TXT_VERSION_RECIENTE?>: <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.4/F4M-Downloader.v0.0.4.zip">Descargar la última versión</a><br/><br/>
+	<?php echo TXT_VERSION_HISTORIAL?>:<br/>
+	0.0.4: <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.4/F4M-Downloader.v0.0.4.zip">GitHub (zip)</a> | <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.4/F4M-Downloader.v0.0.4.7z">GitHub (7z)</a><br/>
+	0.0.3: <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.3/F4M-Downloader.v0.0.3.zip">GitHub (zip)</a> | <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.3/F4M-Downloader.v0.0.3.7z">GitHub (7z)</a><br/>
+	0.0.2b: <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.2b/F4M-Downloader.v0.0.2b.zip">GitHub (zip)</a> | <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.2b/F4M-Downloader.v0.0.2b.7z">GitHub (7z)</a><br/>
+	0.0.2: <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.2/F4M-Downloader.v0.0.2.7z">GitHub (zip)</a> | <a href="https://github.com/forestrf/F4M-Downloader/releases/download/v0.0.2/F4M-Downloader.v0.0.2.7z">GitHub (7z)</a><br/>
 </div>
 <?php /*
 <div class="pregunta">
@@ -51,14 +51,14 @@
 	<?php echo TXT_GESTOR_DESCARGAS_TIT?>
 </div>
 <div class="respuesta">
-	<?php echo TXT_GESTOR_DESCARGAS_DESC?><br>
-	<?php echo TXT_VERSION_RECIENTE?>: <a href="http://adf.ly/UuWp0">0.1.1</a><p>
-	<?php echo TXT_VERSION_HISTORIAL?>:<br>
-	<a href="http://www.mediafire.com/download/rkld591t4dd73ql/Descargavideos+gestor+0.1.1.rar">0.1.1</a><br>
-	<a href="http://www.mediafire.com/download/bl4kma5o566va6k/Descargavideos+gestor+0.1.0.rar">0.1.0</a><br>
-	<a href="http://www.mediafire.com/download/eedqq487edn1po4/Descargavideos+gestor+0.0.4.rar">0.0.4</a><br>
-	<a href="http://www.mediafire.com/download/s196363qbpdtldc/Descargavideos+gestor+0.0.3.rar">0.0.3</a><br>
-	<a href="http://www.mediafire.com/download/w5ldaozmu71v4ae/Descargavideos+gestor+0.0.2.rar">0.0.2</a><br>
+	<?php echo TXT_GESTOR_DESCARGAS_DESC?><br/>
+	<?php echo TXT_VERSION_RECIENTE?>: <a href="http://adf.ly/UuWp0">0.1.1</a><br/><br/>
+	<?php echo TXT_VERSION_HISTORIAL?>:<br/>
+	<a href="http://www.mediafire.com/download/rkld591t4dd73ql/Descargavideos+gestor+0.1.1.rar">0.1.1</a><br/>
+	<a href="http://www.mediafire.com/download/bl4kma5o566va6k/Descargavideos+gestor+0.1.0.rar">0.1.0</a><br/>
+	<a href="http://www.mediafire.com/download/eedqq487edn1po4/Descargavideos+gestor+0.0.4.rar">0.0.4</a><br/>
+	<a href="http://www.mediafire.com/download/s196363qbpdtldc/Descargavideos+gestor+0.0.3.rar">0.0.3</a><br/>
+	<a href="http://www.mediafire.com/download/w5ldaozmu71v4ae/Descargavideos+gestor+0.0.2.rar">0.0.2</a><br/>
 	<a href="http://www.mediafire.com/download/98y95cb7zibc7nc/Descargavideos+gestor+0.0.1.rar">0.0.1</a>
 </div>
 */ ?>
@@ -86,7 +86,7 @@
 	Bookmarklet
 </div>
 <div class="respuesta">
-	<a target="_blank" class="bookmarklet" href="<?php echo BOOKMARKLET?>"><?php echo TXT_BOOKMARKLET?></a><p>
+	<a target="_blank" class="bookmarklet" href="<?php echo BOOKMARKLET?>"><?php echo TXT_BOOKMARKLET?></a><br/><br/>
 	<?php echo TXT_BOOKMARKLET_DESC?>
 </div>
 
@@ -106,20 +106,20 @@
 	<div class="creaform">
 		<div class="der">
 			<div id="muestra"></div>
-			<div id="codigo"><?php echo TXT_BARRADV_IFRAME_COPYCODE?>:<br><textarea id="cod_html" onclick="this.focus();this.select()" readonly="readonly"></textarea></div>
+			<div id="codigo"><?php echo TXT_BARRADV_IFRAME_COPYCODE?>:<br/><textarea id="cod_html" onclick="this.focus();this.select()" readonly="readonly"></textarea></div>
 		</div>
 
 		<div id="selector">
-			<?php echo TXT_BARRADV_IFRAME_TAMANO?>:<br>
+			<?php echo TXT_BARRADV_IFRAME_TAMANO?>:<br/>
 			<input type="button" onclick="aplicaCambios('tam','f1');" value="Grande"/>
 			<input type="button" onclick="aplicaCambios('tam','f2');" value="Mediano"/>
 			<input type="button" onclick="aplicaCambios('tam','f3');" value="Pequeño"/>
-			<p>
-			<?php echo TXT_BARRADV_IFRAME_COLOR?>:<br>
+			<br/><br/>
+			<?php echo TXT_BARRADV_IFRAME_COLOR?>:<br/>
 			<input type="button" onclick="aplicaCambios('color','blanco');" value="Blanco"/>
 			<input type="button" onclick="aplicaCambios('color','negro');" value="Negro"/>
-			<p>
-			<?php echo TXT_BARRADV_IFRAME_ANCHO?>:<br>
+			<br/><br/>
+			<?php echo TXT_BARRADV_IFRAME_ANCHO?>:<br/>
 			<input type="text" value="300" name="tamn" size="5" onblur="aplicaCambios('largo',this.value);"/>px
 		</div>
 

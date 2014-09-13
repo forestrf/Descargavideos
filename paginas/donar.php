@@ -1,5 +1,5 @@
 <div class="txt_centrado">
-	<?php echo TXT_INDICAR_BOTON_DONAR?><p>
+	<?php echo TXT_INDICAR_BOTON_DONAR?><br/><br/>
 	<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 		<input type="hidden" name="cmd" value="_s-xclick">
 		<input type="hidden" name="hosted_button_id" value="TWBMG8NXCKZJN">
@@ -7,11 +7,11 @@
 		<img alt="" border="0" src="https://www.paypalobjects.com/es_ES/i/scr/pixel.gif" width="1" height="1">
 	</form>
 
-	<p>
+	<br/><br/>
 	<hr width="300">
-	<?php echo TXT_AVISO_COMISIONES?><p>
+	<?php echo TXT_AVISO_COMISIONES?><br/><br/>
 
-	<?php echo TXT_TABLA_INTRO?><p>
+	<?php echo TXT_TABLA_INTRO?><br/><br/>
 	<table class="comparativa">
 		<tr>
 			<td><?php echo TXT_TABLA_I_DONADO?></td>

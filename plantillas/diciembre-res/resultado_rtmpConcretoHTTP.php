@@ -11,7 +11,7 @@
 <div class="agregar_rtmp_downloader" id="rtmp<?php echo $R2['random_id'];?>df" style="display:none">
 	Nombre del archivo:
 	<form method="GET" action="http://127.0.0.1:25432/" id="rtmp<?php echo $R2['random_id'];?>f" target="_blank">
-		<input type="text"   id="rtmp<?php echo $R2['random_id'];?>fnombre"  name="nombre" class="input" value="<?php echo $R2['nombre_resultado_manual'];?>" autocomplete="off"><br>
+		<input type="text"   id="rtmp<?php echo $R2['random_id'];?>fnombre"  name="nombre" class="input" value="<?php echo $R2['nombre_resultado_manual'];?>" autocomplete="off"><br/>
 		<input type="hidden" id="rtmp<?php echo $R2['random_id'];?>furlhttp" name="urlhttp" value="<?php echo $R2['dir_resultado_rtmpdumpHTTP_esc_doblecoma'];?>">
 		<input type="hidden" id="rtmp<?php echo $R2['random_id'];?>fcommand" name="command" value="">
 		<input type="hidden" id="rtmp<?php echo $R2['random_id'];?>fimg"     name="img" value="<?php echo $R['url_img_res'];?>">

@@ -145,7 +145,7 @@ function keyScheduleToHexStr(keySchedule) {  // return expanded key as hex words
     to implement the multiplicative inverse (i.e. 1/x) within a finite field (used for the SubBytes transformation),
     but other calculations are made directly rather than being pre-computed.</p>
   <p>If you want to convince yourself that the Cipher function is working properly internally (and you
-    should!), NIST provide test vectors for AES (appendix C.1 of the standard). Click<br>
+    should!), NIST provide test vectors for AES (appendix C.1 of the standard). Click<br/>
     &nbsp;&nbsp;&nbsp;&nbsp;
     <button onclick="alert(byteArrayToHexStr(Aes.cipher([0x00,0x11,0x22,0x33,0x44,0x55,0x66,0x77,0x88,0x99,0xaa,0xbb,0xcc,0xdd,0xee,0xff],          Aes.keyExpansion([0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0a,0x0b,0x0c,0x0d,0x0e,0x0f]))))"> 128-bit
     Test Vector </button>
@@ -153,7 +153,7 @@ function keyScheduleToHexStr(keySchedule) {  // return expanded key as hex words
     Test Vector </button>
     <button onclick="alert(byteArrayToHexStr(Aes.cipher([0x00,0x11,0x22,0x33,0x44,0x55,0x66,0x77,0x88,0x99,0xaa,0xbb,0xcc,0xdd,0xee,0xff],          Aes.keyExpansion([0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0a,0x0b,0x0c,0x0d,0x0e,0x0f, 0x10,0x11,0x12,0x13,0x14,0x15,0x16,0x17,0x18,0x19,0x1a,0x1b,0x1c,0x1d,0x1e,0x1f]))))"> 256-bit
     Test Vector </button>
-    <br>
+    <br/>
     and the cipher output block should be</p>
   <ul>
     <li>128-bit: <i>69 c4 e0 d8 6a 7b 04 30 d8 cd b7 80 70 b4 c5 5a</i> </li>
@@ -269,7 +269,7 @@ function keyScheduleToHexStr(keySchedule) {  // return expanded key as hex words
     and has no unsigned-right-shift operator(!), but is otherwise a straightforward port. In other languages,
     be sure to use 64-bit integers/longs, either unsigned or with unsigned right-shift operators; you
     may need to take into consideration the way different languages handle bitwise ops, and of course
-    standard issues such as array handling and strict typing. I’m not aware of any other issues. <br>
+    standard issues such as array handling and strict typing. I’m not aware of any other issues. <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;I’m not familiar with Python, but there is a Python version available at <a target="_blank" href="http://wiki.birth-online.de/snippets/python/aes-rijndael">wiki.birth-online.de/snippets/python/aes-rijndael</a>.</p>
   <p><i>Speed:</i> as mentioned, this is not an optimised implementation – on a 2GHz Intel Core 2 machine,
     this implementation processes around 6kB/sec using IE7, and 30kB/sec using FF3(!) (one page of text
