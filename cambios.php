@@ -19,6 +19,7 @@ $todos[]=array(
 '13-Septiembre-2014'
 ,'fix:Algunos vídeos de atresplayer que usan rtmp ahora funcionan.'
 ,'fix:Ampliado soporte para vídeos de tune.pk que no siguen el mismo patrón para indicar los vídeos.'
+,'fix:URIs que comiencen por http://http://, posiblemente por error, ahora funcionarán.'
 );
 
 $todos[]=array(

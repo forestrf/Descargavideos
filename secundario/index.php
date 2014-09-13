@@ -603,6 +603,8 @@ function validar_enlace($link){
 		return false;
 	}
 
+	$link = trim($link);
+
 	// Quitar espacios y pasarlos a guiones (-) en rtpa.es
 	if(enString($link, 'rtpa.es')){
 		$link = strtr($link,' ','-');
@@ -616,6 +618,11 @@ function validar_enlace($link){
 	
 	if(strpos($link, '//') === 0){
 		$link = 'http:'.$link;
+	}
+	
+	// http://http://www....
+	if(strpos($link,'http://http://') === 0){
+		$link = substr($link, strlen('http://'));
 	}
 	
 	// http:// está en el enlace. Si no, lo agregamos
