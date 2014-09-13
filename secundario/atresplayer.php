@@ -231,7 +231,7 @@ function resultadoA3PNormal($web, $web_descargada='', $episode='', $title=''){
 		'url'            => '-',
 		'tipo'           => 'f4m',
 		'nombre_archivo' => generaNombreWindowsValido($preSubtitulos['name']),
-		'script'         => str_replace('	', '', str_replace("\r\n", '', $urljs_f4m))
+		'script'         => strtr($urljs_f4m, array("\t"=>'', "\r\n"=>''))
 	);
 	
 	return $obtenido;
