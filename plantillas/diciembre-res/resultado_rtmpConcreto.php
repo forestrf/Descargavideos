@@ -3,7 +3,9 @@
 		Descargar (Necesita programa)
 	</div>
 	<div class="interiorboton" id="rtmpcontenido<?php echo $R2['random_id'];?>" style="display:none">
-		<?php echo INTERIOR_AVISO_RTMP?>
+		<span id="rtmpinfo<?php echo $R2['random_id'];?>">
+			<?php echo INTERIOR_AVISO_RTMP?>
+		</span><br/>
 		<div class="rtmpdump" id="rtmpcode<?php echo $R2['random_id'];?>">
 			rtmpdump <?php echo $R2['dir_resultado_rtmpdump_manual']; if(!enString($R2['dir_resultado_rtmpdump_manual'], ' -o '))echo ' -o "'.($R2['nombre_resultado_manual']? $R2['nombre_resultado_manual'] : 'video.mp4').'"';?>
 		</div>

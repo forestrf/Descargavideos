@@ -3,7 +3,9 @@
 		Descargar (Necesita programa)
 	</div>
 	<div class="interiorboton" id="rtmpcontenido<?php echo $R2['random_id'];?>" style="display:none">
-		<?php echo INTERIOR_AVISO_RTMP?>
+		<span id="rtmpinfo<?php echo $R2['random_id'];?>">
+			<?php echo INTERIOR_AVISO_RTMP?>
+		</span><br/>
 		<div class="rtmpdump" id="rtmpcode<?php echo $R2['random_id'];?>">
 			rtmpdump -r "<?php echo $R2['dir_resultado'];?>" -o "<?php echo $R2['extension_res'];?>"
 		</div>

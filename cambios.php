@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'13-Septiembre-2014'
+,'fix:Algunos vídeos de atresplayer que usan rtmp ahora funcionan.'
+);
+
+$todos[]=array(
 '7-Septiembre-2014'
 ,'fix:Televisa. Nuevos tipos de vídeos.'
 ,'add:crunchyroll.com'

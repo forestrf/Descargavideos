@@ -25,10 +25,11 @@ https://webproxy.net/view?q=
 
 
 
-
+f4m: 
 http://geodeswowa3player-tk.antena3.com/vcgsm/_definst_/assets5/2014/09/08/C4A34A1B-9D94-4EB8-AA5E-95F0426F0459/es.smil/manifest.f4m?nvb=20140913114112&nva=20140913134112&token=0e79dfd2ef027985f8975
 
 
+rtmp: http://www.atresplayer.com/television/webseries/las-cronicas-de-maia/temporada-1/las-cronicas-de-maia_2012091100334.html
 rtmp://geoa3playerpremiumtkfs.fplive.net/geoa3playerpremiumtk/a3player1/geo/2012/09/11/B810021B-1B83-463F-9150-3FDC8E152DA6/000.mp4?nvb=20140913124449&nva=20140913144449&token=016e355d58def46fb585e
 
 rtmpdump -r "
@@ -179,36 +180,58 @@ function resultadoA3PNormal($web, $web_descargada='', $episode='', $title=''){
 	}
 	
 	
-	$urljs_f4m = 'f{{random_id}} = function(){};'.
+	$urljs_f4m = 'f{{random_id}} = function(){};
 		
-		'D.g("rtmptxt{{random_id}}").innerHTML = "Se requiere Adobe Flash Player";'.
+		D.g("rtmptxt{{random_id}}").innerHTML = "Se requiere Adobe Flash Player";
 		
-		'function A3P{{random_id}}creaboton(que){'.
-			'if(que === false || que === "OK"){'.
-				'D.g("rtmptxt{{random_id}}").innerHTML = "Necesitas iniciar sesión en ATresPlayer para descargar este vídeo, el vídeo no existe o no se puede generar un enlace de descarga";'.
-			'}'.
-			'else{'.
-				'D.g("rtmptxt{{random_id}}").innerHTML = "Necesitas el programa F4M-Downloader";'.
-				'D.g("rtmpcode{{random_id}}").innerHTML = D.g("rtmpcode{{random_id}}").innerHTML.replace(/--manifest ".*?"/, "--manifest \""+que+"\"");'.
-				'if(typeof f4mdownloader !== "undefined"){'.
-					'D.g("rtmptxt{{random_id}}").innerHTML = "Descargar usando F4M-Downloader";'.
-					'D.g("rtmp{{random_id}}furl").value = D.g("rtmp{{random_id}}furl").value.replace(/--manifest ".*?"/, "--manifest \""+que+"\"");'.
-					'activartmp("{{random_id}}");'.
-				'}'.
-			'}'.
-		'}'.
+		function A3P{{random_id}}creaboton(que){
+			if(que === false || que === "OK"){
+				D.g("rtmptxt{{random_id}}").innerHTML = "Necesitas iniciar sesión en ATresPlayer para descargar este vídeo, el vídeo no existe o no se puede generar un enlace de descarga";
+			}
+			else{
+				if(que.indexOf("rtmp") === 0){
+					D.g("rtmp{{random_id}}f").action = "http://127.0.0.1:25432/";
+					D.g("rtmp{{random_id}}fnombre").value += ".mp4";
+					D.g("rtmptxt{{random_id}}").innerHTML = "Necesitas el programa RTMP-Downloader";
+					
+					var pass = que.split("?")[1];
+					var r = que.split("/");
+					r = r[0] + "//" + r[2] + "/" + r[3] + "?" + pass;
+					
+					var y = "mp4:" + que.split(r.split("?")[0]+"/")[1];
+					
+					D.g("rtmpcode{{random_id}}").innerHTML = D.g("rtmpcode{{random_id}}").innerHTML = "rtmpdump -r \"" + r + "\" -y \"" + y + "\" -o \"" + D.g("rtmp{{random_id}}fnombre").value + "\"";
+					
+					D.g("rtmpinfo{{random_id}}").innerHTML = "'.strtr(INTERIOR_AVISO_RTMP, array('"'=>'\\"', "\r\n"=>'')).'";
+					
+					getScript("http://127.0.0.1:25432/rtmpdownloader.js",function(){
+						if(typeof rtmpdownloader !== "undefined"){
+							D.g("rtmptxt{{random_id}}").innerHTML = "Descargar usando RTMP-Downloader";
+							D.g("rtmp{{random_id}}furl").value = " -r \"" + r + "\" -y \"" + y + "\" -o \"" + D.g("rtmp{{random_id}}fnombre").value + "\"";
+							activartmp("{{random_id}}");
+						}
+					});
+				} else {
+					D.g("rtmptxt{{random_id}}").innerHTML = "Necesitas el programa F4M-Downloader";
+					D.g("rtmpcode{{random_id}}").innerHTML = D.g("rtmpcode{{random_id}}").innerHTML.replace(/--manifest ".*?"/, "--manifest \""+que+"\"");
+					if(typeof f4mdownloader !== "undefined"){
+						D.g("rtmptxt{{random_id}}").innerHTML = "Descargar usando F4M-Downloader";
+						D.g("rtmp{{random_id}}furl").value = D.g("rtmp{{random_id}}furl").value.replace(/--manifest ".*?"/, "--manifest \""+que+"\"");
+						activartmp("{{random_id}}");
+					}
+				}
+			}
+		}
 		
-		'D.g("enlaces").innerHTML += \'<iframe width="0" height="0" style="position:absolute" src="http://sandia.tk/a3p2.php?o=A3P{{random_id}}creaboton&e='.$episode.'&t='.$tiempo.'&h='.$hmac.'">\';';
-	
-	$tipo = 'f4m';
+		D.g("enlaces").innerHTML += \'<iframe width="0" height="0" style="position:absolute" src="http://sandia.tk/a3p2.php?o=A3P{{random_id}}creaboton&e='.$episode.'&t='.$tiempo.'&h='.$hmac.'">\';';
 	
 	// f4m url
 	$obtenido[] = array(
 		'titulo'         => 'Calidad alta',
 		'url'            => '-',
-		'tipo'           => $tipo,
+		'tipo'           => 'f4m',
 		'nombre_archivo' => generaNombreWindowsValido($preSubtitulos['name']),
-		'script'         => $urljs_f4m
+		'script'         => str_replace('	', '', str_replace("\r\n", '', $urljs_f4m))
 	);
 	
 	return $obtenido;

@@ -104,6 +104,18 @@ páginas ($pag):
 
 
 
+
+
+preparaPagina($pag);
+
+//Idiomas (en preparaPagina() tmbn se manejan)
+include_once 'idiomas/'.IDIOMA.'/index.php';
+
+
+
+
+
+
 //no hay petición de ninguna web
 $modo = 1;
 if(isset($web)){
@@ -116,14 +128,6 @@ if(isset($web)){
 	
 	chdir("..");
 }
-
-
-
-
-preparaPagina($pag);
-
-//Idiomas (en preparaPagina() tmbn se manejan)
-include_once 'idiomas/'.IDIOMA.'/index.php';
 
 
 

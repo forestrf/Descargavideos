@@ -3,7 +3,9 @@
 		Descargar (Necesita programa)
 	</div>
 	<div class="interiorboton" id="rtmpcontenido<?php echo $R2['random_id'];?>" style="display:none">
-		<?php echo INTERIOR_AVISO_RTMP?>
+		<span id="rtmpinfo<?php echo $R2['random_id'];?>">
+			<?php echo INTERIOR_AVISO_RTMP?>
+		</span>
 	</div>
 </div>
 
