@@ -202,7 +202,7 @@ function resultadoA3PNormal($web, $web_descargada='', $episode='', $title=''){
 					
 					D.g("rtmpcode{{random_id}}").innerHTML = D.g("rtmpcode{{random_id}}").innerHTML = "rtmpdump -r \"" + r + "\" -y \"" + y + "\" -o \"" + D.g("rtmp{{random_id}}fnombre").value + "\"";
 					
-					D.g("rtmpinfo{{random_id}}").innerHTML = "'.strtr(INTERIOR_AVISO_RTMP, array("\t"=>'', "\r"=>'', "\n"=>'')).'";
+					D.g("rtmpinfo{{random_id}}").innerHTML = "'.strtr(INTERIOR_AVISO_RTMP, array("\t"=>'', "\r"=>'', "\n"=>'', '"'=>'\\"')).'";
 					
 					getScript("http://127.0.0.1:25432/rtmpdownloader.js",function(){
 						if(typeof rtmpdownloader !== "undefined"){
