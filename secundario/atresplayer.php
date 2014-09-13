@@ -20,6 +20,30 @@ chunklist_b1973000.m3u8
 proxys (DV y PyDownTV IPs bloqueadas):
 http://www.gmodules.com/ig/proxy?url=
 https://webproxy.net/view?q=
+
+
+
+
+
+
+http://geodeswowa3player-tk.antena3.com/vcgsm/_definst_/assets5/2014/09/08/C4A34A1B-9D94-4EB8-AA5E-95F0426F0459/es.smil/manifest.f4m?nvb=20140913114112&nva=20140913134112&token=0e79dfd2ef027985f8975
+
+
+rtmp://geoa3playerpremiumtkfs.fplive.net/geoa3playerpremiumtk/a3player1/geo/2012/09/11/B810021B-1B83-463F-9150-3FDC8E152DA6/000.mp4?nvb=20140913124449&nva=20140913144449&token=016e355d58def46fb585e
+
+rtmpdump -r "
+rtmp://geoa3playerpremiumtkfs.fplive.net:1935/geoa3playerpremiumtk?nvb=20140913124944&nva=20140913144944&token=0b355c17125d2f753782e
+" -a "
+geoa3playerpremiumtk?nvb=20140913124944&nva=20140913144944&token=0b355c17125d2f753782e
+" -f "
+WIN 14,0,0,145
+" -W "
+http://www.atresplayer.com/static/swf/AtresPlayer.swf?nc=200
+" -p "
+http://www.atresplayer.com/television/webseries/las-cronicas-de-maia/temporada-1/las-cronicas-de-maia_2012091100334.html
+" -y "
+mp4:a3player1/geo/2012/09/11/B810021B-1B83-463F-9150-3FDC8E152DA6/000.mp4?nvb=20140913124944&nva=20140913144944&token=0b355c17125d2f753782e
+" -o 000.flv
 */
 
 //ES NECESARIO ESTAR LOGUEADO. Crear cuenta falsa.
@@ -167,7 +191,7 @@ function resultadoA3PNormal($web, $web_descargada='', $episode='', $title=''){
 				'D.g("rtmptxt{{random_id}}").innerHTML = "Necesitas el programa F4M-Downloader";'.
 				'D.g("rtmpcode{{random_id}}").innerHTML = D.g("rtmpcode{{random_id}}").innerHTML.replace(/--manifest ".*?"/, "--manifest \""+que+"\"");'.
 				'if(typeof f4mdownloader !== "undefined"){'.
-					'D.g("rtmptxt{{random_id}}").innerHTML = "Descargar usando RTMP-Downloader";'.
+					'D.g("rtmptxt{{random_id}}").innerHTML = "Descargar usando F4M-Downloader";'.
 					'D.g("rtmp{{random_id}}furl").value = D.g("rtmp{{random_id}}furl").value.replace(/--manifest ".*?"/, "--manifest \""+que+"\"");'.
 					'activartmp("{{random_id}}");'.
 				'}'.
@@ -176,12 +200,13 @@ function resultadoA3PNormal($web, $web_descargada='', $episode='', $title=''){
 		
 		'D.g("enlaces").innerHTML += \'<iframe width="0" height="0" style="position:absolute" src="http://sandia.tk/a3p2.php?o=A3P{{random_id}}creaboton&e='.$episode.'&t='.$tiempo.'&h='.$hmac.'">\';';
 	
+	$tipo = 'f4m';
 	
 	// f4m url
 	$obtenido[] = array(
 		'titulo'         => 'Calidad alta',
 		'url'            => '-',
-		'tipo'           => 'f4m',
+		'tipo'           => $tipo,
 		'nombre_archivo' => generaNombreWindowsValido($preSubtitulos['name']),
 		'script'         => $urljs_f4m
 	);
