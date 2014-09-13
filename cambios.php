@@ -18,6 +18,7 @@ function cambios($max=-1){
 $todos[]=array(
 '13-Septiembre-2014'
 ,'fix:Algunos vídeos de atresplayer que usan rtmp ahora funcionan.'
+,'fix:Ampliado soporte para vídeos de tune.pk que no siguen el mismo patrón para indicar los vídeos.'
 );
 
 $todos[]=array(

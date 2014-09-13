@@ -1,10 +1,12 @@
 <?php
 function tunepk(){
-global $web,$web_descargada;
-$retfull=$web_descargada;
-//$retfull=CargaWebCurl($web);
+global $web_descargada;
 
-$json = "[".entre1y2($retfull, "sources: [", "]")."]";
+preg_match('@(?:sources: |video_files = )(\[[\s\S]*?\])@', $web_descargada, $matches);
+
+dbug_r($matches);
+
+$json = $matches[1];
 //dbug($json);
 
 $json = strtr($json,array("\r"=>"","\n"=>""," "=>"","'"=>'"'));
@@ -17,20 +19,28 @@ dbug($json);
 $json = json_decode($json, true);
 dbug_r($json);
 
-
-foreach($json as $elem){
+if($json === null){
+	$files = preg_match('@http://.+?\.mp4@', $web_descargada, $matches);
 	$obtenido['enlaces'][] = array(
-		'url_txt' => $elem['label'],
-		'url'  => $elem['file'],
+		'url_txt' => 'Descargar',
+		'url'  => $matches[0],
 		'tipo' => 'http'
 	);
+} else {
+	foreach($json as $elem){
+		$obtenido['enlaces'][] = array(
+			'url_txt' => $elem['label'],
+			'url'  => $elem['file'],
+			'tipo' => 'http'
+		);
+	}
 }
 
 
-$imagen=entre1y2($retfull, '<meta property="og:image" content="', '"');
+$imagen=entre1y2($web_descargada, '<meta property="og:image" content="', '"');
 dbug('imagen = '.$imagen);
 
-$titulo=entre1y2($retfull, '<meta property="og:title" content="', '"');
+$titulo=entre1y2($web_descargada, '<meta property="og:title" content="', '"');
 dbug('titulo = '.$titulo);
 
 
