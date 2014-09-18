@@ -68,10 +68,11 @@ function dailymotioncom(){
 	// Todas las calidades
 	for($i=count($preEnlaces['alternates'])-1; $i>=0; --$i){
 		$obtenido['enlaces'][] = array(
-			'titulo'  => $preEnlaces['alternates'][$i]['name'].'p',
-			'url'     => parseaTemplateDailyMotion($preEnlaces['alternates'][$i]['template']),
-			'url_txt' => 'Descargar',
-			'tipo'    => 'http'
+			'titulo'    => $preEnlaces['alternates'][$i]['name'].'p',
+			'url'       => parseaTemplateDailyMotion($preEnlaces['alternates'][$i]['template']),
+			'extension' => 'flv',
+			'url_txt'   => 'Descargar',
+			'tipo'      => 'http'
 		);
 	}
 	

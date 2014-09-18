@@ -63,6 +63,8 @@ function extraeExtension($de='', $separador='.'){
 		$ext = substr($ext, $p, strlen($ext) -$p);
 		if(enString($ext,'?'))
 			$ext = substr($ext, 0, strpos($ext, '?'));
+		if(enString($ext,'#'))
+			$ext = substr($ext, 0, strpos($ext, '#'));
 	}
 	if($ext=='m4v')
 		$ext = 'mp4';

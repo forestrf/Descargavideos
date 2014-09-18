@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'18-Septiembre-2014'
+,'fix:Algunos vídeos no se podían ver en el reproductor por culpa de tener una extensión incorrecta.'
+);
+
+$todos[]=array(
 '13-Septiembre-2014'
 ,'fix:Algunos vídeos de atresplayer que usan rtmp ahora funcionan.'
 ,'fix:Ampliado soporte para vídeos de tune.pk que no siguen el mismo patrón para indicar los vídeos.'
