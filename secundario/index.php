@@ -397,6 +397,11 @@ $cadenas=array(
 		array('telemundocom.php'),
 		'telemundocom'
 	)
+	,array(
+		array('discoverymax.es'),
+		array('discoverymaxes.php'),
+		'discoverymaxes'
+	)
 );
 
 
