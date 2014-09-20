@@ -405,14 +405,16 @@ $cadenas=array(
 if($modo==1){
 	$R = array();
 	
-	preg_match('@descargavideos\.tv.+?web=(.+?)(?:$|&)@', $web, $matches);
-	
-	dbug_r($matches);
-	
-	if($matches && $matches[1]){
-		dbug('sacando la web de descargavideos.tv/?web=...');
-		$web = urldecode($matches[1]);
-		dbug('Nueva web: '.$web);
+	while(preg_match('@descargavideos\.tv.+?web=(.+?)(?:$|&)@', $web, $matches)){
+		dbug_r($matches);
+		
+		if($matches && $matches[1]){
+			dbug('sacando la web de descargavideos.tv/?web=...');
+			$web = urldecode($matches[1]);
+			dbug('Nueva web: '.$web);
+		} else {
+			break;
+		}
 	}
 	
 	if(validar_enlace($web)){
