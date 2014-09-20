@@ -115,7 +115,7 @@ function a3(){
 
 		//titulo
 		if(!isset($titulo)){
-			if(enString($titulo, '<nombre><![CDATA[')){
+			if(enString($xml_ret, '<nombre><![CDATA[')){
 				$titulo=entre1y2($xml_ret,'<nombre><![CDATA[',']');
 			} else {
 				$titulo=entre1y2($xml_ret,'<title>','<');
@@ -124,7 +124,8 @@ function a3(){
 		}
 		dbug('titulo='.$titulo);
 
-		if(!isset($imagen)){
+		if(!isset($imagen) || !isset($imagen[0])){
+			dbug('buscar imagen.');
 			//imagen
 			//<archivoMultimediaMaxi><archivo>clipping/2012/02/08/00127/30.jpg</archivo><alt></alt></archivoMultimediaMaxi>
 			$p=strpos($xml_ret,'archivoMultimediaMaxi');

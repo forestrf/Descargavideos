@@ -19,6 +19,7 @@ $todos[]=array(
 '20-Septiembre-2014'
 ,'fix:Problema al usar el bookmarklet o el addon desde un resultado de descargavideos. Ahora se extrae el enlace de la url de descargavideos y se recalcula el enlace del vídeo en lugar de dar fallo.'
 ,'fix:Cambiado mensaje de error de youtube por geobloqueo.'
+,'fix:Títulos e imágenes de resultados de antena3 no siempre aparecían o eran incorrectos.'
 );
 
 $todos[]=array(
