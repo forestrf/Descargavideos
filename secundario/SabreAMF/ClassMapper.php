@@ -10,11 +10,11 @@
      * @licence http://www.freebsd.org/copyright/license.html  BSD License (4 Clause) 
      */
 
-    require_once 'SabreAMF/AMF3/RemotingMessage.php';
-    require_once 'SabreAMF/AMF3/CommandMessage.php';
-    require_once 'SabreAMF/AMF3/AcknowledgeMessage.php';
-    require_once 'SabreAMF/AMF3/ErrorMessage.php';
-    require_once 'SabreAMF/ArrayCollection.php';
+    require_once  __DIR__.'/AMF3/RemotingMessage.php';
+    require_once  __DIR__.'/AMF3/CommandMessage.php';
+    require_once  __DIR__.'/AMF3/AcknowledgeMessage.php';
+    require_once  __DIR__.'/AMF3/ErrorMessage.php';
+    require_once  __DIR__.'/ArrayCollection.php';
    
     final class SabreAMF_ClassMapper {
 

@@ -1,6 +1,6 @@
 <?php
 
-    require_once 'SabreAMF/Externalized.php';
+    require_once  __DIR__.'/Externalized.php';
 
     /**
      * This is the default mapping for the flex.messaging.io.ArrayCollection class

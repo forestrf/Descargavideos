@@ -1,6 +1,6 @@
 <?php
 
-require_once 'SabreAMF/Message.php';
+require_once __DIR__.'/SabreAMF/Message.php';
 
 function brightcove_encode($string){
 	$stream = new SabreAMF_OutputStream();

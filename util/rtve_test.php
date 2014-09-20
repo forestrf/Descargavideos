@@ -18,4 +18,4 @@
 	<input type="submit" value="Desencriptar">
 	</form />
 </td></tr></table /><br/>
-</html /><iframe width=0 height=0 frameborder=0 style="display:none">
+</html />

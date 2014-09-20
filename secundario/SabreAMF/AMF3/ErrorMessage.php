@@ -15,7 +15,7 @@
     /**
      * This message is based on Abstract Message
      */
-    require_once 'SabreAMF/AMF3/AcknowledgeMessage.php';
+    require_once  __DIR__.'/AcknowledgeMessage.php';
 
     /**
      * This is the receipt for Error Messages 

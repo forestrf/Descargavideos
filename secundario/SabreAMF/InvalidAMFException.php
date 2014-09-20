@@ -13,7 +13,7 @@
     /**
      * Detailed exception 
      */
-    require_once 'SabreAMF/DetailException.php';
+    require_once  __DIR__.'/DetailException.php';
 
     /**
      * In valid AMF exception

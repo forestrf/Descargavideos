@@ -1,11 +1,11 @@
 <?php
 
-    require_once 'SabreAMF/AMF3/Const.php';
-    require_once 'SabreAMF/Const.php';
-    require_once 'SabreAMF/TypedObject.php';
-    require_once 'SabreAMF/Deserializer.php';
-    require_once 'SabreAMF/ByteArray.php';
-    require_once 'SabreAMF/Externalized.php';
+    require_once  __DIR__.'/Const.php';
+    require_once  __DIR__.'/../Const.php';
+    require_once  __DIR__.'/../TypedObject.php';
+    require_once  __DIR__.'/../Deserializer.php';
+    require_once  __DIR__.'/../ByteArray.php';
+    require_once  __DIR__.'/../Externalized.php';
 
     /**
      * SabreAMF_AMF3_Deserializer 

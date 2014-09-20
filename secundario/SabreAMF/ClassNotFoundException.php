@@ -14,7 +14,7 @@
     /**
      * Detailed exception 
      */
-    require_once 'SabreAMF/DetailException.php';
+    require_once  __DIR__.'/DetailException.php';
 
     /**
      * This is the receipt for ClassException and default values reflective of ColdFusion RPC faults

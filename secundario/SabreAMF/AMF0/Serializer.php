@@ -1,11 +1,11 @@
 <?php
 
-	require_once 'SabreAMF/AMF3/Const.php';
-	require_once 'SabreAMF/Const.php';
-	require_once 'SabreAMF/Serializer.php';
-	require_once 'SabreAMF/AMF3/Serializer.php';
-	require_once 'SabreAMF/AMF3/Wrapper.php';
-	require_once 'SabreAMF/ITypedObject.php';
+	require_once  __DIR__.'/../AMF3/Const.php';
+	require_once  __DIR__.'/../Const.php';
+	require_once  __DIR__.'/../Serializer.php';
+	require_once  __DIR__.'/../AMF3/Serializer.php';
+	require_once  __DIR__.'/../AMF3/Wrapper.php';
+	require_once  __DIR__.'/../ITypedObject.php';
 
 	/**
 	 * SabreAMF_AMF0_Serializer 

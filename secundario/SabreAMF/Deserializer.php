@@ -10,8 +10,8 @@
      * @licence http://www.freebsd.org/copyright/license.html  BSD License (4 Clause) 
      */
 
-    require_once 'SabreAMF/ClassMapper.php';
-    require_once 'SabreAMF/InputStream.php';
+    require_once  __DIR__.'/ClassMapper.php';
+    require_once  __DIR__.'/InputStream.php';
 
 
     /**

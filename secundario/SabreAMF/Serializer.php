@@ -11,8 +11,8 @@
      */
 
 
-    require_once 'SabreAMF/ClassMapper.php';
-    require_once 'SabreAMF/OutputStream.php'; 
+    require_once  __DIR__.'/ClassMapper.php';
+    require_once  __DIR__.'/OutputStream.php'; 
 
     /**
      * Abstract Serializer
