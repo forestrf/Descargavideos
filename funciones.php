@@ -200,7 +200,7 @@ function url_exists_full(&$url, $preg_match_prerealizado = false){
 								"Accept-Language: es-ES,es;en-US;en\r\n".
 								"Accept: text/html,application/xhtml+xml,application/xml\r\n".
 								"Accept-Encoding: gzip\r\n",
-					'timeout' => 15,
+					'timeout' => 20,
 					'follow_location' => true,
 					'ignore_errors' => '1' /*,
 					'ssl' => array(
