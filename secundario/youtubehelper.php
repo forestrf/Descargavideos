@@ -14,7 +14,7 @@ function youtubehelper(){
 	dbug_r($vars);
 		
 	$encontrado = false;
-	$intentos = 5;
+	$intentos = 3;
 	
 	$tube=new youtube();
 	$links=$tube->parse($web_descargada);
