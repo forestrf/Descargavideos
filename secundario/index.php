@@ -402,6 +402,11 @@ $cadenas=array(
 		array('discoverymaxes.php'),
 		'discoverymaxes'
 	)
+	,array(
+		array('13.cl'),
+		array('13cl.php'),
+		't13cl'
+	)
 );
 
 

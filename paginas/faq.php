@@ -156,5 +156,6 @@ A continuación se puede ver el listado de las webs y los canales soportados:<br
 	<li>crunchyroll.com</li>
 	<li>telemundo.com</li>
 	<li>discoverymax.es</li>
+	<li>13.cl</li>
 </ol>
 </div>
