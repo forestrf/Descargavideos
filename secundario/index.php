@@ -437,6 +437,8 @@ if($modo==1){
 			//lanzaBusquedaGoogle();
 		}
 		elseif(url_exists_full($web, true)){
+			// url_exists_full descarga la web para comprobar si es un enlace válido. De paso, guarda en web_descargada el resultado, para no tener que re-descargarlo inúltilmente
+			
 			dbug('enlace correcto (se pudo abrir la URL)=>'.$web);
 			
 			//Includes
@@ -680,7 +682,6 @@ function validar_enlace($link){
 		$web=$enlace;
 		dbug('enlace bien escrito (estructura de un enlace)');
 
-		// url_exists_full descarga la web para comprobar si es un enlace válido. De paso, guarda en web_descargada el resultado, para no tener que re-descargarlo inúltilmente
 		$web = $enlace;
 		dbug('enlace correcto (pregmatch válido)=>'.$enlace);
 		return true;
