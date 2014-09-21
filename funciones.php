@@ -121,7 +121,7 @@ function urlencode_noAscii($c){
 }
 
 //Aquí se rellena web_descargada. también se corrige $url en caso de ser corregible.
-function url_exists_full(&$url, $preg_match_prerealizado = false){
+function url_exists_full(&$url, $preg_match_prerealizado = false, $timeout = 20){
 	dbug('Comprobando URL => '.$url);
 	if(!$preg_match_prerealizado){
 		if(!preg_match('@^https?://(([^/^\.]+\.)+?[^/^\.]+?)(/.*)?$@i',$url)){
@@ -143,7 +143,7 @@ function url_exists_full(&$url, $preg_match_prerealizado = false){
 	//CURLOPT_CONNECTTIMEOUT - The number of seconds to wait while trying to connect. Use 0 to wait indefinitely.
 	//CURLOPT_TIMEOUT - The maximum number of seconds to allow cURL functions to execute.
 	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT ,10); 
-	curl_setopt($ch, CURLOPT_TIMEOUT, 20);
+	curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
 
 	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 	
@@ -210,19 +210,20 @@ function parsea_headers($http_response_header, &$responde_code){
 
 function dbug($msg){
 	if(defined('DEBUG'))
-		echo $msg.'<br/>
-';
+		echo $msg."<br/>\r\n";
+	return true;
 }
 
 function dbug_(&$msg){
 	if(defined('DEBUG'))
-		echo $msg.'<br/>
-';
+		echo $msg."<br/>\r\n";
+	return true;
 }
 
 function dbug_r(&$arr){
 	if(defined('DEBUG'))
 		print_r($arr);
+	return true;
 }
 
 //url, contenido post a enviar, retornar cabecera, cabecera custom
