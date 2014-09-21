@@ -436,46 +436,59 @@ if($modo==1){
 			
 			//lanzaBusquedaGoogle();
 		}
-		elseif(url_exists_full($web, true)){
+		else{
+			$intentos = 3;
+			$intento = 0;
+			$exito = false;
+			
 			// url_exists_full descarga la web para comprobar si es un enlace válido. De paso, guarda en web_descargada el resultado, para no tener que re-descargarlo inúltilmente
 			
-			dbug('enlace correcto (se pudo abrir la URL)=>'.$web);
-			
-			//Includes
-			dbug('Incluyendo PHPs');
-			for($k=0;$k<count($cadena_elegida_arr[1]);$k++){
-				dbug('Incluyendo: '.$cadena_elegida_arr[1][$k]);
-				include_once $cadena_elegida_arr[1][$k];
+			while(!$exito &&
+					$intento < $intentos &&
+					dbug('Intento '.$intento) &&
+					!($exito = url_exists_full($web, true, 5 + $intento *5))){
+				$intento++;
 			}
 			
-			//Lanzar función cadena
-			dbug('Lanzando función cadena: '.$cadena_elegida_arr[2]);
-			dbug('--------------------------------------');
-			$cadena_elegida_arr[2]();
-			
-			if($fallourlinterna==''){
-				if(!isset($resultado['enlaces']) || count($resultado['enlaces'])==0){
-					//no es una url aceptada de una web permitida
-					setErrorWebIntera('No se pudo encontrar ningún video o audio.');
-					dbug('URL correcta, de server soportado, pero no debería de haber nada dentro');
+			if($exito){
+				dbug('enlace correcto (se pudo abrir la URL)=>'.$web);
+				
+				//Includes
+				dbug('Incluyendo PHPs');
+				for($k=0;$k<count($cadena_elegida_arr[1]);$k++){
+					dbug('Incluyendo: '.$cadena_elegida_arr[1][$k]);
+					include_once $cadena_elegida_arr[1][$k];
 				}
-				else{
-					// Tenemos resultado
-					
-					generaR();
-					
-					global $Cadena_elegida;
-					saveDownload($Cadena_elegida, $web, $resultado['titulo']);
+				
+				//Lanzar función cadena
+				dbug('Lanzando función cadena: '.$cadena_elegida_arr[2]);
+				dbug('--------------------------------------');
+				$cadena_elegida_arr[2]();
+				
+				if($fallourlinterna==''){
+					if(!isset($resultado['enlaces']) || count($resultado['enlaces'])==0){
+						//no es una url aceptada de una web permitida
+						setErrorWebIntera('No se pudo encontrar ningún video o audio.');
+						dbug('URL correcta, de server soportado, pero no debería de haber nada dentro');
+					}
+					else{
+						// Tenemos resultado
+						
+						generaR();
+						
+						global $Cadena_elegida;
+						saveDownload($Cadena_elegida, $web, $resultado['titulo']);
+					}
 				}
 			}
-		}
-		else{
-			dbug('fallo al abrir la url=>'.$web);
-			// Concretar el tipo de fallo para evitar que, en caso de ser fallo del usuario, no cometa el mismo error.
-			if(substr_count($web, 'http') > 1){
-				setErrorWebIntera('Introduzca un solo enlace. No se permiten calcular varios resultados al mismo tiempo');
-			}else{
-				setErrorWebIntera('No se ha podido abrir el enlace o no es un enlace válido');
+			else{
+				dbug('fallo al abrir la url=>'.$web);
+				// Concretar el tipo de fallo para evitar que, en caso de ser fallo del usuario, no cometa el mismo error.
+				if(substr_count($web, 'http') > 1){
+					setErrorWebIntera('Introduzca un solo enlace. No se permiten calcular varios resultados al mismo tiempo');
+				}else{
+					setErrorWebIntera('No se ha podido abrir el enlace o no es un enlace válido');
+				}
 			}
 		}
 	}
