@@ -56,38 +56,6 @@ function playedto(){
 	// FALLA EN EL CALLBACK DEL SWF. EDITAR EL SWF
 	
 	$urlJS = 
-	/*
-	'function lanzaPlayedTo(){'.
-		'if(typeof DESCARGADOR_ARCHIVOS_SWF === "undefined"){'.
-			'setTimeout(lanzaPlayedTo, 200)'.
-		'}'.
-		'else if(DESCARGADOR_ARCHIVOS_SWF === true){'.
-			'getFlashMovie("descargador_archivos").CargaWeb({'.
-				'"url":"'.$web.'",'.
-				'"metodo":"GET"'.
-			'}, "procesaPlayedTo1");'.
-		'}'.
-	'}'.
-	'function procesaPlayedTo1(txt){'.
-			
-		'var regex = /<input.*?name="(.*?)".*?value="(.*?)".*?>/ig;'.
-		
-		'var post = "";'.
-		'var res = [];'.
-		'while((res = regex.exec(txt)) != null){'.
-			'if(res[1] === "referer")res[2] = "";'.
-			'post += res[1] + "=" + res[2] +"&";'.
-		'}'.
-		
-		'getFlashMovie("descargador_archivos").CargaWeb({'.
-			'"url":"'.$web.'",'.
-			'"metodo":"POST",'.
-			'"post":post'.
-		'}, "procesaPlayedTo2");'.
-	'}
-	'.
-	*/
-	
 	'function lanzaPlayedTo(){'.
 		'if(typeof DESCARGADOR_ARCHIVOS_SWF === "undefined"){'.
 			'setTimeout(lanzaPlayedTo, 200)'.
@@ -101,10 +69,10 @@ function playedto(){
 	'}'.
 	
 	'function procesaPlayedTo2(txt){'.
-		//'console.log(txt);'.
+		/*'console.log(txt);'.*/
 		
 		'var url = txt.split("file: \"")[1].split("\"")[0];'.
-		//'console.log(url);'.
+		/*'console.log(url);'.*/
 		'mostrarResultado(url);'.
 	'}'.
 	
@@ -114,7 +82,7 @@ function playedto(){
 	'}'.
 	
 	'function mostrarFallo(){'.
-		'finalizar("","Necesitas iniciar sesión en ATresPlayer para descargar este vídeo o bien el vídeo no existe");'.
+		'finalizar("","No se ha encontrado ningún resultado");'.
 	'}'.
 	
 	

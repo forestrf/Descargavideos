@@ -100,7 +100,7 @@ function magnovideo(){
 	'}'.
 	
 	'function mostrarFallo(){'.
-		'finalizar("","Necesitas iniciar sesión en ATresPlayer para descargar este vídeo o bien el vídeo no existe");'.
+		'finalizar("","No se ha encontrado ningún resultado");'.
 	'}'.
 	
 	'if(typeof descargador_archivos === "undefined"){'.
