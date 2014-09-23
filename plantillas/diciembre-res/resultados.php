@@ -2,10 +2,11 @@
 
 <script>_gaq.push(["_trackEvent","Descargas","Realizadas","<?php echo $R['CANAL'];?>"]);</script>
 
-<img class="img bloque" src="<?php echo $R['url_img_res'];?>">
+<img class="img bloque"  id="imagen_res" src="<?php echo $R['url_img_res'];?>">
 
-<div class="titulo_res bloque"><?php echo $R['titulo_res'];?><br/>
-	<div class="descripcion_res"><?php echo $R['descripcion_res'];?></div>
+<div class="titulo_res bloque">
+	<span id="titulo_res"><?php echo $R['titulo_res'];?></span><br/>
+	<div class="descripcion_res" id="descripcion_res"><?php echo $R['descripcion_res'];?></div>
 </div>
 <?php if(isset($R['alerta_especifica'])){ ?>
 	<div class="alerta_especifica bloque"><?php echo $R['alerta_especifica'];?></div>

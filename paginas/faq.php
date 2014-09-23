@@ -155,7 +155,7 @@ A continuación se puede ver el listado de las webs y los canales soportados:<br
 	<li>liveleak.com</li>
 	<li>crunchyroll.com</li>
 	<li>telemundo.com</li>
-	<li>discoverymax.es</li>
+	<li>discoverymax.es (requiere flash)</li>
 	<li>13.cl</li>
 </ol>
 </div>

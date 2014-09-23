@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'24-Septiembre-2014'
+,'fix:Discoverymax.es esquivado geobloqueo mediante el uso de flash (es el usuario el que debe esquivar el geobloqueo).'
+);
+
+$todos[]=array(
 '21-Septiembre-2014'
 ,'add:13.cl.'
 );

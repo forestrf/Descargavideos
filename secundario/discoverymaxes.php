@@ -24,7 +24,11 @@ function discoverymaxes(){
 
 	// http://www.discoverymax.es/wp-content/plugins/dni_carrington_build_modules/modules/dni-video-playlist/video.php?instanceID=dni-video-playlist-611327198&instance_id=dni-video-playlist-611327198&video_player_id=3570805961001&video_player_key=AQ%7E%7E%2CAAAAAFIw8-k%7E%2CRzpKFESr-2ALjDz9LZTdOIeBssZPLQ5q&autostart=false&playlist=
 
-	$obtenido=array('enlaces' => array());
+	$obtenido=array(
+		'enlaces' => array()
+		,'alerta_especifica' => 'Todos los vídeos indican ocupar 2GB a pesar de no ser real. El tamaño de los vídeos que indica la descarga no es real.'
+	);
+	
 	
 	$p = strpos($web_descargada, '<iframe');
 	
@@ -106,11 +110,84 @@ function discoverymaxes(){
 	
 	$post = brightcove_encode($a_encodear);
 	
+	// Por culpa de geobloqueo, la llamada la hará un swf en lugar de descargavideos y el js sacará las urls
+	
+	$urlJS = 
+	'function lanzaDiscoveryMax(){
+		if(typeof DESCARGADOR_ARCHIVOS_SWF === "undefined"){
+			setTimeout(lanzaDiscoveryMax, 200)
+		}
+		else if(DESCARGADOR_ARCHIVOS_SWF === true){
+			getFlashMovie("descargador_archivos").CargaWeb({
+				"url":"'.$messagebroker.'"
+				,"metodo":"POST"
+				,"contentType":"application/x-amf"
+				,"postBase64":"'.base64_encode($post).'"
+				,"resp":"base64"
+			}, "procesaDiscoveryMax");
+		}
+	}
+	
+	function procesaDiscoveryMax(txt){
+		var x = Base64Binary.decode(txt);
+		var mediaDTO = decodeAMF(x).messages[0].body.programmedContent.videoPlayer.mediaDTO;
+		var titulo = mediaDTO.displayName;
+		var img = mediaDTO.videoStillURL;
+
+		D.g("imagen_res").src = decode_utf8(img);
+		D.g("titulo_res").innerHTML = decode_utf8(titulo);
+		
+		var res = mediaDTO.renditions[0];
+		for(var i = 1; i < mediaDTO.renditions.length; i++){
+			if(mediaDTO.renditions[i].encodingRate > res.encodingRate){
+				res = mediaDTO.renditions[i];
+			}
+		}
+
+		mostrarResultado(res.defaultURL);
+	}
+	
+	function decode_utf8(s) {
+  		return decodeURIComponent(escape(s));
+	}
 	
 	
+	function mostrarResultado(entrada){
+		finalizar(entrada,"Descargar");
+	}
+	
+	function mostrarFallo(){
+		finalizar("","No se ha encontrado ningún resultado");
+	}
+	
+	
+	if(typeof descargador_archivos === "undefined"){
+		D.g("enlaces").innerHTML += \''.genera_swf_object('/util/fla/f/player.swf').'\';
+		var descargador_archivos = D.g("descargador_archivos");
+	}
+	
+	lanzaDiscoveryMax();';
+	
+	$titulo = '';
+	$imagen = '';
+	
+	$obtenido=array(
+		'titulo'  => $titulo,
+		'imagen'  => $imagen,
+		'enlaces' => array(
+			array(
+				'url'  => strtr($urlJS, array("\t"=>'', "\r"=>'', "\n"=>'')),
+				'tipo' => 'jsFlash'
+			)
+		)
+	);
+	
+	/*
 	dbug('a descargar: '.$messagebroker);
-	$t=brightcove_curl_web($messagebroker,$post);
 	
+	$t=brightcove_curl_web($messagebroker,$post);
+	echo bin2hex($t);
+	/*
 	$res_decoded=brightcove_decode($t);
 	dbug('RESPUESTA BRIGHTCOVE:');
 	dbug_r($res_decoded);
@@ -137,9 +214,9 @@ function discoverymaxes(){
 	), $titulo);
 		
 	
-	$obtenido['alerta_especifica'] = 'Todos los vídeos indican ocupar 2GB a pesar de no ser real. El tamaño de los vídeos que indica la descarga no es real.';
 	$obtenido['titulo']=$titulo;
 	$obtenido['imagen']=$imagen;
+	*/
 	
 	finalCadena($obtenido,false);
 }
