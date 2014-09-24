@@ -268,6 +268,9 @@ function encuentraAssetEnContenido($web_descargada){
 			dbug('extraer asset de url: '.$asset);
 			
 			if(enString($asset, '.shtml')){
+				if(!enString($asset, 'rtve.es')){
+					$asset = 'http://www.rtve.es/'.$asset;
+				}
 				$assetW = CargaWebCurl($asset);
 				dbug('lanzando encuentraAssetEnContenido() con el contenido de '.$asset);
 				$asset = encuentraAssetEnContenido($assetW);
