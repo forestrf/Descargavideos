@@ -90,6 +90,7 @@ if(enString($web_descargada,"_url_xml_datos")){
 
 		array_push($obtenido['enlaces'],array(
 			'url'  => $ret,
+			'url_txt' => 'Descargar',
 			'tipo' => 'http'
 		));
 	}
