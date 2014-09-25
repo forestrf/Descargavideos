@@ -91,11 +91,16 @@ $plantillaResMp3='febrero-res-mp3';
 $path_plantilla='';
 
 
-
-if(isset($_REQUEST['modo']))
-	$modo=$_REQUEST['modo'];
-else
-	$modo=1;
+if(!isset($modo)){
+	if(isset($_REQUEST['modo'])){
+		$modo=$_REQUEST['modo'];
+		if($modo != 1 && $modo != 2){
+			$modo = 1;
+		}
+	} else {
+		$modo=1;
+	}
+}
 
 
 
