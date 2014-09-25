@@ -98,7 +98,7 @@ if(!isset($modo)){
 			$modo = 1;
 		}
 	} else {
-		$modo=1;
+		$modo = 1;
 	}
 }
 
