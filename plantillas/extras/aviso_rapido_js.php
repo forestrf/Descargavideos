@@ -1,5 +1,5 @@
 <?php
-	$web_escapado = strtr($R['WEB'], array('script'=>'','"'=>'\\"','\\'=>'\\\\"'));
+	$web_escapado = strtr($R['WEB'], array('script'=>'','"'=>'\\"','\\'=>'\\\\'));
 ?>
 <span id="informaFalloRapido">Informar de resultado incorrecto</span>
 <script>
