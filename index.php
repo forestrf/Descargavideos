@@ -120,6 +120,9 @@ include_once 'idiomas/'.IDIOMA.'/index.php';
 $modo = 1;
 if(isset($web)){
 	$modo=isset($_REQUEST['modo'])?$_REQUEST['modo']:1;
+	if($modo != 1 && $modo != 2){
+		$modo = 1;
+	}
 	//Aparenta ser una url. Método del formulario de copia/pega o método antiguo o el pavo tiene la web antigua en cache...
 
 	$aPaloSeco=1;
