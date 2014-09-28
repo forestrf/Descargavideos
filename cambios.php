@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'28-Septiembre-2014'
+,'fix:Arreglado dailymotion.com (Ahora funciona usando el programa m3u8).'
+);
+
+$todos[]=array(
 '24-Septiembre-2014'
 ,'fix:Discoverymax.es esquivado geobloqueo mediante el uso de flash (es el usuario el que debe esquivar el geobloqueo).'
 ,'fix:Algunas redirecciones de rtve.es a vídeos no funcionaban por ser URI sin protocolo ni dominio (path absoluto).'

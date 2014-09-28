@@ -70,7 +70,7 @@ function dailymotioncom(){
 		$obtenido['enlaces'][] = array(
 			'titulo'    => $preEnlaces['alternates'][$i]['name'].'p',
 			'url'       => parseaTemplateDailyMotion($preEnlaces['alternates'][$i]['template']),
-			'extension' => 'flv',
+			'extension' => 'm3u8',
 			'url_txt'   => 'Descargar',
 			'tipo'      => 'http'
 		);
@@ -82,7 +82,7 @@ function dailymotioncom(){
 
 function parseaTemplateDailyMotion($url){
 	return strtr($url, array(
-		'.mnft'=>'.flv',
+		'.mnft'=>'.m3u8',
 		//'.mnft'=>'.mp4',
 		entre1y2($url,'http://','/sec')=>'vid2.ec.dmcdn.net'
 	));
