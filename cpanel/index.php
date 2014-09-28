@@ -38,7 +38,12 @@ else{
 
 <a href="http://www.descargavideos.tv/cpanel" target="blank">CPanel DV</a><br/>
 <a href="http://localhost/cpanel" target="blank">CPanel LH</a><br/>
-
+<br/>
+Util:<br/>
+<a href="util/amf_base64.php" target="blank">amf_base64</a><br/>
+<a href="util/prxy.php" target="blank">prxy</a><br/>
+<a href="util/rtve_test.php" target="blank">rtve_test</a><br/>
+<br/>
 <table border="1">
 	<tr>
 		<?php

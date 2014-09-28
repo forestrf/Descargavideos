@@ -1,4 +1,4 @@
-<?php include_once '../secundario/rtve.php'; $c=true?>
+<?php include_once '../../secundario/rtve.php'; $c=true?>
 
 <table border=1><tr><td />
 	<form method="post" action="">

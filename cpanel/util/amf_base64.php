@@ -1,4 +1,4 @@
-<?php include_once '../secundario/brightcove-funciones.php';?>
+<?php include_once '../../secundario/brightcove-funciones.php';?>
 
 
 <form method="post" action="">
