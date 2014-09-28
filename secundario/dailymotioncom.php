@@ -72,12 +72,12 @@ function dailymotioncom(){
 			'url'       => parseaTemplateDailyMotion($preEnlaces['alternates'][$i]['template']),
 			'extension' => 'm3u8',
 			'url_txt'   => 'Descargar',
-			'tipo'      => 'http'
+			'tipo'      => 'm3u8'
 		);
 	}
 	
 	
-	finalCadena($obtenido);
+	finalCadena($obtenido, false);
 }
 
 function parseaTemplateDailyMotion($url){
