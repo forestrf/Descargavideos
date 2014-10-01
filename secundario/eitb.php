@@ -36,7 +36,7 @@ http://www.eitb.com/multimediahd/videos/2013/02/15/1045086/20130215_15532024_000
 http://www.eitb.com/multimedia/videos/2011/10/24/558362/PIRINEOS_ES_20111024_101408.flv
 */
 
-if(enString($retfull, '<div class="player">')){
+if(preg_match('/<div.+?class="player">/', $retfull)){
 	if(!enString($retfull, 'detalle_video_')){
 		setErrorWebIntera('No se puede encontrar ningún vídeo.');
 		return;

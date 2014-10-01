@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'1-Octubre-2014'
+,'fix:Algunos vídeos de eitb no se podían obtener por culpa de una expresión regular que no contemplaba ciertos casos.'
+);
+
+$todos[]=array(
 '28-Septiembre-2014'
 ,'fix:Arreglado dailymotion.com (Ahora funciona usando el programa m3u8).'
 );
