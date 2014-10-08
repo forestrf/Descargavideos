@@ -132,13 +132,15 @@ function resultadoA3PNormal($web, $web_descargada='', $episode='', $title=''){
 	
 	$tiempo = time() +3000;
 	
-	$key = "puessepavuestramerced";
-	$key = "dXN#2nqgo)T2LDPi,5R;3XVK"; // swf
-	//$key = "QWtMLXs414Yo+c#_+Q#K@NN)"; // móvil
+	//$key = 'puessepavuestramerced';
+	$key_f4m = 'dXN#2nqgo)T2LDPi,5R;3XVK'; // swf
+	$key_movil = 'QWtMLXs414Yo+c#_+Q#K@NN)'; // móvil
 	$msg = $episode.$tiempo;
 
-	$hmac = bin2hex(custom_hmac('md5', $msg, $key, true));
-	dbug('hmac = '.$hmac);
+	$hmac_f4m = bin2hex(custom_hmac('md5', $msg, $key_f4m, true));
+	$hmac_movil = bin2hex(custom_hmac('md5', $msg, $key_movil, true));
+	dbug('hmac_f4m = '.$hmac_f4m);
+	dbug('hmac_movil = '.$hmac_movil);
 	
 	//jojojo.tk
 	//briscaonline.tk
@@ -152,7 +154,7 @@ function resultadoA3PNormal($web, $web_descargada='', $episode='', $title=''){
 			'}'.
 		'}'.
 		
-		'D.g("enlaces").innerHTML += \'<iframe width="0" height="0" style="position:absolute" src="http://sandia.tk/a3p.php?o=A3P{{random_id}}creaboton&e='.$episode.'&t='.$tiempo.'&h='.$hmac.'">\';';
+		'D.g("enlaces").innerHTML += \'<iframe width="0" height="0" style="position:absolute" src="http://jorl.tk/a3p.php?o=A3P{{random_id}}creaboton&e='.$episode.'&t='.$tiempo.'&h='.$hmac_movil.'">\';';
 	
 	
 	
@@ -223,7 +225,7 @@ function resultadoA3PNormal($web, $web_descargada='', $episode='', $title=''){
 			}
 		}
 		
-		D.g("enlaces").innerHTML += \'<iframe width="0" height="0" style="position:absolute" src="http://sandia.tk/a3p2.php?o=A3P{{random_id}}creaboton&e='.$episode.'&t='.$tiempo.'&h='.$hmac.'">\';';
+		D.g("enlaces").innerHTML += \'<iframe width="0" height="0" style="position:absolute" src="http://jorl.tk/a3p2.php?o=A3P{{random_id}}creaboton&e='.$episode.'&t='.$tiempo.'&h='.$hmac_f4m.'">\';';
 	
 	// f4m url
 	$obtenido[] = array(
