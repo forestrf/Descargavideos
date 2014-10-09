@@ -297,20 +297,21 @@ h2{
 }
 
 
-#resultado .alerta_especifica{
-	background-color: #eeff00;
-	background-image: url("/img/warning.png");
-	background-position: 5px 5px;
-	background-repeat: no-repeat;
-	border-radius: 5px;
-	box-shadow: 0 0 10px #eeff00;
-	color: #1f1f1f;
-	float: right;
-	min-height: 64px;
-	padding: 5px 0 5px 8%;
-	position: relative;
-	text-align: left;
-	width: 37%;
+
+#resultado .alerta_especifica {
+    background-color: #ef0;
+    background-image: url("/img/warning.png");
+    background-position: 5px 5px;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #ef0;
+    color: #1f1f1f;
+    font-size: 0.5em;
+    margin: 2%;
+    padding: 2%;
+    position: relative;
+    text-align: left;
+    width: 90%;
 }
 #resultado .alerta_especifica a{
 	color:#000;
