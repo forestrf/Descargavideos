@@ -19,6 +19,7 @@ $todos[]=array(
 '9-Octubre-2014'
 ,'fix:Atresplayer vuelve a funcionar con calidad baja pero es necesario entrar a la web desde un móvil o modificar el user-agent del navegador para que ponga "Android".'
 ,'fix:Univisión no encontraba enlaces de algunos vídeos.'
+,'add:Agregado un enlace en los resultados de atresplayer que apunta a <a href="http://descargavid.blogspot.com.es/2014/10/atresplayer-por-que-tantas.html">una entrada del blog que guarda relación</a>.'
 );
 
 $todos[]=array(

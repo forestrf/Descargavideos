@@ -49,7 +49,10 @@ mp4:a3player1/geo/2012/09/11/B810021B-1B83-463F-9150-3FDC8E152DA6/000.mp4?nvb=20
 
 //ES NECESARIO ESTAR LOGUEADO. Crear cuenta falsa.
 
-$atresplayer_obtenido_alerta = 'Es necesario estar en España para descargar de ATresPlayer. Si no se encuentra en España puede usar el programa <a target="_blank" href="http://hola.org">hola.org</a>.<br/>Es necesario tener habilitadas las <a href="http://es.wikipedia.org/wiki/Cookie_%28inform%C3%A1tica%29#Privacidad_y_cookies_de_terceros">cookies de terceros</a>.<br/>No se puede descargar vídeos premium sin ser premium.';
+$atresplayer_obtenido_alerta = 'Es necesario estar en España para descargar de ATresPlayer. Si no se encuentra en España puede usar el programa <a target="_blank" href="http://hola.org">hola.org</a>.<br/>
+									Es necesario tener habilitadas las <a href="http://es.wikipedia.org/wiki/Cookie_%28inform%C3%A1tica%29#Privacidad_y_cookies_de_terceros">cookies de terceros</a>.<br/>
+									No se puede descargar vídeos premium sin ser premium.<br/>
+									<a href="http://descargavid.blogspot.com.es/2014/10/atresplayer-por-que-tantas.html">Cómo descargar, información y más</a>';
 
 function atresplayer(){
 global $web,$web_descargada;
@@ -147,7 +150,7 @@ function resultadoA3PNormal($web, $web_descargada='', $episode='', $title=''){
 	
 	$urljs = 'function A3P{{random_id}}creaboton(que){'.
 			'if(que === false || que === "OK"){'.
-				'finalizar{{random_id}}("","Necesitas entrar desde un móvil. Podría ser necesario iniciar sesión en ATresPlayer.");'.
+				'finalizar{{random_id}}("http://descargavid.blogspot.com.es/2014/10/atresplayer-por-que-tantas.html","Necesitas entrar desde un móvil. Podría ser necesario iniciar sesión en ATresPlayer.");'.
 			'}'.
 			'else{'.
 				'finalizar{{random_id}}(que,"Descargar");'.
