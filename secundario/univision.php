@@ -30,6 +30,7 @@ function univision() {
 }
 
 function univisionID($id) {
+	dbug('univisionID');
 	$ret = 'http://cdn-download.mcm.univision.com/videos_mcm/' . $id . '.js';
 	dbug('url=' . $ret);
 
@@ -54,51 +55,32 @@ function univisionID($id) {
 	dbug('titulo=' . $titulo);
 
 	if (!enString($ret, '"published_urls":[]')) {
-
-		$urlstemp = strtr($ret, array('\\'=>''));
-
+		dbug('No aparece "published_urls":[]');
+		
+		$json = substr($ret, strposF($ret, '('));
+		$json = substr($json, 0, strrpos($json, ')'));
+		dbug_($json);
+		$json = json_decode($json, true);
+		dbug_r($json);
+		
 		$urls = array();
-		$sigue = 1;
-		$ult = 0;
-		while ($sigue) {
-			if (enString($urlstemp, 'published_url_id', $ult)) {
-				$p = strpos($urlstemp, 'published_url_id', $ult) + 17;
-				$ult = $f = strpos($urlstemp, '}', $p) + 1;
-				$t = substr($urlstemp, $p, $f - $p);
-
-				if (enString($t, 'suburl')) {
-					//"suburl":"
-					$p = strposF($t, '"suburl":"');
-					$f = strpos($t, '"', $p);
-					$urlT = substr($t, $p, $f - $p);
-
-					//"format":"mp4"
-					$p = strposF($t, '"embed_url":"');
-					$f = strpos($t, '"', $p);
-					$ttt = substr($t, $p, $f - $p);
-
-					$p = strrpos($ttt, '.') + 1;
-					$f = strlen($ttt);
-					$ttt = substr($ttt, $p, $f - $p);
-					$urlT = 'http://h.univision.com/media' . $urlT . '.' . $ttt;
-
-					$p = strrpos($urlT, '_') + 1;
-					$f = strpos($urlT, '.', $p);
-					$calidad = substr($urlT, $p, $f - $p);
-
-					if ($ttt != 'm3u8') {
-						$sePuede = true;
-						$urls_length = count($urls);
-						for ($n = 0; $n < $urls_length; $n++)
-							if ($urlT == $urls[$n][0])
-								$sePuede = false;
-						if ($sePuede)
-							$urls[] = array($urlT, $calidad);
-					}
+		if(isset($json['published_urls'])){
+			foreach($json['published_urls'] as &$url){
+				if(enString($url['embed_url'], '.mp4')){
+					$u = &$url['embed_url'];
+					dbug_($u);
+					$p = strrposF($u, '_');
+					$f = strpos($u, '.', $p);
+					$calidad = substr($u, $p, $f - $p);
+					$urls[] = array(
+						$u,
+						$calidad
+					);
 				}
-			} else
-				$sigue = 0;
+			}
+			
 		}
+		
 		//ya tenemos las urls en formato: /120615_2708697_El_Talisman_Capitulo_98_99___Ultimo_capitulo_1339800465_2000.mp4
 		//ordenar
 		$urls = sortmulti($urls, 1, "123", true);
