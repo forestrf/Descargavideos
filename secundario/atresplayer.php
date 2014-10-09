@@ -150,7 +150,7 @@ function resultadoA3PNormal($web, $web_descargada='', $episode='', $title=''){
 	
 	$urljs = 'function A3P{{random_id}}creaboton(que){'.
 			'if(que === false || que === "OK"){'.
-				'finalizar{{random_id}}("http://descargavid.blogspot.com.es/2014/10/atresplayer-por-que-tantas.html","Necesitas entrar desde un móvil. Podría ser necesario iniciar sesión en ATresPlayer.");'.
+				'finalizar{{random_id}}("http://descargavid.blogspot.com.es/2014/10/atresplayer-por-que-tantas.html","Necesitas entrar desde un móvil. Podría ser necesario iniciar sesión en ATresPlayer. Haz clic aquí para conocer más.");'.
 			'}'.
 			'else{'.
 				'finalizar{{random_id}}(que,"Descargar");'.
@@ -197,7 +197,7 @@ function resultadoA3PNormal($web, $web_descargada='', $episode='', $title=''){
 				if(que.indexOf("rtmp") === 0){
 					D.g("rtmp{{random_id}}f").action = "http://127.0.0.1:25432/";
 					D.g("rtmp{{random_id}}fnombre").value += ".mp4";
-					D.g("rtmptxt{{random_id}}").innerHTML = "Necesitas el programa RTMP-Downloader";
+					D.g("rtmptxt{{random_id}}").innerHTML = "Necesitas descargar y ejecutar el programa RTMP-Downloader";
 					
 					var pass = que.split("?")[1];
 					var r = que.split("/");
@@ -217,7 +217,7 @@ function resultadoA3PNormal($web, $web_descargada='', $episode='', $title=''){
 						}
 					});
 				} else {
-					D.g("rtmptxt{{random_id}}").innerHTML = "Necesitas el programa F4M-Downloader";
+					D.g("rtmptxt{{random_id}}").innerHTML = "Necesitas descargar y ejecutar el programa F4M-Downloader";
 					D.g("rtmpcode{{random_id}}").innerHTML = D.g("rtmpcode{{random_id}}").innerHTML.replace(/--manifest ".*?"/, "--manifest \""+que+"\"");
 					if(typeof f4mdownloader !== "undefined"){
 						D.g("rtmptxt{{random_id}}").innerHTML = "Descargar usando F4M-Downloader";
