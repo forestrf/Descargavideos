@@ -147,7 +147,7 @@ function resultadoA3PNormal($web, $web_descargada='', $episode='', $title=''){
 	
 	$urljs = 'function A3P{{random_id}}creaboton(que){'.
 			'if(que === false || que === "OK"){'.
-				'finalizar{{random_id}}("","Necesitas iniciar sesión en ATresPlayer para descargar este vídeo, el vídeo no existe o no se puede generar un enlace de descarga");'.
+				'finalizar{{random_id}}("","Necesitas entrar desde un móvil. Podría ser necesario iniciar sesión en ATresPlayer.");'.
 			'}'.
 			'else{'.
 				'finalizar{{random_id}}(que,"Descargar");'.

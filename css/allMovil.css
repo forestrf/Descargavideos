@@ -295,3 +295,27 @@ h2{
 	right:5px;
 	position:absolute;
 }
+
+
+#resultado .alerta_especifica{
+	background-color: #eeff00;
+	background-image: url("/img/warning.png");
+	background-position: 5px 5px;
+	background-repeat: no-repeat;
+	border-radius: 5px;
+	box-shadow: 0 0 10px #eeff00;
+	color: #1f1f1f;
+	float: right;
+	min-height: 64px;
+	padding: 5px 0 5px 8%;
+	position: relative;
+	text-align: left;
+	width: 37%;
+}
+#resultado .alerta_especifica a{
+	color:#000;
+	text-decoration:underline;
+}
+#resultado .alerta_especifica a:hover{
+	color:#333;
+}

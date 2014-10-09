@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'9-Octubre-2014'
+,'fix:Atresplayer vuelve a funcionar con calidad baja pero es necesario entrar a la web desde un móvil o modificar el user-agent del navegador para que ponga "Android".'
+);
+
+$todos[]=array(
 '1-Octubre-2014'
 ,'fix:Algunos vídeos de eitb no se podían obtener por culpa de una expresión regular que no contemplaba ciertos casos.'
 );
