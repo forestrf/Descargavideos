@@ -15,7 +15,7 @@ if(enString($web_descargada,"_url_xml_datos")){
 	//<param name="flashVars" value="_width=630&_height=354&_url_xml_datos=http://www.canalsuralacarta.es/webservice/video/7718" />
 	//flashVars="_width=630&_height=354&_url_xml_datos="
 
-	$p=strrpos($web_descargada,"_url_xml_datos=")+15;
+	$p=strrposF($web_descargada,'_url_xml_datos=');
 	$f=strpos($web_descargada,'"',$p);
 	$xml=substr($web_descargada,$p,$f-$p);
 
@@ -24,7 +24,7 @@ if(enString($web_descargada,"_url_xml_datos")){
 
 
 
-	$p=strpos($web_descargada,"<title>")+7;
+	$p=strposF($web_descargada,"<title>");
 	$f=strpos($web_descargada,' ::',$p);
 	$titulo=substr($web_descargada,$p,$f-$p);
 	//$titulo=utf8_encode($titulo);
@@ -35,16 +35,18 @@ if(enString($web_descargada,"_url_xml_datos")){
 
 	//imagen
 	//<archivoMultimediaMaxi><archivo>clipping/2012/02/08/00127/30.jpg</archivo><alt></alt></archivoMultimediaMaxi>
-	$p=strpos($ret,"<picture>")+9;
+	$p=strposF($ret,"<picture>");
 	$f=strpos($ret,'</',$p);
 	$imagen=substr($ret,$p,$f-$p);
 	dbug('imagen='.$imagen);
+	if(enString($imagen, '1pxtrans.gif')){
+		$imagen = 'http://www.'.Dominio.'/canales/canalsur.png';
+	}
 
 	//<video type="content">
 	//</video>
 	$p=strpos($ret,'<video type="content">');
-	$f=strlen($ret);
-	$ret=substr($ret,$p,$f-$p);
+	$ret=substr($ret,$p);
 
 	//</end_video_point>	
 	$videos=substr_count($ret,'<url>');
@@ -71,20 +73,24 @@ if(enString($web_descargada,"_url_xml_datos")){
 				$total[$i]=$url;
 		}
 
-		if(count($total)>1)
+		if (count($total)>1) {
 			for($i=0;$i<$videos;$i++)
-				array_push($obtenido['enlaces'],array(
+				$obtenido['enlaces'][] = array(
 					'url'     => $total[$i],
 					'tipo'    => 'http',
 					'url_txt' => 'parte '.($i+1)
-				));
-		else
-			$ret=$total[0];
-		dbug($ret);
+				);
+		} else {
+			$ret=$obtenido['enlaces'][] = array(
+				'url'     => $total[0],
+				'tipo'    => 'http',
+				'url_txt' => 'Descargar'
+			);
+		}
 	}
 	else{
 		//<url>http://ondemand.rtva.ondemand.flumotion.com/rtva/ondemand/flash8/programas/toros-para-todos/20110921122144-7-toros-para-todos-245--domingo.flv</url>
-		$p=strrpos($ret,'<url>')+5;
+		$p=strrposF($ret,'<url>');
 		$f=strpos($ret,'</url>',$p);
 		$ret=substr($ret,$p,$f-$p);
 
@@ -138,7 +144,7 @@ else{
 	else
 		$imagen = "/canales/canalsur.png";
 	
-	preg_match("@http://[^ ]*?\.mp4@i", $web_descargada, $matches);
+	preg_match("@http://[^ ]*?\.(?:mp4|flv)@i", $web_descargada, $matches);
 	
 	$url=$matches[0];
 	$obtenido['enlaces'][]=array(
