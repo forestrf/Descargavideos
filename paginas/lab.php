@@ -148,7 +148,7 @@
 				else if(t=="f3")
 					a=30;
 
-				p='<iframe width="'+l+'" height="'+a+'" src="http://www.<?php echo Dominio?>/form.php?l='+l+'&t='+t+'&c='+c+'" name="form_dv" allowtransparency="true" border="0" frameborder="0" scrolling="no"></iframe>';
+				p='<iframe width="'+l+'" height="'+a+'" src="http://www.<?php echo DOMINIO?>/form.php?l='+l+'&t='+t+'&c='+c+'" name="form_dv" allowtransparency="true" border="0" frameborder="0" scrolling="no"></iframe>';
 				D.g("muestra").innerHTML=p
 				D.g("cod_html").innerHTML=p
 			}

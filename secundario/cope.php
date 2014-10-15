@@ -51,7 +51,7 @@ elseif(enString($web_descargada,"addCustomPlayer(")){
 	}
 	
 	$obtenido['titulo']='Vídeos';
-	$obtenido['imagen']='/canales/cope.png';
+	$obtenido['imagen']='http://www.'.DOMINIO.'/canales/cope.png';
 	
 	
 	finalCadena($obtenido);

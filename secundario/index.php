@@ -57,8 +57,6 @@ header('Pragma: no-cache');
 
 
 
-$servidorPrincipal='www.'.Dominio;
-
 
 
 //recogemos variables
@@ -134,63 +132,75 @@ array(
 /*
 Dominio(s)
 PHP(s) a incluir
-Función a llamar
+Class a crear
+Función del objeto de la class a llamar
 */
-$cadenas=array(
+$cadenas = array(
 	array(
 		array('rtve.es', 'tve.es'),
 		array('rtve.php'),
-		'rtve'
+		'Rtve',
+		'calcular'
 	)
 	,array(
-		array('canalriasbaixas.com'),
+		array('canalriasbaixas.com', 'canalriasbaixas.tv'),
 		array('canalriasbaixas.php'),
-		'canalriasbaixas'
+		'Canalriasbaixas',
+		'calcular'
 	)
 	,array(
 		array('univision.com'),
 		array('univision.php'),
-		'univision'
+		'Univision',
+		'calcular'
 	)
 	,array(
 		array('univision.mobi'),
 		array('univision.php'),
-		'univisionMovil'
+		'Univision',
+		'calcularMovil'
 	)
 	,array(
 		array('rtpa.es'),
 		array('rtpa.php'),
-		'rtpa'
+		'Rtpa',
+		'calcular'
 	)
 	,array(
 		array('7rm.es','orm.es'),
 		array('7rm.php'),
-		't7rm'
+		'T7rm',
+		'calcular'
 	)
 	,array(
 		array('canalextremadura.es'),
 		array('canalextremadura.php'),
-		'canalextremadura'
+		'Canalextremadura',
+		'calcular'
 	)
 	,array(
 		array('lasexta.com','antena3.com'),
 		array('antena3.php'),
-		'a3'
+		'A3',
+		'calcular'
 	)
 	,array(
 		array('atresplayer.com'),
 		array('atresplayer.php'),
-		'atresplayer'
+		'Atresplayer',
+		'calcular'
 	)
 	,array(
 		array('cuatro.com','telecinco.es','divinity.es','mediaset.es','mitelekids.es'),
 		array('mitele.php'),
+		'Mitele',
 		'mitele_directo'
 	)
 	,array(
 		array('mitele.es'),
 		array('mitele.php'),
-		'mitele'
+		'Mitele',
+		'calcula'
 	)
 	/*,array(
 		array('gamespot.com'),
@@ -200,13 +210,16 @@ $cadenas=array(
 	,array(
 		array('soundcloud.com'),
 		array('soundcloud.php'),
-		'soundcloud'
+		'Soundcloud',
+		'calcula'
 	)
 	,array(
 		array('veoh.com'),
 		array('veoh.php'),
-		'veoh'
+		'Veoh',
+		'calcula'
 	)
+	// CONTINUAR AQUÍ
 	,array(
 		array('tv3.cat','324.cat','esport3.cat','3xl.cat','super3.cat'),
 		array('tv3cat.php'),
@@ -458,17 +471,24 @@ if($modo==1){
 			if($exito){
 				dbug('enlace correcto (se pudo abrir la URL)=>'.$web);
 				
-				//Includes
+				// Includes
 				dbug('Incluyendo PHPs');
+				include 'cadena.class.php';
+				
 				for($k=0;$k<count($cadena_elegida_arr[1]);$k++){
 					dbug('Incluyendo: '.$cadena_elegida_arr[1][$k]);
 					include_once $cadena_elegida_arr[1][$k];
 				}
 				
-				//Lanzar función cadena
-				dbug('Lanzando función cadena: '.$cadena_elegida_arr[2]);
+				//Crear objeto
+				$cadena = new $cadena_elegida_arr[2]();
+				$cadena->init($web, $web_descargada);
+				
+				// Lanzar función cadena
+				// Estas funciones pueden modificar el valor de web_descargada ya que se para por parámetro, pero no de web
+				dbug('Lanzando función cadena: '.$cadena_elegida_arr[3]);
 				dbug('--------------------------------------');
-				$cadena_elegida_arr[2]();
+				$cadena->$cadena_elegida_arr[3]();
 				
 				if($fallourlinterna==''){
 					if(!isset($resultado['enlaces']) || count($resultado['enlaces'])==0){

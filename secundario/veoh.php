@@ -1,36 +1,29 @@
 <?php
-function veoh(){
-global $web,$web_descargada;
-$ret=$web_descargada;
-//$ret=CargaWebCurl($web);
 
+class Veoh extends cadena{
+
+function calcula(){
 //get the music_id
-$ari=explode("/",$web);
+$ari=explode("/",$this->web);
 $v_id=array_pop($ari);
 
 dbug("http://www.veoh.com/rest/video/".$v_id."/details");
 
 //retrieve xml files
-$ret=CargaWebCurl("http://www.veoh.com/rest/video/".$v_id."/details");
+$this->web_descargada=CargaWebCurl("http://www.veoh.com/rest/video/".$v_id."/details");
 
-$c=strpos($ret,"videoId");
+$c=strpos($this->web_descargada,"videoId");
 
 //titulo
-$p=strpos($ret,'title="',$c)+7;
-$f=strpos($ret,'"',$p);
-$titulo=substr($ret,$p,$f-$p);
+$titulo=entre1y2_a($this->web_descargada,$c,'title="','"');
 $titulo=limpiaTitulo($titulo);
 dbug('titulo='.$titulo);
 
 //imagen
-$p=strpos($ret,'fullHighResImagePath="',$c)+22;
-$f=strpos($ret,'"',$p);
-$imagen=substr($ret,$p,$f-$p);
+$imagen=entre1y2_a($this->web_descargada,$c,'fullHighResImagePath="','"');
 dbug('imagen='.$imagen);
 
-$p=strpos($ret,'fullPreviewHashPath="',$c)+21;
-$f=strpos($ret,'"',$p);
-$url=substr($ret,$p,$f-$p);
+$url=entre1y2_a($this->web_descargada,$c,'fullPreviewHashPath="','"');
 
 //yell it loud
 $url=trim($url);
@@ -41,12 +34,14 @@ $obtenido=array(
 	'imagen'  => $imagen,
 	'enlaces' => array(
 		array(
-			'url'  => $url,
-			'tipo' => 'http'
+			'url'     => $url,
+			'url_txt' => 'Descargar',
+			'tipo'    => 'http'
 		)
 	)
 );
 
 finalCadena($obtenido);
 }
-?>
+
+}

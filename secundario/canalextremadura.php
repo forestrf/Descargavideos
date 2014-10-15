@@ -1,16 +1,15 @@
 <?php
-function canalextremadura(){
-global $web,$web_descargada;
-$retfull=$web_descargada;
-//$retfull=CargaWebCurl($web);
 
+class Canalextremadura extends cadena{
+
+function calcular(){
 $obtenido=array('enlaces' => array());
 
 //raido o tv
-if(enString($retfull,"#radio")){
-	$p=strpos($retfull,'http://podcastdl.');
-	$f=strpos($retfull,'"',$p);
-	$ret=substr($retfull,$p,$f-$p);
+if(enString($this->web_descargada,"#radio")){
+	$p=strpos($this->web_descargada,'http://podcastdl.');
+	$f=strpos($this->web_descargada,'"',$p);
+	$ret=substr($this->web_descargada,$p,$f-$p);
 	dbug('url='.$ret);
 
 	array_push($obtenido['enlaces'],array(
@@ -18,46 +17,32 @@ if(enString($retfull,"#radio")){
 		'tipo' => 'http'
 	));
 
-	$p=strpos($retfull,'<div class="imagen"><img src="')+30;
-	$f=strpos($retfull,'"',$p);	
-	$imagen=substr($retfull,$p,$f-$p);
+	$imagen=entre1y2($this->web_descargada,'<div class="imagen"><img src="','"');
 	dbug('imagen='.$imagen);
 }
 
-if(enString($retfull,"#tv")){
-	$p=strpos($retfull,'rtmp://');
-	$f=strpos($retfull,'"',$p);
-	$rtmp=substr($retfull,$p,$f-$p);
+if(enString($this->web_descargada,"#tv")){
+	$rtmp='rtmp://'.entre1y2($this->web_descargada,'rtmp://','"');
 
 	if(enString($rtmp,"#")){
-		$p=0;
 		$f=strpos($rtmp,'#');
 		if(enString($rtmp,"#tv"))
 			$f=strpos($rtmp,'#',$f+1);
-		$rtmp=substr($rtmp,$p,$f-$p);
+		$rtmp=substr($rtmp,0,$f);
 	}
-	$sustituir=array("#"=>"");
-	$rtmp=strtr($rtmp,$sustituir);
+	$rtmp=strtr($rtmp,array("#"=>""));
 
 	dbug('rtmp='.$rtmp);
 
 	//if(isiPad)
-	$p=strpos($retfull,'if(isiPad)');
-	$f=strpos($retfull,'</script>',$p);
-	$http=substr($retfull,$p,$f-$p);
+	$http=entre1y2($this->web_descargada,'if(isiPad)','</script>');
 
 	//poster="/sites/default/files/extremaduranoticas_nuevo2.jpg"
-	$p=strpos($http,'poster="')+8;
-	$f=strpos($http,'"', $p);	
-	$imagen="http://www.canalextremadura.es".substr($http, $p, $f-$p);
+	$imagen="http://www.canalextremadura.es".entre1y2($http, 'poster="', '"');
 	dbug('imagen='.$imagen);
 
-	$p=strpos($http,'src="')+5;
-	$f=strpos($http,'"', $p);
-	$http=substr($http, $p, $f-$p);
+	$http=entre1y2($http, 'src="', '"');
 
-
-	dbug('http='.$http);
 	array_push($obtenido['enlaces'],array(
 		'titulo'  => 'Calidad Baja',
 		'url'     => $http,
@@ -71,27 +56,25 @@ if(enString($retfull,"#tv")){
 	));
 }
 
-if(enString($retfull,".mp4#")){
-	$rtmp='rtmp://'.entre1y2($retfull,'rtmp://','.mp4').'.mp4';
+if(enString($this->web_descargada,".mp4#")){
+	$rtmp='rtmp://'.entre1y2($this->web_descargada,'rtmp://','.mp4').'.mp4';
 
 	dbug('rtmp='.$rtmp);
 
 	//if(isiPad)
-	$http=entre1y2($retfull,'data-iosUrl="','"');
+	$http=entre1y2($this->web_descargada,'data-iosUrl="','"');
 
 	//poster="/sites/default/files/extremaduranoticas_nuevo2.jpg"
-	$imagen="http://www.canalextremadura.es/".entre1y2($http, '#/',"jpg")."jpg";
+	$imagen="http://www.canalextremadura.es/".entre1y2($http, '#/',"#");
 	dbug('imagen='.$imagen);
 	
 	//if(isiPad)
 	$http="http://".entre1y2($http,'http://','#');
 
-
-
-	dbug('http='.$http);
 	array_push($obtenido['enlaces'],array(
 		'titulo'  => 'Calidad Baja',
 		'url'     => $http,
+		'url_txt' => 'Descargar',
 		'tipo'    => 'http'
 	));
 	
@@ -103,10 +86,14 @@ if(enString($retfull,".mp4#")){
 }
 
 //<h1 class="title">Extremadura 2 (17/05/12)</h1>
-$p=strpos($retfull,'<h1 class="title">')+18;
-$f=strpos($retfull,'</h1>',$p);
-$titulo=substr($retfull,$p,$f-$p);
-$titulo=limpiaTitulo($titulo);
+if(enString($this->web_descargada, '<h1 class="title">')) {
+	$titulo = entre1y2($this->web_descargada,'<h1 class="title">','</h1>');
+} else {
+	$p = strpos($this->web_descargada,'.mp4');
+	$p = strpos($this->web_descargada, '<a', $p);
+	$titulo = entre1y2_a($this->web_descargada,$p,'>','</');
+}
+$titulo = limpiaTitulo($titulo);
 dbug('titulo='.$titulo);
 
 $obtenido['titulo']=$titulo;
@@ -114,4 +101,5 @@ $obtenido['imagen']=$imagen;
 
 finalCadena($obtenido);
 }
-?>
+
+}

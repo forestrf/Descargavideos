@@ -2,22 +2,23 @@
 require 'crypto/aes.class.php';    // AES PHP implementation
 require 'crypto/aesctr.class.php'; // AES Counter Mode implementation
 
-$mitele_obtenido_alerta = 'Como norma general es necesario encontrarse en España para poder descargar de mitele. Si usted no se encuentra en España puede hacer uso del programa <a target="_blank" href="http://hola.org">hola.org</a> para simular que se encuentra en España.';
+class Mitele extends cadena{
+
+private $mitele_obtenido_alerta = 'Como norma general es necesario encontrarse en España para poder descargar de mitele. Si usted no se encuentra en España puede hacer uso del programa <a target="_blank" href="http://hola.org">hola.org</a> para simular que se encuentra en España.';
 
 function mitele_directo(){
 	dbug('mitele_directo');
-	global $web,$web_descargada;
 	dbug('divinity, cuatro, telecinco o mitelekids');
 
-	if(strlen($web_descargada) < 500){
-		$retfull = CargaWebCurl($web);
+	if(strlen($this->web_descargada) < 500){
+		$retfull = CargaWebCurl($this->web);
 	}
 	else{
-		$retfull = $web_descargada;
+		$retfull = &$this->web_descargada;
 	}
 
 	//titulo
-	if(enString($web,'mitelekids')){
+	if(enString($this->web,'mitelekids')){
 		$p=strposF($retfull,'chapter-title');
 		$titulo=entre1y2_a($retfull,$p,'>','</');
 		$titulo=limpiaTitulo($titulo);
@@ -81,12 +82,11 @@ function mitele_directo(){
 			'titulo'  => $titulo,
 			'imagen'  => $imagen,
 			'enlaces' => array(
-				finalCadenaMiteleRTMP($idCompleta, $titulo, 't5&')
+				$this->finalCadenaMiteleRTMP($idCompleta, $titulo, 't5&')
 			)
 		);
 		
-		global $mitele_obtenido_alerta;
-		$obtenido['alerta_especifica'] = $mitele_obtenido_alerta;
+		$obtenido['alerta_especifica'] = $this->mitele_obtenido_alerta;
 		
 		finalCadena($obtenido,0);
 	}
@@ -101,7 +101,7 @@ function mitele_directo(){
 		}
 		
 		$modo='t5=1';
-		/*if(enString($web,'mitelekids'))
+		/*if(enString($this->web,'mitelekids'))
 			$modo='kd=1';
 		*/
 		
@@ -113,7 +113,7 @@ function mitele_directo(){
 		if($iclip!='')
 			$configs['id2'] = $iclip;
 		
-		$URLFINAL = '/mitelehandler/'.urlencode(base64_encode(json_encode($configs))).'/'.urlencode(strtr($titulo,'/','-')).'.mp4';
+		$URLFINAL = 'http://www.'.DOMINIO.'/mitelehandler/'.urlencode(base64_encode(json_encode($configs))).'/'.urlencode(strtr($titulo,'/','-')).'.mp4';
 		//$url='http://www.telecinco.es/mdsvideo/sources.json?contentId='.$id.'&clippingId='.$iclip.'&imageContentId='.$id;
 		dbug($URLFINAL);
 		$obtenido=array(
@@ -128,41 +128,35 @@ function mitele_directo(){
 			)
 		);
 		
-		global $mitele_obtenido_alerta;
-		$obtenido['alerta_especifica'] = $mitele_obtenido_alerta;
+		$obtenido['alerta_especifica'] = $this->mitele_obtenido_alerta;
 		
 		finalCadena($obtenido,0);
 	}
 }
 
-function mitele(){
+function calcula(){
 	dbug('mitele');
-	//web es la variable logal, no una de mitele().
-	global $titulo,$imagen,$geoB,$web_descargada;
+	global $titulo,$imagen;
 
 	// Comprobar si la página es una con portada del vídeo
-	if(enString($web_descargada, 'class="Destacado-imagen"')){
+	if(enString($this->web_descargada, 'class="Destacado-imagen"')){
 		dbug('Web no final, con video en descatado. Usar ese vídeo.');
-		$urlVideoEmbed = entre1y2_a($web_descargada, strpos($web_descargada, 'class="Destacado-imagen"'), 'href="', '"');
+		$urlVideoEmbed = entre1y2_a($this->web_descargada, strpos($this->web_descargada, 'class="Destacado-imagen"'), 'href="', '"');
 		if($urlVideoEmbed[0] === '/'){
 			$urlVideoEmbed = 'http://www.mitele.es'.$urlVideoEmbed;
 		}
-		$web_descargada = CargaWebCurl($urlVideoEmbed);
+		$this->web_descargada = CargaWebCurl($urlVideoEmbed);
 	}
 
 	//titulo
-	$p=strpos($web_descargada,'<title>')+7;
-	$f=strpos($web_descargada,'<',$p);
-	$titulo=substr($web_descargada,$p,$f-$p);
+	$titulo=entre1y2($this->web_descargada,'<title>','<');
 	$titulo=limpiaTitulo($titulo);
 	dbug('titulo='.$titulo);
 
 
 	//comprobar que no es premium
-	if(enString($web_descargada,'<div class="videoEmbed">')){
-		$p=strpos($web_descargada,'<div class="videoEmbed">');
-		$f=strpos($web_descargada,'</div>',$p);
-		$premium=substr($web_descargada,$p,$f-$p);
+	if(enString($this->web_descargada,'<div class="videoEmbed">')){
+		$premium=entre1y2($this->web_descargada,'<div class="videoEmbed">','</div>');
 	
 		//el video es premium. Dar error
 		if(enString($premium,'<span class="premium">')){
@@ -170,28 +164,23 @@ function mitele(){
 			return;
 		}
 	}
-
-	$p=strpos($web_descargada,'class="videoEmbed"');
-	$f=strpos($web_descargada,'>',$p);
-	$resYa=substr($web_descargada,$p,$f-$p);
+	
+	$resYa=desde1a2($this->web_descargada,'class="videoEmbed"','>');
 	if(enString($resYa,'data-video')){
-		$preId = strtr(entre1y2($web_descargada, '"host":"','"'), array('\\'=>''));
+		$preId = strtr(entre1y2($this->web_descargada, '"host":"','"'), array('\\'=>''));
 		dbug('$preId = '.$preId);
 		$preId = CargaWebCurl($preId);
 		
-		if(enString($preId, '<rtmp')){
+		if (enString($preId, '<rtmp')) {
 			$id = entre1y2_a($preId,strpos($preId,'url',strpos($preId,'videoUrl')),'<![CDATA[',']]');
-		}
-		else{
+		} else {
 			$id = entre1y2_a($preId,strpos($preId,'link',strpos($preId,'videoUrl')),'>','<');
 		}
 		dbug('$id = '.$id);
 		
 		//imagen
-		$p=strpos($web_descargada,'class="videoEmbed"');
-		$p=strpos($web_descargada,'<img src="',$p)+10;
-		$f=strpos($web_descargada,'"',$p);
-		$imagen=substr($web_descargada,$p,$f-$p);
+		$p=strpos($this->web_descargada,'class="videoEmbed"');
+		$imagen=entre1y2_a($this->web_descargada, $p, '<img src="', '"');
 		dbug('imagen='.$imagen);
 		
 		//$id=str_replace('/geo/','/nogeo/',$id);
@@ -206,19 +195,17 @@ function mitele(){
 				'titulo'  => $titulo,
 				'imagen'  => $imagen,
 				'enlaces' => array(
-					finalCadenaMiteleRTMP($id, $titulo)
-				)
+					$this->finalCadenaMiteleRTMP($id, $titulo)
+				),
+				'alerta_especifica' => $this->mitele_obtenido_alerta
 			);
-			
-			global $mitele_obtenido_alerta;
-			$obtenido['alerta_especifica'] = $mitele_obtenido_alerta;
 			
 			finalCadena($obtenido,0);
 		}
 		else{
 			$intentos = 10;
 			while($respuesta=='' && $intentos-- > 0)
-				$respuesta=mitele8($id);
+				$respuesta=$this->mitele8($id);
 				/*if($respuesta=='')
 					if($geoB==-1){
 						$id=str_replace('/nogeo/','/geo/',$id);
@@ -230,7 +217,7 @@ function mitele(){
 			$configs = array(
 				'id'=>$id
 			);
-			$url='/mitelehandler/'.urlencode(base64_encode(json_encode($configs))).'/'.urlencode(strtr($titulo,'/','-')).'.mp4';
+			$url='http://www.'.DOMINIO.'/mitelehandler/'.urlencode(base64_encode(json_encode($configs))).'/'.urlencode(strtr($titulo,'/','-')).'.mp4';
 			$obtenido=array(
 				'titulo'  => $titulo,
 				'imagen'  => $imagen,
@@ -240,11 +227,9 @@ function mitele(){
 						'tipo'    => 'http',
 						'url_txt' => 'Descargar Vídeo'
 					)
-				)
+				),
+				'alerta_especifica' => $this->mitele_obtenido_alerta
 			);
-			
-			global $mitele_obtenido_alerta;
-			$obtenido['alerta_especifica'] = $mitele_obtenido_alerta;
 			
 			finalCadena($obtenido,0);
 		}
@@ -267,15 +252,14 @@ function mitele8($id){
 	
 	dbug('respuesta: '.$ret);
 	
-	if(enString($ret,'rtmpe://')){
-		$modo=2;
-	}
-	else{
-		$modo=1;
+	if (enString($ret,'rtmpe://')) {
+		$modo = 2;
+	} else {
+		$modo = 1;
 	}
 
 
-	if($modo==1){
+	if ($modo === 1) {
 		//2011
 		//aqui caen tmbn las respuestas fallidas
 		dbug('lanzado modo 1');
@@ -285,9 +269,7 @@ function mitele8($id){
 			dbug('respuesta correcta');
 		}
 		else $ret='';
-	}
-
-	if($modo==2){
+	} elseif ($modo === 2) {
 		//2012
 		dbug('lanzado modo 2');
 
@@ -296,7 +278,7 @@ function mitele8($id){
 		else{
 			$p=strrpos($ret,'mp4:');//+4;
 			$f=strrpos($ret,'</file>');
-			$p2=strrpos($ret,'rtmpe://')+8;
+			$p2=strrposF($ret,'rtmpe://');
 			$f2=strrpos($ret,'</stream>');
 			$ret1=substr($ret,$p,$f-$p);
 			$ret2=substr($ret,$p2,$f2-$p2);
@@ -310,10 +292,9 @@ function mitele8($id){
 }
 
 //0 si no se sabe si está geobloqueado. -1 si está bloqueado. 1 si está arreglado el bloqueo
-$geoB=0;
+//$geoB=0;
 function mitele2($id, $tokenN=1){
 	dbug('mitele2');
-	global $geoB;
 
 	dbug($id);
 
@@ -363,34 +344,7 @@ function mitele2($id, $tokenN=1){
 	//$ret=CargaWebCurlProxy($server3,'ESP',$extra,$hders);
 	dbug('respuesta: '.$ret);
 	
-	if(enString($ret,'rtmpe://'))
-		$modo=2;
-	else
-		$modo=1;
-
-
-	if($modo==1){
-		//2011
-		//aqui caen tmbn las respuestas fallidas
-		dbug('lanzado modo 1');
-
-		if(enString($ret,'http://')){
-			//es correcta la respuesta
-			dbug('respuesta correcta');
-			
-			$p=strpos($ret,'http://');
-			$f=strpos($ret,'<',$p);
-			$ret=substr($ret,$p,$f-$p);
-			
-			//arreglo para los videos que start= no tiene el 0
-			if(enString($ret.'-','start=-')) $ret.='0';
-			
-			$ret=str_replace('amp;','',$ret);
-		}
-		else $ret='';
-	}
-
-	if($modo==2){
+	if(enString($ret,'rtmpe://')) {
 		//2012
 		dbug('lanzado modo 2');
 
@@ -399,9 +353,8 @@ function mitele2($id, $tokenN=1){
 		
 		$RTMPStream = 'rtmpe://'.entre1y2($ret,'rtmpe://','</');
 		
-		$p=strposf($RTMPFile,'?');
-		$f=strlen($RTMPFile);
-		$RTMPAfterInterrogant=substr($RTMPFile,$p,$f-$p);
+		$p=strposF($RTMPFile,'?');
+		$RTMPAfterInterrogant=substr($RTMPFile,$p);
 		
 		
 		dbug($RTMPFile);
@@ -415,44 +368,25 @@ function mitele2($id, $tokenN=1){
 		
 		
 		dbug("URL:\n\n".$ret."\n\n");
+	} else {
+		//2011
+		//aqui caen tmbn las respuestas fallidas
+		dbug('lanzado modo 1');
+
+		if(enString($ret,'http://')){
+			//es correcta la respuesta
+			dbug('respuesta correcta');
+			
+			$ret=desde1a2($ret, 'http://', '<');
+			
+			//arreglo para los videos que start= no tiene el 0
+			if(enString($ret.'-','start=-')) $ret.='0';
+			
+			$ret=str_replace('amp;','',$ret);
+		}
+		else $ret='';
 	}
 	
-	/*
-	if($detalle=='perfect'){
-		if($ret!=''){
-			//comprobar $geoB=-1;
-			if($geoB==0){
-				dbug('url a comprobar: '.$ret);
-				
-				$context =
-				array('http'=>
-					array(
-						'method' => 'GET',
-						'header' => "User-agent: Mozilla/5.0 (Windows NT 6.1; rv:11.0) Gecko/20100101 Firefox/11.0\r\n".
-									"Connection: close\r\n".
-									"Accept-Language: es-ES,es;en-US;en\r\n".
-									"Accept-Encoding: deflate\r\n".
-									"Accept: text/html,application/xhtml+xml,application/xml\r\n"
-					)
-				);
-				$context = stream_context_create($context);
-				
-				$result = file_get_contents($ret, false, $context, 0, 500);
-
-				dbug('resultado = '.$result);
-				if(enString($result,'404')||enString($result,'401')){
-					$geoB=-1;
-					//está bloqueado
-					$ret='';
-				}
-				else{
-					$geoB=1;
-				}
-				$ret='';
-			}
-		}
-	}
-	*/
 	return $ret;
 }
 
@@ -460,28 +394,21 @@ function mitele2($id, $tokenN=1){
 //el mitele8 para cuatro, telecinco y otros, que también cambian pero no tan rápido.
 function mitele3($id,$id2){
 	dbug('mitele3');
-	global $web;
 	dbug('divinity, cuatro o telecinco en mitele 3');
 
 	$url='http://www.telecinco.es/mdsvideo/sources.json?contentId='.$id.'&clippingId='.$id2.'&imageContentId='.$id;
 
 	//$json=CargaWebCurl($url);
 	$json=CargaWebCurlProxy($url, 'ESP');
-	dbug($json);
+	dbug_($json);
 	$json=str_replace("\\",'',$json);
 
 	if(enString($json,'.mp4?')){
-		//retemos la url del video
-		$p=strpos($json,'storage.telecinco.es');
-		$f=strpos($json,'"',$p);
-		$URLFINAL='http://'.substr($json,$p,$f-$p);
+		$URLFINAL='http://'.desde1a2($json,'storage.telecinco.es','"');
 	}
 	
-	if(!isset($URLFINAL) || enString($URLFINAL,'({')){
-		//retemos la url del video
-		$p=strpos($json,'http');
-		$f=strpos($json,'"',$p);
-		$URLFINAL=substr($json,$p,$f-$p);
+	if(!isset($URLFINAL) || !enString($URLFINAL,'.mp4')){
+		$URLFINAL=desde1a2($json,'http','"');
 	}
 
 	return $URLFINAL;
@@ -490,7 +417,6 @@ function mitele3($id,$id2){
 //el mitele8 para mitelekids. Usa mitele2
 function mitele4($id){
 	dbug('mitele4');
-	global $web;
 	dbug('mitelekids mitele 4');
 
 	$url='http://www.mitelekids.es/mdsvideo/config.xml?hostname=www.mitelekids.es&contentId='.$id;
@@ -502,15 +428,15 @@ function mitele4($id){
 		//retemos la id del vídeo
 		$p=strpos($res,'videoUrl');
 		$id=entre1y2_a($res,$p,'<link>','</link>');
-		dbug($id);
-		return mitele2($id);
+		dbug_($id);
+		return $this->mitele2($id);
 	}
 	return '';
 }
 
 
 function finalCadenaMiteleRTMP($id, $titulo, $extra=''){
-	$url='http://'.Dominio.'/mitele_handler.php?'.$extra.'rtmp&id='.$id;
+	$url='http://www.'.DOMINIO.'/mitele_handler.php?'.$extra.'rtmp&id='.$id;
 
 	return array(
 		'url'				=> ' ',
@@ -520,4 +446,5 @@ function finalCadenaMiteleRTMP($id, $titulo, $extra=''){
 		'nombre_archivo'	=> generaNombreWindowsValido($titulo).'.mp4'
 	);
 }
-?>
+
+}

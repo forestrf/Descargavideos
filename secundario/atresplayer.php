@@ -49,32 +49,32 @@ mp4:a3player1/geo/2012/09/11/B810021B-1B83-463F-9150-3FDC8E152DA6/000.mp4?nvb=20
 
 //ES NECESARIO ESTAR LOGUEADO. Crear cuenta falsa.
 
-$atresplayer_obtenido_alerta = 'Es necesario estar en España para descargar de ATresPlayer. Si no se encuentra en España puede usar el programa <a target="_blank" href="http://hola.org">hola.org</a>.<br/>
+class Atresplayer extends cadena{
+
+private $atresplayer_obtenido_alerta = 'Es necesario estar en España para descargar de ATresPlayer. Si no se encuentra en España puede usar el programa <a target="_blank" href="http://hola.org">hola.org</a>.<br/>
 									Es necesario tener habilitadas las <a href="http://es.wikipedia.org/wiki/Cookie_%28inform%C3%A1tica%29#Privacidad_y_cookies_de_terceros">cookies de terceros</a>.<br/>
 									No se puede descargar vídeos premium sin ser premium.<br/>
 									<a href="http://descargavid.blogspot.com.es/2014/10/atresplayer-por-que-tantas.html">Cómo descargar, información y más</a>';
 
-function atresplayer(){
-global $web,$web_descargada;
-
+function calcular(){
 $obtenido=array('enlaces' => array());
 
-if(preg_match('@<div.*?capa_modulo_player.*?episode ?= ?"(.*?)">@i', $web_descargada, $matches)){
+if(preg_match('@<div.*?capa_modulo_player.*?episode ?= ?"(.*?)">@i', $this->web_descargada, $matches)){
 	$episode = $matches[1];
-	$obtenido['enlaces'] = resultadoA3PNormal($web, $web_descargada, $episode);
+	$obtenido['enlaces'] = $this->resultadoA3PNormal($this->web, $this->web_descargada, $episode);
 	
 	
-	$obtenido['titulo'] = entre1y2($web_descargada, '<title>','<');
+	$obtenido['titulo'] = entre1y2($this->web_descargada, '<title>','<');
 	
-	preg_match('@<meta (name="product\\-image")|(property="og\\:image") content=\'(.*?)\'@i', $web_descargada, $matches);
+	preg_match('@<meta (name="product\\-image")|(property="og\\:image") content=\'(.*?)\'@i', $this->web_descargada, $matches);
 	$obtenido['imagen'] = $matches[3];
 }
 else{
-	if(enString($web, '#')){
-		$carusel = entre1y2($web, 0, '#').'carousel.json';
+	if(enString($this->web, '#')){
+		$carusel = entre1y2($this->web, 0, '#').'carousel.json';
 	}
 	else{
-		$carusel = $web.'carousel.json';
+		$carusel = $this->web.'carousel.json';
 	}
 	dbug('$carusel = '.$carusel);
 	$carusel = CargaWebCurl($carusel);
@@ -83,7 +83,7 @@ else{
 	if(count($carusel)>0){
 		$max = 6;
 		foreach($carusel as $elem){
-			$obtenido['enlaces'] = array_merge($obtenido['enlaces'], resultadoA3PNormal($elem['hrefHtml'],'','',$elem['title']));
+			$obtenido['enlaces'] = array_merge($obtenido['enlaces'], $this->resultadoA3PNormal($elem['hrefHtml'],'','',$elem['title']));
 			if(--$max<=0)
 				break;
 		}
@@ -93,28 +93,27 @@ else{
 		return;
 	}
 	
-	$obtenido['titulo'] = entre1y2($web_descargada, '<title>','<');
+	$obtenido['titulo'] = entre1y2($this->web_descargada, '<title>','<');
 	
-	$p = strpos($web_descargada, '<div class="over">');
-	$obtenido['imagen'] = 'http://www.atresplayer.com/'.entre1y2_a($web_descargada, $p, 'src="', '"');
+	$p = strpos($this->web_descargada, '<div class="over">');
+	$obtenido['imagen'] = 'http://www.atresplayer.com/'.entre1y2_a($this->web_descargada, $p, 'src="', '"');
 }
 
-global $atresplayer_obtenido_alerta;
-$obtenido['alerta_especifica'] = $atresplayer_obtenido_alerta;
+$obtenido['alerta_especifica'] = $this->atresplayer_obtenido_alerta;
 
 
 
 finalCadena($obtenido);
 }
 
-function resultadoA3PNormal($web, $web_descargada='', $episode='', $title=''){
+function resultadoA3PNormal($url, $html='', $episode='', $title=''){
 	$cabeceras = array(
 		'User-Agent: iOS / Safari 7: Mozilla/5.0 (iPad; CPU OS 7_0_4 like Mac OS X) AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 Mobile/11B554a Safari/9537.53'
 	);
 		
-	if($web_descargada === ''){
-		$web_descargada = CargaWebCurl($web, '', 1, '', $cabeceras);
-		if(!preg_match('@<div.*?capa_modulo_player.*?episode ?= ?"(.*?)">@i', $web_descargada, $matches)){
+	if($html === ''){
+		$html = CargaWebCurl($url, '', 1, '', $cabeceras);
+		if(!preg_match('@<div.*?capa_modulo_player.*?episode ?= ?"(.*?)">@i', $html, $matches)){
 			return array();
 		}
 		$episode = $matches[1];
@@ -140,8 +139,8 @@ function resultadoA3PNormal($web, $web_descargada='', $episode='', $title=''){
 	$key_movil = 'QWtMLXs414Yo+c#_+Q#K@NN)'; // móvil
 	$msg = $episode.$tiempo;
 
-	$hmac_f4m = bin2hex(custom_hmac('md5', $msg, $key_f4m, true));
-	$hmac_movil = bin2hex(custom_hmac('md5', $msg, $key_movil, true));
+	$hmac_f4m = bin2hex($this->custom_hmac('md5', $msg, $key_f4m, true));
+	$hmac_movil = bin2hex($this->custom_hmac('md5', $msg, $key_movil, true));
 	dbug('hmac_f4m = '.$hmac_f4m);
 	dbug('hmac_movil = '.$hmac_movil);
 	
@@ -266,5 +265,4 @@ function custom_hmac($algo, $data, $key, $raw_output = false){
 	return ($raw_output) ? pack($pack, $output) : $output;
 }
 
-
-?>
+}

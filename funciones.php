@@ -82,7 +82,7 @@ function generaNombreWindowsValido($filename){
 function limpiaTitulo($titulo, $max=200){
 	if(strlen($titulo) > $max)
 		$titulo = substr($titulo, 0, $max).'...';
-	return strtr($titulo, array('%27'=>'', '*'=>'',"'"=>''));
+	return trim(strtr($titulo, array('%27'=>'', '*'=>'',"'"=>'')));
 }
 
 function strposF($donde, $que, $desde=0){
@@ -92,7 +92,7 @@ function strrposF($donde, $que, $desde=0){
 	return strrpos($donde, $que, $desde) +strlen($que);
 }
 
-function entre1y2_a($que, $desfaseInicio=0, $start, $fin){
+function entre1y2_a(&$que, $desfaseInicio=0, $start, $fin){
 	if(is_int($start))
 		$p = $start;
 	else
@@ -103,8 +103,18 @@ function entre1y2_a($que, $desfaseInicio=0, $start, $fin){
 		$f = strpos($que, $fin, $p);
 	return substr($que, $p, $f-$p);
 }
-function entre1y2($que, $start, $fin){
-	return entre1y2_a($que,0,$start,$fin);
+function entre1y2(&$que, $start, $fin){
+	return entre1y2_a($que, 0, $start, $fin);
+}
+
+function desde1a2_a(&$que, $desfaseInicio=0, $start, $fin){
+	$t = entre1y2_a($que, $desfaseInicio, $start, $fin);
+	if(!is_int($start))
+		return $start.$t;
+	return $t;
+}
+function desde1a2(&$que, $start, $fin){
+	return desde1a2_a($que, 0, $start, $fin);
 }
 
 function stringContains($donde, $que){

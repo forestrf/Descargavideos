@@ -11,8 +11,8 @@ if(!isset($_GET['modo'])||!isset($_SERVER['HTTP_REFERER']))
 $ref=$_SERVER['HTTP_REFERER'];
 $pag="";
 if(
-	strpos($ref,'http://'.Dominio)==0||
-	strpos($ref,'http://www.'.Dominio)==0
+	strpos($ref,'http://'.DOMINIO)==0||
+	strpos($ref,'http://www.'.DOMINIO)==0
 )
 $pag='descargavideos';
 
@@ -40,7 +40,7 @@ else
 
 function fin($url="asdf"){
 	if($url=="asdf")
-		$url = 'http://www.'.Dominio.'/';
+		$url = 'http://www.'.DOMINIO.'/';
 	header('Location: '.$url);
 	exit;
 }

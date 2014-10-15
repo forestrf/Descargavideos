@@ -9,8 +9,8 @@ if(!isset($_GET['modo'])||!isset($_SERVER['HTTP_REFERER']))
 //necesario que el referer sea descargavideos o descargavid.blogspot
 $ref=&$_SERVER['HTTP_REFERER'];
 if(
-	strpos($ref,'http://'.Dominio)!=0&&
-	strpos($ref,'http://www.'.Dominio)!=0&&
+	strpos($ref,'http://'.DOMINIO)!=0&&
+	strpos($ref,'http://www.'.DOMINIO)!=0&&
 	strpos($ref,'http://descargavid.blogspot.com')!=0&&
 	strpos($ref,'http://www.descargavid.blogspot.com')!=0
 )

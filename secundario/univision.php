@@ -1,32 +1,28 @@
 <?php
 
-function univisionMovil() {
-	global $web, $web_descargada;
-	//$retfull=CargaWebCurl($web);
+class Univision extends cadena{
 
-	$id = entre1y2($web . 'FINAL', '?id=', 'FINAL');
+function calcularMovil() {
+	$id = entre1y2($this->web . 'FINAL', '?id=', 'FINAL');
 	dbug('id=' . $id);
-	univisionID($id);
+	$this->univisionID($id);
 }
 
-function univision() {
-	global $web, $web_descargada;
-	//$retfull=CargaWebCurl($web);
-
-	if (enString($web_descargada, 'video_id=')) {
-		$id = entre1y2($web_descargada, 'video_id=', ',');
-	} elseif (enString($web_descargada, 'fw_video_asset_id')) {
-		preg_match("@fw_video_asset_id.*?([0-9]+)@", $web_descargada, $match);
+function calcular() {
+	if (enString($this->web_descargada, 'video_id=')) {
+		$id = entre1y2($this->web_descargada, 'video_id=', ',');
+	} elseif (enString($this->web_descargada, 'fw_video_asset_id')) {
+		preg_match("@fw_video_asset_id.*?([0-9]+)@", $this->web_descargada, $match);
 		$id = $match[1];
-	} elseif (enString($web_descargada, 'videoEmbedCode')) {
-		preg_match("@videoEmbedCode.*?([0-9]+)@", $web_descargada, $match);
+	} elseif (enString($this->web_descargada, 'videoEmbedCode')) {
+		preg_match("@videoEmbedCode.*?([0-9]+)@", $this->web_descargada, $match);
 		$id = $match[1];
 	} else {
 		return;
 	}
 
 	dbug('id=' . $id);
-	univisionID($id);
+	$this->univisionID($id);
 }
 
 function univisionID($id) {
@@ -153,4 +149,5 @@ function univisionID($id) {
 
 	finalCadena($obtenido, false);
 }
-?>
+
+}

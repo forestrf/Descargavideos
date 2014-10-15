@@ -43,8 +43,7 @@ if(enString($web_descargada,"_url_xml_datos")){
 	//<video type="content">
 	//</video>
 	$p=strpos($ret,'<video type="content">');
-	$f=strlen($ret);
-	$ret=substr($ret,$p,$f-$p);
+	$ret=substr($ret,$p);
 
 	//</end_video_point>	
 	$videos=substr_count($ret,'<url>');
@@ -136,7 +135,7 @@ else{
 		$imagen=entre1y2_a($web_descargada, 'content="', '"');
 	}
 	else
-		$imagen = "/canales/canalsur.png";
+		$imagen='http://www.'.DOMINIO.'/canales/canalsur.png';
 	
 	preg_match("@http://[^ ]*?\.mp4@i", $web_descargada, $matches);
 	

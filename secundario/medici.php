@@ -20,9 +20,8 @@ if(!enString($web,'#!'))
 $obtenido=array('enlaces' => array());
 
 //aparentemente se puede. enviemoslo.
-$p=strpos($web,'#!')+2;
-$f=strlen($web);
-$webFormateada=substr($web,$p,$f-$p);
+$p=strposF($web,'#!');
+$webFormateada=substr($web,$p);
 
 $cabecera=array(
 	"Host: es.medici.tv",

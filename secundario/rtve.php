@@ -1,34 +1,35 @@
 <?php
-function rtve(){
-global $web,$web_descargada;
+
+class Rtve extends cadena{
+
+function calcular(){
 dbug('empezando RTVE');
 
 //si no se pone / al final de un enlace que lo necesita, se arma parda. aplicar la / en caso de que se necesite.
-/*$p=strrpos($web,"/");
-if($p!=strlen($web)-1){
-	$f=strlen($web);
-	$analisis=substr($web,$p,$f-$p);
+/*$p=strrpos($this->web,"/");
+if($p!=strlen($this->web)-1){
+	$analisis=substr($this->web,$p);
 	if(!enString($analisis,"."))
-		$web.='/';
+		$this->web.='/';
 }*/
 	
 //modo audio
 //modo infantil
 //modo alacarta
-if(enString($web,"/audios/")){
+if(enString($this->web,"/audios/")){
 	dbug('modo audio');
-	//$retfull=CargaWebCurl($web);
+	//$retfull=CargaWebCurl($this->web);
 	$audio=1;
 }
-elseif(enString($web,"/infantil/")){
+elseif(enString($this->web,"/infantil/")){
 	dbug('modo infantil');
 	
-	if(strposF($web, '/todos')+2 > strlen($web) || !strpos($web, '/', strposF($web, '/todos')+2)){
-		$web2 = strtr($web, array('/#'=>''));
+	if(strposF($this->web, '/todos')+2 > strlen($this->web) || !strpos($this->web, '/', strposF($this->web, '/todos')+2)){
+		$web2 = strtr($this->web, array('/#'=>''));
 		$enlaceInfantil = substr($web2, strpos($web2, '/infantil/'));
 		dbug('$enlaceInfantil = '.$enlaceInfantil);
-		if(enString($web_descargada, $enlaceInfantil)){
-			preg_match('@(TE_[A-Z]+).*?'.$enlaceInfantil.'@', $web_descargada, $matches);
+		if(enString($this->web_descargada, $enlaceInfantil)){
+			preg_match('@(TE_[A-Z]+).*?'.$enlaceInfantil.'@', $this->web_descargada, $matches);
 			dbug_r($matches);
 			$pre_asset=$matches[1];
 			dbug('pre_asset='.$pre_asset);
@@ -48,13 +49,13 @@ elseif(enString($web,"/infantil/")){
 		}
 	}
 	else{
-		$p=strrposF($web,"/",strrposF($web,"/")-2-strlen($web));
-		$f=strpos($web,"/",$p);
-		$asset=substr($web,$p,$f-$p);
+		$p=strrposF($this->web,"/",strrposF($this->web,"/")-2-strlen($this->web));
+		$f=strpos($this->web,"/",$p);
+		$asset=substr($this->web,$p,$f-$p);
 		dbug('asset='.$asset);
 		
 		if(!is_numeric($asset)){
-			$preIDURL=entre1y2($web_descargada,"/#/",'"');
+			$preIDURL=entre1y2($this->web_descargada,"/#/",'"');
 			dbug('preIDURL='.$preIDURL);
 			$p=strpos($preIDURL,"/",strlen($preIDURL)-12);
 			$asset=entre1y2_a($preIDURL,$p,"/","/");
@@ -65,10 +66,10 @@ elseif(enString($web,"/infantil/")){
 }
 else{
 	dbug('modo normal');
-	//$retfull=CargaWebCurl($web);
+	//$retfull=CargaWebCurl($this->web);
 	
 	//assetID=974036_
-	$asset = encuentraAssetEnContenido($web_descargada);
+	$asset = $this->encuentraAssetEnContenido($this->web_descargada);
 }
 
 
@@ -79,10 +80,10 @@ if(isset($audio)){
 	//file:'/resources/TE_SENTREN/mp3/0/3/1329728190030.mp3'
 	
 	//obtener url (boton descargar en pagina)
-	$p=strpos($web_descargada,'class="download"');
-	$p=strpos($web_descargada,'href="',$p)+6;
-	$f=strpos($web_descargada,'"',$p);
-	$ret=substr($web_descargada,$p,$f-$p);
+	$p=strpos($this->web_descargada,'class="download"');
+	$p=strpos($this->web_descargada,'href="',$p)+6;
+	$f=strpos($this->web_descargada,'"',$p);
+	$ret=substr($this->web_descargada,$p,$f-$p);
 	if(!enString($ret, 'http://') || $ret[0] === '/'){
 		$ret = 'http://www.rtve.es'.$ret;
 	}
@@ -94,10 +95,10 @@ if(isset($audio)){
 		dbug('toca sacar el audio por metodo nuevo');
 
 		//$ret=assetdataid
-		$p=strposF($web_descargada,'data-assetID="');
-		$f=strpos($web_descargada,'_',$p);
-		$asset=substr($web_descargada,$p,$f-$p);
-		$ret=convierteID($asset,array('audio','video'));
+		$p=strposF($this->web_descargada,'data-assetID="');
+		$f=strpos($this->web_descargada,'_',$p);
+		$asset=substr($this->web_descargada,$p,$f-$p);
+		$ret = $this->convierteID($asset,array('audio','video'));
 		if($ret === false)
 			return;
 	}
@@ -106,7 +107,7 @@ if(isset($audio)){
 }
 //video
 else{
-	$ret=convierteID($asset);
+	$ret = $this->convierteID($asset);
 	if($ret === false)
 		return;
 	dbug('ret='.$ret);
@@ -135,7 +136,7 @@ if(isset($asset)){
 
 		//imagen
 		if(enString($retmedia,'"image":null')){
-			$imagen="/canales/rtve.png";
+			$imagen='http://www.'.DOMINIO.'/canales/rtve.png';
 			dbug('imagen null');
 		}
 		else{
@@ -146,23 +147,23 @@ if(isset($asset)){
 	}
 	else{
 		$titulo="RTVE";
-		$imagen="/canales/rtve.png";
+		$imagen='http://www.'.DOMINIO.'/canales/rtve.png';
 	}
 }
 else{
 	//titulo
-	$p=strpos($web_descargada,'class="header"');
-	$p=strpos($web_descargada,'titu',$p);
-	$p=strpos($web_descargada,'>',$p)+1;
-	$f=strpos($web_descargada,'<',$p);
-	$titulo=substr($web_descargada,$p,$f-$p);
+	$p=strpos($this->web_descargada,'class="header"');
+	$p=strpos($this->web_descargada,'titu',$p);
+	$p=strpos($this->web_descargada,'>',$p)+1;
+	$f=strpos($this->web_descargada,'<',$p);
+	$titulo=substr($this->web_descargada,$p,$f-$p);
 	$titulo=limpiaTitulo($titulo);
 	
 	//imagen
-	$p=strpos($web_descargada,'imgPrograma');
-	$p=strpos($web_descargada,'src="',$p)+5;
-	$f=strpos($web_descargada,'"',$p);
-	$imagen=substr($web_descargada,$p,$f-$p);
+	$p=strpos($this->web_descargada,'imgPrograma');
+	$p=strpos($this->web_descargada,'src="',$p)+5;
+	$f=strpos($this->web_descargada,'"',$p);
+	$imagen=substr($this->web_descargada,$p,$f-$p);
 }
 dbug('titulo='.$titulo);
 dbug('imagen='.$imagen);
@@ -197,13 +198,13 @@ function convierteID($asset,$modo=array('video','audio')){
 	$modo_length=count($modo);
 	for($i=0;$i<$modo_length&&$ret=='';$i++){
 		$codificado=$asset.'_banebdyede_'.$modo[$i].'_es';
-		$codificado=encripta($codificado);
+		$codificado = $this->encripta($codificado);
 		$server5='http://ztnr.rtve.es/ztnr/res/'.$codificado;
 
 		dbug('idasset web='.$server5);
 
 		$ret=CargaWebCurl($server5);
-		$ret=desencripta($ret);
+		$ret = $this->desencripta($ret);
 		
 		dbug_($ret);
 		if(preg_match_all('@http://[^<^>]*?\\.(?:mp4|mp3)[^<^>]*@',$ret, $m)){
@@ -211,7 +212,7 @@ function convierteID($asset,$modo=array('video','audio')){
 			foreach($m[0] as $i){
 				dbug('Opcion: '.$i);
 				if(!enString($i, '1100000000000')){
-					$ret=quita_geobloqueo($i);
+					$ret = $this->quita_geobloqueo($i);
 					dbug('Opcion elejida: '.$i);
 					break;
 				}
@@ -222,7 +223,7 @@ function convierteID($asset,$modo=array('video','audio')){
 			foreach($m[0] as $i){
 				dbug('Opcion: '.$i);
 				if(!enString($i, '1100000000000')){
-					$ret=quita_geobloqueo($i);
+					$ret = $this->quita_geobloqueo($i);
 					dbug('Opcion elejida: '.$i);
 					break;
 				}
@@ -251,7 +252,6 @@ function convierteID($asset,$modo=array('video','audio')){
 }
 
 function encuentraAssetEnContenido($web_descargada){
-	global $web;
 	$asset = "Por rellenar";
 	if(enString($web_descargada, "assetID=")){
 		$asset=entre1y2($web_descargada,'assetID=','_');
@@ -273,7 +273,7 @@ function encuentraAssetEnContenido($web_descargada){
 				}
 				$assetW = CargaWebCurl($asset);
 				dbug('lanzando encuentraAssetEnContenido() con el contenido de '.$asset);
-				$asset = encuentraAssetEnContenido($assetW);
+				$asset = $this->encuentraAssetEnContenido($assetW);
 			}
 			else{
 				preg_match_all('@/(\d+)/@', $asset, $matches);
@@ -290,7 +290,7 @@ function encuentraAssetEnContenido($web_descargada){
 		dbug('asset, prueba 4: '.$asset);
 	}
 	if(stringContains($asset,array('"','{','}','<','>',' '))){
-		preg_match_all('@/(\d+)/@', $web, $matches);
+		preg_match_all('@/(\d+)/@', $this->web, $matches);
 		$asset=$matches[1][0];
 		dbug('asset, prueba 3 (de la url): '.$asset);
 	}
@@ -308,7 +308,7 @@ function encripta($que){
 	$completar = (8 - $modulo);
 	$k = "";
 	for($j = 0;$j<$completar;$j++){
-		$k = $k.chr(7);
+		$k = $k.chr($completar);
 	}
 	
 	mcrypt_generic_init($cipher,$key,$iv);
@@ -328,7 +328,7 @@ function desencripta($que){
 	$cipher=mcrypt_module_open(MCRYPT_BLOWFISH,'','ecb','');
 	
 	mcrypt_generic_init($cipher,$key,$iv);
-	$decrypted=mdecrypt_generic($cipher,b64d($que));
+	$decrypted=mdecrypt_generic($cipher, $this->b64d($que));
 	mcrypt_generic_deinit($cipher);
 	return $decrypted;
 }
@@ -337,15 +337,10 @@ function b64d($encoded){
 	$decoded="";
 	$base64=strtr($encoded,'-_','+/');
 	for($i=0;$i<ceil(strlen($base64)/64);$i++)
-	   $decoded.=base64_decode(substr($base64,$i*64,64));
+		$decoded.=base64_decode(substr($base64,$i*64,64));
 	return $decoded;
 }
-// http://localhost/secundario/rtve.php?rtve_desencripta=
-// http://localhost/secundario/rtve.php?rtve_encripta=
-if(isset($_GET['rtve_desencripta'])){
-	echo desencripta($_GET['rtve_desencripta']);
+
 }
-if(isset($_GET['rtve_encripta'])){
-	echo encripta($_GET['rtve_encripta']);
-}
+
 ?>

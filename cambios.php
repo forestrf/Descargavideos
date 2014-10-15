@@ -16,6 +16,13 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'15-Octubre-2014'
+,'fix:trim() en los títulos.'
+,'fix:rtpa títulos e imágenes arreglados'
+,'fix:Canal extremadura títulos e imágenes arregladas'
+);
+
+$todos[]=array(
 '9-Octubre-2014'
 ,'fix:Atresplayer vuelve a funcionar con calidad baja pero es necesario entrar a la web desde un móvil o modificar el user-agent del navegador para que ponga "Android".'
 ,'fix:Univisión no encontraba enlaces de algunos vídeos.'

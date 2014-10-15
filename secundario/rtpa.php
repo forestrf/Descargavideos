@@ -1,44 +1,35 @@
 <?php
-//esta web trabaja con webs con espacios (" ") sin %20 incluso en las imágenes
-function rtpa(){
-global $web,$web_descargada;
-$ret=$web_descargada;
-//$ret=CargaWebCurl($web);
 
+class Rtpa extends cadena{
+
+//esta web trabaja con webs con espacios (" ") sin %20 incluso en las imágenes
+function calcular(){
 //titulo
 //<p class="fecha">08-05-2012</p>
 //<p class="programa">Objetivo Asturias</p>
-$p=strpos($ret,'class="fecha">')+14;
-$f=strpos($ret,'<',$p);
-$titulof=substr($ret,$p,$f-$p);
 
-$p=strpos($ret,'class="programa">')+17;
-$f=strpos($ret,'<',$p);
-$titulop=substr($ret,$p,$f-$p);
+//<meta property="og:title" content=" La Agencia Tributaria inició hace cuatro meses una investigación fiscal en el Montepío de la Minería" />
 
-$titulo=$titulop.' - '.$titulof;
+$p = strpos($this->web_descargada, 'og:title');
+$titulo=entre1y2_a($this->web_descargada, $p, 'content="', '"');
 $titulo=limpiaTitulo($titulo);
 dbug('titulo='.$titulo);
 
 //&image=fotos//11/10/121317639014_Cabecera Objetivo Asturias.jpg&
 //imagen
-$p=strpos($ret,"'image'")+7;
-$p=strpos($ret,"'",$p)+1;
-$f=strpos($ret,"'",$p);
-$imagen='http://www.rtpa.es/'.substr($ret,$p,$f-$p);
+$p=strposF($this->web_descargada,"'image':");
+$imagen = entre1y2_a($this->web_descargada, $p, "'", "'");
 dbug('imagen='.$imagen);
 
-$p=strpos($ret,"'file'")+6;
-$p=strpos($ret,"'",$p)+1;
-$f=strpos($ret,"'",$p);
-$url=substr($ret,$p,$f-$p);
+$p=strposF($this->web_descargada,"'file'");
+$url=entre1y2_a($this->web_descargada,$p,"'", "'");
 dbug($url);
 
 dbug("A");
 if(!stringContains($url, array(".mp4",".flv"))){
 	dbug("B");
 	// Probemos con la api de json
-	$apiURL = "http://rtpa.es/api/muestra_json_vod.php?id_programa=".entre1y2($ret, "id_programa=", "&");
+	$apiURL = "http://rtpa.es/api/muestra_json_vod.php?id_programa=".entre1y2($this->web_descargada, "id_programa=", "&");
 	$apiResp = CargaWebCurl($apiURL);
 	dbug($apiResp);
 	$apiResp = json_decode($apiResp, true);
@@ -112,4 +103,5 @@ $obtenido=array(
 
 finalCadena($obtenido);
 }
-?>
+
+}

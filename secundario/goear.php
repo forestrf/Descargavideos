@@ -4,7 +4,7 @@ global $web_descargada;
 
 $obtenido=array('enlaces' => array());
 
-$imagen='canales/goear.png';
+$imagen='http://www.'.DOMINIO.'/canales/goear.png';
 
 //varias canciones (de un usuario)
 if(enString($web_descargada,'<h3>Audios</h3>')){

@@ -15,11 +15,13 @@ arreglado por ahora:
 falta:
 varias canciones rtmp
 */
-function soundcloud(){
-global $web;
+
+class Soundcloud extends cadena{
+
+function calcula(){
 //soundcloud va a base de https, por lo que si alguna url http consigue llegar, toca pasarla a https
-$web=strtr($web,array("http://"=>"https://"));
-$retfull=CargaWebCurl($web);
+$this->web=strtr($this->web,array("http://"=>"https://"));
+$retfull=CargaWebCurl($this->web);
 
 $obtenido=array('enlaces' => array());
 
@@ -29,7 +31,7 @@ $obtenido=array('enlaces' => array());
 $canciones=substr_count($retfull,'<img class="waveform"');
 //dbug('total canciones='.$canciones);
 
-$imagen='canales/soundcloud.png';
+$imagen='http://www.'.DOMINIO.'/canales/soundcloud.png';
 
 //no sabemos cuantas queremos, pero es del modo nuevo y posiblemente varias.
 if(enString($retfull,"Next SoundCloud")||true){
@@ -40,10 +42,10 @@ Lista de ids de clientes:
 Plug.dj => bd7fb07288b526f6f190bfd02b31b25e
 */
 
-$carga=CargaWebCurl('https://api.sndcdn.com/resolve?url='.$web.'&_status_code_map[302]=200&_status_format=json&client_id='.$client_id,
-					"",0,"",array(),false);
+$carga=CargaWebCurl('https://api.sndcdn.com/resolve?url='.$this->web.'&_status_code_map[302]=200&_status_format=json&client_id='.$client_id,
+					'',0,'',array(),false);
 
-dbug($carga);
+dbug_($carga);
 
 if(enString($carga,'tracks/')){
 	//una cancion
@@ -54,8 +56,7 @@ if(enString($carga,'tracks/')){
 	
 	//comprobar si es stremeable. Si no lo es, fin del programa
 	if(enString($carga,'<streamable type="boolean">false')){
-		global $fallourlinterna;
-		$fallourlinterna="La descarga de esta canción está bloqueada.";
+		setErrorWebIntera('La descarga de esta canción está bloqueada.');
 		return;
 	}
 	
@@ -75,12 +76,6 @@ if(enString($carga,'tracks/')){
 	if(enString($carga,'<downloadable type="boolean">true'))
 		$url='http://api.soundcloud.com/tracks/'.$uri.'/download?client_id='.$client_id;
 
-	$f=strpos($web,'/',8);
-	$f2=strpos($web,'/',$f+1);
-	if($f2>0)$f=$f2;
-	else $f=strlen($web);
-	$webMod=substr($web,0,$f);
-	
 	array_push($obtenido['enlaces'],array(
 		'url'		=>	$url,
 		'tipo'		=>	'http',
@@ -95,11 +90,12 @@ else{
 	$titulo="SoundCloud";
 
 	//recortar web para sacar solo la id del user
-	$f=strpos($web,'/',8);
-	$f2=strpos($web,'/',$f+1);
-	if($f2>0)$f=$f2;
-	else $f=strlen($web);
-	$webMod=substr($web,0,$f);
+	$f=strpos($this->web,'/',8);
+	$f2=strpos($this->web,'/',$f+1);
+	if($f2>0)
+		$webMod=substr($this->web,0,$f2);
+	else
+		$webMod=$this->web;
 
 	//https://api.sndcdn.com/resolve?url=https%3A//soundcloud.com/forestrf&_status_code_map[302]=200&_status_format=json&client_id=b45b1aa10f1ac2941910a7f0d10f8e28
 	$id=CargaWebCurl('https://api.sndcdn.com/resolve?url='.$webMod.'&_status_code_map[200]=200&_status_format=json&client_id='.$client_id);
@@ -121,14 +117,14 @@ else{
 	//playlists
 	
 
-	if(enString($web,'sets')||enString($web,'playlists')){
-		$id=CargaWebCurl('https://api.soundcloud.com/resolve?url='.$web.'&_status_code_map[200]=200&_status_format=json&client_id='.$client_id,
+	if(enString($this->web,'sets')||enString($this->web,'playlists')){
+		$id=CargaWebCurl('https://api.soundcloud.com/resolve?url='.$this->web.'&_status_code_map[200]=200&_status_format=json&client_id='.$client_id,
 		"",0,"",array(),false);
 		$p=strposF($id,'playlists/');
 		$f=strpos($id,'?',$p);
 		$id=substr($id,$p,$f-$p);
 		$tipoUrl=2;
-	}elseif(enString($web,'likes')||enString($web,'favorites'))
+	}elseif(enString($this->web,'likes')||enString($this->web,'favorites'))
 		$tipoUrl=0;
 	else
 		$tipoUrl=1;
@@ -198,4 +194,5 @@ $obtenido['imagen']=$imagen;
 
 finalCadena($obtenido,false);
 }
-?>
+
+}

@@ -1,5 +1,8 @@
 <?php
+include 'cadena.class.php';
 include_once 'mitele.php';
+
+$m = new Mitele();
 
 
 if(isset($_GET['debug']) || isset($_COOKIE['debug'])){
@@ -32,38 +35,38 @@ if(isset($_GET['fullinfo'])){
 if(isset($_GET['rtmp'])){
 	if(isset($_GET['id'])){
 		if(isset($_GET['t5'])){
-			$res=mitele2($_GET['id'], 2);//mitele para rtmp
+			$res = $m->mitele2($_GET['id'], 2);//mitele para rtmp
 		}
 		else{
-			$res=mitele2($_GET['id']);//mitele para rtmp
+			$res = $m->mitele2($_GET['id']);//mitele para rtmp
 		}
 		echo $res;
 		exit;
 	}
 	else
-		$res='';
+		$res = '';
 }
 elseif(isset($_GET['t5'])){
 	if(isset($_GET['id'])&&isset($_GET['id2']))
-		$res=mitele3($_GET['id'],$_GET['id2']);//telecinco/cuatro/divinity
+		$res = $m->mitele3($_GET['id'],$_GET['id2']);//telecinco/cuatro/divinity
 	elseif(isset($_GET['id']))
-		$res=mitele3($_GET['id'],'1.jpg');//telecinco/cuatro/divinity
+		$res = $m->mitele3($_GET['id'],'1.jpg');//telecinco/cuatro/divinity
 	else
-		$res='';
+		$res = '';
 }
 elseif(isset($_GET['kd'])){
 	if(isset($_GET['id'])&&isset($_GET['id2']))
-		$res=mitele4($_GET['id'],$_GET['id2']);//mitelekids
+		$res = $m->mitele4($_GET['id'],$_GET['id2']);//mitelekids
 	elseif(isset($_GET['id']))
-		$res=mitele4($_GET['id'],"");//mitelekids // no id2
+		$res = $m->mitele4($_GET['id'],"");//mitelekids // no id2
 	else
-		$res='';
+		$res = '';
 }
 else{
 	if(isset($_GET['id']))
-		$res=mitele8($_GET['id']);//mitele
+		$res = $m->mitele8($_GET['id']);//mitele
 	else
-		$res='';
+		$res = '';
 }
 if(!defined("DEBUG")){
 	if($res!=''){
@@ -71,7 +74,7 @@ if(!defined("DEBUG")){
 		header('Location: '.$res);
 	}
 	else
-		header('Location: http://www.'.Dominio.'/');
+		header('Location: http://www.'.DOMINIO.'/');
 }
 else
 	dbug('redireccion: <a href="'.$res.'">'.$res.'</a>');

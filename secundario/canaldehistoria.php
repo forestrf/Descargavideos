@@ -32,42 +32,41 @@ if(!enString($retfull,'<iframe'))
 	return;
 
 $p=strpos($retfull,'<iframe');
-$p=strpos($retfull,'src="',$p)+5;
+$p=strposF($retfull,'src="',$p);
 $f=strpos($retfull,'"',$p);
 $iframe=substr($retfull,$p,$f-$p);
 dbug('iframe='.$iframe);
 
-$p=strrpos($iframe,'/')+1;
-$f=strlen($iframe);
-$id=substr($iframe,$p,$f-$p);
+$p=strrposF($iframe,'/');
+$id=substr($iframe,$p);
 dbug('id='.$id);
 
 $iframe=CargaWebCurl($iframe);
 
 $p=strpos($iframe,'og:image');
-$p=strpos($iframe,'content="',$p)+9;
+$p=strposF($iframe,'content="',$p);
 $f=strpos($iframe,'"',$p);
 $imagen=substr($iframe,$p,$f-$p);
 dbug('imagen='.$imagen);
 
 $ret=CargaWebCurl('http://www.adnstream.com/get_playlist_embed.php?param='.$id);
 
-$p=strpos($ret,'<title>')+7;
+$p=strposF($ret,'<title>');
 $f=strpos($ret,'<',$p);
 $titulo=substr($ret,$p,$f-$p);
 $titulo=limpiaTitulo($titulo);
 dbug('titulo='.$titulo);
 
 if(enString($ret,'hd.file>')){
-	$p=strpos($ret,'hd.file>')+8;
+	$p=strposF($ret,'hd.file>');
 	$f=strpos($ret,'<',$p);
 	$ret=substr($ret,$p,$f-$p);
 }elseif(enString($ret,'file>')){
-	$p=strpos($ret,'file>')+5;
+	$p=strposF($ret,'file>');
 	$f=strpos($ret,'<',$p);
 	$ret=substr($ret,$p,$f-$p);
 }else{
-	$p=strpos($ret,'http://')+7;
+	$p=strposF($ret,'http://');
 	$f=strpos($ret,'<',$p);
 	$ret=substr($ret,$p,$f-$p);
 }

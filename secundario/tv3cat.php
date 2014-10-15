@@ -34,8 +34,10 @@ else{
 	$p=strrposF($web,'/videos/');
 	$f=strrpos($web,'/',$p);
 	if(!$f)
-		$f=strlen($web);
-	$id=substr($web,$p,$f-$p);
+		$id=substr($web,$p);
+	else
+		$id=substr($web,$p,$f-$p);
+	
 	if(stringContains($id,array(' ','<','>','/','.'))||$id==''){
 		//la id esta en la url, o deberia, pero no esta como siempre. encontrar.
 		$sujeto=$web;

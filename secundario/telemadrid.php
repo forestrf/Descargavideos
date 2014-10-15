@@ -157,7 +157,7 @@ if(enString($t['defaultURL'], '/hd/')){
 	
 	$principio = substr($URLBase, 0, $inicio);
 	$inicio2 = strpos($URLBase, '_', $inicio);
-	$final = substr($URLBase, $inicio2, strlen($URLBase)-$inicio2);
+	$final = substr($URLBase, $inicio2);
 	
 	dbug('$principio => '.$principio);
 	dbug('$final => '.$final);

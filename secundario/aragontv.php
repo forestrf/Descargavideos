@@ -10,7 +10,7 @@ global $web_descargada;
 http://alacarta.aragontelevision.es/_archivos/videos/web/4334/4334.mp4
 */
 
-$imagen='/canales/aragontv.png';
+$imagen='http://www.'.DOMINIO.'/canales/aragontv.png';
 
 $obtenido=array('enlaces' => array());
 

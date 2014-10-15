@@ -1,18 +1,18 @@
 <?php
-function a3(){
-	global $web_descargada;
-	
-	global $xml_ret;
+
+class A3 extends cadena{
+
+function calcular(){
 	$xml_ret='';
 	
 	//video premium
-	if(enString($web_descargada,'<div class="premium">')){
+	if(enString($this->web_descargada,'<div class="premium">')){
 		setErrorWebIntera('premium');
 		return;
 	}
 	
 	//varios vídeos a la vez
-	if(enString($web_descargada,'<div class="grid_12 carruContentDoble">')){
+	if(enString($this->web_descargada,'<div class="grid_12 carruContentDoble">')){
 		setErrorWebIntera('full');
 		return;
 	}
@@ -27,41 +27,41 @@ function a3(){
 	//http://www.antena3.com/chapterxml//5/5271378/2012/02/16/00005.xml
 	//http://www.antena3.com/videoxml/2/1324/1003569/1003570/2012/02/15/00044.xml
 	//http://www.antena3.com/.../....xml
-	if(enString($web_descargada,"xml='")){
+	if(enString($this->web_descargada,"xml='")){
 		dbug("xml=' encontrado");
 
-		if(enString($web_descargada,'mod_galeria_videos')){
+		if(enString($this->web_descargada,'mod_galeria_videos')){
 			dbug('varios vídeos: mod_galeria_videos');
 			
 			$titulo='Grupo de vídeos de Antena 3';
-			$imagen='/canales/a3.png';
+			$imagen='http://www.'.DOMINIO.'/canales/a3.png';
 			
-			$extracto=entre1y2($web_descargada, 'mod_galeria_videos', 'Video Siguiente');
+			$extracto=entre1y2($this->web_descargada, 'mod_galeria_videos', 'Video Siguiente');
 
 			$ult=0;
 			while(enString($extracto,"xml='",$ult)){
 				$p=strposF($extracto,"xml='",$ult);
 				$ult=strpos($extracto,"'",$p);
 				$xml='http://www.antena3.com'.substr($extracto,$p,$ult-$p);
-				foreach(parseaXMLNormal($xml,'multi') as $individual)
+				foreach($this->parseaXMLNormal($xml, $xml_ret, 'multi') as $individual)
 					$obtenido['enlaces'][]=$individual;
 			}
 		}
 		else{
-			$xml='http://www.antena3.com'.entre1y2($web_descargada,"xml='","'");
-			foreach(parseaXMLNormal($xml) as $individual)
+			$xml='http://www.antena3.com'.entre1y2($this->web_descargada,"xml='","'");
+			foreach($this->parseaXMLNormal($xml, $xml_ret) as $individual)
 				$obtenido['enlaces'][]=$individual;
 		}
 	}
-	elseif(enString($web_descargada,'modulo_central')){
+	elseif(enString($this->web_descargada,'modulo_central')){
 		dbug('módulo central');
-		$p=strpos($web_descargada,'modulo_central');
-		$xml='http://www.antena3.com/'.entre1y2_a($web_descargada, $p, "player_capitulo.xml='", '.xml'); //devuelve sin /
-		foreach(parseaXMLNormal($xml) as $individual)
+		$p=strpos($this->web_descargada,'modulo_central');
+		$xml='http://www.antena3.com/'.entre1y2_a($this->web_descargada, $p, "player_capitulo.xml='", '.xml'); //devuelve sin /
+		foreach($this->parseaXMLNormal($xml, $xml_ret) as $individual)
 			$obtenido['enlaces'][]=$individual;
 	}
-	elseif(enString($web_descargada, 'http://www.antena3.com/videosnuevosxml')){
-		preg_match_all('@http://www.antena3.com/videosnuevosxml[^ ^" ^\']*@', $web_descargada, $matches);
+	elseif(enString($this->web_descargada, 'http://www.antena3.com/videosnuevosxml')){
+		preg_match_all('@http://www.antena3.com/videosnuevosxml[^ ^" ^\']*@', $this->web_descargada, $matches);
 
 		$videos = $matches[0];
 		$videos_cargados = array();
@@ -70,41 +70,41 @@ function a3(){
 				continue;	
 			}
 			//$xml = strtr($xml, array('videosnuevosxml' => 'videoxml'));
-			$obtenido['enlaces'][]=parseaXMLNuevo($xml, $imagen, $descripcion);
+			$obtenido['enlaces'][]=$this->parseaXMLNuevo($xml, $imagen, $descripcion);
 			$videos_cargados[] = $xml;
 		}
-		$titulo = entre1y2($web_descargada, '<title>','<');
+		$titulo = entre1y2($this->web_descargada, '<title>','<');
 		if(!isset($imagen) || !enString($imagen, '.jpg')){
-			$imagen = 'http://www.antena3.com/clipping/'.entre1y2($web_descargada, '/clipping/', '.jpg').'.jpg';
+			$imagen = 'http://www.antena3.com/clipping/'.entre1y2($this->web_descargada, '/clipping/', '.jpg').'.jpg';
 			$imagen = substr($imagen, 0, strrposF($imagen, '/')).'45.jpg';
 		}
 	}
-	elseif(enString($web_descargada,'playContainer')){
+	elseif(enString($this->web_descargada,'playContainer')){
 		dbug('playContainer');
-		if(enString($web_descargada, '.xml=')){
+		if(enString($this->web_descargada, '.xml=')){
 			dbug('modo 1');
-			$p=strpos($web_descargada,'playContainer');
-			$xml='http://www.antena3.com/'.entre1y2_a($web_descargada, $p, ".xml='", '.xml'); //devuelve sin /
-			foreach(parseaXMLNormal($xml) as $individual)
+			$p=strpos($this->web_descargada,'playContainer');
+			$xml='http://www.antena3.com/'.entre1y2_a($this->web_descargada, $p, ".xml='", '.xml'); //devuelve sin /
+			foreach($this->parseaXMLNormal($xml, $xml_ret) as $individual)
 				$obtenido['enlaces'][]=$individual;
 		}
-		elseif(enString($web_descargada, 'name="videoDataUrl" value="')){
+		elseif(enString($this->web_descargada, 'name="videoDataUrl" value="')){
 			dbug('modo 2');
-			$xml=entre1y2($web_descargada, 'name="videoDataUrl" value="', '"');
-			$obtenido['enlaces'][]=parseaXMLNuevo($xml, $imagen, $descripcion);
-			$titulo = entre1y2($web_descargada, '<title>','<');
+			$xml=entre1y2($this->web_descargada, 'name="videoDataUrl" value="', '"');
+			$obtenido['enlaces'][]=$this->parseaXMLNuevo($xml, $imagen, $descripcion);
+			$titulo = entre1y2($this->web_descargada, '<title>','<');
 			if(!isset($imagen) || !enString($imagen, '.jpg')){
-				$imagen = 'http://www.antena3.com/clipping/'.entre1y2($web_descargada, '/clipping/', '.jpg').'.jpg';
+				$imagen = 'http://www.antena3.com/clipping/'.entre1y2($this->web_descargada, '/clipping/', '.jpg').'.jpg';
 				$imagen = substr($imagen, 0, strrposF($imagen, '/')).'45.jpg';
 			}
 		}
 		
 	}
 	//.addVariable("xml"
-	elseif(enString($web_descargada,'.addVariable("xml"')){
+	elseif(enString($this->web_descargada,'.addVariable("xml"')){
 		dbug('.addVariable("xml"');
-		$xml='http://www.antena3.com'.entre1y2($web_descargada, '.addVariable("xml","', '"');
-		foreach(parseaXMLNormal($xml) as $individual){
+		$xml='http://www.antena3.com'.entre1y2($this->web_descargada, '.addVariable("xml","', '"');
+		foreach($this->parseaXMLNormal($xml, $xml_ret) as $individual){
 			$obtenido['enlaces'][]=$individual;
 		}
 	}
@@ -151,13 +151,12 @@ function a3(){
 }
 
 //modo= normal o multi
-function parseaXMLNormal($url,$modo='normal'){
+function parseaXMLNormal($url, &$xml_ret, $modo = 'normal') {
 	dbug('parseaXMLNormal');
 	dbug('xml='.$url);
 	$xml=CargaWebCurl($url);
 	
-	global $xml_ret;
-	if($xml_ret==''){
+	if($xml_ret === ''){
 		dbug('xml_ret (url)='.$url);
 		$xml_ret=$xml;
 	}
@@ -258,4 +257,4 @@ function parseaXMLNuevo(&$entrada, &$imagen, &$descripcion){
 	);
 }
 
-?>
+}
