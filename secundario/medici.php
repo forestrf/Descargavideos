@@ -1,7 +1,8 @@
 <?php
-function medici(){
-global $web;
 
+class Medici extends cadena{
+
+function calcula(){
 //Hay videos geobloqueados. pocos pero hay. OJO porque no irán
 
 
@@ -14,14 +15,14 @@ json=true&page=%2Fhenri-demarquette-charles-dutoit-royal-philharmonic-orchestra-
 */
 
 //comprobar que la web es correcta o fallar
-if(!enString($web,'#!'))
+if(!enString($this->web,'#!'))
 	return;
 
 $obtenido=array('enlaces' => array());
 
 //aparentemente se puede. enviemoslo.
-$p=strposF($web,'#!');
-$webFormateada=substr($web,$p);
+$p=strposF($this->web,'#!');
+$webFormateada=substr($this->web,$p);
 
 $cabecera=array(
 	"Host: es.medici.tv",
@@ -37,16 +38,16 @@ dbug($ret);
 
 //imagen:
 //"main_image": "http:....jpg"
-$p=strpos($ret,'"main_image"')+12;
-$p=strpos($ret,'"',$p)+1;
+$p=strposF($ret,'"main_image"');
+$p=strposF($ret,'"',$p);
 $f=strpos($ret,'"',$p);
 $imagen=substr($ret,$p,$f-$p);
 dbug('imagen='.$imagen);
 
 //titulo:
 //"title": "..."
-$p=strpos($ret,'"title"')+7;
-$p=strpos($ret,'"',$p)+1;
+$p=strposF($ret,'"title"');
+$p=strposF($ret,'"',$p);
 $f=strpos($ret,'"',$p);
 $titulo=substr($ret,$p,$f-$p);
 $titulo=limpiaTitulo($titulo);
@@ -102,17 +103,6 @@ elseif(enString($ret, 'url_smil')){
 		
 		$URL=$preURL_HTTP;
 		$tipo='http';
-		/*
-		//ESTA VALIDACIÓN ES MUY LENTA. la línea de arriba puede dar fallos si resultara ser rtmp, pero es un riesgo que se puede correr por ahora
-		if(url_exists_full($preURL_HTTP)){
-			$URL=$preURL_HTTP;
-			$tipo='http';
-		}else{
-			//abrir y tratar el archivo smil
-			$URL=CargaArchivoFopen($preURL_RTMP);
-			$tipo='rtmp';
-		}
-		*/
 		dbug($URL);
 	
 		if($tipo=='http')
@@ -136,13 +126,4 @@ $obtenido['imagen']=$imagen;
 finalCadena($obtenido);
 }
 
-function CargaArchivoFopen($url){
-	$g=fopen($url,"rb");
-	$t="";
-	while(!feof($g))
-		$t.=fgets($g,1024);
-	fclose($g);
-	dbug('Archivo cargado: '.$url);
-	return $t;
 }
-?>

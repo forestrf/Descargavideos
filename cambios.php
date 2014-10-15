@@ -19,8 +19,11 @@ $todos[]=array(
 '15-Octubre-2014'
 ,'fix:Canalsur es compatible con vídeos flv (antes sólo lo era con mp4).'
 ,'fix:trim() en los títulos.'
-,'fix:rtpa títulos e imágenes arreglados'
-,'fix:Canal extremadura títulos e imágenes arregladas'
+,'fix:rtpa títulos e imágenes arreglados.'
+,'fix:Canal extremadura títulos e imágenes arregladas.'
+,'fix:RT.com, algunos vídeos habían dejado de funcionar.'
+,'fix:Arreglado canaldehistoria.es, ahora canalhistoria.es.'
+,'add:Soporte para vídeos embedidos de vimeo.'
 );
 
 $todos[]=array(

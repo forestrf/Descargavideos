@@ -219,62 +219,73 @@ $cadenas = array(
 		'Veoh',
 		'calcula'
 	)
-	// CONTINUAR AQUÍ
 	,array(
 		array('tv3.cat','324.cat','esport3.cat','3xl.cat','super3.cat'),
 		array('tv3cat.php'),
-		'tv3cat'
+		'Tv3cat',
+		'calcula'
 	)
 	,array(
 		array('aragontelevision.es'),
 		array('aragontv.php'),
-		'aragontv'
+		'Aragontv',
+		'calcula'
 	)
 	,array(
 		array('canalsuralacarta.es','canalsur.es'),
 		array('canalsuralacarta.php'),
-		'canalsuralacarta'
+		'Canalsuralacarta',
+		'calcula'
 	)
 	,array(
 		array('rtvcm.es'),
 		array('rtvcm.php'),
-		'rtvcm'
+		'Rtvcm',
+		'calcula'
 	)
 	,array(
 		array('rt.com'),
 		array('rt.php'),
-		'rt'
+		'Rt',
+		'calcula'
 	)
 	,array(
 		array('vtelevision.es'),
 		array('vtelevision.php'),
-		'vtelevision'
+		'Vtelevision',
+		'calcula'
 	)
 	,array(
 		array('medici.tv'),
 		array('medici.php'),
-		'medici'
+		'Medici',
+		'calcula'
 	)
 	,array(
 		array('goear.com'),
 		array('goear.php'),
-		'goear'
+		'Goear',
+		'calcula'
 	)
 	,array(
-		array('canaldehistoria.es'),
-		array('canaldehistoria.php'),
-		'canaldehistoria'
+		array('canaldehistoria.es','canalhistoria.es'),
+		array('canaldehistoria.php','adnstream.php','vimeo.php'),
+		'Canaldehistoria',
+		'calcula'
 	)
 	,array(
 		array('adnstream.com'),
 		array('adnstream.php'),
-		'adnstream'
+		'Adnstream',
+		'calcula'
 	)
 	,array(
 		array('crtvg.es'),
 		array('crtvg.php'),
-		'crtvg'
+		'Crtvg',
+		'calcula'
 	)
+	// SEGUIR POR AQUÍ
 	,array(
 		array('mtv.es'),
 		array('mtv.php'),
@@ -293,7 +304,8 @@ $cadenas = array(
 	,array(
 		array('vimeo.com'),
 		array('vimeo.php'),
-		'vimeo'
+		'Vimeo',
+		'calcula'
 	)
 	/*,array(
 		array('grooveshark.com'),

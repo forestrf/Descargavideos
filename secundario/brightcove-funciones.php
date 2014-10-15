@@ -40,7 +40,7 @@ function brightcove_curl_web($url,$post){
 	return CargaWebCurl($url,$post,0,"",$r);
 }
 
-function brightcove_genera_obtenido($base, $config, $titulo = ''){
+function brightcove_genera_obtenido($dis, $base, $config, $titulo = ''){
 	$obtenido2 = array();
 	
 	foreach($config as $pathBase => $tipoObtenido){
@@ -48,7 +48,8 @@ function brightcove_genera_obtenido($base, $config, $titulo = ''){
 		$IOSRenditions = $base[$pathBase];
 		for($i=0; $i<$i_total=Count($IOSRenditions); $i++){
 			$temp=$IOSRenditions[$i]->getAMFData();
-			URLSDelArrayBrightCove($temp, $tipoObtenido, $obtenido2, $titulo);
+			$parameters = array( $temp, $tipoObtenido, &$obtenido2, $titulo );
+			call_user_func_array(array($dis, 'URLSDelArrayBrightCove'), $parameters); 
 		}
 	}
 	

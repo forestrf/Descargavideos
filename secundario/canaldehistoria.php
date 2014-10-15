@@ -20,68 +20,52 @@ dheWtoYpuJ
 
 <jwplayer:hd.file>http://82.165.193.211/video/4bba500c634b149cac372353b1913bb6/dheWtoYpuJ.H264-720p.mp4</jwplayer:hd.file>
 */
-function canaldehistoria(){
-global $web,$web_descargada;
-$retfull=$web_descargada;
-//$retfull=CargaWebCurl($web);
 
+class Canaldehistoria extends cadena{
+
+function calcula(){
 //mirar si hay video
-$obtenido=array();
-
-if(!enString($retfull,'<iframe'))
-	return;
-
-$p=strpos($retfull,'<iframe');
-$p=strposF($retfull,'src="',$p);
-$f=strpos($retfull,'"',$p);
-$iframe=substr($retfull,$p,$f-$p);
-dbug('iframe='.$iframe);
-
-$p=strrposF($iframe,'/');
-$id=substr($iframe,$p);
-dbug('id='.$id);
-
-$iframe=CargaWebCurl($iframe);
-
-$p=strpos($iframe,'og:image');
-$p=strposF($iframe,'content="',$p);
-$f=strpos($iframe,'"',$p);
-$imagen=substr($iframe,$p,$f-$p);
-dbug('imagen='.$imagen);
-
-$ret=CargaWebCurl('http://www.adnstream.com/get_playlist_embed.php?param='.$id);
-
-$p=strposF($ret,'<title>');
-$f=strpos($ret,'<',$p);
-$titulo=substr($ret,$p,$f-$p);
-$titulo=limpiaTitulo($titulo);
-dbug('titulo='.$titulo);
-
-if(enString($ret,'hd.file>')){
-	$p=strposF($ret,'hd.file>');
-	$f=strpos($ret,'<',$p);
-	$ret=substr($ret,$p,$f-$p);
-}elseif(enString($ret,'file>')){
-	$p=strposF($ret,'file>');
-	$f=strpos($ret,'<',$p);
-	$ret=substr($ret,$p,$f-$p);
-}else{
-	$p=strposF($ret,'http://');
-	$f=strpos($ret,'<',$p);
-	$ret=substr($ret,$p,$f-$p);
-}
 
 $obtenido=array(
-	'titulo'  => $titulo,
-	'imagen'  => $imagen,
-	'enlaces' => array(
-		array(
-			'url'  => $ret,
-			'tipo' => 'http'
-		)
-	)
+	'titulo'  => 'Canal de Historia',
+	'enlaces' => array()
 );
+
+if(!enString($this->web_descargada,'<iframe'))
+	return;
+
+preg_match_all('@<iframe src="(.*?)"@', $this->web_descargada, $matches);
+
+dbug_r($matches);
+foreach($matches[1] as $url){
+	dbug($url);
+	if(strpos($url, '//player.vimeo') === 0){
+		$url = 'http:'.$url;
+		
+		$vimeo = new Vimeo();
+		$url_descargada = CargaWebCurl($url);
+		$vimeo->init($url, $url_descargada);
+		$ret = $vimeo->calcula();
+		dbug_r($ret);
+	} else {
+		$adnstream = new Adnstream();
+		$url_descargada = CargaWebCurl($url);
+		$adnstream->init($url, $url_descargada);
+		$ret = $adnstream->calcula();
+		dbug_r($ret);
+	}
+	
+	$obtenido['enlaces'][] = array('titulo' => $ret['titulo']);
+	foreach($ret['enlaces'] as $enlace){
+		$obtenido['enlaces'][] = $enlace;
+	}
+	
+	if(!isset($obtenido['imagen'])){
+		$obtenido['imagen'] = $ret['imagen'];
+	}
+}
 
 finalCadena($obtenido);
 }
-?>
+
+}

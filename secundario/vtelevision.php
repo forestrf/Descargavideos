@@ -1,22 +1,22 @@
 <?php
 // http://media.vtelevision.es/default/2011/09/28/0031_10_99379/Foto/img_99379.jpg
 // http://media.vtelevision.es/default/2011/09/28/0031_10_99379/Video/video_99379.mp4
-function vtelevision(){
-global $web, $web_descargada;
-//$retfull=CargaWebCurl($web);
 
+class Vtelevision extends cadena{
+
+function calcula(){
 //titulo
-$titulo=utf8_encode(entre1y2($web_descargada, '<title>', '<'));//utf-8... mirar esto
+$titulo=utf8_encode(entre1y2($this->web_descargada, '<title>', '<'));//utf-8... mirar esto
 $titulo=limpiaTitulo($titulo);
 dbug('titulo='.$titulo);
 
-$p=strpos($web_descargada,'og:image');
-$imagen=entre1y2_a($web_descargada, $p, 'content="', '"');
+$p=strpos($this->web_descargada,'og:image');
+$imagen=entre1y2_a($this->web_descargada, $p, 'content="', '"');
 dbug('imagen='.$imagen);
 
-if(enString($web_descargada, 'og:video')){
-	$p=strpos($web_descargada,'og:video');
-	$url=entre1y2_a($web_descargada, $p, 'content="', '"');
+if(enString($this->web_descargada, 'og:video')){
+	$p=strpos($this->web_descargada,'og:video');
+	$url=entre1y2_a($this->web_descargada, $p, 'content="', '"');
 	dbug('video='.$url);
 	
 	$obtenido=array(
@@ -30,7 +30,7 @@ if(enString($web_descargada, 'og:video')){
 		)
 	);
 }
-elseif(enString($web_descargada, '<object class="BrightcoveExperience"')){
+elseif(enString($this->web_descargada, '<object class="BrightcoveExperience"')){
 	
 	$obtenido=array(
 		'titulo'  => $titulo,
@@ -47,11 +47,11 @@ elseif(enString($web_descargada, '<object class="BrightcoveExperience"')){
 	*/
 	
 	
-	preg_match('/<param value="(.*?)" name="playerID"/', $web_descargada, $matches);
+	preg_match('/<param value="(.*?)" name="playerID"/', $this->web_descargada, $matches);
 	$experienceID = $matches[1];
-	preg_match('/<param value="(.*?)" name="playerKey"/', $web_descargada, $matches);
+	preg_match('/<param value="(.*?)" name="playerKey"/', $this->web_descargada, $matches);
 	$playerKey = $matches[1];
-	preg_match('/<param value="(.*?)" name="@videoPlayer"/', $web_descargada, $matches);
+	preg_match('/<param value="(.*?)" name="@videoPlayer"/', $this->web_descargada, $matches);
 	$contentId = $matches[1];
 	
 	$messagebroker="http://c.brightcove.com/services/messagebroker/amf?playerKey=".$playerKey;
@@ -72,7 +72,7 @@ elseif(enString($web_descargada, '<object class="BrightcoveExperience"')){
 					(
 						'TTLToken' => null,
 						'deliveryType' => NAN,
-						'URL' => $web, //Innecesario
+						'URL' => $this->web, //Innecesario
 						'experienceId' => $experienceID,
 						'playerKey' => $playerKey,
 						'contentOverrides' => array(
@@ -126,7 +126,7 @@ elseif(enString($web_descargada, '<object class="BrightcoveExperience"')){
 	$base=$base['programmedContent']['videoPlayer']->getAMFData();
 	$base=$base['mediaDTO']->getAMFData();
 	
-	$obtenido['enlaces'] = brightcove_genera_obtenido($base, array(
+	$obtenido['enlaces'] = brightcove_genera_obtenido($this, $base, array(
 		'IOSRenditions' => 'm3u8',
 		'renditions' => 'http',
 	));
@@ -149,4 +149,5 @@ function URLSDelArrayBrightCove($r, $tipo, &$obtenido_enlaces){
 		);
 	}
 }
-?>
+
+}

@@ -1,6 +1,8 @@
 <?php
-function aragontv(){
-global $web_descargada;
+
+class Aragontv extends cadena{
+
+function calcula(){
 
 /*
 "clip":{"url":"mp4:/_archivos/videos/web/4334/4334.mp4"}
@@ -15,27 +17,27 @@ $imagen='http://www.'.DOMINIO.'/canales/aragontv.png';
 $obtenido=array('enlaces' => array());
 
 //un solo video
-if(enString($web_descargada,'flowplayer(')){
+if(enString($this->web_descargada,'flowplayer(')){
 	dbug('simple');
-	$titulo=entre1y2($web_descargada,'<div class="apartado"><h2>','</h2>');
+	$titulo=entre1y2($this->web_descargada,'<div class="apartado"><h2>','</h2>');
 	$titulo=limpiaTitulo($titulo);
 	
 	if(stringContains($titulo, array('</', 'Server:'))){
 		dbug('titulo fallido, usando <title>');
-		$titulo=entre1y2($web_descargada,'<title>','</');
+		$titulo=entre1y2($this->web_descargada,'<title>','</');
 		$titulo=limpiaTitulo($titulo);
 	}
 	dbug('titulo='.$titulo);
 	
-	$obtenido['enlaces'][] = SacarVideo($web_descargada, $titulo);
+	$obtenido['enlaces'][] = $this->SacarVideo($this->web_descargada, $titulo);
 }
 
 //muchos videos
-elseif(enString($web_descargada,'list-not-even')){
+elseif(enString($this->web_descargada,'list-not-even')){
 	dbug('multi');
 
-	$p=strpos($web_descargada,'<div class="apartado">');
-	$titulo=entre1y2_a($web_descargada,$p,'<h2>','</h2>');
+	$p=strpos($this->web_descargada,'<div class="apartado">');
+	$titulo=entre1y2_a($this->web_descargada,$p,'<h2>','</h2>');
 	
 	//en la pagina principal y otras el titulo estará mal, por lo que poner uno genérico
 	if(enString($titulo,'<'))
@@ -45,23 +47,23 @@ elseif(enString($web_descargada,'list-not-even')){
 	dbug('titulo='.$titulo);
 
 
-	$videos=substr_count($web_descargada,'<span>Ver video</span>');
+	$videos=substr_count($this->web_descargada,'<span>Ver video</span>');
 	dbug('total videos='.$videos);
 
 	$last=0;
 	for($i=0;$i<$videos;$i++){
-		$last=strposF($web_descargada,'<div id="idv',$last);
-		$url='http://alacarta.aragontelevision.es/ajax/ajax.php?id='.entre1y2_a($web_descargada,$last,'_','"');
+		$last=strposF($this->web_descargada,'<div id="idv',$last);
+		$url='http://alacarta.aragontelevision.es/ajax/ajax.php?id='.entre1y2_a($this->web_descargada,$last,'_','"');
 
 		//encontrar ya el titulo del vídeo
-		$f=strpos($web_descargada,'fecha',$last);
-		$parte=substr($web_descargada,$last,$f-$last);
+		$f=strpos($this->web_descargada,'fecha',$last);
+		$parte=substr($this->web_descargada,$last,$f-$last);
 		$p=strrpos($parte,'<a');
 		$nombre=entre1y2_a($parte,$p,'title="','"');
 
 		$extracto=CargaWebCurl($url);
 
-		$obtenido['enlaces'][] = SacarVideoPorId($extracto,$nombre);
+		$obtenido['enlaces'][] = $this->SacarVideoPorId($extracto,$nombre);
 	}
 }
 
@@ -106,8 +108,9 @@ function SacarVideoPorId(&$entrada,$nombre=''){
 		dbug('nombre. Obtenido en la web padre='.$nombre);
 	}
 	
-	$res = SacarVideo($entrada,$nombre);
+	$res = $this->SacarVideo($entrada,$nombre);
 	$res['titulo'] = $nombre;
 	return $res;
 }
-?>
+
+}

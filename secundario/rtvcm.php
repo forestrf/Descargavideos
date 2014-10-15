@@ -1,51 +1,45 @@
 <?php
-function rtvcm(){
-global $web,$web_descargada;
-$retfull=$web_descargada;
 
+class Rtvcm extends cadena{
+	
+function calcula(){
 $obtenido=array('enlaces' => array());
 
 //showVideo(videoURL){
-$p=strpos($retfull,"showVideo(videoURL){");
-$p=strpos($retfull,"url: '",$p)+6;
-$f=strpos($retfull,"'",$p);
-$baseLimpia=substr($retfull,$p,$f-$p);
+$p=strpos($this->web_descargada,"showVideo(videoURL){");
+$baseLimpia=entre1y2_a($this->web_descargada,$p,"url: '","'");
 
 //showVideo('
-$videos=substr_count($retfull,"showVideo('");
+$videos=substr_count($this->web_descargada,"showVideo('");
 
 $total=array();
 $last=0;
 for($i=0;$i<$videos;$i++){
-	$p=strpos($retfull,"showVideo('",$last)+11;
-	$f=strpos($retfull,"'",$p);
+	$p=strposF($this->web_descargada,"showVideo('",$last);
+	$f=strpos($this->web_descargada,"'",$p);
 	$last=$f;
-	$vid=$baseLimpia.substr($retfull,$p,$f-$p);
+	$vid=$baseLimpia.substr($this->web_descargada,$p,$f-$p);
 	dbug('video='.$vid);
 
-	$p=strpos($retfull,'title="',$last)+7;
-	$f=strpos($retfull,'"',$p);
-	$tit=substr($retfull,$p,$f-$p);
+	$tit=entre1y2_a($this->web_descargada,$last,'title="','"');
 	dbug('tit='.$tit);
 	
-	array_push($total,array(
+	$total[] = array(
 		$vid,
 		utf8_encode($tit)
-	));
+	);
 }
 
 for($i=0;$i<$videos;$i++){
-	array_push($obtenido['enlaces'],array(
+	$obtenido['enlaces'][] = array(
 		'titulo' => $total[$i][1],
 		'url'    => $total[$i][0],
 		'tipo'   => 'rtmp'
-	));
+	);
 }
 
-$p=strpos($retfull,'<title>');
-$p=strpos($retfull,' - ',$p)+3;
-$f=strpos($retfull,'<',$p);
-$titulo=utf8_encode(substr($retfull,$p,$f-$p));
+$p=strpos($this->web_descargada,'<title>');
+$titulo=utf8_encode(entre1y2_a($this->web_descargada,$p,' - ','<'));
 $titulo=limpiaTitulo($titulo);
 
 $imagen='http://www.rtvcm.es/img/logos_cab_esq.gif';
@@ -55,4 +49,5 @@ $obtenido['imagen']=$imagen;
 
 finalCadena($obtenido);
 }
-?>
+
+}

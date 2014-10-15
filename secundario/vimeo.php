@@ -1,13 +1,19 @@
 <?php
-function vimeo(){
-global $web_descargada;
 
+class Vimeo extends cadena{
+
+function calcula(){
 $obtenido=array('enlaces' => array());
 
-$ret=CargaWebCurl('http://player.vimeo.com/video/'.html_entity_decode(entre1y2($web_descargada, 'http://player.vimeo.com/video/', '"')));
-dbug_($ret);
+if(strpos($this->web, 'http://player.vimeo.com/video/') === 0){
+	$ret = desde1a2($this->web_descargada, '{"', ';');
+	$json_respuesta = json_decode($ret, true);
+} else {
+	$ret = CargaWebCurl('http://player.vimeo.com/video/'.html_entity_decode(entre1y2($this->web_descargada, 'http://player.vimeo.com/video/', '"')));
+	$json_respuesta = json_decode($ret, true);
+}
 
-$json_respuesta = json_decode($ret, true);
+
 dbug_r($json_respuesta);
 
 $opciones = $json_respuesta['request']['files']['h264'];
@@ -49,5 +55,9 @@ $obtenido['titulo']=$titulo;
 $obtenido['imagen']=current($json_respuesta['video']['thumbs']);
 
 finalCadena($obtenido);
+
+return $obtenido;
+
 }
-?>
+
+}

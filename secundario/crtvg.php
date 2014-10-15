@@ -1,49 +1,37 @@
 <?php
-function crtvg(){
-global $web,$web_descargada;
-$ret=$web_descargada;
-//$ret=CargaWebCurl($web);
 
+class Crtvg extends cadena{
 
+function calcula(){
 //title: "Matalobos quotAno 1 A familiaquot",
-$p=strpos($ret,'<title>')+7;
-$f=strpos($ret,' |',$p);
-$titulo=substr($ret,$p,$f-$p);
+$titulo=entre1y2($this->web_descargada,'<title>',' |');
 $titulo=limpiaTitulo($titulo);
 dbug('titulo='.$titulo);
 
 
 //backgroundImage: "url(http://www.crtvg.es/files/web/000020120911000003.jpg)"
-$p=strpos($ret,'backgroundImage:');
-$p=strpos($ret,'url(',$p)+4;
-$f=strpos($ret,')',$p);
-$imagen=substr($ret,$p,$f-$p);
+$p=strpos($this->web_descargada,'backgroundImage:');
+$imagen=entre1y2_a($this->web_descargada,$p,'url(',')');
 dbug('imagen='.$imagen);
 
 
 
 //rtmp://media1.crtvg.es:80/vod
-$p=strpos($ret,'clip:');
-$p=strpos($ret,'url:',$p);
-$p=strposF($ret,'"',$p);
-$f=strpos($ret,'"',$p);
-$url=substr($ret,$p,$f-$p);
+$p=strpos($this->web_descargada,'clip:');
+$p=strpos($this->web_descargada,'url:',$p);
+$url=entre1y2_a($this->web_descargada,$p,'"','"');
 dbug('url='.$url);
 
 //netConnectionUrl: "rtmp://media1.crtvg.es:80/vod"
-$p=strpos($ret,'netConnectionUrl:');
-$p=strposF($ret,'"',$p);
-$f=strpos($ret,'"',$p);
-$preurl=substr($ret,$p,$f-$p);
+$p=strpos($this->web_descargada,'netConnectionUrl:');
+$preurl=entre1y2_a($this->web_descargada,$p,'"','"');
 dbug('$preurl='.$preurl);
 
 
 
 //ipadUrl: "http:// m3u8"
-$p=strpos($ret,'ipadUrl:');
-$p=strposF($ret,'"',$p);
-$f=strpos($ret,'"',$p);
-$ipadUrl=substr($ret,$p,$f-$p);
+$p=strpos($this->web_descargada,'ipadUrl:');
+$ipadUrl=entre1y2_a($this->web_descargada,$p,'"','"');
 dbug('$ipadUrl='.$ipadUrl);
 
 
@@ -67,4 +55,5 @@ if(strlen($ipadUrl) > 10){
 
 finalCadena($obtenido);
 }
-?>
+
+}

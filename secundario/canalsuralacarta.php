@@ -1,32 +1,29 @@
 <?php
-function canalsuralacarta(){
-global $web,$web_descargada;
 
-//$ret=CargaWebCurl($web);
+class Canalsuralacarta extends cadena{
 
+function calcula(){
 $obtenido=array('enlaces' => array());
 
 //http://www.canalsuralacarta.es/television/video/presenta-enrique-romero/7718/44
 
 //video no admitido
-if(enString($web_descargada,"_url_xml_datos")){
+if(enString($this->web_descargada,"_url_xml_datos")){
 	dbug("_url_xml_datos encontrado");
 
 	//<param name="flashVars" value="_width=630&_height=354&_url_xml_datos=http://www.canalsuralacarta.es/webservice/video/7718" />
 	//flashVars="_width=630&_height=354&_url_xml_datos="
 
-	$p=strrposF($web_descargada,'_url_xml_datos=');
-	$f=strpos($web_descargada,'"',$p);
-	$xml=substr($web_descargada,$p,$f-$p);
+	$p=strrposF($this->web_descargada,'_url_xml_datos=');
+	$f=strpos($this->web_descargada,'"',$p);
+	$xml=substr($this->web_descargada,$p,$f-$p);
 
 	dbug("xml=".$xml);
 	//http://www.canalsuralacarta.es/webservice/video/7718
 
 
 
-	$p=strposF($web_descargada,"<title>");
-	$f=strpos($web_descargada,' ::',$p);
-	$titulo=substr($web_descargada,$p,$f-$p);
+	$titulo=entre1y2($this->web_descargada,'<title>',' ::');
 	//$titulo=utf8_encode($titulo);
 	$titulo=limpiaTitulo($titulo);
 	dbug('titulo='.$titulo);
@@ -35,12 +32,10 @@ if(enString($web_descargada,"_url_xml_datos")){
 
 	//imagen
 	//<archivoMultimediaMaxi><archivo>clipping/2012/02/08/00127/30.jpg</archivo><alt></alt></archivoMultimediaMaxi>
-	$p=strposF($ret,"<picture>");
-	$f=strpos($ret,'</',$p);
-	$imagen=substr($ret,$p,$f-$p);
+	$imagen=entre1y2($ret,'<picture>','</');
 	dbug('imagen='.$imagen);
 	if(enString($imagen, '1pxtrans.gif')){
-		$imagen = 'http://www.'.Dominio.'/canales/canalsur.png';
+		$imagen = 'http://www.'.DOMINIO.'/canales/canalsur.png';
 	}
 
 	//<video type="content">
@@ -60,14 +55,14 @@ if(enString($web_descargada,"_url_xml_datos")){
 		$total=array();
 		$last=0;
 		for($i=0;$i<$videos;$i++){
-			$p=strpos($ret,'<url>',$last)+5;
+			$p=strposF($ret,'<url>',$last);
 			$f=strpos($ret,'<',$p);
 			$last=$f+2;
 			$url=substr($ret,$p,$f-$p);
 			$repetido=false;
 			$total_length=count($total);
 			for($n=0;$n<$total_length;$n++)
-				if($total[$n]==$url)
+				if($total[$n]===$url)
 					$repetido=true;
 			if(!$repetido)
 				$total[$i]=$url;
@@ -101,10 +96,10 @@ if(enString($web_descargada,"_url_xml_datos")){
 		));
 	}
 }
-elseif(enString($web_descargada,"var elementos = [];")){
+elseif(enString($this->web_descargada,"var elementos = [];")){
 	dbug('var elementos = [];');
 	
-	$ret = utf8_encode($web_descargada);
+	$ret = utf8_encode($this->web_descargada);
 	$ret = strtr($ret,array('\\"'=>"'"));
 
 	$videos=substr_count($ret,'elementos.push');
@@ -135,16 +130,16 @@ elseif(enString($web_descargada,"var elementos = [];")){
 else{
 	dbug('último case ifelse');
 	
-	$titulo = utf8_encode(entre1y2($web_descargada,'<title>','<'));
+	$titulo = utf8_encode(entre1y2($this->web_descargada,'<title>','<'));
 	
-	if(enString($web_descargada,"og:image")){
-		$p=strpos($web_descargada,"og:image");
-		$imagen=entre1y2_a($web_descargada, 'content="', '"');
+	if(enString($this->web_descargada,"og:image")){
+		$p=strpos($this->web_descargada,"og:image");
+		$imagen=entre1y2_a($this->web_descargada, 'content="', '"');
 	}
 	else
 		$imagen='http://www.'.DOMINIO.'/canales/canalsur.png';
 	
-	preg_match("@http://[^ ]*?\.(?:mp4|flv)@i", $web_descargada, $matches);
+	preg_match("@http://[^ ]*?\.(?:mp4|flv)@i", $this->web_descargada, $matches);
 	
 	$url=$matches[0];
 	$obtenido['enlaces'][]=array(
@@ -159,4 +154,5 @@ $obtenido['imagen']=$imagen;
 
 finalCadena($obtenido,0);
 }
-?>
+
+}

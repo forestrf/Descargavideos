@@ -20,26 +20,27 @@ dheWtoYpuJ
 
 <jwplayer:hd.file>http://82.165.193.211/video/4bba500c634b149cac372353b1913bb6/dheWtoYpuJ.H264-720p.mp4</jwplayer:hd.file>
 */
-function adnstream(){
-global $web, $web_descargada;
 
+class Adnstream extends cadena{
+
+function calcula(){
 //mirar si hay video
 $obtenido=array();
 
-if(!enString($web_descargada,'_w320.jpg'))
+if(!enString($this->web_descargada,'_w320.jpg'))
 	return;
 
 
 
-$p=strpos($web_descargada,'og:image');
-$imagen=entre1y2_a($web_descargada, $p, 'content="', '"');
+$p=strpos($this->web_descargada,'og:image');
+$imagen=entre1y2_a($this->web_descargada, $p, 'content="', '"');
 dbug('imagen='.$imagen);
 
 $id = entre1y2($imagen, strrposF($imagen, '/'), "_w320.jpg");
 dbug('id='.$id);
 
 // Problemas con geobloqueo.
-//$ret=CargaWebCurl(urldecode(entre1y2($web_descargada, "'file': '", "'")));
+//$ret=CargaWebCurl(urldecode(entre1y2($this->web_descargada, "'file': '", "'")));
 //$ret=CargaWebCurl('http://www.adnstream.com/get_playlist.php?lista=video&param='.$id);
 $ret=CargaWebCurl('http://proxyanonimo.es/browse.php?u='.urlencode('http://www.adnstream.com/get_playlist.php?lista=video&param='.$id).'&b=12&f=norefer', '', 0, '', array('Referer: http://proxyanonimo.es/'));
 dbug_($ret);
@@ -79,5 +80,9 @@ $obtenido=array(
 );
 
 finalCadena($obtenido);
+
+return $obtenido;
+
 }
-?>
+
+}
