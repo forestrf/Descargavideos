@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'16-Octubre-2014'
+,'fix:Atresplayer ya no requiere flash (sigue necesitando el complemento del user agent o el programa F4M-Downloader).'
+);
+
+$todos[]=array(
 '15-Octubre-2014'
 ,'fix:Canalsur es compatible con vídeos flv (antes sólo lo era con mp4).'
 ,'fix:trim() en los títulos.'

@@ -144,6 +144,9 @@ function resultadoA3PNormal($url, $html='', $episode='', $title=''){
 	dbug('hmac_f4m = '.$hmac_f4m);
 	dbug('hmac_movil = '.$hmac_movil);
 	
+	$path_extra = 'http://jorl.tk';
+	//$path_extra = 'http://localhost/dominioextra';
+	
 	//jojojo.tk
 	//briscaonline.tk
 	
@@ -156,14 +159,14 @@ function resultadoA3PNormal($url, $html='', $episode='', $title=''){
 			'}'.
 		'}'.
 		
-		'D.g("enlaces").innerHTML += \'<iframe width="0" height="0" style="position:absolute" src="http://jorl.tk/a3p.php?o=A3P{{random_id}}creaboton&e='.$episode.'&t='.$tiempo.'&h='.$hmac_movil.'">\';';
+		'D.g("enlaces").innerHTML += \'<iframe width="0" height="0" style="position:absolute" src="'.$path_extra.'/a3pXHR.php?o=A3P{{random_id}}creaboton&e='.$episode.'&t='.$tiempo.'&h='.$hmac_movil.'">\';';
 	
 	
 	
 	$resultado = array(
 					'titulo' => 'Calidad baja',
 					'url'    => $urljs,
-					'tipo'   => 'jsFlash'
+					'tipo'   => 'js' /*jsFlash*/
 				);
 	
 	if($title!=='')
@@ -186,7 +189,7 @@ function resultadoA3PNormal($url, $html='', $episode='', $title=''){
 	
 	$urljs_f4m = 'f{{random_id}} = function(){};
 		
-		D.g("rtmptxt{{random_id}}").innerHTML = "Se requiere Adobe Flash Player";
+		D.g("rtmptxt{{random_id}}").innerHTML = "Calculando. Por favor, espere";
 		
 		function A3P{{random_id}}creaboton(que){
 			if(que === false || que === "OK"){
@@ -227,7 +230,7 @@ function resultadoA3PNormal($url, $html='', $episode='', $title=''){
 			}
 		}
 		
-		D.g("enlaces").innerHTML += \'<iframe width="0" height="0" style="position:absolute" src="http://jorl.tk/a3p2.php?o=A3P{{random_id}}creaboton&e='.$episode.'&t='.$tiempo.'&h='.$hmac_f4m.'">\';';
+		D.g("enlaces").innerHTML += \'<iframe width="0" height="0" style="position:absolute" src="'.$path_extra.'/a3p2XHR.php?o=A3P{{random_id}}creaboton&e='.$episode.'&t='.$tiempo.'&h='.$hmac_f4m.'">\';';
 	
 	// f4m url
 	$obtenido[] = array(
