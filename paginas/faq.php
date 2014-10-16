@@ -139,7 +139,7 @@ A continuación se puede ver el listado de las webs y los canales soportados:<br
 	<li>eitb.com</li>
 	<li>eitb.tv</li>
 	<li>telemadrid.es</li>
-	<li>ATresPlayer.com (requiere flash)</li>
+	<li>ATresPlayer.com (<a href="http://descargavid.blogspot.com.es/2014/10/atresplayer-por-que-tantas.html">requiere extras</a>)</li>
 	<li>Adnstrean.com</li>
 	<li>netd.com</li>
 	<li>telefe.com</li>

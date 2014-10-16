@@ -15,12 +15,12 @@ $hmac    = $_GET['h'];
 <html>
 <body>
 <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="0" height="0" id="descargador_archivos_id">
-	<param name="movie" value="/descargador_archivos.swf" />
+	<param name="movie" value="descargador_archivos.swf" />
 	<param name="quality" value="high" />
 	<param name="bgcolor" value="#000" />
 	<param name="allowScriptAccess" value="always" />
 	<!--[if !IE]>-->
-	<embed src="/descargador_archivos.swf" quality="high" bgcolor="#000" 
+	<embed src="descargador_archivos.swf" quality="high" bgcolor="#000" 
 		width="0" height="0" name="descargador_archivos" align="middle" 
 		play="true" loop="true" quality="high" allowScriptAccess="always" 
 		type="application/x-shockwave-flash" 
