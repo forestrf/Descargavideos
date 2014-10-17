@@ -16,6 +16,23 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'XX-Octubre-2014'
+,'fix:trim() en los títulos.'
+,'fix:rtpa títulos e imágenes arreglados.'
+,'fix:Canal extremadura títulos e imágenes arregladas.'
+,'fix:RT.com, algunos vídeos habían dejado de funcionar.'
+,'fix:Arreglado canaldehistoria.es, ahora canalhistoria.es.'
+,'add:Soporte para vídeos embedidos de vimeo.'
+,'del:Intereconomia.com (ahora radiointereconomia.com) deja de funcionar debido a un cambio completo del funcionamiento de la web.'
+,'del:Toons.tv deja de funcionar debido a un cambio completo del funcionamiento de la web.'
+,'fix:Cope.es vuelve a funcionar.'
+,'fix:Arreglos en Cadenaser.'
+,'fix:Algunos vídeos de Televisa no funcionaban.'
+,'fix:Títulos y descripciones en Hogarutil.'
+,'fix:Cambios en netd.com para que volviera a funcionar.'
+);
+
+$todos[]=array(
 '16-Octubre-2014'
 ,'fix:Atresplayer ya no requiere flash (sigue necesitando el complemento del user agent o el programa F4M-Downloader).'
 );
@@ -23,12 +40,6 @@ $todos[]=array(
 $todos[]=array(
 '15-Octubre-2014'
 ,'fix:Canalsur es compatible con vídeos flv (antes sólo lo era con mp4).'
-,'fix:trim() en los títulos.'
-,'fix:rtpa títulos e imágenes arreglados.'
-,'fix:Canal extremadura títulos e imágenes arregladas.'
-,'fix:RT.com, algunos vídeos habían dejado de funcionar.'
-,'fix:Arreglado canaldehistoria.es, ahora canalhistoria.es.'
-,'add:Soporte para vídeos embedidos de vimeo.'
 );
 
 $todos[]=array(

@@ -35,11 +35,9 @@ http://tvnhds.tvolucion.com/z/lgata/delivery//5a/64/5a6429f9-541d-48dd-8bc5-e4ab
 http://m4v.tvolucion.com/m4v/tln/lgata/45201db85a8e3a0ffa8d5f77ce9249e8/lgata-c090.jpg
 */
 
-function televisa(){
-global $web,$web_descargada;
-$retfull=&$web_descargada;
+class Televisa extends cadena{
 
-
+function calcula(){
 /*
 $proxy = '189.174.63.36:8080';
 
@@ -58,56 +56,62 @@ dbug($t);
 exit;
 */
 
-if(enString($web, '//m.')){
-	$web = str_replace('//m.', '//www.', $web);
+if(enString($this->web, '//m.')){
+	$this->web = str_replace('//m.', '//www.', $this->web);
 	dbug('Movil -> escritorio');
-	$retfull=CargaWebCurl($web,'',0,'',array('Referer: '.$web));
+	$this->web_descargada=CargaWebCurl($this->web,'',0,'',array('Referer: '.$this->web));
 	
-	if(!enString($retfull,'<html'))
-		$retfull=CargaWebCurl($web);
+	if(!enString($this->web_descargada,'<html'))
+		$this->web_descargada=CargaWebCurl($this->web);
 }
 
 
 
 //usarse a sí mismo como réferer
-if(!enString($retfull,'<html'))
-	$retfull=CargaWebCurl($web,'',0,'',array('Referer: '.$web));
+if(!enString($this->web_descargada,'<html'))
+	$this->web_descargada=CargaWebCurl($this->web,'',0,'',array('Referer: '.$this->web));
 
-if(!enString($retfull,'<html'))
-	$retfull=CargaWebCurl($web);
+if(!enString($this->web_descargada,'<html'))
+	$this->web_descargada=CargaWebCurl($this->web);
 
-//dbug_($retfull);
+//dbug_($this->web_descargada);
 
 $obtenido=array('enlaces' => array());
 
 
 
 //para televisa.com/novelas
-if(stringContains($retfull,array('showVideo(','data-id="'))){
-	if(enString($retfull,'showVideo(')){
-		preg_match('@showVideo\(([0-9]+)\)@',$retfull,$match);
+if(stringContains($this->web_descargada,array('showVideo(','data-id="','embed.php?id='))){
+	if(enString($this->web_descargada,'showVideo(')){
+		dbug('-1-');
+		preg_match('@showVideo\(([0-9]+)\)@',$this->web_descargada,$match);
 	}
-	elseif(enString($retfull,'data-id="')){
-		preg_match('@data-id="([0-9]+)"@',$retfull,$match);
+	elseif(enString($this->web_descargada,'data-id="')){
+		dbug('-2-');
+		preg_match('@data-id="([0-9]+)"@',$this->web_descargada,$match);
+	}
+	elseif(enString($this->web_descargada,'embed.php?id=')){
+		dbug('-3-');
+		preg_match('@embed.php\?id=([0-9]+)@',$this->web_descargada,$match);
 	}
 
 	if(isset($match[1])){
 		$idVideo=$match[1];
 		dbug($idVideo);
-		// $web='http://amp.televisa.com/embed/embed.php?id='.$idVideo.'&w=620&h=345';
-		$web='http://tvolucion.esmas.com/embed/embed.php?id='.$idVideo.'&w=620&h=345';
-		$retfull=CargaWebCurl($web,'',0,'',array('Referer: '.$web));
-		if(enString($retfull,'ya no se encuentra disponible')){
+		// $this->web='http://amp.televisa.com/embed/embed.php?id='.$idVideo.'&w=620&h=345';
+		$this->web='http://tvolucion.esmas.com/embed/embed.php?id='.$idVideo.'&w=620&h=345';
+		$this->web_descargada=CargaWebCurl($this->web,'',0,'',array('Referer: '.$this->web));
+		if(enString($this->web_descargada,'ya no se encuentra disponible')){
 			setErrorWebIntera('Éste vídeo ya no se encuentra disponible.');
 			return;
 		}
-		//dbug_($retfull);
+		//dbug_($this->web_descargada);
 	}
 }
 
 
 
-if(enString($retfull, 'params_dvr.json')){
+if(enString($this->web_descargada, 'params_dvr.json')){
 	$hostname = 'tvolucion.esmas.com';
 	$json = "http://{$hostname}/tvenvivofiles/{$idVideo}/params_dvr.json";
 	$json = CargaWebCurl($json);
@@ -141,10 +145,10 @@ else {
 
 
 //http://c.brightcove.com/services/messagebroker/amf?playerKey=AQ~~,AAAAEUA28vk~,ZZqXLYtFw-ADB2SpeHfBR3cyrCkvIrAe
-if(enString($retfull,'playerKey:"'))
-	$playerKey=entre1y2($retfull,'playerKey:"','"');
-elseif(enString($retfull,'<param name="playerKey"'))
-	$playerKey=entre1y2($retfull,'<param name="playerKey" value="','"');
+if(enString($this->web_descargada,'playerKey:"'))
+	$playerKey=entre1y2($this->web_descargada,'playerKey:"','"');
+elseif(enString($this->web_descargada,'<param name="playerKey"'))
+	$playerKey=entre1y2($this->web_descargada,'<param name="playerKey" value="','"');
 if(!isset($playerKey)){
 	setErrorWebIntera('No se ha encontrado ningún vídeo.');
 	return;
@@ -153,20 +157,20 @@ dbug('playerKey -> '.$playerKey);
 $messagebroker='http://c.brightcove.com/services/messagebroker/amf?playerKey='.$playerKey;
 
 
-if(enString($retfull,'playerID:"'))
-	$experienceID=entre1y2($retfull,'playerID:"','"');
-elseif(enString($retfull,'<param name="playerID"'))
-	$experienceID=entre1y2($retfull,'<param name="playerID" value="','"');
+if(enString($this->web_descargada,'playerID:"'))
+	$experienceID=entre1y2($this->web_descargada,'playerID:"','"');
+elseif(enString($this->web_descargada,'<param name="playerID"'))
+	$experienceID=entre1y2($this->web_descargada,'<param name="playerID" value="','"');
 if(!isset($experienceID)){
 	setErrorWebIntera('No se ha encontrado ningún vídeo.');
 	return;
 }
 dbug('experienceID -> '.$experienceID);
 	
-if(enString($retfull,'videoId:"'))
-	$contentId=entre1y2($retfull,'videoId:"','"');
-elseif(enString($retfull,'<param name="videoId"'))
-	$contentId=entre1y2($retfull,'<param name="videoId" value="','"');
+if(enString($this->web_descargada,'videoId:"'))
+	$contentId=entre1y2($this->web_descargada,'videoId:"','"');
+elseif(enString($this->web_descargada,'<param name="videoId"'))
+	$contentId=entre1y2($this->web_descargada,'<param name="videoId" value="','"');
 if(!isset($contentId)){
 	setErrorWebIntera('No se ha encontrado ningún vídeo.');
 	return;
@@ -195,7 +199,7 @@ $a_encodear = array
 				(
 					'TTLToken' => null,
 					'deliveryType' => NAN,
-					'URL' => $web, //Innecesario
+					'URL' => $this->web, //Innecesario
 					'experienceId' => $experienceID,
 					'playerKey' => $playerKey,
 					'contentOverrides' => array
@@ -288,4 +292,4 @@ $obtenido['imagen']=$imagen;
 finalCadena($obtenido,false);
 }
 
-?>
+}

@@ -1,24 +1,19 @@
 <?php
-function eitbcom(){
-global $web,$web_descargada;
-$retfull=&$web_descargada;
-//$retfull=CargaWebCurl($web);
 
+class Eitb extends cadena{
+
+function calculacom(){
 //titulo
 //<meta property="og:title" content="Alaska y Mario Episodio Extra - Pierrot"/>
-$p=strpos($retfull,'og:title');
-$p=strpos($retfull,'content="',$p)+9;
-$f=strpos($retfull,'"',$p);
-$titulo=substr($retfull,$p,$f-$p);
+$p=strpos($this->web_descargada,'og:title');
+$titulo=entre1y2_a($this->web_descargada,$p,'content="','"');
 $titulo=limpiaTitulo($titulo);
 dbug('titulo='.$titulo);
 
 //imagen
 //<meta property="og:image" content="http://....jpg?height=106&amp;quality=0.91"/>
-$p=strpos($retfull,'og:image');
-$p=strpos($retfull,'content="',$p)+9;
-$f=strpos($retfull,'?',$p);
-$imagen=substr($retfull,$p,$f-$p);
+$p=strpos($this->web_descargada,'og:image');
+$imagen=entre1y2_a($this->web_descargada,$p,'content="','?');
 if(enString($imagen,'mtvnimages.com'))
 	$imagen=$imagen.'?height=180&quality=1';
 else
@@ -36,17 +31,17 @@ http://www.eitb.com/multimediahd/videos/2013/02/15/1045086/20130215_15532024_000
 http://www.eitb.com/multimedia/videos/2011/10/24/558362/PIRINEOS_ES_20111024_101408.flv
 */
 
-if(preg_match('/<div.+?class="player">/', $retfull)){
-	if(!enString($retfull, 'detalle_video_')){
+if(preg_match('/<div.+?class="player">/', $this->web_descargada)){
+	if(!enString($this->web_descargada, 'detalle_video_')){
 		setErrorWebIntera('No se puede encontrar ningún vídeo.');
 		return;
 	}
-	$p=strpos($retfull,'<div class="player">');
-	$id=entre1y2_a($retfull,$p,'detalle_video_','"');
+	$p=strpos($this->web_descargada,'<div class="player">');
+	$id=entre1y2_a($this->web_descargada,$p,'detalle_video_','"');
 	dbug('id='.$id);
 }
-elseif(enString($retfull, 'insertar_player_video(')){
-	$id=entre1y2($retfull,'insertar_player_video(',',');
+elseif(enString($this->web_descargada, 'insertar_player_video(')){
+	$id=entre1y2($this->web_descargada,'insertar_player_video(',',');
 	dbug('id='.$id);
 }
 $ret=CargaWebCurl('http://www.eitb.com/es/get/multimedia/video/id/'.$id.'/size/grande/');
@@ -55,10 +50,8 @@ $imagen=entre1y2($ret,'thumbnail url="','"');
 
 if(enString($ret, 'manifest.f4m')){
 	$p=strpos($ret,'<media:content url="');
-	$p=strpos($ret,'url="',$p);
-	$p=strposF($ret,'z/',$p);
-	$f=strpos($ret,'/manifest.f4m',$p);
-	$url='http://www.eitb.com/'.substr($ret,$p,$f-$p);
+	//$p=strpos($ret,'url="',$p);
+	$url='http://www.eitb.com/'.entre1y2_a($ret,$p,'z/','/manifest.f4m');
 	
 	$obtenido=array(
 		'titulo'  => $titulo,
@@ -106,21 +99,13 @@ finalCadena($obtenido);
 
 
 
-
-
-
-
-function eitbtv(){
-global $web,$web_descargada;
-$retfull=$web_descargada;
-
-
+function calculatv(){
 $obtenido=array('enlaces' => array());
 
 
 //http://c.brightcove.com/services/messagebroker/amf?playerKey=AQ~~,AAAAEUA28vk~,ZZqXLYtFw-ADB2SpeHfBR3cyrCkvIrAe
-if(enString($retfull,'<param name="playerKey"'))
-	$playerKey=entre1y2($retfull,'<param name="playerKey" value="','"');
+if(enString($this->web_descargada,'<param name="playerKey"'))
+	$playerKey=entre1y2($this->web_descargada,'<param name="playerKey" value="','"');
 if(!isset($playerKey)){
 	setErrorWebIntera('No se ha encontrado ningún vídeo.');
 	return;
@@ -129,8 +114,8 @@ dbug('playerKey -> '.$playerKey);
 $messagebroker='http://c.brightcove.com/services/messagebroker/amf?playerKey='.$playerKey;
 
 
-if(enString($retfull,'<param name="playerID"'))
-	$experienceID=entre1y2($retfull,'<param name="playerID" value="','"');
+if(enString($this->web_descargada,'<param name="playerID"'))
+	$experienceID=entre1y2($this->web_descargada,'<param name="playerID" value="','"');
 if(!isset($experienceID)){
 	setErrorWebIntera('No se ha encontrado ningún vídeo.');
 	return;
@@ -156,7 +141,7 @@ $a_encodear = array
 				(
 					'TTLToken' => null,
 					'deliveryType' => NAN,
-					'URL' => $web, //Innecesario
+					'URL' => $this->web, //Innecesario
 					'experienceId' => $experienceID,
 					'playerKey' => $playerKey,
 					'contentOverrides' => null
@@ -182,7 +167,7 @@ $publisherId1=$res_decoded['data']->getAMFData();
 $publisherId=$publisherId1['publisherId'];
 dbug('publisherId -> '.$publisherId);
 
-preg_match_all('@/([0-9]+)/([0-9]+)/@i', $web, $match); 
+preg_match_all('@/([0-9]+)/([0-9]+)/@i', $this->web, $match); 
 $elem1=$match[1][0];
 $elem2=$match[2][0];
 
@@ -221,7 +206,7 @@ dbug('titulo = '.$titulo);
 dbug('imagen = '.$imagen);
 
 
-$obtenido['enlaces'] = brightcove_genera_obtenido($base, array(
+$obtenido['enlaces'] = brightcove_genera_obtenido($this, $base, array(
 	'IOSRenditions' => 'm3u8',
 	'renditions' => 'rtmpConcreto'
 ), $titulo);
@@ -270,4 +255,5 @@ function URLSDelArrayBrightCove($r, $tipo, &$obtenido_enlaces, $titulo){
 		$obtenido_enlaces[] = $arrayTemp;
 	}
 }
-?>
+
+}

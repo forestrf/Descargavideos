@@ -1,20 +1,20 @@
 <?php
-function cadenaser(){
-global $web,$web_descargada;
-$retfull=$web_descargada;
-//$retfull=CargaWebCurl($web);
+
+class Cadenaser extends cadena{
+
+function calcula(){
 
 $obtenido=array('enlaces' => array());
 
-if(enString($retfull,'href="/escucha2/"')&&enString($retfull,'href="/lo-mas/">m'))
-	$retfull=ReemplazaDeAPor($retfull,'href="/escucha2/"',0,'href="/lo-mas/">m',"");
+if(enString($this->web_descargada,'href="/escucha2/"')&&enString($this->web_descargada,'href="/lo-mas/">m'))
+	$this->web_descargada=ReemplazaDeAPor($this->web_descargada,'href="/escucha2/"',0,'href="/lo-mas/">m',"");
 	
 
 
 //http://www.cadenaser.com/espana/articulo/rajoy-comparece-congreso-agosto/csrcsrpor/20130723csrcsrnac_4/Tes
-if(enString($retfull,"playerConfig")){
+if(enString($this->web_descargada,"playerConfig")){
 	dbug("En la web oficial");
-	$ret=entre1y2($retfull,"playerConfig","};");
+	$ret=entre1y2($this->web_descargada,"playerConfig","};");
 	$ret=strtr($ret,array(" "=>"",'"'=>"'"));
 
 	if(enString($ret,"srcHTML5:'"))
@@ -32,7 +32,7 @@ if(enString($retfull,"playerConfig")){
 	}
 
 	//titulo
-	$obtenido['titulo']=utf8_encode(entre1y2($retfull,"<title>","<"));
+	$obtenido['titulo']=utf8_encode(entre1y2($this->web_descargada,"<title>","<"));
 	
 		
 	
@@ -44,30 +44,36 @@ if(enString($retfull,"playerConfig")){
 }
 
 //http://www.cadenaser.com/espana/audios/antonio-alberca-ha-existido-parte-jaume-matas-delito-tipo/csrcsrpor/20130723csrcsrnac_24/Aes/
-if(enString($retfull,"makePlayer")){
+if(enString($this->web_descargada,"makePlayer")){
 	dbug("Insertado");
 		
-	if(enString($retfull,'<li class="audios estirar">')){
-		$li='<li class="audios estirar">';
-		$ret='<li class="audios'.entre1y2($retfull,'<li class="audios',strrpos($retfull,"llévatelo</a></li>"));
+	if(enString($this->web_descargada,'<li class="audios')){
+		$li='<li class="audios';
+		$ret='<li class="audios'.entre1y2($this->web_descargada,'<li class="audios',strrpos($this->web_descargada,"llévatelo</a></li>"));
 		if(enString($ret,'<div id="lateral">'))
 			$ret=entre1y2($ret,0,'<div id="lateral');
 	}
+	elseif(enString($this->web_descargada,'<ul class="audios modulo">')){
+		$li="<li>";
+		$ret=entre1y2($this->web_descargada,'<ul class="audios modulo">','</ul>');
+	}
 	else{
 		$li="<li>";
-		$ret=entre1y2($retfull,'class="audios',strrpos($retfull,"llévatelo</a></li>"));
+		$ret=entre1y2($this->web_descargada,'class="audios',strrpos($this->web_descargada,"llévatelo</a></li>"));
 	}
+
+	dbug_($ret);
 
 	$players=substr_count($ret,"makePlayer");
 	dbug("nº de makePlayers: ".$players);
 
 	//titulo
 	if(!isset($obtenido['titulo']))
-		$obtenido['titulo']=utf8_encode(entre1y2($retfull,"<title>","<"));
+		$obtenido['titulo']=utf8_encode(entre1y2($this->web_descargada,"<title>","<"));
 	
 	$ini=count($obtenido['enlaces']);
 	for($i=0,$p=0;$i<$players;$i++){
-		$resTemp=resuelvePlayer(entre1y2_a($ret,$p,$li,"</li>"));
+		$resTemp=$this->resuelvePlayer(entre1y2_a($ret,$p,$li,"</li>"));
 		$obtenido['enlaces'][$ini+($players*2)-($i*2)-2]=$resTemp[0];
 		$obtenido['enlaces'][$ini+($players*2)-($i*2)-1]=$resTemp[1];
 		$p=strposF($ret,$li,$p);
@@ -75,7 +81,7 @@ if(enString($retfull,"makePlayer")){
 
 	//imagen
 	if(!isset($obtenido['imagen']))
-		$obtenido['imagen']="";
+		$obtenido['imagen'] = entre1y2_a($this->web_descargada, strposF($this->web_descargada, '"og:image"'), '"', '"');
 }
 
 
@@ -103,4 +109,5 @@ function resuelvePlayer($ret){//return -> agregar a obtenido>enlaces
 		)
 	);
 }
-?>
+
+}

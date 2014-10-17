@@ -1,15 +1,14 @@
 <?php
-function hogarutil(){
-global $web,$web_descargada;
-$retfull=$web_descargada;
 
+class Hogarutil extends cadena{
 
+function calcula(){
 
 $obtenido=array('enlaces' => array());
 
 //http://c.brightcove.com/services/viewer/federated_f9?&flashID=ms-player2-continuo-bcObject&playerID=2418571368001&publisherID=2385340627001&%40videoPlayer=2875076343001&isVid=true&isUI=true&linkBaseURL=".urlencode()
 $patron = '@GENERAL.videoBrightcove.*?\(.*?"(.*?)".*?,.*?"(.*?)"@i';
-preg_match($patron,$retfull,$matches);
+preg_match($patron,$this->web_descargada,$matches);
 dbug_r($matches);
 
 
@@ -56,7 +55,7 @@ $a_encodear = array
 					"TTLToken" => null,
 					"deliveryType" => NAN,
 					"playerKey" => null,
-					"URL" => $web, //Innecesario
+					"URL" => $this->web, //Innecesario
 					"experienceId" => $playerID,
 					"contentOverrides" => array(
 						"0" => new SabreAMF_TypedObject
@@ -108,14 +107,14 @@ $base = $base['mediaDTO']->getAMFData();
 dbug_r($base);
 
 
-$titulo=$base["linkText"];
+$titulo=$base["displayName"];
 $imagen=$base["videoStillURL"];
 dbug('titulo = '.$titulo);
 dbug('imagen = '.$imagen);
 
 
 
-$obtenido['enlaces'] = brightcove_genera_obtenido($base, array(
+$obtenido['enlaces'] = brightcove_genera_obtenido($this, $base, array(
 	'IOSRenditions' => 'm3u8',
 	'renditions' => 'rtmpConcreto'
 ), $titulo);
@@ -125,6 +124,7 @@ $obtenido['enlaces'] = brightcove_genera_obtenido($base, array(
 
 $obtenido['titulo']=$titulo;
 $obtenido['imagen']=$imagen;
+$obtenido['descripcion']=$base["longDescription"];
 
 finalCadena($obtenido,false);
 }
@@ -136,9 +136,9 @@ function URLSDelArrayBrightCove($r, $tipo, &$obtenido_enlaces, $titulo){
 			$_r = substr($_r, 0, strrposF($_r, '/'));
 			$_y = 'mp4'.entre1y2($r["defaultURL"], 'mp4', '?');
 			$_ry = substr($r["defaultURL"], strpos($r["defaultURL"], '?'));
-			dbug($_r);
-			dbug($_y);
-			dbug($_ry);
+			dbug_($_r);
+			dbug_($_y);
+			dbug_($_ry);
 			$obtenido_enlaces[]=array(
 				'calidad_ordenar'=>$r["encodingRate"],
 				'titulo'   => 'Calidad: '.floor($r["encodingRate"]/1000)." Kbps",
@@ -157,4 +157,5 @@ function URLSDelArrayBrightCove($r, $tipo, &$obtenido_enlaces, $titulo){
 		}
 	}
 }
-?>
+
+}

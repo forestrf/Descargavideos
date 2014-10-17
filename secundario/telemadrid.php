@@ -1,28 +1,28 @@
 <?php
-function telemadrid(){
-global $web,$web_descargada;
-$retfull=$web_descargada;
 
+class Telemadrid extends cadena{
+	
+function calcula(){
 
 $obtenido=array('enlaces' => array());
 
 
-if(enString($retfull,'<param name="publisherID"'))
-	$publisherId=entre1y2($retfull,'<param name="publisherID" value="','"');
+if(enString($this->web_descargada,'<param name="publisherID"'))
+	$publisherId=entre1y2($this->web_descargada,'<param name="publisherID" value="','"');
 if(!isset($publisherId)){
 	setErrorWebIntera('No se ha encontrado ningún vídeo.');
 	return;
 }
 
-if(enString($retfull,'<param name="@videoPlayer"'))
-	$contentId=entre1y2($retfull,'<param name="@videoPlayer" value="','"');
+if(enString($this->web_descargada,'<param name="@videoPlayer"'))
+	$contentId=entre1y2($this->web_descargada,'<param name="@videoPlayer" value="','"');
 if(!isset($contentId)){
 	setErrorWebIntera('No se ha encontrado ningún vídeo.');
 	return;
 }
 
-if(enString($retfull,'<param name="playerID"'))
-	$experienceID=entre1y2($retfull,'<param name="playerID" value="','"');
+if(enString($this->web_descargada,'<param name="playerID"'))
+	$experienceID=entre1y2($this->web_descargada,'<param name="playerID" value="','"');
 if(!isset($experienceID)){
 	setErrorWebIntera('No se ha encontrado ningún vídeo.');
 	return;
@@ -78,7 +78,7 @@ $a_encodear = array
 					'playerKey' => null,
 					'TTLToken' => null,
 					'deliveryType' => NAN,
-					'URL' => $web, //Innecesario
+					'URL' => $this->web, //Innecesario
 					'experienceId' => $experienceID
 				)
 			)
@@ -237,14 +237,10 @@ else{
 
 
 
-
-
-
-
-
 $obtenido['titulo']=$titulo;
 $obtenido['imagen']=$imagen;
 
 finalCadena($obtenido,false);
 }
-?>
+
+}

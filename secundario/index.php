@@ -285,22 +285,32 @@ $cadenas = array(
 		'Crtvg',
 		'calcula'
 	)
-	// SEGUIR POR AQUÍ
 	,array(
 		array('mtv.es'),
-		array('mtv.php'),
-		'mtv'
+		array('mtves.php'),
+		'Mtves',
+		'calcula'
 	)
 	,array(
 		array('eitb.com'),
 		array('eitb.php'),
-		'eitbcom'
+		'Eitb',
+		'calculacom'
 	)
 	,array(
-		array('intereconomia.com'),
-		array('intereconomia.php'),
-		'intereconomia'
+		array('eitb.tv'),
+		array('eitb.php'),
+		'Eitb',
+		'calculatv'
 	)
+	/*
+	,array(
+		array('intereconomia.com','radiointereconomia.com'),
+		array('intereconomia.php'),
+		'Intereconomia',
+		'calcula'
+	)
+	*/
 	,array(
 		array('vimeo.com'),
 		array('vimeo.php'),
@@ -315,53 +325,54 @@ $cadenas = array(
 	,array(
 		array('cope.es'),
 		array('cope.php'),
-		'cope'
+		'Cope',
+		'calcula'
 	)
 	,array(
 		array('cadenaser.com'),
 		array('cadenaser.php'),
-		'cadenaser'
+		'Cadenaser',
+		'calcula'
 	)
 	,array(
 		array('televisa.com','esmas.com'),
 		array('televisa.php'),
-		'televisa'
-	)
-	,array(
-		array('eitb.com'),
-		array('eitb.php'),
-		'eitbcom'
-	)
-	,array(
-		array('eitb.tv'),
-		array('eitb.php'),
-		'eitbtv'
+		'Televisa',
+		'calcula'
 	)
 	,array(
 		array('hogarutil.com'),
 		array('hogarutil.php'),
-		'hogarutil'
+		'Hogarutil',
+		'calcula'
 	)
 	,array(
 		array('telemadrid.es', 'telemadrid2020.es'),
 		array('telemadrid.php'),
-		'telemadrid'
+		'Telemadrid',
+		'calcula'
 	)
 	,array(
 		array('netd.com'),
 		array('netdcom.php'),
-		'netdcom'
+		'Netdcom',
+		'calcula'
 	)
 	,array(
 		array('telefe.com'),
 		array('telefe.php'),
-		'telefe'
+		'Telefe',
+		'calcula'
 	)
+	/*
 	,array(
 		array('toons.tv'),
 		array('toonstv.php'),
-		'toonstv'
+		'Toonstv',
+		'calcula'
 	)
+	*/
+	//CONTINUAR AQUÍ
 	,array(
 		array('youtube.com'),
 		array('youtube.php','youtubehelper.php'),

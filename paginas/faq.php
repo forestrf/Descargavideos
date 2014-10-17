@@ -129,7 +129,6 @@ A continuación se puede ver el listado de las webs y los canales soportados:<br
 	<li>canaldehistoria.es</li>
 	<li>crtvgtvg.es</li>
 	<li>mtv.es</li>
-	<li>intereconomia.com</li>
 	<li>vimeo.com</li>
 	<li>cope.es</li>
 	<li>cadenaser.com</li>
@@ -143,7 +142,6 @@ A continuación se puede ver el listado de las webs y los canales soportados:<br
 	<li>Adnstrean.com</li>
 	<li>netd.com</li>
 	<li>telefe.com</li>
-	<li>toons.tv</li>
 	<li>tvmelilla.es</li>
 	<li>tune.pk</li>
 	<li>ideal.es</li>

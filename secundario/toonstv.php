@@ -1,16 +1,15 @@
 <?php
-function toonstv(){
-global $web,$web_descargada;
-$retfull=$web_descargada;
 
+class Toonstv extends cadena{
 
+function calcula(){
 
 $obtenido=array('enlaces' => array());
 
 
 // https://www.toons.tv/channels/Angry_Birds_Toons/2836878488001
 // $contentId = 2836878488001;
-preg_match("@/([0-9]*?)$@", $web, $matches);
+preg_match("@/([0-9]*?)$@", $this->web, $matches);
 dbug_r($matches);
 $contentId = $matches[1];
 
@@ -59,7 +58,7 @@ $a_encodear = array
 				(
 					"deliveryType" => NAN,
 					"playerKey" => $playerKey,
-					"URL" => $web, //Parece que hay bloqueo por referer. Este es el referer.
+					"URL" => $this->web, //Parece que hay bloqueo por referer. Este es el referer.
 					"experienceId" => $playerID,
 					"contentOverrides" => array(
 						"0" => new SabreAMF_TypedObject
@@ -105,66 +104,7 @@ dbug_r($res_decoded);
 
 
 
-/*
-$base = $res_decoded["data"]->getAMFData();
-$base = $base['programmedContent']['videoPlayer']->getAMFData();
-$base = $base['mediaDTO']->getAMFData();
-dbug_r($base);
-
-
-$titulo=$base["linkText"];
-$imagen=$base["videoStillURL"];
-dbug('titulo = '.$titulo);
-dbug('imagen = '.$imagen);
-
-
-dbug('IOSRenditions');//m3u8
-$IOSRenditions = $base["IOSRenditions"];
-for($i=0; $i<$i_total=Count($IOSRenditions); $i++){
-	$temp=$IOSRenditions[$i]->getAMFData();
-	URLSDelArrayBrightCove($temp, "m3u8", $obtenido['enlaces']);
-}
-
-
-dbug('renditions');
-$renditions = $base["renditions"];
-for($i=0; $i<$i_total=Count($renditions); $i++){
-	$temp=$renditions[$i]->getAMFData();
-	URLSDelArrayBrightCove($temp, "rtmp", $obtenido['enlaces']);
-}
-
-//ordenar usando ['calidad_ordenar']
-for($i=0; $i<=$i_total=Count($obtenido['enlaces'])-1; $i++){
-	for($j=$i+1; $j<=$i_total; $j++){
-		//dbug("i:".$i." - j:".$j);
-		if($obtenido['enlaces'][$i]['calidad_ordenar']<$obtenido['enlaces'][$j]['calidad_ordenar']){
-			$temp=$obtenido['enlaces'][$i];
-			$obtenido['enlaces'][$i]=$obtenido['enlaces'][$j];
-			$obtenido['enlaces'][$j]=$temp;
-		}
-	}
-}
-dbug_r($obtenido['enlaces']);
-//borrar ['calidad_ordenar']
-for($i=0; $i<$i_total=Count($obtenido['enlaces']); $i++)
-	unset($obtenido['enlaces'][$i]['calidad_ordenar']);
-
-//sacar 'url-txt' a otro res de solo 'titulo'
-$obtenido_enlaces_temp=array();
-for($i=0; $i<$i_total=Count($obtenido['enlaces']); $i++){
-	$obtenido_enlaces_temp[]=array('titulo' => $obtenido['enlaces'][$i]['url_txt']);
-	unset($obtenido['enlaces'][$i]['url_txt']);
-	$obtenido_enlaces_temp[]=$obtenido['enlaces'][$i];
-}
-$obtenido['enlaces']=$obtenido_enlaces_temp;
-*/
-
-
-
-
-
 // http://roviohdhd-f.akamaihd.net/hd/2069665155001/2069665155001_28369,42536,43153,38732,39126,001_ABT-E0530-SLUMBERMILL-Panama-MASTER.mp4.csmil/bitrate=3?videoId=2836878488001&lineUpId=&pubId=2069665155001&playerId=2575783636001&affiliateId=&v=&fp=&r=&g=
-
 
 
 
@@ -252,16 +192,4 @@ $obtenido['imagen']=$imagen;
 finalCadena($obtenido,false);
 }
 
-/*
-function URLSDelArrayBrightCove($r, $tipo, &$obtenido_enlaces){
-	if($r["audioOnly"]!="1"){
-		$obtenido_enlaces[]=array(
-			'calidad_ordenar'=>$r["encodingRate"],
-			'url_txt' => 'Calidad: '.floor($r["encodingRate"]/1000)." Kbps",
-			'url'     => $r["defaultURL"],
-			'tipo'    => $tipo
-		);
-	}
 }
-*/
-?>
