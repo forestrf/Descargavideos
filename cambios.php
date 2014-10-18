@@ -33,6 +33,11 @@ $todos[]=array(
 );
 
 $todos[]=array(
+'18-Octubre-2014'
+,'fix:Rtve vídeos geobloqueados no funcionaban.'
+);
+
+$todos[]=array(
 '16-Octubre-2014'
 ,'fix:Atresplayer ya no requiere flash (sigue necesitando el complemento del user agent o el programa F4M-Downloader).'
 );
