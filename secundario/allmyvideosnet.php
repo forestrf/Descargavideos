@@ -34,16 +34,15 @@ iframe.src = 'javascript:\'<embed src="/util/fla/f/http://played.to/1234" name="
 
 */
 
+class Allmyvideosnet extends cadena{
 
-function allmyvideosnet(){
-	global $web,$web_descargada;
-	
-	if(!enString($web_descargada, '<Form name="F1" method="POST" action=\'\'>')){
+function calcula(){
+	if(!enString($this->web_descargada, '<Form name="F1" method="POST" action=\'\'>')){
 		setErrorWebIntera('No se encuentra ningún vídeo');
 		return;
 	}
 	
-	$id = substr($web, strposF($web, 'allmyvideos.net/'));
+	$id = substr($this->web, strposF($this->web, 'allmyvideos.net/'));
 	dbug('id = '.$id);
 	
 	$web_embedPlayedTo = 'http://allmyvideos.net/embed-'.$id.'.html';
@@ -52,8 +51,8 @@ function allmyvideosnet(){
 	$retfull = CargaWebCurl($web_embedPlayedTo,'',array('referer'=>'http://web.com'));
 	$imagen = entre1y2($retfull, '"image" : "', '"');
 	
-	if(enString($web_descargada, 'filename=')){
-		$titulo = entre1y2($web_descargada, 'filename=', '"');
+	if(enString($this->web_descargada, 'filename=')){
+		$titulo = entre1y2($this->web_descargada, 'filename=', '"');
 		if(enString($titulo, '&')){
 			$titulo = substr($titulo, 0, strpos($titulo, '&'));
 		}
@@ -72,7 +71,7 @@ function allmyvideosnet(){
 		'}'.
 		'else if(DESCARGADOR_ARCHIVOS_SWF === true){'.
 			'getFlashMovie("descargador_archivos").CargaWeb({'.
-				'"url":"'.$web.'",'.
+				'"url":"'.$this->web.'",'.
 				'"metodo":"GET"'.
 			'}, "procesaPlayedTo1");'.
 		'}'.
@@ -89,7 +88,7 @@ function allmyvideosnet(){
 		'}'.
 		
 		'getFlashMovie("descargador_archivos").CargaWeb({'.
-			'"url":"'.$web.'",'.
+			'"url":"'.$this->web.'",'.
 			'"metodo":"POST",'.
 			'"post":post'.
 		'}, "procesaPlayedTo2");'.
@@ -155,4 +154,5 @@ function allmyvideosnet(){
 	
 	finalCadena($obtenido);
 }
-?>
+
+}

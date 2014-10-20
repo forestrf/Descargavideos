@@ -1,8 +1,9 @@
 <?php
-function tunepk(){
-global $web_descargada;
 
-preg_match('@(?:sources: |video_files = )(\[[\s\S]*?\])@', $web_descargada, $matches);
+class Tunepk extends cadena{
+	
+function calcula(){
+preg_match('@(?:sources: |video_files = )(\[[\s\S]*?\])@', $this->web_descargada, $matches);
 
 dbug_r($matches);
 
@@ -20,7 +21,7 @@ $json = json_decode($json, true);
 dbug_r($json);
 
 if($json === null){
-	$files = preg_match('@http://.+?\.mp4@', $web_descargada, $matches);
+	$files = preg_match('@http://.+?\.mp4@', $this->web_descargada, $matches);
 	$obtenido['enlaces'][] = array(
 		'url_txt' => 'Descargar',
 		'url'  => $matches[0],
@@ -37,10 +38,10 @@ if($json === null){
 }
 
 
-$imagen=entre1y2($web_descargada, '<meta property="og:image" content="', '"');
+$imagen=entre1y2($this->web_descargada, '<meta property="og:image" content="', '"');
 dbug('imagen = '.$imagen);
 
-$titulo=entre1y2($web_descargada, '<meta property="og:title" content="', '"');
+$titulo=entre1y2($this->web_descargada, '<meta property="og:title" content="', '"');
 dbug('titulo = '.$titulo);
 
 
@@ -50,4 +51,5 @@ $obtenido['imagen']=$imagen;
 
 finalCadena($obtenido);
 }
-?>
+
+}

@@ -1,14 +1,15 @@
 <?php
-function youtubehelper(){
-	global $web,$web_descargada;
-	
-	if(enString($web, '.com/v/')){
-		$web = 'https://www.youtube.com/watch?v='.substr($web,strposF($web,'.com/v/'));
+
+class Youtubehelper extends cadena{
+
+function calcula(){
+	if(enString($this->web, '.com/v/')){
+		$this->web = 'https://www.youtube.com/watch?v='.substr($this->web,strposF($this->web,'.com/v/'));
 	}
-	$web = strtr($web, array('//m.' => '//www.'));
+	$this->web = strtr($this->web, array('//m.' => '//www.'));
 	
 	//id
-	parse_str(parse_url($web, PHP_URL_QUERY),$vars);
+	parse_str(parse_url($this->web, PHP_URL_QUERY),$vars);
 	//$id=$vars['v']
 
 	dbug_r($vars);
@@ -17,10 +18,10 @@ function youtubehelper(){
 	$intentos = 3;
 	
 	$tube=new youtube();
-	$links=$tube->parse($web_descargada);
+	$links=$tube->parse($this->web_descargada);
 	dbug_r($links);
 	
-	$web2 = $web;
+	$web2 = $this->web;
 	while(($links === false || count($links) == 0) && $intentos > 0){
 		dbug("ERROR: ".$tube->error);
 		dbug('reintentando en 0.1s');
@@ -42,9 +43,9 @@ function youtubehelper(){
 		$imagen='https://i1.ytimg.com/vi/'.$vars['v'].'/0.jpg';
 		dbug($imagen);
 
-		$p=strpos($web_descargada,'<meta name="title" content="')+28;
-		$f=strpos($web_descargada,'"',$p);
-		$titulo=substr($web_descargada,$p,$f-$p);
+		$p=strpos($this->web_descargada,'<meta name="title" content="')+28;
+		$f=strpos($this->web_descargada,'"',$p);
+		$titulo=substr($this->web_descargada,$p,$f-$p);
 		$titulo=limpiaTitulo($titulo);
 
 		foreach($links as &$link){
@@ -78,17 +79,16 @@ function youtubehelper(){
 	}
 }
 
-function youtubehelper_urlAcortada(){
-	global $web,$web_descargada_headers;
-	foreach($web_descargada_headers as $header){
+function calcula_urlAcortada(){
+	foreach($this->web_descargada_headers as $header){
 		if(strpos($header, 'Location: ') === 0){
-			$web = substr($header, strposF($header, 'Location: '));
-			dbug('Location encontrado = '.$web);
-			$web_descargada = CargaWebCurl($web);
-			youtubehelper();
+			$this->web = substr($header, strposF($header, 'Location: '));
+			dbug('Location encontrado = '.$this->web);
+			$this->web_descargada = CargaWebCurl($this->web);
+			$this->calcula();
 			continue;
 		}
 	}
-	//$web = 
 }
-?>
+
+}

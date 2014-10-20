@@ -1,15 +1,15 @@
 <?php
-function t13cl(){
-global $web_descargada;
 
+class T13cl extends cadena{
 
-$url=entre1y2($web_descargada,'articuloVideo = "','"');
+function calcula(){
+$url=entre1y2($this->web_descargada,'articuloVideo = "','"');
 
 //image=http://mediateca.regmurcia.com/MediatecaCRM/ServletLink?METHOD=MEDIATECA%26accion=imagen%26id=10107
-$imagen=entre1y2($web_descargada,'articuloImagen = "','"');
+$imagen=entre1y2($this->web_descargada,'articuloImagen = "','"');
 
 //&title=Metros cuadrados&
-$titulo=entre1y2($web_descargada,'articuloTitulo = "','"');
+$titulo=entre1y2($this->web_descargada,'articuloTitulo = "','"');
 $titulo=limpiaTitulo($titulo);
 
 
@@ -18,12 +18,14 @@ $obtenido=array(
 	'imagen'      => $imagen,
 	'enlaces' => array(
 		array(
-			'url'  => $url,
-			'tipo' => 'http',
+			'url'     => $url,
+			'tipo'    => 'http',
+			'url_txt' => 'Descargar'
 		)
 	)
 );
 
 finalCadena($obtenido,true);
 }
-?>
+
+}

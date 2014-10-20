@@ -145,7 +145,6 @@ A continuación se puede ver el listado de las webs y los canales soportados:<br
 	<li>tvmelilla.es</li>
 	<li>tune.pk</li>
 	<li>ideal.es</li>
-	<li>magnovideo.com (requiere flash)</li>
 	<li>vk.com</li>
 	<li>played.to (requiere flash)</li>
 	<li>allmyvideos.net (requiere flash)</li>

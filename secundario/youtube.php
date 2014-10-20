@@ -185,14 +185,14 @@ class youtube{
 					switch ($f) {
 						case 'slice':
 							preg_match('@\d+@', $orden, $n);
-							y_slice($si, $n[0]);
+							$this->y_slice($si, $n[0]);
 							break;
 						case 'reverse':
-							y_reverse($si);
+							$this->y_reverse($si);
 							break;
 						case 'switch':
 							preg_match('@\d+@', $orden, $n);
-							y_switch($si, $n[0]);
+							$this->y_switch($si, $n[0]);
 							break;
 						default:
 							
@@ -203,20 +203,20 @@ class youtube{
 			}
 			
 			if(enString($orden,'slice')){
-				y_slice($si, intval(entre1y2($orden, '(',')')));
+				$this->y_slice($si, intval(entre1y2($orden, '(',')')));
 				continue;
 			}
 			elseif(preg_match('@\('.$var.',(\d+?)\)@', $orden, $res)){
-				y_switch($si, $res[1]);
+				$this->y_switch($si, $res[1]);
 				continue;
 			}
 			elseif(preg_match('@\[(\d+?)%'.$var.'.length\]@', $orden, $res)){
 				dbug('switch sin función: '.$b);
-				y_switch($si, $res[1]);
+				$this->y_switch($si, $res[1]);
 				continue;
 			}
 			elseif(enString($orden, 'reverse')){
-				y_reverse($si);
+				$this->y_reverse($si);
 				continue;
 			}
 		}
@@ -228,32 +228,29 @@ class youtube{
 
 
 	// http://www.jwz.org/hacks/youtubedown
-	var $CIPHER_TEST = array(
-'vflNzKG7n','vfllMCQWM','vflJv8FA8','vflR_cX32','vflveGye9','vflj7Fxxt','vfltM3odl','vflDG7-a-','vfl39KBj1','vflmOfVEX','vflJwJuHJ','vfl_ymO4Z','vfl26ng3K','vflcaqGO8','vflQw-fB4','vflSAFCP9','vflART1Nf','vflLC8JvQ','vflm_D8eE','vflTWC9KW','vflRFcHMl','vflM2EmfJ','vflz8giW0','vfl_wGgYV','vfl1HXdPb','vflkn6DAl','vfl2LOvBh','vfl-bxy_m','vflZK4ZYR','vflh9ybst','vflapUV9V','vflg0g8PQ','vflHOr_nV','vfluy6kdb','vflkuzxcs','vflGNjMhJ','vfldJ8xgI','vfl79wBKW','vflg3FZfr','vflUKrNpT','vfldWnjUz','vflP7iCEe','vflzVne63','vflO-N-9M','vflZ4JlpT','vflDgXSDS','vflW444Sr','vflK7RoTQ','vflKOCFq2','vflcLL31E','vflz9bT3N','vfliZsE79','vfljOFtAt','vflqSl9GX','vflFrKymJ','vflKz4WoM','vflhdWW8S','vfl66X2C5','vflCXG8Sm','vfl_3Uag6','vflQdXVwM','vflCtc3aO','vflCt6YZX','vflG49soT','vfl4cHApe','vflwMrwdI','vfl4AMHqP','vfln8xPyM','vflVSLmnY','vflkLvpg7','vflbxes4n','vflmXMtFI','vflYDqEW1','vflapGX6Q','vflLCYwkM','vflcY_8N0','vfl9qWoOL','vfle-mVwz','vfltdb6U3','vflLjFx3B','vfliqjKfF','ima-vflxBu-5R','ima-vflrGwWV9','ima-vflCME3y0','ima-vfl1LZyZ5','ima-vfl4_saJa','ima-en_US-vflP9269H','ima-en_US-vflkClbFb','ima-en_US-vflYhChiG','ima-en_US-vflWnCYSF','en_US-vflbT9-GA','en_US-vflAYBrl7','en_US-vflS1POwl','en_US-vflLMtkhg','en_US-vflbJnZqE','en_US-vflgd5txb','en_US-vflTm330y','en_US-vflnwMARr','en_US-vflTq0XZu','en_US-vfl8s5-Vs','en_US-vfl7i9w86','en_US-vflA-1YdP','en_US-vflZwcnOf','en_US-vflFqBlmB','en_US-vflG0UvOo','en_US-vflS6PgfC','en_US-vfl6Q1v_C','en_US-vflMYwWq8','en_US-vflGC4r8Z'
-	);
-}
 
-function y_slice(&$si, $b){
-	dbug('s(p)lice: '.$b);
-	dbug($si);
-	$si = substr($si, $b);
-	dbug($si);
-}
-function y_switch(&$si, $b){
-	dbug('switch: '.$b);
-	dbug($si);
-	y_swapLetters($si,$b);
-	dbug($si);
-}
-function y_reverse(&$si){
-	dbug('reverse');
-	dbug($si);
-	$si = strrev($si);
-	dbug($si);
-}
-
-function y_swapLetters(&$a, $b){
-	$c=$a[0];
-	$a[0]=$a[$b % strlen($a)];
-	$a[$b]=$c;
+	function y_slice(&$si, $b){
+		dbug('s(p)lice: '.$b);
+		dbug($si);
+		$si = substr($si, $b);
+		dbug($si);
+	}
+	function y_switch(&$si, $b){
+		dbug('switch: '.$b);
+		dbug($si);
+		$this->y_swapLetters($si,$b);
+		dbug($si);
+	}
+	function y_reverse(&$si){
+		dbug('reverse');
+		dbug($si);
+		$si = strrev($si);
+		dbug($si);
+	}
+	
+	function y_swapLetters(&$a, $b){
+		$c=$a[0];
+		$a[0]=$a[$b % strlen($a)];
+		$a[$b]=$c;
+	}
 }

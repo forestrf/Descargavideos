@@ -372,81 +372,96 @@ $cadenas = array(
 		'calcula'
 	)
 	*/
-	//CONTINUAR AQUÍ
 	,array(
 		array('youtube.com'),
 		array('youtube.php','youtubehelper.php'),
-		'youtubehelper'
+		'Youtubehelper',
+		'calcula'
 	)
 	,array(
 		array('youtu.be'),
 		array('youtube.php','youtubehelper.php'),
-		'youtubehelper_urlAcortada'
+		'Youtubehelper',
+		'calcula_urlAcortada'
 	)
 	,array(
 		array('tvmelilla.es'),
-		array('tvmelilla.php'),
-		'tvmelilla'
+		array('tvmelilla.php', 'vimeo.php'),
+		'Tvmelilla',
+		'calcula'
 	)
 	,array(
 		array('tune.pk'),
 		array('tunepk.php'),
-		'tunepk'
+		'Tunepk',
+		'calcula'
 	)
 	,array(
 		array('ideal.es'),
 		array('ideal.php'),
-		'ideal'
+		'Ideal',
+		'calcula'
 	)
+	/*
 	,array(
 		array('magnovideo.com'),
 		array('magnovideo.php'),
 		'magnovideo'
 	)
+	*/
 	,array(
 		array('vk.com'),
 		array('vk.php'),
-		'vk'
+		'Vk',
+		'calcula'
 	)
 	,array(
 		array('played.to'),
 		array('playedto.php'),
-		'playedto'
+		'Playedto',
+		'calcula'
 	)
 	,array(
-		array('allmyvideos.net'),
+		array('allmyvideos.net','allmyvideos.com'),
 		array('allmyvideosnet.php'),
-		'allmyvideosnet'
+		'Allmyvideosnet',
+		'calcula'
 	)
 	,array(
 		array('dailymotion.com'),
 		array('dailymotioncom.php'),
-		'dailymotioncom'
+		'Dailymotioncom',
+		'calcula'
 	)
 	,array(
 		array('liveleak.com'),
 		array('liveleak.php'),
-		'liveleak'
+		'Liveleak',
+		'calcula'
 	)
 	,array(
 		array('crunchyroll.com'),
 		array('crunchyrollcom.php'),
-		'crunchyrollcom'
+		'Crunchyrollcom',
+		'calcula'
 	)
 	,array(
 		array('telemundo.com'),
 		array('telemundocom.php'),
-		'telemundocom'
+		'Telemundocom',
+		'calcula'
 	)
 	,array(
 		array('discoverymax.es'),
 		array('discoverymaxes.php'),
-		'discoverymaxes'
+		'Discoverymaxes',
+		'calcula'
 	)
 	,array(
 		array('13.cl'),
 		array('13cl.php'),
-		't13cl'
+		'T13cl',
+		'calcula'
 	)
 );
 
@@ -505,7 +520,7 @@ if($modo==1){
 				
 				//Crear objeto
 				$cadena = new $cadena_elegida_arr[2]();
-				$cadena->init($web, $web_descargada);
+				$cadena->init($web, $web_descargada, $web_descargada_headers);
 				
 				// Lanzar función cadena
 				// Estas funciones pueden modificar el valor de web_descargada ya que se para por parámetro, pero no de web

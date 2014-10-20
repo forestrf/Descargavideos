@@ -1,16 +1,17 @@
 <?php
-function liveleak(){
-	global $web_descargada;
-	
+
+class Liveleak extends cadena{
+
+function calcula(){
 	//titulo
 	$titulo='LiveLeak';
 	dbug('titulo='.$titulo);
 	
 	//imagen
-	$imagen=entre1y2($web_descargada, 'image: "', '"');
+	$imagen=entre1y2($this->web_descargada, 'image: "', '"');
 	dbug('imagen='.$imagen);
 	
-	$config=entre1y2($web_descargada, 'config: "', '"');
+	$config=entre1y2($this->web_descargada, 'config: "', '"');
 	dbug_($config);
 	$config = explode('&', $config);
 	dbug_r($config);
@@ -43,4 +44,5 @@ function liveleak(){
 	
 	finalCadena($obtenido);
 }
-?>
+
+}

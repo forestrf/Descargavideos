@@ -12,15 +12,17 @@ http://content3.catalog.video.msn.com/e2/ds/d05e9aa6-c254-458e-8a5b-19cca7eb45d5
 http:/img3.catalog.video.msn.com/image.aspx?uuid=aec373a6-f1e7-4114-8815-c2d6596b3935&w=300&h=225&so=4
 http://img3.catalog.video.msn.com/image.aspx?uuid=aec373a6-f1e7-4114-8815-c2d6596b3935&w=500&h=250&so=4
 */
-function telemundocom(){
-global $web,$web_descargada;
-dbug_($web_descargada);
+
+class Telemundocom extends cadena{
+
+function calcula(){
+dbug_($this->web_descargada);
 
 $obtenido = array(
 	'enlaces' => array()
 );
 
-if(!enString($web_descargada, 'catalog.video.msn.com/image.aspx')){
+if(!enString($this->web_descargada, 'catalog.video.msn.com/image.aspx')){
 	// No soportado
 	// http://m.telemundo.com/video.php?show=elsenordeloscieloscapitulosecreto&id=najcVXTKRqnrWKiVUmcE&key=video
 	// http://m.telemundo.com/video.php?show=lavozkids&id=oWvtdFNRlmwOemyqHpCF&key=video
@@ -37,7 +39,7 @@ if(!enString($web_descargada, 'catalog.video.msn.com/image.aspx')){
 	
 }
 
-$imagen = 'http://img3.catalog.video.msn.com/image.aspx'.entre1y2($web_descargada, 'catalog.video.msn.com/image.aspx','"');
+$imagen = 'http://img3.catalog.video.msn.com/image.aspx'.entre1y2($this->web_descargada, 'catalog.video.msn.com/image.aspx','"');
 dbug_($imagen);
 
 $uuid = entre1y2($imagen, 'uuid=', '&');
@@ -133,4 +135,4 @@ $obtenido['imagen']=$imagen;
 finalCadena($obtenido,false);
 }
 
-?>
+}

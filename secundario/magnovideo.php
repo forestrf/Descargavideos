@@ -31,21 +31,20 @@ Flash hecho, solo falta implementarlo
 
 */
 
+class Magnovideo extends cadena{
 
-function magnovideo(){
-	global $web,$web_descargada;
-	
-	if(enString($web, '&')){
-		$idVideo = entre1y2($web, 'v=', '&');
+function calcula(){
+	if(enString($this->web, '&')){
+		$idVideo = entre1y2($this->web, 'v=', '&');
 	}
 	else{
-		$idVideo = substr($web, strposF($web, 'v='));
+		$idVideo = substr($this->web, strposF($this->web, 'v='));
 	}
 	dbug('idVideo='.$idVideo);
 	//Código
 	
 	
-	$titulo = trim(entre1y2($web_descargada,'<title>','</title>'));
+	$titulo = trim(entre1y2($this->web_descargada,'<title>','</title>'));
 	dbug('titulo='.$titulo);
 	
 	$imagen = '';
@@ -136,4 +135,5 @@ function magnovideo(){
 	
 	finalCadena($obtenido);
 }
-?>
+
+}

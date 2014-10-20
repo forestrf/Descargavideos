@@ -16,9 +16,9 @@ function cambios($max=-1){
 
 
 $todos[]=array(
-'XX-Octubre-2014'
-,'fix:trim() en los títulos.'
-,'fix:rtpa títulos e imágenes arreglados.'
+'21-Octubre-2014'
+,'fix:quitados espacios iniciales y finales de los títulos.'
+,'fix:Rtpa títulos e imágenes arreglados.'
 ,'fix:Canal extremadura títulos e imágenes arregladas.'
 ,'fix:RT.com, algunos vídeos habían dejado de funcionar.'
 ,'fix:Arreglado canaldehistoria.es, ahora canalhistoria.es.'
@@ -30,6 +30,8 @@ $todos[]=array(
 ,'fix:Algunos vídeos de Televisa no funcionaban.'
 ,'fix:Títulos y descripciones en Hogarutil.'
 ,'fix:Cambios en netd.com para que volviera a funcionar.'
+,'fix:TVMelilla soporte para vídeos vimeo incrustados.'
+,'del:Magnovideo ha cerrado.'
 );
 
 $todos[]=array(

@@ -187,10 +187,11 @@ function url_exists_full(&$url, $preg_match_prerealizado = false, $timeout = 20)
 	
 	dbug('Petición indica mimetype text');
 	
-	global $web_descargada_headers;
 	$GLOBALS['web_descargada'] = &$t;
 	
 	$web_descargada_headers = explode("\r\n", substr($t, 0, strpos($t, "\r\n\r\n")));
+	
+	$GLOBALS['web_descargada_headers'] = &$web_descargada_headers;
 	
 	$z=intval(substr($web_descargada_headers[0], 9, 3));
 	dbug('code response: '.$z);

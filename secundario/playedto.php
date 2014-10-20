@@ -33,16 +33,15 @@ iframe.src = 'javascript:\'<embed src="/util/fla/f/http://played.to/1234" name="
 
 */
 
+class Playedto extends cadena{
 
-function playedto(){
-	global $web,$web_descargada;
-	
-	if(!enString($web_descargada, '<Form method="POST" action=\'\'>')){
+function calcula(){
+	if(!enString($this->web_descargada, '<Form method="POST" action=\'\'>')){
 		setErrorWebIntera('No se encuentra ningún vídeo');
 		return;
 	}
 	
-	$id = substr($web, strposF($web, 'played.to/'));
+	$id = substr($this->web, strposF($this->web, 'played.to/'));
 	dbug('id = '.$id);
 	
 	$web_embedPlayedTo = 'http://played.to/embed-'.$id.'-640x360.html';
@@ -51,7 +50,7 @@ function playedto(){
 	$retfull = CargaWebCurl($web_embedPlayedTo,'',array('referer'=>'http://web.com'));
 	$imagen = entre1y2($retfull, 'image: "', '"');
 	
-	$titulo = entre1y2($web_descargada, '<h1 class="pagename">', '<');
+	$titulo = entre1y2($this->web_descargada, '<h1 class="pagename">', '<');
 
 	// FALLA EN EL CALLBACK DEL SWF. EDITAR EL SWF
 	
@@ -107,4 +106,5 @@ function playedto(){
 	
 	finalCadena($obtenido);
 }
-?>
+
+}

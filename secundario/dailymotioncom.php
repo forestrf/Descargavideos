@@ -19,26 +19,25 @@ http://vid2.ec.dmcdn.net/sec%28c1d480eb58ebac8a06ba174a542e3bdc%29/video/793/312
 http://vid2.ec.dmcdn.net/sec%28c1d480eb58ebac8a06ba174a542e3bdc%29/video/793/312/115213397_mp4_h264_aac_hd.flv
  */
 
-function dailymotioncom(){
-	global $web,$web_descargada;
+class Dailymotioncom extends cadena{
+
+function calcula(){
 	/*
 	// Nada de vídeos con filtro parental because adsense
-	if(!enString($web_descargada, 'sequence=')){
+	if(!enString($this->web_descargada, 'sequence=')){
 		dbug('Desactivando filtro familiar');
-		$web_descargada = CargaWebCurl($web,'','','ff=off');
+		$this->web_descargada = CargaWebCurl($this->web,'','','ff=off');
 	}
 	*/
-	if(strpos($web, 'http://www.dailymotion.com/embed/') === 0){
+	if(strpos($this->web, 'http://www.dailymotion.com/embed/') === 0){
 		dbug('embed');
-		$preweb = entre1y2($web_descargada, 'var info = ',",\n");
+		$preweb = entre1y2($this->web_descargada, 'var info = ',",\n");
 		$preweb = json_decode($preweb, true);
 		dbug_r($preweb);
-		$ret = CargaWebCurl($preweb['url']);
-	} else {
-		$ret = &$web_descargada;
+		$this->web_descargada = CargaWebCurl($preweb['url']);
 	}
 	
-	$urlContenedor = urldecode(entre1y2($ret, 'sequence=','"'));
+	$urlContenedor = urldecode(entre1y2($this->web_descargada, 'sequence=','"'));
 	
 	dbug_($urlContenedor);
 	
@@ -69,7 +68,7 @@ function dailymotioncom(){
 	for($i=count($preEnlaces['alternates'])-1; $i>=0; --$i){
 		$obtenido['enlaces'][] = array(
 			'titulo'    => $preEnlaces['alternates'][$i]['name'].'p',
-			'url'       => parseaTemplateDailyMotion($preEnlaces['alternates'][$i]['template']),
+			'url'       => $this->parseaTemplateDailyMotion($preEnlaces['alternates'][$i]['template']),
 			'extension' => 'm3u8',
 			'url_txt'   => 'Descargar',
 			'tipo'      => 'm3u8'
@@ -87,4 +86,5 @@ function parseaTemplateDailyMotion($url){
 		entre1y2($url,'http://','/sec')=>'vid2.ec.dmcdn.net'
 	));
 }
-?>
+
+}
