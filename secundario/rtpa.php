@@ -3,7 +3,7 @@
 class Rtpa extends cadena{
 
 //esta web trabaja con webs con espacios (" ") sin %20 incluso en las imágenes
-function calcular(){
+function calcula(){
 //titulo
 //<p class="fecha">08-05-2012</p>
 //<p class="programa">Objetivo Asturias</p>

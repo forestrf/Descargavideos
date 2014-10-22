@@ -2,13 +2,13 @@
 
 class Univision extends cadena{
 
-function calcularMovil() {
+function calculaMovil() {
 	$id = entre1y2($this->web . 'FINAL', '?id=', 'FINAL');
 	dbug('id=' . $id);
 	$this->univisionID($id);
 }
 
-function calcular() {
+function calcula() {
 	if (enString($this->web_descargada, 'video_id=')) {
 		$id = entre1y2($this->web_descargada, 'video_id=', ',');
 	} elseif (enString($this->web_descargada, 'fw_video_asset_id')) {

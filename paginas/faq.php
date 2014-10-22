@@ -154,5 +154,6 @@ A continuación se puede ver el listado de las webs y los canales soportados:<br
 	<li>telemundo.com</li>
 	<li>discoverymax.es (requiere flash)</li>
 	<li>13.cl</li>
+	<li>replay.disneychannel.es</li>
 </ol>
 </div>

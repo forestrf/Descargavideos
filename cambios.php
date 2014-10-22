@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'23-Octubre-2014'
+,'add:replay.disneychannel.es.'
+);
+
+$todos[]=array(
 '21-Octubre-2014'
 ,'fix:quitados espacios iniciales y finales de los títulos.'
 ,'fix:Rtpa títulos e imágenes arreglados.'

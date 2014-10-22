@@ -2,7 +2,7 @@
 
 class Canalriasbaixas extends cadena{
 
-function calcular(){
+function calcula(){
 preg_match("@http://[^ ]*?\.mp4@i", $this->web_descargada, $matches);
 
 $url=$matches[0];

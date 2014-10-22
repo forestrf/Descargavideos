@@ -2,7 +2,7 @@
 
 class T7rm extends cadena{
 
-function calcular(){
+function calcula(){
 $enlace = array();
 
 //&file=media/53/Video/10/1/10107_BAJA.mp4&

@@ -2,7 +2,7 @@
 
 class Canalextremadura extends cadena{
 
-function calcular(){
+function calcula(){
 $obtenido=array('enlaces' => array());
 
 //raido o tv

@@ -140,55 +140,55 @@ $cadenas = array(
 		array('rtve.es', 'tve.es'),
 		array('rtve.php'),
 		'Rtve',
-		'calcular'
+		'calcula'
 	)
 	,array(
 		array('canalriasbaixas.com', 'canalriasbaixas.tv'),
 		array('canalriasbaixas.php'),
 		'Canalriasbaixas',
-		'calcular'
+		'calcula'
 	)
 	,array(
 		array('univision.com'),
 		array('univision.php'),
 		'Univision',
-		'calcular'
+		'calcula'
 	)
 	,array(
 		array('univision.mobi'),
 		array('univision.php'),
 		'Univision',
-		'calcularMovil'
+		'calculaMovil'
 	)
 	,array(
 		array('rtpa.es'),
 		array('rtpa.php'),
 		'Rtpa',
-		'calcular'
+		'calcula'
 	)
 	,array(
 		array('7rm.es','orm.es'),
 		array('7rm.php'),
 		'T7rm',
-		'calcular'
+		'calcula'
 	)
 	,array(
 		array('canalextremadura.es'),
 		array('canalextremadura.php'),
 		'Canalextremadura',
-		'calcular'
+		'calcula'
 	)
 	,array(
 		array('lasexta.com','antena3.com'),
 		array('antena3.php'),
 		'A3',
-		'calcular'
+		'calcula'
 	)
 	,array(
 		array('atresplayer.com'),
 		array('atresplayer.php'),
 		'Atresplayer',
-		'calcular'
+		'calcula'
 	)
 	,array(
 		array('cuatro.com','telecinco.es','divinity.es','mediaset.es','mitelekids.es'),
@@ -461,6 +461,12 @@ $cadenas = array(
 		array('13.cl'),
 		array('13cl.php'),
 		'T13cl',
+		'calcula'
+	)
+	,array(
+		array('disneychannel.es'),
+		array('antena3.php'),
+		'A3',
 		'calcula'
 	)
 );

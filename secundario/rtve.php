@@ -2,7 +2,7 @@
 
 class Rtve extends cadena{
 
-function calcular(){
+function calcula(){
 dbug('empezando RTVE');
 
 //si no se pone / al final de un enlace que lo necesita, se arma parda. aplicar la / en caso de que se necesite.

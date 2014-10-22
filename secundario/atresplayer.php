@@ -56,7 +56,7 @@ private $atresplayer_obtenido_alerta = 'Es necesario estar en España para desca
 									No se puede descargar vídeos premium sin ser premium.<br/>
 									<a href="http://descargavid.blogspot.com.es/2014/10/atresplayer-por-que-tantas.html">Cómo descargar, información y más</a>';
 
-function calcular(){
+function calcula(){
 $obtenido=array('enlaces' => array());
 
 if(preg_match('@<div.*?capa_modulo_player.*?episode ?= ?"(.*?)">@i', $this->web_descargada, $matches)){
