@@ -469,6 +469,12 @@ $cadenas = array(
 		'A3',
 		'calcula'
 	)
+	,array(
+		array('twitch.tv'),
+		array('twitchtv.php'),
+		'Twitchtv',
+		'calcula'
+	)
 );
 
 

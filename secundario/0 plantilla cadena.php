@@ -1,6 +1,8 @@
 <?php
-function funcion_canal(){
-	global $web,$web_descargada;
+
+class Cadena extends cadena{
+
+function calcula(){
 	
 	
 	//Código
@@ -19,4 +21,5 @@ function funcion_canal(){
 	
 	finalCadena($obtenido);
 }
-?>
+
+}
