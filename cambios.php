@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'4-Noviembre-2014'
+,'fix:Cambiado mensaje de información de atresplayer para intentar dejar más claro cómo funciona (avalancha de avisos de resultado incorrecto a pesar de funcionar).'
+);
+
+$todos[]=array(
 '23-Octubre-2014'
 ,'add:replay.disneychannel.es.'
 );

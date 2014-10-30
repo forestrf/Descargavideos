@@ -8,6 +8,7 @@ https://servicios.atresplayer.com/api/urlVideoLanguage/20130924-EPISODE-00037-fa
 
 http://desprogresiva.antena3.com/assets3/2013/10/02/E78E8D76-3735-4BB8-9426-388DDB0ECC9F/video_720_900k_es.mp4
 
+javascript:(function(){$.getScript('https://servicios.atresplayer.com/api/urlVideoLanguage/20140512-EPISODE-00023-false/android_tablet/20140512-EPISODE-00023-false|1400184863|eb56684b0ca5bc1bc4f7706475e3b76c/es.json?callback=function%20a%28b%29{alert%28b%29};a')})()
 
 
 chunklist_b648000.m3u8
@@ -51,9 +52,11 @@ mp4:a3player1/geo/2012/09/11/B810021B-1B83-463F-9150-3FDC8E152DA6/000.mp4?nvb=20
 
 class Atresplayer extends cadena{
 
-private $atresplayer_obtenido_alerta = 'Es necesario estar en España para descargar de ATresPlayer. Si no se encuentra en España puede usar el programa <a target="_blank" href="http://hola.org">hola.org</a>.<br/>
-									Es necesario tener habilitadas las <a href="http://es.wikipedia.org/wiki/Cookie_%28inform%C3%A1tica%29#Privacidad_y_cookies_de_terceros">cookies de terceros</a>.<br/>
-									No se puede descargar vídeos premium sin ser premium.<br/>
+private $atresplayer_obtenido_alerta = 'Para poder descargar es necesario todo lo siguiente:<br/>
+									- estar en España o usar un proxy como <a target="_blank" href="http://hola.org">hola.org</a>.<br/>
+									- Para la calidad baja, entrar desde un móvil android o usar un complemento en el navegador. <a href="http://descargavid.blogspot.com.es/2014/10/atresplayer-por-que-tantas.html">Más información</a>.<br/>
+									- Tener habilitadas las <a href="http://es.wikipedia.org/wiki/Cookie_%28inform%C3%A1tica%29#Privacidad_y_cookies_de_terceros">cookies de terceros</a>.<br/>
+									- Poder ver el vídeo desde la página oficial.<br/>
 									<a href="http://descargavid.blogspot.com.es/2014/10/atresplayer-por-que-tantas.html">Cómo descargar, información y más</a>';
 
 function calcula(){
