@@ -33,7 +33,7 @@ elseif(!isset($pag)){
 //$a = $_SERVER["REQUEST_URI"]
 //$_SERVER["REQUEST_URI"] => "/changelog#contenido"
 function esPagina($a){
-	$paginas = array('telecinco','antena-3','rtve','mitele','univision','cuatro','la-sexta');
+	$paginas = array('telecinco','rtve','mitele','univision','cuatro');
 	$pag = "";
 	for($i = 0; $i<$i_t=count($paginas); $i++){
 		if(strpos($a, $paginas[$i]) === 1){
@@ -58,12 +58,6 @@ function pagina($cual){
 			$img='telecinco.png';
 			$bg="#005066";
 		break;
-		case 'antena-3':
-			$titulo="Descargar videos de Antena 3 TV online - ".date("Y");
-			$descripcion='Descargar videos de la web de Antena 3. La mejor página para bajar videos gratis de Antena 3 - Descargavideos.TV';
-			$img='antena3.png';
-			$bg="#6F5800";
-		break;
 		case 'rtve':
 			$titulo="Descargar videos de RTVE TV online - ".date("Y");
 			$descripcion='Descargar videos de la web de RTVE. La mejor página para bajar videos gratis de RTVE - Descargavideos.TV';
@@ -87,12 +81,6 @@ function pagina($cual){
 			$descripcion='Descargar videos de la web de Cuatro. La mejor página para bajar videos gratis de Cuatro - Descargavideos.TV';
 			$img='cuatro.png';
 			$bg="#812200";
-		break;
-		case 'la-sexta':
-			$titulo="Descargar videos de La Sexta TV online - ".date("Y");
-			$descripcion='Descargar videos de la web de La Sexta. La mejor página para bajar videos gratis de La Sexta - Descargavideos.TV';
-			$img='lasexta.png';
-			$bg="#417327";
 		break;
 		case 'youtube':
 			$titulo="Descargar videos de YouTube online - ".date("Y");

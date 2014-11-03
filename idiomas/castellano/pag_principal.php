@@ -16,7 +16,7 @@ define('TXT_COMO_DESCARGAR_VIDEOS_2_DESC', 'Para descargar los vídeos a tu PC d
 		<li>-Clicar en "Guardar enlace Como..."</li>
 	</ul>');
 define('TXT_CANALES_SOPORTADOS_TIT', 'Canales soportados por Descargavideos.TV');
-define('TXT_CANALES_SOPORTADOS_DESC', 'antena3.com, telecinco.es, lasexta.com, rtve.es, cuatro.com, mitele.es, divinity.es, tv3.cat, soundcloud.com, mtv.es, univision.com, canaldehistoria.es, mitelekids.es, aragontelevision.es, rtvv.es y muchas más<br/>
+define('TXT_CANALES_SOPORTADOS_DESC', 'telecinco.es, rtve.es, cuatro.com, mitele.es, divinity.es, tv3.cat, soundcloud.com, mtv.es, univision.com, canaldehistoria.es, mitelekids.es, aragontelevision.es y muchas más<br/>
 	Para ver el listado completo, por favor, <a href="/faq#p_q_c_s_d">haz click aquí</a>.');
 
 

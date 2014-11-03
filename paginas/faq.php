@@ -101,9 +101,7 @@ La web únicamente almacena los siguientes datos de los usuarios:<br/><br/>
 <div class="respuesta">
 A continuación se puede ver el listado de las webs y los canales soportados:<br/>
 <ol>
-	<li><a href="/antena-3">antena3.com</a></li>
 	<li><a href="/telecinco">telecinco.es</a></li>
-	<li><a href="/la-sexta">lasexta.com</a></li>
 	<li><a href="/rtve">rtve.es</a></li>
 	<li><a href="/cuatro">cuatro.com</a></li>
 	<li><a href="/mitele">mitele.es</a></li>
@@ -138,7 +136,6 @@ A continuación se puede ver el listado de las webs y los canales soportados:<br
 	<li>eitb.com</li>
 	<li>eitb.tv</li>
 	<li>telemadrid.es</li>
-	<li>ATresPlayer.com (<a href="http://descargavid.blogspot.com.es/2014/10/atresplayer-por-que-tantas.html">requiere extras</a>)</li>
 	<li>Adnstrean.com</li>
 	<li>netd.com</li>
 	<li>telefe.com</li>

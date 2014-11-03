@@ -180,13 +180,13 @@ $cadenas = array(
 	)
 	,array(
 		array('lasexta.com','antena3.com'),
-		array('antena3.php'),
+		array('a3borrado.php'),
 		'A3',
 		'calcula'
 	)
 	,array(
 		array('atresplayer.com'),
-		array('atresplayer.php'),
+		array('a3borrado.php'),
 		'Atresplayer',
 		'calcula'
 	)

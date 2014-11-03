@@ -17,6 +17,11 @@ function cambios($max=-1){
 
 $todos[]=array(
 '4-Noviembre-2014'
+,'del:<a href="http://descargavid.blogspot.com/2014/11/atresmedia-c-d.html">Quitado antena3, la sexta y atresplayer</a>.'
+);
+
+$todos[]=array(
+'30-Octubre-2014'
 ,'fix:Cambiado mensaje de información de atresplayer para intentar dejar más claro cómo funciona (avalancha de avisos de resultado incorrecto a pesar de funcionar).'
 );
 
