@@ -1,5 +1,5 @@
 <?php
-define('TXT_TITLE', 'Download videos from Mitele, Antena 3, RTVE and others!');
+define('TXT_TITLE', 'Download videos from Mitele, YouTube, RTVE and others!');
 define('TXT_SUBTITULO_CABECERA', 'Download videos from a lot of webs');
 define('TXT_COPIA_URL_VIDEO', 'Copy the url where is the video');
 define('TXT_BUSCA_URL_VIDEO', 'Search for the link to the video');
