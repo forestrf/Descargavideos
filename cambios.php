@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'25-Noviembre-2014'
+,'fix:Tv3, ahora ccma.cat, vuelve a funcionar (Usado handler de tv3 para ccma.cat parece funcionar).'
+);
+
+$todos[]=array(
 '4-Noviembre-2014'
 ,'del:<a href="http://descargavid.blogspot.com/2014/11/atresmedia-c-d.html">Quitado antena3, la sexta y atresplayer</a>.'
 );

@@ -220,7 +220,7 @@ $cadenas = array(
 		'calcula'
 	)
 	,array(
-		array('tv3.cat','324.cat','esport3.cat','3xl.cat','super3.cat'),
+		array('tv3.cat','324.cat','esport3.cat','3xl.cat','super3.cat','ccma.cat'),
 		array('tv3cat.php'),
 		'Tv3cat',
 		'calcula'
