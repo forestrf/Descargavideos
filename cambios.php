@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'27-Noviembre-2014'
+,'fix:Arreglo para Telemundo.com.'
+);
+
+$todos[]=array(
 '26-Noviembre-2014'
 ,'fix:Bug SabreAMF esquivado que daba fallo en algunos vídeos de brightcove.'
 );

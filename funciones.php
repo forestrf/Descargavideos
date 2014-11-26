@@ -259,6 +259,7 @@ function CargaWebCurl($url,$post='',$cabecera=0,$cookie='',$cabeceras=array(),$s
 	
 	if($sigueLocation){
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+		curl_setopt($ch, CURLOPT_COOKIEFILE, ""); // Esto es para que en las redirecciones use las cookies que salgan durante las redirecciones
 	}
 	
 	if($cookie !== ''){
@@ -322,7 +323,7 @@ function CargaWebCurlProxy($web,$pais='ESP',$post='',$cabeceras=array()){
 	$redir='';
 	$actualizaredir='';
 	
-	if($pais=='ESP'){
+	if ($pais === 'ESP') {
 		$rand = rand(1, 5);
 		switch($rand){
 			case 1:
@@ -352,7 +353,10 @@ function CargaWebCurlProxy($web,$pais='ESP',$post='',$cabeceras=array()){
 		}
 	}
 	
-	elseif($pais=='aleatorio'){
+	elseif ($pais === 'MX') {
+		return CargaWebCurl('http://proxymexico.com/includes/process.php?action=update', 'u='.urlencode($web)/*, true*/);
+	}
+	elseif ($pais === 'aleatorio') {
 		return CargaWebCurl($web,$post,0,'',$cabeceras);
 	}
 	
