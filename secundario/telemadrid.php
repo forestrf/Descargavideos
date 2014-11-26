@@ -91,8 +91,8 @@ $a_encodear = array
 );
 
 $post = brightcove_encode($a_encodear);
+/*
 dbug(base64_encode($post));
-
 
 $t = 'AAMAAAABAEZjb20uYnJpZ2h0Y292ZS5leHBlcmllbmNlLkV4cGVyaWVuY2VSdW50aW1lRmFjYWRlLmdldERhdGFGb3JFeHBlcmllbmNlAAIvMQAAAa8KAAAAAgIAKDBhMGVmYTdhMTBjMTg2M2IyZjk5MmE2MGQ3MjJiYTlkNDExMzg4NGQRCmNjY29tLmJyaWdodGNvdmUuZXhwZXJpZW5jZS5WaWV3ZXJFeHBlcmllbmNlUmVxdWVzdCFjb250ZW50T3ZlcnJpZGVzEVRUTFRva2VuGWRlbGl2ZXJ5VHlwZRNwbGF5ZXJLZXkHVVJMGWV4cGVyaWVuY2VJZAkDAQqBA1Njb20uYnJpZ2h0Y292ZS5leHBlcmllbmNlLkNvbnRlbnRPdmVycmlkZRtjb250ZW50UmVmSWRzF2NvbnRlbnRUeXBlFWZlYXR1cmVkSWQTY29udGVudElkDXRhcmdldBtmZWF0dXJlZFJlZklkFWNvbnRlbnRJZHMZY29udGVudFJlZklkAQQABX/////gAAAABUKMGgqQeggABhd2aWRlb1BsYXllcgEBAQYBBX/////gAAAABgEGf2h0dHA6Ly93d3cudGVsZW1hZHJpZC5lcy9wcm9ncmFtYXMvcnV0YS0xNzkvcnV0YS0xNzktbGEtY2FicmVyYQVCOgcL7eEAAA==';
 dbug($t);
@@ -104,7 +104,7 @@ dbug(base64_encode($t));
 $t = brightcove_decode($t);
 dbug_r($t);
 exit;
-
+*/
 
 dbug('a descargar: '.$messagebroker);
 $t=brightcove_curl_web($messagebroker,$post);
