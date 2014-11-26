@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'26-Noviembre-2014'
+,'fix:Bug SabreAMF esquivado que daba fallo en algunos vídeos de brightcove.'
+);
+
+$todos[]=array(
 '25-Noviembre-2014'
 ,'fix:Tv3, ahora ccma.cat, vuelve a funcionar (Usado handler de tv3 para ccma.cat parece funcionar).'
 );

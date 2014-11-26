@@ -6,8 +6,7 @@ function brightcove_encode($string){
 	$stream = new SabreAMF_OutputStream();
 	$message = new SabreAMF_Message();
 	$message->addBody($string);
-	//$message->setEncoding(SabreAMF_Const::AMF3);
-	$message->setEncoding(SabreAMF_Const::MIMETYPE);
+	$message->setEncoding(SabreAMF_Const::AMF0);
 	$message->serialize($stream);
 
 	$data = $stream->getRawData();
