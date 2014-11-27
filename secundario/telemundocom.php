@@ -52,7 +52,9 @@ if(!enString($this->web_descargada, 'catalog.video.msn.com/image.aspx')){
 	
 	
 	http://proxymexico.com
-	view-source:http://link.theplatform.com/s/0L7ZPC/iWUW_xbJZGrj?mbr=true&player=P7%20VOD%20Player&policy=40180
+	http://link.theplatform.com/s/0L7ZPC/iWUW_xbJZGrj?mbr=true&player=P7%20VOD%20Player&policy=40180
+	
+	http://link.theplatform.com/s/0L7ZPC/EuIyUv4n0nlm?mbr=true&player=P7%20VOD%20Player&policy=40180&switch=progressive&formats=mpeg4&format=SMIL&embedded=true&tracking=true
 	
 	
 	*/
@@ -85,7 +87,9 @@ if(!enString($this->web_descargada, 'catalog.video.msn.com/image.aspx')){
 	
 	$releaseUrl = entre1y2($ret, 'releaseUrl="', '"');
 	dbug_($releaseUrl);
-	
+	$releaseUrl .= '&switch=progressive&formats=mpeg4&format=SMIL&embedded=true&tracking=true';
+	dbug_($releaseUrl);
+
 	$ret = CargaWebCurlProxy($releaseUrl, 'MX');
 	dbug_($ret);
 	
