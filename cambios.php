@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'28-Noviembre-2014'
+,'add:now.telemundo.com.'
+);
+
+$todos[]=array(
 '27-Noviembre-2014'
 ,'fix:Arreglo para Telemundo.com.'
 );

@@ -59,28 +59,45 @@ if(!enString($this->web_descargada, 'catalog.video.msn.com/image.aspx')){
 	
 	*/
 	
-	$imagen = entre1y2($this->web_descargada, '"clip_image":"','"');
-	$imagen = json_decode('"'.$imagen.'"');
-	dbug_($imagen);
-	
-	$titulo = entre1y2($this->web_descargada, '"clip_title":"','"');
-	$titulo = json_decode('"'.$titulo.'"');
-	dbug_($titulo);
-	
-	$descripcion = entre1y2($this->web_descargada, '"clip_descr":"','"');
-	$descripcion = json_decode('"'.$descripcion.'"');
-	dbug_($descripcion);
-	
-	$obtenido['titulo']=$titulo;
-	$obtenido['imagen']=$imagen;
-	$obtenido['descripcion']=$descripcion;
-	
-	
-	
-	$iframe = entre1y2($this->web_descargada, '<iframe', '<');
-	dbug_($iframe);
-	$player = 'http://'.desde1a2($iframe, 'player.', '"');
-	dbug_($player);
+	if(enString($this->web, '//now.')){
+		// now.telemundo.com
+		
+		// "episode_thumbnail":{"url":"http:\/\/tve_static-telemundo.nbcuni.com\/prod\/image\/478\/1007\/141117_2828781_Andrea_del_Junco_anvver_1_560x315_362507843555.jpg"
+		// "synopsis":"Scarlet Gruber es Andrea del Junco, una joven seria, reservada y competente que anhela ser como su madre."
+		$p = strpos($this->web_descargada, '"episode_thumbnail"');
+		$imagen = entre1y2_a($this->web_descargada, $p, '"url":"','"');
+		$imagen = json_decode('"'.$imagen.'"');
+		dbug_($imagen);
+		
+		$titulo = 'Vídeo de now.telemundo.com';
+		
+		$player = 'http:'.desde1a2($this->web_descargada, '//player.', '"');
+		dbug_($player);
+		
+	} else {
+		$imagen = entre1y2($this->web_descargada, '"clip_image":"','"');
+		$imagen = json_decode('"'.$imagen.'"');
+		dbug_($imagen);
+		
+		$titulo = entre1y2($this->web_descargada, '"clip_title":"','"');
+		$titulo = json_decode('"'.$titulo.'"');
+		dbug_($titulo);
+		
+		$descripcion = entre1y2($this->web_descargada, '"clip_descr":"','"');
+		$descripcion = json_decode('"'.$descripcion.'"');
+		dbug_($descripcion);
+		
+		$obtenido['titulo']=$titulo;
+		$obtenido['imagen']=$imagen;
+		$obtenido['descripcion']=$descripcion;
+		
+		
+		
+		$iframe = entre1y2($this->web_descargada, '<iframe', '<');
+		dbug_($iframe);
+		$player = 'http://'.desde1a2($iframe, 'player.', '"');
+		dbug_($player);
+	}
 	
 	
 	$ret = CargaWebCurl($player);
