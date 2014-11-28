@@ -64,14 +64,13 @@ if(!enString($this->web_descargada, 'catalog.video.msn.com/image.aspx')){
 		
 		// "episode_thumbnail":{"url":"http:\/\/tve_static-telemundo.nbcuni.com\/prod\/image\/478\/1007\/141117_2828781_Andrea_del_Junco_anvver_1_560x315_362507843555.jpg"
 		// "synopsis":"Scarlet Gruber es Andrea del Junco, una joven seria, reservada y competente que anhela ser como su madre."
-		$p = strpos($this->web_descargada, '"episode_thumbnail"');
-		$imagen = entre1y2_a($this->web_descargada, $p, '"url":"','"');
-		$imagen = json_decode('"'.$imagen.'"');
+		$p = strpos($this->web_descargada, '//player.');
+		$imagen = entre1y2_a($this->web_descargada, $p, 'src="','"');
 		dbug_($imagen);
 		
 		$titulo = 'Vídeo de now.telemundo.com';
 		
-		$player = 'http:'.desde1a2($this->web_descargada, '//player.', '"');
+		$player = 'http:'.desde1a2($this->web_descargada, $p, '"');
 		dbug_($player);
 		
 	} else {
@@ -87,17 +86,16 @@ if(!enString($this->web_descargada, 'catalog.video.msn.com/image.aspx')){
 		$descripcion = json_decode('"'.$descripcion.'"');
 		dbug_($descripcion);
 		
-		$obtenido['titulo']=$titulo;
-		$obtenido['imagen']=$imagen;
-		$obtenido['descripcion']=$descripcion;
-		
-		
-		
 		$iframe = entre1y2($this->web_descargada, '<iframe', '<');
 		dbug_($iframe);
 		$player = 'http://'.desde1a2($iframe, 'player.', '"');
 		dbug_($player);
+		
+		$obtenido['descripcion']=$descripcion;
 	}
+		
+	$obtenido['titulo']=$titulo;
+	$obtenido['imagen']=$imagen;
 	
 	
 	$ret = CargaWebCurl($player);
