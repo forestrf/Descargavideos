@@ -54,7 +54,7 @@ $a_encodear = array
 				(
 					"TTLToken" => null,
 					"deliveryType" => NAN,
-					"playerKey" => null,
+					"playerKey" => "",
 					"URL" => $this->web, //Innecesario
 					"experienceId" => $playerID,
 					"contentOverrides" => array(
@@ -86,9 +86,6 @@ $post = brightcove_encode($a_encodear);
 
 
 dbug('a descargar: '.$messagebroker);
-/*$t=brightcove_curl_web("http://forestrf.no-ip.org/",$post); //borrar, es una prueba
-dbug($t);
-exit;*/
 $t=brightcove_curl_web($messagebroker,$post);
 dbug($t);
 
