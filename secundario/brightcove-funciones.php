@@ -13,10 +13,6 @@ function brightcove_encode($string){
 	//strtr concierte de amf0 a amf3
 	//return $data;
 	
-	//Arreglo para Google App Engine
-	$data = strtr($data, array("\x7F"=>"\xFF"));
-	
-	
 	return strtr($data,array("\x00\x00\x00\x00\x00\x01\x00"=>"\x00\x03\x00\x00\x00\x01\x00"));
 }
 

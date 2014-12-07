@@ -219,10 +219,6 @@
          * @return void
          */
         public function writeString($str) {
-			if(strlen($str) === 63){
-				dbug('Fix temporal. Tamaño cadena = 63 da error.');
-				$str = substr($str, 0, 62);
-			}
             $strref = strlen($str) << 1 | 0x01;
             $this->writeInt($strref);
             $this->stream->writeBuffer($str);
