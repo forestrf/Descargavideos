@@ -731,6 +731,10 @@ function validar_enlace($link){
 		$link = 'http:'.$link;
 	}
 	
+	if(strpos($link, '/') === 0){
+		$link = 'http:/'.$link;
+	}
+	
 	// http://http://www....
 	if(strpos($link,'http://http://') === 0){
 		$link = substr($link, strlen('http://'));
