@@ -23,6 +23,8 @@ function calcula(){
 	);
 	
 	if(!enString($this->web_descargada, 'catalog.video.msn.com/image.aspx')){
+		dbug('modo nuevo');
+		
 		// No soportado
 		// http://m.telemundo.com/video.php?show=elsenordeloscieloscapitulosecreto&id=najcVXTKRqnrWKiVUmcE&key=video
 		// http://m.telemundo.com/video.php?show=lavozkids&id=oWvtdFNRlmwOemyqHpCF&key=video
@@ -127,6 +129,7 @@ function calcula(){
 		
 		
 	} else {
+		dbug('modo antiguo');
 	
 		$imagen = 'http://img3.catalog.video.msn.com/image.aspx'.entre1y2($this->web_descargada, 'catalog.video.msn.com/image.aspx','"');
 		dbug_($imagen);

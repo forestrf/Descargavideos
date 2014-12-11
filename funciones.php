@@ -165,7 +165,7 @@ function url_exists_full(&$url, $preg_match_prerealizado = false, $timeout = 20)
 	curl_setopt($ch, CURLOPT_ENCODING, '');
 	
 	curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-		"User-agent: Mozilla/5.0 (Windows NT 6.1; rv:11.0) Gecko/20100101 Firefox/11.0",
+		"User-agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:34.0) Gecko/20100101 Firefox/34.0",
 		"Connection: close",
 		"Accept-Language: es-ES,es;en-US;en",
 		"Accept: text/html,application/xhtml+xml,application/xml",
@@ -242,6 +242,7 @@ function CargaWebCurl($url,$post='',$cabecera=0,$cookie='',$cabeceras=array(),$s
 	
 	$cabeceras[] = 'Accept-Encoding: gzip';
 	$cabeceras[] = 'Connection: Connection';
+	$cabeceras[] = 'User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:34.0) Gecko/20100101 Firefox/34.0';
 	
 	dbug('cargando web (CURL): '.$url);
 	if(!$esquivarCache){
@@ -322,6 +323,8 @@ function carga_web_curl_obtenida($url='',$post='',$cookie='',$cabeceras=array(),
 function CargaWebCurlProxy($web,$pais='ESP',$post='',$cabeceras=array()){
 	$redir='';
 	$actualizaredir='';
+	
+	dbug('cargando web (Proxy): '.$web);
 	
 	if ($pais === 'ESP') {
 		$rand = rand(1, 5);
