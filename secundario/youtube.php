@@ -152,8 +152,9 @@ class youtube{
 		dbug($txt_cerca);
 		
 		$funciones = array();
-		$expr = '@([a-zA-Z][a-zA-Z0-9]{1,3})[:=]function\(.+?\){(.+?)}@';
+		$expr = '@([a-zA-Z][a-zA-Z0-9]{1,3})[:=]function\(.*?\){(.+?)}@';
 		preg_match_all($expr, $txt_cerca, $m);
+		dbug('$m');
 		dbug_r($m);
 		for($i = 0; $i < count($m[0]); $i++){
 			if(strpos($m[2][$i], 'lice') !== false){
@@ -184,15 +185,15 @@ class youtube{
 				if(strpos($orden, $o) !== false){
 					switch ($f) {
 						case 'slice':
-							preg_match('@\d+@', $orden, $n);
-							$this->y_slice($si, $n[0]);
+							preg_match('@\(.*?(\d+)@', $orden, $n);
+							$this->y_slice($si, $n[1]);
 							break;
 						case 'reverse':
 							$this->y_reverse($si);
 							break;
 						case 'switch':
-							preg_match('@\d+@', $orden, $n);
-							$this->y_switch($si, $n[0]);
+							preg_match('@\(.*?(\d+)@', $orden, $n);
+							$this->y_switch($si, $n[1]);
 							break;
 						default:
 							

@@ -19,6 +19,7 @@ $todos[]=array(
 '11-Diciembre-2014'
 ,'fix:Telemundo vuelve a funcionar para vídeos del subdominio now.telemundo.com.'
 ,'fix:Algunos vídeos de rtve no se podían descargar ya que de los posibles enlaces al vídeo a veces se elejía el incorrecto.'
+,'fix:Mejorada la IA que resuelve ciphers de youtube.'
 );
 
 $todos[]=array(
