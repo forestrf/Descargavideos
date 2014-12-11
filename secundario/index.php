@@ -495,7 +495,11 @@ if($modo==1){
 		}
 	}
 	
-	if(validar_enlace($web)){
+	
+	if(trim($web) === ''){
+		setErrorWebIntera('Especifique la dirección de la web que contiene el vídeo.');
+	}
+	elseif(validar_enlace($web)){
 		//La función anterior, si es exitosa, finaliza la web. Si falla (url de un server no válido o la función del canal se acabó antes de lo previsto, se ejecuta lo próximo
 		$cadena_elegida_arr = averiguaCadena($web);
 		if($cadena_elegida_arr===false){
