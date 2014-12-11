@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'11-Diciembre-2014'
+,'fix:Telemundo vuelve a funcionar para vídeos del subdominio now.telemundo.com.'
+);
+
+$todos[]=array(
 '7-Diciembre-2014'
 ,'fix:Hogarutil vuelve a funcionar tras adaptar el script un pequeño cambio en el funcionamiento de los vídeos.'
 );

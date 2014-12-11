@@ -61,6 +61,7 @@ if(!enString($this->web_descargada, 'catalog.video.msn.com/image.aspx')){
 	
 	if(enString($this->web, '//now.')){
 		// now.telemundo.com
+		$desde = 1;
 		
 		// "episode_thumbnail":{"url":"http:\/\/tve_static-telemundo.nbcuni.com\/prod\/image\/478\/1007\/141117_2828781_Andrea_del_Junco_anvver_1_560x315_362507843555.jpg"
 		// "synopsis":"Scarlet Gruber es Andrea del Junco, una joven seria, reservada y competente que anhela ser como su madre."
@@ -74,6 +75,8 @@ if(!enString($this->web_descargada, 'catalog.video.msn.com/image.aspx')){
 		dbug_($player);
 		
 	} else {
+		$desde = 2;
+		
 		$imagen = entre1y2($this->web_descargada, '"clip_image":"','"');
 		$imagen = json_decode('"'.$imagen.'"');
 		dbug_($imagen);
@@ -116,7 +119,7 @@ if(!enString($this->web_descargada, 'catalog.video.msn.com/image.aspx')){
 	
 	for ($i = 0; $i < $i_l = count($links); $i++) {
 		$obtenido['enlaces'][] = array(
-			'url'     => $links[$i],
+			'url'     => $desde === 1 ? $this->quitar_akami_telemundo($links[$i]) : $links[$i],
 			'url_txt' => 'Descargar en calidad ' . intval($calidades[$i] / 1024),
 			'tipo'    => 'http'
 		);
@@ -218,6 +221,12 @@ foreach($ret['videos'][0]['files'] as &$elem){
 */
 
 finalCadena($obtenido,false);
+}
+
+function quitar_akami_telemundo($url) {
+	return str_replace('http://tve_telemundo-vh.akamaihd.net/z/prod/', 'http://tve_static-telemundo.nbcuni.com/prod/', 
+		entre1y2($url, 0, '?')
+	);
 }
 
 }
