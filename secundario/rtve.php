@@ -154,14 +154,14 @@ else{
 	//titulo
 	$p=strpos($this->web_descargada,'class="header"');
 	$p=strpos($this->web_descargada,'titu',$p);
-	$p=strpos($this->web_descargada,'>',$p)+1;
+	$p=strposF($this->web_descargada,'>',$p);
 	$f=strpos($this->web_descargada,'<',$p);
 	$titulo=substr($this->web_descargada,$p,$f-$p);
 	$titulo=limpiaTitulo($titulo);
 	
 	//imagen
 	$p=strpos($this->web_descargada,'imgPrograma');
-	$p=strpos($this->web_descargada,'src="',$p)+5;
+	$p=strposF($this->web_descargada,'src="',$p);
 	$f=strpos($this->web_descargada,'"',$p);
 	$imagen=substr($this->web_descargada,$p,$f-$p);
 }
@@ -211,7 +211,7 @@ function convierteID($asset,$modo=array('video','audio')){
 			dbug_r($m);
 			foreach($m[0] as $i){
 				dbug('Opcion: '.$i);
-				if(!enString($i, '1100000000000')){
+				if(!enString($i, '1100000000000') && !enString($i, 'l3-onlinefs.rtve.es')){
 					$ret = $this->quita_geobloqueo($i);
 					dbug('Opcion elejida: '.$i);
 					break;
