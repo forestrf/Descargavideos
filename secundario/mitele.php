@@ -6,6 +6,12 @@ class Mitele extends cadena{
 
 private $mitele_obtenido_alerta = 'Como norma general es necesario encontrarse en España para poder descargar de mitele. Si usted no se encuentra en España puede hacer uso del programa <a target="_blank" href="http://hola.org">hola.org</a> para simular que se encuentra en España.';
 
+private function agregarAlertaMitele(&$obtenido) {
+	if (comprobarPais() !== 'ES') {
+		$obtenido['alerta_especifica'] = $this->mitele_obtenido_alerta;
+	}
+}
+
 function mitele_directo(){
 	dbug('mitele_directo');
 	dbug('divinity, cuatro, telecinco o mitelekids');
@@ -86,7 +92,7 @@ function mitele_directo(){
 			)
 		);
 		
-		$obtenido['alerta_especifica'] = $this->mitele_obtenido_alerta;
+		$this->agregarAlertaMitele($obtenido);
 		
 		finalCadena($obtenido,0);
 	}
@@ -128,7 +134,7 @@ function mitele_directo(){
 			)
 		);
 		
-		$obtenido['alerta_especifica'] = $this->mitele_obtenido_alerta;
+		$this->agregarAlertaMitele($obtenido);
 		
 		finalCadena($obtenido,0);
 	}
@@ -196,9 +202,10 @@ function calcula(){
 				'imagen'  => $imagen,
 				'enlaces' => array(
 					$this->finalCadenaMiteleRTMP($id, $titulo)
-				),
-				'alerta_especifica' => $this->mitele_obtenido_alerta
+				)
 			);
+			
+			$this->agregarAlertaMitele($obtenido);
 			
 			finalCadena($obtenido,0);
 		}
@@ -227,9 +234,10 @@ function calcula(){
 						'tipo'    => 'http',
 						'url_txt' => 'Descargar Vídeo'
 					)
-				),
-				'alerta_especifica' => $this->mitele_obtenido_alerta
+				)
 			);
+			
+			$this->agregarAlertaMitele($obtenido);
 			
 			finalCadena($obtenido,0);
 		}

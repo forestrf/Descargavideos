@@ -512,4 +512,9 @@ function getDownloads(){
 	*/
 }
 
+function comprobarPais(){
+	require_once 'geoiploc.php';
+	return getCountryFromIP($_SERVER['REMOTE_ADDR']);
+}
+
 ?>
