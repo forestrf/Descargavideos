@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'12-Diciembre-2014'
+,'add:Soporte para uvideos.com.'
+);
+
+$todos[]=array(
 '11-Diciembre-2014'
 ,'fix:Telemundo vuelve a funcionar para vídeos del subdominio now.telemundo.com.'
 ,'fix:Algunos vídeos de rtve no se podían descargar ya que de los posibles enlaces al vídeo a veces se elejía el incorrecto.'

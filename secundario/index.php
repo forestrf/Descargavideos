@@ -155,6 +155,12 @@ $cadenas = array(
 		'calcula'
 	)
 	,array(
+		array('uvideos.com'),
+		array('univision.php'),
+		'Univision',
+		'calculaUVideos'
+	)
+	,array(
 		array('univision.mobi'),
 		array('univision.php'),
 		'Univision',

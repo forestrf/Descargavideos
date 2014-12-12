@@ -152,5 +152,6 @@ A continuación se puede ver el listado de las webs y los canales soportados:<br
 	<li>discoverymax.es (requiere flash)</li>
 	<li>13.cl</li>
 	<li>replay.disneychannel.es</li>
+	<li>uvideos.com</li>
 </ol>
 </div>

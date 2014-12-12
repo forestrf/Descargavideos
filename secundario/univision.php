@@ -3,7 +3,8 @@
 class Univision extends cadena{
 
 function calculaMovil() {
-	$id = entre1y2($this->web . 'FINAL', '?id=', 'FINAL');
+	$w = $this->web . 'FINAL';
+	$id = entre1y2($w, '?id=', 'FINAL');
 	dbug('id=' . $id);
 	$this->univisionID($id);
 }
@@ -18,6 +19,17 @@ function calcula() {
 		preg_match("@videoEmbedCode.*?([0-9]+)@", $this->web_descargada, $match);
 		$id = $match[1];
 	} else {
+		return;
+	}
+
+	dbug('id=' . $id);
+	$this->univisionID($id);
+}
+
+function calculaUVideos() {
+	if (enString($this->web_descargada, 'data-video="extId:')) {
+		$id = entre1y2($this->web_descargada, 'data-video="extId:', '"');
+	}else {
 		return;
 	}
 
