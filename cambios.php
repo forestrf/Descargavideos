@@ -18,6 +18,7 @@ function cambios($max=-1){
 $todos[]=array(
 '12-Diciembre-2014'
 ,'add:Soporte para uvideos.com.'
+,'fix:problemas en soundcloud.com al no encontrar la id de los usuarios.'
 );
 
 $todos[]=array(

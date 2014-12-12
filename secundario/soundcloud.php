@@ -104,6 +104,9 @@ else{
 	$p=strposF($id,'>',$p);
 	$f=strpos($id,'<',$p);
 	$id=substr($id,$p,$f-$p);
+	if (enString($id, '"')) {
+		$id=entre1y2($id,'"id":',',');
+	}
 	dbug('id='.$id);
 
 	$stack=50;
