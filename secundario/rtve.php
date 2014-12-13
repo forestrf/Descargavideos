@@ -174,8 +174,9 @@ $obtenido=array(
 	'imagen'  => $imagen,
 	'enlaces' => array(
 		array(
-			'url'  => $ret,
-			'tipo' => 'http'
+			'url'     => $ret,
+			'tipo'    => 'http',
+			'url_txt' => 'Descargar'
 		)
 	)
 );
