@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'13-Diciembre-2014'
+,'fix:RTVE cambiado el subdominio de los enlaces.'
+);
+
+$todos[]=array(
 '12-Diciembre-2014'
 ,'add:Soporte para uvideos.com.'
 ,'fix:problemas en soundcloud.com al no encontrar la id de los usuarios.'

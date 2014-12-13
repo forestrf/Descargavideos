@@ -185,7 +185,7 @@ finalCadena($obtenido);
 
 function quita_geobloqueo($url){
 	if(enString($url, 'mvodt.lvlt')){
-		$url = strtr($url, array('mvodt.lvlt'=>'vod.flcdn'));
+		$url = strtr($url, array('mvodt.lvlt'=>'mvod.lvlt'));
 		if(enString($url, '?')){
 			$url = substr($url, 0, strpos($url, '?'));
 		}
