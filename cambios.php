@@ -18,6 +18,7 @@ function cambios($max=-1){
 $todos[]=array(
 '13-Diciembre-2014'
 ,'fix:RTVE cambiado el subdominio de los enlaces.'
+,'fix:discoverymax.es ahora es discoverymax.marca.com.'
 );
 
 $todos[]=array(
