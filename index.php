@@ -125,7 +125,6 @@ if(isset($web)){
 	}
 	//Aparenta ser una url. Método del formulario de copia/pega o método antiguo o el pavo tiene la web antigua en cache...
 
-	$aPaloSeco=1;
 	chdir('secundario');
 	require_once 'index.php';
 	
