@@ -184,7 +184,9 @@ $obtenido=array(
 finalCadena($obtenido);
 }
 
+// Ya no quita geobloqueo, retorna la url tal cual
 function quita_geobloqueo($url){
+	return $url;
 	if(enString($url, 'mvodt.lvlt')){
 		$url = strtr($url, array('mvodt.lvlt'=>'static'));
 		if(enString($url, '?')){
