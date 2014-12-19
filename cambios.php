@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'19-Diciembre-2014'
+,'add:eitb.eus, nuevo dominio para eitb.com.'
+);
+
+$todos[]=array(
 '13-Diciembre-2014'
 ,'fix:RTVE cambiado el subdominio de los enlaces.'
 ,'fix:discoverymax.es ahora es discoverymax.marca.com.'
@@ -24,7 +29,7 @@ $todos[]=array(
 $todos[]=array(
 '12-Diciembre-2014'
 ,'add:Soporte para uvideos.com.'
-,'fix:problemas en soundcloud.com al no encontrar la id de los usuarios.'
+,'fix:Problemas en soundcloud.com al no encontrar la id de los usuarios.'
 );
 
 $todos[]=array(
@@ -77,7 +82,7 @@ $todos[]=array(
 
 $todos[]=array(
 '21-Octubre-2014'
-,'fix:quitados espacios iniciales y finales de los títulos.'
+,'fix:Quitados espacios iniciales y finales de los títulos.'
 ,'fix:Rtpa títulos e imágenes arreglados.'
 ,'fix:Canal extremadura títulos e imágenes arregladas.'
 ,'fix:RT.com, algunos vídeos habían dejado de funcionar.'

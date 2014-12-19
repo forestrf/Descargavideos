@@ -298,7 +298,7 @@ $cadenas = array(
 		'calcula'
 	)
 	,array(
-		array('eitb.com'),
+		array('eitb.com', 'eitb.eus'),
 		array('eitb.php'),
 		'Eitb',
 		'calculacom'
