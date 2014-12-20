@@ -244,12 +244,15 @@ function URLSDelArrayBrightCove($r, $tipo, &$obtenido_enlaces, $titulo){
 		
 		
 		
-		if($tipo === 'rtmpConcreto'){
+		if($tipo === 'rtmpConcreto' && enString($r['defaultURL'], 'mp4:')){
 			preg_match_all('@(mp4:.*?\.mp4)@i', $r['defaultURL'], $match);
 			$y = $match[0][0];
 			$filename = generaNombreWindowsValido($titulo.' - '.floor($r['encodingRate']/1000).' Kbps'.'.mp4');
 			$arrayTemp['rtmpdump'] = '-r "'.strtr($r['defaultURL'],array('&'.$y=>'')).'" -y "'.$y.'" '.$extra.' -o "'.$filename.'"';
 			$arrayTemp['nombre_archivo'] = $filename;
+		} else {
+			$arrayTemp['tipo'] = 'http';
+			$arrayTemp['url_txt'] = 'Descargar';
 		}
 		
 		$obtenido_enlaces[] = $arrayTemp;

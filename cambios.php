@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'20-Diciembre-2014'
+,'fix:Algunos vídeos de eitb.tv en lugar de usar rtmp usan http por lo que funcionan si necesidad de programas extra.'
+);
+
+$todos[]=array(
 '19-Diciembre-2014'
 ,'add:eitb.eus, nuevo dominio para eitb.com.'
 );
