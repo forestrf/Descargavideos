@@ -248,7 +248,7 @@ function mitele8($id){
 	dbug('mitele8');
 	$server3='http://token.mitele.es/';
 
-	$ret=CargaWebCurlProxy($server3.'?id='.$id, 'aleatorio');
+	$ret = CargaWebCurl($server3.'?id='.$id);
 	dbug('respuesta: '.$ret);
 	
 	$ret = strtr($ret, array('videoTokenizer(' => '', ');' => ''));
@@ -349,7 +349,6 @@ function mitele2($id, $tokenN=1){
 	);
 	
 	$ret=CargaWebCurl($server3,$extra,0,'',$hders);
-	//$ret=CargaWebCurlProxy($server3,'ESP',$extra,$hders);
 	dbug('respuesta: '.$ret);
 	
 	if(enString($ret,'rtmpe://')) {
@@ -370,7 +369,7 @@ function mitele2($id, $tokenN=1){
 		dbug($RTMPAfterInterrogant);
 		
 		
-		$ret = /*'rtmpdump*/' -r "'.$RTMPStream.'?'.$RTMPAfterInterrogant.'"'.
+		$ret = ' -r "'.$RTMPStream.'?'.$RTMPAfterInterrogant.'"'.
 		' -y "'.$RTMPFile.'"'.
 		' -o "test.mp4"';
 		

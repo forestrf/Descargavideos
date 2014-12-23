@@ -326,7 +326,8 @@ function CargaWebCurlProxy($web,$pais='ESP',$post='',$cabeceras=array()){
 	
 	dbug('cargando web (Proxy): '.$web);
 	
-	if ($pais === 'ESP') {
+	switch ($pais) {
+	case 'ESP':
 		$rand = rand(1, 5);
 		switch($rand){
 			case 1:
@@ -354,12 +355,11 @@ function CargaWebCurlProxy($web,$pais='ESP',$post='',$cabeceras=array()){
 				$actualizaredir='http://descv.webcindario.com/actualizar.php';
 			break;
 		}
-	}
-	
-	elseif ($pais === 'MX') {
+		break;
+	case 'MX':
 		return CargaWebCurl('http://proxymexico.com/includes/process.php?action=update', 'u='.urlencode($web)/*, true*/);
-	}
-	elseif ($pais === 'aleatorio') {
+	default:
+	case 'aleatorio':
 		return CargaWebCurl($web,$post,0,'',$cabeceras);
 	}
 	
