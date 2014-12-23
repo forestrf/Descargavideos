@@ -81,7 +81,7 @@ $obtenido=array('enlaces' => array());
 
 
 //para televisa.com/novelas
-if(stringContains($this->web_descargada,array('showVideo(','data-id="','embed.php?id='))){
+if(stringContains($this->web_descargada,array('showVideo(','data-idvideo="','embed.php?id='))){
 	if(enString($this->web_descargada,'showVideo(')){
 		dbug('-1-');
 		preg_match('@showVideo\(([0-9]+)\)@',$this->web_descargada,$match);
@@ -89,6 +89,10 @@ if(stringContains($this->web_descargada,array('showVideo(','data-id="','embed.ph
 	elseif(enString($this->web_descargada,'data-id="')){
 		dbug('-2-');
 		preg_match('@data-id="([0-9]+)"@',$this->web_descargada,$match);
+	}
+	elseif(enString($this->web_descargada,'data-idvideo="')){
+		dbug('-2.5-');
+		preg_match('@data-idvideo="([0-9]+)"@',$this->web_descargada,$match);
 	}
 	elseif(enString($this->web_descargada,'embed.php?id=')){
 		dbug('-3-');

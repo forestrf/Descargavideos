@@ -181,7 +181,24 @@ $obtenido=array(
 	)
 );
 
-finalCadena($obtenido);
+if(isset($asset)){
+	// Buscar subtítulos. Tienen extensión .vtt
+	$subs = CargaWebCurl('http://www.rtve.es/api/videos/'.$asset.'/subtitulos.json');
+	$subs = json_decode($subs, true);
+	dbug_r($subs);
+	if (isset($subs['page']['items'][0])) {
+		foreach($subs['page']['items'] as $subtitle) {
+			$obtenido['enlaces'][] = array(
+				'url'     => $subtitle['src'],
+				'tipo'    => 'srt',
+				'url_txt' => 'Descargar subtítulos ('.$subtitle['lang'].')'
+			);
+		}
+		dbug('Agregados subtítulos ('.$subtitle['lang'].')');
+	}
+}
+
+finalCadena($obtenido, false);
 }
 
 // Ya no quita geobloqueo, retorna la url tal cual

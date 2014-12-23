@@ -11,7 +11,7 @@ array(
 		n => array(
 			'titulo'          => texto que acompaña el enlace como descripción,
 			'url'             => direccion de la descarga,
-			'tipo'            => http/rtmp, uno de los dos,
+			'tipo'            => rtmp/rtmpConcreto/rtmpConcretoHTTP/m3u8/f4m/js/jsFlash/srt/http,
 			'url_txt'         => texto que se verá en el enlace en lugar de url
 			'extension'       => mp4, avi, flv...
 			'rtmpdump'        => comando rtmpdump
