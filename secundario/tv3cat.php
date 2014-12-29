@@ -7,11 +7,12 @@ $obtenido=array(
 	'enlaces' => array()
 );
 
-//http://www.tv3.cat/videos/188877281/Els-ajudants-del-pare-Noel#
-
-//videos/188877281/
-
-//http://www.tv3.cat/pvideo/FLV_bbd_dadesItem.jsp?idint=
+/*
+http://www.ccma.cat/324/Grecia-haura-de-celebrar-eleccions-despres-de-fracassar-el-tercer-intent-delegir-president/noticia/2625031/
+http://www.tv3.cat/videos/188877281/Els-ajudants-del-pare-Noel#
+videos/188877281/
+http://www.tv3.cat/pvideo/FLV_bbd_dadesItem.jsp?idint=
+*/
 
 if(enString($this->web,'http://www.tv3.cat/pprogrames/hd/mhdSeccio.jsp')){
 	setErrorWebIntera('Los vídeos en HD pueden descargarse desde TV3.');
@@ -29,6 +30,10 @@ elseif(enString($this->web_descargada,'.videoid')){
 	$id=$match[1];
 	dbug('video de formato admitido en js (.videoid). id video='.$id);
 }
+elseif(enString($this->web_descargada,'idint="')){
+	$id=entre1y2($this->web_descargada, 'dint="','"');
+	dbug('video de formato admitido en js (dint="). id video='.$id);
+}
 else{
 	//la id esta en la url
 	$p=strrposF($this->web,'/videos/');
@@ -41,7 +46,7 @@ else{
 	if(stringContains($id,array(' ','<','>','/','.'))||$id==''){
 		//la id esta en la url, o deberia, pero no esta como siempre. encontrar.
 		// '/\/[0-9^\/]*\//';
-		preg_match_all('|/([0-9]+)/|',$this->web,$coincidencias,PREG_OFFSET_CAPTURE);
+		preg_match_all('|/([0-9]+)/|', str_replace('//www.ccma.cat/324/', '', $this->web), $coincidencias, PREG_OFFSET_CAPTURE);
 		
 		dbug_r($coincidencias);
 		

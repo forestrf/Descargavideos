@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'29-Diciembre-2014'
+,'fix:Nuevo tipo de IDs para TV3.'
+);
+
+$todos[]=array(
 '23-Diciembre-2014'
 ,'fix:enlace a los subtítulos de los vídeos de RTVE que los tienen.'
 );
