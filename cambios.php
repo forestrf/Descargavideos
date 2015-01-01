@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'1-Enero-2015'
+,'fix:allmyvideos.net (algunos vídeos no funcionaban al no ser embedidos).'
+);
+
+$todos[]=array(
 '29-Diciembre-2014'
 ,'fix:Nuevo tipo de IDs para TV3.'
 );

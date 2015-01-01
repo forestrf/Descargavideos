@@ -47,9 +47,15 @@ function calcula(){
 	
 	$web_embedPlayedTo = 'http://allmyvideos.net/embed-'.$id.'.html';
 	
-	// 
 	$retfull = CargaWebCurl($web_embedPlayedTo,'',array('referer'=>'http://web.com'));
-	$imagen = entre1y2($retfull, '"image" : "', '"');
+	if (enString($retfull, '"image" : "')) {
+		$mode = 'lanzaAllMyVideosNet2';
+		$imagen = entre1y2($retfull, '"image" : "', '"');
+	} else {
+		$imagen = '';
+		$web_embedPlayedTo = 'http://allmyvideos.net/'.$id;
+		$mode = 'lanzaAllMyVideosNet1';
+	}
 	
 	if(enString($this->web_descargada, 'filename=')){
 		$titulo = entre1y2($this->web_descargada, 'filename=', '"');
@@ -64,20 +70,19 @@ function calcula(){
 	// FALLA EN EL CALLBACK DEL SWF. EDITAR EL SWF
 	
 	$urlJS = 
-	/*
-	'function lanzaPlayedTo(){'.
+	
+	'function lanzaAllMyVideosNet(){'.
 		'if(typeof DESCARGADOR_ARCHIVOS_SWF === "undefined"){'.
-			'setTimeout(lanzaPlayedTo, 200)'.
+			'setTimeout(lanzaAllMyVideosNet, 200)'.
 		'}'.
 		'else if(DESCARGADOR_ARCHIVOS_SWF === true){'.
 			'getFlashMovie("descargador_archivos").CargaWeb({'.
-				'"url":"'.$this->web.'",'.
+				'"url":"'.$web_embedPlayedTo.'",'.
 				'"metodo":"GET"'.
-			'}, "procesaPlayedTo1");'.
+			'}, "'.$mode.'");'.
 		'}'.
 	'}'.
-	'function procesaPlayedTo1(txt){'.
-			
+	'function lanzaAllMyVideosNet1(txt){'.
 		'var regex = /<input.*?name="(.*?)".*?value="(.*?)".*?>/ig;'.
 		
 		'var post = "";'.
@@ -88,28 +93,14 @@ function calcula(){
 		'}'.
 		
 		'getFlashMovie("descargador_archivos").CargaWeb({'.
-			'"url":"'.$this->web.'",'.
+			'"url":"'.$web_embedPlayedTo.'",'.
 			'"metodo":"POST",'.
 			'"post":post'.
-		'}, "procesaPlayedTo2");'.
-	'}
-	'.
-	*/
-	
-	'function lanzaAllMyVideosNet(){'.
-		'if(typeof DESCARGADOR_ARCHIVOS_SWF === "undefined"){'.
-			'setTimeout(lanzaAllMyVideosNet, 200)'.
-		'}'.
-		'else if(DESCARGADOR_ARCHIVOS_SWF === true){'.
-			'getFlashMovie("descargador_archivos").CargaWeb({'.
-				'"url":"'.$web_embedPlayedTo.'",'.
-				'"metodo":"GET"'.
-			'}, "lanzaAllMyVideosNet2");'.
-		'}'.
+		'}, "lanzaAllMyVideosNet2");'.
 	'}'.
 	
 	'function lanzaAllMyVideosNet2(txt){'.
-		//'console.log(txt);'.
+		//'D.g("imagen_res").src = txt.split("\"image\" : \"")[1].split("\"")[0];'.
 		
 		'if(txt.indexOf(".setup(") !== -1){'.
 			'txt = txt.substr(txt.indexOf(".setup("));'.
@@ -135,7 +126,7 @@ function calcula(){
 	'}'.
 	
 	'if(typeof descargador_archivos === "undefined"){'.
-		'D.g("enlaces").innerHTML += \''.genera_swf_object('/util/fla/f/ajofeifo.swf').'\';'.
+		'D.g("enlaces").innerHTML += \''.genera_swf_object('/util/fla/f/allmyvideos.net').'\';'.
 		'var descargador_archivos = D.g("descargador_archivos");'.
 	'}'.
 	
