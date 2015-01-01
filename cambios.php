@@ -18,6 +18,7 @@ function cambios($max=-1){
 $todos[]=array(
 '1-Enero-2015'
 ,'fix:allmyvideos.net (algunos vídeos no funcionaban al no ser embedidos).'
+,'fix:soundcloud.com vuelve a funcionar.'
 );
 
 $todos[]=array(
@@ -27,7 +28,7 @@ $todos[]=array(
 
 $todos[]=array(
 '23-Diciembre-2014'
-,'fix:enlace a los subtítulos de los vídeos de RTVE que los tienen.'
+,'fix:Enlace a los subtítulos de los vídeos de RTVE que los tienen.'
 );
 
 $todos[]=array(

@@ -60,20 +60,19 @@ if(enString($carga,'tracks/')){
 		return;
 	}
 	
-	$p=strposF($carga,'<uri>');
-	$p=strposF($carga,'tracks/',$p);
-	$f=strpos($carga,'</',$p);
-	$uri=substr($carga,$p,$f-$p);
+	preg_match('#tracks/([0-9]+)#', $carga, $match);
+	$uri=$match[1];
+	dbug($uri);
 	$url='http://api.soundcloud.com/tracks/'.$uri.'/stream?client_id='.$client_id;
 
 	//titulo
-	$titulo=entre1y2($carga,'<title>','</');
+	$titulo=entre1y2($this->web_descargada,'<title>','</');
 
 	if(enString($carga,"<artwork-url>"))
 		$imagen=entre1y2($carga,'<artwork-url>','</');
 
 
-	if(enString($carga,'<downloadable type="boolean">true'))
+	if(enString($carga,'<downloadable type="boolean">true') || enString($carga, '"downloadable":true'))
 		$url='http://api.soundcloud.com/tracks/'.$uri.'/download?client_id='.$client_id;
 
 	array_push($obtenido['enlaces'],array(
