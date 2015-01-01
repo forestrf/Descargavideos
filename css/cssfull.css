@@ -23,6 +23,9 @@ a{
 a:hover{
 	text-shadow:1px 1px 0 #000;
 }
+.error_res a {
+    color: #fff;
+}
 p{
 	margin-top:25px;
 }
