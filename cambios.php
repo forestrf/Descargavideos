@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'8-Enero-2015'
+,'add:canalplus.es.'
+);
+
+$todos[]=array(
 '1-Enero-2015'
 ,'fix:allmyvideos.net (algunos vídeos no funcionaban al no ser embedidos).'
 ,'fix:soundcloud.com vuelve a funcionar.'

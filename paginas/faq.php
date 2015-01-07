@@ -153,5 +153,6 @@ A continuación se puede ver el listado de las webs y los canales soportados:<br
 	<li>13.cl</li>
 	<li>replay.disneychannel.es</li>
 	<li>uvideos.com</li>
+	<li>canalplus.es</li>
 </ol>
 </div>

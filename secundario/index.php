@@ -481,6 +481,12 @@ $cadenas = array(
 		'Twitchtv',
 		'calcula'
 	)
+	,array(
+		array('canalplus.es'),
+		array('canalpluses.php'),
+		'Canalpluses',
+		'calcula'
+	)
 );
 
 
