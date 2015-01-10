@@ -45,59 +45,37 @@ if(enString($this->web_descargada,"_url_xml_datos")){
 	//</video>
 	$p=strpos($ret,'<video type="content">');
 	$ret=substr($ret,$p);
+	
+	preg_match_all('#<url>([^\[]*?)</url>#', $ret, $matches);
+	dbug_r($matches[1]);
 
-	//</end_video_point>	
-	$videos=substr_count($ret,'<url>');
-	dbug('total videos='.$videos);
-
-	//dbug($ret);
-
-	$last=0;
-	$total=array();
-	if($videos>1){
-		$total=array();
-		$last=0;
-		for($i=0;$i<$videos;$i++){
-			$p=strposF($ret,'<url>',$last);
-			$f=strpos($ret,'<',$p);
-			$last=$f+2;
-			$url=substr($ret,$p,$f-$p);
-			$repetido=false;
-			$total_length=count($total);
-			for($n=0;$n<$total_length;$n++)
-				if($total[$n]===$url)
-					$repetido=true;
-			if(!$repetido)
-				$total[$i]=$url;
-		}
-
-		if (count($total)>1) {
-			for($i=0;$i<$videos;$i++)
-				$obtenido['enlaces'][] = array(
-					'url'     => $total[$i],
-					'tipo'    => 'http',
-					'url_txt' => 'parte '.($i+1)
-				);
-		} else {
-			$ret=$obtenido['enlaces'][] = array(
-				'url'     => $total[0],
+	dbug('total videos='.count($matches[1]));
+	
+	switch (count($matches[1])) {
+		case 0:
+			setErrorWebIntera("No se encuentra ningún vídeo");
+			return;
+			break;
+		case 1:
+			$obtenido['enlaces'][] = array(
+				'url'     => $matches[1][0],
 				'tipo'    => 'http',
 				'url_txt' => 'Descargar'
 			);
-		}
+			break;
+		default:
+			for ($i = 0; $i < $i_t = count($matches[1]); $i++) {
+				$obtenido['enlaces'][] = array(
+					'url'     => $matches[1][$i],
+					'tipo'    => 'http',
+					'url_txt' => 'parte '.($i+1)
+				);
+			}
+			break;
 	}
-	else{
-		//<url>http://ondemand.rtva.ondemand.flumotion.com/rtva/ondemand/flash8/programas/toros-para-todos/20110921122144-7-toros-para-todos-245--domingo.flv</url>
-		$p=strrposF($ret,'<url>');
-		$f=strpos($ret,'</url>',$p);
-		$ret=substr($ret,$p,$f-$p);
-
-		array_push($obtenido['enlaces'],array(
-			'url'  => $ret,
-			'url_txt' => 'Descargar',
-			'tipo' => 'http'
-		));
-	}
+	
+	//<url>http://ondemand.rtva.ondemand.flumotion.com/rtva/ondemand/flash8/programas/toros-para-todos/20110921122144-7-toros-para-todos-245--domingo.flv</url>
+	//http://ondemand.rtva.ondemand.flumotion.com/rtva/ondemand/mp4-web/programas/andalucia-directo/54134_1_6110.mp4
 }
 elseif(enString($this->web_descargada,"var elementos = [];")){
 	dbug('var elementos = [];');

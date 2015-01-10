@@ -18,6 +18,7 @@ function cambios($max=-1){
 $todos[]=array(
 '10-Enero-2015'
 ,'fix:canalsur.es no funcionaban bien los títulos de los vídeos hasta el punto de desmontar la web.'
+,'fix:canalsur.es lista mejor los vídeos cuando tienen varias partes.'
 );
 
 $todos[]=array(
