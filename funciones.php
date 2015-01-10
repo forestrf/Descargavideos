@@ -279,7 +279,7 @@ function CargaWebCurl($url,$post='',$cabecera=0,$cookie='',$cabeceras=array(),$s
 	if($post != ''){
 		curl_setopt($ch, CURLOPT_POST, 1); 
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-		dbug('activando post en la actual curl');
+		dbug('activando post en la actual curl: ' . $post);
 	}
 	
 	$t = curl_exec($ch);

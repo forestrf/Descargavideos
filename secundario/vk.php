@@ -30,6 +30,42 @@ function calcula(){
 			return false;
 		}
 	}
+	elseif(enString($this->web, 'video-')) {
+		// http://vk.com/videos-51506472?section=album_50407624#/videos-51506472?section=album_50407624&z=video-51506472_167327596%2Fclub51506472
+		preg_match('#video(-[0-9_]+)#', $this->web, $matches);
+		dbug_r($matches);
+		//$ret = CargaWebCurl('http://vk.com/al_video.php', 'act=show&al=1&autoplay=0&list=club51506472&module=video&video=-51506472_167327596');
+		$ret = CargaWebCurl('http://vk.com/al_video.php', 'act=show&al=1&module=video&video='.$matches[1]);
+		//dbug($ret);
+		
+		preg_match_all('#"url(1080|720|480|360|240)":"(.*?)"#', $ret, $matches);
+		dbug_r($matches);
+		
+		$lastq = 0;
+		$url = '';
+		for($i = 0; $i < $i_t = count($matches[1]); $i++) {
+			if ($lastq < $matches[1][$i]) {
+				$url2 = json_decode("{" . $matches[0][$i] . "}", true);
+				$url = $url2['url' . $matches[1][$i]];
+			}
+		}
+		
+	}
+	/*
+	elseif(enString($this->web_descargada, '"loc":"?id=')) {
+		// http://vk.com/videos-51506472?section=album_50407624&z=video-51506472_167327596%2Fclub51506472
+		// http://vk.com/al_video.php
+		// act=show&al=1&autoplay=0&list=club51506472&module=video&video=-51506472_167327596
+		// "loc":"?id=-51506472&section=album_50407624&z=video-51506472_167327596%2Fclub51506472"
+		
+		dbug_($this->web_descargada);
+		$data = entre1y2($this->web_descargada, '"loc":"?id=', '"');
+		dbug($data);
+		//$ret = CargaWebCurl('http://vk.com/al_video.php', 'act=show&al=1&autoplay=0&list=club51506472&module=video&video=-51506472_167327596');
+		$ret = CargaWebCurl('http://vk.com/al_video.php', 'act=show&al=1&module=video&video='.desde1a2($data, 0, '&'));
+		dbug($ret);
+	}
+	*/
 	elseif(enString($this->web_descargada, '<a href="/video')){
 		dbug('modo 3');
 		
