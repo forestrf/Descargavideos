@@ -23,7 +23,10 @@ if(enString($this->web_descargada,"_url_xml_datos")){
 
 
 
-	$titulo=entre1y2($this->web_descargada,'<title>',' ::');
+	$titulo=entre1y2($this->web_descargada,'<title>','<');
+	if (enString($titulo, ' ::')) {
+		$titulo=substr($titulo, 0, strpos($titulo, ' ::'));
+	}
 	//$titulo=utf8_encode($titulo);
 	$titulo=limpiaTitulo($titulo);
 	dbug('titulo='.$titulo);

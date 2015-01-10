@@ -357,7 +357,7 @@ function CargaWebCurlProxy($web,$pais='ESP',$post='',$cabeceras=array()){
 		}
 		break;
 	case 'MX':
-		return CargaWebCurl('http://proxymexico.com/includes/process.php?action=update', 'u='.urlencode($web)/*, true*/);
+		return CargaWebCurl('http://proxymexico.com/includes/process.php?action=update', 'u='.urlencode($web), false, '', array('Referer: http://proxymexico.com/'));
 	default:
 	case 'aleatorio':
 		return CargaWebCurl($web,$post,0,'',$cabeceras);
