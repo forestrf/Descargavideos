@@ -16,8 +16,13 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'16-Enero-2015'
+,'fix:Los vídeos de telemundo públicos vuelven a funcionar.'
+);
+
+$todos[]=array(
 '11-Enero-2015'
-,'fix:crtvg.es nuevo tipo de vídeos (bloque de multiple vídeos)'
+,'fix:crtvg.es nuevo tipo de vídeos (bloque de multiple vídeos).'
 );
 
 $todos[]=array(

@@ -200,34 +200,11 @@ function calcula(){
 	
 	}
 	
-	
-	/*
-	foreach($ret['videos'][0]['files'] as &$elem){
-		if(!stringContains($elem['url'], array('.mp4', '.flv'))){
-			continue;
-		}
-		
-		foreach($obtenido['enlaces'] as &$enl){
-			if(substr($enl['url'], 20) === substr($elem['url'], 20)){
-				continue 2;
-			}
-		}
-		
-		$calidad = $calidades[$elem['formatCode']];
-		
-		$obtenido['enlaces'][] = array(
-			'url'     => $elem['url'],
-			'url_txt' => 'Descargar en '.$calidad,
-			'tipo'    => 'http'
-		);
-	}
-	*/
-	
 	finalCadena($obtenido,false);
 }
 
 function quitar_akami_telemundo($url) {
-	return str_replace('http://tve_telemundo-vh.akamaihd.net/z/prod/', 'http://tve_static-telemundo.nbcuni.com/prod/', 
+	return preg_replace('#http://tve_?telemundo-vh.akamaihd.net/z/prod/#', 'http://tve_static-telemundo.nbcuni.com/prod/', 
 		entre1y2($url, 0, '?')
 	);
 }
