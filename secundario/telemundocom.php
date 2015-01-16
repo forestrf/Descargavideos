@@ -204,7 +204,7 @@ function calcula(){
 }
 
 function quitar_akami_telemundo($url) {
-	return preg_replace('#http://tve_?telemundo-vh.akamaihd.net/z/prod/#', 'http://tve_static-telemundo.nbcuni.com/prod/', 
+	return preg_replace('#http://tve_?telemundo-vh.akamaihd.net/z/prod/#', 'http://tve_static-telemundo.nbcuni.com/prod/', //http://tve_static ó http://tve-static no importa
 		entre1y2($url, 0, '?')
 	);
 }

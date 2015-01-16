@@ -29,7 +29,10 @@ function calcula() {
 function calculaUVideos() {
 	if (enString($this->web_descargada, 'data-video="extId:')) {
 		$id = entre1y2($this->web_descargada, 'data-video="extId:', '"');
-	}else {
+	} else if (enString($this->web_descargada, '<meta property="og:image" content="')) {
+		$imagen_preid = entre1y2($this->web_descargada, '<meta property="og:image" content="', '"');
+		$id = substr($imagen_preid, strrposF($imagen_preid, '/'));
+	} else {
 		return;
 	}
 
