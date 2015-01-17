@@ -138,6 +138,13 @@ var css_user='<?php echo $css_modo?>';
 	<div id="pie">
 		Descargavideos.tk Descargavideos.tv | 
 		Code by <a target="_blank" href="http://andresleone.uni.me/"><b>Forest</b></a> - Design by <a target="_blank" href="http://www.fsdesign.es/"><b>FSdesign</b></a>
+		
+		<?php if (IS_MOBILE) { ?>
+			<div class="txt_centrado">
+				<a href="/versionEscritorioMovil.php?modo=movil">Usar la versión móvil</a>
+			</div>
+		<?php } ?>
+		
 		<div class="derecha">
 			<a href="/aviso_legal#contenido"><?php echo TXT_AVISO_LEGAL?></a>
 		</div>

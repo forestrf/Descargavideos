@@ -30,6 +30,8 @@ $modo=$_GET['modo'];
 //Cookie de sesion
 if($modo == "escritorio"){
 	setcookie("modoEscritorio", "1");
+} else if($modo == "movil"){
+	setcookie("modoEscritorio", "0");
 }
 
 
