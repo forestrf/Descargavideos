@@ -304,6 +304,12 @@ $cadenas = array(
 		'calculacom'
 	)
 	,array(
+		array('8tv.cat'),
+		array('8tvcat.php'),
+		'OchoTVcat',
+		'calcula'
+	)
+	,array(
 		array('eitb.tv'),
 		array('eitb.php'),
 		'Eitb',

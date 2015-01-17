@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'17-Enero-2015'
+,'add:8tv.cat.'
+);
+
+$todos[]=array(
 '16-Enero-2015'
 ,'fix:Los vídeos de telemundo públicos vuelven a funcionar.'
 ,'fix:Soporte para vídeos antiguos de univisión que no pueden verse desde la página oficial al no contar con reproductor de vídeo.'

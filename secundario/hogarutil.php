@@ -111,7 +111,7 @@ dbug('imagen = '.$imagen);
 
 
 
-$obtenido['enlaces'] = brightcove_genera_obtenido($this, $base, array(
+$obtenido['enlaces'] = brightcove_genera_obtenido(false, $base, array(
 	'IOSRenditions' => 'm3u8',
 	'renditions' => 'rtmpConcreto'
 ), $titulo);
@@ -124,35 +124,6 @@ $obtenido['imagen']=$imagen;
 $obtenido['descripcion']=$base["longDescription"];
 
 finalCadena($obtenido,false);
-}
-
-function URLSDelArrayBrightCove($r, $tipo, &$obtenido_enlaces, $titulo){
-	if($r["audioOnly"]!="1"){
-		if($tipo === 'rtmpConcreto'){
-			$_r = substr($r["defaultURL"], 0, strpos($r["defaultURL"], 'mp4'));
-			$_r = substr($_r, 0, strrposF($_r, '/'));
-			$_y = 'mp4'.entre1y2($r["defaultURL"], 'mp4', '?');
-			$_ry = substr($r["defaultURL"], strpos($r["defaultURL"], '?'));
-			dbug_($_r);
-			dbug_($_y);
-			dbug_($_ry);
-			$obtenido_enlaces[]=array(
-				'calidad_ordenar'=>$r["encodingRate"],
-				'titulo'   => 'Calidad: '.floor($r["encodingRate"]/1000)." Kbps",
-				'url'      => $r["defaultURL"],
-				'tipo'     => $tipo,
-				'rtmpdump' => '-r "'.$_r.$_ry.'" -y "'.$_y.$_ry.'" -o "'.$titulo.'.mp4"'
-			);
-		}
-		else{
-			$obtenido_enlaces[]=array(
-				'calidad_ordenar'=>$r["encodingRate"],
-				'titulo' => 'Calidad: '.floor($r["encodingRate"]/1000)." Kbps",
-				'url'    => $r["defaultURL"],
-				'tipo'   => $tipo
-			);
-		}
-	}
 }
 
 }

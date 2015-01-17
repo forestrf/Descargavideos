@@ -154,5 +154,6 @@ A continuación se puede ver el listado de las webs y los canales soportados:<br
 	<li>replay.disneychannel.es</li>
 	<li>uvideos.com</li>
 	<li>canalplus.es</li>
+	<li>8tv.cat</li>
 </ol>
 </div>
