@@ -43,7 +43,7 @@ function calcula(){
 		
 		$lastq = 0;
 		$url = '';
-		for($i = 0; $i < $i_t = count($matches[1]); $i++) {
+		for($i = 0, $i_t = count($matches[1]); $i < $i_t; $i++) {
 			if ($lastq < $matches[1][$i]) {
 				$url2 = json_decode("{" . $matches[0][$i] . "}", true);
 				$url = $url2['url' . $matches[1][$i]];

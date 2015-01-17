@@ -156,7 +156,7 @@ class youtube{
 		preg_match_all($expr, $txt_cerca, $m);
 		dbug('$m');
 		dbug_r($m);
-		for($i = 0; $i < count($m[0]); $i++){
+		for($i = 0, $i_t = count($m[0]); $i < $i_t; $i++){
 			if(strpos($m[2][$i], 'lice') !== false){
 				$funciones[$m[1][$i]] = 'slice';
 			}

@@ -41,7 +41,7 @@ function brightcove_genera_obtenido($dis = false, $base, $config, $titulo = ''){
 	foreach($config as $pathBase => $tipoObtenido){
 		dbug($pathBase);
 		$IOSRenditions = $base[$pathBase];
-		for($i=0; $i<$i_total=Count($IOSRenditions); $i++){
+		for ($i = 0, $i_t = count($IOSRenditions); $i < $i_t; $i++) {
 			$temp=$IOSRenditions[$i]->getAMFData();
 			if ($dis !== false) {
 				$parameters = array($temp, $tipoObtenido, &$obtenido2, $titulo);
@@ -53,8 +53,8 @@ function brightcove_genera_obtenido($dis = false, $base, $config, $titulo = ''){
 	}
 	
 	//ordenar usando ['calidad_ordenar']
-	for($i=0; $i<=$i_total=Count($obtenido2)-1; $i++){
-		for($j=$i+1; $j<=$i_total; $j++){
+	for($i=0, $i_t = count($obtenido2)-1; $i<=$i_t; $i++){
+		for($j=$i+1; $j<=$i_t; $j++){
 			//dbug("i:".$i." - j:".$j);
 			if($obtenido2[$i]['calidad_ordenar']<$obtenido2[$j]['calidad_ordenar']){
 				$temp=$obtenido2[$i];
@@ -65,12 +65,12 @@ function brightcove_genera_obtenido($dis = false, $base, $config, $titulo = ''){
 	}
 	dbug_r($obtenido2);
 	//borrar ['calidad_ordenar']
-	for($i=0; $i<$i_total=Count($obtenido2); $i++)
+	for($i=0, $i_t=count($obtenido2); $i<$i_t; $i++)
 		unset($obtenido2[$i]['calidad_ordenar']);
 	
 	//sacar 'url-txt' a otro res de solo 'titulo'
 	$obtenido_enlaces_temp=array();
-	for($i=0; $i<$i_total=Count($obtenido2); $i++){
+	for($i=0, $i_t=count($obtenido2); $i<$i_t; $i++){
 		$obtenido_enlaces_temp[]=$obtenido2[$i];
 	}
 	return $obtenido_enlaces_temp;

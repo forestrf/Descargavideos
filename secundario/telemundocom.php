@@ -119,7 +119,7 @@ function calcula(){
 		$calidades = array_unique($matches[2]);
 		dbug_r($links);
 		
-		for ($i = 0; $i < $i_l = count($links); $i++) {
+		for ($i = 0, $i_t = count($links); $i < $i_t; $i++) {
 			$obtenido['enlaces'][] = array(
 				'url'     => $desde === 1 ? $this->quitar_akami_telemundo($links[$i]) : $links[$i],
 				'url_txt' => 'Descargar en calidad ' . intval($calidades[$i] / 1024),

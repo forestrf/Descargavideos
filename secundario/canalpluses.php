@@ -41,19 +41,21 @@ function calcula(){
 	array_multisort($enlaces, $order);
 	
 	
-	$xref = entre1y2($this->web_descargada, 'xref=','&');
-	$datos = CargaWebCurl('http://www.canalplus.es/servicios/player/mm_se_top.html?xref=' . $xref);
+	$datos = entre1y2($this->web_descargada, '<param name="FlashVars" value="', '"');
+	$datos = explode('&amp;', $datos);
+	for($i = 0, $i_t = count($datos); $i < $i_t; $i++) {
+		$dato = explode('=', $datos[$i]);
+		$datos[$dato[0]] = $dato[1];
+	}
+	dbug_r($datos);
 	
-	$titulo = utf8_encode(entre1y2($datos, 'name="titulo" value="','"'));
-	//$descripcion = utf8_encode(entre1y2($datos, 'name="descripcion" value="','"'));
+	$titulo = urldecode($datos['titulo']);
 	$imagen = 'http://www.canalplus.es' . utf8_encode(htmlspecialchars_decode(entre1y2($this->web_descargada, 'poster="', '"')));
-	
 	
 	
 	
 	$obtenido=array(
 		'titulo'  => $titulo,
-		//'descripcion' => $descripcion,
 		'imagen'  => $imagen,
 		'enlaces' => $enlaces
 	);

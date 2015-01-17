@@ -18,6 +18,7 @@ function cambios($max=-1){
 $todos[]=array(
 '17-Enero-2015'
 ,'add:8tv.cat.'
+,'fix:Títulos en canalplus.es.'
 );
 
 $todos[]=array(

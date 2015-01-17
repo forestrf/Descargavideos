@@ -547,7 +547,7 @@ if($modo==1){
 				dbug('Incluyendo PHPs');
 				include 'cadena.class.php';
 				
-				for($k=0;$k<count($cadena_elegida_arr[1]);$k++){
+				for($k=0,$k_t=count($cadena_elegida_arr[1]);$k<$k_t;$k++){
 					dbug('Incluyendo: '.$cadena_elegida_arr[1][$k]);
 					include_once $cadena_elegida_arr[1][$k];
 				}
@@ -715,8 +715,8 @@ function generaF(){
 function averiguaCadena($web){
 	global $cadenas,$Cadena_elegida;
 	dbug('averiguando cadena');
-	for($i=0;$i<count($cadenas);$i++)
-		for($j=0;$j<count($cadenas[$i][0]);$j++){
+	for($i=0,$i_t=count($cadenas); $i<$i_t; $i++)
+		for($j=0,$j_t=count($cadenas[$i][0]); $j<$j_t; $j++){
 			$pattern="@^https?://(([^/^\.]+\.)*?".strtr($cadenas[$i][0][$j], array('.'=>'\\.')).")(/.*)?$@i";
 			preg_match($pattern, $web, $matches);
 			if($matches){

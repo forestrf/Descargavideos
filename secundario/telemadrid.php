@@ -153,7 +153,7 @@ if(enString($t['defaultURL'], '/hd/')){
 	
 	dbug('renditions');
 	$renditions = $base3['renditions'];
-	for($i=0; $i<$i_total=Count($renditions); $i++){
+	for($i=0, $i_t=count($renditions); $i<$i_t; $i++){
 		$temp = $renditions[$i]->getAMFData();
 		$URLBase = &$temp['defaultURL'];
 		$inicio = strposF($URLBase, '_');
@@ -201,7 +201,7 @@ if(enString($t['defaultURL'], '/hd/')){
 }
 else{
 	$url = array('', 0);
-	for($i=0; $i<$i_total=Count($renditions); $i++){
+	for($i=0,$i_t=count($renditions); $i<$i_t; $i++){
 		$temp=$renditions[$i]->getAMFData();
 		if($url[1] < $temp['encodingRate']){
 			$url[0] = $temp['defaultURL'];

@@ -138,7 +138,7 @@ $inicio = 0;
 
 dbug('renditions');
 $renditions = $base3["renditions"];
-for($i=0; $i<$i_total=Count($renditions); $i++){
+for($i=0,$i_t = count($renditions); $i<$i_t; $i++){
 	$temp=$renditions[$i]->getAMFData();
 	$URLBase = $temp["defaultURL"];
 	$inicio = strpos($URLBase, '_') +1;

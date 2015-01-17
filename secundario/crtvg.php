@@ -33,7 +33,7 @@ if (enString($this->web_descargada, "id=$(this).attr('id').split('|');")) {
 		'enlaces' => array()
 	);
 	
-	for ($i = 0; $i < $i_t = count($matches[0]); $i++) {
+	for ($i = 0, $i_t = count($matches[0]); $i < $i_t; $i++) {
 		$ret = CargaWebCurl($url, 'idSerie='.$matches[1][$i].'&idCapitulo='.$matches[2][$i]);
 		//dbug_($ret);
 		$tit = entre1y2($ret, '<div id="titulo">', '</div');

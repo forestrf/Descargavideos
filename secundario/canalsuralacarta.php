@@ -64,7 +64,7 @@ if(enString($this->web_descargada,"_url_xml_datos")){
 			);
 			break;
 		default:
-			for ($i = 0; $i < $i_t = count($matches[1]); $i++) {
+			for ($i = 0, $i_t = count($matches[1]); $i < $i_t; $i++) {
 				$obtenido['enlaces'][] = array(
 					'url'     => $matches[1][$i],
 					'tipo'    => 'http',
