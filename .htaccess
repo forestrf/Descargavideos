@@ -74,7 +74,7 @@
 	# MITELE HANDLER para vídeos mp4 fake
 	##############################################################
 	
-	RewriteRule ^mitelehandler/(.*)/(.*)\.mp4$ mitele_handler.php?fullinfo=$1 [NC,L]
+	RewriteRule ^mitelehandler/(.+)/ mitele_handler.php?fullinfo=$1 [NC,L]
 
 
 	
