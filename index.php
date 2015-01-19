@@ -37,15 +37,15 @@ seteaIdioma();
 
 
 
-if(isset($_REQUEST["web64"])){
-	$_REQUEST["web"] = base64_decode($_REQUEST["web64"]);
+if(isset($_GET["web64"])){
+	$_GET["web"] = base64_decode($_GET["web64"]);
 }
 
 
 
 //url a descargar. Si hay algo toca descargar la url. Usar Request ya que puede venir por GET y POST
-if(isset($_REQUEST["web"])){
-	$web = $_REQUEST["web"];
+if(isset($_GET["web"])){
+	$web = $_GET["web"];
 	
 	//En raras ocasiones se trata de un enlace url_encodeado por lo que lo desen_url_codeamos
 	if(strpos($web,"http%3A") === 0 || strpos($web,"https%3A") === 0){
@@ -84,7 +84,7 @@ function esPagina($a){
 
 //para el gestor. No será usado porque el gestor accede directamente a los servidores secundarios
 //Ahora ya no hay server secundarios. Sí es utilizado
-define('MODO_API', isset($_REQUEST['modoApi']));
+define('MODO_API', isset($_GET['modoApi']));
 
 
 
@@ -119,7 +119,7 @@ include_once 'idiomas/'.IDIOMA.'/index.php';
 //no hay petición de ninguna web
 $modo = 1;
 if(isset($web)){
-	$modo=isset($_REQUEST['modo'])?$_REQUEST['modo']:1;
+	$modo=isset($_GET['modo'])?$_GET['modo']:1;
 	if($modo !== '1' && $modo !== '2'){
 		$modo = 1;
 	}

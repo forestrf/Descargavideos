@@ -60,8 +60,8 @@ header('Pragma: no-cache');
 
 //recogemos variables
 if(!isset($web)){
-	if(isset($_REQUEST['web']))
-		$web=$_REQUEST['web'];
+	if(isset($_GET['web']))
+		$web=$_GET['web'];
 	else
 		$web='';
 }
@@ -69,7 +69,7 @@ if(!isset($web)){
 
 //API. devolver SOLO el enlace (1/2)
 if(!defined('MODO_API')){
-	define('MODO_API', isset($_REQUEST['modoApi']));
+	define('MODO_API', isset($_GET['modoApi']));
 }
 
 
@@ -89,8 +89,8 @@ $path_plantilla='';
 
 
 if(!isset($modo)){
-	if(isset($_REQUEST['modo'])){
-		$modo=$_REQUEST['modo'];
+	if(isset($_GET['modo'])){
+		$modo=$_GET['modo'];
 		if($modo != 1 && $modo != 2){
 			$modo = 1;
 		}
@@ -102,8 +102,8 @@ if(!isset($modo)){
 
 
 
-if(isset($_REQUEST['plantilla']))
-	$path_plantilla='plantillas/'.$_REQUEST['plantilla'].'/';
+if(isset($_GET['plantilla']))
+	$path_plantilla='plantillas/'.$_GET['plantilla'].'/';
 elseif(MODO_API){
 	//API. devolver SOLO el enlace (2/2)
 	$path_plantilla='plantillas/'.$plantillaApi.'/';

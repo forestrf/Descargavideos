@@ -19,8 +19,8 @@ $css_extra='';
 
 
 
-if(isset($_REQUEST["pag"]))
-	$pag=$_REQUEST["pag"];
+if(isset($_GET["pag"]))
+	$pag=$_GET["pag"];
 elseif(($temp = esPagina($_SERVER["REQUEST_URI"])) != "")
 	$pag=$temp;
 elseif(!isset($pag)){
@@ -177,7 +177,7 @@ a:hover{
 		<div class="centro">
 			<form action="/" method="get" name="formCalculador" id="formCalculador">
 				<div class="fondo_input_web">
-					<input type="text" name="web" id="web" class="entrada" placeholder="Pega la URL del vídeo..." value="<?php if(isset($_REQUEST["web"]))echo $_REQUEST["web"]?>" title="URL a obtener">
+					<input type="text" name="web" id="web" class="entrada" placeholder="Pega la URL del vídeo..." value="<?php if(isset($_GET["web"]))echo $_GET["web"]?>" title="URL a obtener">
 				</div>
 				<input type="submit" id="submit" value=" " class="boton">
 
