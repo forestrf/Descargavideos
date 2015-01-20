@@ -324,6 +324,9 @@ function CargaWebCurlProxy($web,$pais='ESP',$post='',$cabeceras=array()){
 	$redir='';
 	$actualizaredir='';
 	
+	// http://teleport.to
+	// http://www.publicproxyservers.com/proxy/list1.html
+	
 	dbug('cargando web (Proxy): '.$web);
 	
 	switch ($pais) {
@@ -357,7 +360,9 @@ function CargaWebCurlProxy($web,$pais='ESP',$post='',$cabeceras=array()){
 		}
 		break;
 	case 'MX':
-		return CargaWebCurl('http://proxymexico.com/includes/process.php?action=update', 'u='.urlencode($web), false, '', array('Referer: http://proxymexico.com/'));
+		return CargaWebCurl('http://proxymexico.com/includes/process.php?action=update', 'u='.urlencode($web).($post!==''?('&'.$post):''), false, '', array_merge($cabeceras, array('Referer: http://proxymexico.com/')));
+	case 'US':
+		return CargaWebCurl('http://anonymouse.org/cgi-bin/anon-www.cgi/'.$web, $post, false, '', array_merge($cabeceras, array('Referer: http://anonymouse.org/anonwww.html')));
 	default:
 	case 'aleatorio':
 		return CargaWebCurl($web,$post,0,'',$cabeceras);
