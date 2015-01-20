@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'20-Enero-2015'
+,'fix:Televisa. Mejor búsqueda de la ID del vídeo (algunos vídeos no funcionaban por no encontrar la ID).'
+);
+
+$todos[]=array(
 '17-Enero-2015'
 ,'add:8tv.cat.'
 ,'fix:Títulos en canalplus.es.'

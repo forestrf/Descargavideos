@@ -116,6 +116,10 @@ if(stringContains($this->web_descargada,array('showVideo(','data-idvideo="','emb
 
 
 if(enString($this->web_descargada, 'params_dvr.json')){
+	if (!isset($idVideo)) {
+		preg_match('#/([0-9]+?)/params_dvr.json#', $this->web_descargada, $matches);
+		$idVideo = $matches[1];
+	}
 	$hostname = 'tvolucion.esmas.com';
 	$json = "http://{$hostname}/tvenvivofiles/{$idVideo}/params_dvr.json";
 	$json = CargaWebCurl($json);
