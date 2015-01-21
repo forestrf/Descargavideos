@@ -83,7 +83,7 @@ var css_user='<?php echo $css_modo?>';
 		</div>
 
 		<div class="publi_cabecera">
-			<?php echo getPubli(0);?>
+			<?php echo getPubli('banner largo');?>
 		</div>
 
 		<div class="social">

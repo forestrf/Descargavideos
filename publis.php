@@ -1,29 +1,35 @@
 <?php
 $publis=array(
-	0=>'<script type="text/javascript"><!--
-google_ad_client = "ca-pub-1209387661883940";
-/* Banner pagina principal */
-google_ad_slot = "6314077409";
-google_ad_width = 728;
-google_ad_height = 90;
-//-->
-</script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+	'banner largo' => '<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+	style="display:inline-block;width:728px;height:90px"
+	data-ad-client="ca-pub-1209387661883940"
+	data-ad-slot="6314077409"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
 </script>',
-	1=>'<script type="text/javascript"><!--
-google_ad_client = "ca-pub-1209387661883940";
-/* Banner pagina resultados grande */
-google_ad_slot = "3949236667";
-google_ad_width = 336;
-google_ad_height = 280;
-//-->
-</script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+
+	'cuadrado grande' => '<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+	style="display:inline-block;width:336px;height:280px"
+	data-ad-client="ca-pub-1209387661883940"
+	data-ad-slot="3949236667"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>',
+
+	'rascacielos' => '<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+	style="display:inline-block;width:300px;height:600px"
+	data-ad-client="ca-pub-1209387661883940"
+	data-ad-slot="6862806668"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
 </script>'
 );
-$publisUsadas=array();
+
+$publisUsadas = array();
+
 function getPubli($i){
 	global $publis, $publisUsadas, $PUBLICIDAD;
 	if(!isset($publisUsadas[$i])){
@@ -33,4 +39,3 @@ function getPubli($i){
 	else
 		return "<!--nope-->";
 }
-?>

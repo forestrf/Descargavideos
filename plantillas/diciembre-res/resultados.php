@@ -24,7 +24,7 @@ generaInnerResultado();
 </div>
 
 <div class="bloque publi_res" id="contendor_publi_res">
-<?php echo getPubli(1) ?>
+<?php echo getPubli('cuadrado grande') ?>
 </div>
 
 <div class="instrucciones_descarga bloque">

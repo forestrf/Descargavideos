@@ -28,6 +28,20 @@ $busqueda_comillas = strtr($R['busqueda'], '"', '\\"');
 		transition: all 0.3s ease 0s;
 		width: 130px;
 	}
+	
+	.busqueda {
+		display: table;
+		width: 100%;
+	}
+	.resultados_busqueda {
+		display: table-cell;
+	}
+	
+	.publi_busqueda {
+		display: table-cell;
+		height: 600px;
+		width: 300px;
+	}
 </style>
 
 <script>_gaq.push(["_trackEvent","Busqueda","Google","<?=$busqueda_comillas?>"]);</script>
@@ -46,7 +60,15 @@ $busqueda_comillas = strtr($R['busqueda'], '"', '\\"');
 		s.parentNode.insertBefore(gcse, s);
 	})();
 </script>
-<gcse:search safeSearch="true" newWindow="true" enableAutoComplete="true"></gcse:search>
+<div class="busqueda">
+	<div class="resultados_busqueda">
+		<gcse:search safeSearch="true" newWindow="true" enableAutoComplete="true"></gcse:search>
+	</div>
+
+<div class="publi_busqueda">
+	<?php echo getPubli('rascacielos');?>
+</div>
+</div>
 
 
 
@@ -64,9 +86,6 @@ $busqueda_comillas = strtr($R['busqueda'], '"', '\\"');
 		}
 		
 		function start() {
-			console.log(div);
-			console.log(input_text);
-			
 			input_text.click();
 			input_text.value = "<?=$busqueda_comillas?>";
 			button_search.click();
@@ -100,8 +119,6 @@ $busqueda_comillas = strtr($R['busqueda'], '"', '\\"');
 				}
 			}
 		}
-		
-		
 		
 		
 		
