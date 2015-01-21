@@ -336,7 +336,8 @@ input[type="radio"] {
 	width:100%;
 }
 .hx100{
-	min-height:100%;
+	display:table;
+	height:100%;
 }
 #informaFalloRapido{
 	cursor:pointer;

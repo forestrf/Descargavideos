@@ -32,6 +32,7 @@ $busqueda_comillas = strtr($R['busqueda'], '"', '\\"');
 	.busqueda {
 		display: table;
 		width: 100%;
+		height: 100%;
 		vertical-align: top;
 		background-color: #fff;
 	}
