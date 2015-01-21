@@ -231,8 +231,8 @@ if($modo==1){
 		}
 	}
 	else{
-		setErrorWebIntera('URL no válida');
-		//lanzaBusquedaGoogle();
+		//setErrorWebIntera('URL no válida');
+		lanzaBusquedaGoogle($web);
 	}
 	if(defined('DEBUG')){
 		dbug('-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_');
@@ -303,15 +303,11 @@ if($fallourlinterna!=''){
 if($web=='' || $errorImprimible!='')
 	generaF();
 
-/*
-function lanzaBusquedaGoogle(){
-	global $web;
-	echo '<script>
-	window.open("http://www.google.es/?cx=partner-pub-1209387661883940:1395957069&ie=UTF-8&sa=1&q='.urlencode(strtr($web,array("http://"=>""))).'");
-	</script>';
-	exit;
+
+function lanzaBusquedaGoogle($web){
+	generaB();
 }
-*/
+
 
 
 function generaR(){
@@ -332,6 +328,18 @@ function generaR(){
 	
 	define('HAY_RESULTADO', true);
 	dbug('HAY_RESULTADO generado en generaR');
+}
+
+function generaB(){
+	global $web, $R;
+
+	$R['WEB'] = $web;
+	$R['busqueda'] = $web;
+	
+	$R['MODO'] = 'BUSQUEDA';
+	
+	define('HAY_RESULTADO', true);
+	dbug('HAY_RESULTADO generado en generaB (Búsqueda)');
 }
 
 function generaF(){

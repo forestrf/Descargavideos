@@ -883,7 +883,7 @@ input[type="radio"] {
 
 /*Donar*/
 
-.comparativa, caption, tbody, tfoot, thead, tr, th, td{
+.comparativa, .comparativa td{
 	margin:10px;
 	padding:10px;
 	border:1px solid #000;

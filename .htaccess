@@ -50,6 +50,7 @@
 	RewriteRule ^web/iframeform/(.*)$ index.php$1 [NC,L]
 	RewriteRule ^web/bookmarklet/(.*)$ index.php$1 [NC,L]
 	RewriteRule ^web/blog/(.*)$ index.php$1 [NC,L]
+	RewriteRule ^web/s/(.*)$ index.php$1 [NC,L]
 	RewriteRule ^web/(.*)$ index.php$1 [NC,L]
 
 

@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'21-Enero-2015'
+,'add:En caso de buscar algo que no sea una url se usará el buscador de google (customizado) para descargar una posible url.'
+);
+
+$todos[]=array(
 '20-Enero-2015'
 ,'fix:Televisa. Mejor búsqueda de la ID del vídeo (algunos vídeos no funcionaban por no encontrar la ID).'
 );

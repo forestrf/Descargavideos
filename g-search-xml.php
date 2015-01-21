@@ -6,28 +6,16 @@ header ("Content-Type:text/xml");
 require_once 'secundario/cadenas.php';
 
 ?>
-<GoogleCustomizations>
-	<CustomSearchEngine>
-		<Title>Buscador Descargavideos</Title>
-		<Description>Buscar enlace desde Descargavideos</Description>
-		<Context>
-			<BackgroundLabels>
-				<Label name="todaslascadenas" mode="FILTER" />
-			</BackgroundLabels>
-		</Context>
-	</CustomSearchEngine>
-	<Annotations>
-		<?php
-			foreach($cadenas as $cadena) {
-				foreach($cadena[0] as $dominio) {
-					?>
-					<Annotation about="http://<?=$dominio?>/*">
-						<Label name="todaslascadenas"/>
-					</Annotation>
-					<?php
-				}
+<Annotations>
+	<?php
+		foreach($cadenas as $cadena) {
+			foreach($cadena[0] as $dominio) {
+				?>
+				<Annotation about="*.<?=$dominio?>/*">
+					<Label name="_cse_ox6pywmjy6q"/>
+				</Annotation>
+				<?php
 			}
-		?>
-	</Annotations>
-
-</GoogleCustomizations>
+		}
+	?>
+</Annotations>
