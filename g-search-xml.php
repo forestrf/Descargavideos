@@ -15,9 +15,6 @@ require_once 'secundario/cadenas.php';
 				<Label name="todaslascadenas" mode="FILTER" />
 			</BackgroundLabels>
 		</Context>
-		<LookAndFeel nonprofit="true">
-			<Colors url="#FF6600" background="#000000" border="#FF00FF" title="#FF3300" text="#EEEEEE" visited="#663399" light="#FF0077"/>
-		</LookAndFeel>
 	</CustomSearchEngine>
 	<Annotations>
 		<?php
