@@ -128,6 +128,12 @@ array(
 );
 */
 
+/*
+Dominio(s)
+PHP(s) a incluir
+Class a crear
+Función del objeto de la class a llamar
+*/
 require_once 'cadenas.php';
 
 
@@ -294,9 +300,7 @@ if($fallourlinterna!=''){
 
 
 // imprimir web
-if($web=='')
-	generaF();
-elseif($errorImprimible!='')
+if($web=='' || $errorImprimible!='')
 	generaF();
 
 /*

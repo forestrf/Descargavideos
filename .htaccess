@@ -87,6 +87,7 @@
 	RewriteRule ^util/fla util/fla/descargador_archivos.swf [L]
 
 
+	RewriteRule ^g-search-xml g-search-xml.php [NC,L]
 
 	#pasar css a css.php
 	#RewriteRule ^css/(.*)\.css css/css.php?id=$1 [NC,L]

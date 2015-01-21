@@ -7,6 +7,9 @@ switch($R['MODO']){
 	case 'RESULTADO':
 		include plantillaInclude('resultados.php');
 	break;
+	case 'BUSQUEDA':
+		include plantillaInclude('busqueda.php');
+	break;
 	case 'ERROR':
 		include plantillaInclude('fallo.php');
 	break;
@@ -138,8 +141,3 @@ function generaInnerResultado(){
 		}
 	}
 }
-
-//print_r($R);
-
-
-?>
