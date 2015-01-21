@@ -203,12 +203,15 @@ finalCadena($obtenido, false);
 
 // Ya no quita geobloqueo, retorna la url tal cual
 function quita_geobloqueo($url){
-	return $url;
 	if(enString($url, 'mvodt.lvlt')){
-		$url = strtr($url, array('mvodt.lvlt'=>'static'));
+		$url = strtr($url, array('mvodt.lvlt'=>'mvod.akcdn'));
 		if(enString($url, '?')){
 			$url = substr($url, 0, strpos($url, '?'));
 		}
+	}
+	if (enString($url, 'flash.akamaihd.net')) {
+		//$url = strtr($url, array('flash.akamaihd.net'=>'mvod.lvlt'));
+		$url = strtr($url, array('flash.akamaihd.net'=>'mvod.akcdn'));
 	}
 	return $url;
 }
@@ -218,13 +221,13 @@ function convierteID($asset,$modo=array('video','audio')){
 	$modo_length=count($modo);
 	for($i=0;$i<$modo_length&&$ret=='';$i++){
 		$codificado=$asset.'_banebdyede_'.$modo[$i].'_es';
-		$codificado = $this->encripta($codificado);
+		$codificado = self::encripta($codificado);
 		$server5='http://ztnr.rtve.es/ztnr/res/'.$codificado;
 
 		dbug('idasset web='.$server5);
 
 		$ret=CargaWebCurl($server5);
-		$ret = $this->desencripta($ret);
+		$ret = self::desencripta($ret);
 		
 		dbug_($ret);
 		if(preg_match_all('@http://[^<^>]*?\\.(?:mp4|mp3)[^<^>]*@',$ret, $m)){
@@ -319,7 +322,7 @@ function encuentraAssetEnContenido($web_descargada){
 	return $asset;
 }
 
-function encripta($que){
+static function encripta($que){
 	$key='yeL&daD3';
 	$iv='12345678';
 	$cipher=mcrypt_module_open(MCRYPT_BLOWFISH,'','ecb','');
@@ -342,18 +345,18 @@ function encripta($que){
 }
 
 //http://www.rtve.es/ztnr/decrypt.jsp
-function desencripta($que){
+static function desencripta($que){
 	$key='yeL&daD3';
 	$iv='12345678';
 	$cipher=mcrypt_module_open(MCRYPT_BLOWFISH,'','ecb','');
 	
 	mcrypt_generic_init($cipher,$key,$iv);
-	$decrypted=mdecrypt_generic($cipher, $this->b64d($que));
+	$decrypted=mdecrypt_generic($cipher, self::b64d($que));
 	mcrypt_generic_deinit($cipher);
 	return $decrypted;
 }
 
-function b64d($encoded){
+static function b64d($encoded){
 	$decoded="";
 	$base64=strtr($encoded,'-_','+/');
 	for($i=0;$i<ceil(strlen($base64)/64);$i++)

@@ -18,6 +18,7 @@ function cambios($max=-1){
 $todos[]=array(
 '21-Enero-2015'
 ,'add:En caso de buscar algo que no sea una url se usará el buscador de google (customizado) para descargar una posible url.'
+,'fix:rtve actualizado (nuevos subdominios para los vídeos).'
 );
 
 $todos[]=array(
