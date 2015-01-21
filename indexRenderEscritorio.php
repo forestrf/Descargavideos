@@ -18,7 +18,12 @@
 <meta name="keywords" content="<?php echo $palabras_clave?>"/>
 <meta name="description" content="<?php echo $descripcion?>"/>
 
-<?php /*? y un número es para forzar la actualización del script y del css tras cambios*/ ?>
+<?php
+if (defined('HAY_RESULTADO') && $R['MODO'] === 'BUSQUEDA') {
+	echo '<meta name="robots" content="noindex">';
+}
+
+/*? y un número es para forzar la actualización del script y del css tras cambios*/ ?>
 
 <link href="/favicon.ico" rel="icon" type="image/x-icon"/>
 <link rel="stylesheet" href="/css/cssfull.min.css?19"/>
