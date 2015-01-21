@@ -32,14 +32,18 @@ $busqueda_comillas = strtr($R['busqueda'], '"', '\\"');
 	.busqueda {
 		display: table;
 		width: 100%;
+		vertical-align: top;
+		background-color: #fff;
 	}
 	.resultados_busqueda {
 		display: table-cell;
+		vertical-align: top;
 	}
 	
 	.publi_busqueda {
+		vertical-align: top;
 		display: table-cell;
-		height: 600px;
+		height: 100%;
 		width: 300px;
 	}
 </style>
