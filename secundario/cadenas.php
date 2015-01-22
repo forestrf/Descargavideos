@@ -364,4 +364,10 @@ $cadenas = array(
 		'Canalpluses',
 		'calcula'
 	)
+	,array(
+		array('arucitys.com'),
+		array('arucityscom.php'),
+		'Arucitys',
+		'calcula'
+	)
 );

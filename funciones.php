@@ -107,14 +107,16 @@ function entre1y2(&$que, $start, $fin){
 	return entre1y2_a($que, 0, $start, $fin);
 }
 
-function desde1a2_a(&$que, $desfaseInicio=0, $start, $fin){
+function desde1a2_a(&$que, $desfaseInicio=0, $start, $fin, $incluyeFinal = false){
 	$t = entre1y2_a($que, $desfaseInicio, $start, $fin);
+	if ($incluyeFinal && !is_int($fin))
+		$t .= $fin;
 	if(!is_int($start))
 		return $start.$t;
 	return $t;
 }
-function desde1a2(&$que, $start, $fin){
-	return desde1a2_a($que, 0, $start, $fin);
+function desde1a2(&$que, $start, $fin, $incluyeFinal = false){
+	return desde1a2_a($que, 0, $start, $fin, $incluyeFinal);
 }
 
 function stringContains($donde, $que){

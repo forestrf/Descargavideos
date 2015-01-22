@@ -8,14 +8,14 @@ $obtenido=array('enlaces' => array());
 
 if(preg_match('#<param.+?name="@videoPlayer".+?value="(.+?)"#', $this->web_descargada, $matches))
 	$contentId=$matches[1];
-if(!isset($contentId)){
+else {
 	setErrorWebIntera('No se ha encontrado ningún vídeo.');
 	return;
 }
 
 if(preg_match('#<param.+?name="playerID".+?value="(.+?)"#', $this->web_descargada, $matches))
 	$experienceID=$matches[1];
-if(!isset($experienceID)){
+else {
 	setErrorWebIntera('No se ha encontrado ningún vídeo.');
 	return;
 }

@@ -155,5 +155,6 @@ A continuación se puede ver el listado de las webs y los canales soportados:<br
 	<li>uvideos.com</li>
 	<li>canalplus.es</li>
 	<li>8tv.cat</li>
+	<li>arucitys.com</li>
 </ol>
 </div>
