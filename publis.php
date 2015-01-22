@@ -16,6 +16,8 @@ var adParams = {p: '55961161', size: '728x90', serverdomain: 'adstract' , ap:'13
 </script>
 <script type='text/javascript' src='http://cdn.adk2.com/adstract/tags/xbanner/xbanner.js?ap=1300'></script>",
 
+	'boton adstract' => '<a href="http://cdn.adstract.com/adstract/tags/xdirect/xdirect.html?p=55112590&serverdomain=adstrac&ct=html&ap=1304&cb=[CACHEBUSTER]" target="_blank"><img src="http://cdn.adstract.com/adstract/creatives/54624818" alt="" width="199" height="34" /></a>',
+
 	'cuadrado grande' => '<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
 	style="display:inline-block;width:336px;height:280px"

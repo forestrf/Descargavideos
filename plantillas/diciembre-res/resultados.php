@@ -4,6 +4,16 @@
 
 <img class="img bloque"  id="imagen_res" src="<?php echo $R['url_img_res'];?>">
 
+<style>
+	.publi_boton {
+		color: #dddddd;
+		font-size: 9px;
+		line-height: 9px;
+		margin-bottom: 10px;
+		text-align: center;
+	}
+</style>
+
 <div class="titulo_res bloque">
 	<span id="titulo_res"><?php echo $R['titulo_res'];?></span><br/>
 	<div class="descripcion_res" id="descripcion_res"><?php echo $R['descripcion_res'];?></div>
@@ -12,6 +22,12 @@
 	<div class="alerta_especifica bloque"><?php echo $R['alerta_especifica'];?></div>
 <?php } ?>
 <div id="enlaces" class="bloque">
+
+<div class="publi_boton">
+	<?=getPubli('boton adstract')?>
+	<br/>
+	Publicidad
+</div>
 
 <?php
 
