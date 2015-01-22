@@ -71,7 +71,7 @@ function calcula(){
 			$imagen = entre1y2_a($this->web_descargada, $p, 'src="','"');
 			dbug_($imagen);
 			
-			$titulo = 'Vídeo de now.telemundo.com';
+			$titulo = entre1y2($this->web_descargada, '<meta property="og:title" content="', '"');
 			
 			$player = 'http:'.desde1a2($this->web_descargada, $p, '"');
 			dbug_($player);
@@ -113,18 +113,51 @@ function calcula(){
 		$ret = CargaWebCurlProxy($releaseUrl, 'MX');
 		dbug_($ret);
 		
-		preg_match_all('@"(https?://[^"]+\.(?:mp4|flv).+?)".+?bitrate="(.+?)"@i', $ret, $matches);
-		dbug_r($matches);
-		$links = array_unique($matches[1]);
-		$calidades = array_unique($matches[2]);
-		dbug_r($links);
-		
-		for ($i = 0, $i_t = count($links); $i < $i_t; $i++) {
-			$obtenido['enlaces'][] = array(
-				'url'     => $desde === 1 ? $this->quitar_akami_telemundo($links[$i]) : $links[$i],
-				'url_txt' => 'Descargar en calidad ' . intval($calidades[$i] / 1024),
-				'tipo'    => 'http'
+		if (preg_match_all('@"(https?://[^"]+\.(?:mp4|flv).+?)".+?bitrate="(.+?)"@i', $ret, $matches)) {
+			dbug_r($matches);
+			$links = array_unique($matches[1]);
+			$calidades = array_unique($matches[2]);
+			dbug_r($links);
+			
+			for ($i = 0, $i_t = count($links); $i < $i_t; $i++) {
+				$obtenido['enlaces'][] = array(
+					'url'     => $desde === 1 ? $this->quitar_akami_telemundo($links[$i]) : $links[$i],
+					'url_txt' => 'Descargar en calidad ' . intval($calidades[$i] / 1024),
+					'tipo'    => 'http'
+				);
+			}
+		} else {
+			dbug('Adivinar urls a partir de la imagen');
+			
+			$posibles_calidades = array(
+				'4000',
+				'2500',
+				'1800',
+				'1696',
+				'1296',
+				'1200',
+				'896',
+				'700',
+				'696',
+				'496',
+				'400',
+				'306',
+				'240',
+				'200'
 			);
+			
+			$supuesta_url_base = entre1y2($imagen, 0, 'anvver');
+			$supuesta_url_base = str_replace('/image/', '/video/', $supuesta_url_base);
+			
+			for ($i = 0, $i_t = count($posibles_calidades); $i < $i_t; $i++) {
+				$obtenido['enlaces'][] = array(
+					'url'     => $supuesta_url_base . $posibles_calidades[$i] . '.mp4',
+					'url_txt' => 'Descargar en calidad ' . $posibles_calidades[$i],
+					'tipo'    => 'http'
+				);
+			}
+			
+			$obtenido['alerta_especifica'] = 'No se ha podido encontrar ningún enlace para el vídeo pero alguno de los siguientes podría funcionar.';
 		}
 		
 		

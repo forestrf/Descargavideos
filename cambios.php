@@ -16,8 +16,14 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'22-Enero-2015'
+,'fix:Títulos para vídeos de now.telemundo.com.'
+,'fix:Listado de posibles enlaces del vídeo para los vídeos de telemundo bloqueados por llave.'
+);
+
+$todos[]=array(
 '21-Enero-2015'
-,'add:En caso de buscar algo que no sea una url se usará el buscador de google (customizado) para descargar una posible url.'
+,'add:En caso de buscar algo que no sea una url se usará el buscador de google (customizado) para descargar una posible url. <a href="http://descargavid.blogspot.com/2015/01/ahora-con-buscador.html">Más información aquí</a>.'
 ,'fix:rtve actualizado (nuevos subdominios para los vídeos).'
 );
 
