@@ -26,7 +26,7 @@ if (defined('HAY_RESULTADO') && $R['MODO'] === 'BUSQUEDA') {
 /*? y un número es para forzar la actualización del script y del css tras cambios*/ ?>
 
 <link href="/favicon.ico" rel="icon" type="image/x-icon"/>
-<link rel="stylesheet" href="/css/cssfull.min.css?19"/>
+<link rel="stylesheet" href="/css/cssfull.min.css?20"/>
 <link rel="stylesheet" href="/css/modos/<?php echo $css_modo?>.css" id="css2"/>
 <script src="/js/funciones.min.js?12"></script>
 
@@ -85,10 +85,10 @@ var css_user='<?php echo $css_modo?>';
 					<span id="ayuda2txt"><?php echo TXT_BUSCA_URL_VIDEO?></span>
 				</div>
 			</form>
-		</div>
-
-		<div class="publi_cabecera">
-			<?php echo getPubli('banner largo');?>
+			
+			<div class="publi_cabecera">
+				<?php echo getPubli('banner largo adstract');?>
+			</div>
 		</div>
 
 		<div class="social">

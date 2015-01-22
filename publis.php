@@ -9,6 +9,13 @@ $publis=array(
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>',
 
+	'banner largo adstract' => "<!-- Placement: www.descargavideos.tv, Size: 728x90, Type: Banner -->
+<!--Copy and paste the code below into the location on your website where the ad will appear.-->
+<script type='text/javascript'>
+var adParams = {p: '55961161', size: '728x90', serverdomain: 'adstract' , ap:'1300'  };
+</script>
+<script type='text/javascript' src='http://cdn.adk2.com/adstract/tags/xbanner/xbanner.js?ap=1300'></script>",
+
 	'cuadrado grande' => '<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
 	style="display:inline-block;width:336px;height:280px"

@@ -263,13 +263,11 @@ input[type="radio"] {
 	line-height:1em;
 }
 .invisible{opacity:0;}
-.publi_cabecera{
-	height:90px;
-	position:absolute;
-	bottom:2%;
-	width:100%;
-	left:0;
-	text-align:center;
+.publi_cabecera {
+	height: 90px;
+	margin-top: 45px;
+	text-align: center;
+	width: 100%;
 }
 .google_publi{
 	text-align:center;
