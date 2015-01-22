@@ -19,6 +19,7 @@ $todos[]=array(
 '22-Enero-2015'
 ,'fix:Títulos para vídeos de now.telemundo.com.'
 ,'fix:Listado de posibles enlaces del vídeo para los vídeos de telemundo bloqueados por llave.'
+,'fix:8tv arreglado soporte para algunos vídeos.'
 );
 
 $todos[]=array(

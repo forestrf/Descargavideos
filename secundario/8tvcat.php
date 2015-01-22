@@ -6,15 +6,15 @@ function calcula(){
 
 $obtenido=array('enlaces' => array());
 
-if(enString($this->web_descargada,'<param name="@videoPlayer"'))
-	$contentId=entre1y2($this->web_descargada,'<param name="@videoPlayer"  value="','"');
+if(preg_match('#<param.+?name="@videoPlayer".+?value="(.+?)"#', $this->web_descargada, $matches))
+	$contentId=$matches[1];
 if(!isset($contentId)){
 	setErrorWebIntera('No se ha encontrado ningún vídeo.');
 	return;
 }
 
-if(enString($this->web_descargada,'<param name="playerID"'))
-	$experienceID=entre1y2($this->web_descargada,'<param name="playerID" value="','"');
+if(preg_match('#<param.+?name="playerID".+?value="(.+?)"#', $this->web_descargada, $matches))
+	$experienceID=$matches[1];
 if(!isset($experienceID)){
 	setErrorWebIntera('No se ha encontrado ningún vídeo.');
 	return;
