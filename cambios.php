@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'23-Enero-2015'
+,'add:Nuevo tipo de publicidad en la web.'
+);
+
+$todos[]=array(
 '22-Enero-2015'
 ,'add:arucitys.com.'
 ,'fix:Títulos para vídeos de now.telemundo.com.'
