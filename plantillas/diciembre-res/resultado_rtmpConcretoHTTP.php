@@ -23,26 +23,5 @@
 	</form>
 </div>
 <script>
-	getScript('http://127.0.0.1:25432/rtmpdownloader.js',f<?php echo $R2['random_id'];?>);
-	getScript('http://127.0.0.1:25431/static/js/imrunning.js',f2<?php echo $R2['random_id'];?>);
-	function f<?php echo $R2['random_id'];?>(){
-		if(rtmpdownloader){
-			activartmp('<?php echo $R2['random_id'];?>');
-			D.g('rtmp<?php echo $R2['random_id'];?>').innerHTML="Descargar usando RTMP-Downloader";
-			
-			D.g('rtmp<?php echo $R2['random_id'];?>fcommand').remove();
-			D.g('rtmp<?php echo $R2['random_id'];?>forig').remove();
-		}
-	}
-	function f2<?php echo $R2['random_id'];?>(){
-		if(EasyRtmpdump){
-			activartmp('<?php echo $R2['random_id'];?>');
-			D.g('rtmp<?php echo $R2['random_id'];?>').innerHTML="Descargar usando Easy-Rtmpdump";
-			D.g('rtmp<?php echo $R2['random_id'];?>f').setAttribute('action','http://127.0.0.1:25431/easy-rtmpdump.html');
-			
-			D.g('rtmp<?php echo $R2['random_id'];?>fnombre').setAttribute('name','name');
-			D.g('rtmp<?php echo $R2['random_id'];?>faccion').remove();
-			D.g('rtmp<?php echo $R2['random_id'];?>furl').remove();
-		}
-	}
+	prepareRTMP('<?php echo $R2['random_id'];?>');
 </script>

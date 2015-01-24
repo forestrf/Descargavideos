@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'24-Enero-2015'
+,'fix:Mejor soporte para Easy-rtmpdump.'
+);
+
+$todos[]=array(
 '22-Enero-2015'
 ,'add:arucitys.com.'
 ,'fix:Títulos para vídeos de now.telemundo.com.'
