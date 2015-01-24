@@ -350,6 +350,9 @@ input[type="radio"] {
 	background:none repeat scroll 0 0 #800;
 	box-shadow:0 0 8px 3px #f00;
 }
+.modo_live_rtmp {
+	font-size: 0.5em;
+}
 #resultado{
 	position:relative;
 	color:#FFF;

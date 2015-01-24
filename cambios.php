@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'24-Enero-2015'
+,'fix:Mejor soporte para Easy-rtmpdump.'
+);
+
+$todos[]=array(
 '23-Enero-2015'
 ,'add:Nuevo tipo de publicidad en la web.'
 );
