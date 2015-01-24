@@ -87,7 +87,7 @@ var css_user='<?php echo $css_modo?>';
 			</form>
 			
 			<div class="publi_cabecera">
-				<?php echo getPubli('banner largo adstract');?>
+				<?php echo getPubli('banner largo');?>
 			</div>
 		</div>
 
