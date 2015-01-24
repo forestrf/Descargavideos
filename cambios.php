@@ -17,6 +17,7 @@ function cambios($max=-1){
 
 $todos[]=array(
 '24-Enero-2015'
+,'add:Vídeos públicos de facebook.com.'
 ,'fix:Mejor soporte para Easy-rtmpdump.'
 ,'del:Quitada nueva publicidad, ha resultado ser engañosa.'
 );

@@ -370,4 +370,10 @@ $cadenas = array(
 		'Arucitys',
 		'calcula'
 	)
+	,array(
+		array('facebook.com'),
+		array('facebookcom.php'),
+		'Facebook',
+		'calcula'
+	)
 );

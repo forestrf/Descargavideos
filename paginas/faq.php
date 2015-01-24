@@ -156,5 +156,6 @@ A continuación se puede ver el listado de las webs y los canales soportados:<br
 	<li>canalplus.es</li>
 	<li>8tv.cat</li>
 	<li>arucitys.com</li>
+	<li>facebook.com</li>
 </ol>
 </div>
