@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'28-Enero-2015'
+,'fix:Youtube arreglado (Vídeos marcados como geobloqueados desde el servidor en realidad no lo estaban).'
+);
+
+$todos[]=array(
 '24-Enero-2015'
 ,'add:Vídeos públicos de facebook.com.'
 ,'fix:Mejor soporte para Easy-rtmpdump.'

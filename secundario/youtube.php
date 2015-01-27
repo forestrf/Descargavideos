@@ -16,7 +16,7 @@ class youtube{
 			return false;
 		}
 
-		if(!preg_match('/stream_map": "(.[^"]*?)"/i',$html,$match)){
+		if(!preg_match('/stream_map":[ \t\r\n]*"(.[^"]*?)"/i',$html,$match)){
 			$this->error = "Descargavideos.tv no puede acceder al vídeo debido a un geobloqueo. No se puede encontrar ninguna URL para descargar el vídeo.";
 			return false;
 		}
