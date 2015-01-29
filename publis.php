@@ -40,6 +40,7 @@ var adParams = {p: '55961161', size: '728x90', serverdomain: 'adstract' , ap:'13
 $publisUsadas = array();
 
 function getPubli($i){
+	return ''; // Publicidad deshabilitada temporalmente
 	global $publis, $publisUsadas, $PUBLICIDAD;
 	if(!isset($publisUsadas[$i])){
 		$publisUsadas[$i]=true;
