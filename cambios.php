@@ -16,6 +16,13 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'30-Enero-2015'
+,'add:Nueva publicidad (epom.com).'
+,'fix:Algunos vídeos de rtve con extensión flv no funcionaban si un resultado posible era un mp4 incorrecto.'
+,'del:Publicidad Adsense. <a href="http://descargavid.blogspot.com.es/2015/01/publicidad-en-la-web.html">Más información aquí</a>.'
+);
+
+$todos[]=array(
 '28-Enero-2015'
 ,'fix:Youtube arreglado (Vídeos marcados como geobloqueados desde el servidor en realidad no lo estaban).'
 );

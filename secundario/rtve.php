@@ -233,18 +233,19 @@ function convierteID($asset,$modo=array('video','audio')){
 		if(preg_match_all('@http://[^<^>]*?\\.(?:mp4|mp3)[^<^>]*@',$ret, $m)){
 			dbug_r($m);
 			foreach($m[0] as $i){
-				dbug('Opcion: '.$i);
+				dbug('Opcion (1): '.$i);
 				if(!enString($i, '1100000000000') && !enString($i, 'l3-onlinefs.rtve.es')){
 					$ret = $this->quita_geobloqueo($i);
 					dbug('Opcion elejida: '.$i);
 					break;
 				}
 			}
+			dbug('Opcion final: '.$ret);
 		}
-		elseif(preg_match_all('@http://[^<^>]*?\\.(?:flv)[^<^>]*@',$ret, $m)){
+		if(strpos($ret, 'http') !== 0 && preg_match_all('@http://[^<^>]*?\\.(?:flv)[^<^>]*@',$ret, $m)){
 			dbug_r($m);
 			foreach($m[0] as $i){
-				dbug('Opcion: '.$i);
+				dbug('Opcion (2): '.$i);
 				if(!enString($i, '1100000000000')){
 					$ret = $this->quita_geobloqueo($i);
 					dbug('Opcion elejida: '.$i);
@@ -253,6 +254,7 @@ function convierteID($asset,$modo=array('video','audio')){
 			}
 		}
 		if(strpos($ret, 'http') !== 0){
+			dbug('$ret no es una web');
 			if(enString($ret,"code='state-not-valid'")){
 				$ret='';
 				dbug('vídeo posíblemente borrado. Marcar error');
@@ -268,6 +270,7 @@ function convierteID($asset,$modo=array('video','audio')){
 					$ret = strtr($ret, array('rtmpe://rtveod.fms.c.footprint.net/rtveod/' => 'http://mvod.lvlt.rtve.es/'));
 				}
 				$ret='http://'.entre1y2($ret,'http://','<');
+				$ret = $this->quita_geobloqueo($ret);
 			}
 		}
 	}
