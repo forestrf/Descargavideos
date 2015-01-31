@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'31-Enero-2015'
+,'fix:rtvcm.es ahora usa http en lugar de rtmp.'
+);
+
+$todos[]=array(
 '30-Enero-2015'
 ,'add:Nueva publicidad (epom.com).'
 ,'fix:Algunos vídeos de rtve con extensión flv no funcionaban si un resultado posible era un mp4 incorrecto.'

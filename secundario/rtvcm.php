@@ -33,8 +33,8 @@ for($i=0;$i<$videos;$i++){
 for($i=0;$i<$videos;$i++){
 	$obtenido['enlaces'][] = array(
 		'titulo' => $total[$i][1],
-		'url'    => $total[$i][0],
-		'tipo'   => 'rtmp'
+		'url'    => 'http://ondemand.rtvcm.ondemand.flumotion.com/rtvcm/ondemand/video/mp4/med/' . entre1y2($total[$i][0], 'mp4:'),
+		'url_txt' => 'Descargar'
 	);
 }
 
