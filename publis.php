@@ -36,6 +36,7 @@ document.write("<script type=\'text\/javascript\' src=\'"+(location.protocol == 
 $publisUsadas = array();
 
 function getPubli($i){
+	return '';
 	global $publis, $publisUsadas, $PUBLICIDAD;
 	if(!isset($publisUsadas[$i])){
 		$publisUsadas[$i]=true;
