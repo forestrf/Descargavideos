@@ -40,13 +40,6 @@ $busqueda_comillas = strtr($R['busqueda'], '"', '\\"');
 		display: table-cell;
 		vertical-align: top;
 	}
-	
-	.publi_busqueda {
-		vertical-align: top;
-		display: table-cell;
-		height: 100%;
-		width: 300px;
-	}
 </style>
 
 <script>_gaq.push(["_trackEvent","Busqueda","Google","<?=$busqueda_comillas?>"]);</script>
@@ -69,10 +62,6 @@ $busqueda_comillas = strtr($R['busqueda'], '"', '\\"');
 	<div class="resultados_busqueda">
 		<gcse:search safeSearch="true" newWindow="true" enableAutoComplete="true"></gcse:search>
 	</div>
-
-<div class="publi_busqueda">
-	<?php echo getPubli('rascacielos');?>
-</div>
 </div>
 
 
