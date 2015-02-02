@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'2-Febrero-2015'
+,'fix:Todos los enlaces de rtmp que contenían en el atributo -r la cadena "-o" no funcionaban.'
+);
+
+$todos[]=array(
 '31-Enero-2015'
 ,'fix:rtvcm.es ahora usa http en lugar de rtmp.'
 );

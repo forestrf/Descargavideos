@@ -270,7 +270,7 @@ function launchRTMPDownload(rid) {
 	
 	
 	
-	t = t.substr(0, t.indexOf('-o'));
+	t = t.substr(0, t.indexOf('-o '));
 	if(D.g('rtmp'+rid+'fv').checked) t += '-v ';
 	switch (rtmp_programa) {
 		case 'easy-rtmp':
