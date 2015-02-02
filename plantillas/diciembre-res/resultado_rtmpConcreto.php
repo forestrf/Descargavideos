@@ -25,7 +25,7 @@
 		<input type="text"     id="rtmp<?=$R2['random_id']?>fnombre"   name="nombre" class="input" value="<?=$R2['nombre_resultado_manual']?>" autocomplete="off"><br/>
 		<input type="checkbox" id="rtmp<?=$R2['random_id']?>fv"><span class="modo_live_rtmp">Usar modo live, -v (marcar en caso de problemas)</span><br/>
 		
-		<input type="hidden"   id="rtmp<?=$R2['random_id']?>frtmpdump" name="url"    value="<?=htmlentities($rtmpdump)?>">
+		<input type="hidden"   id="rtmp<?=$R2['random_id']?>frtmpdump" name="url"    value="<?=htmlentities($rtmpdump, ENT_SUBSTITUTE | ENT_COMPAT | ENT_HTML401)?>">
 		<input type="hidden"   id="rtmp<?=$R2['random_id']?>fimg"      name="img"    value="<?=$R['url_img_res']?>">
 		<input type="hidden"   id="rtmp<?=$R2['random_id']?>forig"     name="orig"   value="<?=$R['WEB']?>">
 		<input type="hidden"   id="rtmp<?=$R2['random_id']?>faccion"   name="accion" value="descargar">
