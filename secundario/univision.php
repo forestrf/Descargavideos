@@ -92,10 +92,16 @@ function univisionID($id) {
 			
 		}
 		
+		dbug('urls: ' . count($urls));
+		
 		//ya tenemos las urls en formato: /120615_2708697_El_Talisman_Capitulo_98_99___Ultimo_capitulo_1339800465_2000.mp4
 		//ordenar
-		$urls = sortmulti($urls, 1, "123", true);
-	} else {
+		if (count($urls) > 0) {
+			$urls = sortmulti($urls, 1, "123", true);
+		}
+	}
+	
+	if (enString($ret, '"published_urls":[]') || (isset($urls) && count($urls) === 0)) {
 		dbug('No se pueden encontrar urls. Usando método 2');
 		// http://vmscdn-download.s3.amazonaws.com/videos_mcm/variant/2912557.m3u8
 

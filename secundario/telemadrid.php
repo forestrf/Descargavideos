@@ -236,10 +236,15 @@ else{
 	$andpos = strpos($url[0], '&');
 	$end = '?videoId='.$mediaId.'&lineUpId=&pubId='.$publisherId.'&playerId='.$experienceID.'&affiliateId=';
 	
+	$r = substr($url[0], 0, $andpos);
+	if ($r[strlen($r) - 1] === '/') {
+		$r = substr($r, 0, strlen($r) - 1);
+	}
+	
 	$obtenido['enlaces']=array(
 		array(
 			'url'            => '-',
-			'rtmpdump'       => '-r "'.substr($url[0], 0, $andpos).$end.'" '.
+			'rtmpdump'       => '-r "'.$r.$end.'" '.
 								'-y "'.substr($url[0], $andpos+1).$end.'"',
 			'nombre_archivo' => generaNombreWindowsValido($titulo).'.mp4',
 			'tipo'           => 'rtmpConcreto',
