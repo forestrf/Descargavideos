@@ -13,8 +13,9 @@ function calcula(){
 		'imagen'  => $imagen,
 		'enlaces' => array(
 			array(
-				'url'  => $url,
-				'tipo' => 'http'
+				'url'     => $url,
+				'url_txt' => 'Descargar',
+				'tipo'    => 'http'
 			)
 		)
 	);

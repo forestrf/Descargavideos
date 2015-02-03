@@ -376,4 +376,10 @@ $cadenas = array(
 		'Facebook',
 		'calcula'
 	)
+	,array(
+		array('ondaluz.tv'),
+		array('ondaluztv.php'),
+		'Ondaluztv',
+		'calcula'
+	)
 );

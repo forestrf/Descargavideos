@@ -157,5 +157,6 @@ A continuación se puede ver el listado de las webs y los canales soportados:<br
 	<li>8tv.cat</li>
 	<li>arucitys.com</li>
 	<li>facebook.com</li>
+	<li>ondaluz.tv</li>
 </ol>
 </div>
