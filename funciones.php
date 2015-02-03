@@ -122,7 +122,7 @@ function desde1a2(&$que, $start, $fin, $incluyeFinal = false){
 }
 
 function stringContains($donde, $que){
-	for($i=0; $i<$i_t=count($que); $i++)
+	for($i=0, $ii=count($que); $i<$ii; $i++)
 		if(enString($donde,$que[$i]))
 			return true;
 	return false;
