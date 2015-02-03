@@ -279,7 +279,12 @@ function convierteID($asset,$modo=array('video','audio')){
 
 function encuentraAssetEnContenido($web_descargada){
 	$asset = "Por rellenar";
-	if(enString($web_descargada, "assetID=")){
+	if (preg_match('#class="M[ "][\s\S]*?<a href=.*/([0-9]+)/#', $web_descargada, $matches)) {
+		dbug_r($matches);
+		$asset = $matches[1];
+	}
+	dbug('asset, prueba 0: '.$asset);
+	if(stringContains($asset,array('"','{','}','<','>',' ')) && enString($web_descargada, "assetID=")){
 		$asset=entre1y2($web_descargada,'assetID=','_');
 	}
 	dbug('asset, prueba 1: '.$asset);
