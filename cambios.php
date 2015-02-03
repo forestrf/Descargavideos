@@ -21,6 +21,7 @@ $todos[]=array(
 ,'add:Youtube 1080p WebM (Vídeo solo).'
 ,'fix:Vuelve a aparecer la opción Audio WebM  (Audio solo).'
 ,'fix:RTVE.es, detección del vídeo principal en páginas genéricas (sin reproductor del vídeo en cuestión).'
+,'fix:RTVE.es, audios ahora con título e imagen.'
 );
 
 $todos[]=array(

@@ -16,12 +16,12 @@ if($p!=strlen($this->web)-1){
 //modo audio
 //modo infantil
 //modo alacarta
-if(enString($this->web,"/audios/")){
+if(enString($this->web, '/audios/')){
 	dbug('modo audio');
 	//$retfull=CargaWebCurl($this->web);
 	$audio=1;
 }
-elseif(enString($this->web,"/infantil/")){
+elseif(enString($this->web, '/infantil/')){
 	dbug('modo infantil');
 	
 	if(strposF($this->web, '/todos')+2 > strlen($this->web) || !strpos($this->web, '/', strposF($this->web, '/todos')+2)){
@@ -89,7 +89,7 @@ if(isset($audio)){
 	}
 
 
-	if(enString($ret,".mp3"))
+	if(enString($ret, '.mp3'))
 		dbug('El mp3 estaba en la web');
 	else{
 		dbug('toca sacar el audio por metodo nuevo');
@@ -152,18 +152,23 @@ if(isset($asset)){
 }
 else{
 	//titulo
-	$p=strpos($this->web_descargada,'class="header"');
-	$p=strpos($this->web_descargada,'titu',$p);
-	$p=strposF($this->web_descargada,'>',$p);
-	$f=strpos($this->web_descargada,'<',$p);
-	$titulo=substr($this->web_descargada,$p,$f-$p);
-	$titulo=limpiaTitulo($titulo);
-	
-	//imagen
-	$p=strpos($this->web_descargada,'imgPrograma');
-	$p=strposF($this->web_descargada,'src="',$p);
-	$f=strpos($this->web_descargada,'"',$p);
-	$imagen=substr($this->web_descargada,$p,$f-$p);
+	if (enString($this->web_descargada, '<meta name="audio_title" content="')) {
+		$titulo = entre1y2($this->web_descargada, '<meta name="audio_title" content="', '"');
+		$imagen = entre1y2($this->web_descargada, '<link rel="image_src" href="', '"');
+	} else {
+		$p=strpos($this->web_descargada,'class="header"');
+		$p=strpos($this->web_descargada,'titu',$p);
+		$p=strposF($this->web_descargada,'>',$p);
+		$f=strpos($this->web_descargada,'<',$p);
+		$titulo=substr($this->web_descargada,$p,$f-$p);
+		$titulo=limpiaTitulo($titulo);
+		
+		//imagen
+		$p=strpos($this->web_descargada,'imgPrograma');
+		$p=strposF($this->web_descargada,'src="',$p);
+		$f=strpos($this->web_descargada,'"',$p);
+		$imagen=substr($this->web_descargada,$p,$f-$p);
+	}
 }
 dbug('titulo='.$titulo);
 dbug('imagen='.$imagen);
