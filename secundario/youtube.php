@@ -30,7 +30,7 @@ class youtube{
 		
 		
 		
-		if(preg_match('/"adaptive_fmts": "(.[^"]*?)"/i',$html,$match)){
+		if(preg_match('/"adaptive_fmts":[ \t\r\n]*"(.[^"]*?)"/i',$html,$match)){
 			$fmt_url2=urldecode($match[1]);
 			$fmt_url2 = preg_replace('/codecs="(.*?)"/','codecs=""',$fmt_url2);
 			dbug($fmt_url2);
@@ -90,6 +90,7 @@ class youtube{
 		//adaptive_fmts. Las calidades más altas de vídeo están aquí en lugar de en el otro listado.
 		$typeMap[171]= array("171",	"WebM (Audio solo)",	"Audio",   "Audio",		"2D",	"OGG");
 		
+		$typeMap[137]= array("137",	"WebM (Video solo)",	"1080p", "(1920x1080)",	"2D",	"---");
 		$typeMap[247]= array("247",	"WebM (Video solo)",	"720p",  "(1280x720)",	"2D",	"---");
 		$typeMap[244]= array("244",	"WebM (Video solo)",	"480p",  "(854x480)",	"2D",	"---");
 		$typeMap[243]= array("243",	"WebM (Video solo)",	"360p",  "(640x360)",	"2D",	"---");

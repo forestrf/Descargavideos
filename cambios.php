@@ -16,6 +16,12 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'3-Febrero-2015'
+,'add:Youtube 1080p WebM (Vídeo solo).'
+,'fix:Vuelve a aparecer la opción Audio WebM  (Audio solo).'
+);
+
+$todos[]=array(
 '2-Febrero-2015'
 ,'fix:Todos los enlaces de rtmp que contenían en el atributo -r la cadena "-o" no funcionaban.'
 );
