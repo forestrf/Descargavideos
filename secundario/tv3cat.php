@@ -34,6 +34,27 @@ elseif(enString($this->web_descargada,'idint="')){
 	$id=entre1y2($this->web_descargada, 'dint="','"');
 	dbug('video de formato admitido en js (dint="). id video='.$id);
 }
+elseif(enString($this->web_descargada,'<div class="SSG cat_videos">')){
+	preg_match_all('#<h2>(.+?)</h2>[\s\S]*?<span class="id_video">([0-9]+?)</span>#', $this->web_descargada, $matches);
+	dbug_r($matches);
+	
+	
+	for ($i = 0, $ii = count($matches[0]); $i < $ii; $i++) {
+		$obtenido['enlaces'][] = array(
+			'titulo' => utf8_encode($matches[1][$i])
+		);
+		$this->resuelveIDMetodo2($matches[2][$i], $obtenido['enlaces'], $titulo, $imagen, true);
+	}
+	
+	dbug('Varios vídeos (<div class="SSG cat_videos">)');
+	
+	$obtenido['titulo'] = $titulo;
+	$obtenido['imagen'] = $imagen;
+	
+	
+	finalCadena($obtenido);
+	return;
+}
 else{
 	//la id esta en la url
 	$p=strrposF($this->web,'/videos/');
@@ -172,22 +193,58 @@ if($id==''){
 //playWMOVideoQualitat
 //video-wmp
 
-$modelo=0;
-	
 if(enString($this->web_descargada,'playWMOVideoQualitat')){
-	$modelo=3;
 	dbug('metodo 1');
 	
 	if($tresalacarta!=1){
 		//titulo
 		//<h1>Els ajudants del pare Noel</h1>
-		$p=strrposF($this->web_descargada,'<h1>');
-		$f=strrpos($this->web_descargada,'</h1>', $p);
-		$titulo=substr($this->web_descargada, $p, $f-$p);
+		$titulo=entre1y2($this->web_descargada, '<h1>', '</h1>');
 		$titulo=limpiaTitulo($titulo);
 		dbug('titulo='.$titulo);
 	}
 	
+	$this->resuelveIDMetodo1($id, $obtenido['enlaces']);
+}
+
+
+else if(enString($this->web_descargada,'insertaEVP(')){
+	dbug('metodo 2');
+	
+	if($tresalacarta!=1){
+		//titulo
+		//<h1>Amb Fidel, passi el que passi</h1>
+		$titulo=entre1y2($this->web_descargada, '<h1>', '</h1>');
+		if(stringContains($titulo, array('<','>'))){
+			$titulo=entre1y2($titulo, 'arrayTitol = ["', '"');
+		} else {
+			//imagen
+			//'/multimedia/jpg/3/6/1336300867363.jpg'
+			$p=strpos($this->web_descargada,"/multimedia/");
+			$f=strposF($this->web_descargada,'.jpg', $p);
+			$imagen='http://www.tv3.cat'.substr($this->web_descargada, $p, $f-$p);
+			dbug('imagen='.$imagen);
+		}
+		$titulo=limpiaTitulo($titulo);
+		dbug('titulo='.$titulo);
+	}
+	
+	//insertaEVP("flashcontent", flashvars, params, size );
+
+	$this->resuelveIDMetodo2($id, $obtenido['enlaces'], $titulo, $imagen);
+} elseif ($id !== '') {
+	dbug('metodo (3). Suponemos que hay id.');
+	$this->resuelveIDMetodo2($id, $obtenido['enlaces'], $titulo, $imagen);
+}
+
+$obtenido['titulo'] = $titulo;
+$obtenido['imagen'] = $imagen;
+
+
+finalCadena($obtenido);
+}
+
+function resuelveIDMetodo1($id, &$enlaces_array) {
 	//http://www.tv3.cat/su/tvc/tvcConditionalAccess.jsp?ALTERNATE=YES&ID_BACKUP=&ID=188877281&QUALITY=A&FORMAT=WM
 	
 	$server2='http://www.tv3.cat/su/tvc/tvcConditionalAccess.jsp?ALTERNATE=YES&ID_BACKUP=&ID='.$id.'&QUALITY=A&FORMAT=WM';
@@ -222,38 +279,15 @@ if(enString($this->web_descargada,'playWMOVideoQualitat')){
 
 	dbug('urlFinal='.$ret);
 	
-	$obtenido['enlaces'][] = array(
+	$enlaces_array[] = array(
 		'url'  => $ret,
 		'tipo' => 'http'
 	);
 }
 
-
-if(enString($this->web_descargada,'insertaEVP(')||$modelo==0){
-	dbug('metodo 2');
-	
-	if($tresalacarta!=1){
-		//titulo
-		//<h1>Amb Fidel, passi el que passi</h1>
-		$titulo=entre1y2($this->web_descargada, '<h1>', '</h1>');
-		if(stringContains($titulo, array('<','>'))){
-			$titulo=entre1y2($titulo, 'arrayTitol = ["', '"');
-		} else {
-			//imagen
-			//'/multimedia/jpg/3/6/1336300867363.jpg'
-			$p=strpos($this->web_descargada,"/multimedia/");
-			$f=strposF($this->web_descargada,'.jpg', $p);
-			$imagen='http://www.tv3.cat'.substr($this->web_descargada, $p, $f-$p);
-			dbug('imagen='.$imagen);
-		}
-		$titulo=limpiaTitulo($titulo);
-		dbug('titulo='.$titulo);
-	}
-	
-	//insertaEVP("flashcontent", flashvars, params, size );
-
+function resuelveIDMetodo2($id, &$enlaces_array, &$titulo, &$imagen, $ignoraCaducados = false) {
 	//http://www.tv3.cat/pvideo/FLV_bbd_media.jsp?ID=4048670&QUALITY=H&FORMAT=MP4
-
+	
 	$server2='http://www.tv3.cat/pvideo/FLV_bbd_dadesItem.jsp?idint='.$id;
 	dbug('server2='.$server2);
 	$ret=CargaWebCurl($server2);
@@ -301,7 +335,9 @@ if(enString($this->web_descargada,'insertaEVP(')||$modelo==0){
 	dbug_($ret);
 
 	if(enString($ret, 'err.service.expired')){
-		setErrorWebIntera('El vídeo fue borrado de TV3');
+		if (!$ignoraCaducados) {
+			setErrorWebIntera('El vídeo fue borrado de TV3');
+		}
 		return;
 	}
 	elseif(enString($ret,'<media')){
@@ -319,7 +355,7 @@ if(enString($this->web_descargada,'insertaEVP(')||$modelo==0){
 				dbug('urlFinal (mediante preg replace='.$ret);
 			}
 			
-			$obtenido['enlaces'][] = array(
+			$enlaces_array[] = array(
 				'titulo'  => 'Calidad media',
 				'url'  => $ret,
 				'tipo' => 'http'
@@ -348,7 +384,7 @@ if(enString($this->web_descargada,'insertaEVP(')||$modelo==0){
 			// 4/09/2012 metodo rectificado
 			dbug('urlFinal='.$ret);
 			
-			$obtenido['enlaces'][] = array(
+			$enlaces_array[] = array(
 				'titulo'   => 'Calidad alta',
 				'url'      => $ret,
 				'rtmpdump' => '-r "'.$matches[1].'" -y "'.$matches[2].'" -o "'.generaNombreWindowsValido($titulo).'.mp4"',
@@ -361,7 +397,7 @@ if(enString($this->web_descargada,'insertaEVP(')||$modelo==0){
 			dbug('urlFinal='.$ret);
 			$ext = substr($ret,-3,3);
 			
-			$obtenido['enlaces'][] = array(
+			$enlaces_array[] = array(
 				'url'      => $ret,
 				'rtmpdump' => '-r "'.$ret.'" -o "'.generaNombreWindowsValido($titulo).'.'.$ext.'"',
 				'tipo'     => 'rtmpConcreto',
@@ -369,18 +405,6 @@ if(enString($this->web_descargada,'insertaEVP(')||$modelo==0){
 			);
 		}
 	}
-	
-}
-
-$tipo='http';
-if(enString($ret,'rtmp'))
-	$tipo='rtmp';
-
-$obtenido['titulo'] = $titulo;
-$obtenido['imagen'] = $imagen;
-
-
-finalCadena($obtenido);
 }
 
 }

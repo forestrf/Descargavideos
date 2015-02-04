@@ -18,6 +18,7 @@ function cambios($max=-1){
 $todos[]=array(
 '4-Febrero-2015'
 ,'fix:RTVE.es vuelve a funcionar.'
+,'fix:ccma.cat (TV3) soporte para multiples vídeos en una página. Mejor detección de los vídeos en lugar de fallar.'
 );
 
 $todos[]=array(
