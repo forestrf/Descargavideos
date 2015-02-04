@@ -214,10 +214,10 @@ function quita_geobloqueo($url){
 			$url = substr($url, 0, strpos($url, '?'));
 		}
 	}
-	if (enString($url, 'flash.akamaihd.net')) {
-		//$url = strtr($url, array('flash.akamaihd.net'=>'mvod.lvlt'));
-		$url = strtr($url, array('flash.akamaihd.net'=>'mvod.akcdn'));
-	}
+	$url = strtr($url, array(
+		'flash.akamaihd.net'=>'mvod.akcdn'
+		,'flash1.akamaihd.net'=>'mvod.akcdn'
+	));
 	return $url;
 }
 
