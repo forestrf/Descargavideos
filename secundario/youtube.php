@@ -43,10 +43,12 @@ class youtube{
 		foreach($urls as $url){
 			$url .= "\\u0026";
 			if(preg_match('/itag=([0-9]+)\\\\u0026/',$url,$tm) && preg_match('/sig?=(.*?)\\\\u0026/',$url,$si) && preg_match('/url=(.*?)\\\\u0026/',$url,$um)){
+				dbug('m1');
 				$u=urldecode($um[1]);
 				$foundArray[$tm[1]]=$u.'&signature='.$si[1];
 			}
 			elseif(preg_match('/itag=([0-9]+)\\\\u0026/',$url,$tm) && preg_match('/(\\\\u0026|^)s=(.*?)\\\\u0026/',$url,$si) && preg_match('/url=(.*?)\\\\u0026/',$url,$um)){
+				dbug('m2');
 				$u=urldecode($um[1]);
 				if(enString($si[2], '=') || strlen($si[2]) < 30){
 					dbug('variable s incorrecta');
@@ -56,6 +58,7 @@ class youtube{
 				$foundArray[$tm[1]]=$u.'&signature='.$signature;
 			}
 			elseif(preg_match('/itag=([0-9]+)\\\\u0026/',$url,$tm) && preg_match('/url=(.*?)\\\\u0026/',$url,$um)){
+				dbug('m3');
 				$u=urldecode($um[1]);
 				$foundArray[$tm[1]]=$u;
 			}

@@ -37,7 +37,7 @@ iframe.src = 'javascript:\'<embed src="/util/fla/f/http://played.to/1234" name="
 class Allmyvideosnet extends cadena{
 
 function calcula(){
-	if(!enString($this->web_descargada, '<Form name="F1" method="POST" action=\'\'>')){
+	if(!preg_match('#<form name="F1" method="POST" action=\'\'>#i', $this->web_descargada)){
 		setErrorWebIntera('No se encuentra ningún vídeo');
 		return;
 	}
