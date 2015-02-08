@@ -87,6 +87,11 @@ function calcula(){
 			$titulo = json_decode('"'.$titulo.'"');
 			dbug_($titulo);
 			
+			// buscar si es una parte.
+			if (enString($this->web_descargada, '<li class="player--nav-item-active">')) {
+				$titulo .= ', parte '.trim(strip_tags(entre1y2($this->web_descargada, '<li class="player--nav-item-active">', '</li')));
+			}
+			
 			$descripcion = entre1y2($this->web_descargada, '"clip_descr":"','"');
 			$descripcion = json_decode('"'.$descripcion.'"');
 			dbug_($descripcion);

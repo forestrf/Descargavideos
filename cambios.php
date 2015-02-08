@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'8-Febrero-2015'
+,'fix:Vídeos de telemundo con varias partes ahora funcionan (hay que descargar las partes individualmente).'
+);
+
+$todos[]=array(
 '4-Febrero-2015'
 ,'fix:RTVE.es vuelve a funcionar.'
 ,'fix:ccma.cat (TV3) soporte para multiples vídeos en una página. Mejor detección de los vídeos en lugar de fallar.'
@@ -26,7 +31,7 @@ $todos[]=array(
 '3-Febrero-2015'
 ,'add:ondaluz.tv'
 ,'add:Youtube 1080p WebM (Vídeo solo).'
-,'fix:Vuelve a aparecer la opción Audio WebM  (Audio solo).'
+,'fix:Vuelve a aparecer la opción Audio WebM (Audio solo).'
 ,'fix:RTVE.es, detección del vídeo principal en páginas genéricas (sin reproductor del vídeo en cuestión).'
 ,'fix:RTVE.es, audios ahora con título e imagen.'
 );
