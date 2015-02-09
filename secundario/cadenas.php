@@ -382,4 +382,10 @@ $cadenas = array(
 		'Ondaluztv',
 		'calcula'
 	)
+	,array(
+		array('mundofox.com', 'noticiasmundofox.com'),
+		array('mundofoxcom.php'),
+		'Mundofoxcom',
+		'calcula'
+	)
 );

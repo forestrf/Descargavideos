@@ -96,7 +96,7 @@ function entre1y2_a(&$que, $desfaseInicio=0, $start, $fin = null){
 	if(is_int($start))
 		$p = $start;
 	else
-		$p = strposF($que, $start, $desfaseInicio);
+		$p = strposF($que, $start, is_int($desfaseInicio) ? $desfaseInicio : strposF($que, $desfaseInicio));
 	if ($fin === null)
 		return substr($que, $p);
 	if(is_int($fin))

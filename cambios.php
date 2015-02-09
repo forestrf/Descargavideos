@@ -16,6 +16,12 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'9-Febrero-2015'
+,'add:mundofox.com.'
+,'add:noticiasmundofox.com'
+);
+
+$todos[]=array(
 '8-Febrero-2015'
 ,'fix:Vídeos de telemundo con varias partes ahora funcionan (hay que descargar las partes individualmente).'
 );
