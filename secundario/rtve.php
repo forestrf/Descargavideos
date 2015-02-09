@@ -203,6 +203,8 @@ if(isset($asset)){
 	}
 }
 
+$obtenido['alerta_especifica'] = 'Si no funciona el enlace intenta descargarlo de nuevo dentro de varios minutos.';
+
 finalCadena($obtenido, false);
 }
 
