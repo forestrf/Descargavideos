@@ -120,7 +120,6 @@ function generaInnerResultado(){
 			
 			$R2['dir_resultado']                               = $url;
 			$R2['dir_resultado_reproductor']                   = urlencode($url);
-			$R2['dir_resultado_urlencode']                     = urlencode($url);
 			$R2['dir_resultado_txt']                           = htmlentities2($url_txt, ENT_QUOTES);
 			$R2['dir_resultado_rtmpdump_manual']               = $rtmpdump;
 			$R2['dir_resultado_rtmpdump_manual_esc_doblecoma'] = htmlentities2($rtmpdump, ENT_QUOTES);
