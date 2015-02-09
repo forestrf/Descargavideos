@@ -19,6 +19,8 @@ $todos[]=array(
 '9-Febrero-2015'
 ,'add:mundofox.com.'
 ,'add:noticiasmundofox.com'
+,'fix:Mundofox resultados sin descarga directa en lugar de fallar se pueden descargar por m3u8.'
+,'fix:Mundofox algunas imágenes no funcionaban.'
 );
 
 $todos[]=array(

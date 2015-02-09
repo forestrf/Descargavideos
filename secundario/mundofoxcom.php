@@ -222,7 +222,13 @@ function calcula(){
 	dbug_($res);
 	
 	$titulo = entre1y2($res, '<title>','</');
-	$imagen = entre1y2_a($res, 'previewImages', '<url>', '</');
+	if (enString($res, 'previewImages')) {
+		$imagen = entre1y2_a($res, 'previewImages', '<url>', '</');
+	} else {
+		preg_match('#<promo>.*:([a-zA-Z0-9]+?)<#', $res, $matches);
+		dbug_r($matches);
+		$imagen = entre1y2($res, '<shelfDomain>','<') . '/' . $embedCode . '/' . $matches[1];
+	}
 	
 	$obtenido=array(
 		'titulo'  => $titulo,
