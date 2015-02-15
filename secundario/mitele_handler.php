@@ -30,7 +30,7 @@ if(isset($_GET['fullinfo'])){
 }
 
 
-
+//var_dump($_GET);
 //Este imprime la url (rtmpdump comando) y sale.
 if(isset($_GET['rtmp'])){
 	if(isset($_GET['id'])){

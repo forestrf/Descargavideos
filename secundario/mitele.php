@@ -332,10 +332,8 @@ function mitele2($id, $tokenN=1){
 	dbug('clock: '.$clock);
 
 	$text=$clock.';'.$id.';0;0';
-	$key='xo85kT+QHz3fRMcHMXp9cA';
-
 	dbug('a encriptar: '.$text);
-	$encriptado=AesCtr::encrypt($text,$key,256);
+	$encriptado=self::encriptar_mitele($text);
 	$extra = 'hash='.urlencode($encriptado);
 	
 	$hders=array(
@@ -453,5 +451,15 @@ function finalCadenaMiteleRTMP($id, $titulo, $extra=''){
 		'nombre_archivo'	=> generaNombreWindowsValido($titulo).'.mp4'
 	);
 }
+
+static function encriptar_mitele($txt) {
+	$key='xo85kT+QHz3fRMcHMXp9cA';
+	return AesCtr::encrypt($txt,$key,256);
+}
+static function desencriptar_mitele($txt) {
+	$key='xo85kT+QHz3fRMcHMXp9cA';
+	return AesCtr::decrypt($txt,$key,256);
+}
+
 
 }

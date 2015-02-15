@@ -91,10 +91,10 @@ $post = brightcove_encode($a_encodear);
 
 dbug('a descargar: '.$messagebroker);
 /*$t=brightcove_curl_web("http://forestrf.no-ip.org/",$post); //borrar, es una prueba
-dbug($t);
+dbug_($t);
 exit;*/
 $t=brightcove_curl_web($messagebroker,$post);
-dbug($t);
+dbug_($t);
 
 $res_decoded=brightcove_decode($t);
 dbug("PRIMERA RESPUESTA BRIGHTCOVE:");

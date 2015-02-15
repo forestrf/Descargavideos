@@ -89,8 +89,12 @@ $post = brightcove_encode($a_encodear);
 
 
 dbug('a descargar: '.$messagebroker);
-$t=brightcove_curl_web($messagebroker,$post);
-dbug($t);
+$r=array(
+	"Connection: close",
+	"Content-type: application/x-amf"
+);
+$t=CargaWebCurlProxy($messagebroker,'ESP',$post,$r);
+dbug_($t);
 
 $res_decoded=brightcove_decode($t);
 dbug('PRIMERA RESPUESTA BRIGHTCOVE:');

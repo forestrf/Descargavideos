@@ -52,7 +52,7 @@ $t=curl_exec($ch);
 if(curl_errno($ch))dbug('Curl error: '.curl_error($ch));
 
 curl_close($ch);
-dbug($t);
+dbug_($t);
 exit;
 */
 
