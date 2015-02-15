@@ -160,5 +160,6 @@ A continuación se puede ver el listado de las webs y los canales soportados:<br
 	<li>ondaluz.tv</li>
 	<li>mundofox.com</li>
 	<li>noticiasmundofox.com</li>
+	<li>boing.wardcampbell.com</li>
 </ol>
 </div>

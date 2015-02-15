@@ -388,4 +388,10 @@ $cadenas = array(
 		'Mundofoxcom',
 		'calcula'
 	)
+	,array(
+		array('wardcampbell.com'),
+		array('boingwardcampbellcom.php'),
+		'BoingWardcampbellcom',
+		'calcula'
+	)
 );

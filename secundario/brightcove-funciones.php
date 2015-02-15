@@ -87,21 +87,27 @@ function URLSDelArrayBrightCove($r, $tipo, &$obtenido_enlaces, $titulo){
 			dbug_($_r);
 			dbug_($_y);
 			dbug_($_ry);
-			$obtenido_enlaces[]=array(
+			$elem=array(
 				'calidad_ordenar'=>$r["encodingRate"],
-				'titulo'   => 'Calidad: '.floor($r["encodingRate"]/1000)." Kbps",
 				'url'      => $r["defaultURL"],
 				'tipo'     => $tipo,
 				'rtmpdump' => '-r "'.$_r.$_ry.'" -y "'.$_y.$_ry.'" -o "'.$titulo.'.mp4"'
 			);
+			if ($r["encodingRate"] != 0) {
+				$elem['titulo'] = 'Calidad: '.floor($r["encodingRate"]/1000)." Kbps";
+			}
+			$obtenido_enlaces[] = $elem;
 		}
 		else{
-			$obtenido_enlaces[]=array(
+			$elem=array(
 				'calidad_ordenar'=>$r["encodingRate"],
-				'titulo' => 'Calidad: '.floor($r["encodingRate"]/1000)." Kbps",
 				'url'    => $r["defaultURL"],
 				'tipo'   => $tipo
 			);
+			if ($r["encodingRate"] != 0) {
+				$elem['titulo'] = 'Calidad: '.floor($r["encodingRate"]/1000)." Kbps";
+			}
+			$obtenido_enlaces[] = $elem;
 		}
 	}
 }
