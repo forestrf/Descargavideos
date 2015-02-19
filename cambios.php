@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'19-Febrero-2015'
+,'fix:RTVE.es vuelve a funcionar.'
+);
+
+$todos[]=array(
 '15-Febrero-2015'
 ,'add:boing.wardcampbell.com.'
 );

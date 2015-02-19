@@ -217,8 +217,8 @@ function quita_geobloqueo($url){
 		}
 	}
 	$url = strtr($url, array(
-		'flash.akamaihd.net'=>'mvod.akcdn'
-		,'flash1.akamaihd.net'=>'mvod.akcdn'
+		'flash.akamaihd.net'=>'mvod.lvlt'
+		,'flash1.akamaihd.net'=>'mvod.lvlt'
 	));
 	return $url;
 }
@@ -286,10 +286,6 @@ function convierteID($asset,$modo=array('video','audio')){
 
 function encuentraAssetEnContenido($web_descargada){
 	$asset = "Por rellenar";
-	if (preg_match('#class="M[ "][\s\S]*?<a href=.*/([0-9]+)/#', $web_descargada, $matches)) {
-		dbug_r($matches);
-		$asset = $matches[1];
-	}
 	dbug('asset, prueba 0: '.$asset);
 	if(stringContains($asset,array('"','{','}','<','>',' ')) && enString($web_descargada, "assetID=")){
 		$asset=entre1y2($web_descargada,'assetID=','_');
@@ -331,6 +327,10 @@ function encuentraAssetEnContenido($web_descargada){
 		preg_match_all('@/(\d+)/@', $this->web, $matches);
 		$asset=$matches[1][0];
 		dbug('asset, prueba 3 (de la url): '.$asset);
+	}
+	if (!is_numeric($asset) && preg_match('#class="M[ "][\s\S]*?<a href=.*/([0-9]+)/#', $web_descargada, $matches)) {
+		dbug_r($matches);
+		$asset = $matches[1];
 	}
 	
 	dbug('asset='.$asset);
