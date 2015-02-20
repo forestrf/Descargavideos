@@ -372,11 +372,11 @@ function CargaWebCurlProxy($web,$pais='ESP',$post='',$cabeceras=array()){
 		return CargaWebCurl($web,$post,0,'',$cabeceras);
 	}
 	
-	dbug($redir);
+	dbug_($redir);
 	$cabecerasString = implode("\r\n",$cabeceras)."\r\n";
 	
 	$urlPreparada = $redir.urlencode($web).($post!=''?'&p='.urlencode(base64_encode($post)):'').(count($cabeceras)?'&h='.urlencode(base64_encode($cabecerasString)):'');
-	dbug($urlPreparada);
+	dbug_($urlPreparada);
 	dbug('<a href="'.$urlPreparada.'">'.$urlPreparada.'</a>');
 
 	$retfull=CargaWebCurl($urlPreparada);

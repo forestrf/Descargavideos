@@ -210,16 +210,10 @@ finalCadena($obtenido, false);
 
 // Ya no quita geobloqueo, retorna la url tal cual
 function quita_geobloqueo($url){
-	if(enString($url, 'mvodt.lvlt')){
-		$url = strtr($url, array('mvodt.lvlt'=>'mvod.akcdn'));
-		if(enString($url, '?')){
-			$url = substr($url, 0, strpos($url, '?'));
-		}
+	if(enString($url, '?')){
+		$url = substr($url, 0, strpos($url, '?'));
 	}
-	$url = strtr($url, array(
-		'flash.akamaihd.net'=>'mvod.lvlt'
-		,'flash1.akamaihd.net'=>'mvod.lvlt'
-	));
+	$url = preg_replace('#//.*?.rtve.es#', '//media1.rtve.es', $url);
 	return $url;
 }
 
