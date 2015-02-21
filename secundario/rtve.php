@@ -375,4 +375,14 @@ static function b64d($encoded){
 
 }
 
+/*
+Hola, vera he estado desde ayer intentando descargar capítulos de la serie de amar en tiempos revueltos usando su página web y me ha sido imposible, me sale todo el rato “Access Denied”.
+Hoy lo he conseguido de una forma muy simple, le cuento como lo he hecho por si sirviese de ayuda:
+He pegado este link (en su página): http://www.rtve.es/alacarta/videos/amar-en-tiempos-revueltos/amar-tiempos-revueltos-t7-capitulo-200/1441367/
+Y me ha devuelto: http://mvod.akcdn.rtve.es/resources/TE_NGVA/mp4/0/6/1340123093060.mp4
+Al intentar descargarlo así, no funciona, sale acceso denegado.
+Pero si pongo directamente el dominio http://www.rtve.es/ y pego detrás la dirección de esta forma http://www.rtve.es/resources/TE_NGVA/mp4/0/6/1340123093060.mp4 quitando “mvod.akcdn.” si se descarga sin ningún problema.
+Un saludo.
+*/
+
 ?>
