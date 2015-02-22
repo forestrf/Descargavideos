@@ -4,7 +4,8 @@
 Dominio(s)
 PHP(s) a incluir
 Class a crear
-Función del objeto de la class a llamar
+Función del objeto de la class a llamar en caso de llamar normal
+Función del objeto de la class a llamar en caso de llamar por bookmarklet. Puede no tener
 */
 $cadenas = array(
 	array(
@@ -314,7 +315,8 @@ $cadenas = array(
 		array('dailymotion.com'),
 		array('dailymotioncom.php'),
 		'Dailymotioncom',
-		'calcula'
+		'calcula',
+		'bookmarklet'
 	)
 	,array(
 		array('liveleak.com'),

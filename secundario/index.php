@@ -60,11 +60,15 @@ header('Pragma: no-cache');
 
 //recogemos variables
 if(!isset($web)){
-	if(isset($_GET['web']))
-		$web=$_GET['web'];
+	if(isset($_REQUEST['web']))
+		$web=$_REQUEST['web'];
 	else
 		$web='';
 }
+
+
+define('BM', isset($_POST['bookmarklet']));
+dbug(BM ? 'BM true' : 'BM false');
 
 
 //API. devolver SOLO el enlace (1/2)
@@ -101,7 +105,7 @@ if(!isset($modo)){
 
 
 
-
+// Peligroso
 if(isset($_GET['plantilla']))
 	$path_plantilla='plantillas/'.$_GET['plantilla'].'/';
 elseif(MODO_API){
@@ -158,7 +162,7 @@ if($modo==1){
 	if(trim($web) === ''){
 		setErrorWebIntera('Especifique la dirección de la web que contiene el vídeo.');
 	}
-	elseif(validar_enlace($web)){
+	elseif(BM || validar_enlace($web)){
 		//La función anterior, si es exitosa, finaliza la web. Si falla (url de un server no válido o la función del canal se acabó antes de lo previsto, se ejecuta lo próximo
 		$cadena_elegida_arr = averiguaCadena($web);
 		if($cadena_elegida_arr===false){
@@ -170,7 +174,7 @@ if($modo==1){
 		else{
 			$intentos = 3;
 			$intento = 0;
-			$exito = false;
+			$exito = false || BM;
 			
 			// url_exists_full descarga la web para comprobar si es un enlace válido. De paso, guarda en web_descargada el resultado, para no tener que re-descargarlo inúltilmente
 			
@@ -182,41 +186,59 @@ if($modo==1){
 			}
 			
 			if($exito){
-				dbug('enlace correcto (se pudo abrir la URL)=>'.$web);
+				if (BM) 
+					dbug('enlace correcto (por BM)=>'.$web);
+				else
+					dbug('enlace correcto (se pudo abrir la URL)=>'.$web);
 				
-				// Includes
-				dbug('Incluyendo PHPs');
-				include 'cadena.class.php';
-				
-				for($k=0,$k_t=count($cadena_elegida_arr[1]);$k<$k_t;$k++){
-					dbug('Incluyendo: '.$cadena_elegida_arr[1][$k]);
-					include_once $cadena_elegida_arr[1][$k];
-				}
-				
-				//Crear objeto
-				$cadena = new $cadena_elegida_arr[2]();
-				$cadena->init($web, $web_descargada, $web_descargada_headers);
-				
-				// Lanzar función cadena
-				// Estas funciones pueden modificar el valor de web_descargada ya que se para por parámetro, pero no de web
-				dbug('Lanzando función cadena: '.$cadena_elegida_arr[3]);
-				dbug('--------------------------------------');
-				$cadena->$cadena_elegida_arr[3]();
-				
-				if($fallourlinterna==''){
-					if(!isset($resultado['enlaces']) || count($resultado['enlaces'])==0){
-						//no es una url aceptada de una web permitida
-						setErrorWebIntera('No se pudo encontrar ningún video o audio.');
-						dbug('URL correcta, de server soportado, pero no debería de haber nada dentro');
+				if (!BM || isset($cadena_elegida_arr[4])) {
+					// Includes
+					dbug('Incluyendo PHPs');
+					include 'cadena.class.php';
+					
+					for($k=0,$k_t=count($cadena_elegida_arr[1]);$k<$k_t;$k++){
+						dbug('Incluyendo: '.$cadena_elegida_arr[1][$k]);
+						include_once $cadena_elegida_arr[1][$k];
 					}
-					else{
-						// Tenemos resultado
-						
-						generaR();
-						
-						global $Cadena_elegida;
-						saveDownload($Cadena_elegida, $web, $resultado['titulo']);
+					
+					// Si la llamada es del bookmarklet usar los parámetros del mismo
+					if (BM) {
+						$web_descargada = $_POST['src'];
 					}
+					
+					//Crear objeto
+					$cadena = new $cadena_elegida_arr[2]();
+					$cadena->init($web, $web_descargada, $web_descargada_headers);
+					
+					// Lanzar función cadena
+					// Estas funciones pueden modificar el valor de web_descargada ya que se para por parámetro, pero no de web
+					if (BM) {
+						dbug('Lanzando función cadena: '.$cadena_elegida_arr[4]);
+						dbug('--------------------------------------');
+						$R['BM2_JS'] = $cadena->$cadena_elegida_arr[4]();
+					} else {
+						dbug('Lanzando función cadena: '.$cadena_elegida_arr[3]);
+						dbug('--------------------------------------');
+						$cadena->$cadena_elegida_arr[3]();
+					
+						if($fallourlinterna==''){
+							if(!isset($resultado['enlaces']) || count($resultado['enlaces'])==0){
+								//no es una url aceptada de una web permitida
+								setErrorWebIntera('No se pudo encontrar ningún video o audio.');
+								dbug('URL correcta, de server soportado, pero no debería de haber nada dentro');
+							}
+							else{
+								// Tenemos resultado
+								
+								generaR();
+								
+								global $Cadena_elegida;
+								saveDownload($Cadena_elegida, $web, $resultado['titulo']);
+							}
+						}
+					}
+				} else {
+					$R['BM2_JS'] = 'document.location = "http://www.descargavideos.tv/web/bookmarklet/?web=' . urlencode($web) . '";';
 				}
 			}
 			else{
@@ -234,7 +256,7 @@ if($modo==1){
 		//setErrorWebIntera('URL no válida');
 		lanzaBusquedaGoogle($web);
 	}
-	if(defined('DEBUG')){
+	if(defined('DEBUG') && !BM){
 		dbug('-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_');
 		dbug('DEBUG en marcha, terminando.');
 		exit;
@@ -364,7 +386,7 @@ function averiguaCadena($web){
 	dbug('averiguando cadena');
 	for($i=0,$i_t=count($cadenas); $i<$i_t; $i++)
 		for($j=0,$j_t=count($cadenas[$i][0]); $j<$j_t; $j++){
-			$pattern="@^https?://(([^/^\.]+\.)*?".strtr($cadenas[$i][0][$j], array('.'=>'\\.')).")(/.*)?$@i";
+			$pattern="@^(?:https?:)?//(([^/^\.]+\.)*?".strtr($cadenas[$i][0][$j], array('.'=>'\\.')).")(/.*)?$@i";
 			preg_match($pattern, $web, $matches);
 			if($matches){
 				//Cadena encontrada
