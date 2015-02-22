@@ -10,7 +10,7 @@ define('DEBUG', true);
 
 
 <form method="post" action="">
-	<textarea name="id" cols="50" rows="5"><?php echo isset($_POST["id"]) ? $_POST["id"] : ''?></textarea>
+	<input type="text" name="id" size="50" value="<?php echo isset($_POST["id"]) ? $_POST["id"] : ''?>">
 	<input type="submit" value="Encriptar y enviar">
 </form />
 
@@ -20,6 +20,7 @@ $mitele = new Mitele();
 
 if (isset($_POST['id'])) {
 	dbug($mitele->mitele2($_POST['id']));
+	dbug('-----------------------------------------------------------');
 	dbug($mitele->mitele8($_POST['id']));
 }
 	

@@ -210,6 +210,7 @@ finalCadena($obtenido, false);
 
 // Ya no quita geobloqueo, retorna la url tal cual
 function quita_geobloqueo($url){
+	if (strpos($url, '.mp3') !== false) return $url;
 	if(enString($url, '?')){
 		$url = substr($url, 0, strpos($url, '?'));
 	}

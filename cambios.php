@@ -16,12 +16,17 @@ function cambios($max=-1){
 
 
 $todos[]=array(
-'19-Febrero-2015'
-,'fix:RTVE.es vuelto a cambiar para que funcione.'
+'22-Febrero-2015'
+,'fix:RTVE audio vuelve a funcionar.'
 );
 
 $todos[]=array(
 '21-Febrero-2015'
+,'fix:RTVE.es vuelto a cambiar para que funcione.'
+);
+
+$todos[]=array(
+'19-Febrero-2015'
 ,'fix:RTVE.es vuelve a funcionar.'
 );
 
