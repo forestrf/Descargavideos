@@ -45,6 +45,7 @@ Util:<br/>
 <a href="util/rtve_test.php" target="blank">rtve_test</a><br/>
 <a href="util/mitele_test.php" target="blank">mitele_test</a><br/>
 <a href="util/swf-resquests.php" target="blank">swf-resquests</a><br/>
+<a href="util/test-curlproxy.php" target="blank">test-curlproxy</a><br/>
 <br/>
 <table border="1">
 	<tr>

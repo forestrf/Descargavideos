@@ -324,7 +324,16 @@ function carga_web_curl_obtenida($url='',$post='',$cookie='',$cabeceras=array(),
 	return '';
 }
 
+$cargawebcurl_proxyarray = array(
+	'http://descvid.webcindario.com/'
+	,'http://vddvd.webcindario.com/'
+	,'http://jorll.webcindario.com/'
+	,'http://omgrolff.webcindario.com/'
+	,'http://descv.webcindario.com/'
+);
+
 function CargaWebCurlProxy($web,$pais='ESP',$post='',$cabeceras=array()){
+	global $cargawebcurl_proxyarray;
 	$redir='';
 	$actualizaredir='';
 	
@@ -335,33 +344,9 @@ function CargaWebCurlProxy($web,$pais='ESP',$post='',$cabeceras=array()){
 	
 	switch ($pais) {
 	case 'ESP':
-		$rand = rand(1, 5);
-		switch($rand){
-			case 1:
-				$redir='http://descvid.webcindario.com/redir.php?a=';
-				$actualizaredir='http://descvid.webcindario.com/actualizar.php';
-			break;
-			
-			case 2:
-				$redir='http://vddvd.webcindario.com/redir.php?a=';
-				$actualizaredir='http://vddvd.webcindario.com/actualizar.php';
-			break;
-			
-			case 3:
-				$redir='http://jorll.webcindario.com/redir.php?a=';
-				$actualizaredir='http://jorll.webcindario.com/actualizar.php';
-			break;
-			
-			case 4:
-				$redir='http://omgrolff.webcindario.com/redir.php?a=';
-				$actualizaredir='http://omgrolff.webcindario.com/actualizar.php';
-			break;
-			
-			case 5:
-				$redir='http://descv.webcindario.com/redir.php?a=';
-				$actualizaredir='http://descv.webcindario.com/actualizar.php';
-			break;
-		}
+		$rand = rand(0, count($cargawebcurl_proxyarray) - 1);
+		$redir          = $cargawebcurl_proxyarray[$rand] . 'redir.php?a=';
+		$actualizaredir = $cargawebcurl_proxyarray[$rand] . 'actualizar.php';
 		break;
 	case 'MX':
 		return CargaWebCurl('http://proxymexico.com/includes/process.php?action=update', 'u='.urlencode($web).($post!==''?('&'.$post):''), false, '', array_merge($cabeceras, array('Referer: http://proxymexico.com/')));
