@@ -3,7 +3,7 @@
 include_once 'definiciones.php';
 
 //necesario la variable modo y que haya referer
-if(!isset($_GET['modo'])||!isset($_SERVER['HTTP_REFERER']))
+if(!isset($_REQUEST['modo'])||!isset($_SERVER['HTTP_REFERER']))
 	fin();
 
 
@@ -25,7 +25,7 @@ $pag='blog_descargavideos';
 if($pag=="")
 	fin();
 
-$modo=$_GET['modo'];
+$modo=$_REQUEST['modo'];
 
 //Cookie de sesion
 if($modo == "escritorio"){

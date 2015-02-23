@@ -1,27 +1,17 @@
-// Hacer asíncrono por si acaso necesitamos hacer xhr
+// Hacer asÃ­ncrono por si acaso necesitamos hacer xhr
 
 console.log("Cargando Descargavideos");
 
-function bookmarklet(){
-	lanzaDV(document.location, document.body.innerHTML);
+function bookmarklet_xhr(){
+	lanzaDVxhr(document.location, document.body.innerHTML);
 }
-
-function llamaDV(formData) {
-	xhr(
-		'//localhost/bm2.php',
-		formData,
-		function (data) {
-			console.log(data);
-			eval(data);
-		},
-		function () {
-			alert("Descargavideos ha fallado");
-		}
-	);
+function bookmarklet_form(){
+	lanzaDVform(document.location, document.body.innerHTML);
 }
 
 
-bookmarklet();
+
+bookmarklet_xhr();
 
 
 // -----------------------------------------------------------------------------------------------
@@ -51,15 +41,50 @@ function xhr(url, data, callbackOK, callbackFAIL) {
 			}
 		}
 	};
-	
+
 	if (postMode) {
 		x.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		x.send(data);
 	} else x.send();
 }
 
-function lanzaDV(web, contenidoWeb) {
-	var formData = "bookmarklet=1&web=" + encodeURIComponent(web) + "&src=" + encodeURIComponent(contenidoWeb);
+function lanzaDVxhr(web, contenidoWeb) {
+	xhr(
+		'//localhost/bm2.php',
+		"bookmarklet=1&web=" + encodeURIComponent(web) + "&src=" + encodeURIComponent(contenidoWeb),
+		function (data) {
+			console.log(data);
+			eval(data);
+		},
+		function () {
+			alert("Descargavideos ha fallado");
+		}
+	);
+}
 
-	llamaDV(formData);
+function lanzaDVform(web, contenidoWeb) {
+	var form = document.createElement("form");
+	form.setAttribute("method", "post");
+	form.setAttribute("action", "//localhost/web/bookmarklet/");
+
+	var hiddenField = document.createElement("input");
+	hiddenField.setAttribute("type", "hidden");
+	hiddenField.setAttribute("name", "web");
+	hiddenField.setAttribute("value", web);
+	form.appendChild(hiddenField);
+
+	hiddenField = document.createElement("input");
+	hiddenField.setAttribute("type", "hidden");
+	hiddenField.setAttribute("name", "src");
+	hiddenField.setAttribute("value", contenidoWeb);
+	form.appendChild(hiddenField);
+	
+	hiddenField = document.createElement("input");
+	hiddenField.setAttribute("type", "hidden");
+	hiddenField.setAttribute("name", "bmgenerated");
+	hiddenField.setAttribute("value", "true");
+	form.appendChild(hiddenField);
+
+	document.body.appendChild(form);
+	form.submit();
 }

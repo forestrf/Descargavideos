@@ -70,6 +70,9 @@ if(!isset($web)){
 define('BM', isset($_POST['bookmarklet']));
 dbug(BM ? 'BM true' : 'BM false');
 
+define('POST_BM', !BM && isset($_POST['bmgenerated']));
+dbug(BM ? 'POST_BM true' : 'POST_BM false');
+
 
 //API. devolver SOLO el enlace (1/2)
 if(!defined('MODO_API')){
@@ -93,8 +96,8 @@ $path_plantilla='';
 
 
 if(!isset($modo)){
-	if(isset($_GET['modo'])){
-		$modo=$_GET['modo'];
+	if(isset($_REQUEST['modo'])){
+		$modo=$_REQUEST['modo'];
 		if($modo != 1 && $modo != 2){
 			$modo = 1;
 		}
@@ -202,7 +205,7 @@ if($modo==1){
 					}
 					
 					// Si la llamada es del bookmarklet usar los parámetros del mismo
-					if (BM) {
+					if (BM || POST_BM) {
 						$web_descargada = $_POST['src'];
 					}
 					
@@ -217,6 +220,10 @@ if($modo==1){
 						dbug('--------------------------------------');
 						$R['BM2_JS'] = $cadena->$cadena_elegida_arr[4]();
 					} else {
+						if (POST_BM) {
+							$cadena->set_normal_desde_bookmarklet();
+						}
+						
 						dbug('Lanzando función cadena: '.$cadena_elegida_arr[3]);
 						dbug('--------------------------------------');
 						$cadena->$cadena_elegida_arr[3]();

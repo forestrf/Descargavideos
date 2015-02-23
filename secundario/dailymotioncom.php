@@ -31,10 +31,65 @@ function calcula(){
 	*/
 	if(strpos($this->web, 'http://www.dailymotion.com/embed/') === 0){
 		dbug('embed');
-		$preweb = entre1y2($this->web_descargada, 'var info = ',",\n");
-		$preweb = json_decode($preweb, true);
-		dbug_r($preweb);
-		$this->web_descargada = CargaWebCurl($preweb['url']);
+		if ($this->normal_desde_bookmarklet) {
+			dbug('embed');
+			$info = entre1y2($this->web_descargada, 'var info = ', ",\n");
+			$info = json_decode($info, true);
+			dbug_r($info);
+			$webPrincipal = CargaWebCurl($info['url']);
+			
+			$urlContenedor = urldecode(entre1y2($webPrincipal, 'sequence=','"'));
+			//dbug_($urlContenedor);
+			
+			$jsonUrlContenedor = json_decode($urlContenedor, true);
+			//dbug_r($jsonUrlContenedor);
+			
+			$obtenido=array(
+				'titulo'  => entre1y2($this->web_descargada, 'title>','<'),
+				'imagen'  => strtr(entre1y2($this->web_descargada, '"thumbnail_url":"','"'), array('\\'=>'')),
+				'enlaces' => array()
+			);
+			
+			/*
+			"stream_h264_url",
+			"stream_h264_ld_url",
+			"stream_h264_hq_url",
+			"stream_h264_hd_url",
+			"stream_h264_hd1080_url",
+			"stream_audio_url"
+			
+			"stream_live_hls_url"
+			*/
+			
+			$posibilidades = array(
+				'1080p' => 'stream_h264_hd1080_url',
+				'720p' => 'stream_h264_hd_url',
+				'480p' => 'stream_h264_hq_url',
+				'360p' => 'stream_h264_url',
+				'240p' => 'stream_h264_ld_url'/*,
+				'' => 'stream_audio_url'*/
+			);
+			
+			foreach($posibilidades as $nombre=>$calidad){
+				if(enString($this->web_descargada, $calidad.'":"h')){
+				$url = strtr(entre1y2($this->web_descargada, $calidad.'":"','"'), array('\\'=>''));
+				dbug('url '.$nombre.': '.$url);
+					$obtenido['enlaces'][] = array(
+						'titulo'  => $nombre,
+						'url'     => $url,
+						'url_txt' => 'Descargar',
+						'tipo'    => 'http'
+					);
+				}
+			}
+			finalCadena($obtenido, false);
+			return;
+		} else {
+			$preweb = entre1y2($this->web_descargada, 'var info = ',",\n");
+			$preweb = json_decode($preweb, true);
+			dbug_r($preweb);
+			$this->web_descargada = CargaWebCurl($preweb['url']);
+		}
 	}
 	
 	$urlContenedor = urldecode(entre1y2($this->web_descargada, 'sequence=','"'));
@@ -89,59 +144,8 @@ function parseaTemplateDailyMotion($url){
 
 function bookmarklet() {
 	if(strpos($this->web, 'http://www.dailymotion.com/embed/') === 0){
-		dbug('embed');
-		$info = entre1y2($this->web_descargada, 'var info = ', ",\n");
-		$info = json_decode($info, true);
-		dbug_r($info);
-		$webPrincipal = CargaWebCurl($info['url']);
-		
-		$urlContenedor = urldecode(entre1y2($webPrincipal, 'sequence=','"'));
-		//dbug_($urlContenedor);
-		
-		$jsonUrlContenedor = json_decode($urlContenedor, true);
-		//dbug_r($jsonUrlContenedor);
-		
-		$obtenido=array(
-			'titulo'  => entre1y2($ret, 'title>','<'),
-			'imagen'  => strtr(entre1y2($ret, '"thumbnail_url":"','"'), array('\\'=>'')),
-			'enlaces' => array()
-		);
-		
-		/*
-		"stream_h264_url",
-		"stream_h264_ld_url",
-		"stream_h264_hq_url",
-		"stream_h264_hd_url",
-		"stream_h264_hd1080_url",
-		"stream_audio_url"
-		
-		"stream_live_hls_url"
-		*/
-		
-		$posibilidades = array(
-			'1080p' => 'stream_h264_hd1080_url',
-			'720p' => 'stream_h264_hd_url',
-			'480p' => 'stream_h264_hq_url',
-			'360p' => 'stream_h264_url',
-			'240p' => 'stream_h264_ld_url'/*,
-			'' => 'stream_audio_url'*/
-		);
-		
-		foreach($posibilidades as $nombre=>$calidad){
-			if(enString($ret, $calidad.'":"h')){
-			$url = strtr(entre1y2($ret, $calidad.'":"','"'), array('\\'=>''));
-			dbug('url '.$nombre.': '.$url);
-				$obtenido['enlaces'][] = array(
-					'titulo'  => $nombre,
-					'url'     => $url,
-					'url_txt' => 'Descargar',
-					'tipo'    => 'http'
-				);
-			}
-		}
-		
-		
-		return print_r($obtenido);
+		dbug('Lanza resultado');
+		return 'bookmarklet_form();';
 	} else {
 		$urlContenedor = urldecode(entre1y2($this->web_descargada, 'sequence=', '"'));
 		//dbug_($urlContenedor);
@@ -152,7 +156,7 @@ function bookmarklet() {
 		$urlEmbed = entre1y2($jsonUrlContenedor['config']['sharing']['embedCode'], 'src="', '"');
 		
 		dbug('Pedir embed');
-		return 'xhr("'.$urlEmbed.'", null, function(data){lanzaDV("http:'.$urlEmbed.'", data);});';
+		return 'xhr("'.$urlEmbed.'", null, function(data){lanzaDVform("http:'.$urlEmbed.'", data);});';
 	}
 }
 
