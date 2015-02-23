@@ -260,7 +260,8 @@ $cadenas = array(
 		array('youtube.com'),
 		array('youtube.php','youtubehelper.php'),
 		'Youtubehelper',
-		'calcula'
+		'calcula',
+		'bookmarklet'
 	)
 	,array(
 		array('youtu.be'),

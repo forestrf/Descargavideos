@@ -19,6 +19,7 @@ $todos[]=array(
 '23-Febrero-2015'
 ,'add:Nuevo bookmarklet (V2) en pruebas, se encuentra en la <a href="/lab#lab_bookmarklet">página lab</a>.'
 ,'fix:Dailymotion mp4 en lugar de m3u8 usando el nuevo bookmarklet.'
+,'fix:Vídeos de YouTube que pueden verse pero aparecen como geobloqueados por Descargavídeos ahora funcionan usando el nuevo bookmarklet.'
 );
 
 $todos[]=array(

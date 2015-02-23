@@ -76,4 +76,8 @@ function calcula_urlAcortada(){
 	}
 }
 
+function bookmarklet() {
+	return 'bookmarklet_form();';
+}
+
 }

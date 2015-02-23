@@ -3,14 +3,14 @@
 console.log("Cargando Descargavideos");
 
 function bookmarklet_xhr(){
-	lanzaDVxhr(document.location, document.body.innerHTML);
+	lanzaDVxhr(document.location, document.documentElement.innerHTML);
 }
 function bookmarklet_form(){
-	lanzaDVform(document.location, document.body.innerHTML);
+	lanzaDVform(document.location, document.documentElement.innerHTML);
 }
 
 
-
+muestraAvisoDV();
 bookmarklet_xhr();
 
 
@@ -87,4 +87,28 @@ function lanzaDVform(web, contenidoWeb) {
 
 	document.body.appendChild(form);
 	form.submit();
+}
+
+function muestraAvisoDV() {
+	var divDV = document.createElement("div");
+	divDV.innerHTML = "Descargavídeos está cargado. Por favor, espere. Gracias";
+	divDV.style = "background-color: #82c7ff;\
+		border-bottom: 2px solid #006bff;\
+		color: #fff;\
+		font-size: 1.5em;\
+		height: 2em;\
+		left: 0;\
+		line-height: 2em;\
+		position: fixed;\
+		text-align: center;\
+		top: 0;\
+		transition: all 1s ease 0s;\
+		width: 100%;\
+		z-index: 2147483647;";
+	
+	document.body.appendChild(divDV);
+	
+	setTimeout(function(){
+		divDV.style.top = "-3em";
+	}, 3000);
 }
