@@ -50,7 +50,7 @@ function xhr(url, data, callbackOK, callbackFAIL) {
 
 function lanzaDVxhr(web, contenidoWeb) {
 	xhr(
-		'//localhost/bm2.php',
+		'//www.descargavideos.tv/bm2.php',
 		"bookmarklet=1&web=" + encodeURIComponent(web) + "&src=" + encodeURIComponent(contenidoWeb),
 		function (data) {
 			console.log(data);
@@ -65,7 +65,7 @@ function lanzaDVxhr(web, contenidoWeb) {
 function lanzaDVform(web, contenidoWeb) {
 	var form = document.createElement("form");
 	form.setAttribute("method", "post");
-	form.setAttribute("action", "//localhost/web/bookmarklet/");
+	form.setAttribute("action", "//www.descargavideos.tv/web/bookmarklet/");
 
 	var hiddenField = document.createElement("input");
 	hiddenField.setAttribute("type", "hidden");
