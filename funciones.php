@@ -526,4 +526,9 @@ function comprobarPais(){
 	return getCountryFromIP($_SERVER['REMOTE_ADDR']);
 }
 
+function bm_scape($web) {
+	return str_replace('"', '\"', $web);
+}
+
+
 ?>

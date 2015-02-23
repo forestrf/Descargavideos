@@ -147,16 +147,20 @@ function bookmarklet() {
 		dbug('Lanza resultado');
 		return 'bookmarklet_form();';
 	} else {
+		if (!enString($this->web_descargada, 'sequence=')) {
+			return 'xhr("' . bm_scape($this->web) . '", null, function(data){lanzaDVxhr("' . bm_scape($this->web) . '", data);});';
+		}
+		
 		$urlContenedor = urldecode(entre1y2($this->web_descargada, 'sequence=', '"'));
-		//dbug_($urlContenedor);
+		dbug_($urlContenedor);
 		
 		$jsonUrlContenedor = json_decode($urlContenedor, true);
-		//dbug_r($jsonUrlContenedor);
+		dbug_r($jsonUrlContenedor);
 		dbug_($jsonUrlContenedor['config']['sharing']['embedCode']);
 		$urlEmbed = entre1y2($jsonUrlContenedor['config']['sharing']['embedCode'], 'src="', '"');
 		
 		dbug('Pedir embed');
-		return 'xhr("'.$urlEmbed.'", null, function(data){lanzaDVform("http:'.$urlEmbed.'", data);});';
+		return 'xhr("' . bm_scape($urlEmbed) . '", null, function(data){lanzaDVform("http:' . bm_scape($urlEmbed) . '", data);});';
 	}
 }
 
