@@ -16,6 +16,12 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'23-Febrero-2015'
+,'add:Nuevo bookmarklet (V2) en pruebas, se encuentra en la <a href="/lab#lab_bookmarklet">página lab</a>.'
+,'fix:Dailymotion mp4 en lugar de m3u8 usando el nuevo bookmarklet.'
+);
+
+$todos[]=array(
 '22-Febrero-2015'
 ,'fix:RTVE audio vuelve a funcionar.'
 );
