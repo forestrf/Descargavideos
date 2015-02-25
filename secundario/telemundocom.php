@@ -133,6 +133,7 @@ function calcula(){
 			}
 		} else {
 			dbug('Adivinar urls a partir de la imagen');
+			dbug_($imagen);
 			
 			$posibles_calidades = array(
 				'4000',
@@ -151,18 +152,22 @@ function calcula(){
 				'200'
 			);
 			
-			$supuesta_url_base = entre1y2($imagen, 0, 'anvver');
-			$supuesta_url_base = str_replace('/image/', '/video/', $supuesta_url_base);
-			
-			for ($i = 0, $i_t = count($posibles_calidades); $i < $i_t; $i++) {
-				$obtenido['enlaces'][] = array(
-					'url'     => $supuesta_url_base . $posibles_calidades[$i] . '.mp4',
-					'url_txt' => 'Descargar en calidad ' . $posibles_calidades[$i],
-					'tipo'    => 'http'
-				);
+			if (preg_match('#[0-9]+x[0-9]+#', $imagen, $matches)) {
+				dbug_r($matches);
+				
+				$supuesta_url_base = entre1y2($imagen, 0, $matches[0]);
+				$supuesta_url_base = str_replace('/image/', '/video/', $supuesta_url_base);
+				
+				for ($i = 0, $i_t = count($posibles_calidades); $i < $i_t; $i++) {
+					$obtenido['enlaces'][] = array(
+						'url'     => $supuesta_url_base . $posibles_calidades[$i] . '.mp4',
+						'url_txt' => 'Descargar en calidad ' . $posibles_calidades[$i],
+						'tipo'    => 'http'
+					);
+				}
+				
+				$obtenido['alerta_especifica'] = 'No se ha podido encontrar ningún enlace para el vídeo pero alguno de los siguientes podría funcionar.';
 			}
-			
-			$obtenido['alerta_especifica'] = 'No se ha podido encontrar ningún enlace para el vídeo pero alguno de los siguientes podría funcionar.';
 		}
 		
 		

@@ -18,6 +18,7 @@ function cambios($max=-1){
 $todos[]=array(
 '25-Febrero-2015'
 ,'add:Nbcuniverso.com, soporte parcial y en pruebas.'
+,'fix:now.telemundo.com vuelve a funcionar (listado de posibles enlaces, no todos funcionan).'
 );
 
 $todos[]=array(
