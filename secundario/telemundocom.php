@@ -152,7 +152,7 @@ function calcula(){
 				'200'
 			);
 			
-			if (preg_match('#[0-9]+x[0-9]+#', $imagen, $matches)) {
+			if (preg_match('#anvver#', $imagen, $matches) || preg_match('#[0-9]+x[0-9]+#', $imagen, $matches)) {
 				dbug_r($matches);
 				
 				$supuesta_url_base = entre1y2($imagen, 0, $matches[0]);
