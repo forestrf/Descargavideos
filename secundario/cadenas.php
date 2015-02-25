@@ -397,4 +397,10 @@ $cadenas = array(
 		'BoingWardcampbellcom',
 		'calcula'
 	)
+	,array(
+		array('nbcuniverso.com'),
+		array('nbcuniversocom.php'),
+		'Nbcuniversocom',
+		'calcula'
+	)
 );

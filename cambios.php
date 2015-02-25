@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'25-Febrero-2015'
+,'add:Nbcuniverso.com, soporte parcial y en pruebas.'
+);
+
+$todos[]=array(
 '23-Febrero-2015'
 ,'add:Nuevo bookmarklet (V2) en pruebas, se encuentra en la <a href="/lab#lab_bookmarklet">página lab</a>.'
 ,'fix:Dailymotion mp4 en lugar de m3u8 usando el nuevo bookmarklet.'
