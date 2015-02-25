@@ -155,11 +155,22 @@ function univisionID($id) {
 			}
 		}
 		if (esVideoAudioAnon($urls[$i][0])) {
-			$tit = 'Calidad: ' . $urls[$i][1] . " Kbps";
-			$url = $urls[$i][0];
-			dbug($tit . " - " . $url);
+			$obtenido['enlaces'][] = array(
+				'url' => $urls[$i][0],
+				'url_txt' => 'Calidad: ' . $urls[$i][1] . " Kbps",
+				'tipo' => 'http'
+			);
+		}
+	}
 
-			array_push($obtenido['enlaces'], array('url' => $url, 'tipo' => 'http', 'url_txt' => $tit));
+	for ($i = 0, $ii = count($json['captions']); $i < $ii; $i++) {
+		if ($json['captions'][$i]['language'] === 'es') {
+			$url = $json['captions'][$i]['url'];
+			$obtenido['enlaces'][] = array(
+				'url_txt' => 'Subtítulos en formato ' . substr($url, strrposF($url, '.')),
+				'url' => $url,
+				'tipo' => 'srt'
+			);
 		}
 	}
 
