@@ -109,7 +109,7 @@ function entre1y2(&$que, $start, $fin = null){
 	return entre1y2_a($que, 0, $start, $fin);
 }
 
-function desde1a2_a(&$que, $desfaseInicio=0, $start, $fin, $incluyeFinal = false){
+function desde1a2_a(&$que, $desfaseInicio=0, $start, $fin = null, $incluyeFinal = false){
 	$t = entre1y2_a($que, $desfaseInicio, $start, $fin);
 	if ($incluyeFinal && !is_int($fin))
 		$t .= $fin;
@@ -117,7 +117,7 @@ function desde1a2_a(&$que, $desfaseInicio=0, $start, $fin, $incluyeFinal = false
 		return $start.$t;
 	return $t;
 }
-function desde1a2(&$que, $start, $fin, $incluyeFinal = false){
+function desde1a2(&$que, $start, $fin = null, $incluyeFinal = false){
 	return desde1a2_a($que, 0, $start, $fin, $incluyeFinal);
 }
 
