@@ -161,5 +161,6 @@ A continuación se puede ver el listado de las webs y los canales soportados:<br
 	<li>mundofox.com</li>
 	<li>noticiasmundofox.com</li>
 	<li>boing.wardcampbell.com</li>
+	<li>nbcuniverso.com</li>
 </ol>
 </div>

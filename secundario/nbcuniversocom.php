@@ -41,10 +41,60 @@ function calcula(){
 		dbug_($player);
 	}
 	
+	$obtenido['titulo']=$titulo;
+	
 	$ret = CargaWebCurl($player);
 	
 	$imagen = entre1y2($ret, '<meta property="og:image" content="', '"');
 	dbug_($imagen);
+	$obtenido['imagen']=$imagen;
+	
+	if (enString($this->web, '/now/')) {
+		$obtenido['alerta_especifica'] = 'No se ha podido encontrar ningún enlace para el vídeo pero alguno de los siguientes podría funcionar.';
+		
+		$urlNuevo = preg_replace('#http://.*?/image/#', 'https://tvenbcuniverso-vh.akamaihd.net/i/prod/video/', $imagen);
+		$urlViejo = preg_replace('#http://.*?/image/#', 'https://tvenbcuniverso-vh.akamaihd.net/i/prod/video/', $imagen);
+		
+		$nuevoAgregado = false;
+		if (preg_match('#anvver_([0-9])_#', $urlNuevo, $matches)) {
+			dbug_r($matches);
+			$urlNuevo = desde1a2($urlNuevo, 0, $matches[0]) . 'anvver_' . ($matches[1] - 1) . '_,40,25,18,12,7,4,2,00.mp4.csmil/master.m3u8';
+			dbug_($urlNuevo);
+			$obtenido['enlaces'][] = array(
+				'titulo' => 'Calidades nuevas',
+				'url' => $urlNuevo,
+				'tipo' => 'm3u8'
+			);
+			$nuevoAgregado = true;
+		}
+		
+		if (preg_match('#anvver#', $urlViejo, $matches) || preg_match('#[0-9]+x[0-9]+#', $urlViejo, $matches)) {
+			dbug_r($matches);
+			$urlViejo = entre1y2($urlViejo, 0, $matches[0]) . ',1696,1296,896,696,496,240,306,.mp4.csmil/master.m3u8';
+			dbug_($urlViejo);
+			$obtenido['enlaces'][] = array(
+				'titulo' => 'Calidades antiguas',
+				'url' => $urlViejo,
+				'tipo' => 'm3u8'
+			);
+			
+			if (!$nuevoAgregado) {
+				$urlNuevo = entre1y2($urlNuevo, 0, $matches[0]) . ',40,25,18,12,7,4,2,00.mp4.csmil/master.m3u8';
+				dbug_($urlNuevo);
+				$obtenido['enlaces'][] = array(
+					'titulo' => 'Calidades nuevas',
+					'url' => $urlNuevo,
+					'tipo' => 'm3u8'
+				);
+			}
+		}
+		
+		
+		
+		
+		finalCadena($obtenido,false);
+		return;
+	}
 	
 	
 	$releaseUrl = entre1y2($ret, 'releaseUrl="', '"');
@@ -54,10 +104,6 @@ function calcula(){
 	
 	$ret = CargaWebCurlProxy($releaseUrl, 'MX');
 	dbug_($ret);
-	
-	$obtenido['titulo']=$titulo;
-	$obtenido['imagen']=$imagen;
-	
 	
 	if (preg_match_all('@"(https?://[^"]+\.(?:mp4|flv).+?)".+?bitrate="(.+?)"@i', $ret, $matches)) {
 		dbug_r($matches);

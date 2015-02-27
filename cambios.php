@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'27-Febrero-2015'
+,'add:Nbcuniverso.com, soporte completo (Puede necesitar proxy y/o tener cuenta en la web.'
+);
+
+$todos[]=array(
 '25-Febrero-2015'
 ,'add:Nbcuniverso.com, soporte parcial y en pruebas.'
 ,'add:Subtítulos para Univisión'
