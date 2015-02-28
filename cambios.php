@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'28-Febrero-2015'
+,'fix:Algunos vídeos de rtve que funcionan usando flv ahora funcionan.'
+);
+
+$todos[]=array(
 '27-Febrero-2015'
 ,'add:Nbcuniverso.com, soporte completo (Puede necesitar proxy y/o tener cuenta en la web.'
 );
