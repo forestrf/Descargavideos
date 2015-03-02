@@ -349,7 +349,7 @@ function CargaWebCurlProxy($web,$pais='ESP',$post='',$cabeceras=array()){
 		$actualizaredir = $cargawebcurl_proxyarray[$rand] . 'actualizar.php';
 		break;
 	case 'MX':
-		return CargaWebCurl('http://proxymexico.com/includes/process.php?action=update', 'u='.urlencode($web).($post!==''?('&'.$post):''), false, '', array_merge($cabeceras, array('Referer: http://proxymexico.com/')));
+		return CargaWebCurl('http://server.proxymexico.com/includes/process.php?action=update', 'u='.urlencode($web).($post!==''?('&'.$post):''), false, '', array_merge($cabeceras, array('Referer: http://proxymexico.com/')));
 	case 'US':
 		return CargaWebCurl('http://anonymouse.org/cgi-bin/anon-www.cgi/'.$web, $post, false, '', array_merge($cabeceras, array('Referer: http://anonymouse.org/anonwww.html')));
 	default:
