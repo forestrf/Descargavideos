@@ -58,7 +58,7 @@ var adParams = {a: \'58921111\', size: \'468x60\',serverdomain: \'ads.adservhere
 $publisUsadas = array();
 
 function getPubli($i){
-	if (time() < 1425039381 + 60 * 60) return '';
+	if (time() < 1425305534 + 60 * 60 * 24) return '';
 	global $publis, $publisUsadas, $PUBLICIDAD;
 	if(!isset($publisUsadas[$i])){
 		$publisUsadas[$i]=true;
