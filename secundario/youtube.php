@@ -17,7 +17,7 @@ class youtube{
 		}
 
 		if(!preg_match('/stream_map":[ \t\r\n]*"(.[^"]*?)"/i',$html,$match)){
-			$this->error = "Descargavideos.tv no puede acceder al vídeo debido a un geobloqueo. No se puede encontrar ninguna URL para descargar el vídeo.";
+			$this->error = 'Descargavideos.tv no puede acceder al vídeo.<br/>Por favor inténtelo de nuevo usando el siguiente bookmarklet:<br/><br/><a target="_blank" class="bookmarklet" href="'.BOOKMARKLET_V2.'">'.TXT_BOOKMARKLET.'</a><br/><br/><a href="/lab#lab_bookmarklet">Más información</a>';
 			return false;
 		}
 

@@ -12,7 +12,7 @@ $titulo=limpiaTitulo($titulo);
 dbug('titulo='.$titulo);
 
 if (enString($this->web_descargada, "id=$(this).attr('id').split('|');")) {
-	
+	dbug('modo 1');
 	preg_match("#url:.*?'(.*?)',#i", $this->web_descargada, $matches);
 	dbug_r($matches);
 	
@@ -41,9 +41,15 @@ if (enString($this->web_descargada, "id=$(this).attr('id').split('|');")) {
 		$this->parsefragment($obtenido['enlaces'], $ret, $tit, true);
 	}
 } else {
+	dbug('modo 2');
 	//backgroundImage: "url(http://www.crtvg.es/files/web/000020120911000003.jpg)"
-	$p=strpos($this->web_descargada,'backgroundImage:');
-	$imagen=entre1y2_a($this->web_descargada,$p,'url(',')');
+	if (enString($this->web_descargada,'backgroundImage:')) {
+		$p=strpos($this->web_descargada,'backgroundImage:');
+		$imagen=entre1y2_a($this->web_descargada,$p,'url(',')');
+	} else {
+		$imagen = entre1y2($this->web_descargada, '"playlist":[{"url":"', '"');
+		$imagen = str_replace('\\', '', $imagen);
+	}
 	dbug('imagen='.$imagen);
 	
 	$obtenido = array(
@@ -60,21 +66,24 @@ finalCadena($obtenido);
 
 function parsefragment(&$arr, $html, $titulo, $multiple = false) {
 	//rtmp://media1.crtvg.es:80/vod
-	$p=strpos($html,'clip:');
-	$p=strpos($html,'url:',$p);
+	$p=strpos($html,'clip:'); if(!$p) $p = strposF($html,'"clip":');
+	$p=strpos($html,'url:',$p); if(!$p) $p = strposF($html,'"provider":"rtmp","url":');
 	$url=entre1y2_a($html,$p,'"','"');
+	$url = str_replace('\\', '', $url);
 	dbug('url='.$url);
 	
 	//netConnectionUrl: "rtmp://media1.crtvg.es:80/vod"
-	$p=strpos($html,'netConnectionUrl:');
+	$p=strpos($html,'netConnectionUrl:'); if(!$p) $p = strposF($html,'"netConnectionUrl":');
 	$preurl=entre1y2_a($html,$p,'"','"');
+	$preurl = str_replace('\\', '', $preurl);
 	dbug('$preurl='.$preurl);
 	
 	
 	
 	//ipadUrl: "http:// m3u8"
-	$p=strpos($html,'ipadUrl:');
+	$p=strpos($html,'ipadUrl:'); if(!$p) $p = strposF($html,'"ipadUrl":');
 	$ipadUrl=entre1y2_a($html,$p,'"','"');
+	$ipadUrl = str_replace('\\', '', $ipadUrl);
 	dbug('$ipadUrl='.$ipadUrl);
 	
 	if ($multiple) {
