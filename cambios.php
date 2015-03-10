@@ -16,6 +16,12 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'10-Marzo-2015'
+,'fix:pasouoquepasou.crtvg.es no funcionaba.'
+,'fix:Los vídeos de YouTube que no funcionan por culpa de un Geobloqueo por parte de Descargavídeos ahora ofrecen la posibilidad de usar el bookmarklet V2 para descargarlos.'
+);
+
+$todos[]=array(
 '28-Febrero-2015'
 ,'fix:Algunos vídeos de rtve que funcionan usando flv ahora funcionan.'
 );
