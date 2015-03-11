@@ -26,7 +26,7 @@ if (defined('HAY_RESULTADO') && $R['MODO'] === 'BUSQUEDA') {
 /*? y un número es para forzar la actualización del script y del css tras cambios*/ ?>
 
 <link href="/favicon.ico" rel="icon" type="image/x-icon"/>
-<link rel="stylesheet" href="/css/cssfull.min.css?21"/>
+<link rel="stylesheet" href="/css/cssfull.min.css?22"/>
 <link rel="stylesheet" href="/css/modos/<?php echo $css_modo?>.css" id="css2"/>
 <script src="/js/funciones.min.js?14"></script>
 
@@ -126,6 +126,7 @@ var css_user='<?php echo $css_modo?>';
 				href="/lab#contenido" class="lab"><?php echo TXT_MENU_LAB?></a><a
 				href="/changelog#contenido" class="changelog"><?php echo TXT_MENU_CHANGELOG?></a><a
 				href="/agradecimientos#contenido" class="agradecimientos"><?php echo TXT_MENU_AGRADECIMIENTOS?></a><a
+				href="https://github.com/forestrf/Descargavideos" class="github">GitHub</a><a
 				href="/contacta#contenido" class="contacta"><?php echo TXT_MENU_CONTACTA?></a>
 			</div>
 		</div>
