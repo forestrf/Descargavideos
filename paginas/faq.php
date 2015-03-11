@@ -101,13 +101,9 @@ La web únicamente almacena los siguientes datos de los usuarios:<br/><br/>
 <div class="respuesta">
 A continuación se puede ver el listado de las webs y los canales soportados:<br/>
 <ol>
-	<li><a href="/telecinco">telecinco.es</a></li>
 	<li><a href="/rtve">rtve.es</a></li>
-	<li><a href="/cuatro">cuatro.com</a></li>
-	<li><a href="/mitele">mitele.es</a></li>
 	<li><a href="/youtube">youtube.com</a></li>
 	<li>canalriasbaixas.com</li>
-	<li>divinity.es</li>
 	<li>aragontelevision.es</li>
 	<li>canalsur.es</li>
 	<li>tv3.cat</li>
@@ -160,7 +156,6 @@ A continuación se puede ver el listado de las webs y los canales soportados:<br
 	<li>ondaluz.tv</li>
 	<li>mundofox.com</li>
 	<li>noticiasmundofox.com</li>
-	<li>boing.wardcampbell.com</li>
 	<li>nbcuniverso.com</li>
 </ol>
 </div>

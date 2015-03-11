@@ -59,28 +59,12 @@
 	# Páginas de las cadenas principales
 	##############################################################
 
-	RewriteRule ^telecinco/?$ index2.php?pag=telecinco&$1 [NC,L]
-	RewriteRule ^antena-3/?$ index2.php?pag=antena-3&$1 [NC,L]
 	RewriteRule ^rtve/?$ index2.php?pag=rtve&$1 [NC,L]
-	RewriteRule ^mitele/?$ index2.php?pag=mitele&$1 [NC,L]
 	RewriteRule ^univision/?$ index2.php?pag=univision&$1 [NC,L]
-	RewriteRule ^cuatro/?$ index2.php?pag=cuatro&$1 [NC,L]
-	RewriteRule ^la-sexta/?$ index2.php?pag=la-sexta&$1 [NC,L]
 	RewriteRule ^youtube/?$ index2.php?pag=youtube&$1 [NC,L]
 
-	
-	
-	
-	##############################################################
-	# MITELE HANDLER para vídeos mp4 fake
-	##############################################################
-	
-	RewriteRule ^mitelehandler/(.+)/ mitele_handler.php?fullinfo=$1 [NC,L]
 
 
-	
-	
-	
 	##############################################################
 	# HACKS
 	##############################################################

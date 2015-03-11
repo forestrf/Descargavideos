@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
-<title>Descargar vídeos de Mitele, YouTube, RTVE y más! - DescargaVideos.TV<?php echo $seccion==""?"":" - ".$seccion?></title>
+<title>Descargar vídeos de YouTube, RTVE y más! - DescargaVideos.TV<?php echo $seccion==""?"":" - ".$seccion?></title>
 
 <meta property="fb:app_id" content="235486993147003"/>
 <meta property="fb:admins" content="1133185967"/>

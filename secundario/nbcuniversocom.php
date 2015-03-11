@@ -166,6 +166,8 @@ function quitar_akami_telemundo($url) {
 /*
 
 
+HAY QUE VER EL VÍDEO ANTES DE INTENTAR DESCARGARLO O SI NO NO VA EL ENLACE DE DESCARGA
+
 
 <smil xmlns="http://www.w3.org/2005/SMIL21/Language">
 <head>

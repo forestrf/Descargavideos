@@ -1,65 +1,5 @@
-URL: http://www.mitele.es/series-online/la-que-se-avecina/temporada-7/capitulo-88/
-IP: 173.245.53.144
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/la-que-se-avecina/temporada-7/capitulo-88/
-IP: 141.101.102.145
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/mujeresyhombres/2014/enero/27-01-2014/Lunes-programa_online-trono_mixto_2_1739355086.html
-IP: 108.162.229.98
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/hospital-central/temporada-15/capitulo-207/
-IP: 108.162.229.80
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/el-metodo-osmin/temporada-1/programa-3/
-IP: 173.245.53.123
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/la-que-se-avecina/temporada-7/capitulo-88/
-IP: 108.162.229.63
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/hay-una-cosa-que-te-quiero-decir/temporada-3/programa-76/
-IP: 108.162.229.101
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/la-que-se-avecina/temporada-7/capitulo-88/
-IP: 173.245.49.98
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/la-que-se-avecina/temporada-7/capitulo-87/
-IP: 173.245.53.161
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/vigilados/temporada-2/capitulo-16-Relevante_2014012200204.html
-IP: 173.245.53.97
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/la-que-se-avecina/temporada-7/capitulo-88/
-IP: 173.245.53.86
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/la-que-se-avecina/temporada-7/capitulo-88/
-IP: 173.245.53.156
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/la-que-se-avecina/temporada-7/capitulo-88/
-IP: 173.245.53.94
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/la-que-se-avecina/temporada-7/capitulo-88/
-IP: 173.245.53.83
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/elchiringuitodejugones/temporada-1/capitulo-28-28-01-14_2014012900032.html
-IP: 173.245.53.86
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/mujeresyhombres/2014/enero/28-01-2014/Martes-programa_online-tronistas_chicos_2_1739880077.html
-IP: 108.162.231.201
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/mujeresyhombres/2014/enero/29-01-2014/Miercoles-programa_online-tronistas_chicos_2_1740405099.html
-IP: 108.162.231.201
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/elchiringuitodejugones/temporada-1/capitulo-29-29-01-14_2014013000048.html
-IP: 173.245.53.86
-------------------------------------------------------------------------
 URL: http://alacarta.aragontelevision.es/informativos/buenos-dias-aragon-30012014-0800
 IP: 173.245.49.86
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/mujeresyhombres/2014/enero/30-01-2014/Jueves-programa_online-trono_mixto_2_1740930088.html
-IP: 173.245.53.168
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/mujeresyhombres/2014/enero/29-01-2014/Miercoles-programa_online-tronistas_chicos_2_1740405099.html
-IP: 108.162.229.102
 ------------------------------------------------------------------------
 URL: http://www.rtpa.es/video:Mochileros_551346624748.html
 IP: 173.245.53.125
@@ -67,74 +7,17 @@ IP: 173.245.53.125
 URL: http://www.rtpa.es/video:Mochileros_551346624748.html
 IP: 108.162.229.105
 ------------------------------------------------------------------------
-URL: http://www.telecinco.es/mujeresyhombres/2014/enero/30-01-2014/Jueves-programa_online-trono_mixto_2_1740930088.html
-IP: 108.162.229.102
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/salvame/2014/enero/30-01-2014/Terelu-Campos-indignada-exclusiva-perjuicio_0_1740900448.html
-IP: 173.245.53.124
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/salvame/2014/enero/30-01-2014/Terelu-Campos-indignada-exclusiva-perjuicio_0_1740900448.html
-IP: 173.245.53.124
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/quetiempotanfeliz/David-Bisbal-presentara-primicia-tiempo_0_1740375290.html
-IP: 108.162.229.103
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/salvame/2014/enero/30-01-2014/Terelu-Campos-encontronazo-hecho-decision_2_1740930141.html
-IP: 108.162.229.76
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/mujeresyhombres/2013/abril/22-04-2013/Lunes-programa_on_line_2_1592355060.html
-IP: 173.245.53.128
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/la-que-se-avecina/temporada-7/capitulo-88/
-IP: 173.245.53.147
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/el-tiempo-entre-costuras/temporada-1/capitulo-1-captulo_2013102100304.html
-IP: 173.245.53.99
-------------------------------------------------------------------------
 URL: http://noticieros.televisa.com/programas-noticiero-con-joaquin-lopez-doriga/
 IP: 173.245.50.102
 ------------------------------------------------------------------------
 URL: http://www.tv3.cat/videos/2808930/Des-dels-terrats-del-Caire
 IP: 173.245.49.77
 ------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/equipo-de-investigacion/temporada-1/capitulo-78-caza-bestia_2014013100350.html
-IP: 108.162.229.102
-------------------------------------------------------------------------
-URL: http://www.cuatro.com/deportes/programas-completos/deportes-mediodia/Deportes_Cuatro_-24-04-2013-Los_Manolos_online_2_1593405089.html
-IP: 173.245.53.119
-------------------------------------------------------------------------
-URL: http://antena3.com
-IP: 108.162.212.61
-------------------------------------------------------------------------
 URL: http://www.mtv.es/programas/destacados/la-chica-invisible-awkward-temporada-3/videos/la-chica-invisible-ep-301-parte-1-de-2-992129/
 IP: 173.245.49.79
 ------------------------------------------------------------------------
 URL: http://www.rtve.es/alacarta/videos/cuentame-como-paso/capitulo-256-amores-matan/2353448/
 IP: 108.162.229.96
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/aida/temporada-10/capitulo-219/
-IP: 108.162.231.221
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/lasexta-noche/temporada-1/capitulo-54-jordi-vole_2014020200005.html
-IP: 173.245.53.110
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/salvamedeluxe/programas-on-line/Aguasantas-Raquel_Bollo-Natalia_Millan-Jorge_Javier_Vazquez-El_Deluxe_2_1741980001.html
-IP: 108.162.229.66
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/cuarto-milenio/temporada-9/programa-352/
-IP: 173.245.53.103
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/cuarto-milenio/temporada-9/programa-352/
-IP: 173.245.53.168
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/mujeresyhombres/2014/febrero/03-02-2014/Lunes-programa_online-tronistas_chicos_2_1743030052.html
-IP: 173.245.53.86
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/cuarto-milenio/temporada-9/programa-344/
-IP: 108.162.229.88
-------------------------------------------------------------------------
-URL: http://www.mitele.es/tv-movies/anna-karenina/temporada-1/capitulo-1/
-IP: 108.162.231.208
 ------------------------------------------------------------------------
 URL: http://www.eitb.com/eu/hiru3/marrazki-bizidunak/bideoak/osoa/3110104006001/35-atala/
 IP: 173.245.53.100
@@ -145,86 +28,17 @@ IP: 141.101.75.18
 URL: http://www.crtvg.es/informativos/presentacion-de-a-revista-745162
 IP: 108.162.229.69
 ------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/museo-coconut/temporada-3/capitulo-4-Gataca_2014011000100.html
-IP: 108.162.229.105
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/la-que-se-avecina/temporada-7/capitulo-89/
-IP: 173.245.53.134
-------------------------------------------------------------------------
-URL: http://www.cuatro.com/noticias/internacional/Robinson_Crusoe-naufrago-Pacifico-deriva_2_1743030173.html
-IP: 173.245.53.131
-------------------------------------------------------------------------
 URL: http://www.rtve.es/alacarta/videos/programa/ceremonia-inauguracion-juegos-paralimpicos/718671/
 IP: 108.162.229.81
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/mujeresyhombres/2014/febrero/04-02-2014/Martes-programa_online-tronistas_chicos_2_1743555074.html
-IP: 173.245.49.78
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/mujeresyhombres/2014/febrero/04-02-2014/Martes-programa_online-tronistas_chicos_2_1743555074.html
-IP: 108.162.231.212
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/pesadilla-en-la-cocina/temporada-3/capitulo-3-barrica_2014020300259.html
-IP: 108.162.253.168
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/aida/temporadas/temporada-10/t10xc20-especial-simon-bermejo/T10xC20-Especial-Simon-Bermejo_2_1738830070.html
-IP: 108.162.231.188
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/el-principe/temporada-1/capitulo-1/
-IP: 173.245.53.122
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/la-que-se-avecina/temporada-7/capitulo-89/
-IP: 173.245.49.92
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/elprincipe/#
-IP: 108.162.231.188
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/mujeresyhombres/programas-integros/Miercoles-programa_online-trono_mixto_2_1744080082.html
-IP: 108.162.231.212
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/mujeresyhombres/2014/febrero/06-02-2014/Jueves-programa_online-trono_mixto_2_1744605121.html
-IP: 108.162.254.97
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/victoria/temporada-1/capitulo-71-24-1-14_2014012400259.html
-IP: 108.162.219.84
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/victoria/temporada-1/capitulo-72-27-1-14_2014012700097.html
-IP: 108.162.219.84
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series-infantiles/angry-birds/temporada-1/capitulo-1005-Hambo_2014011000410.html
-IP: 173.245.48.99
 ------------------------------------------------------------------------
 URL: http://www.rtve.es/alacarta/videos/cuentame-como-paso/
 IP: 108.162.231.206
 ------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/la-voz-kids2/temporada-1/gala-1-audiciones-a-ciegas/
-IP: 108.162.229.88
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/la-voz-kids2/temporada-1/gala-1-audiciones-a-ciegas/
-IP: 108.162.229.88
-------------------------------------------------------------------------
 URL: http://www.rtve.es/alacarta/videos/tve-english/tve-english-capitulo-71/2342587/
 IP: 108.162.229.75
 ------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/cuarto-milenio/temporada-7/programa-279/
-IP: 108.162.254.171
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/cuarto-milenio/temporada-9/programa-353/
-IP: 173.245.53.142
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/la-que-se-avecina/temporada-7/making-of-10/
-IP: 141.101.99.163
-------------------------------------------------------------------------
 URL: http://www.rtve.es/alacarta/videos/el-conciertazo/conciertazo-banda-sinfonica-municipal-madrid/72372/
 IP: 173.245.53.83
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/el-principe/temporada-1/capitulo-1/
-IP: 141.101.98.153
-------------------------------------------------------------------------
-URL: http://www.mitele.es/tv-movies/rocio-durcal-volver-a-verte/tv-movie/primera-parte/
-IP: 108.162.229.83
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/el-principe/temporada-1/capitulo-2/
-IP: 108.162.229.97
 ------------------------------------------------------------------------
 URL: http://www.hogarutil.com/jardineria/tecnicas/poda/201006/poda-rosales-5297.html
 IP: 173.245.53.165
@@ -238,21 +52,6 @@ IP: 173.245.49.106
 URL: http://www.rtve.es/television/un-pais-para-comerselo/teruel/
 IP: 108.162.229.61
 ------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/tu-cara-me-suena/temporada-3/capitulo-14-gala_2014021400021.html
-IP: 173.245.53.104
-------------------------------------------------------------------------
-URL: http://www.mitele.es/telenovelas/la-tempestad/temporada-1/capitulo-1/
-IP: 141.101.99.200
-------------------------------------------------------------------------
-URL: http://www.mitele.es/telenovelas/la-tempestad/temporada-1/capitulo-2/
-IP: 141.101.98.180
-------------------------------------------------------------------------
-URL: http://www.mitele.es/telenovelas/la-tempestad/temporada-1/capitulo-1/
-IP: 173.245.53.117
-------------------------------------------------------------------------
 URL: http://www.rtve.es/alacarta/videos/sochi-2014/curling-femenino-grupo-canada-reino-unido/2395777/
 IP: 173.245.53.118
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/bb-de-boca-a-boca/temporada-1/capitulo-1/
-IP: 141.101.99.158
 ------------------------------------------------------------------------

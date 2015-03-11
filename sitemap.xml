@@ -31,23 +31,11 @@
   <priority>0.60</priority>
 </url>
 <url>
-  <loc>http://www.descargavideos.tv/telecinco</loc>
-  <priority>0.80</priority>
-</url>
-<url>
   <loc>http://www.descargavideos.tv/rtve</loc>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://www.descargavideos.tv/mitele</loc>
-  <priority>0.80</priority>
-</url>
-<url>
   <loc>http://www.descargavideos.tv/univision</loc>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>http://www.descargavideos.tv/cuatro</loc>
   <priority>0.80</priority>
 </url>
 <url>

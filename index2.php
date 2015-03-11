@@ -33,7 +33,7 @@ elseif(!isset($pag)){
 //$a = $_SERVER["REQUEST_URI"]
 //$_SERVER["REQUEST_URI"] => "/changelog#contenido"
 function esPagina($a){
-	$paginas = array('telecinco','rtve','mitele','univision','cuatro');
+	$paginas = array('rtve','univision');
 	$pag = "";
 	for($i = 0; $i<$i_t=count($paginas); $i++){
 		if(strpos($a, $paginas[$i]) === 1){
@@ -52,35 +52,17 @@ pagina($pag);
 function pagina($cual){
 	global $palabras_clave,$descripcion,$seccion,$img,$titulo,$bg;
 	switch($cual){
-		case 'telecinco':
-			$titulo="Descargar videos de Telecinco TV online - ".date("Y");
-			$descripcion='Descargar videos de la web de Telecinco. La mejor página para bajar videos gratis de Telecinco - Descargavideos.TV';
-			$img='telecinco.png';
-			$bg="#005066";
-		break;
 		case 'rtve':
 			$titulo="Descargar videos de RTVE TV online - ".date("Y");
 			$descripcion='Descargar videos de la web de RTVE. La mejor página para bajar videos gratis de RTVE - Descargavideos.TV';
 			$img='rtve.png';
 			$bg="#006181";
 		break;
-		case 'mitele':
-			$titulo="Descargar videos de Mitele TV online - ".date("Y");
-			$descripcion='Descargar videos de la web de Mitele. La mejor página para bajar videos gratis de Mitele - Descargavideos.TV';
-			$img='mitele.png';
-			$bg="#666";
-		break;
 		case 'univision':
 			$titulo="Descargar videos de Univision TV online - ".date("Y");
 			$descripcion='Descargar videos de la web de Univision. La mejor página para bajar videos gratis de Univision - Descargavideos.TV';
 			$img='univision.png';
 			$bg="#346F77";
-		break;
-		case 'cuatro':
-			$titulo="Descargar videos de Cuatro TV online - ".date("Y");
-			$descripcion='Descargar videos de la web de Cuatro. La mejor página para bajar videos gratis de Cuatro - Descargavideos.TV';
-			$img='cuatro.png';
-			$bg="#812200";
 		break;
 		case 'youtube':
 			$titulo="Descargar videos de YouTube online - ".date("Y");
@@ -197,7 +179,7 @@ a:hover{
 		<div class="social">
 			<!--tw, fb, +1-->
 			<div class="elem">
-				<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.descargavideos.tv" data-text="Descarga vídeos de RTVE, Antena3, Mitele, TV3 y muchas más." data-via="descargavids" data-lang="es" data-count="vertical">Tweet</a>
+				<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.descargavideos.tv" data-text="Descarga vídeos de RTVE, TV3 y muchas más." data-via="descargavids" data-lang="es" data-count="vertical">Tweet</a>
 				<script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 			</div>
 

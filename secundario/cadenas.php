@@ -70,13 +70,13 @@ $cadenas = array(
 	)
 	,array(
 		array('cuatro.com','telecinco.es','divinity.es','mediaset.es','mitelekids.es'),
-		array('mitele.php'),
+		array('miteleBorrado.php'),
 		'Mitele',
 		'mitele_directo'
 	)
 	,array(
 		array('mitele.es'),
-		array('mitele.php'),
+		array('miteleBorrado.php'),
 		'Mitele',
 		'calcula'
 	)
@@ -389,12 +389,6 @@ $cadenas = array(
 		array('mundofox.com', 'noticiasmundofox.com'),
 		array('mundofoxcom.php'),
 		'Mundofoxcom',
-		'calcula'
-	)
-	,array(
-		array('wardcampbell.com'),
-		array('boingwardcampbellcom.php'),
-		'BoingWardcampbellcom',
 		'calcula'
 	)
 	,array(

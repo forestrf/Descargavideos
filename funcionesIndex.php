@@ -41,7 +41,7 @@ function preparaPagina($cual='pag_principal'){
 	
 	switch($cual){
 		case 'pag_principal':
-			$palabras_clave='Descargar, vídeos, mitele, rtve, telecinco, DescargaVideos, online, nacional, '.date('Y').', download';
+			$palabras_clave='Descargar, vídeos, mitele, rtve, youtube, soundcloud, DescargaVideos, online, nacional, '.date('Y').', download';
 			$descripcion='Descarga tus series favoritas. Simplemente copia y pega la dirección web URL del vídeo que quieres bajar. Ahora puedes descargar vídeos online sin instalar nada, completamente gratis.';
 		break;
 		case 'lab':

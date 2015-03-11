@@ -43,7 +43,6 @@ Util:<br/>
 <a href="util/amf_base64.php" target="blank">amf_base64</a><br/>
 <a href="util/prxy.php" target="blank">prxy</a><br/>
 <a href="util/rtve_test.php" target="blank">rtve_test</a><br/>
-<a href="util/mitele_test.php" target="blank">mitele_test</a><br/>
 <a href="util/swf-resquests.php" target="blank">swf-resquests</a><br/>
 <a href="util/test-curlproxy.php" target="blank">test-curlproxy</a><br/>
 <br/>

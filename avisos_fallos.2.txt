@@ -2,43 +2,9 @@ Puede no haber clip de video (por lo que sea). Informar de fallo en ese caso:
 URL: http://www.intereconomia.com/video/informativos/verdad-del-caso-banesto
 
 
-TROLEADA PADRE:
-URL: http://www.cuatro.com/noticias-cuatro/en-directo/noticias-cuatro-fds/Noticias-Fin-Semana_MDSVID20130922_0066_3.jpg
-
-
-
-
-------------------------------------------------------------------------
-Puede que el rtmp...
-URL: http://www.antena3.com/videos/mar-de-amor/temporada-1/capitulo-60.html
-IP: 79.155.46.34
-------------------------------------------------------------------------
-URL: http://www.antena3.com/videos/vive-cantando/temporada-1/capitulo-4.html
-IP: 62.42.69.216
-------------------------------------------------------------------------
-URL: http://www.antena3.com/videos/vive-cantando/temporada-1/capitulo-4.html
-IP: 95.19.23.39
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/aida/temporada-10/capitulo-201/
-IP: 186.89.62.211
 ------------------------------------------------------------------------
 URL: http://www.rtve.es/alacarta/videos/grandes-documentales/grandes-documentales-rey-elefante/2030830/
 IP: 79.151.1.157
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/cuarto-milenio/temporada-9/programa-333/
-IP: 83.138.235.184
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/tierradelobos/temporadas/temporada-03/t03xc01/Fernando_Bravo-capitulo_on_line-Temporada_3_2_1670055187.html
-IP: 83.52.116.178
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/cuarto-milenio/temporada-9/programa-333/
-IP: 186.78.223.161
-------------------------------------------------------------------------
-URL: http://www.cuatro.com/quien-quiere-casarse-con-mi-hijo/temporada-3/a-carta/quiere-casarse-hijo-online_2_1670580130.html
-IP: 84.123.82.96
-------------------------------------------------------------------------
-URL: http://www.antena3.com/videos/la-cupula/temporada-1/capitulo-8.html
-IP: 81.34.113.64
 ------------------------------------------------------------------------
 URL: http://www.crtvg.es/tvg/a-carta/capitulo-180-portas-pechadas
 IP: 88.0.104.4
@@ -46,41 +12,11 @@ IP: 88.0.104.4
 URL: http://www.rtve.es/alacarta/videos/isabel/isabel-capitulo16/2022383/
 IP: 81.35.122.142
 ------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/natural-frank/temporada-1/programa-1/
-IP: 88.203.65.217
-------------------------------------------------------------------------
-URL: http://www.antena3.com/videos/senoras-que/2012-octubre-17-2012101700027.html
-IP: 85.56.69.31
-------------------------------------------------------------------------
-URL: http://www.antena3.com/videos/senoras-que/2012-octubre-17-2012101700027.html
-IP: 85.56.69.31
-------------------------------------------------------------------------
 URL: http://tvolucion.esmas.com/entretenimiento/noticias/telenovelas/238166/gaby-rivero-llevara-parte-comica/
 IP: 213.37.59.160
 ------------------------------------------------------------------------
-URL: http://www.cuatro.com/quien-quiere-casarse-con-mi-hijo/temporada-3/programas/t03xp01/quiere-casarse-hijo-online_2_1666905189.html
-IP: 85.53.96.7
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/cuarto-milenio/temporada-9/programa-334/
-IP: 186.153.55.73
-------------------------------------------------------------------------
 URL: http://www.rtve.es/alacarta/videos/aguila-roja/aguila-roja-t4-capitulo-40/1225858/
 IP: 85.54.114.15
-------------------------------------------------------------------------
-URL: http://www.antena3.com/series/amar/momentos/diego-aparece-muerto_2013091100051.html
-IP: 95.18.41.172
-------------------------------------------------------------------------
-URL: http://mvod.lvlt.rtve.es/resources/TE_NGVA/mp4/3/5/1367413450153.mp4
-IP: 190.227.188.107
-------------------------------------------------------------------------
-URL: http://www.antena3.com/programas/increibles/momentos/codigos_2013052400044.html
-IP: 193.153.220.44
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/salvamedeluxe/programas-on-line/Kiko_Rivera-Jessica_Bueno-El_Deluxe-Fabiola-Bertin_Osborne-Capanario_2_1679505007.html
-IP: 79.151.204.130
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/tadeojones/descubre-con-tadeo/capitulo-centro-astrobiologia_2_1671630175.html
-IP: 83.44.33.56
 ------------------------------------------------------------------------
 URL: http://www.rtve.es/alacarta/videos/telediario/telediario-8-horas-07-10-13/2050170/
 IP: 80.25.84.135
@@ -97,254 +33,38 @@ IP: 83.40.161.234
 URL: http://www.rtve.es/alacarta/videos/grandes-documentales/grandes-documentales-australia-bajo-sol-justicia/1830247/
 IP: 83.40.161.234
 ------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/la-voz2/temporada-2/los-elegidos-de-cerca-30-de-septiembre/
-IP: 188.76.104.45
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/aida/temporadas/temporada-10/t10xc04-amanece-que-no-es-moco/Mauricio-sitiado-rojos_2_1678980177.html
-IP: 83.45.83.224
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/aida/temporadas/temporada-10/t10xc04-amanece-que-no-es-moco/Mauricio-sitiado-rojos_2_1678980177.html
-IP: 83.45.83.224
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/lavoz/voz-edicion-2/programas/audiciones-a-ciegas-07-10-2013/actuacion-Marta-Oliva-Girls-wanna_2_1681080029.html
-IP: 83.46.227.226
-------------------------------------------------------------------------
-URL: http://www.antena3.com/videos-online/series/el-secreto-de-puente-viejo/rosario-recuerda-tristn-junto-mara_2013100800020.html
-IP: 88.6.81.224
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/lafuga/temporadas/temporada-1/t01xc06-juntos-hasta-muerte/T01xC06-Juntos-muerte_2_1368705090.html
-IP: 46.26.33.12
-------------------------------------------------------------------------
-URL: http://www.antena3.com/series/el-secreto-de-puente-viejo/momentos/gonzalo-rosario-preocupados-aurora_2013101000107.html
-IP: 77.229.25.114
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/mujeresyhombres/2013/octubre/07-10-2013/Lunes-programa_on_line-tronistas_chicos-Fede_2_1680555076.html
-IP: 213.37.234.229
-------------------------------------------------------------------------
 URL: http://www.rtve.es/alacarta/videos/1914/173308-webnodo/1540383/
 IP: 85.112.5.68
-------------------------------------------------------------------------
-URL: http://www.cuatro.com/quien-quiere-casarse-con-mi-hijo/temporada-3/programas/t03xp05/quiere-casarse-hijo-online_2_1681605226.html
-IP: 83.34.150.117
-------------------------------------------------------------------------
-URL: http://www.antena3.com/series/amar/momentos/elena-augusto-aprovechan-perdida-reloj-buscar-culpabilidad-diego_2013091600225.html
-IP: 87.222.213.128
-------------------------------------------------------------------------
-URL: http://www.cuatro.com/quien-quiere-casarse-con-mi-hijo/temporada-3/programas/t03xp05/quiere-casarse-hijo-online_2_1681605226.html
-IP: 81.203.243.126
-------------------------------------------------------------------------
-URL: http://www.cuatro.com/frank-de-la-jungla/natural-frank/T01xC03-Natural-Frank-programa_on_line_2_1682655158.html
-IP: 95.121.200.89
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/almacen-top-chef/temporada-1/capitulo-2-9-10-13-almacn-top-chef_2013101000016.html
-IP: 95.121.200.89
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/salvamedeluxe/2012/30-11-2012/Salvame_Deluxe-Belen_Esteban-integro_2_1517805010.html
-IP: 188.76.170.78
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/vive-cantando/temporada-1/capitulo-6-captulo_2013100400464.html
-IP: 79.108.3.165
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/angel-rebelde/temporada-1/capitulo-104-8-10-13_2013100800189.html
-IP: 99.226.178.246
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/conexion-samanta/temporada-5/programa-57/
-IP: 83.213.160.43
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/criadasymalvadas/temporadas/temporada-1/t01xc06-paseando-al-perro/Sacando-perro-T01XC06_2_1682655073.html
-IP: 62.83.124.163
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/vive-cantando/temporada-1/capitulo-5-captulo_2013092700423.html
-IP: 88.9.46.15
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/vive-cantando/temporada-1/capitulo-5-captulo_2013092700423.html
-IP: 88.9.46.15
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/vive-cantando/temporada-1/capitulo-5-captulo_2013092700423.html
-IP: 88.9.46.15
 ------------------------------------------------------------------------
 URL: http://www.rtve.es/alacarta/videos/colon-y-la-era-del-descubrimiento/colon-era-del-descubrimiento-idea-toma-forma/1518714/
 IP: 37.11.182.227
 ------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/el-secreto-de-puente-viejo/temporada-1/capitulo-671-11-10-13_2013100900359.html
-IP: 81.33.127.117
-------------------------------------------------------------------------
 URL: http://videos.univision.com/novelas/un-refugio-para-el-amor/video/2012-11-09/un-refugio-para-el-amor-capitulo-149?refPath=/videos/
 IP: 83.36.229.217
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/criadasymalvadas/temporadas/temporada-1/t01xc06-paseando-al-perro/Sacando-perro-T01XC06_2_1682655073.html
-IP: 79.147.82.143
 ------------------------------------------------------------------------
 URL: http://www.crtvg.es/tvg/a-carta/a-revista-318365
 IP: 91.117.227.191
 ------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/amar-es-para-siempre/temporada-2/capitulo-193-14-10-13_2013101100254.html
-IP: 83.149.124.213
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/el-secreto-de-puente-viejo/temporada-1/capitulo-672-14-10-13_2013101100421.html
-IP: 62.151.196.248
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/el-secreto-de-puente-viejo/temporada-1/capitulo-672-14-10-13_2013101100421.html
-IP: 83.42.61.188
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/la-voz2/temporada-2/gala-1-audiciones-a-ciegas/
-IP: 93.134.7.177
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/deportes/formula-1/mundial-2013/japon/carrera/dia-6-Carrera_2013101300029.html
-IP: 82.158.90.169
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/el-secreto-de-puente-viejo/temporada-1/capitulo-673-15-10-13_2013101400132.html
-IP: 88.6.252.29
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/el-secreto-de-puente-viejo/temporada-1/capitulo-673-15-10-13_2013101400132.html
-IP: 89.141.45.17
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/hormiguero/temporada-3/capitulo-346-miguel-ros_2013101000380.html
-IP: 201.157.4.214
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/la-voz2/temporada-2/gala-5/
-IP: 62.157.96.250
-------------------------------------------------------------------------
 URL: http://www.rtve.es/alacarta/videos/viaje-a-la-tradicion-mediterranea/
 IP: 84.123.90.1
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/aida/temporada-10/capitulo-204/
-IP: 62.212.118.213
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/deportes/formula-1/mundial-2013/japon/carrera/dia-6-Carrera_2013101300029.html
-IP: 79.147.20.102
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/hormiguero/temporada-3/capitulo-349-Chenoa_2013101600458.html
-IP: 201.246.81.19
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/top-chef/temporada-1/capitulo-3-programa_2013101500450.html
-IP: 80.30.55.0
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/noticias/antena-3/noticias-2/2013/octubre/dia-15-suma-agravios_2013101500484.html
-IP: 194.224.72.215
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/lavoz/voz-edicion-2/programas/audiciones-a-ciegas-14-10-2013/Audiciones-ciegas_2_1684755026.html
-IP: 85.49.207.97
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/lavoz/voz-edicion-2/programas/audiciones-a-ciegas-14-10-2013/Audiciones-ciegas_2_1684755026.html
-IP: 85.49.207.97
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/amar-es-para-siempre/temporada-2/capitulo-196-17-10-13_2013101600155.html
-IP: 83.149.124.213
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/aida/temporada-6/capitulo-86/
-IP: 151.237.220.10
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/tvmovies/ninos-robados/parte-2/Ninos-robados-Parte_2_1685805152.html
-IP: 213.96.191.226
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/encarcelados/temporada-1/capitulo-7-encarcelados-colombia_2013101700313.html
-IP: 95.19.22.37
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/tu-cara-me-suena/temporada-3/capitulo-1-especial-cara-solidaria_2013101800012.html
-IP: 80.102.16.18
-------------------------------------------------------------------------
-URL: http://www.antena3.com/series/amar/momentos/diego-aparece-muerto_2013091100051.html
-IP: 95.18.54.255
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/aida/temporada-9/especial-1/
-IP: 190.131.95.82
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/amar-es-para-siempre/temporada-2/capitulo-197-18-10-13_2013101700107.html
-IP: 95.17.188.115
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/motogp/motogp/pilotos/jorge-lorenzo/Lorenzo-Marquez-deseo-nadie-averia_2_1686855180.html
-IP: 190.15.153.194
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/salvamedeluxe/programas-on-line/Belen_Esteban-Deluxe-Regreso-Jorge_Javier_Vazquez-Andrea_Janeiro_2_1686855615.html
-IP: 77.225.113.29
 ------------------------------------------------------------------------
 URL: http://www.rtve.es/m/alacarta/videos/isabel/isabel-capitulo-14/2011436/?media=tve
 IP: 37.228.104.224
 ------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/noticias/lasexta-noticias/deportes/2013/octubre/dia-19-caballero-salva-mlaga-mejorado-madrid_2013101900114.html
-IP: 41.98.59.249
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/tu-cara-me-suena/temporada-3/capitulo-1-especial-cara-solidaria_2013101800435.html
-IP: 79.158.121.198
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/quien-quiere-casarse-con-mi-hijo/temporada-3/programa-6/
-IP: 85.196.219.83
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/tvmovies/ninos-robados/parte-2/Conchita-ve-hija-primera-vez_2_1685805137.html
-IP: 188.84.226.100
-------------------------------------------------------------------------
 URL: http://www.rtve.es/alacarta/videos/tve-english/tve-english-capitulo-14/2074853/
 IP: 77.231.12.21
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/el-tiempo-entre-costuras/temporada-1/capitulo-1-Avance_2013101400364.html
-IP: 154.58.0.217
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/aida/temporadas/temporada-10/t10xc06-tango-y-paz/T10xC06-Tango-Paz_2_1686330586.html
-IP: 188.76.69.90
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/bricomania/temporada-1/capitulo-147-20-10-13_2013101700400.html
-IP: 88.18.33.115
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/aida/temporadas/temporada-10/t10xc06-tango-y-paz/T10xC06-Tango-Paz_2_1686330586.html
-IP: 88.0.88.80
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/lavoz/voz-edicion-2/programas/audiciones-a-ciegas-14-10-2013/Audiciones-ciegas_2_1684755026.html
-IP: 62.151.175.224
 ------------------------------------------------------------------------
 URL: http://www.medici.tv/
 IP: 186.158.245.227
 ------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/tu-cara-me-suena/temporada-3/capitulo-1-especial-cara-solidaria_2013101800435.html
-IP: 85.53.147.230
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/decogarden/temporada-1/capitulo-147-19-10-13_2013101700402.html
-IP: 82.198.43.61
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/tu-cara-me-suena/temporada-3/capitulo-1-especial-cara-solidaria_2013101800435.html
-IP: 95.20.185.34
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/hormiguero/temporada-3/capitulo-351-pilar-rubio_2013102100419.html
-IP: 81.184.46.127
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/amar-es-para-siempre/temporada-2/capitulo-199-22-10-13_2013102100129.html
-IP: 88.20.12.133
-------------------------------------------------------------------------
 URL: http://www.rtve.es/alacarta/videos/los-conciertos-de-la-2/conciertos-2-interpretan-strauss/51818/
 IP: 186.125.183.178
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/aida/temporadas/temporada-10/t10xc03-amores-porros/T10xC03-Amores-porros_2_1675305163.html
-IP: 85.56.198.211
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/vive-cantando/temporada-1/capitulo-8-captulo_2013101800485.html
-IP: 95.18.86.248
-------------------------------------------------------------------------
-URL: http://www.cuatro.com/deportes/programas-completos/deportes-mediodia/Deportes-mediodia_2_1606530002.html
-IP: 83.39.54.64
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/top-chef/temporada-1/capitulo-4-programa_2013102300168.html
-IP: 131.175.28.33
-------------------------------------------------------------------------
-URL: http://www.cuatro.com/temporada_3/a_la_carta/17609/videos.html
-IP: 83.165.121.49
 ------------------------------------------------------------------------
 URL: http://www.eitb.tv/es/video/etb-hoy-debate-lo-ultimo/676435921001/2766791271001/etb-hoy-debate-24102013/
 IP: 83.37.31.21
 ------------------------------------------------------------------------
 URL: http://www.tv3.cat/3alacarta/
 IP: 81.202.206.199
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/el-objetivo/temporada-2/capitulo-7-entrevista-celia-villalobos_2013101300187.html
-IP: 37.15.138.87
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/tu-cara-me-suena/temporada-3/capitulo-1-especial-cara-solidaria_2013101800435.html
-IP: 95.20.186.183
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/tu-cara-me-suena/temporada-3/capitulo-1-gala_2013102500011.html
-IP: 201.246.72.39
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series-infantiles/transformers-rescue-bots/temporada-1/capitulo-1-familia-hroes_2013091200281.html
-IP: 85.50.153.47
 ------------------------------------------------------------------------
 URL: http://www.rtve.es/infantil/videos-juegos/
 IP: 83.165.46.79
@@ -376,20 +96,8 @@ IP: 90.170.68.39
 URL: http://www.tv3.cat/videos/4721653/La-Riera---capitol-773
 IP: 90.170.68.39
 ------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/quien-quiere-casarse-con-mi-hijo/temporada-3/programa-7/
-IP: 95.61.89.65
-------------------------------------------------------------------------
 URL: http://www.rtve.es/alacarta/videos/tve-english/tve-english-capitulo-16/2086528/
 IP: 83.56.228.238
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/la-que-se-avecina/temporada-1/capitulo-6/
-IP: 87.220.202.145
-------------------------------------------------------------------------
-URL: http://www.cuatro.com/_64bb6ee8
-IP: 95.17.33.96
-------------------------------------------------------------------------
-URL: http://www.cuatro.com/callejeros/Archivotemporada-09/t09xp08-especial-ninos-con-hambre/Callejeros-Especial-Ninos-hambre_2_1690005224.html
-IP: 95.17.33.96
 ------------------------------------------------------------------------
 URL: http://www.rtve.es/alacarta/videos/redes/redes-crear-hoy-escuelas-manana/968478/
 IP: 84.126.19.18
@@ -400,29 +108,11 @@ IP: 84.126.19.18
 URL: http://www.rtve.es/alacarta/videos/la-noche-tematica/lnt-terminos-condiciones-uso-261013-2310/2101947/
 IP: 84.127.28.16
 ------------------------------------------------------------------------
-URL: http://www.telecinco.es/informativos/informativos-diferidos.html
-IP: 88.1.121.183
-------------------------------------------------------------------------
 URL: http://www.eitb.tv/es/video/teknopolis--es-2013-2014/2732669346001/2766550866001/drones-vehiculos-aereos-no-tripulados/
 IP: 83.58.148.62
 ------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/la-que-se-avecina/temporada-1/capitulo-2/
-IP: 83.36.21.114
-------------------------------------------------------------------------
-URL: http://www.cuatro.com/quien-quiere-casarse-con-mi-hijo/temporada-3/programas/t03xp08/programa-integro-T03XP08_2_1692630191.html
-IP: 85.49.234.4
-------------------------------------------------------------------------
 URL: http://www.tv3.cat/videos/4740914/2324---Programa-del-31-doctubre-de-2013
 IP: 90.170.68.39
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/lavoz/voz-edicion-2/programas/batallas-28-10-2013/Batallas_2_1692105029.html
-IP: 85.55.46.144
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/lavoz/2012/actuaciones/actuacion-Maika-audiciones-ciegas_2_1479480049.html
-IP: 84.236.166.23
-------------------------------------------------------------------------
-URL: http://www.cuatro.com/quien-quiere-casarse-con-mi-hijo/temporada-3/programas/t03xp08/programa-integro-T03XP08_2_1692630191.html
-IP: 140.254.30.171
 ------------------------------------------------------------------------
 URL: http://www.tv3.cat/videos/4740914/2324---Programa-del-31-doctubre-de-2013
 IP: 90.170.68.39
@@ -430,20 +120,8 @@ IP: 90.170.68.39
 URL: http://www.rtve.es/alacarta/videos/tve-english/tve-english-capitulo-23/2112789
 IP: 91.126.234.28
 ------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/aida/temporada-9/capitulo-185/
-IP: 85.152.96.68
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/cuarto-milenio/temporada-7/programa-272/
-IP: 77.231.225.113
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/callejeros/temporada-8/programa-349/
-IP: 80.103.220.198
-------------------------------------------------------------------------
 URL: http://www.rtve.es/alacarta/videos/la-noche-tematica/noche-tematica-corazon-autosuficiente-avance/1688525/
 IP: 84.195.38.5
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/hermano-mayor/temporada-6/programa-60/
-IP: 82.159.88.50
 ------------------------------------------------------------------------
 URL: http://www.rtve.es/alacarta/videos/la-noche-tematica/noche-tematica-trafico-armas-avance/1950931/
 IP: 84.195.38.5
@@ -457,9 +135,6 @@ IP: 37.14.152.186
 URL: http://tvolucion.esmas.com/telenovelas/romantica/lo-que-la-vida-me-robo/241441/vida-me-robo-capitulo-2/
 IP: 187.188.84.69
 ------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/tierra-de-lobos/temporada-3/capitulo-32/
-IP: 84.121.213.127
-------------------------------------------------------------------------
 URL: http://www.tv3.cat/videos/3857310/Capitol-2-Jen-Calamitat
 IP: 90.170.68.39
 ------------------------------------------------------------------------
@@ -472,121 +147,22 @@ IP: 187.188.84.69
 URL: http://www.mtv.es/programas/geordie-shore-5-temporada/episodios/geordie-shore-508/video/geordie-shore-ep-508-parte-1-de-4-965971/
 IP: 84.122.121.57
 ------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/mujeres-y-hombres-y-viceversa/1301-1355/programa-1-354/
-IP: 81.43.210.18
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/cuarto-milenio/temporada-9/programa-339/
-IP: 83.44.111.215
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/hay-una-cosa-que-te-quiero-decir/temporada-3/programa-64/
-IP: 195.77.95.141
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/cuarto-milenio/temporada-9/programa-338/
-IP: 80.38.88.191
-------------------------------------------------------------------------
-URL: http://www.cuatro.com/palabra-de-gitano/t01xp02-amor/Palabra_de_gitano-amor-pureza-roneo-ligar-llegamiento-boda-rito_del_panuelo_2_1557705147.html
-IP: 2.137.109.107
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/cuarto-milenio/temporada-9/programa-339/
-IP: 80.38.88.191
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/los-serrano/temporada-1/capitulo-1/
-IP: 92.56.85.110
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/quien-quiere-casarse-con-mi-hijo/temporada-3/programa-8/
-IP: 88.15.243.121
-------------------------------------------------------------------------
-URL: http://www.cuatro.com/las-mananas-de-cuatro/2013/noviembre/05-11-2013/Martes_2_1695780118.html
-IP: 77.230.35.18
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/abre-los-ojos-y-mira/temporada-1/programa-9/
-IP: 174.112.38.60
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/tierra-de-lobos/temporada-3/capitulo-33/
-IP: 81.43.226.234
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/mujeres-y-hombres-y-viceversa/1356-1400/programa-1-358/
-IP: 85.62.160.141
-------------------------------------------------------------------------
 URL: http://www.rtve.es/alacarta/videos/els-camins-de-la-calma/els-camins-calma-seu-bella/442690/
 IP: 79.145.240.91
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/mujeresyhombres/2013/noviembre/06-11-2013/Miercoles-programa_on_line-tronistas_chicos_2_1696305075.html
-IP: 88.22.19.48
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/mujeres-y-hombres-y-viceversa/1301-1355/programa-1-348/
-IP: 2.139.53.219
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/lavoz/voz-edicion-2/programas/batallas-04-11-2013/Batallas_2_1695780029.html
-IP: 189.222.5.24
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/lavoz/la_voz_edicion_2/artistas/mandy-santos/actuacion-Mandy-Santos_2_1673730025.html
-IP: 85.48.134.214
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/cuarto-milenio/temporada-9/programa-339/
-IP: 87.218.160.202
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/aida/temporada-2/capitulo-19/
-IP: 77.229.80.100
 ------------------------------------------------------------------------
 URL: http://www.rtve.es/alacarta/videos/isabel/isabel-capitulo-19/2052509/
 IP: 151.237.212.141
 ------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/callejeros/temporada-8/programa-345/
-IP: 190.137.162.7
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/callejeros/temporada-8/programa-349/
-IP: 190.137.162.7
-------------------------------------------------------------------------
 URL: http://rtve.es/alacarta/videos/lamissa-27-10-2013/2103767
 IP: 83.50.123.169
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/llamaalacomadrona/capitulos-integros/T02xE01-Especial_2_1696830052.html
-IP: 85.57.225.186
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/llamaalacomadrona/capitulos-integros/T02xE01-Especial_2_1696830052.html
-IP: 85.57.225.186
 ------------------------------------------------------------------------
 URL: http://alacarta.aragontelevision.es/programas/vaughan/basico-i/pagina/10/
 IP: 88.14.236.115
 ------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/cuarto-milenio/temporada-9/programa-338/
-IP: 79.145.147.109
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/cuarto-milenio/temporada-9/programa-338/
-IP: 79.145.147.109
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/mdsvideo/popup.html?contentId=MDSVID20130818_0058
-IP: 91.116.163.21
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/motogp/temporada-2013/gran-premio-de-valencia/Descubrimos-secretos-Moto2-competira-CEV_2_1697880024.html
-IP: 186.54.250.147
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/aida/temporada-10/capitulo-208/
-IP: 187.204.91.67
-------------------------------------------------------------------------
-URL: http://www.cuatro.com/noticias-cuatro/en-directo/noticias-cuatro-fds/Noticias_Fin_de_Semana-Miguel_Angel_Oliver-Marta_Reyero_2_1694205070.html
-IP: 80.30.216.198
-------------------------------------------------------------------------
 URL: http://tvolucion.esmas.com/telenovelas/drama/quiero-amarte/242817/quiero-amarte-capitulo-16/
 IP: 187.188.84.69
 ------------------------------------------------------------------------
-URL: http://www.telecinco.es/lavoz/voz-edicion-2/programas/batallas-11-11-2013/Batallas_2_1699455010.html
-IP: 88.9.164.147
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/mujeres-y-hombres-y-viceversa/1356-1400/programa-1-361/
-IP: 79.157.173.188
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/hospital-central/temporada-10/capitulo-134/
-IP: 212.96.38.222
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/mujeresyhombres/2013/noviembre/13-11-2013/Lola-Adrian-amenazas-tronista-pretendiente_2_1699980048.html
-IP: 83.44.183.212
-------------------------------------------------------------------------
 URL: http://www.rtve.es/alacarta/videos/fabricando-made-in-spain/fabricando-made-in-spain-capitulo-14/2138607/
-IP: 88.5.84.206
-------------------------------------------------------------------------
-URL: http://mvod.lvlt.rtve.es/resources/TE_NGVA/mp4/5/5/1375832789755.mp4
 IP: 88.5.84.206
 ------------------------------------------------------------------------
 URL: http://www.rtve.es/alacarta/videos/cachitos-de-hierro-y-cromo/cachitos-hierro-cromo-musica-gasolinera/2103087.shtml
@@ -607,38 +183,11 @@ IP: 85.58.239.184
 URL: http://www.rtve.es/alacarta/videos/grandes-documentales/grandes-documentales-grandes-migraciones-festin-hambruna/1747889/
 IP: 79.150.198.191
 ------------------------------------------------------------------------
-URL: http://www.telecinco.es/aida/capitulos-integros/T10xC09-perdidos-tribu_2_1697355155.html
-IP: 199.19.249.196
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/aida/capitulos-integros/T10xC09-perdidos-tribu_2_1697355155.html
-IP: 199.64.72.252
-------------------------------------------------------------------------
-URL: http://www.mitele.es/tv-movies/ninos-robados/tv-movie/capitulo-2/
-IP: 62.101.187.237
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/lavoz/voz-edicion-2/programas/audiciones-a-ciegas-16-09-2013/Gabri-gustan-pantalones-estrechitos-moda_2_1670055019.html
-IP: 83.32.126.164
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/aida/temporada-10/capitulo-208/
-IP: 83.34.100.254
-------------------------------------------------------------------------
-URL: http://www.mitele.es/viajes/callejeros-viajeros/temporada-2/programa-86/
-IP: 31.4.241.40
-------------------------------------------------------------------------
 URL: http://www.eitb.tv/es/video/la-noche-de-la-noche-de2013/2064538084001/2831915318001/albert-nobbs/
 IP: 193.145.124.219
 ------------------------------------------------------------------------
-URL: http://www.telecinco.es/lavoz/voz-edicion-2/Ultimo-Asalto_2_1703130026.html
-IP: 89.140.113.34
-------------------------------------------------------------------------
 URL: http://www.tv3.cat/videos/3642950/Els-germans-Kratt---Cap-21-La-ciutat-dels-falcons
 IP: 90.170.68.39
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/lavoz/voz-edicion-2/programas/ultimo-asalto-18-11-2013/actuacion-Mandy-Kings-of-leon_2_1703130020.html
-IP: 85.85.195.150
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/cuarto-milenio/temporada-9/programa-341/
-IP: 84.122.218.149
 ------------------------------------------------------------------------
 URL: http://www.rtve.es/http://http://www.rtve.es/alacarta/videos/para-todos-la-2/para-todos-2-entrevista-patricia-ramirez-padres-entrenadores/2150774//television/para-todos-la-2//http://http://www.rtve.es/alacarta/videos/te-acuerdas/acuerdas-cuando-beethoven-se-hizo-pop/1429099//alacarta/videos/te-acuerdas/acuerdas-alimentos-garantizados/1518708/://http://www.rtve.es/alacarta/videos/te-acuerdas/acuerdas-alimentos-garantizados/1518708//alacarta/videos/te-acuerdas/acuerdas-alimentos-garantizados/1518708/videos/te-acuerdas/acuerdas-cuando-beethoven-se-hizo-pop/1429099/
 IP: 87.218.104.8
@@ -664,77 +213,23 @@ IP: 83.61.101.66
 URL: http://alacarta.aragontelevision.es/programas/aragon-en-abierto/
 IP: 83.32.209.170
 ------------------------------------------------------------------------
-URL: http://www.cuatro.com/me-cambio-de-familia/temporadas/temporada-03/t03xp05-gema-y-gonzalo/cambio-familia-catequista-termina-rosario_5_1616550009.html?itemId=1
-IP: 80.26.224.194
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/yo-soy-bea/temporada-3/capitulo-765/
-IP: 82.199.56.254
-------------------------------------------------------------------------
-URL: http://www.antena3.com/series/amar/momentos/valeria-casa-augusto-presencia-diego_2013110800312.html
-IP: 188.76.111.185
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/quetiempotanfeliz/actuaciones/Marta-Sanchez-estrena-single-QTTF_2_1702080067.html
-IP: 95.62.50.200
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/cuarto-milenio/temporada-9/programa-341/
-IP: 88.207.105.6
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/informativos/tecnologia/menores-ciberacosado_2_1704180073.html
-IP: 88.127.128.61
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/abrelosojosymira/programas/pgm-12-23-11-13/PGM-Abre-ojos-mira_2_1705755004.html
-IP: 87.216.105.130
-------------------------------------------------------------------------
-URL: http://mvod.lvlt.rtve.es/resources/TE_NGVA/mp4/7/3/1384848624137.mp4
-IP: 81.38.66.190
-------------------------------------------------------------------------
-URL: http://www.cuatro.com/cuarto-milenio/Ritual-Alexander_2_1026930003.html
-IP: 95.17.49.79
-------------------------------------------------------------------------
-URL: http://www.cuatro.com/cuarto-milenio/Ritual-Alexander_2_1026930003.html
-IP: 95.17.49.79
-------------------------------------------------------------------------
 URL: http://www.rtve.es/alacarta/videos/grandes-documentales/grandes-documentales-polonia-salvaje/1737647/
 IP: 200.141.36.106
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/mujeresyhombres/2013/noviembre/25-11-2013/Lunes-programa_onlin-tronistas_chicas_2_1706280069.html
-IP: 138.253.45.103
 ------------------------------------------------------------------------
 URL: http://www.rtve.es/alacarta/videos/programa/isabel-capitulo/2124776/
 IP: 89.130.79.11
 ------------------------------------------------------------------------
-URL: http://www.cuatro.com/cuarto-milenio/programas/temporada-09/t09xp12/Cuarto-Milenio-T09xP12_2_1704705264.html
-IP: 190.55.105.244
-------------------------------------------------------------------------
 URL: http://alacarta.aragontelevision.es/programas/vaughan/basico-i/pagina/14/
 IP: 5.152.171.12
 ------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/especiales/programas-especiales/asunta-el-movil-del-crimen/
-IP: 213.60.65.231
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/tierradelobos/Vuelve-ver-capitulo_2_1137180127.html
-IP: 83.34.2.251
-------------------------------------------------------------------------
 URL: http://www.rtve.es/alacarta/videos/el-documental/documental-2-fabuloso-sabicas/2149970/
 IP: 185.13.202.203
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/la-voz2/temporada-2/gala-12/
-IP: 188.77.46.86
 ------------------------------------------------------------------------
 URL: http://alacarta.aragontelevision.es/programas/territorio-vivo/cap-12-campo-de-belchite-26112013-2130/
 IP: 83.50.208.201
 ------------------------------------------------------------------------
 URL: http://www.rtve.es/alacarta/videos/juanita-la-larga/juanita-larga-capitulo-5/2117878/
 IP: 185.13.202.203
-------------------------------------------------------------------------
-URL: http://www.antena3.com/programas/top-chef/videos/programa1/chicote-fulmina-enrique-sangriento-accidente-cocina_2013100200342.html
-IP: 92.58.194.203
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/abre-los-ojos-y-mira/temporada-1/programa-10/
-IP: 80.39.24.82
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/lavoz/voz-edicion-2/actuaciones/batalla-David-Alex-Crazy_2_1691580193.html
-IP: 2.143.20.63
 ------------------------------------------------------------------------
 URL: http://www.rtve.es/alacarta/videos/tve-english/tve-english-capitulo-41/2174475/
 IP: 79.144.15.29
@@ -745,18 +240,6 @@ IP: 79.144.15.29
 URL: http://www.rtve.es/alacarta/videos/isabel/isabel-capitulo-14/2011436/
 IP: 77.230.91.135
 ------------------------------------------------------------------------
-URL: http://www.cuatro.com/quien-quiere-casarse-con-mi-madre/mejores-frases-madres_2_1703655178.html
-IP: 83.37.59.224
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/_65b3c50e
-IP: 83.37.59.224
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/laqueseavecina/preestreno-nueva-temporada-avecina-online_2_1706280206.html
-IP: 83.37.59.224
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/yo-soy-bea/temporada-2/capitulo-423/
-IP: 188.77.163.112
-------------------------------------------------------------------------
 URL: http://www.tv3.cat/lariera/capitols/temporada2/4210/5/La-Merce-sesta-ficant-on-no-la-demanen
 IP: 88.7.8.220
 ------------------------------------------------------------------------
@@ -766,128 +249,17 @@ IP: 218.76.29.110
 URL: http://alacarta.aragontelevision.es/programas/oregon-tv/pagina/2/
 IP: 62.97.66.139
 ------------------------------------------------------------------------
-URL: http://www.telecinco.es/salvamedeluxe/programas-on-line/Rosa_Benito-Amador_Mohedano-El_Deluxe-Chayo_Mohedano-Belen_Esteban_2_1708905003.html
-IP: 87.217.144.45
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/la-que-se-avecina/temporada-7/programa-81/
-IP: 83.43.125.22
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/spartacus-sangre-y-arena/temporada-1/capitulo-5/
-IP: 87.221.17.10
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/hormiguero/temporada-3/capitulo-376-mara-ascario_2013120300361.html
-IP: 124.17.13.238
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/me-resbala/temporada-1/capitulo-2-programa_2013112200345.html
-IP: 212.225.134.135
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/hormiguero/temporada-3/capitulo-378-imanol-arias_2013120500398.html
-IP: 84.120.50.253
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/hormiguero/temporada-3/capitulo-378-imanol-arias_2013120500398.html
-IP: 83.50.115.3
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/la-ruleta-de-la-suerte/temporada-1/capitulo-1922-29-11-13_2013112900175.html
-IP: 85.86.181.65
-------------------------------------------------------------------------
 URL: http://alacarta.canalsur.es/television/video/manuel-carrasco-en-concierto/708575/304
 IP: 95.123.157.71
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/tu-cara-me-suena/temporada-2/capitulo-6-gala_2012110500301.html
-IP: 79.152.133.163
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/vigilados/temporada-2/capitulo-5-marear-perdiz_2013120400160.html
-IP: 83.41.67.56
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/el-tiempo-entre-costuras/temporada-1/capitulo-8-captulo_2013120500282.html
-IP: 88.8.38.83
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/tu-cara-me-suena/temporada-1/capitulo-11-especial-enero-dos_2013110400630.html
-IP: 81.36.117.10
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/vive-cantando/temporada-1/capitulo-4-captulo_2013092300466.html
-IP: 188.78.43.253
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/vive-cantando/temporada-1/capitulo-4-captulo_2013092300466.html
-IP: 188.78.43.253
-------------------------------------------------------------------------
-URL: http://www.cuatro.com/_6633f0d6
-IP: 89.29.244.151
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/amar-es-para-siempre/temporada-2/capitulo-67-9-12-13_2013120400293.html
-IP: 201.253.70.113
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/salvados/temporada-7/capitulo-1-vida-sigue-igual_2013102500317.html
-IP: 95.120.254.235
-------------------------------------------------------------------------
-URL: http://www.cuatro.com/hermano-mayor/temporadas/temporada-06/t06xp06-soraya/el-programa-de-soraya-online_2_1704705127.html
-IP: 81.35.217.28
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/los-protegidos/temporada-2/Los-protegidos-T2-C3_2013080200689.html
-IP: 83.37.144.102
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/los-protegidos/temporada-3/los-protegidos_2013072400362.html
-IP: 83.37.144.102
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/tu-cara-me-suena/temporada-3/capitulo-4-gala_2013111400865.html
-IP: 188.78.118.82
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/la-que-se-avecina/temporada-7/making-of/
-IP: 83.34.48.37
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/el-secreto-de-puente-viejo/temporada-1/capitulo-715-16-12-13_2013121300129.html
-IP: 212.22.37.168
 ------------------------------------------------------------------------
 URL: http://www.mtv.es/programas/geordie-shore-4/episodios/geordie-shore-401/video/geordie-shore-ep-401-parte-1-de-4-919065/
 IP: 80.31.90.42
 ------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/los-hombres-de-paco/temporada-1/los-hombres-de-paco_2013022600320.html
-IP: 186.69.115.14
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/hormiguero/temporada-3/capitulo-354-mnica-naranjo_2013102400383.html
-IP: 83.165.91.204
-------------------------------------------------------------------------
 URL: http://www.rtve.es/alacarta/videos/tve-english/capitulo-53/2232520/
 IP: 79.155.116.151
 ------------------------------------------------------------------------
-URL: http://www.telecinco.es/lavoz/Janyssha-canta-Simply-Best_2_1702605219.html
-IP: 85.87.249.221
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/lavoz/Janyssha-canta-Simply-Best_2_1702605219.html
-IP: 85.87.249.221
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/el-tiempo-entre-costuras/temporada-1/capitulo-3-captulo_2013110400316.html
-IP: 88.22.110.76
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/amar-es-para-siempre/temporada-2/capitulo-72-16-12-13_2013121300122.html
-IP: 188.76.116.241
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/el-tiempo-entre-costuras/temporada-1/capitulo-9-captulo_2013121300265.html
-IP: 79.146.24.171
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/la-que-se-avecina/temporada-7/capitulo-3/
-IP: 79.145.164.14
-------------------------------------------------------------------------
 URL: http://www.rtve.es/alacarta/videos/tve-english/tve-english-capitulo-48/2206909/
 IP: 80.30.23.189
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/anhqv/temporada-1/anhqv_2012122100321.html
-IP: 95.17.138.157
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/al-rojo-vivo/2013/Diciembre/dia-17-oriol-junqueras-obligacin-intentar-que-ciudadanos-puedan-votar_2013121700203.html
-IP: 195.235.123.160
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/laqueseavecina/capitulos-integros/T07xC03-vedette-molesta-pescadero-atolladero_2_1717305136.html
-IP: 81.134.87.187
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/la-voz2/temporada-2/gala-14/
-IP: 94.174.128.242
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/elprogramadeanarosa/secciones/testimonios/trabajadores-del-tomate-canario-huelga-hambre-por-atrasos-ayudas_2_1703130074.html
-IP: 80.39.89.74
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/ahora-caigo/temporada-1/capitulo-535-17-12-13_2013121700355.html
-IP: 189.102.76.224
 ------------------------------------------------------------------------
 URL: http://www.rtve.es/alacarta/videos/para-todos-la-2/para-todos-2-incertidumbre-puesto-trabajo-entrevista-patricia-rodriguez-loeffler/1359569/
 IP: 37.11.134.44
@@ -898,77 +270,17 @@ IP: 37.11.134.44
 URL: http://www.mtv.es/videos/teen-mom-2-ciclo-3-ep-102-parte-1-de-4-967801/
 IP: 188.77.120.162
 ------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/el-tiempo-entre-costuras/temporada-1/capitulo-1-captulo_2013102100304.html
-IP: 212.106.253.13
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/especiales/programas-especiales/concierto-de-malu/
-IP: 85.155.212.230
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/el-tiempo-entre-costuras/temporada-1/capitulo-9-captulo_2013121300265.html
-IP: 79.144.59.215
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/el-barco/temporada-1/el-barco_2012031200428.html
-IP: 88.15.194.248
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/el-tiempo-entre-costuras/temporada-1/capitulo-9-captulo_2013121300265.html
-IP: 87.220.188.53
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/aida/temporada-4/capitulo-47/
-IP: 80.58.250.90
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/especiales/programas-especiales/concierto-de-malu/
-IP: 81.202.196.43
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/la-que-se-avecina/temporada-4/capitulo-49/
-IP: 87.218.47.72
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/la-que-se-avecina/temporada-5/capitulo-65/
-IP: 87.218.47.72
-------------------------------------------------------------------------
 URL: http://www.rtve.es/alacarta/videos/grandes-documentales/grandes-documentales-familia-osos-polares-1/2258927/
 IP: 88.20.194.129
 ------------------------------------------------------------------------
 URL: http://www.eitb.tv/es/video/teleberri--fin-de-semana/2064538096001/2962087269001/22-122013/
 IP: 82.130.151.165
 ------------------------------------------------------------------------
-URL: http://www.telecinco.es/lavoz/voz-edicion-2/programas/galas-en-directo-4-final-18-12-2013/One-direction-Voz_2_1718880014.html
-IP: 178.156.42.30
-------------------------------------------------------------------------
 URL: http://www.rtve.es/alacarta/videos/espanoles-en-el-mundo/espanoles-mundo-islas-griegas/1277879/
 IP: 187.198.89.24
 ------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/los-protegidos/temporada-3/los-protegidos_2013072400365.html
-IP: 81.33.133.105
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/especiales/programas-especiales/concierto-de-malu/
-IP: 84.79.206.78
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/lavoz/voz-edicion-2/programas/galas-en-directo-3-semifinal-11-12-2013/actuacion-David-Barrull-Pedacitos_2_1715205012.html
-IP: 80.58.250.83
-------------------------------------------------------------------------
 URL: http://www.rtve.es/alacarta/videos/especiales-navidad/especial-pablo-alboran/2259587/
 IP: 81.43.162.235
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/la-que-se-avecina/temporada-7/programa-82/
-IP: 83.61.53.237
-------------------------------------------------------------------------
-URL: http://www.mitele.es/viajes/desafio-en-el-abismo/temporada-1/programa-1/
-IP: 81.61.207.65
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/doctor-mateo/temporada-4/doctor-mateo_2012022700787.html
-IP: 81.202.198.54
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/doctor-mateo/temporada-4/doctor-mateo_2012022700787.html
-IP: 81.202.198.54
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/mujeres-y-hombres-y-viceversa/1356-1400/programa-1-394/
-IP: 79.158.169.195
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/salvados/temporada-7/capitulo-9-aconfesionalidad-espaola_2013122000229.html
-IP: 62.57.138.162
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/la-que-se-avecina/temporada-5/capitulo-61/
-IP: 190.42.219.6
 ------------------------------------------------------------------------
 URL: http://www.rtve.es/alacarta/videos/grandes-documentales/grandes-documentales-leones-blancos-nacidos-salvajes/2271687/
 IP: 81.172.75.49
@@ -976,50 +288,14 @@ IP: 81.172.75.49
 URL: http://video.lab.rtve.es/resources/TE_NGVA/mp4/2013/sanfermines/sanfermin-07-tv.webm
 IP: 84.123.5.175
 ------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/luna-calenda/temporada1/luna-calenda_2013030400332.html
-IP: 77.230.63.30
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/hormiguero/temporada-3/capitulo-348-elijah-wood_2013101500493.html
-IP: 95.19.66.147
-------------------------------------------------------------------------
 URL: http://www.rtve.es/alacarta/videos/programa/final-patinaje-artistico-indiv-1-parte/705560/
 IP: 212.225.182.245
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/el-tiempo-entre-costuras/temporada-1/capitulo-1-captulo_2013102100304.html
-IP: 181.208.202.81
 ------------------------------------------------------------------------
 URL: http://www.rtve.es/alacarta/videos/especiales-navidad/concierto-ano-nuevo-orquesta-filarmonica-viena/2275188/
 IP: 190.236.119.248
 ------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/la-que-se-avecina/temporada-7/capitulo-84/
-IP: 88.5.224.93
-------------------------------------------------------------------------
 URL: http://www.rtve.es/alacarta/videos/tve-english/tve-english-capitulo-64/2276271/
 IP: 90.244.148.86
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/aida/Campanadas-Aida_2_1719405052.html
-IP: 83.38.238.32
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/doctor-mateo/temporada-4/doctor-mateo_2012022700787.html
-IP: 81.202.198.54
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/cuarto-milenio/temporada-9/programa-347/
-IP: 84.77.96.150
-------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/cuarto-milenio/temporada-9/programa-347/
-IP: 84.77.96.150
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/documentales/empeños-a-lo-bestia-chicago/temporada-1/capitulo-10-captulo_2013112800081.html
-IP: 88.16.68.4
-------------------------------------------------------------------------
-URL: http://www.telecinco.es/salvamedeluxe/2014/enero/03-01-2014/Remedios_Torres-Maria_Jose_Campanario-Jesulin_de_Ubrique-Belen_Esteban_2_1727280004.html
-IP: 83.39.105.251
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/la-que-se-avecina/temporada-4/capitulo-46/
-IP: 94.39.80.15
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/me-resbala/temporada-1/capitulo-6-programa_2014010400003.html
-IP: 79.157.238.12
 ------------------------------------------------------------------------
 URL: http://www.mtv.es/programas/geordie-shore-6-temporada/episodios/geordie-shore-608/video/geordie-shore-ep-608-parte-3-de-4-989831/
 IP: 95.21.153.48
@@ -1027,20 +303,8 @@ IP: 95.21.153.48
 URL: http://www.mtv.es/programas/geordie-shore-6-temporada/episodios/geordie-shore-608/video/geordie-shore-ep-608-parte-2-de-4-989830/
 IP: 95.21.153.48
 ------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/tu-cara-me-suena/temporada-2/capitulo-18-gala-solidaria_2013022600326.html
-IP: 188.78.121.81
-------------------------------------------------------------------------
 URL: http://www.mtv.es/programas/geordie-shore-6-temporada/episodios/geordie-shore-608/video/geordie-shore-ep-608-parte-3-de-4-989831/
 IP: 95.21.153.48
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/tu-cara-me-suena/temporada-2/capitulo-15-gala_2013012900299.html
-IP: 188.78.121.81
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/atrapa-un-millon/temporada-1/capitulo-642-26-12-13_2013122600263.html
-IP: 80.24.152.160
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/atrapa-un-millon/temporada-1/capitulo-642-26-12-13_2013122600263.html
-IP: 80.24.152.160
 ------------------------------------------------------------------------
 URL: http://www.tv3.cat/
 IP: 108.162.229.64
@@ -1051,29 +315,11 @@ IP: 108.162.229.64
 URL: http://alacarta.aragontelevision.es/programas/vaughan/basico-i/pagina/2/
 IP: 173.245.53.113
 ------------------------------------------------------------------------
-URL: http://www.telecinco.es/aida/temporadas/temporada-10/t10xc18-testigo-de-calvo/T10xC18-Testigo-calvo_2_1730955063.html
-IP: 173.245.53.119
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/hospital-central/temporada-17/capitulo-240/
-IP: 108.162.210.133
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/amar-es-para-siempre/temporada-2/capitulo-88-10-01-14_2014010900164.html
-IP: 173.245.53.156
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/el-secreto-de-puente-viejo/temporada-1/capitulo-731-10-01-14_2014010900099.html
-IP: 173.245.53.177
-------------------------------------------------------------------------
 URL: http://alacarta.aragontelevision.es/programas/canal-emprendedor/cap15-12012014-1736
 IP: 173.245.53.131
 ------------------------------------------------------------------------
-URL: http://www.mitele.es/programas-tv/cuarto-milenio/temporada-9/programa-349/
-IP: 173.245.53.158
-------------------------------------------------------------------------
 URL: http://alacarta.aragontelevision.es/programas/vaughan/intermedio-i/pagina/8/
 IP: 108.162.229.73
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/programas/la-ruleta-de-la-suerte/temporada-1/capitulo-1946-08-01-13_2014010800216.html
-IP: 108.162.229.95
 ------------------------------------------------------------------------
 URL: http://www.rtve.es/alacarta/videos/docufilia/docufilia-50-anos-del-chupa-chups/1865950/
 IP: 173.245.54.78
@@ -1089,12 +335,6 @@ IP: 108.162.229.73
 ------------------------------------------------------------------------
 URL: http://alacarta.aragontelevision.es/programas/vaughan/basico-i/pagina/13/
 IP: 173.245.53.117
-------------------------------------------------------------------------
-URL: http://www.atresplayer.com/television/series/los-hombres-de-paco/temporada-8/los-hombres-de-paco_2012052400407.html
-IP: 173.245.53.89
-------------------------------------------------------------------------
-URL: http://www.mitele.es/series-online/la-que-se-avecina/temporada-7/capitulo-86/
-IP: 108.162.210.150
 ------------------------------------------------------------------------
 URL: http://alacarta.aragontelevision.es/programas/vaughan/intermedio-i/pagina/10/
 IP: 173.245.53.97
