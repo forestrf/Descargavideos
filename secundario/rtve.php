@@ -214,7 +214,7 @@ function quita_geobloqueo($url){
 	if(enString($url, '?')){
 		$url = substr($url, 0, strpos($url, '?'));
 	}
-	$url = preg_replace('#//.*?.rtve.es#', '//media1.rtve.es', $url);
+	$url = preg_replace('#//.*?.rtve.es#', '//mvod.lvlt.rtve.es', $url);
 	return $url;
 }
 

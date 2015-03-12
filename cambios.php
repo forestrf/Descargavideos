@@ -16,7 +16,13 @@ function cambios($max=-1){
 
 
 $todos[]=array(
-'15-Febrero-2015'
+'12-Marzo-2015'
+,'fix:Cambiado subdominio de los vídeos de rtve.'
+,'fix:Cambiada la fecha de la anterior actualización ya que era incorrecta.'
+);
+
+$todos[]=array(
+'11-Marzo-2015'
 ,'del:Mediaset. <a href="http://descargavid.blogspot.com.es/2015/03/telecinco-c-d.html">Más información aquí</a>.'
 ,'del:boing.wardcampbell.com.'
 );
