@@ -3,7 +3,7 @@
 class Mitele extends cadena{
 
 function mitele_directo(){
-	calcula();
+	$this->calcula();
 }
 
 function calcula(){
