@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'24-Marzo-2015'
+,'fix:AllMyVideos vuelve a funcionar.'
+);
+
+$todos[]=array(
 '12-Marzo-2015'
 ,'fix:Cambiado subdominio de los vídeos de rtve.'
 ,'fix:Cambiada la fecha de la anterior actualización ya que era incorrecta.'

@@ -45,7 +45,7 @@ function calcula(){
 	$id = substr($this->web, strposF($this->web, 'allmyvideos.net/'));
 	dbug('id = '.$id);
 	
-	$web_embedPlayedTo = 'http://allmyvideos.net/embed-'.$id.'.html';
+	$web_embedPlayedTo = 'http://allmyvideos.net/'.$id;
 	
 	$retfull = CargaWebCurl($web_embedPlayedTo,'',array('referer'=>'http://web.com'));
 	if (enString($retfull, '"image" : "')) {
