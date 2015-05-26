@@ -108,7 +108,7 @@ else{
 	}
 	dbug('id='.$id);
 
-	$stack=50;
+	$stack=500;
 	$maxResTotal=500;
 
 
