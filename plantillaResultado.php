@@ -54,9 +54,8 @@ function generaInnerResultado(){
 		// Array temporal. Se genera por cada ciclo del foreach y se rellena con lo necesario para escribir la plantilla de resultados
 		$R2 = array();
 	
-		if($titulo || (MODO_API && $url_txt)){
-			$R2['dir_resultado']   = $titulo;
-			$R2['dir_resultado_2'] = $url_txt;
+		if($titulo){
+			$R2['dir_resultado'] = $titulo;
 			include plantillaInclude('resultado_texto.php');
 		}
 		
