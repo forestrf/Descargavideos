@@ -1,4 +1,6 @@
-<?php include 'plantillas/extras/aviso_rapido_js.php'?>
+<?php
+if(!defined('IGNORA_AVISO_RAPIDO')) include 'plantillas/extras/aviso_rapido_js.php'
+?>
 
 <script>_gaq.push(["_trackEvent","Descargas","Realizadas","<?php echo $R['CANAL'];?>"]);</script>
 
