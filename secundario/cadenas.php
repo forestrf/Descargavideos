@@ -225,7 +225,7 @@ $cadenas = array(
 		'calcula'
 	)
 	,array(
-		array('hogarutil.com'),
+		array('hogarutil.com', 'hogarmania.com'),
 		array('hogarutil.php'),
 		'Hogarutil',
 		'calcula'
