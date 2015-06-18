@@ -209,7 +209,11 @@ dbug('imagen = '.$imagen);
 $obtenido['enlaces'] = brightcove_genera_obtenido($this, $base, array(
 	'IOSRenditions' => 'm3u8',
 	'renditions' => 'rtmpConcreto'
-), $titulo);
+), $titulo, array(
+	'videoId' => $base['id'],
+	'pubId' => $publisherId,
+	'playerId' => $experienceID
+));
 	
 
 
@@ -219,7 +223,7 @@ $obtenido['imagen']=$imagen;
 finalCadena($obtenido,false);
 }
 
-function URLSDelArrayBrightCove($r, $tipo, &$obtenido_enlaces, $titulo){
+function URLSDelArrayBrightCove($r, $tipo, &$obtenido_enlaces, $titulo, $extraParams){
 	if($r['audioOnly']!='1'){
 		if ($r['encodingRate'] > 0) {
 			$arrayTemp=array(
@@ -250,7 +254,8 @@ function URLSDelArrayBrightCove($r, $tipo, &$obtenido_enlaces, $titulo){
 		
 		//print_r($matches);
 		
-		
+		// http://euskalvod-vh.akamaihd.net/z/2015/05/21/0007623468/0007623468_,768x432_12288,320x180_2560,480x270_5120,480x270_7680,00.mp4.csmil/manifest.f4m?videoId=4248876567001&lineUpId=&pubId=4053905864001&playerId=4191633842001&affiliateId=&g=PXFLHTJPFASF&hdcore=3.4.0
+		// http://euskalvod-vh.akamaihd.net/z/2015/05/21/0007623468/0007623468_,768x432_12288,320x180_2560,480x270_5120,480x270_7680,00.mp4.csmil/manifest.f4m?videoId=4248876567001&pubId=4053905864001&playerId=4191633842001&hdcore=3.4.0
 		
 		if ($tipo === 'rtmpConcreto') {
 			if (enString($r['defaultURL'], 'mp4:')) {
@@ -263,6 +268,10 @@ function URLSDelArrayBrightCove($r, $tipo, &$obtenido_enlaces, $titulo){
 				}
 				$arrayTemp['rtmpdump'] = '-r "'.strtr($r['defaultURL'],array('&'.$y=>'')).'" -y "'.$y.'" '.$extra.' -o "'.$filename.'"';
 				$arrayTemp['nombre_archivo'] = $filename;
+			} elseif (enString($r['defaultURL'], 'manifest.f4m')){
+				$arrayTemp['tipo'] = 'f4m';
+				$arrayTemp['nombre_archivo'] = generaNombreWindowsValido($titulo.'.mp4');
+				$arrayTemp['url'] .= '?videoId=' . $extraParams['videoId'] . '&pubId=' . $extraParams['pubId'] . '&playerId=' . $extraParams['playerId'] . '&hdcore=3.4.0';
 			} else {
 				$arrayTemp['tipo'] = 'http';
 				$arrayTemp['url_txt'] = 'Descargar';

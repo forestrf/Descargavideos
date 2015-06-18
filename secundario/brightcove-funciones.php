@@ -35,7 +35,7 @@ function brightcove_curl_web($url,$post){
 	return CargaWebCurl($url,$post,0,"",$r);
 }
 
-function brightcove_genera_obtenido($dis = false, $base, $config, $titulo = ''){
+function brightcove_genera_obtenido($dis = false, $base, $config, $titulo = '', $extraParams = false){
 	$obtenido2 = array();
 	
 	foreach($config as $pathBase => $tipoObtenido){
@@ -44,10 +44,19 @@ function brightcove_genera_obtenido($dis = false, $base, $config, $titulo = ''){
 		for ($i = 0, $i_t = count($IOSRenditions); $i < $i_t; $i++) {
 			$temp=$IOSRenditions[$i]->getAMFData();
 			if ($dis !== false) {
-				$parameters = array($temp, $tipoObtenido, &$obtenido2, $titulo);
+				if (!$extraParams) {
+					$parameters = array($temp, $tipoObtenido, &$obtenido2, $titulo);
+				} else {
+					$parameters = array($temp, $tipoObtenido, &$obtenido2, $titulo, &$extraParams);
+				}
 				call_user_func_array(array($dis, 'URLSDelArrayBrightCove'), $parameters);
 			} else {
-				URLSDelArrayBrightCove($temp, $tipoObtenido, $obtenido2, $titulo);
+				if (!$extraParams) {
+					URLSDelArrayBrightCove($temp, $tipoObtenido, $obtenido2, $titulo);
+				} else {
+					URLSDelArrayBrightCove($temp, $tipoObtenido, $obtenido2, $titulo, $extraParams);
+				}
+						
 			}
 		}
 	}
