@@ -205,6 +205,8 @@ function calcula(){
 		return;
 	}
 	
+	$embedCode = trim($embedCode);
+	
 	if (preg_match('#player.ooyala.com/v3/(.+?)["\'\?]#', $this->web_descargada, $matches)) {
 		dbug_r($matches);
 		$playerBrandingId = $matches[1];

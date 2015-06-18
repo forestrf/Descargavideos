@@ -19,6 +19,7 @@ $todos[]=array(
 '18-Junio-2015'
 ,'fix:Los vídeos de eitb.tv con bitrate (calidad) desconocido no tendrán indicado este dato y los resultados no serán ordenados por el bitrate del vídeo.'
 ,'fix:RITB.tv descarga directa quitada porque ya no funciona. Agregada opción de descarga F4M.'
+,'fix:Problemas con algunos vídeos de Mundofox arreglados.'
 );
 
 $todos[]=array(
