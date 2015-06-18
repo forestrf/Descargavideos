@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'18-Junio-2015'
+,'fix:Los vídeos de eitb.tv con bitrate (calidad) desconocido no tendrán indicado este dato y los resultados no serán ordenados por el bitrate del vídeo.'
+);
+
+$todos[]=array(
 '24-Marzo-2015'
 ,'fix:AllMyVideos vuelve a funcionar.'
 );

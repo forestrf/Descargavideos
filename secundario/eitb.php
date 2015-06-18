@@ -221,12 +221,20 @@ finalCadena($obtenido,false);
 
 function URLSDelArrayBrightCove($r, $tipo, &$obtenido_enlaces, $titulo){
 	if($r['audioOnly']!='1'){
-		$arrayTemp=array(
-			'calidad_ordenar' => $r['encodingRate'],
-			'titulo'          => 'Calidad: '.floor($r['encodingRate']/1000).' Kbps',
-			'url'             => $r['defaultURL'],
-			'tipo'            => $tipo
-		);
+		if ($r['encodingRate'] > 0) {
+			$arrayTemp=array(
+				'calidad_ordenar' => $r['encodingRate'],
+				'titulo'          => 'Calidad: '.floor($r['encodingRate']/1000).' Kbps',
+				'url'             => $r['defaultURL'],
+				'tipo'            => $tipo
+			);
+		} else {
+			$arrayTemp=array(
+				'calidad_ordenar' => 0,
+				'url'             => $r['defaultURL'],
+				'tipo'            => $tipo
+			);
+		}
 		
 		//rtmpdump --rtmp "rtmp://brightcove.fcod.llnwd.net/a500/e1/uds/rtmp/ondemand/&mp4:102076681001/102076681001_1194607581001_40628-20111001-193913.mp4&1396378800000&8ea0d55b8390f639ceb5d6cb0012f5a1" --app="a500/e1/uds/rtmp/ondemand?videoId=1194575820001&lineUpId=&pubId=102076681001&playerId=2202962695001" --swfUrl="http://admin.brightcove.com/viewer/us20121218.1107/federatedVideoUI/BrightcovePlayer.swf?uid=1355158765470" --playpath="mp4:102076681001/102076681001_1194607581001_40628-20111001-193913.mp4?videoId=1194575820001&lineUpId=&pubId=102076681001&playerId=2202962695001" --pageUrl="http://www.eitb.tv/es/video/escepticos/1162371025001/1194575820001/-todo-esta-escrito-/" -C "B:0" -C "S:mp4:102076681001/102076681001_1194607581001_40628-20111001-193913.mp4&1396378800000&8ea0d55b8390f639ceb5d6cb0012f5a1" -o "Escepticos_-3-.mp4"
 		
@@ -248,7 +256,11 @@ function URLSDelArrayBrightCove($r, $tipo, &$obtenido_enlaces, $titulo){
 			if (enString($r['defaultURL'], 'mp4:')) {
 				preg_match_all('@(mp4:.*?\.mp4)@i', $r['defaultURL'], $match);
 				$y = $match[0][0];
-				$filename = generaNombreWindowsValido($titulo.' - '.floor($r['encodingRate']/1000).' Kbps'.'.mp4');
+				if ($r['encodingRate'] > 0) {
+					$filename = generaNombreWindowsValido($titulo.' - '.floor($r['encodingRate']/1000).' Kbps'.'.mp4');
+				} else {
+					$filename = generaNombreWindowsValido($titulo.'.mp4');
+				}
 				$arrayTemp['rtmpdump'] = '-r "'.strtr($r['defaultURL'],array('&'.$y=>'')).'" -y "'.$y.'" '.$extra.' -o "'.$filename.'"';
 				$arrayTemp['nombre_archivo'] = $filename;
 			} else {
