@@ -1,5 +1,6 @@
 User-agent: *
 Disallow: /util/
 Disallow: /form.php
+Disallow: /flag.php
 
 Sitemap: http://www.descargavideos.tv/sitemap.xml
