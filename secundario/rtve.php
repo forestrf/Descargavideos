@@ -314,6 +314,11 @@ function encuentraAssetEnContenido($web_descargada){
 			dbug('asset, prueba 3. No se realiza.');
 	}
 	if(stringContains($asset,array('"','{','}','<','>',' '))){
+		preg_match_all('@data-assetid="(\d+)_@i', $web_descargada, $matches);
+		$asset=$matches[1][0];
+		dbug('asset, prueba 3.5: '.$asset);
+	}
+	if(stringContains($asset,array('"','{','}','<','>',' '))){
 		preg_match_all('@DC.identifier" ?content="(\d+)"@', $web_descargada, $matches);
 		$asset=$matches[1][0];
 		dbug('asset, prueba 4: '.$asset);
