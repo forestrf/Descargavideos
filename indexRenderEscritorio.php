@@ -87,7 +87,7 @@ var css_user='<?php echo $css_modo?>';
 			</form>
 			
 			<div class="publi_cabecera">
-				<?php echo getPubli('yepdigital 468x60');?>
+				<?php echo getPubli('cpmrocket 728x90');?>
 			</div>
 		</div>
 

@@ -26,7 +26,7 @@ generaInnerResultado();
 </div>
 
 <div class="bloque publi_res" id="contendor_publi_res">
-<?php echo getPubli('yepdigital 300x250')?>
+<?php /*echo getPubli('cpmrocket 300x250')*/?>
 </div>
 
 <div class="instrucciones_descarga bloque">
