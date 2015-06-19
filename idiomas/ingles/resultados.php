@@ -6,3 +6,5 @@ define('INTERIOR_AVISO_RTMP','Windows: You need the program RTMP-Downloader to d
 	
 define('INTERIOR_AVISO_F4M','Windows: You need the program F4M-Downloader to download this video.<br/><a href="/lab#lab_f4m-downloader">Download program F4M-Downloader</a>.<br/>
 	<a href="http://www.youtube.com/watch?v=Jb0mt2qRXGw">youtube tutorial (works the same way)</a>.<br/><br/>');
+
+define('USE_BOOKMARKLET_2', 'Descargavideos.tv can\'t access the video.<br/>Please try again using this bookmarklet:<br/><br/><a target="_blank" class="bookmarklet" href="'.BOOKMARKLET_V2.'">'.TXT_BOOKMARKLET.'</a><br/><br/><a href="/lab#lab_bookmarklet">More information</a>');

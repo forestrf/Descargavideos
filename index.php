@@ -106,11 +106,11 @@ páginas ($pag):
 
 
 
-preparaPagina($pag);
 
 //Idiomas (en preparaPagina() tmbn se manejan)
 include_once 'idiomas/'.IDIOMA.'/index.php';
 
+preparaPagina($pag);
 
 
 

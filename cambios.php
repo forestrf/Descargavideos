@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'19-Junio-2015'
+,'fix:Crunchyroll vuelve a funcionar, pero usando el Bookmarklet V2.'
+);
+
+$todos[]=array(
 '18-Junio-2015'
 ,'add:hogarmania.com. Usado el script de hogarutil.com'
 ,'fix:Los vídeos de eitb.tv con bitrate (calidad) desconocido no tendrán indicado este dato y los resultados no serán ordenados por el bitrate del vídeo.'

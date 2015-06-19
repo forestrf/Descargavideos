@@ -18,6 +18,12 @@ class Crunchyrollcom extends cadena{
 
 function calcula(){
 	//$url = "http://www.crunchyroll.com/xml/?req=RpcApiVideoPlayer_GetStandardConfig&media_id={$id}&video_format={$format}&video_quality={$quality}&auto_play=1&aff=crunchyroll-website&show_pop_out_controls=1&pop_out_disable_message=Only+All-Access+Members+and+Anime+Members+can+pop+out+this+video.+Get+your+membership+today%21";
+	if (!enString($this->web_descargada, '"config_url":"')) {
+		define('IGNORA_AVISO_RAPIDO', true);
+		setErrorWebIntera(USE_BOOKMARKLET_2);
+		return;	
+	}
+	
 	$url = entre1y2($this->web_descargada, '"config_url":"', '"');
 	$url = urldecode($url);
 	
@@ -50,6 +56,10 @@ function calcula(){
 	);
 	
 	finalCadena($obtenido);
+}
+
+function bookmarklet() {
+	return 'bookmarklet_form();';
 }
 
 }
