@@ -5,16 +5,18 @@ class Rtvcm extends cadena{
 function calcula(){
 $obtenido=array('enlaces' => array());
 
-if (enString($this->web_descargada, 'var videos = [{"')) {
+if (enString($this->web_descargada, 'var videos = ')) {
 	// var videos = [{"titulo":"Un lugar donde vivir","video":"8965","imagen":"http:\/\/api.rtvcm.webtv.flumotion.com\/videos\/8965\/thumbnail.jpg","fecha":"15\/06\/2015","format_date":"2015-06-15 00:00","descripcion":"Descubrimos los municipios de Cristo del Esp\u00edritu Santo (Ciudad Real) y Vega del Codorno en Cuenca.","fecha-publicacion":"1434404700"},{"titulo":"Un lugar donde vivir","fecha":"08\/06\/2015","format_date":"2015-06-08 00:00","descripcion":"","video":"8738","imagen":"http:\/\/api.rtvcm.webtv.flumotion.com\/videos\/8738\/thumbnail.jpg","fecha-publicacion":""},{"titulo":"Promo Un lugar donde vivir","fecha":"01\/06\/2015","format_date":"2015-06-01 00:00","descripcion":"","video":"8642","imagen":"http:\/\/api.rtvcm.webtv.flumotion.com\/videos\/8642\/thumbnail.jpg","fecha-publicacion":""}];
 	// http://play.rtvcm.webtv.flumotion.com/play/player?player=8&pod=8965
 	// <meta property=og:title content="Unlugardondevivir15062015.mp4">
 	// http://ondemand.rtvcm.ondemand.flumotion.com/rtvcm/ondemand/video/mp4/med/Unlugardondevivir15062015.mp4
 	
-	$json = json_decode('[' . entre1y2($this->web_descargada, 'var videos = [', '];') . ']', true);
-	
+	$json = json_decode(entre1y2($this->web_descargada, 'var videos = ', ';'), true);
+	if (!isset($json[0])) {
+		$json[0] = &$json[''];
+		unset($json['']);
+	}
 	dbug_r($json);
-	
 	
 	for ($i = 0, $i_t = count($json); $i < $i_t; $i++){
 		
