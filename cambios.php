@@ -22,6 +22,7 @@ $todos[]=array(
 ,'fix:RITB.tv descarga directa quitada porque ya no funciona. Agregada opción de descarga F4M.'
 ,'fix:Problemas con algunos vídeos de Mundofox arreglados.'
 ,'fix:RTVE soporte para más tipos de inserción de vídeos.'
+,'fix:RTVCM Actualizado. Ya vuelve a funcionar.'
 );
 
 $todos[]=array(
