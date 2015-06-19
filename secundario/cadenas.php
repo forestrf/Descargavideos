@@ -329,7 +329,8 @@ $cadenas = array(
 		array('crunchyroll.com'),
 		array('crunchyrollcom.php'),
 		'Crunchyrollcom',
-		'calcula'
+		'calcula',
+		'bookmarklet'
 	)
 	,array(
 		array('telemundo.com'),
