@@ -71,7 +71,7 @@ define('BM', isset($_POST['bookmarklet']));
 dbug(BM ? 'BM true' : 'BM false');
 
 define('POST_BM', !BM && isset($_POST['bmgenerated']));
-dbug(BM ? 'POST_BM true' : 'POST_BM false');
+dbug(POST_BM ? 'POST_BM true' : 'POST_BM false');
 
 
 //API. devolver SOLO el enlace (1/2)
