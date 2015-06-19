@@ -15,6 +15,10 @@ if(!defined('IGNORA_AVISO_RAPIDO')) include 'plantillas/extras/aviso_rapido_js.p
 <?php } ?>
 <div id="enlaces" class="bloque">
 
+<div class="bloque publi_res" id="contendor_publi_res" style="width: 90%;">
+<?php echo getPubli('cpmrocket 290x58')?>
+</div>
+
 <?php
 
 // Aquí va la selección de qué tipo de resultado(s) van para luego completarlos
@@ -23,10 +27,6 @@ generaInnerResultado();
 
 ?>
 
-</div>
-
-<div class="bloque publi_res" id="contendor_publi_res">
-<?php /*echo getPubli('cpmrocket 300x250')*/?>
 </div>
 
 <div class="instrucciones_descarga bloque">
