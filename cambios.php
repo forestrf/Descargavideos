@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'28-Junio-2015'
+,'fix:Goear vuelve a funcionar.'
+);
+
+$todos[]=array(
 '19-Junio-2015'
 ,'fix:Crunchyroll vuelve a funcionar, pero usando el Bookmarklet V2.'
 );

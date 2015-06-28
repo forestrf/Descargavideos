@@ -86,6 +86,7 @@ elseif(enString($this->web_descargada,"soundid = '")){
 	$mp3=$this->buscaMP3($id);
 	array_push($obtenido['enlaces'],array(
 		'url'  => $mp3,
+		'url_txt' => 'Descargar',
 		'tipo' => 'http'
 	));
 }
@@ -103,7 +104,7 @@ finalCadena($obtenido,false);
 }
 
 function buscaMP3($id){
-	return 'http://www.goear.com/plimiter.php?f='.$id;
+	return 'http://www.goear.com/action/sound/get/'.$id;
 }
 
 }
