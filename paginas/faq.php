@@ -54,13 +54,13 @@ Mitele tiene algunos vídeos en formato RTMP que el portal no soporta por culpa 
 
 <div class="pregunta"><div id="p_l_w_f_a_i_d_u_v"></div>La web falla al intentar descargar un vídeo.</div>
 <div class="respuesta">
-Es probable que exista un bug que provoque dicho fallo, o bien que la web donde está el vídeo no sea una de las <a href="#p_q_c_s_d">webs soportadas por Descargavideos</a>. En este caso sería una gran ayuda si indicaras la URL que provocó el fallo a través del <a href="/contacta">formulario contacta</a> o bien escribiendo un comentario en <a href="http://descargavid.blogspot.com.es/2012/04/errores-en-la-web.html">esta entrada</a>. Solo de esta forma podremos arreglar el fallo. Además, tan pronto como esté solucionado te responderemos al correo que indicaras en el mensaje.
+Es probable que exista un bug que provoque dicho fallo, o bien que la web donde está el vídeo no sea una de las <a href="#p_q_c_s_d">webs soportadas por Descargavideos</a>. En este caso sería una gran ayuda si indicaras la URL que provocó el fallo a través del <a href="/contacta#contenido">formulario contacta</a> o bien escribiendo un comentario en <a href="http://descargavid.blogspot.com.es/2012/04/errores-en-la-web.html">esta entrada</a>. Solo de esta forma podremos arreglar el fallo. Además, tan pronto como esté solucionado te responderemos al correo que indicaras en el mensaje.
 </div>
 
 <div class="pregunta"><div id="p_q_d_u_v_p_l_w_d_s_e_n_e_e_e_l_d_c_s"></div>Quiero descargar un vídeo pero la web donde se encuentra no está en el listado de canales soportados.</div>
 <div class="respuesta">
 Para descargar un vídeo mediante este portal es necesario que esté en el listado de <a href="#p_q_c_s_d">webs soportadas</a>.<br/>
-En tal caso el vídeo no se podrá descargar a través de esta web. Si te interesa que la web soporte los vídeos de esa web deberás ponerte en contacto mediante el <a href="/contacta">formulario contacta</a> indicando el canal que te gustaría que se añadiera a Descargavideos. Tras recivir tu petición haremos todo lo posible por incluirlo al listado de canales soportados. Tan pronto como fuera soportado te avisaríamos al correo que indicaras en el mensaje.
+En tal caso el vídeo no se podrá descargar a través de esta web. Si te interesa que la web soporte los vídeos de esa web deberás ponerte en contacto mediante el <a href="/contacta#contenido">formulario contacta</a> indicando el canal que te gustaría que se añadiera a Descargavideos. Tras recibir tu petición haremos todo lo posible por incluirlo al listado de canales soportados.
 </div>
 
 <div class="pregunta"><div id="p_n_d_a_p"></div>¿Necesito descargar algún programa?</div>
