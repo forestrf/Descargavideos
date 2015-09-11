@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'11-Septiembre-2015'
+,'fix:Now telemundo (vuelve a dar enlaces, pero puede que no funcionen).'
+);
+
+$todos[]=array(
 '28-Junio-2015'
 ,'fix:Goear vuelve a funcionar.'
 );

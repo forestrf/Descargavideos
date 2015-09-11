@@ -103,6 +103,13 @@ function calcula(){
 			
 			$obtenido['descripcion']=$descripcion;
 		}
+
+		if (enString($imagen, '.js')) {
+			dbug('imagen incorrecta: ' . $imagen);
+			preg_match('@"episode_thumbnail":.*"url":"(.+?anvver.+?)"@', $this->web_descargada, $matches);
+			dbug_r($matches);
+			$imagen = json_decode('"' . $matches[1] . '"');
+		}
 			
 		$obtenido['titulo']=$titulo;
 		$obtenido['imagen']=$imagen;
