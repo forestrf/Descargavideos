@@ -7,4 +7,4 @@ define('INTERIOR_AVISO_RTMP','Windows: Necesitas el programa RTMP-Downloader par
 define('INTERIOR_AVISO_F4M','Windows: Necesitas el programa F4M-Downloader para descargar este vídeo.<br/><a href="/lab#lab_f4m-downloader">Descargar programa F4M-Downloader</a>.<br/>
 	<a href="http://www.youtube.com/watch?v=Jb0mt2qRXGw">video-tutorial en youtube</a>.<br/><br/>');
 
-define('USE_BOOKMARKLET_2', 'Descargavideos.tv no puede acceder al vídeo.<br/>Por favor inténtelo de nuevo usando el siguiente bookmarklet:<br/><br/><a target="_blank" class="bookmarklet" href="'.BOOKMARKLET_V2.'">'.TXT_BOOKMARKLET.'</a><br/><br/><a href="/lab#lab_bookmarklet">Más información</a>');
+define('USE_BOOKMARKLET_2', 'Es necesario usar el siguiente bookmarklet (arrástrelo a su barra de favoritos):<br/><br/><a target="_blank" class="bookmarklet" href="'.BOOKMARKLET_V2.'">'.TXT_BOOKMARKLET.'</a><br/><br/>Una vez esté en la página que contiene el vídeo clique el favorito que acaba de crear<br/><br/><a href="/lab#lab_bookmarklet">Más información</a>');

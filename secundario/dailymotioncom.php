@@ -22,13 +22,19 @@ http://vid2.ec.dmcdn.net/sec%28c1d480eb58ebac8a06ba174a542e3bdc%29/video/793/312
 class Dailymotioncom extends cadena{
 
 function calcula(){
-	/*
-	// Nada de vídeos con filtro parental because adsense
+	// Quitar filtro parental
 	if(!enString($this->web_descargada, 'sequence=')){
 		dbug('Desactivando filtro familiar');
 		$this->web_descargada = CargaWebCurl($this->web,'','','ff=off');
 	}
-	*/
+	
+	if (!$this->normal_desde_bookmarklet) {
+		// Es necesario usar el bookmarklet V2
+		define('IGNORA_AVISO_RAPIDO', true);
+		setErrorWebIntera(USE_BOOKMARKLET_2);
+		return;
+	}
+	
 	if(strpos($this->web, 'http://www.dailymotion.com/embed/') === 0){
 		dbug('embed');
 		if ($this->normal_desde_bookmarklet) {
@@ -92,42 +98,32 @@ function calcula(){
 		}
 	}
 	
-	$urlContenedor = urldecode(entre1y2($this->web_descargada, 'sequence=','"'));
+	$urlContenedor = urldecode(entre1y2($this->web_descargada, '"qualities":','}]}')).'}]}';
 	
 	dbug_($urlContenedor);
 	
 	$jsonUrlContenedor = json_decode($urlContenedor, true);
 	dbug_r($jsonUrlContenedor);
 	
+	$titulo = json_decode('"' . entre1y2($this->web_descargada, '"LR_TITLE":"', '",') . '"', true);
+	$imagen = json_decode('"' . entre1y2($this->web_descargada, '"poster_url":"', '",') . '"', true);
+	
 	$obtenido=array(
-		'titulo'  => $jsonUrlContenedor['config']['metadata']['title'],
-		'imagen'  => $jsonUrlContenedor['config']['preview_url'],
+		'titulo'  => $titulo,
+		'imagen'  => $imagen,
 		'enlaces' => array()
 	);
 	
-	foreach($jsonUrlContenedor['sequence'][0]['layerList'][0]['sequenceList'][2]['layerList'] as $preManifest){
-		if(isset($preManifest['param']['autoURL'])){
-			$manifest = $preManifest['param']['autoURL'];
+	foreach($jsonUrlContenedor as $quality => $urlArr){
+		if($quality != 'auto'){
+			$obtenido['enlaces'][] = array(
+				'titulo'    => $quality.'p',
+				'url'       => $urlArr[0]['url'],
+				'extension' => 'mp4',
+				'url_txt'   => 'Descargar',
+				'tipo'      => 'http'
+			);
 		}
-	}
-	
-	// ff=off permite tmbn descargar porno y esto va contra adsense.
-	//$preEnlaces = CargaWebCurl($manifest,'','','ff=off');
-	$preEnlaces = CargaWebCurl($manifest);
-	dbug_($preEnlaces);
-	
-	$preEnlaces = json_decode($preEnlaces, true);
-	dbug_r($preEnlaces);
-	
-	// Todas las calidades
-	for($i=count($preEnlaces['alternates'])-1; $i>=0; --$i){
-		$obtenido['enlaces'][] = array(
-			'titulo'    => $preEnlaces['alternates'][$i]['name'].'p',
-			'url'       => $this->parseaTemplateDailyMotion($preEnlaces['alternates'][$i]['template']),
-			'extension' => 'm3u8',
-			'url_txt'   => 'Descargar',
-			'tipo'      => 'm3u8'
-		);
 	}
 	
 	
@@ -143,25 +139,8 @@ function parseaTemplateDailyMotion($url){
 }
 
 function bookmarklet() {
-	if(strpos($this->web, 'http://www.dailymotion.com/embed/') === 0){
-		dbug('Lanza resultado');
-		return 'bookmarklet_form();';
-	} else {
-		if (!enString($this->web_descargada, 'sequence=')) {
-			return 'xhr("' . bm_scape($this->web) . '", null, function(data){lanzaDVxhr("' . bm_scape($this->web) . '", data);});';
-		}
-		
-		$urlContenedor = urldecode(entre1y2($this->web_descargada, 'sequence=', '"'));
-		dbug_($urlContenedor);
-		
-		$jsonUrlContenedor = json_decode($urlContenedor, true);
-		dbug_r($jsonUrlContenedor);
-		dbug_($jsonUrlContenedor['config']['sharing']['embedCode']);
-		$urlEmbed = entre1y2($jsonUrlContenedor['config']['sharing']['embedCode'], 'src="', '"');
-		
-		dbug('Pedir embed');
-		return 'xhr("' . bm_scape($urlEmbed) . '", null, function(data){lanzaDVform("http:' . bm_scape($urlEmbed) . '", data);});';
-	}
+	return 'bookmarklet_form();';
 }
+
 
 }

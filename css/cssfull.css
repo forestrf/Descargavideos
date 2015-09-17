@@ -655,19 +655,21 @@ input[type="radio"] {
 #resultado #enlaces .aviso_m3u8 a:hover{
 	color:#3FC0C2;
 }
-#resultado .error_res{
-	text-align:center;
-	font-size:22px;
-	color:#FFDACC;
-	background:#C11A00;
-	display:inline-block;
-	top:100px;
-	position:relative;
-	margin:0 0 0 -40%;
-	width:80%;
-	left:50%;
-	padding:20px 0;
-	line-height:26px;
+#resultado .error_res {
+	background: #303030 none repeat scroll 0 0;
+	border: 2px solid #ffed00;
+	box-shadow: 2px 2px 5px #000;
+	color: #ffdacc;
+	display: inline-block;
+	font-size: 22px;
+	left: 50%;
+	line-height: 26px;
+	margin: 0 0 0 -40%;
+	padding: 20px;
+	position: relative;
+	text-align: center;
+	top: 100px;
+	width: 80%;
 }
 #descargador_archivos{
 	position:absolute;

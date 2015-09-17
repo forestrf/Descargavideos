@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'17-Septiembre-2015'
+,'fix:Dailymotion (Requiere usar el Bookmarklet V2).'
+);
+
+$todos[]=array(
 '11-Septiembre-2015'
 ,'fix:Now telemundo (vuelve a dar enlaces, pero puede que no funcionen).'
 );
