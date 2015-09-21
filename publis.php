@@ -39,7 +39,7 @@ var adParams = {a: \'65851155\', size: \'290x58\',serverdomain: \'adk2trk2.cpmro
 $publisUsadas = array();
 
 function getPubli($i){
-	//return '';
+	return '';
 	global $publis, $publisUsadas, $PUBLICIDAD;
 	if(!isset($publisUsadas[$i])){
 		$publisUsadas[$i]=true;
