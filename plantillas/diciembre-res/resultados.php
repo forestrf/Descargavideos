@@ -30,14 +30,14 @@ generaInnerResultado();
 </div>
 
 <div class="instrucciones_descarga bloque">
-	<b>Como descargar un enlace:</b><br/>
+	<b>Cómo descargar un enlace:</b><br/>
 	<ul>
 		<li>- Firefox: Clic derecho sobre el enlace, clic sobre "Guardar enlace Como...".</li>
 		<li>- Chrome: Clic derecho sobre el enlace, clic sobre "Guardar enlace Como...".</li>
 		<li>- Opera: Clic derecho sobre el enlace, clic sobre "Guardar contenido Como...".</li>
 		<li>- Internet Explorer: Clic derecho sobre el enlace, clic sobre "Guardar destino Como...".</li>
 	</ul>
-	<a href="http://www.youtube.com/watch?v=7-Xvmz-jNrg">Ver en YouTube como descargar un enlace.</a>
+	<a href="http://www.youtube.com/watch?v=7-Xvmz-jNrg">Ver en YouTube cómo descargar un enlace.</a>
 	<br/><br/>
 	Para descargar un enlace m3u8: <a href="/lab#lab_m3u8-downloader" id="enl">Programa necesario</a>. <a href="http://www.youtube.com/watch?v=bqBBWumxp4c" id="enl">Tutorial en YouTube</a>.
 	</p>
