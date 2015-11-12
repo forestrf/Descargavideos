@@ -398,4 +398,10 @@ $cadenas = array(
 		'Nbcuniversocom',
 		'calcula'
 	)
+	,array(
+		array('cda.gob.ar'),
+		array('cdagobar.php'),
+		'Cdagobar',
+		'calcula'
+	)
 );

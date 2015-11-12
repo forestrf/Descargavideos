@@ -17,6 +17,7 @@ function cambios($max=-1){
 
 $todos[]=array(
 '12-Noviembre-2015'
+,'add:cda.gob.ar agregado.'
 ,'fix:eitb.tv vuelve a funcionar.'
 );
 
