@@ -26,6 +26,12 @@ $todos[]=array(
 );
 
 $todos[]=array(
+'12-Noviembre-2015'
+,'add:cda.gob.ar agregado.'
+,'fix:eitb.tv vuelve a funcionar.'
+);
+
+$todos[]=array(
 '17-Septiembre-2015'
 ,'fix:Dailymotion (Requiere usar el Bookmarklet V2).'
 );

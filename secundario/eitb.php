@@ -102,125 +102,150 @@ finalCadena($obtenido);
 function calculatv(){
 $obtenido=array('enlaces' => array());
 
+// loadVideoID('', '4104702668001', '', 105961, 'cine', false, 'es');
+// http://mam.eitb.eus/mam/REST/ServiceMultiweb/Video/MULTIWEBTV/105961/
+if(preg_match("@loadVideoID.*?\('?.*?'?, ?'?([0-9]*?)'?, ?'?.*?'?, '?([0-9]*)'?@", $this->web_descargada, $matches)) {
+	dbug_r($matches);
+	
+	$url = 'http://mam.eitb.eus/mam/REST/ServiceMultiweb/Video/MULTIWEBTV/' . $matches[2] . '/';
+	$urlRes = CargaWebCurl($url);
+	dbug_($urlRes);
+	$json = json_decode($urlRes, true);
+	dbug_r($json);
+	
+	$titulo = $json['web_media'][0]['NAME_EU'];
+	$imagen = $json['web_media'][0]['STILL_URL'];
+	dbug('titulo = '.$titulo);
+	dbug('imagen = '.$imagen);
 
-//http://c.brightcove.com/services/messagebroker/amf?playerKey=AQ~~,AAAAEUA28vk~,ZZqXLYtFw-ADB2SpeHfBR3cyrCkvIrAe
-if(enString($this->web_descargada,'<param name="playerKey"'))
-	$playerKey=entre1y2($this->web_descargada,'<param name="playerKey" value="','"');
-if(!isset($playerKey)){
-	setErrorWebIntera('No se ha encontrado ningún vídeo.');
-	return;
-}
-dbug('playerKey -> '.$playerKey);
-$messagebroker='http://c.brightcove.com/services/messagebroker/amf?playerKey='.$playerKey;
+	$renditions = &$json['web_media'][0]['RENDITIONS'];
+	for ($i = 0, $i_l = count($renditions); $i < $i_l; $i++) {
+		$obtenido['enlaces'][] = array(
+			'url_txt' => 'Tamaño: ' . $renditions[$i]['FRAME_WIDTH'] . ' x ' . $renditions[$i]['FRAME_HEIGHT'],
+			'url'    => $renditions[$i]['PMD_URL']
+		);
+	}
+	
+} else {
+		
+	//http://c.brightcove.com/services/messagebroker/amf?playerKey=AQ~~,AAAAEUA28vk~,ZZqXLYtFw-ADB2SpeHfBR3cyrCkvIrAe
+	if(enString($this->web_descargada,'<param name="playerKey"'))
+		$playerKey=entre1y2($this->web_descargada,'<param name="playerKey" value="','"');
+	if(!isset($playerKey)){
+		setErrorWebIntera('No se ha encontrado ningún vídeo.');
+		return;
+	}
+	dbug('playerKey -> '.$playerKey);
+	$messagebroker='http://c.brightcove.com/services/messagebroker/amf?playerKey='.$playerKey;
 
 
-if(enString($this->web_descargada,'<param name="playerID"'))
-	$experienceID=entre1y2($this->web_descargada,'<param name="playerID" value="','"');
-if(!isset($experienceID)){
-	setErrorWebIntera('No se ha encontrado ningún vídeo.');
-	return;
-}
-dbug('experienceID -> '.$experienceID);
+	if(enString($this->web_descargada,'<param name="playerID"'))
+		$experienceID=entre1y2($this->web_descargada,'<param name="playerID" value="','"');
+	if(!isset($experienceID)){
+		setErrorWebIntera('No se ha encontrado ningún vídeo.');
+		return;
+	}
+	dbug('experienceID -> '.$experienceID);
 
 
-include 'brightcove-funciones.php';
+	include 'brightcove-funciones.php';
 
-$a_encodear = array
-(
-	'target'	=> 'com.brightcove.experience.ExperienceRuntimeFacade.getDataForExperience',
-	'response'	=> '/1',
-	'data'		=> array
+	$a_encodear = array
 	(
-		'0' => 'a8cdc396a50ca2415ddd0e33cca179431347adc5',
-		'1' => new SabreAMF_AMF3_Wrapper
+		'target'	=> 'com.brightcove.experience.ExperienceRuntimeFacade.getDataForExperience',
+		'response'	=> '/1',
+		'data'		=> array
 		(
-			new SabreAMF_TypedObject
+			'0' => 'a8cdc396a50ca2415ddd0e33cca179431347adc5',
+			'1' => new SabreAMF_AMF3_Wrapper
 			(
-				'com.brightcove.experience.ViewerExperienceRequest',
-				array
+				new SabreAMF_TypedObject
 				(
-					'TTLToken' => null,
-					'deliveryType' => NAN,
-					'URL' => $this->web, //Innecesario
-					'experienceId' => $experienceID,
-					'playerKey' => $playerKey,
-					'contentOverrides' => null
+					'com.brightcove.experience.ViewerExperienceRequest',
+					array
+					(
+						'TTLToken' => null,
+						'deliveryType' => NAN,
+						'URL' => $this->web, //Innecesario
+						'experienceId' => $experienceID,
+						'playerKey' => $playerKey,
+						'contentOverrides' => null
+					)
 				)
 			)
 		)
-	)
-);
+	);
 
-$post = brightcove_encode($a_encodear);
-
+	$post = brightcove_encode($a_encodear);
 
 
-dbug('a descargar: '.$messagebroker);
-$t=brightcove_curl_web($messagebroker,$post);
 
-$res_decoded=brightcove_decode($t);
-dbug('PRIMERA RESPUESTA BRIGHTCOVE:');
-dbug_r($res_decoded);
+	dbug('a descargar: '.$messagebroker);
+	$t=brightcove_curl_web($messagebroker,$post);
 
-
-$publisherId1=$res_decoded['data']->getAMFData();
-$publisherId=$publisherId1['publisherId'];
-dbug('publisherId -> '.$publisherId);
-
-preg_match_all('@/([0-9]+)/([0-9]+)/@i', $this->web, $match); 
-$elem1=$match[1][0];
-$elem2=$match[2][0];
+	$res_decoded=brightcove_decode($t);
+	dbug('PRIMERA RESPUESTA BRIGHTCOVE:');
+	dbug_r($res_decoded);
 
 
-$a_encodear_2 = array
-(
-	'target'	=> 'com.brightcove.player.runtime.PlayerMediaFacade.findMediaById',
-	'response'	=> '/1',
-	'data'		=> array
+	$publisherId1=$res_decoded['data']->getAMFData();
+	$publisherId=$publisherId1['publisherId'];
+	dbug('publisherId -> '.$publisherId);
+
+	preg_match_all('@/([0-9]+)/([0-9]+)/@i', $this->web, $match); 
+	$elem1=$match[1][0];
+	$elem2=$match[2][0];
+
+
+	$a_encodear_2 = array
 	(
-		'0' => '1667452d348dee57623638675cb12b6418e7ccc3',
-		'1' => $experienceID,
-		'2' => $elem2,
-		'3' => $publisherId
-	)
-);
+		'target'	=> 'com.brightcove.player.runtime.PlayerMediaFacade.findMediaById',
+		'response'	=> '/1',
+		'data'		=> array
+		(
+			'0' => '1667452d348dee57623638675cb12b6418e7ccc3',
+			'1' => $experienceID,
+			'2' => $elem2,
+			'3' => $publisherId
+		)
+	);
 
-$post = brightcove_encode($a_encodear_2);
+	$post = brightcove_encode($a_encodear_2);
 
-$t=brightcove_curl_web($messagebroker,$post);
+	$t=brightcove_curl_web($messagebroker,$post);
 
-$res_decoded=brightcove_decode($t);
-dbug('SEGUNDA RESPUESTA BRIGHTCOVE (enlaces de vídeos aquí):');
-dbug_r($res_decoded);
+	$res_decoded=brightcove_decode($t);
+	dbug('SEGUNDA RESPUESTA BRIGHTCOVE (enlaces de vídeos aquí):');
+	dbug_r($res_decoded);
 
-if($res_decoded['data'] === null){
-	// Seguro que el vídeo no funciona en la página oficial.
-	setErrorWebIntera('No se puede reproducir el vídeo desde el enlace que ha indicado.');
-	return;
+	if($res_decoded['data'] === null){
+		// Seguro que el vídeo no funciona en la página oficial.
+		setErrorWebIntera('No se puede reproducir el vídeo desde el enlace que ha indicado.');
+		return;
+	}
+
+	$base=$res_decoded['data']->getAMFData();
+	$titulo=$base['displayName'];
+	$imagen=$base['videoStillURL'];
+	dbug('titulo = '.$titulo);
+	dbug('imagen = '.$imagen);
+
+
+	$obtenido['enlaces'] = brightcove_genera_obtenido($this, $base, array(
+		'IOSRenditions' => 'm3u8',
+		'renditions' => 'rtmpConcreto'
+	), $titulo, array(
+		'videoId' => $base['id'],
+		'pubId' => $publisherId,
+		'playerId' => $experienceID
+	));
 }
-
-$base=$res_decoded['data']->getAMFData();
-$titulo=$base['displayName'];
-$imagen=$base['videoStillURL'];
-dbug('titulo = '.$titulo);
-dbug('imagen = '.$imagen);
-
-
-$obtenido['enlaces'] = brightcove_genera_obtenido($this, $base, array(
-	'IOSRenditions' => 'm3u8',
-	'renditions' => 'rtmpConcreto'
-), $titulo, array(
-	'videoId' => $base['id'],
-	'pubId' => $publisherId,
-	'playerId' => $experienceID
-));
-	
-
 
 $obtenido['titulo']=$titulo;
 $obtenido['imagen']=$imagen;
 
 finalCadena($obtenido,false);
+
 }
 
 function URLSDelArrayBrightCove($r, $tipo, &$obtenido_enlaces, $titulo, $extraParams){

@@ -158,5 +158,6 @@ A continuación se puede ver el listado de las webs y los canales soportados:<br
 	<li>noticiasmundofox.com</li>
 	<li>nbcuniverso.com</li>
 	<li>hogarmania.com</li>
+	<li>cda.gob.ar</li>
 </ol>
 </div>
