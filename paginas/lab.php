@@ -90,8 +90,8 @@
 	Bookmarklet
 </div>
 <div class="respuesta">
-	V1: <a target="_blank" class="bookmarklet" href="<?php echo BOOKMARKLET?>"><?php echo TXT_BOOKMARKLET?></a><br/><br/><br/>
-	V2 (Nuevo): <a target="_blank" class="bookmarklet" href="<?php echo BOOKMARKLET_V2?>"><?php echo TXT_BOOKMARKLET?></a><br/><br/><br/>
+	V1 (Viejo): <a target="_blank" class="bookmarklet" href="<?php echo BOOKMARKLET?>"><?php echo TXT_BOOKMARKLET?></a><br/><br/><br/>
+	V2: <a target="_blank" class="bookmarklet" href="<?php echo BOOKMARKLET_V2?>"><?php echo TXT_BOOKMARKLET?></a><br/><br/><br/>
 	<?php echo TXT_BOOKMARKLET_DESC?>
 </div>
 

@@ -40,7 +40,7 @@ if (enString($this->web_descargada, "id=$(this).attr('id').split('|');")) {
 		$tit = strip_tags($tit);
 		$this->parsefragment($obtenido['enlaces'], $ret, $tit, true);
 	}
-} else {
+} elseif(enString($this->web_descargada, '"playlist":')) {
 	dbug('modo 2');
 	//backgroundImage: "url(http://www.crtvg.es/files/web/000020120911000003.jpg)"
 	if (enString($this->web_descargada,'backgroundImage:')) {
@@ -59,6 +59,18 @@ if (enString($this->web_descargada, "id=$(this).attr('id').split('|');")) {
 	);
 	
 	$this->parsefragment($obtenido['enlaces'], $this->web_descargada, $titulo);
+} else {
+	$url = desde1a2($this->web_descargada, 'http://media1.crtvg.es/vod', '.m3u8', true);
+	$obtenido = array(
+		'titulo'  => entre1y2($this->web_descargada, 'og:title" content="', '"'),
+		'imagen'  => entre1y2($this->web_descargada, 'og:image" content="', '"'),
+		'enlaces' => array(
+			array(
+				'url'  => $url,
+				'tipo' => 'm3u8'
+			)
+		)
+	);
 }
 
 finalCadena($obtenido);

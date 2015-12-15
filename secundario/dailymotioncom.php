@@ -22,6 +22,11 @@ http://vid2.ec.dmcdn.net/sec%28c1d480eb58ebac8a06ba174a542e3bdc%29/video/793/312
 class Dailymotioncom extends cadena{
 
 function calcula(){
+	if ($this->normal_desde_bookmarklet) {
+		$this->fin();
+		return;
+	}
+	
 	// Quitar filtro parental
 	if(!enString($this->web_descargada, 'sequence=')){
 		dbug('Desactivando filtro familiar');
@@ -97,7 +102,11 @@ function calcula(){
 			$this->web_descargada = CargaWebCurl($preweb['url']);
 		}
 	}
-	
+
+	$this->fin();
+}
+
+function fin() {
 	$urlContenedor = urldecode(entre1y2($this->web_descargada, '"qualities":','}]}')).'}]}';
 	
 	dbug_($urlContenedor);

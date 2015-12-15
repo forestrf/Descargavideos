@@ -89,9 +89,7 @@ if(enString($this->web_descargada,".mp4#")){
 if(enString($this->web_descargada, '<h1 class="title">')) {
 	$titulo = entre1y2($this->web_descargada,'<h1 class="title">','</h1>');
 } else {
-	$p = strpos($this->web_descargada,'.mp4');
-	$p = strpos($this->web_descargada, '<a', $p);
-	$titulo = entre1y2_a($this->web_descargada,$p,'>','</');
+	$titulo = entre1y2($this->web_descargada,'<title>','</');
 }
 $titulo = limpiaTitulo($titulo);
 dbug('titulo='.$titulo);

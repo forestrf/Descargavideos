@@ -361,6 +361,23 @@ function resuelveIDMetodo2($id, &$enlaces_array, &$titulo, &$imagen, $ignoraCadu
 				'tipo' => 'http'
 			);
 		}
+	}else {
+		dbug("LOOL");
+		$ret=CargaWebCurl('http://dinamics.ccma.cat/pvideo/media.jsp?media=audio&version=0&idint='.$id.'&profile=pc');
+		dbug('obtenido=');
+		dbug_($ret);
+		if(enString($ret,'.mp3')){
+			$json = json_decode(utf8_encode($ret), true);
+			dbug_r($json);
+			$url = $json['media']['url'];
+			$imagen = $json['imatges']['url'];
+			$titulo = $json['informacio']['titol'];
+			$enlaces_array[] = array(
+				'url'     => $url,
+				'url_txt' => 'Descargar'
+			);
+		}
+		return;
 	}
 	
 	$ret=CargaWebCurl($server3);

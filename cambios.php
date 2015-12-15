@@ -16,6 +16,16 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'15-Diciembre-2015'
+,'fix:dailymotion.com vuelve a funcionar.'
+,'fix:crtvg.es vuelve a funcionar.'
+,'fix:ccma.cat MP3 de radios ahora funcionan.'
+,'fix:facebook vuelve a funcionar.'
+,'fix:Ahora El bookmarklet V2 pasa a ser el bookmarklet "por defecto". Bookmarklet V1 marcado como antiguo ya que muchas webs necesitan el bookmarklet V2.'
+,'fix:mejores instrucciones para descargar los vídeos (Que el vídeo se reproduzca al clicar en descargar no significa que no se pueda descargar).'
+);
+
+$todos[]=array(
 '17-Septiembre-2015'
 ,'fix:Dailymotion (Requiere usar el Bookmarklet V2).'
 );

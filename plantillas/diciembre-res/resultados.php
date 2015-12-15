@@ -30,12 +30,12 @@ generaInnerResultado();
 </div>
 
 <div class="instrucciones_descarga bloque">
-	<b>Cómo descargar un enlace:</b><br/>
+	<b>Cómo descargar:</b><br/>
 	<ul>
-		<li>- Firefox: Clic derecho sobre el enlace, clic sobre "Guardar enlace Como...".</li>
-		<li>- Chrome: Clic derecho sobre el enlace, clic sobre "Guardar enlace Como...".</li>
-		<li>- Opera: Clic derecho sobre el enlace, clic sobre "Guardar contenido Como...".</li>
-		<li>- Internet Explorer: Clic derecho sobre el enlace, clic sobre "Guardar destino Como...".</li>
+		<li>- Firefox: Clic derecho sobre el botón naranja, clic sobre "Guardar enlace Como...".</li>
+		<li>- Chrome: Clic derecho sobre el botón naranja, clic sobre "Guardar enlace Como...".</li>
+		<li>- Opera: Clic derecho sobre el botón naranja, clic sobre "Guardar contenido Como...".</li>
+		<li>- Internet Explorer: Clic derecho sobre el botón naranja, clic sobre "Guardar destino Como...".</li>
 	</ul>
 	<a href="http://www.youtube.com/watch?v=7-Xvmz-jNrg">Ver en YouTube cómo descargar un enlace.</a>
 	<br/><br/>

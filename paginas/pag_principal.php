@@ -21,7 +21,7 @@
 	<div class="bloque_pagina bloqueMargin">
 		<div class="txt_centrado">
 			<?php echo TXT_ARRASTRA_BOOKMARKLET?><br/><br/>
-			<a href="<?php echo BOOKMARKLET?>" class="bookmarklet" target="_blank"><?php echo TXT_BOOKMARKLET?></a>
+			<a href="<?php echo BOOKMARKLET_V2?>" class="bookmarklet"><?php echo TXT_BOOKMARKLET?></a>
 		</div><br/><br/>
 		<?php echo TXT_BOOKMARKLET_DESC?>
 	</div>
