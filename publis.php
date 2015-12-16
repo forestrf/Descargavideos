@@ -1,47 +1,20 @@
 <?php
 $publis=array(
-	'cpmrocket 728x90' => '<!--Copy and paste the code below into the location on your website where the ad will appear.-->
-<script type=\'text/javascript\'>
-var adParams = {a: \'65851155\', size: \'728x90\',serverdomain: \'adk2trk2.cpmrocket.com\'  ,context:\'c65861171\' };
+	'exoclick banner resultados' => '<script type="text/javascript">
+var ad_idzone = "1333964",
+	 ad_width = "300",
+	 ad_height = "250";
 </script>
-<script type=\'text/javascript\' src=\'http://adk2cdn.cpmrocket.com/cpmrocket/scripts/smart/smart.js\'></script>',
-
-	'cpmrocket 290x58' => '<!--Copy and paste the code below into the location on your website where the ad will appear.-->
-<script type=\'text/javascript\'>
-var adParams = {a: \'65851155\', size: \'290x58\',serverdomain: \'adk2trk2.cpmrocket.com\'  ,context:\'c65861171\' };
-</script>
-<script type=\'text/javascript\' src=\'http://adk2cdn.cpmrocket.com/cpmrocket/scripts/smart/smart.js\'></script>',
-
-	'Chitika 728x90' => '<script type="text/javascript">
-  ( function() {
-    if (window.CHITIKA === undefined) { window.CHITIKA = { \'units\' : [] }; };
-    var unit = {"calltype":"async[2]","publisher":"forestrf","width":728,"height":90,"sid":"Chitika Default"};
-    var placement_id = window.CHITIKA.units.length;
-    window.CHITIKA.units.push(unit);
-    document.write(\'<div id="chitikaAdBlock-\' + placement_id + \'"></div>\');
-}());
-</script>
-<script type="text/javascript" src="//cdn.chitika.net/getads.js" async></script>',
-
-	'Chitika 550x250' => '<script type="text/javascript">
-  ( function() {
-    if (window.CHITIKA === undefined) { window.CHITIKA = { \'units\' : [] }; };
-    var unit = {"calltype":"async[2]","publisher":"forestrf","width":550,"height":250,"sid":"Chitika Default"};
-    var placement_id = window.CHITIKA.units.length;
-    window.CHITIKA.units.push(unit);
-    document.write(\'<div id="chitikaAdBlock-\' + placement_id + \'"></div>\');
-}());
-</script>
-<script type="text/javascript" src="//cdn.chitika.net/getads.js" async></script>'
+<script type="text/javascript" src="https://ads.exoclick.com/ads.js"></script>
+<noscript><a href="http://main.exoclick.com/img-click.php?idzone=1333964" target="_blank"><img src="https://syndication.exoclick.com/ads-iframe-display.php?idzone=1333964&output=img&type=300x250" width="300" height="250"></a></noscript>'
 
 );
 
 $publisUsadas = array();
 
 function getPubli($i){
-	return '';
 	global $publis, $publisUsadas, $PUBLICIDAD;
-	if(!isset($publisUsadas[$i])){
+	if(isset($publis[$i]) && !isset($publisUsadas[$i])){
 		$publisUsadas[$i]=true;
 		return $publis[$i];
 	}

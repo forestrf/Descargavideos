@@ -25,8 +25,8 @@ generaInnerResultado();
 
 </div>
 
-<div class="bloque publi_res" id="contendor_publi_res" style="width: 90%;">
-<?php echo getPubli('Chitika 550x250')?>
+<div class="bloque publi_res" id="contendor_publi_res">
+<?php echo getPubli('exoclick banner resultados')?>
 </div>
 
 <div class="instrucciones_descarga bloque">
