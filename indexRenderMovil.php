@@ -52,10 +52,10 @@ var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-29252510-1"]);_gaq.push(["_trackP
 
 <form action="/" method="get" name="formCalculador" id="formCalculador">
 	<input type="text" name="web" id="web" class="entrada" placeholder="Pega aquí la URL del vídeo..." value="<?php if($web!="")echo htmlentities2($web)?>" title="URL a obtener">
-	
+	<!--
 	<div class="formRadio"><input type="radio" name="modo" id="radio1" value="1" onclick="setModoPic(1)" <?php echo $modo==1?"checked":"" ?>><label for="radio1">Convertir enlace</label></div>
 	<div class="formRadio"><input type="radio" name="modo" id="radio2" value="2" onclick="setModoPic(2)" <?php echo $modo==2?"checked":"" ?>><label for="radio2">Buscar canción</label></div>
-
+	-->
 	
 	<input type="submit" id="submit" value="Calcular" class="boton">
 	<br/>

@@ -4,7 +4,7 @@ mueveMenu();
 mueveSubir_m = 0;
 mueveSubir_f = D.g('subir');
 mueveSubir();
-
+/*
 D.g('radio1').onclick = function(e) {
 	setModoPic(1);
 	var a=D.createAttribute("checked");a.value=true;
@@ -17,6 +17,7 @@ D.g('radio2').onclick = function(e) {
 	var a=D.createAttribute("checked");a.value=true;
 	this.setAttributeNode(a);
 };
+*/
 webI = D.g('web');
 function webF(e) {
 	var i = "invisible";
@@ -37,10 +38,15 @@ webI.onfocus = function() {
 };
 
 D.g("formCalculador").onsubmit = function(e) {
+	e.preventDefault();
 	var a = D.g('resultado');
 	scrollTo(a, 500);
 	aC(a, "displaynone");
 	qC(D.g('cargando'), "displaynone");
+	
+	var finalUrl = /*document.location.origin*/'http://www.descargavideos.tv/?web64='+btoa(document.getElementById("web").value);
+	
+	window.location = "http://go.descargavideos.tv/3649838/banner/"+finalUrl;
 };
 window.onscroll = function(e) {
 	mueveMenu();

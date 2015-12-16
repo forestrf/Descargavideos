@@ -28,7 +28,7 @@ if (defined('HAY_RESULTADO') && $R['MODO'] === 'BUSQUEDA') {
 <link href="/favicon.ico" rel="icon" type="image/x-icon"/>
 <link rel="stylesheet" href="/css/cssfull.min.css?23"/>
 <link rel="stylesheet" href="/css/modos/<?php echo $css_modo?>.css" id="css2"/>
-<script src="/js/funciones.min.js?14"></script>
+<script src="/js/funciones.min.js?15"></script>
 
 <script>
 var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-29252510-1"]);_gaq.push(["_trackPageview"]);(function(){var ga=document.createElement("script");ga.async=true;ga.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga,s);})();
@@ -69,11 +69,11 @@ var css_user='<?php echo $css_modo?>';
 				<div class="fondo_input_web">
 					<input type="text" name="web" id="web" class="entrada" placeholder="Pega la URL del vídeo..." value="<?php if(isset($web) && $web!="")echo htmlentities2($web)?>" title="URL a obtener">
 				</div>
-				<input type="submit" id="submit" value=" " class="boton">
-				
+				<input type="submit" id="submitBtn" value=" " class="boton">
+				<!--
 				<div class="formRadio"><input type="radio" name="modo" id="radio1" value="1" <?php echo $modo==1?"checked":"" ?>><label for="radio1"><?php echo TXT_CONVERTIR_ENLACE_RADIO?></label></div>
 				<div class="formRadio"><input type="radio" name="modo" id="radio2" value="2" <?php echo $modo==2?"checked":"" ?>><label for="radio2"><?php echo TXT_BUSCAR_CANCION_RADIO?></label></div>
-
+				-->
 
 				<div id="ayuda1" class="letra_ayuda">
 					<div class="flechaIzq"></div>
@@ -162,7 +162,7 @@ var css_user='<?php echo $css_modo?>';
 
 
 
-<script src="/js/ordenes.min.js?3"></script>
+<script src="/js/ordenes.min.js?4"></script>
 
 
 
