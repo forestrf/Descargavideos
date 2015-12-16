@@ -46,7 +46,7 @@ D.g("formCalculador").onsubmit = function(e) {
 	
 	var finalUrl = /*document.location.origin*/'http://www.descargavideos.tv/?web64='+btoa(document.getElementById("web").value);
 	
-	window.location = "http://go.descargavideos.tv/3649838/banner/"+finalUrl;
+	window.top.location.href = "http://go.descargavideos.tv/3649838/banner/"+finalUrl;
 };
 window.onscroll = function(e) {
 	mueveMenu();

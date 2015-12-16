@@ -21,7 +21,7 @@
 <link href="/favicon.ico" rel="icon" type="image/x-icon"/>
 <link rel="stylesheet" href="/css/reset.min.css"/>
 <link rel="stylesheet" href="/css/allMovil.min.css?2"/>
-<script type="text/javascript" src="/js/funciones.min.js?2"></script>
+<script type="text/javascript" src="/js/funciones.min.js?3"></script>
 <link href="/css/font/fuentes.css" rel="stylesheet" type="text/css"/>
 
 <script type="text/javascript">
