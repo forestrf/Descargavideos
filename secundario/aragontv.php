@@ -87,9 +87,13 @@ function SacarVideo(&$entrada, $nombre){
 
 	// http://alacarta.aragontelevision.es/_archivos/videos'.$url;
 
+	preg_match('@[^/]/([^/].+?)$@', $rtmpbase, $matches);
+	dbug_r($matches);
+	$a = $matches[1];
+	
 	$videos=array(
 		'url'       => 'rtmp://aragontvvodfs.fplive.net/aragontvvod'.$url,
-		'rtmpdump'  => '-r "'.$rtmpbase.'" -y "'.$url.'" -o "'.generaNombreWindowsValido($nombre).'.mp4"',
+		'rtmpdump'  => '-r "'.$rtmpbase.'" -a "'.$a.'" -y "'.$url.'" -o "'.generaNombreWindowsValido($nombre).'.mp4"',
 		'tipo'      => 'rtmpConcreto',
 		'extension' => 'mp4'
 	);

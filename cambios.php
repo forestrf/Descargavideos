@@ -17,6 +17,8 @@ function cambios($max=-1){
 
 $todos[]=array(
 '15-Diciembre-2015'
+,'add:Publicidad no intrusiva'
+,'fix:aragontelevision vuelve a funcionar.'
 ,'fix:dailymotion.com vuelve a funcionar.'
 ,'fix:crtvg.es vuelve a funcionar.'
 ,'fix:ccma.cat MP3 de radios ahora funcionan.'
