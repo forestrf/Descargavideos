@@ -38,15 +38,10 @@ webI.onfocus = function() {
 };
 
 D.g("formCalculador").onsubmit = function(e) {
-	e.preventDefault();
 	var a = D.g('resultado');
 	scrollTo(a, 500);
 	aC(a, "displaynone");
 	qC(D.g('cargando'), "displaynone");
-	
-	var finalUrl = /*document.location.origin*/'http://www.descargavideos.tv/?web64='+btoa(document.getElementById("web").value);
-	
-	window.top.location.href = "http://go.descargavideos.tv/3649838/banner/"+finalUrl;
 };
 window.onscroll = function(e) {
 	mueveMenu();
