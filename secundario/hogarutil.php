@@ -6,122 +6,58 @@ function calcula(){
 
 $obtenido=array('enlaces' => array());
 
+//<script src="//players.brightcove.net/2385340627001/01e63247-a390-454c-8b58-79195ab81075_default/index.min.js" 
 //http://c.brightcove.com/services/viewer/federated_f9?&flashID=ms-player2-continuo-bcObject&playerID=2418571368001&publisherID=2385340627001&%40videoPlayer=2875076343001&isVid=true&isUI=true&linkBaseURL=".urlencode()
-$patron = '@GENERAL.videoBrightcove.*?\(.*?"(.*?)".*?,.*?"(.*?)"@i';
-preg_match($patron,$this->web_descargada,$matches);
+preg_match('@players\.brightcove\.net/(.+?)/.+\.js@i',$this->web_descargada,$matches);
 dbug_r($matches);
 
-
-
-if(!isset($matches[2]) || !is_numeric($matches[2])){
+if(!isset($matches[1]) || !is_numeric($matches[1])){
 	setErrorWebIntera("No se ha encontrado ningún vídeo.");
 	return;
 }
 
-$contentId = $matches[2];
+$contentId = $matches[1];
 
-$publisherID = 2385340627001;
-$playerID = 2418571368001;
+// https://edge.api.brightcove.com/playback/v1/accounts/2385340627001/videos/4655083972001
+//<script src="//players.brightcove.net/2385340627001/01e63247-a390-454c-8b58-79195ab81075_default/index.min.js"
+//policyKey: "BCpkADawqM3ZOdsILEAA2DA3O1l-WzgvE56gtWPSJxFUBd9Yi1lfIoYbCM8Epl2JeEcWd2STSSeHLvlhqh6H4eYGOm2I3O8qD2u7jqoVh64x3Oc399mPDZ02WCKepmxVHdjVrtM4iI7WTJFp"
+$js = CargaWebCurl($matches[0]);
+$pk = entre1y2($js, 'policyKey:"', '"');
+dbug('pk='.$pk);
 
+//players.brightcove.net/
 
-//$urlBC = 'http://c.brightcove.com/services/viewer/federated_f9?&flashID='.$matches[1].'-bcObject&playerID='.$playerID.'&publisherID='.$publisherID.'&%40videoPlayer='.$matches[2].'&isVid=true&isUI=true&linkBaseURL='.urlencode('http://www.hogarutil.com'.$matches[6]);
+$data_video_id = entre1y2($this->web_descargada, 'data-video-id="', '"');
+$ret = CargaWebCurl('https://edge.api.brightcove.com/playback/v1/accounts/'.$contentId.'/videos/'.$data_video_id, '', false, '', array(
+	'Referer: http://www.hogarmania.com/tv/programas/decogarden/201512/12/index.html',
+	'Origin: http://www.hogarmania.com',
+	'Accept: application/json;pk='.$pk
+));
+dbug_r($ret);
 
+$json = json_decode($ret, true);
+dbug_r($json);
 
+foreach ($json['sources'] as $source) {
+	if (isset($source['app_name'])) continue;
+	if (isset($source['type'])) continue;
+	dbug_r($source);
+	$obtenido['enlaces'][] = array(
+		'url'     => $source['src'],
+		'url_txt' => 'Descargar',
+		'titulo'  => 'Calidad: ' . $source['width'] . 'x' . $source['height'],
+		'width'   => $source['width']
+	);
+}
 
-
-//http://c.brightcove.com/services/messagebroker/amf?playerKey=AQ~~,AAAAEUA28vk~,ZZqXLYtFw-ADB2SpeHfBR3cyrCkvIrAe
-$messagebroker="http://c.brightcove.com/services/messagebroker/amf?playerId=".$playerID;
-
-
-
-
-
-include 'brightcove-funciones.php';
-
-$a_encodear = array
-(
-	"target"	=> "com.brightcove.experience.ExperienceRuntimeFacade.getDataForExperience",
-	"response"	=> "/1",
-	"data"		=> array
-	(
-		"0" => "8ea8d3dc9fe7f3763119fb54107e6b5f814b876f",
-		"1" => new SabreAMF_AMF3_Wrapper
-		(
-			new SabreAMF_TypedObject
-			(
-				"com.brightcove.experience.ViewerExperienceRequest",
-				array
-				(
-					"TTLToken" => null,
-					"deliveryType" => NAN,
-					"playerKey" => "",
-					"URL" => $this->web, //Innecesario
-					"experienceId" => $playerID,
-					"contentOverrides" => array(
-						"0" => new SabreAMF_TypedObject
-						(
-							"com.brightcove.experience.ContentOverride",
-							array
-							(
-								"target" => "videoPlayer",
-								"featuredId" => NAN,
-								"contentType" => 0,
-								"contentId" => $contentId,
-								"featuredRefId" => null,
-								"contentIds" => null,
-								"contentRefId" => null,
-								"contentRefIds" => null
-							)
-						)
-					)
-				)
-			)
-		)
-	)
-);
-
-$post = brightcove_encode($a_encodear);
+usort($obtenido['enlaces'], function ($a, $b) {
+	return $a['width'] < $b['width'];
+});
 
 
-
-
-dbug('a descargar: '.$messagebroker);
-$t=brightcove_curl_web($messagebroker,$post);
-dbug($t);
-
-$res_decoded=brightcove_decode($t);
-dbug("PRIMERA RESPUESTA BRIGHTCOVE:");
-dbug_r($res_decoded);
-
-
-
-
-
-
-$base = $res_decoded["data"]->getAMFData();
-$base = $base['programmedContent']['videoPlayer']->getAMFData();
-$base = $base['mediaDTO']->getAMFData();
-dbug_r($base);
-
-
-$titulo=$base["displayName"];
-$imagen=$base["videoStillURL"];
-dbug('titulo = '.$titulo);
-dbug('imagen = '.$imagen);
-
-
-
-$obtenido['enlaces'] = brightcove_genera_obtenido(false, $base, array(
-	'IOSRenditions' => 'm3u8',
-	'renditions' => 'rtmpConcreto'
-), $titulo);
-
-
-
-
-$obtenido['titulo']=$titulo;
-$obtenido['imagen']=$imagen;
-$obtenido['descripcion']=$base["longDescription"];
+$obtenido['titulo']=$json['name'];
+$obtenido['imagen']=$json['poster'];
+$obtenido['descripcion']=$json['description'];
 
 finalCadena($obtenido,false);
 }
