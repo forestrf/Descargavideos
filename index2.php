@@ -8,13 +8,6 @@ header('Content-Type: text/html; charset=UTF-8');
 $palabras_clave='';
 $descripcion='';
 $seccion='';
-//inicio.css
-///lab.css
-///changelog.css
-///contacta.css
-///faq.css
-///thanks.css
-$css_extra='';
 
 
 
@@ -96,9 +89,7 @@ function pagina($cual){
 
 
 <link href="/favicon.ico" rel="icon" type="image/x-icon"/>
-<link rel="stylesheet" href="/css/reset.min.css"/>
-<link rel="stylesheet" href="/css/all.min.css"/>
-<link rel="stylesheet" href="/css/<?php echo $css_extra?>"/>
+<link rel="stylesheet" href="/css/cssfull.min.css?23"/>
 <link href="/css/font/fuentes.css" rel="stylesheet" type="text/css"/>
 
 <script type="text/javascript" src="/js/funciones.min.js"></script>
