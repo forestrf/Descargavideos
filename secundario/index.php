@@ -184,7 +184,7 @@ if($modo==1){
 			while(!$exito &&
 					$intento < $intentos &&
 					dbug('Intento '.$intento) &&
-					!($exito = url_exists_full($web, true, 5 + $intento *5))){
+					!($exito = url_exists_full($web, true, 4 + $intento * 3))){
 				$intento++;
 			}
 			
@@ -253,6 +253,8 @@ if($modo==1){
 				// Concretar el tipo de fallo para evitar que, en caso de ser fallo del usuario, no cometa el mismo error.
 				if(substr_count($web, 'http') > 1){
 					setErrorWebIntera('Introduzca un solo enlace. No se permiten calcular varios resultados al mismo tiempo');
+				}elseif($intento == $intentos - 1){
+					setErrorWebIntera('La web especificada parece estar caída y no responde (la conexión hace timeout).');
 				}else{
 					setErrorWebIntera('No se ha podido abrir el enlace o no es un enlace válido');
 				}
