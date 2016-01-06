@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'6-Enero-2016'
+,'fix:Aviso para indicar cuando un enlace no se puede obtener debido a que la web que lo contiene está caída en ese momento (la conexión hace timeout).'
+);
+
+$todos[]=array(
 '15-Diciembre-2015'
 ,'add:Publicidad no intrusiva'
 ,'fix:aragontelevision vuelve a funcionar.'
