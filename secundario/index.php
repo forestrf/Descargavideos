@@ -218,7 +218,7 @@ if($modo==1){
 					if (BM) {
 						dbug('Lanzando función cadena: '.$cadena_elegida_arr[4]);
 						dbug('--------------------------------------');
-						$R['BM2_JS'] = $cadena->$cadena_elegida_arr[4]();
+						$R['BM2_JS'] = $cadena->{$cadena_elegida_arr[4]}();
 					} else {
 						if (POST_BM) {
 							$cadena->set_normal_desde_bookmarklet();
@@ -226,7 +226,7 @@ if($modo==1){
 						
 						dbug('Lanzando función cadena: '.$cadena_elegida_arr[3]);
 						dbug('--------------------------------------');
-						$cadena->$cadena_elegida_arr[3]();
+						$cadena->{$cadena_elegida_arr[3]}();
 					
 						if($fallourlinterna==''){
 							if(!isset($resultado['enlaces']) || count($resultado['enlaces'])==0){
