@@ -14,6 +14,7 @@ $publisUsadas = array();
 
 function getPubli($i){
 	global $publis, $publisUsadas, $PUBLICIDAD;
+	return '';
 	if(isset($publis[$i]) && !isset($publisUsadas[$i])){
 		$publisUsadas[$i]=true;
 		return $publis[$i];

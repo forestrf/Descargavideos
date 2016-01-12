@@ -19,10 +19,28 @@ dbug('titulo = '.$titulo);
 dbug('descripcion = '.$descripcion);
 dbug('imagen = '.$imagen);
 
+//http://cda.gob.ar/clip/ajax/6567
+if (!preg_match('@\#\!/([0-9]+)@', $this->web, $matches)) {
+	setErrorWebIntera('No se ha podido encotrar la id del vídeo.');
+	return;
+}
+dbug_r($matches);
+
+$idcap = $matches[1];
+$jsonidcap = CargaWebCurl('http://cda.gob.ar/clip/ajax/'.$idcap);
+
+$correcta_id = entre1y2($jsonidcap, 'video_id":"','"');
+
 $url = entre1y2($this->web_descargada, 'https://admin.cda.gob.ar/interface/cda_v3/desktop/player/player5.swf?playlistfile=', '&');
 dbug('url = '.$url);
 
+preg_match('@/([0-9]+)\.smil@', $url, $matches);
+dbug_r($matches);
+$falsa_id = $matches[1];
+$url = str_replace($falsa_id, $correcta_id, $url);
+
 $urlRes = CargaWebCurl($url);
+
 dbug_($urlRes);
 
 /*
