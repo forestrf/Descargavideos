@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'10-Marzo-2016'
+,'fix:Univision vuelve a funcionar tras la última actualización que han realizado'
+);
+
+$todos[]=array(
 '12-Enero-2016'
 ,'fix:IDs de los vídeos de cda.gob.ar no siempre eran correctos.'
 );

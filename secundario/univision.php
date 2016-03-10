@@ -18,6 +18,8 @@ function calcula() {
 	} elseif (enString($this->web_descargada, 'videoEmbedCode')) {
 		preg_match("@videoEmbedCode.*?([0-9]+)@", $this->web_descargada, $match);
 		$id = $match[1];
+	} elseif (enString($this->web_descargada, 'data-video="extId:3162591"')) {
+		$id = entre1y2($this->web_descargada, 'data-video="extId:', '"');
 	} else {
 		return;
 	}
