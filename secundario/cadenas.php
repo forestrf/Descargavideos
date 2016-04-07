@@ -404,4 +404,10 @@ $cadenas = array(
 		'Cdagobar',
 		'calcula'
 	)
+	,array(
+		array('bbc.com'),
+		array('bbccom.php'),
+		'Bbccom',
+		'calcula'
+	)
 );
