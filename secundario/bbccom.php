@@ -12,7 +12,17 @@ $obtenido=array('enlaces' => array());
 
 
 
-$json_info = entre1y2($this->web_descargada, 'data-playable=\'', '\'>');
+if (!preg_match('@data-playable.*?=.*?["\'](.+?)["\']@i', $this->web_descargada, $matches)) {
+	setErrorWebIntera("No se ha encontrado ningún vídeo.");
+	return;
+}
+dbug_r($matches);
+$json_info = $matches[1];
+if (enString($matches[1], '&quot;')) {
+	$json_info = htmlspecialchars_decode($json_info);
+}
+
+
 dbug_($json_info);
 $json_info = json_decode($json_info, true);
 dbug_r($json_info);
