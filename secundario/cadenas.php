@@ -410,4 +410,10 @@ $cadenas = array(
 		'Bbccom',
 		'calcula'
 	)
+	,array(
+		array('hamaika.eus'),
+		array('hamaikaeus.php'),
+		'HamaikaEUS',
+		'calcula'
+	)
 );

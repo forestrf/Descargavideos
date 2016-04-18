@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'18-Abril-2016'
+,'add:hamaika.eus'
+);
+
+$todos[]=array(
 '10-Marzo-2016'
 ,'fix:Univision vuelve a funcionar tras la última actualización que han realizado'
 );
@@ -32,7 +37,7 @@ $todos[]=array(
 
 $todos[]=array(
 '15-Diciembre-2015'
-,'add:Publicidad no intrusiva'
+,'add:Publicidad no intrusiva (Quitada a los 2 días al ser engañosa).'
 ,'fix:aragontelevision vuelve a funcionar.'
 ,'fix:hogarmania vuelve a funcionar.'
 ,'fix:dailymotion.com vuelve a funcionar.'
