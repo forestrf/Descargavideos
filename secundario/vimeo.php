@@ -5,18 +5,22 @@ class Vimeo extends cadena{
 function calcula(){
 $obtenido=array('enlaces' => array());
 
-if(strpos($this->web, 'http://player.vimeo.com/video/') === 0){
-	$ret = desde1a2($this->web_descargada, '{"', ';');
-	$json_respuesta = json_decode($ret, true);
-} else {
-	$ret = CargaWebCurl('http://player.vimeo.com/video/'.html_entity_decode(entre1y2($this->web_descargada, 'http://player.vimeo.com/video/', '"')));
-	$json_respuesta = json_decode($ret, true);
+$id = false;
+if (preg_match('@[0-9]+@', $this->web, $matches)) {
+	dbug_r($matches);
+	$id = $matches[0];
 }
+
+
+$ret = CargaWebCurl('http://player.vimeo.com/video/'.$id);
+
+$ret = desde1a2($ret, '{"', ';');
+$json_respuesta = json_decode($ret, true);
 
 
 dbug_r($json_respuesta);
 
-$opciones = $json_respuesta['request']['files']['h264'];
+$opciones = $json_respuesta['request']['files']['progressive'];
 dbug_r($opciones);
 
 
@@ -41,7 +45,7 @@ else{
 	foreach($opciones as $index=>$elem){
 		$obtenido['enlaces'][] = array(
 			'url'	 => $elem['url'],
-			'url_txt'=> "Calidad: ".$index,
+			'url_txt'=> "Calidad: ".$elem['quality'],
 			'tipo'	 => 'http'
 		);
 	}
