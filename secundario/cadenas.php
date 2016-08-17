@@ -9,6 +9,12 @@ Función del objeto de la class a llamar en caso de llamar por bookmarklet. Pued
 */
 $cadenas = array(
 	array(
+		array('rio2016.rtve.es'),
+		array('rio2016.rtve.es.php'),
+		'RtveRio2016',
+		'Calcula'
+	),
+	array(
 		array('rtve.es', 'tve.es'),
 		array('rtve.php'),
 		'Rtve',
