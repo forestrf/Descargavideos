@@ -79,12 +79,13 @@ function univisionID($id) {
 		$urls = array();
 		if(isset($json['published_urls'])){
 			foreach($json['published_urls'] as &$url){
-				if(enString($url['embed_url'], '.mp4')){
-					$u = &$url['embed_url'];
+				if(stringContains($url['embed_url'], array('.mp4', '.m3u8'))){
+					$u = $url['embed_url'];
 					dbug_($u);
 					$p = strrposF($u, '_');
 					$f = strpos($u, '.', $p);
 					$calidad = substr($u, $p, $f - $p);
+					if (strlen($calidad) > 5) continue;
 					$urls[] = array(
 						$u,
 						$calidad
@@ -156,13 +157,12 @@ function univisionID($id) {
 				continue;
 			}
 		}
-		if (esVideoAudioAnon($urls[$i][0])) {
-			$obtenido['enlaces'][] = array(
-				'url' => $urls[$i][0],
-				'url_txt' => 'Calidad: ' . $urls[$i][1] . " Kbps",
-				'tipo' => 'http'
-			);
-		}
+		$obtenido['enlaces'][] = array(
+			'titulo' => 'Calidad: ' . $urls[$i][1] . ' Kbps',
+			'url' => $urls[$i][0],
+			'url_txt' => 'Descargar',
+			'tipo' => enString($urls[$i][0], '.m3u8') ? 'm3u8' : 'http'
+		);
 	}
 
 	for ($i = 0, $ii = count($json['captions']); $i < $ii; $i++) {
