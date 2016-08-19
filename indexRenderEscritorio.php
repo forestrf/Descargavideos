@@ -36,6 +36,9 @@ var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-29252510-1"]);_gaq.push(["_trackP
 <!--no se puede juntar por cloudflare-->
 <script>
 var css_user='<?php echo $css_modo?>';
+var rtmpdownloader = false;
+var EasyRtmpdump = false;
+var jdownloader = false;
 </script>
 
 
