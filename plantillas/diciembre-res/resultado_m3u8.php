@@ -1,7 +1,9 @@
 <div>
-	<form id="m3u8<?=$R2['random_id']?>f" method="POST" action="http://127.0.0.1:9666/flash/add" target="hidden" style="display:none">
-		<input type="hidden" name="source" value="http://www.descargavideos.tv">
-		<input type="hidden" id="rtmp<?php echo $R2['random_id'];?>furls" name="urls" value="<?=urlencode($R2['dir_resultado'])?>">
+	<form id="m3u8<?=$R2['random_id']?>f" method="POST" action="http://127.0.0.1:9666/flashgot" target="hidden" style="display:none">
+		<!--<input type="hidden" name="source" value="http://www.descargavideos.tv">-->
+		<input type="hidden" name="urls" value="<?=htmlentities($R2['dir_resultado'])?>">
+		<input type="hidden" name="cookies" value="<?=htmlentities($R2['cookies'])?>">
+		
 		<span class="Descarga" onclick="D.g('m3u8<?php echo $R2['random_id'];?>f').submit();">Descargar con JDownloader</span>
 	</form>
 	

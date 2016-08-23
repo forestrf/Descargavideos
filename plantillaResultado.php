@@ -40,7 +40,7 @@ function generaInnerResultado(){
 		$otros_datos_mp3 = isset($res['otros_datos_mp3']) ? $res['otros_datos_mp3'] : '';
 		$nombre_archivo  = isset($res['nombre_archivo']) ? $res['nombre_archivo'] : '';
 		$script          = isset($res['script']) ? $res['script'] : '';
-		$headers         = isset($res['headers']) ? $res['headers'] : '';
+		$cookies         = isset($res['cookies']) ? $res['cookies'] : '';
 		dbug('$url='.$url);
 		dbug('$rtmpdump='.$rtmpdump);
 		dbug('$rtmpdumpHTTP='.$rtmpdumpHTTP);
@@ -127,7 +127,7 @@ function generaInnerResultado(){
 			$R2['dir_resultado_rtmpdumpHTTP_esc_doblecoma']    = htmlentities2($rtmpdumpHTTP, ENT_QUOTES);
 			$R2['nombre_resultado_manual']                     = $nombre_archivo;
 			$R2['pass_m3u8']                                   = $m3u8_pass;
-			$R2['headers']                                     = $headers;
+			$R2['cookies']                                     = $cookies;
 			$R2['extension_res']                               = $extension;
 			$R2['otros_datos_mp3']                             = $otros_datos_mp3;
 			$R2['num']                                         = $num;

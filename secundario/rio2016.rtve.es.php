@@ -3,9 +3,10 @@
 class RtveRio2016 extends cadena{
 
 function calcula(){
-
-setErrorWebIntera('RTVE Rio 2016 no está soportado'); // ffmpeg necesita usar cookies, pero no funcionan
-return;
+if (!stringContains($_SERVER['SERVER_NAME'], array('localhost', 'dev.descargavideos.tv'))) {
+	setErrorWebIntera('RTVE Rio 2016 no está soportado'); // ffmpeg necesita usar cookies, pero no funcionan
+	return;
+}
 
 dbug('empezando RTVE Rio 2016');
 
@@ -41,7 +42,7 @@ dbug_($hmac);
 $urlExtra = "?hdnea=$data~hmac=$hmac";
 dbug_($urlExtra);
 
-$urlM3U8 = entre1y2_a($dataVideo, '"HLS"', 'uri>', '<') . $urlExtra;
+$urlM3U8 = entre1y2_a($dataVideo, '"HLS"', 'uri>', '<') . '.m3u8' . $urlExtra;
 $m3u8list = CargaWebCurl($urlM3U8, '', true);
 dbug_($m3u8list);
 
@@ -63,10 +64,17 @@ $obtenido=array(
 	'imagen'  => $imagen,
 	'enlaces' => array(
 		array(
-			'url'     => desde1a2($urlM3U8, 0, strrpos($urlM3U8, '/manifest')) . '/' . $m3u8,
+			'titulo'  => 'm3u8 list of files that need a cookie. The server sends a cookie that is needed for downloading each option of the list',
+			'url'     => $urlM3U8,
+			'nombre_archivo' => generaNombreWindowsValido($titulo) . '.mp4',
+			'tipo'    => 'm3u8'
+		),
+		array(
+			'titulo'  => 'm3u8 file that needs a cookie, extracted from the previous list',
+			'url'     => desde1a2($urlM3U8, 0, strrpos($urlM3U8, '/manifest')) . '/' . $m3u8 . '.m3u8',
 			'nombre_archivo' => generaNombreWindowsValido($titulo) . '.mp4',
 			'tipo'    => 'm3u8',
-			'headers' => "Cookie: $cookie"
+			'cookies' => $cookie
 		)
 	)
 );
