@@ -20,6 +20,7 @@ $todos[]=array(
 ,'add:viki.com'
 ,'fix:crtcg.es No se encontraba el enlace a vídeos m3u8.'
 ,'fix:Discovery Max ha cambiado la dirección web.'
+,'fix:canalextremadura.es actualizado para volver a funcionar tras los grandes cambios que hicieron.'
 );
 
 $todos[]=array(
