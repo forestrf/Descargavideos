@@ -159,5 +159,7 @@ A continuación se puede ver el listado de las webs y los canales soportados:<br
 	<li>nbcuniverso.com</li>
 	<li>hogarmania.com</li>
 	<li>cda.gob.ar</li>
+	<li>hamaika.eus</li>
+	<li>viki.com</li>
 </ol>
 </div>

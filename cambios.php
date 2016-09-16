@@ -22,7 +22,12 @@ $todos[]=array(
 
 $todos[]=array(
 '11-Junio-2016'
-,'fix:Vimeo vuelve a funcionar'
+,'fix:Vimeo vuelve a funcionar.'
+);
+
+$todos[]=array(
+'6-Junio-2016'
+,'add:Publicidad decente.'
 );
 
 $todos[]=array(
@@ -32,7 +37,7 @@ $todos[]=array(
 
 $todos[]=array(
 '10-Marzo-2016'
-,'fix:Univision vuelve a funcionar tras la última actualización que han realizado'
+,'fix:Univision vuelve a funcionar tras la última actualización que han realizado.'
 );
 
 $todos[]=array(
