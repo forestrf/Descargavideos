@@ -19,6 +19,7 @@ $todos[]=array(
 '16-Septiembre-2016'
 ,'add:viki.com'
 ,'fix:crtcg.es No se encontraba el enlace a vídeos m3u8.'
+,'fix:Discovery Max ha cambiado la dirección web.'
 );
 
 $todos[]=array(

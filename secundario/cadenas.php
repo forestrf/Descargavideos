@@ -345,7 +345,7 @@ $cadenas = array(
 		'calcula'
 	)
 	,array(
-		array('discoverymax.es','discoverymax.marca.com'),
+		array('discoverymax.es','discoverymax.marca.com','dmax.marca.com'),
 		array('discoverymaxes.php'),
 		'Discoverymaxes',
 		'calcula'
