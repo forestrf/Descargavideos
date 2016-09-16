@@ -422,4 +422,10 @@ $cadenas = array(
 		'HamaikaEUS',
 		'calcula'
 	)
+	,array(
+		array('viki.com'),
+		array('viki.com.php'),
+		'vikiCOM',
+		'calcula'
+	)
 );

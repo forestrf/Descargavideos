@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'16-Septiembre-2016'
+,'add:viki.com'
+);
+
+$todos[]=array(
 '11-Junio-2016'
 ,'fix:Vimeo vuelve a funcionar'
 );

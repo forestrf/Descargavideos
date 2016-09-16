@@ -1,0 +1,7 @@
+getlex Qname(PackageNamespace("flash.external"),"ExternalInterface")
+pushstring "console.log(\""
+pushstring "modified"
+add
+pushstring "\")"
+add
+callpropvoid Multiname("call",[PackageNamespace(""),Namespace("http://adobe.com/AS3/2006/builtin"),PackageInternalNs(""),StaticProtectedNs("flash.display:Sprite"),StaticProtectedNs("flash.display:DisplayObjectContainer"),StaticProtectedNs("flash.display:InteractiveObject"),StaticProtectedNs("flash.display:DisplayObject"),StaticProtectedNs("flash.events:EventDispatcher"),PrivateNamespace(":DivaAll"),ProtectedNamespace(":DivaAll"),StaticProtectedNs(":DivaAll"),PrivateNamespace("DivaAll.as$0")]) 1

@@ -41,7 +41,7 @@ dbug_($hmac);
 
 $urlExtra = "?hdnea=$data~hmac=$hmac";
 dbug_($urlExtra);
-
+sleep(2); // Si no esperamos casinunca funciona la url. Error 403
 $urlM3U8 = entre1y2_a($dataVideo, '"HLS"', 'uri>', '<') . '.m3u8' . $urlExtra;
 $m3u8list = CargaWebCurl($urlM3U8, '', true);
 dbug_($m3u8list);

@@ -242,11 +242,16 @@ function dbug_r(&$arr){
 }
 
 //url, contenido post a enviar, retornar cabecera, cabecera custom
-function CargaWebCurl($url,$post='',$cabecera=0,$cookie='',$cabeceras=array(),$sigueLocation=true,$esquivarCache=false,$ignoraErrores = 0){
+function CargaWebCurl($url,$post='',$cabecera=0,$cookie='',$cabeceras=array(),$sigueLocation=true,$esquivarCache=false,$customIp=false){
 	
-	$cabeceras[] = 'Accept-Encoding: gzip';
-	$cabeceras[] = 'Connection: Connection';
-	$cabeceras[] = 'User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:34.0) Gecko/20100101 Firefox/34.0';
+	// Browser headers
+	$cabeceras[] = 'User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:49.0) Gecko/20100101 Firefox/49.0';
+	$cabeceras[] = 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8';
+	$cabeceras[] = 'Accept-Language: en-US,en;q=0.5';
+	$cabeceras[] = 'Accept-Encoding: gzip, deflate';
+	$cabeceras[] = 'DNT: 1'; // Do Not Track
+	$cabeceras[] = 'Connection: Close';
+
 	
 	dbug('cargando web (CURL): '.$url);
 	if(!$esquivarCache){
@@ -258,6 +263,13 @@ function CargaWebCurl($url,$post='',$cabecera=0,$cookie='',$cabeceras=array(),$s
 	}
 	
 	$ch = curl_init();
+	if ($customIp !== false) {
+		$domain = getDomain($url);
+		dbug("Using as Host: $domain");
+		array_unshift($cabeceras, 'Host: '.$domain);
+		$url = str_replace($domain, $customIp, $url);
+		dbug("New url after ip change: $url");
+	}
 	curl_setopt($ch, CURLOPT_URL, $url);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt($ch, CURLOPT_HEADER, $cabecera ? 1 : 0);
@@ -291,6 +303,12 @@ function CargaWebCurl($url,$post='',$cabecera=0,$cookie='',$cabeceras=array(),$s
 	guarda_web_curl_obtenida($t,$url,$post,$cookie,$cabeceras,$sigueLocation);
 	return $t;
 }
+
+function getDomain($url) {
+	$parse = parse_url($url);
+	return $parse['host'];
+}
+
 
 //ESTO ES PARA NO VOLVER A DESCARGAR UNA MISMA URL.
 function guarda_web_curl_obtenida(&$t,$url='',$post='',$cookie='',$cabeceras=array(),$sigueLocation=true){
@@ -513,6 +531,36 @@ function comprobarPais(){
 
 function bm_scape($web) {
 	return str_replace('"', '\"', $web);
+}
+
+function custom_hmac($data, $key, $hash_func='md5', $raw_output = false) {
+	$hash_func = strtolower($hash_func);
+	$pack = 'H'.strlen(hash($hash_func, 'test'));
+	$size = 64;
+	$opad = str_repeat(chr(0x5C), $size);
+	$ipad = str_repeat(chr(0x36), $size);
+	
+	if (strlen($key) > $size)
+		$key = str_pad(pack($pack, hash($hash_func, $key)), $size, chr(0x00));
+	else
+		$key = str_pad($key, $size, chr(0x00));
+	
+	
+	for ($i = 0, $i_t = strlen($key) - 1; $i < $i_t; $i++) {
+		$opad[$i] = $opad[$i] ^ $key[$i];
+		$ipad[$i] = $ipad[$i] ^ $key[$i];
+	}
+	
+	$output = hash($hash_func, $opad.pack($pack, hash($hash_func, $ipad.$data)));
+	
+	return ($raw_output) ? pack($pack, $output) : $output;
+}
+function b64d($encoded){
+	$decoded="";
+	$base64=strtr($encoded,'-_','+/');
+	for($i=0;$i<ceil(strlen($base64)/64);$i++)
+		$decoded.=base64_decode(substr($base64,$i*64,64));
+	return $decoded;
 }
 
 
