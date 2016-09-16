@@ -35,7 +35,7 @@ $exp = $st + $window;
 $data = "st=$st~exp=$exp~acl=/*";
 
 $key = hex2bin('f47696a792f90447306bf56b630a173c');
-$hmac = $this::custom_hmac($data, $key, 'SHA256');
+$hmac = custom_hmac($data, $key, 'SHA256');
 dbug_($data);
 dbug_($hmac);
 
@@ -80,37 +80,6 @@ $obtenido=array(
 );
 
 finalCadena($obtenido, false);
-}
-
-static function custom_hmac($data, $key, $hash_func='md5', $raw_output = false) {
-	$hash_func = strtolower($hash_func);
-	$pack = 'H'.strlen(hash($hash_func, 'test'));
-	$size = 64;
-	$opad = str_repeat(chr(0x5C), $size);
-	$ipad = str_repeat(chr(0x36), $size);
-	
-	if (strlen($key) > $size)
-		$key = str_pad(pack($pack, hash($hash_func, $key)), $size, chr(0x00));
-	else
-		$key = str_pad($key, $size, chr(0x00));
-	
-	
-	for ($i = 0, $i_t = strlen($key) - 1; $i < $i_t; $i++) {
-		$opad[$i] = $opad[$i] ^ $key[$i];
-		$ipad[$i] = $ipad[$i] ^ $key[$i];
-	}
-	
-	$output = hash($hash_func, $opad.pack($pack, hash($hash_func, $ipad.$data)));
-	
-	return ($raw_output) ? pack($pack, $output) : $output;
-}
-
-static function b64d($encoded){
-	$decoded="";
-	$base64=strtr($encoded,'-_','+/');
-	for($i=0;$i<ceil(strlen($base64)/64);$i++)
-		$decoded.=base64_decode(substr($base64,$i*64,64));
-	return $decoded;
 }
 
 }
