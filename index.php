@@ -125,10 +125,13 @@ if(isset($web)){
 	}
 	//Aparenta ser una url. Método del formulario de copia/pega o método antiguo o el pavo tiene la web antigua en cache...
 
-	chdir('secundario');
-	require_once 'index.php';
-	
-	chdir("..");
+	if (chdir('secundario')) {
+		// Aunque chdir cambia la ruta, incluir index.php no incluye secundario/index.php sino index.php, el php en el que estamos ahora mismo. Cambiar el nombre a secundario/index.php también lo arregla
+		require_once __DIR__.'/secundario/index.php';
+		chdir("..");
+	} else {
+		dbug('No se puede ir a la carpeta secundario');
+	}
 }
 
 

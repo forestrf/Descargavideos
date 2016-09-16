@@ -18,6 +18,7 @@ function cambios($max=-1){
 $todos[]=array(
 '16-Septiembre-2016'
 ,'add:viki.com'
+,'fix:crtcg.es No se encontraba el enlace a vídeos m3u8.'
 );
 
 $todos[]=array(

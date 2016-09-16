@@ -60,7 +60,7 @@ if (enString($this->web_descargada, "id=$(this).attr('id').split('|');")) {
 	
 	$this->parsefragment($obtenido['enlaces'], $this->web_descargada, $titulo);
 } else {
-	$url = desde1a2($this->web_descargada, 'http://media1.crtvg.es/vod', '.m3u8', true);
+	$url = desde1a2($this->web_descargada, 'http://media1.crtvg.es/', '.m3u8', true);
 	$obtenido = array(
 		'titulo'  => entre1y2($this->web_descargada, 'og:title" content="', '"'),
 		'imagen'  => entre1y2($this->web_descargada, 'og:image" content="', '"'),
