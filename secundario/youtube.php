@@ -155,6 +155,12 @@ class youtube{
 	function de_cipher_yt($html, $si){
 		//dbug('$si = '.$si);
 		$js_decipher = 'http://s.ytimg.com/yts/jsbin/html5player-'.strtr(entre1y2($html, 'html5player-','"'), array('\\'=>''));
+		if (!enString($js_decipher, '.js')) {
+			preg_match('@/player-([^"]+\.js)@', $html, $matches);
+			dbug_r($matches);
+			$js_decipher = 'http://s.ytimg.com/yts/jsbin/player-'.strtr($matches[1], array('\\'=>''));
+		}
+		//$js_decipher = 'http://s.ytimg.com/yts/jsbin/player-es_ES-vflqC0s1z/base.js'
 		//$js_decipher = 'http://s.ytimg.com/yts/jsbin/html5player-'.$this->CIPHER_TEST[0].'.js';
 		dbug('$js_decipher = '.$js_decipher);
 		$js_decipher_contenido = CargaWebCurl($js_decipher);
