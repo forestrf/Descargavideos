@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'20-Septiembre-2016'
+,'fix:Youtube, ampliado soporte a muchos más vídeos que antes no obtenían correctamente la url.'
+);
+
+$todos[]=array(
 '16-Septiembre-2016'
 ,'add:viki.com'
 ,'fix:crtcg.es No se encontraba el enlace a vídeos m3u8.'

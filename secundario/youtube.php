@@ -175,15 +175,26 @@ class youtube{
 		$var = $matches[1][0];
 		dbug('$var='.$var);
 		
+		// Listado de instrucciones y nombre de sus funciones
 		$instrucciones_raw = $matches[0][0].';';
+		preg_match_all('@(.*?)(,'.$var.'|;)@', $instrucciones_raw, $matches_instrucciones);
+		dbug_r($matches_instrucciones[1]);
+		$instrucciones_nombres = array();
+		foreach($matches_instrucciones[1] as $orden){
+			if(stringContains($orden, array('split', '.join("")')))
+				continue;
+			
+			if (preg_match('@\.?([a-zA-Z][a-zA-Z0-9]{1,3})\(@', $orden, $match)) {
+				$instrucciones_nombres[] = $match[1];
+			}
+		}
+		$instrucciones_nombres = implode("|", array_unique($instrucciones_nombres));
+		dbug_($instrucciones_nombres);
 		
-		// Identificar funciones. Ver si están cerca.
-		$txt_cerca = substr($js_decipher_contenido, $matches[0][1]-500, 500);
-		dbug($txt_cerca);
-		
+		// Identificar funciones
 		$funciones = array();
-		$expr = '@([a-zA-Z][a-zA-Z0-9]{1,3})[:=]function\(.*?\){(.+?)}@';
-		preg_match_all($expr, $txt_cerca, $m);
+		$expr = '@('.$instrucciones_nombres.')[:=]function\(.*?\){(.+?)}@';
+		preg_match_all($expr, $js_decipher_contenido, $m);
 		dbug('$m');
 		dbug_r($m);
 		for($i = 0, $i_t = count($m[0]); $i < $i_t; $i++){
@@ -203,10 +214,8 @@ class youtube{
 		
 		
 		
-		preg_match_all('@(.*?)(,'.$var.'|;)@', $instrucciones_raw, $matches);
-		//dbug_r($matches);
 		
-		foreach($matches[1] as $orden){
+		foreach($matches_instrucciones[1] as $orden){
 			dbug($orden);
 			if(enString($orden,'split'))
 				continue;

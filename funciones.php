@@ -121,9 +121,9 @@ function desde1a2(&$que, $start, $fin = null, $incluyeFinal = false){
 	return desde1a2_a($que, 0, $start, $fin, $incluyeFinal);
 }
 
-function stringContains($donde, $que){
-	for($i=0, $ii=count($que); $i<$ii; $i++)
-		if(enString($donde,$que[$i]))
+function stringContains($donde, $arr_substrs){
+	foreach($arr_substrs as $word)
+		if(enString($donde, $word))
 			return true;
 	return false;
 }
