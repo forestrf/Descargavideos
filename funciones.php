@@ -168,13 +168,15 @@ function url_exists_full(&$url, $preg_match_prerealizado = false, $timeout = 20)
 	// auto decoding
 	curl_setopt($ch, CURLOPT_ENCODING, '');
 	
-	curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-		"User-agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:34.0) Gecko/20100101 Firefox/34.0",
-		"Connection: close",
-		"Accept-Language: es-ES,es;en-US;en",
-		"Accept: text/html,application/xhtml+xml,application/xml",
-		"Accept-Encoding: gzip"
-	));
+	$cabeceras = array(
+		'User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:49.0) Gecko/20100101 Firefox/49.0',
+		'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+		'Accept-Language: es-ES,es;en-US,en;q=0.5',
+		'Accept-Encoding: gzip, deflate',
+		'DNT: 1',
+		'Connection: close'
+	);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, $cabeceras);
 	
 	$t = curl_exec($ch);
 	
@@ -196,6 +198,8 @@ function url_exists_full(&$url, $preg_match_prerealizado = false, $timeout = 20)
 	$web_descargada_headers = explode("\r\n", substr($t, 0, strpos($t, "\r\n\r\n")));
 	
 	$GLOBALS['web_descargada_headers'] = &$web_descargada_headers;
+	
+	guarda_web_curl_obtenida($t,$url,'','',$cabeceras,true);
 	
 	$z=intval(substr($web_descargada_headers[0], 9, 3));
 	dbug('code response: '.$z);
@@ -247,10 +251,10 @@ function CargaWebCurl($url,$post='',$cabecera=0,$cookie='',$cabeceras=array(),$s
 	// Browser headers
 	$cabeceras[] = 'User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:49.0) Gecko/20100101 Firefox/49.0';
 	$cabeceras[] = 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8';
-	$cabeceras[] = 'Accept-Language: en-US,en;q=0.5';
+	$cabeceras[] = 'Accept-Language: es-ES,es;en-US,en;q=0.5';
 	$cabeceras[] = 'Accept-Encoding: gzip, deflate';
 	$cabeceras[] = 'DNT: 1'; // Do Not Track
-	$cabeceras[] = 'Connection: Close';
+	$cabeceras[] = 'Connection: close';
 
 	
 	dbug('cargando web (CURL): '.$url);

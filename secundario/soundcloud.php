@@ -20,29 +20,35 @@ class Soundcloud extends cadena{
 
 function calcula(){
 //soundcloud va a base de https, por lo que si alguna url http consigue llegar, toca pasarla a https
-$this->web=strtr($this->web,array("http://"=>"https://"));
-$retfull=CargaWebCurl($this->web);
+/*$this->web=strtr($this->web,array("http://"=>"https://"));
+$retfull=CargaWebCurl($this->web);*/
 
 $obtenido=array('enlaces' => array());
 
 //<img class="waveform" src="http://w1.sndcdn.com/9y15N1tRAubf_m.png" unselectable="on" />
 
 //detectar si hay varios enlaces o solo uno
-$canciones=substr_count($retfull,'<img class="waveform"');
+$canciones=substr_count($this->web_descargada,'<img class="waveform"');
 //dbug('total canciones='.$canciones);
 
 $imagen='http://www.'.DOMINIO.'/canales/soundcloud.png';
 
 //no sabemos cuantas queremos, pero es del modo nuevo y posiblemente varias.
-if(enString($retfull,"Next SoundCloud")||true){
+if(enString($this->web_descargada,"Next SoundCloud")||true){
 dbug('Next SoundCloud');
-$client_id='b45b1aa10f1ac2941910a7f0d10f8e28';
-/*
-Lista de ids de clientes:
-Plug.dj => bd7fb07288b526f6f190bfd02b31b25e
-*/
 
-$carga=CargaWebCurl('https://api.sndcdn.com/resolve?url='.$this->web.'&_status_code_map[302]=200&_status_format=json&client_id='.$client_id,
+//<script src="https://a-v2.sndcdn.com/assets/app-018cd-77f32d9.js"></script>
+if (preg_match('@https://.+?assets/app.+?\.js@', $this->web_descargada, $matches)) {
+	dbug_r($matches);
+	$extraer_cliente_id=CargaWebCurl($matches[0]);
+	$client_id=entre1y2($extraer_cliente_id, ',client_id:"', '"');
+} else {
+	$client_id='02gUJC0hH2ct1EGOcYXQIzRFU91c72Ea';
+}
+dbug('$client_id='.$client_id);
+
+
+$carga=CargaWebCurl('https://api.soundcloud.com/resolve?url='.$this->web.'&_status_code_map[302]=200&_status_format=json&client_id='.$client_id,
 					'',0,'',array(),false);
 
 dbug_($carga);
@@ -76,6 +82,7 @@ if(enString($carga,'tracks/')){
 		$url='http://api.soundcloud.com/tracks/'.$uri.'/download?client_id='.$client_id;
 
 	array_push($obtenido['enlaces'],array(
+		'url_txt'	=>	'Descargar',
 		'url'		=>	$url,
 		'tipo'		=>	'http',
 		'extension' =>	'mp3'
@@ -97,7 +104,7 @@ else{
 		$webMod=$this->web;
 
 	//https://api.sndcdn.com/resolve?url=https%3A//soundcloud.com/forestrf&_status_code_map[302]=200&_status_format=json&client_id=b45b1aa10f1ac2941910a7f0d10f8e28
-	$id=CargaWebCurl('https://api.sndcdn.com/resolve?url='.$webMod.'&_status_code_map[200]=200&_status_format=json&client_id='.$client_id);
+	$id=CargaWebCurl('https://api.soundcloud.com/resolve?url='.$webMod.'&_status_code_map[200]=200&_status_format=json&client_id='.$client_id);
 	dbug('user info='.$id);
 	$p=strpos($id,'<id');
 	$p=strposF($id,'>',$p);
