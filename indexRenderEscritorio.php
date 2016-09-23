@@ -90,7 +90,7 @@ var jdownloader = false;
 			</form>
 			
 			<div class="publi_cabecera">
-				<?php echo getPubli('728x90');?>
+				<?php echo getPubliIFRAME(728, 90)?>
 			</div>
 		</div>
 
