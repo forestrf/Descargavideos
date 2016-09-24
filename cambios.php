@@ -18,6 +18,11 @@ function cambios($max=-1){
 $todos[]=array(
 '24-Septiembre-2016'
 ,'add:rio2016.rtve.es (requiere JDownloader).'
+,'add:Soporte para enlaces de google que todavía no han redireccionado a la web clicada en la búsqueda.'
+,'fix:Televisa. Sólo funciona en México o usando un Proxy de México.'
+,'fix:RTVE algunos enlaces usaban m3u8 a pesar de haber opción de descarga directa.'
+,'fix:Discovery Max no funcionaba si se reproducía un vídeo directamente desde un listado de episodios completos.'
+,'fix:El botón para informar de un resultado incorrecto ha sido modificado con mejores mejores mensajes y la obligación de agregar un comentario.'
 );
 
 $todos[]=array(

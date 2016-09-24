@@ -56,8 +56,10 @@ function calcula(){
 	
 	if(preg_match('@#([0-9]+?)$@', $this->web, $matches))
 		$contentId=$matches[1];
-	elseif(enString($this->web_descargada,'playlist='))
-		$contentId=urldecode(entre1y2_a($this->web_descargada,$p,'playlist=','"'));
+	elseif(preg_match('@playlist=([0-9]+)@', $this->web_descargada, $matches))
+		$contentId=$matches[1];
+	elseif(preg_match('/name="@videoPlayer" value="([0-9]+)"/', $this->web_descargada, $matches))
+		$contentId=$matches[1];
 	else{
 		setErrorWebIntera('No se ha encontrado ningún vídeo.');
 		return;

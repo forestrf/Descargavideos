@@ -167,11 +167,18 @@ if($modo==1){
 	}
 	elseif(BM || validar_enlace($web)){
 		//La función anterior, si es exitosa, finaliza la web. Si falla (url de un server no válido o la función del canal se acabó antes de lo previsto, se ejecuta lo próximo
+		// A veces la gente quiere descargar enlaces de google que todavía no se han redireccionado. Resolverlos
+		if (preg_match('@https?://(?:www\.)?google\.[a-zA-Z]+?/.*?(?:url|q)=(http.+?)[&$]@', $web, $matches)) {
+			dbug_r($matches);
+			$web = urldecode($matches[1]);
+			dbug("Extraída url de un enlace de google: " . $web);
+		}
+		
 		$cadena_elegida_arr = averiguaCadena($web);
 		if($cadena_elegida_arr===false){
 			//no es una url aceptada de una web permitida
 			setErrorWebIntera('Has introducido un enlace de una página web no soportada. Puedes consultar el listado de webs soportadas en el siguiente enlace:<br/><a href="http://www.descargavideos.tv/faq#p_q_c_s_d">http://www.descargavideos.tv/faq#p_q_c_s_d</a>');
-			
+			define('IGNORA_AVISO_RAPIDO', true);
 			//lanzaBusquedaGoogle();
 		}
 		else{
@@ -245,7 +252,7 @@ if($modo==1){
 						}
 					}
 				} else {
-					$R['BM2_JS'] = 'document.location = "http://www.descargavideos.tv/web/bookmarklet/?web=' . urlencode($web) . '";';
+					$R['BM2_JS'] = 'document.location = "http://'.DOMINIO.'/web/bookmarklet/?web=' . urlencode($web) . '";';
 				}
 			}
 			else{
@@ -253,6 +260,7 @@ if($modo==1){
 				// Concretar el tipo de fallo para evitar que, en caso de ser fallo del usuario, no cometa el mismo error.
 				if(substr_count($web, 'http') > 1){
 					setErrorWebIntera('Introduzca un solo enlace. No se permiten calcular varios resultados al mismo tiempo');
+					define('IGNORA_AVISO_RAPIDO', true);
 				}elseif($intento == $intentos - 1){
 					setErrorWebIntera('La web especificada parece estar caída y no responde (la conexión hace timeout).');
 				}else{

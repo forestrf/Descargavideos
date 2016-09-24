@@ -5,6 +5,11 @@ class Rtve extends cadena{
 function calcula(){
 dbug('empezando RTVE');
 
+if (enString($this->web_descargada, 'css/alacarta20/i/imgError/video.png')) {
+	setErrorWebIntera('El vídeo ya no está disponible debido a restricciones de derechos');
+	return;
+}
+
 //si no se pone / al final de un enlace que lo necesita, se arma parda. aplicar la / en caso de que se necesite.
 /*$p=strrpos($this->web,"/");
 if($p!=strlen($this->web)-1){
@@ -276,7 +281,7 @@ function convierteID($asset,$modo=array('video','audio')){
 			}
 		}
 	}
-	return $ret;
+	return str_replace('/playlist.m3u8', '', $ret);
 }
 
 function encuentraAssetEnContenido($web_descargada){

@@ -33,6 +33,7 @@ function setErrorWebIntera($error = 'A ocurrido un error'){
 		dbug('----------------------------------');
 		dbug('ERROR: '.$fallourlinterna);
 	}
+	define('ERROR_TRACK_NAME', $error);
 }
 
 function comienzaPor($que,$por){

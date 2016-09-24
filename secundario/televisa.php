@@ -74,9 +74,27 @@ if(!enString($this->web_descargada,'<html'))
 if(!enString($this->web_descargada,'<html'))
 	$this->web_descargada=CargaWebCurl($this->web);
 
+$web_original = $this->web_descargada;
+
 //dbug_($this->web_descargada);
 
 $obtenido=array('enlaces' => array());
+
+
+
+if (preg_match('#<iframe src="https?://amp.televisa.com/embed/embed.php.+?id=([0-9]+)#', $this->web_descargada, $match)) {
+	dbug_r($match);
+	$idVideo=$match[1];
+	dbug($idVideo);
+	// $this->web='http://amp.televisa.com/embed/embed.php?id='.$idVideo.'&w=620&h=345';
+	$this->web='http://tvolucion.esmas.com/embed/embed.php?id='.$idVideo.'&w=620&h=345';
+	$this->web_descargada=CargaWebCurl($this->web,'',0,'',array('Referer: '.$this->web));
+	if(enString($this->web_descargada,'ya no se encuentra disponible')){
+		setErrorWebIntera('Éste vídeo ya no se encuentra disponible.');
+		return;
+	}
+	
+}
 
 
 
@@ -128,6 +146,8 @@ if(enString($this->web_descargada, 'params_dvr.json')){
 	dbug_r($json);
 	
 	$titulo = $json['channel']['item']['title'];
+	if ($titulo == '') $titulo = entre1y2($web_original, '<meta property="og:title" content="', '"');
+	
 	$imagen = $json['channel']['item']['media-group']['media-thumbnail']['@attributes']['url'];
 
 	foreach($json['channel']['item']['media-group']['media-content'] as &$elem){
@@ -146,7 +166,7 @@ if(enString($this->web_descargada, 'params_dvr.json')){
 		}
 	}
 	
-	$obtenido['alerta_especifica'] = 'Es necesario usar un proxy de México. El programa F4M-Downloader permite indicar un proxy.';
+	$obtenido['alerta_especifica'] = 'Es necesario usar un proxy de México o estar en México. El programa F4M-Downloader permite indicar un proxy.';
 }
 else {
 
