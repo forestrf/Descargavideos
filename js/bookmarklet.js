@@ -91,7 +91,7 @@ function lanzaDVform(web, contenidoWeb) {
 
 function muestraAvisoDV() {
 	var divDV = document.createElement("div");
-	divDV.innerHTML = "Descargavídeos está cargado. Por favor, espere. Gracias";
+	divDV.innerHTML = "Descargav&iacute;deos est&aacute; cargado. Por favor, espere. Gracias";
 	divDV.style = "background-color:#82c7ff;" +
 		"border-bottom:2px solid #06f;" +
 		"color:#fff;" +
