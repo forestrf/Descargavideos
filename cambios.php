@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'25-Septiembre-2016'
+,'fix:RTMP-Downloader a veces fallaba porque intentaba crear archivos con nombres no válidos. Mejorada la creación de nombres de archivos.'
+);
+
+$todos[]=array(
 '24-Septiembre-2016'
 ,'add:rio2016.rtve.es (requiere JDownloader).'
 ,'add:Soporte para enlaces de google que todavía no han redireccionado a la web clicada en la búsqueda.'

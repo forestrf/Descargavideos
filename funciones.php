@@ -72,7 +72,8 @@ function extraeExtension($de='', $separador='.'){
 	return $ext;
 }
 
-function generaNombreWindowsValido($filename){
+function generaNombreWindowsValido($filename, $max = 50){
+	if(mb_strlen($filename, 'UTF-8') > $max) $filename = mb_substr($filename, 0, $max, 'UTF-8') . '... ';
 	$bad=array_merge(
 		array_map('chr',range(0,31)),
 		array('<','>',':','"','/','\\','|','?','*')
