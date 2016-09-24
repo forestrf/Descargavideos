@@ -3,11 +3,6 @@
 class RtveRio2016 extends cadena{
 
 function calcula(){
-if (!stringContains($_SERVER['SERVER_NAME'], array('localhost', 'dev.descargavideos.tv'))) {
-	setErrorWebIntera('RTVE Rio 2016 no está soportado'); // ffmpeg necesita usar cookies, pero no funcionan
-	return;
-}
-
 dbug('empezando RTVE Rio 2016');
 
 // http://rio2016.rtve.es/video/article/oro-marcus-walz-prueba-completa.html
@@ -21,6 +16,12 @@ $titulo = entre1y2_a($this->web_descargada, 'or-article--title', '>', '<');
 $imagen = 'http://rio2016.rtve.es/' . entre1y2($this->web_descargada, '<source srcset="', '"');
 dbug('titulo='.$titulo);
 dbug('imagen='.$imagen);
+
+$obtenido=array(
+	'titulo'  => $titulo,
+	'imagen'  => $imagen,
+	'enlaces' => array()
+);
 
 $idVideo = entre1y2($this->web_descargada, 'data-videoid="', '"');
 dbug('$idVideo='.$idVideo);
@@ -46,38 +47,25 @@ $urlM3U8 = entre1y2_a($dataVideo, '"HLS"', 'uri>', '<') . '.m3u8' . $urlExtra;
 $m3u8list = CargaWebCurl($urlM3U8, '', true);
 dbug_($m3u8list);
 
-preg_match_all('#QualityLevels\(([0-9]+)\).*#', $m3u8list, $matches);
-array_multisort($matches[1], SORT_DESC, SORT_NUMERIC, $matches[0]);
-dbug_r($matches);
-$m3u8 = trim($matches[0][0]);
-
-$m3u8fileUrl = desde1a2($urlM3U8, 0, strrpos($urlM3U8, '/manifest')) . '/' . $m3u8;
 $cookie = entre1y2($m3u8list, 'Set-Cookie: ', "\r\n");
-/*
-$m3u8file = CargaWebCurl($m3u8fileUrl, '', false, $cookie);
-dbug_($m3u8file);
-*/
 
+preg_match_all('#RESOLUTION=([0-9]+x[0-9]+),.*?\n(QualityLevels\(([0-9]+)\).*)#', $m3u8list, $matches);
+array_multisort($matches[3], SORT_DESC, SORT_NUMERIC, $matches[0], $matches[1], $matches[2]);
+dbug_r($matches);
 
-$obtenido=array(
-	'titulo'  => $titulo,
-	'imagen'  => $imagen,
-	'enlaces' => array(
-		array(
-			'titulo'  => 'm3u8 list of files that need a cookie. The server sends a cookie that is needed for downloading each option of the list',
-			'url'     => $urlM3U8,
-			'nombre_archivo' => generaNombreWindowsValido($titulo) . '.mp4',
-			'tipo'    => 'm3u8'
-		),
-		array(
-			'titulo'  => 'm3u8 file that needs a cookie, extracted from the previous list',
-			'url'     => desde1a2($urlM3U8, 0, strrpos($urlM3U8, '/manifest')) . '/' . $m3u8 . '.m3u8',
-			'nombre_archivo' => generaNombreWindowsValido($titulo) . '.mp4',
-			'tipo'    => 'm3u8',
-			'cookies' => $cookie
-		)
-	)
-);
+for($i = 0, $l = count($matches[0]); $i < $l; $i++) {
+	$m3u8 = trim($matches[2][$i]);
+	
+	$m3u8fileUrl = desde1a2($urlM3U8, 0, strrpos($urlM3U8, '/manifest')) . '/' . $m3u8;
+	
+	$obtenido['enlaces'][] = array(
+		'titulo'  => 'Tamaño: ' . $matches[1][$i],
+		'url'     => $m3u8fileUrl . '.m3u8',
+		'nombre_archivo' => generaNombreWindowsValido($titulo) . '.mp4',
+		'tipo'    => 'm3u8',
+		'cookies' => $cookie
+	);
+}
 
 finalCadena($obtenido, false);
 }

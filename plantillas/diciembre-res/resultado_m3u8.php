@@ -1,8 +1,8 @@
 <div>
 	<form id="m3u8<?=$R2['random_id']?>f" method="POST" action="http://127.0.0.1:9666/flashgot" target="hidden" style="display:none">
 		<!--<input type="hidden" name="source" value="http://www.descargavideos.tv">-->
-		<input type="hidden" name="urls" value="<?=htmlentities($R2['dir_resultado'])?>">
-		<input type="hidden" name="cookies" value="<?=htmlentities($R2['cookies'])?>">
+		<input type="hidden" name="urls" id="urls<?=$R2['random_id']?>" value="<?=htmlentities($R2['dir_resultado'])?>">
+		<input type="hidden" name="cookies" id="cookies<?=$R2['random_id']?>" value="<?=htmlentities($R2['cookies'])?>">
 		
 		<span class="Descarga" onclick="D.g('m3u8<?php echo $R2['random_id'];?>f').submit();">Descargar con JDownloader</span>
 	</form>
@@ -23,4 +23,8 @@ Enlace M3U8 original: <a style="display: inherit; word-break: break-all" href="<
 			D.g(rid+'info').style.display = "none";
 		}
 	});
+	
+	D.g("m3u8<?=$R2['random_id']?>f").submit = m3u8_JD_callback(
+		[D.g("urls<?=$R2['random_id']?>"), D.g("cookies<?=$R2['random_id']?>")]
+	);
 </script>

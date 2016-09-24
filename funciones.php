@@ -567,5 +567,12 @@ function b64d($encoded){
 	return $decoded;
 }
 
+function CheckIfDEV($msgIfNotDev = 'No soportado') {
+	if (!stringContains($_SERVER['SERVER_NAME'], array('localhost', 'dev.descargavideos.tv'))) {
+		setErrorWebIntera($msgIfNotDev);
+		return false;
+	}
+	return true;
+}
 
 ?>

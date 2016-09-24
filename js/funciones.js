@@ -127,31 +127,14 @@ function aC(e, c) {
 	e.className += " " + c;
 }
 
-function scrollTo(e, d) {
-	if (d < 0)
-		return;
-	var h = D.documentElement;
-	if (h.scrollTop === 0) {
-		var t = h.scrollTop; ++h.scrollTop;
-		h = t + 1 === h.scrollTop-- ? h : D.body;
-	}
-	if ( typeof e === "object")
-		e = e.offsetTop;
-	setTimeout(function() {
-		scrollToX(h, h.scrollTop, e, 0, 1 / d, 20);
-	}, 0);
-}
-
-function scrollToX(e, a, b, t, v, s) {
-	if (t < 0 || v <= 0)
-		return;
-	k = t > 1 ? 0 : t - 1;
-	e.scrollTop = a - (a - b) * (k * k * k + 1);
-	t += v * s;
-	if (t <= 1)
-		setTimeout(function() {
-			scrollToX(e, a, b, t, v, s);
-		}, s);
+// http://stackoverflow.com/questions/8917921/cross-browser-javascript-not-jquery-scroll-to-top-animation/23844067#23844067
+// c = element to scroll to or top position in pixels
+// e = duration of the scroll in ms, time scrolling
+// d = (optative) ease function. Default easeOutCuaic
+function scrollTo(c,e,d){d||(d=easeOutCuaic);var a=document.documentElement;if(0===a.scrollTop){var b=a.scrollTop;++a.scrollTop;a=b+1===a.scrollTop--?a:document.body;}b=a.scrollTop;0>=e||("object"===typeof b&&(b=b.offsetTop),"object"===typeof c&&(c=c.offsetTop),function(a,b,c,f,d,e,h){function g(){0>f||1<f||0>=d?a.scrollTop=c:(a.scrollTop=b-(b-c)*h(f),f+=d*e,setTimeout(g,e));}g();}(a,b,c,0,1/e,20,d));};
+function easeOutCuaic(t){
+	t--;
+	return t*t*t+1;
 }
 
 function getScript(url, callback, id) {
@@ -319,4 +302,79 @@ function prepareRTMP(rid) {
 }
 
 
+
+function m3u8_JD_callback(form_inputs) {
+	return function() {
+		var data = [];
+		form_inputs.map(function(e){ data.push(e.getAttribute("name") + '=' + encodeURIComponent(e.value)); });
+		
+		xhr("http://127.0.0.1:9666/flashgot", data.join("&"), function(data){
+			alert(data);
+		}, function(){alert('Imposible conectar con JDownloader\n¿Está JDownloader ejecutándose?');});
+		
+		return false;
+	};
+}
+
+
+
+// callback takes one argument
+// http://stackoverflow.com/questions/8567114/how-to-make-an-ajax-call-without-jquery
+// data = null or undefined para usar GET
+function xhr(url, data, callbackOK, callbackFAIL) {
+	if (callbackFAIL === undefined) callbackFAIL = function(){};
+	if (callbackOK === undefined) callbackOK = function(){};
+	var isPost = data !== undefined && data !== null;
+	var x;
+	if (window.XMLHttpRequest) {
+		// code for IE7+, Firefox, Chrome, Opera, Safari
+		x = new XMLHttpRequest();
+	} else {
+		// code for IE6, IE5
+		x = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	if (isPost) x.open('POST', url, true);
+	else        x.open('GET', url, true);
+	x.timeout = 30000;
+	x.onreadystatechange = x.ontimeout = function () {
+		if (x.readyState == 4) {
+			if (x.status == 200) {
+				callbackOK(x.responseText);
+			} else {
+				callbackFAIL();
+			}
+		}
+	};
+	
+	if (isPost) {
+		if (typeof data === "string") {
+			x.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		} else {
+			// http://stackoverflow.com/questions/2198470/javascript-uploading-a-file-without-a-file
+			// data is an array of: isFile (boolean), name (string), filename (string), mimetype (string), data (variable to send / binary blob)
+			var boundary = "---------------------------36861392015894";
+			body = "";
+			
+			for (var i = 0; i < data.length; i++) {
+				body += '--' + boundary + '\r\n';
+				if (data[i].isFile !== undefined && data[i].isFile === true) {
+					body += 'Content-Disposition: form-data; name="files[]"; filename="' + encodeURIComponent(data[i].filename) + '"\r\n'
+					      + 'Content-type: ' + data[i].mimetype;
+				} else {
+					body += 'Content-Disposition: form-data; name="' + data[i].name + '"';
+				}
+				body += '\r\n\r\n' + data[i].data + '\r\n';
+			}
+			
+			body += '--' + boundary + '--';
+			
+			data = body;
+			console.log(data);
+		
+			x.setRequestHeader("Content-Type", "multipart/form-data; boundary=" + boundary);
+		}
+		
+		x.send(data);
+	} else x.send();
+}
 
