@@ -44,10 +44,13 @@ $urlExtra = "?hdnea=$data~hmac=$hmac";
 dbug_($urlExtra);
 sleep(2); // Si no esperamos casinunca funciona la url. Error 403
 $urlM3U8 = entre1y2_a($dataVideo, '"HLS"', 'uri>', '<') . '.m3u8' . $urlExtra;
-$m3u8list = CargaWebCurl($urlM3U8, '', true);
-dbug_($m3u8list);
+$m3u8list4Cookie = CargaWebCurl($urlM3U8, '', true);
 
-$cookie = entre1y2($m3u8list, 'Set-Cookie: ', "\r\n");
+$cookie = entre1y2($m3u8list4Cookie, 'Set-Cookie: ', "\r\n");
+
+dbug_($m3u8list4Cookie);
+$m3u8list = CargaWebCurlProxy($urlM3U8, 'ESP', '', true);
+dbug_($m3u8list);
 
 preg_match_all('#RESOLUTION=([0-9]+x[0-9]+),.*?\n(QualityLevels\(([0-9]+)\).*)#', $m3u8list, $matches);
 array_multisort($matches[3], SORT_DESC, SORT_NUMERIC, $matches[0], $matches[1], $matches[2]);
