@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'24-Septiembre-2016'
+,'add:rio2016.rtve.es (requiere JDownloader).'
+);
+
+$todos[]=array(
 '20-Septiembre-2016'
 ,'fix:Youtube, ampliado soporte a muchos más vídeos que antes no obtenían correctamente la url.'
 ,'fix:Soundcloud vuelve a funcionar.'
