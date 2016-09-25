@@ -39,8 +39,9 @@ preg_match_all('@<iframe src="(.*?)"@', $this->web_descargada, $matches);
 dbug_r($matches);
 foreach($matches[1] as $url){
 	dbug($url);
-	if(strpos($url, '//player.vimeo') === 0){
-		$url = 'http:'.$url;
+	if(enString($url, '//player.vimeo')){
+		if(strpos($url, '//player.vimeo') === 0)
+			$url = 'http:'.$url;
 		
 		$vimeo = new Vimeo();
 		$url_descargada = CargaWebCurl($url);

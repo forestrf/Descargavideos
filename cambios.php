@@ -18,6 +18,8 @@ function cambios($max=-1){
 $todos[]=array(
 '25-Septiembre-2016'
 ,'fix:RTMP-Downloader a veces fallaba porque intentaba crear archivos con nombres no válidos. Mejorada la creación de nombres de archivos.'
+,'fix:Canalextremadura actualizado, ha vuelto a cambiar.'
+,'fix:Canal Historia.'
 );
 
 $todos[]=array(

@@ -3,6 +3,7 @@
 class Vimeo extends cadena{
 
 function calcula(){
+dbug('Vimeo Iniciado');
 $obtenido=array('enlaces' => array());
 
 $id = false;
