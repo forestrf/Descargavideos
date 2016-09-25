@@ -26,7 +26,7 @@ generaInnerResultado();
 </div>
 
 <div class="bloque publi_res" id="contendor_publi_res">
-<?php echo mt_rand(0, 1) == 0 ? getPubliIFRAME(300, 250) : getPubliIFRAME(336, 280)?>
+<?php echo getPubliIFRAME(300, 250)?>
 </div>
 
 <div class="instrucciones_descarga bloque">
