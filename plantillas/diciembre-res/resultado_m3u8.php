@@ -31,10 +31,12 @@
 			D.g(rid+'f').style.display = "inline";
 			D.g(rid+'a').style.display = "none";
 			D.g(rid+'info').style.display = "none";
+			
+			var elems = D.g("m3u8<?=$R2['random_id']?>f").getElementsByTagName("input");
+			var arr = [];
+			for(var i = 0; i < elems.length; i++) arr.push(elems[i]);
+			
+			D.g("m3u8<?=$R2['random_id']?>f").submit = m3u8_JD_callback(arr);
 		}
 	});
-	
-	D.g("m3u8<?=$R2['random_id']?>f").submit = m3u8_JD_callback(
-		D.g("m3u8<?=$R2['random_id']?>f").getElementsByTagName("input")
-	);
 </script>
