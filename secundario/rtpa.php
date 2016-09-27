@@ -25,11 +25,26 @@ $p=strposF($this->web_descargada,"'file'");
 $url=entre1y2_a($this->web_descargada,$p,"'", "'");
 dbug($url);
 
-dbug("A");
 if(!stringContains($url, array(".mp4",".flv"))){
 	dbug("B");
+	
+	$tipo = preg_match('#audio:#', $this->web) ? 'audio' : 'video';
+	
 	// Probemos con la api de json
-	$apiURL = "http://rtpa.es/api/muestra_json_vod.php?id_programa=".entre1y2($this->web_descargada, "id_programa=", "&");
+	if (!preg_match('#findVideo *?\(([0-9]+) *?,#', $this->web_descargada, $matches)) {
+		if (!preg_match('#id_actual *?= *?([0-9]+)#', $this->web_descargada, $matches)) {
+			setErrorWebIntera("ID del vídeo no encontrada");
+			return;
+		}
+	}
+	dbug_r($matches);
+	$id = $matches[1];
+	
+	$apiURL = $tipo == 'video' ?
+		"http://www.rtpa.es/api/muestra_json_vod_video.php?id_video=".$id."&_=".time() :
+		"http://www.rtpa.es/api/muestra_json_audio_audio.php?id_audio=".$id."&_=".time();
+	
+	// http://www.rtpa.es/api/muestra_json_vod_video.php?id_video=1394007809&_=1475015307960
 	$apiResp = CargaWebCurl($apiURL);
 	dbug($apiResp);
 	$apiResp = json_decode($apiResp, true);
@@ -38,16 +53,26 @@ if(!stringContains($url, array(".mp4",".flv"))){
 	$imagen = $apiResp['VOD'][0]['url_imagen'];
 	dbug('imagen='.$imagen);
 	
-	$titulo = $apiResp['VOD'][0]['nombre_programa'];
+	$titulo = $apiResp['VOD'][0]['titulo'];
+	if ($titulo == "")
+		$titulo = $apiResp['VOD'][0]['nombre_programa'];
 	dbug('$titulo='.$titulo);
 	
-	$url = "http://rtpa.ondemand.flumotion.com/rtpa/ondemand/vod/".$apiResp['VOD'][0]['id_programacion']."_1.mp4";
-	dbug($url);
+	if ($tipo == 'video') {
+		$url = $apiResp['VOD'][0]['url'];
+		if ($url == '')
+			$url = "http://rtpa.ondemand.flumotion.com/rtpa/ondemand/vod/".$apiResp['VOD'][0]['id_programacion']."_1.mp4";
+	} else {
+		// http://asturiastv.eu/audios/2016/06/20160622AAD_1.mp3
+		$url = 'http://asturiastv.eu/audios/' . entre1y2($apiResp['VOD'][0]['url'], 0, 4) . '/' . entre1y2($apiResp['VOD'][0]['url'], 4, 6) . '/' . $apiResp['VOD'][0]['url'] . '_1.mp3';
+	}
+	dbug_($url);
 	
 	// http://www.rtpa.es/programa:EMBAJADORES_1393094582.html
 	// http://rtpa.es/api/muestra_json_vod.php?id_programa=1393094582
 	// http://rtpa.ondemand.flumotion.com/rtpa/ondemand/vod/66103_1.mp4?start=0
-	
+} else {
+	dbug("A");
 }
 
 //no borrar hasta confirmar que rtpa ya no tiene listas de reproduccion
@@ -95,6 +120,7 @@ $obtenido=array(
 	'imagen'  => $imagen,
 	'enlaces' => array(
 		array(
+			'url_txt'  => 'Descargar',
 			'url'  => $url,
 			'tipo' => 'http'
 		)
