@@ -90,7 +90,7 @@ var jdownloader = false;
 			</form>
 			
 			<div class="publi_cabecera">
-				<?php echo getPubliIFRAME(728, 90)?>
+				<?php echo getPubliIFRAME(array_rand(Array('728' => 1, '970' => 2), 1), 90)?>
 			</div>
 		</div>
 
