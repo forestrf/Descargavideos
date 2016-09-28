@@ -56,7 +56,7 @@
 <div class="columna_der">
 	<div class="bloque_pagina bloqueMargin txt_centrado">
 		<div class="bloque publi_res" id="contendor_publi_res">
-			<?php echo getPubliIFRAME(300, 250)?>
+			<?php echo getPubliJS(300, 250)?>
 		</div>
 	</div>
 	<div class="bloque_pagina bloqueMargin txt_centrado">
