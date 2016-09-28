@@ -1795,7 +1795,9 @@ elseif($max>count($todos))
 	$max=count($todos);
 else $max=0;
 
-$res='<div id="changelog">';
+$res='<center>'.getPubliIFRAME(array_rand(Array('728' => 1, '970' => 2), 1), 90, true).'</center>'; 
+
+$res.='<div id="changelog">';
 for($i=0;$i<$max;$i++){
 	$res.='<div class="tit">'.$todos[$i][0].'</div>';
 	for($j=1;$j<$j_t=count($todos[$i]);$j++){

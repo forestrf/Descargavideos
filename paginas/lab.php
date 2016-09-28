@@ -1,3 +1,5 @@
+<center><?php echo getPubliIFRAME(array_rand(Array('728' => 1, '970' => 2), 1), 90, true)?></center>
+
 <div class="pregunta">
 	<div id="lab_m3u8-downloader"></div>
 	M3U8-Downloader

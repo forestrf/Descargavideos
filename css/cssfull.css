@@ -668,7 +668,8 @@ input[type="radio"] {
 	padding: 20px;
 	position: relative;
 	text-align: center;
-	top: 100px;
+	margin-top: 100px;
+	margin-bottom: 20px;
 	width: 80%;
 }
 #descargador_archivos{
