@@ -1,4 +1,4 @@
-<center><?php echo getPubliIFRAME(array_rand(Array('728' => 1, '970' => 2), 1), 90, true)?></center> 
+<center><?php echo getPubliIFRAME(728, 90, true)?></center>
 
 <div class="listado_preguntas">
 <a href="#p_q_e_d">¿Qué es Descargavideos?</a><br/>
