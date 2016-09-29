@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'30-Septiembre-2016'
+,'fix:Canalextremadura restaurado soporte para vídeos individuales.'
+);
+
+$todos[]=array(
 '28-Septiembre-2016'
 ,'fix:RTPA soporte para contenido nuevo.'
 );
