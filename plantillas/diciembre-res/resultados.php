@@ -4,9 +4,7 @@ if(!defined('IGNORA_AVISO_RAPIDO')) include 'plantillas/extras/aviso_rapido_js.p
 
 <script>_gaq.push(["_trackEvent","Descargas","Realizadas","<?php echo $R['CANAL'];?>"]);</script>
 
-<img class="img bloque"  id="imagen_res" src="<?php echo $R['url_img_res'];?>">
-
-<div class="titulo_res bloque">
+<div class="titulo_res bloque" style="width: 100%;text-align: center;margin-bottom: 5%;margin-top: 5%;float: initial">
 	<span id="titulo_res"><?php echo $R['titulo_res'];?></span><br/>
 	<div class="descripcion_res" id="descripcion_res"><?php echo $R['descripcion_res'];?></div>
 </div>
