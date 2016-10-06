@@ -1,1 +1,0 @@
-<div class="error_res"><?php echo $R['error_texto'];?></div>

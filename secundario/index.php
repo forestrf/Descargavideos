@@ -91,20 +91,9 @@ $errorImprimible='';
 $plantillaDefault='diciembre-res';
 $plantillaApi='septiembre-api';
 $plantillaRes='diciembre-res';
-$plantillaResMp3='febrero-res-mp3';
 $path_plantilla='';
 
 
-if(!isset($modo)){
-	if(isset($_REQUEST['modo'])){
-		$modo=$_REQUEST['modo'];
-		if($modo != 1 && $modo != 2){
-			$modo = 1;
-		}
-	} else {
-		$modo = 1;
-	}
-}
 
 
 
@@ -115,9 +104,7 @@ elseif(MODO_API){
 	//API. devolver SOLO el enlace (2/2)
 	$path_plantilla='plantillas/'.$plantillaApi.'/';
 	dbug('plantilla api');
-}elseif($modo==2)
-	$path_plantilla='plantillas/'.$plantillaResMp3.'/';
-elseif($path_plantilla=='')
+}elseif($path_plantilla=='')
 	$path_plantilla='plantillas/'.$plantillaDefault.'/';
 
 
@@ -146,7 +133,7 @@ require_once 'cadenas.php';
 
 //hora de descargar y mostrar el resultado
 //AVERIGUAR SERVIDOR
-if($modo==1){
+
 	$R = array();
 	
 	while(preg_match('@descargavideos\.tv.+?web=(.+?)(?:$|&)@', $web, $matches)){
@@ -278,51 +265,8 @@ if($modo==1){
 		dbug('DEBUG en marcha, terminando.');
 		exit;
 	}
-}
-elseif($modo==2){
-	//la canción se buscará en soundcloud y goear por ahora
-	dbug('texto a buscar: '.$web);
-
-	//$nombres=array('dilandau','emp3world','forshared','goear','soso','soundcloud');
-
-	$nombres=array('soundcloud','goear','forshared','emp3world');
-
-	$total=array();
 
 
-	foreach($nombres as $nombre){
-		include_once 'buscaMp3/'.$nombre.'.php';
-		$lolol=$nombre();
-		foreach($lolol['enlaces'] as $elem){
-			$otros_datos_mp3='';
-			if(isset($elem['duracion']))
-				$otros_datos_mp3.=$elem['duracion'].'s, ';
-			if(isset($elem['peso']))
-				$otros_datos_mp3.=$elem['peso'].'MB, ';
-			if(isset($elem['bitrate']))
-				$otros_datos_mp3.=$elem['bitrate'].'kbps, ';
-			$otros_datos_mp3=substr($otros_datos_mp3,0,strlen($otros_datos_mp3)-2);
-			$aAgregar=array(
-				'url_txt'=>html_entity_decode($elem['titulo']),
-				'url'=>$elem['url'],
-				'tipo'=>'http',
-				'otros_datos_mp3'=>$otros_datos_mp3
-			);
-			$total[]=$aAgregar;//sin ordenar ni na, pero bueno.
-		}
-	}
-
-
-	$obtenido=array(
-		'titulo'  => $web,
-		'enlaces' => $total
-	);
-
-	if(count($total) > 0)
-		finalCadena($obtenido,false);
-	else
-		$errorImprimible='No se encontró ningún resultado.';
-}
 
 
 if($fallourlinterna!=''){
