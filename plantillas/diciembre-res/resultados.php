@@ -4,7 +4,7 @@ if(!defined('IGNORA_AVISO_RAPIDO')) include 'plantillas/extras/aviso_rapido_js.p
 
 <script>
 	_gaq.push(["_trackEvent","Descargas Realizadas","<?php echo $R['CANAL'];?>"]);
-	_gaq.push(["_trackEvent","Descargas URL",<?php echo json_encode($web)?>]);
+	_gaq.push(["_trackEvent","Descargas URL",<?=json_encode($web)?>]);
 </script>
 
 <img class="img bloque"  id="imagen_res" src="<?php echo $R['url_img_res'];?>">
