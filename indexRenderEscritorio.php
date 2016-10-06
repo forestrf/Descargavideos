@@ -68,7 +68,7 @@ var jdownloader = false;
 		</div>
 
 		<div class="centro">
-			<form action="/" method="get" name="formCalculador" id="formCalculador">
+			<form action="/" method="post" name="formCalculador" id="formCalculador">
 				<div class="fondo_input_web">
 					<input type="text" name="web" id="web" class="entrada" placeholder="Pega la URL del vídeo..." value="<?php if(isset($web) && $web!="")echo htmlentities2($web)?>" title="URL a obtener">
 				</div>

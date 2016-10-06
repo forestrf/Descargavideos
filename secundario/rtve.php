@@ -141,7 +141,7 @@ if(isset($asset)){
 
 		//imagen
 		if(enString($retmedia,'"image":null')){
-			$imagen='http://www.'.DOMINIO.'/canales/rtve.png';
+			$imagen='http://'.DOMINIO.'/canales/rtve.png';
 			dbug('imagen null');
 		}
 		else{
@@ -152,7 +152,7 @@ if(isset($asset)){
 	}
 	else{
 		$titulo="RTVE";
-		$imagen='http://www.'.DOMINIO.'/canales/rtve.png';
+		$imagen='http://'.DOMINIO.'/canales/rtve.png';
 	}
 }
 else{

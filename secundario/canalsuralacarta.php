@@ -38,7 +38,7 @@ if(enString($this->web_descargada,"_url_xml_datos")){
 	$imagen=entre1y2($ret,'<picture>','</');
 	dbug('imagen='.$imagen);
 	if(enString($imagen, '1pxtrans.gif')){
-		$imagen = 'http://www.'.DOMINIO.'/canales/canalsur.png';
+		$imagen = 'http://'.DOMINIO.'/canales/canalsur.png';
 	}
 
 	//<video type="content">
@@ -118,7 +118,7 @@ else{
 		$imagen=entre1y2_a($this->web_descargada, 'content="', '"');
 	}
 	else
-		$imagen='http://www.'.DOMINIO.'/canales/canalsur.png';
+		$imagen='http://'.DOMINIO.'/canales/canalsur.png';
 	
 	preg_match("@http://[^ ]*?\.(?:mp4|flv)@i", $this->web_descargada, $matches);
 	

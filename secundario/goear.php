@@ -5,7 +5,7 @@ class Goear extends cadena{
 function calcula(){
 $obtenido=array('enlaces' => array());
 
-$imagen='http://www.'.DOMINIO.'/canales/goear.png';
+$imagen='http://'.DOMINIO.'/canales/goear.png';
 
 //varias canciones (de un usuario)
 if(enString($this->web_descargada,'<h3>Audios</h3>')){

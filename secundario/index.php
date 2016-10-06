@@ -60,8 +60,8 @@ header('Pragma: no-cache');
 
 //recogemos variables
 if(!isset($web)){
-	if(isset($_REQUEST['web']))
-		$web=$_REQUEST['web'];
+	if(isset($_POST['web']))
+		$web=$_POST['web'];
 	else
 		$web='';
 }

@@ -23,7 +23,7 @@ if(enString($this->web_descargada,"playerConfig")){
 		$url=entre1y2($ret,"src:'","'");
 
 	//imagen
-	$obtenido['imagen']='http://www.'.DOMINIO.'/canales/cadenaser.jpg';
+	$obtenido['imagen']='http://'.DOMINIO.'/canales/cadenaser.jpg';
 	if(enString($ret, "poster:'")){
 		dbug("imagen del vídeo");
 		$imagenTemp = entre1y2($ret,"poster:'","'");

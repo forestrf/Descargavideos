@@ -31,7 +31,7 @@ $obtenido=array('enlaces' => array());
 $canciones=substr_count($this->web_descargada,'<img class="waveform"');
 //dbug('total canciones='.$canciones);
 
-$imagen='http://www.'.DOMINIO.'/canales/soundcloud.png';
+$imagen='http://'.DOMINIO.'/canales/soundcloud.png';
 
 //no sabemos cuantas queremos, pero es del modo nuevo y posiblemente varias.
 if(enString($this->web_descargada,"Next SoundCloud")||true){

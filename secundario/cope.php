@@ -52,7 +52,7 @@ elseif(enString($this->web_descargada,"addCustomPlayer(")){
 	}
 	
 	$obtenido['titulo']='Vídeos';
-	$obtenido['imagen']='http://www.'.DOMINIO.'/canales/cope.png';
+	$obtenido['imagen']='http://'.DOMINIO.'/canales/cope.png';
 	
 	
 	finalCadena($obtenido);
@@ -66,7 +66,7 @@ elseif(enString($this->web_descargada, '/proyecto/fragmentosJSP/playerxml.jsp'))
 		
 	$obtenido = array(
 		'titulo'=>'Cope',
-		'imagen'=>'http://www.'.DOMINIO.'/canales/cope.png',
+		'imagen'=>'http://'.DOMINIO.'/canales/cope.png',
 		'enlaces' => array(
 			array(
 				'url'  => $url,

@@ -12,7 +12,7 @@ $ref=$_SERVER['HTTP_REFERER'];
 $pag="";
 if(
 	strpos($ref,'http://'.DOMINIO)==0||
-	strpos($ref,'http://www.'.DOMINIO)==0
+	strpos($ref,'https://'.DOMINIO)==0
 )
 $pag='descargavideos';
 
@@ -40,9 +40,9 @@ if($pag==='descargavideos')
 else
 	fin();
 
-function fin($url="asdf"){
-	if($url=="asdf")
-		$url = 'http://www.'.DOMINIO.'/';
+function fin($url = false) {
+	if ($url === false)
+		$url = 'http://'.DOMINIO.'/';
 	header('Location: '.$url);
 	exit;
 }

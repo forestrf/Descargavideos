@@ -54,7 +54,7 @@ var jdownloader = false;
 <h2>Descarga videos de todos los canales nacionales</h2>
 
 
-<form action="/" method="get" name="formCalculador" id="formCalculador">
+<form action="/" method="post" name="formCalculador" id="formCalculador">
 	<input type="text" name="web" id="web" class="entrada" placeholder="Pega aquí la URL del vídeo..." value="<?php if($web!="")echo htmlentities2($web)?>" title="URL a obtener">
 	<!--
 	<div class="formRadio"><input type="radio" name="modo" id="radio1" value="1" onclick="setModoPic(1)" <?php echo $modo==1?"checked":"" ?>><label for="radio1">Convertir enlace</label></div>

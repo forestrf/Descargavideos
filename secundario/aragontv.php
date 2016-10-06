@@ -12,7 +12,7 @@ function calcula(){
 http://alacarta.aragontelevision.es/_archivos/videos/web/4334/4334.mp4
 */
 
-$imagen='http://www.'.DOMINIO.'/canales/aragontv.png';
+$imagen='http://'.DOMINIO.'/canales/aragontv.png';
 
 $obtenido=array('enlaces' => array());
 
