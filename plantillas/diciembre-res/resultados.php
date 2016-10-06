@@ -26,9 +26,11 @@ generaInnerResultado();
 
 </div>
 
+<?php /*
 <div class="bloque publi_res" id="contendor_publi_res">
 <?php echo getPubliJS(300, 250)?>
 </div>
+*/?>
 
 <div class="instrucciones_descarga bloque">
 	<b>Cómo descargar:</b><br/>

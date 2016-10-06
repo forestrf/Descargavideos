@@ -371,8 +371,7 @@ input[type="radio"] {
 	font-style:normal;
 }
 #resultado .bloque{
-	margin:2.5% 2.5% 0 2.5%;
-	width:45%;
+	margin: 0 20%;
 }
 #resultado .img {
 	/*background-color:#343438;*/
@@ -385,7 +384,6 @@ input[type="radio"] {
 	/*max-width:500px;*/
 }
 #resultado .titulo_res{
-	float:right;
 	font-size:28px;
 	line-height:1.1em;
 	position:relative;
@@ -404,7 +402,6 @@ input[type="radio"] {
 	border-radius: 5px;
 	box-shadow: 0 0 10px #eeff00;
 	color: #1f1f1f;
-	float: right;
 	min-height: 64px;
 	padding: 5px 0 5px 8%;
 	position: relative;
@@ -419,7 +416,6 @@ input[type="radio"] {
 	color:#333;
 }
 #resultado #enlaces{
-	float:right;
 	font-size:22px;
 	position:relative;
 	text-align:center;
@@ -435,10 +431,8 @@ input[type="radio"] {
 	width: 99%;
 }
 #resultado .instrucciones_descarga{
-	float:right;
 }
 #resultado .publi_res{
-	float:left;
 	text-align:center;
 }
 .publi_res_contenedor{
