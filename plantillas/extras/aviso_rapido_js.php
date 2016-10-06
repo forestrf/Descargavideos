@@ -1,7 +1,7 @@
 <?php
 	$web_escapado = strtr($R['WEB'], array('script'=>'','"'=>'\\"','\\'=>'\\\\'));
 ?>
-<span id="informaFalloRapido">Informar de resultado incorrecto</span>
+<span id="informaFalloRapido" class="informaFalloRapido">Informar de resultado incorrecto</span>
 <script>
 	D.g('informaFalloRapido').onclick = function(){
 		procesaPromptAvisoRapido(

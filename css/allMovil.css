@@ -187,11 +187,6 @@ h2{
 	margin:70px 30px;
 	position:relative;
 }
-#resultado .info{
-	margin:5px 0 20px 0;
-	color:#781111;
-	font-weight:900;
-}
 #resultado #enlaces iframe{
 	width:100%;
 }

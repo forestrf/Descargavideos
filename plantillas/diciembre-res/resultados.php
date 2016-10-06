@@ -1,13 +1,9 @@
-<?php
-if(!defined('IGNORA_AVISO_RAPIDO')) include 'plantillas/extras/aviso_rapido_js.php'
-?>
-
 <script>
 	_gaq.push(["_trackEvent","Descargas Realizadas","<?php echo $R['CANAL'];?>"]);
 	_gaq.push(["_trackEvent","Descargas URL",<?=json_encode($web)?>]);
 </script>
 
-<div class="titulo_res bloque" style="width: 100%;text-align: center;margin-bottom: 5%;margin-top: 5%;float: initial">
+<div class="titulo_res">
 	<span id="titulo_res"><?php echo $R['titulo_res'];?></span><br/>
 	<div class="descripcion_res" id="descripcion_res"><?php echo $R['descripcion_res'];?></div>
 </div>
@@ -45,3 +41,7 @@ generaInnerResultado();
 	Para descargar un enlace m3u8: <a href="/lab#lab_m3u8-downloader" id="enl">Programa necesario</a>. <a href="http://www.youtube.com/watch?v=bqBBWumxp4c" id="enl">Tutorial en YouTube</a>.
 	</p>
 </div>
+
+<?php
+if(!defined('IGNORA_AVISO_RAPIDO')) include 'plantillas/extras/aviso_rapido_js.php'
+?>

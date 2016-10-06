@@ -341,16 +341,19 @@ input[type="radio"] {
 	display:table;
 	height:100%;
 }
-#informaFalloRapido{
-	cursor:pointer;
-	background:#F00;
-	box-shadow:0 0 5px 0 #000;
-	color:#FFF;
-	float:right;
-	font-size:12px;
-	padding:3px;
+.informaFalloRapido{
+	cursor: pointer;
+	background: #F00;
+	box-shadow: 0 0 5px 0 #000;
+	color: #FFF;
+	font-size: 13px;
+	padding: 3px 20px;
+	margin: 15px auto 40px;
+	display: block;
+	width: 250px;
+	text-align: center;
 }
-#informaFalloRapido:hover{
+.informaFalloRapido:hover{
 	background:none repeat scroll 0 0 #800;
 	box-shadow:0 0 8px 3px #f00;
 }
@@ -388,6 +391,9 @@ input[type="radio"] {
 	line-height:1.1em;
 	position:relative;
 	text-shadow:1px 1px 2px #282828;
+	padding: 0 100px;
+	text-align: center;
+	margin: 5% auto 5%;
 }
 #resultado .descripcion_res {
 	color: #CCCCCC;
@@ -395,18 +401,19 @@ input[type="radio"] {
 	line-height: 1.2em;
 }
 #resultado .alerta_especifica{
-	background-color: #eeff00;
+	background-color: #f6ff7e;
 	background-image: url("/img/warning.png");
 	background-position: 5px 5px;
 	background-repeat: no-repeat;
 	border-radius: 5px;
 	box-shadow: 0 0 10px #eeff00;
 	color: #1f1f1f;
-	min-height: 64px;
-	padding: 5px 0 5px 8%;
+	min-height: 40px;
+	padding: 5px 0 5px 60px;
 	position: relative;
 	text-align: left;
-	width: 37%;
+	margin-bottom: 25px;
+	border: 3px solid #daad0b;
 }
 #resultado .alerta_especifica a{
 	color:#000;
@@ -430,7 +437,23 @@ input[type="radio"] {
 	padding: 10px 0;
 	width: 99%;
 }
-#resultado .instrucciones_descarga{
+#resultado .instrucciones_descarga {
+	background-color: #F8F8F8 !important;
+	background-image: url("/img/info.png");
+	background-position: 10px 10px !important;
+	color: #000000 !important;
+	line-height: 1em;
+	padding: 10px 10px 10px 80px;
+	text-align: left;
+	background-repeat: no-repeat;
+	border-radius: 10px;
+}
+#resultado .instrucciones_descarga a {
+	color: #009607;
+	text-decoration: underline;
+}
+#resultado .instrucciones_descarga a:hover {
+	color: #00c500;
 }
 #resultado .publi_res{
 	text-align:center;
@@ -520,11 +543,6 @@ input[type="radio"] {
 #resultado #enlaces_mp3{
 	margin:70px 30px;
 	position:relative;
-}
-#resultado .info{
-	margin:5px 0 20px 0;
-	color:#781111;
-	font-weight:900;
 }
 #resultado .TV{
 	border-radius:10px;
