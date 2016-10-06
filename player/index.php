@@ -1,8 +1,8 @@
 <?php
 
-$url = isset($_GET['video'])?limpiar($_GET['video']):"";
-$img = isset($_GET['img'])?limpiar($_GET['img']):"";
-$ext = isset($_GET['ext'])?limpiar($_GET['ext']):"";
+$url = isset($_POST['video'])?limpiar($_POST['video']):"";
+$img = isset($_POST['img'])?limpiar($_POST['img']):"";
+$ext = isset($_POST['ext'])?limpiar($_POST['ext']):"";
 
 function limpiar($que){
 	return strtr($que, array(
