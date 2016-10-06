@@ -88,15 +88,15 @@ input[type="radio"] {
 }
 
 .cabecera{
-	height:100%;
 	position:relative;
 	width:100%;
-	min-height:490px;
+	min-height:100%;
 	font-family:trebuchet ms;
 }
+.minHeight {
+}
 .cabecera .centro{
-	position:absolute;
-	top:45%;
+	margin-top: 120px;
 	width:100%;
 }
 .tv{
@@ -266,10 +266,12 @@ input[type="radio"] {
 }
 .invisible{opacity:0;}
 .publi_cabecera {
-	height: 90px;
 	margin-top: 45px;
 	text-align: center;
-	width: 100%;
+}
+.publi_cabecera > center > span {
+    display: inline-block;
+    border: 5px solid #fff;
 }
 .google_publi{
 	text-align:center;
@@ -332,7 +334,7 @@ input[type="radio"] {
 }
 .cargando{
 	background:url("/img/loading.gif") center center no-repeat;
-	height:100%;
+	height:	200px;
 	width:100%;
 }
 .hx100{
@@ -733,13 +735,13 @@ input[type="radio"] {
 	color:#ED8D2D;
 	display:inline-block;
 	font-family:Helvetica;
-	font-size:16px;
+	font-size:15px;
 	font-style:normal;
 	font-weight:normal;
 	height:30px;
 	line-height:30px;
 	margin:0 5px;
-	padding:0 7px 0 33px;
+	padding:0 4px 0 30px;
 	text-decoration:none;
 	text-shadow:none;
 	-webkit-transition: all 0.3s ease 0s;
@@ -1105,7 +1107,7 @@ ul.puntuado, ul.puntuado li{
 	}
 }
 
-@media screen and (max-width:1000px){
+@media screen and (max-width:900px){
 
 	.der{
 		width:400px;

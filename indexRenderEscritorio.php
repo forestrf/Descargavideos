@@ -49,76 +49,77 @@ var jdownloader = false;
 
 <div class="todo">
 	<div class="cabecera" id="cabecera">
-		<a href="/" title="Ir al inicio"><h1>DescargaVideos<span class="tv">.TV</span></h1></a>
-		<h2><?php echo TXT_SUBTITULO_CABECERA?></h2>
-
-		<div id="esquina" class="esquina">
-			<div class="interior_esquina"><div>
-				<a href="/cambiaCabecera.php?modo=1" id="prevpic1" ><span class="m1 img"></span></a><a
-				href="/cambiaCabecera.php?modo=2"    id="prevpic2" ><span class="m2 img"></span></a><a
-				href="/cambiaCabecera.php?modo=3"    id="prevpic3" ><span class="m3 img"></span></a><a
-				href="/cambiaCabecera.php?modo=4"    id="prevpic4" ><span class="m4 img"></span></a></div><div><a
-				href="/cambiaCabecera.php?modo=5"    id="prevpic5" ><span class="m5 img"></span></a><a
-				href="/cambiaCabecera.php?modo=6"    id="prevpic6" ><span class="m6 img"></span></a><a
-				href="/cambiaCabecera.php?modo=7"    id="prevpic7" ><span class="m7 img"></span></a></div><div><a
-				href="/cambiaCabecera.php?modo=8"    id="prevpic8" ><span class="m8 img"></span></a><a
-				href="/cambiaCabecera.php?modo=9"    id="prevpic9" ><span class="m9 img"></span></a></div><div><a
-				href="/cambiaCabecera.php?modo=10"   id="prevpic10"><span class="m10 img"></span></a>
-			</div></div>
-		</div>
-
-		<div class="centro">
-			<form action="/" method="post" name="formCalculador" id="formCalculador">
-				<div class="fondo_input_web">
-					<input type="text" name="web" id="web" class="entrada" placeholder="Pega la URL del vídeo..." value="<?php if(isset($web) && $web!="")echo htmlentities2($web)?>" title="URL a obtener">
-				</div>
-				<input type="submit" id="submitBtn" value=" " class="boton">
-				<!--
-				<div class="formRadio"><input type="radio" name="modo" id="radio1" value="1" <?php echo $modo==1?"checked":"" ?>><label for="radio1"><?php echo TXT_CONVERTIR_ENLACE_RADIO?></label></div>
-				<div class="formRadio"><input type="radio" name="modo" id="radio2" value="2" <?php echo $modo==2?"checked":"" ?>><label for="radio2"><?php echo TXT_BUSCAR_CANCION_RADIO?></label></div>
-				-->
-
-				<div id="ayuda1" class="letra_ayuda">
-					<div class="flechaIzq"></div>
-					<span id="ayuda1txt"><?php echo TXT_COPIA_URL_VIDEO?></span>
-				</div>
-
-				<div id="ayuda2" class="letra_ayuda invisible">
-					<div class="flechaDer"></div>
-					<span id="ayuda2txt"><?php echo TXT_BUSCA_URL_VIDEO?></span>
-				</div>
-			</form>
-			
-			<div class="publi_cabecera">
-				<center><?php echo getPubliIFRAME(728, 90, true)?></center>
+		<div class="minHeight">
+			<a href="/" title="Ir al inicio"><h1>DescargaVideos<span class="tv">.TV</span></h1></a>
+			<h2><?php echo TXT_SUBTITULO_CABECERA?></h2>
+	
+			<div id="esquina" class="esquina">
+				<div class="interior_esquina"><div>
+					<a href="/cambiaCabecera.php?modo=1" id="prevpic1" ><span class="m1 img"></span></a><a
+					href="/cambiaCabecera.php?modo=2"    id="prevpic2" ><span class="m2 img"></span></a><a
+					href="/cambiaCabecera.php?modo=3"    id="prevpic3" ><span class="m3 img"></span></a><a
+					href="/cambiaCabecera.php?modo=4"    id="prevpic4" ><span class="m4 img"></span></a></div><div><a
+					href="/cambiaCabecera.php?modo=5"    id="prevpic5" ><span class="m5 img"></span></a><a
+					href="/cambiaCabecera.php?modo=6"    id="prevpic6" ><span class="m6 img"></span></a><a
+					href="/cambiaCabecera.php?modo=7"    id="prevpic7" ><span class="m7 img"></span></a></div><div><a
+					href="/cambiaCabecera.php?modo=8"    id="prevpic8" ><span class="m8 img"></span></a><a
+					href="/cambiaCabecera.php?modo=9"    id="prevpic9" ><span class="m9 img"></span></a></div><div><a
+					href="/cambiaCabecera.php?modo=10"   id="prevpic10"><span class="m10 img"></span></a>
+				</div></div>
 			</div>
-		</div>
-
-		<div class="social">
-			<div class="elem">
-				<a target="_blank" class="tt" href="https://twitter.com/descargavids"></a>
+	
+			<div class="centro">
+				<form action="/" method="post" name="formCalculador" id="formCalculador">
+					<div class="fondo_input_web">
+						<input type="text" name="web" id="web" class="entrada" placeholder="Pega la URL del vídeo..." value="<?php if(isset($web) && $web!="")echo htmlentities2($web)?>" title="URL a obtener">
+					</div>
+					<input type="submit" id="submitBtn" value=" " class="boton">
+	
+					<div id="ayuda1" class="letra_ayuda">
+						<div class="flechaIzq"></div>
+						<span id="ayuda1txt"><?php echo TXT_COPIA_URL_VIDEO?></span>
+					</div>
+	
+					<div id="ayuda2" class="letra_ayuda invisible">
+						<div class="flechaDer"></div>
+						<span id="ayuda2txt"><?php echo TXT_BUSCA_URL_VIDEO?></span>
+					</div>
+				</form>
+				
+				<div id="resultado" class="hx100">
+					<?php include_once 'plantillaResultado.php';?>
+				</div>
+				<div id="cargando" class="cargando displaynone"></div>
+				
+				<div class="publi_cabecera">
+					<center>
+						<span>
+							<?php echo getPubliJS(300, 250, true)?>
+						</span>
+						<span>
+							<?php echo getPubliJS(300, 250, true)?>
+						</span>
+					</center>
+				</div>
 			</div>
-
-			<div class="elem">
-				<a target="_blank" class="fb" href="https://www.facebook.com/descargavids"></a>
-			</div>
-			
-			<div class="elem">
-				<a target="_blank" class="gplus" href="https://plus.google.com/share?url=http://www.descargavideos.tv/"></a>
+	
+			<div class="social">
+				<div class="elem">
+					<a target="_blank" class="tt" href="https://twitter.com/descargavids"></a>
+				</div>
+	
+				<div class="elem">
+					<a target="_blank" class="fb" href="https://www.facebook.com/descargavids"></a>
+				</div>
+				
+				<div class="elem">
+					<a target="_blank" class="gplus" href="https://plus.google.com/share?url=http://www.descargavideos.tv/"></a>
+				</div>
 			</div>
 		</div>
 	</div>
 
 	<div id="subir">Subir</div>
-
-	<?php if(defined('HAY_RESULTADO')){ ?>
-		<div id="resultado" class="hx100">
-			<?php include_once 'plantillaResultado.php';?>
-		</div>
-	<?php }else{ ?>
-		<div id="resultado"></div>
-	<?php } ?>
-	<div id="cargando" class="cargando displaynone"></div>
 
 	<div id="contenido">
 		<div class="menu_hueco">

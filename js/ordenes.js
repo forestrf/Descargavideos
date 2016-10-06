@@ -39,10 +39,23 @@ webI.onfocus = function() {
 
 D.g("formCalculador").onsubmit = function(e) {
 	var a = D.g('resultado');
-	scrollTo(a, 500);
 	aC(a, "displaynone");
 	qC(D.g('cargando'), "displaynone");
+	xhr("/?ajax=1", "web=" + encodeURIComponent(D.g("web").value), muestraResultadoAjax, alert);
+	return false;
 };
+function muestraResultadoAjax(data) {
+	var a = D.g('resultado');
+	
+	qC(a, "displaynone");
+	aC(D.g('cargando'), "displaynone");
+	
+	a.innerHTML = data;
+	
+	var arr = a.getElementsByTagName('script');
+	for (var n = 0; n < arr.length; n++)
+	    eval(arr[n].innerHTML);//run script inside div
+}
 window.onscroll = function(e) {
 	mueveMenu();
 	mueveSubir();

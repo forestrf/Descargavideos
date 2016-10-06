@@ -191,6 +191,8 @@ if($is_mobile)
 	require_once 'indexRenderMovil.php';
 else if(MODO_API)
 	require_once 'indexRenderApi.php';
+else if(isset($_GET['ajax']))
+	require_once 'indexRenderAjax.php';
 else
 	require_once 'indexRenderEscritorio.php';
 
