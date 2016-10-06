@@ -101,13 +101,24 @@ $busqueda_comillas = strtr($R['busqueda'], '"', '\\"');
 					var b = a.parentNode.parentNode;
 					
 					if (!a.reacondicionado) {
-						b.parentNode.insertBefore(
+						var f = crel2('form', [
+							'method', 'post',
+							'action', '//<?php echo DOMINIO?>/web/s/',
+							'style', 'visibility=hidden'
+						]);
+						crel2(f,
+							crel2('input', [
+								'type', 'hidden',
+								'name', 'web',
+								'value', encodeURIComponent(a.getAttribute("data-ctorig"))
+							]),
 							crel2('a', [
-								'href', '/web/s/?web=' + encodeURIComponent(a.getAttribute("data-ctorig")),
-								'class', 'g-boton-DV'
-							], "Descargar con Descargavideos"),
-							b
+								'style', 'cursor:pointer',
+								'class', 'g-boton-DV',
+								'onclick', (function(f){ return function(){f.submit()} })(f)
+							], "Descargar con Descargavideos")
 						);
+						b.parentNode.insertBefore(f, b);
 						a.reacondicionado = true;
 					}
 				}
