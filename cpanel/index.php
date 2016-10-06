@@ -97,7 +97,7 @@ $result = $db->query('SELECT * FROM avisos;');
 foreach($result->fetchAll(PDO::FETCH_ASSOC) as &$elem){
 	echo '<tr><td>'.($i++).'</td>',
 		'<td><a href="?quitar='.$elem['ID'].'">Quitar</a></td>',
-		'<td><a target="blank" href="http://www.descargavideos.tv/?web='.urlencode($elem['url']).'">[DV]</a> <a target="blank" href="http://localhost/?web='.urlencode($elem['url']).'">[LH]</a> <a href="',$elem['url'],'">',$elem['url'],'</a></td>',
+		'<td><a target="blank" href="http://www.descargavideos.tv/?webdebug='.urlencode($elem['url']).'">[DV]</a> <a target="blank" href="http://localhost/?webdebug='.urlencode($elem['url']).'">[LH]</a> <a href="',$elem['url'],'">',$elem['url'],'</a></td>',
 		'<td>',$elem['comentario'],'</td>',
 		'<td>',$elem['ip'],'</td>',
 		'<td>',$elem['fecha'],'</td>',

@@ -42,6 +42,15 @@ if(isset($_POST["web64"])){
 }
 
 
+if(defined('DEBUG') && isset($_GET["web"])) {
+	dbug('Web sacada de GET (debug) a POST');
+	$_POST['web'] = $_GET['web'];
+}
+if(isset($_GET["webdebug"])) {
+	dbug('Web sacada de GET (webdebug) a POST');
+	$_POST['web'] = $_GET['webdebug'];
+}
+
 
 //url a descargar. Si hay algo toca descargar la url. Usar Request ya que puede venir por GET y POST
 if(isset($_POST["web"])){
@@ -51,7 +60,6 @@ if(isset($_POST["web"])){
 	if(strpos($web,"http%3A") === 0 || strpos($web,"https%3A") === 0){
 		$web = urldecode($web);
 	}
-
 }
 
 

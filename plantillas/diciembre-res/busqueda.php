@@ -1,7 +1,3 @@
-<?php
-$busqueda_comillas = strtr($R['busqueda'], '"', '\\"');
-?>
-
 <style>
 	.gsc-selected-option-container {
 		min-width: 70px !important;
@@ -42,7 +38,7 @@ $busqueda_comillas = strtr($R['busqueda'], '"', '\\"');
 	}
 </style>
 
-<script>_gaq.push(["_trackEvent","Busqueda","Google","<?=$busqueda_comillas?>"]);</script>
+<script>_gaq.push(["_trackEvent","Busqueda Google",<?=json_encode($R['busqueda'])?>]);</script>
 
 
 
@@ -81,7 +77,7 @@ $busqueda_comillas = strtr($R['busqueda'], '"', '\\"');
 		
 		function start() {
 			input_text.click();
-			input_text.value = "<?=$busqueda_comillas?>";
+			input_text.value = <?=json_encode($R['busqueda'])?>;
 			button_search.click();
 			
 			// buscando, esperar resultados
