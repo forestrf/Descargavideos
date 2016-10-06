@@ -18,6 +18,7 @@ function cambios($max=-1){
 $todos[]=array(
 '6-Octubre-2016'
 ,'fix:disneychannel.es. Nuevo tipo de vídeos.'
+,'fix:Todos los formularios ahora usan POST en lugar de GET. Esto ha roto el bookmarklet V1 que ha sido actualizado en <a href="/lab#lab_bookmarklet">/lab</a>.'
 );
 
 $todos[]=array(
