@@ -358,8 +358,8 @@ $cadenas = array(
 	)
 	,array(
 		array('disneychannel.es'),
-		array('antena3.php'),
-		'A3',
+		array('disneychannel.php'),
+		'DisneyChannel',
 		'calcula'
 	)
 	,array(

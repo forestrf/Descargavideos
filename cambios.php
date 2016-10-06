@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'6-Octubre-2016'
+,'fix:disneychannel.es. Nuevo tipo de vídeos.'
+);
+
+$todos[]=array(
 '30-Septiembre-2016'
 ,'fix:Canalextremadura restaurado soporte para vídeos individuales.'
 );
