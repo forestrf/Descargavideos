@@ -181,11 +181,11 @@ setTimeout(function(){
 	scrollTo(D.g("resultado"),20);
 <?php } ?>
 
-_gaq.push(["_trackEvent","Interfaz","En uso","<?php echo $css_modo_cookie;?>"]);
+_gaq.push(["_trackEvent","Interfaz modo","<?php echo $css_modo_cookie;?>"]);
 var adblock=true;
 </script>
 <script src="/advertisement.js"></script>
-<script>_gaq.push(["_trackEvent","Adblock","Estado",adblock?"Con Adblock":"Sin Adblock"]);</script>
+<script>_gaq.push(["_trackEvent","Adblock escritorio", adblock?"Con Adblock":"Sin Adblock"]);</script>
 
 
 

@@ -46,7 +46,7 @@ var jdownloader = false;
 
 <script type="text/javascript">var adblock=true;</script>
 <script type="text/javascript" src="/advertisement.js"></script>
-<script type="text/javascript">_gaq.push(["_trackEvent","Adblock","Estado",adblock?"Con Adblock":"Sin Adblock"]);</script>
+<script type="text/javascript">_gaq.push(["_trackEvent","Adblock móvil",adblock?"Con Adblock":"Sin Adblock"]);</script>
 
 
 

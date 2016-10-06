@@ -7,4 +7,4 @@ $error_tracker_msg = defined('ERROR_TRACK_NAME') ? json_encode(ERROR_TRACK_NAME)
 
 <center><?php echo getPubliJS(300, 250, true)?></center>
 
-<script>_gaq.push(["_trackEvent","Descargas","Fallidas",<?php echo $error_tracker_msg?>]);</script>
+<script>_gaq.push(["_trackEvent","Descargas URL fallidas",<?=json_encode($web)?>]);</script>
