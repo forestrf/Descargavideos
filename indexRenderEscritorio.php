@@ -48,7 +48,7 @@ var jdownloader = false;
 
 
 <div class="todo">
-	<div class="cabecera" id="cabecera">
+	<div class="cabecera <?php if(defined('HAY_RESULTADO')) echo "conresultado";?>" id="cabecera">
 		<div class="minHeight">
 			<a href="/" title="Ir al inicio"><h1>DescargaVideos<span class="tv">.TV</span></h1></a>
 			<h2><?php echo TXT_SUBTITULO_CABECERA?></h2>
