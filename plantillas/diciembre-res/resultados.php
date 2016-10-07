@@ -2,7 +2,7 @@
 	_gaq.push(["_trackEvent","Descargas Realizadas","<?php echo $R['CANAL'];?>"]);
 	_gaq.push(["_trackEvent","Descargas URL",<?=json_encode($web)?>]);
 	
-	aC(D.g("publi_cabecera"), "conresultado");
+	aC(D.g("cabecera"), "conresultado");
 </script>
 
 <div class="titulo_res">

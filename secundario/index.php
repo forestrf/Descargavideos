@@ -239,7 +239,7 @@ require_once 'cadenas.php';
 						}
 					}
 				} else {
-					$R['BM2_JS'] = 'document.location = "http://'.DOMINIO.'/web/bookmarklet/?web=' . urlencode($web) . '";';
+					$R['BM2_JS'] = 'bookmarklet_form();';
 				}
 			}
 			else{

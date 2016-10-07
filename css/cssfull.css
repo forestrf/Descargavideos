@@ -1106,7 +1106,7 @@ ul.puntuado, ul.puntuado li{
 
 
 @media screen and (max-width:1295px){
-	#publi_cabecera.conresultado > center > span {
+	#cabecera.conresultado #publi_cabecera > center > span {
 		display: block;
 	}
 }
