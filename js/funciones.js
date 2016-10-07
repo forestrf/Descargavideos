@@ -71,10 +71,12 @@ var ReferrerKiller = (function() {
 	}
 
 	function D(a, b, c) {
+		if (typeof RefererKillerGlobalCount == "undefined")
+			RefererKillerGlobalCount = 0;
 		var b = b || {}, d = 'border:none;overflow:hidden;', e;
 		b.style = 'style' in b ? d + b.style : d;
-		e = '__referrer_killer_' + (new Date).getTime() + Math.floor(Math.random() * 9999);
-		return '<iframe style="border 1px solid #ff0000" height="40" scrolling="no" frameborder="no" allowtransparency="true" ' + C(b) + 'id="' + e + '" src="javascript:\'<!doctype html><html><head><meta charset=\\\'UTF-8\\\'><style>*{margin:0;padding:0;border:0;}</style>' + ( c ? encodeURIComponent(B(c)) : '') + '</head><script>function resizeWindow(){var elems=document.getElementsByTagName(\\\'*\\\'),width=0,' + 'height=0,first=document.body.firstChild,elem;if(first.offsetHeight&&first.offsetWidth){width=first.offsetWidth;height=first.offsetHeight;}else{for(var i in elems){elem=elems[i];if(!elem.offsetWidth){continue;}width=Math.max(elem.offsetWidth,width);height=Math.max(elem.offsetHeight,height);}}var ifr=parent.document.getElementById(\\\'' + e + '\\\');ifr.height=height;ifr.width=width;}</script><body onload=\\\'resizeWindow()\\\'>\'+decodeURIComponent(\'' + encodeURIComponent(a) + '\')+\'</body></html>\'"></iframe>';
+		e = 'RK' + (RefererKillerGlobalCount++);
+		return '<iframe style="border 1px solid #ff0000" height="40" scrolling="no" frameborder="no" allowtransparency="true" ' + C(b) + 'id="' + e + '" src="javascript:\'<!doctype html><html><head><meta charset=\\\'UTF-8\\\'><style>*{margin:0;padding:0;border:0}</style>' + ( c ? encodeURIComponent(B(c)) : '') + '</head><script>function R(){var b=document.getElementsByTagName(\\\'*\\\'),c=0,d=0,a=document.body.firstChild;if(a.offsetHeight&&a.offsetWidth)c=a.offsetWidth,d=a.offsetHeight;else for(var f in b)a=b[f],c=Math.max(a.offsetWidth,c),d=Math.max(a.offsetHeight,d);b=parent.document.getElementById(\\\'' + e + '\\\');b.height=d;b.width=c};</script><body onload=\\\'R()\\\'>\'+decodeURIComponent(\'' + encodeURIComponent(a) + '\')+\'</body></html>\'"></iframe>';
 	}
 
 	function E(a, b, c, d, e, f) {
@@ -99,15 +101,15 @@ var ReferrerKiller = (function() {
 		'word-wrap:break-word;'+
 		'text-align:center;'+
 		'display:block;'+
-		'transition:all 0.3s ease 0s;'+
+		'transition:all 0.3s ease 0;'+
 		'min-height:30px;'+
 		'padding:5px 5px 5px 50px;'+
-		'color:#F8F8F8;'+
+		'color:#F8F8F8'+
 	'}'+
 	'.link:hover{'+
 		'background-color:#F8F8F8;'+
 		'background-position:5px -55px;'+
-		'color:#ED8D2D;'+
+		'color:#ED8D2D'+
 	'}';
 
 	return {linkHtml:E,css:default_css_button};
