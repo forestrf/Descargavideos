@@ -1,6 +1,6 @@
 <div>
 	<span id="id<?php echo $R2['random_id'];?>" class="Descarga2"></span>
-	<a class="TV" id="id<?php echo $R2['random_id'];?>-2" target="_blank" href="/player/?img=<?php echo $R['url_img_res'];?>"></a>
+	<?=TVButton($R2['random_id'], "", "mp4", $R['url_img_res'])?>
 </div>
 <script>
 	<?php
@@ -10,7 +10,9 @@
 	function finalizar<?php echo $R2['random_id'];?>(linkfinal, txtfinal, extension){
 		if(!extension)
 			extension = "mp4";
-		D.g('id<?php echo $R2['random_id'];?>-2').setAttribute('href', D.g('id<?php echo $R2['random_id'];?>-2').getAttribute('href') + '&ext='+extension+'&video='+encodeURIComponent(linkfinal));
+		D.g('id<?=$R2['random_id']?>TVURL').value = linkfinal;
+		D.g('id<?=$R2['random_id']?>TVEXT').value = extension;
+		
 		D.g('id<?php echo $R2['random_id'];?>').innerHTML=ReferrerKiller.linkHtml(
 			linkfinal,
 			txtfinal,
