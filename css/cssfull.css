@@ -332,10 +332,24 @@ input[type="radio"] {
 .displaynone{
 	display:none;
 }
-.cargando{
-	background:url("/img/loading.gif") center center no-repeat;
-	height:	200px;
-	width:100%;
+.cargando::before {
+	content: "Por favor, espere";
+	text-align: center;
+	width: 400px;
+	display: block;
+	font-size: 30px;
+	line-height: 50px;
+	height: 50px;
+	background-color: #000;
+}
+.cargando {
+	background: url("/img/loading.gif") center 50px no-repeat;
+	height: 220px;
+	background-color: #000;
+	margin: 50px auto;
+	width: 400px !important;
+	border: 1px solid #000;
+	box-shadow: 0 0 50px #000;
 }
 .hx100{
 	display:table;
@@ -387,13 +401,15 @@ input[type="radio"] {
 	/*max-width:500px;*/
 }
 #resultado .titulo_res{
-	font-size:28px;
-	line-height:1.1em;
-	position:relative;
-	text-shadow:1px 1px 2px #282828;
-	padding: 0 100px;
+	font-size: 28px;
+	line-height: 1.1em;
+	position: relative;
+	text-shadow: 1px 1px 2px #282828;
+	padding: 40px 10% 0;
 	text-align: center;
-	margin: 5% auto 5%;
+	border-top: 1px solid #fff;
+	box-shadow: 0 50px 50px -50px #000 inset;
+	margin: 80px 6% 50px;
 }
 #resultado .descripcion_res {
 	color: #CCCCCC;
@@ -529,20 +545,6 @@ input[type="radio"] {
 
 #resultado{
 	word-wrap:break-word;
-}
-#resultado .titulo_res_mp3{
-	font-size:28px;
-	left:0;
-	margin:auto;
-	position:relative;
-	text-shadow:1px 1px 2px #282828;
-	top:0;
-	text-align:center;
-	margin:70px;
-}
-#resultado #enlaces_mp3{
-	margin:70px 30px;
-	position:relative;
 }
 #resultado .TV{
 	border-radius:10px;

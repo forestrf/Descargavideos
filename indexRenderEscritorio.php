@@ -86,7 +86,7 @@ var jdownloader = false;
 					</div>
 				</form>
 				
-				<div id="resultado" class="hx100">
+				<div id="resultado">
 					<?php include_once 'plantillaResultado.php';?>
 				</div>
 				<div id="cargando" class="cargando displaynone"></div>
