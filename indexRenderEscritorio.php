@@ -167,10 +167,6 @@ var jdownloader = false;
 setModoPic('<?php echo $modo?>');
 function setModoPic(d){if(d==1){D.g('web').placeholder="<?php echo TXT_PEGA_URL_VIDEO?>";D.g('ayuda1txt').innerHTML="<?php echo TXT_COPIA_URL_VIDEO?>";D.g('ayuda2txt').innerHTML="<?php echo TXT_BUSCA_URL_VIDEO?>";}else{D.g('web').placeholder="<?php echo TXT_BUSCAR_CANCION?>";D.g('ayuda1txt').innerHTML="<?php echo TXT_ESCRIBE_NOMBRE_CANCION?>";D.g('ayuda2txt').innerHTML="<?php echo TXT_BUSCA_CANCION?>";}}
 
-setTimeout(function(){
-	getScript("https://platform.twitter.com/widgets.js",null,"twitter-wjs");
-},2000);
-
 <?php if(defined('HAY_RESULTADO')){ ?>
 	scrollTo(D.g('formCalculador'), 20);
 <?php } ?>

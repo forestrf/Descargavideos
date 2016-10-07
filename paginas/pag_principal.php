@@ -55,9 +55,6 @@
 </div>
 <div class="columna_der">
 	<div class="bloque_pagina bloqueMargin txt_centrado">
-		<a class="twitter-timeline"  href="https://twitter.com/descargavids"  data-widget-id="367404729648705536">Tweets por @descargavids</a>
-	</div>
-	<div class="bloque_pagina bloqueMargin txt_centrado">
 		<?php echo TXT_BLOQUE_DV_EN_TU_WEB?>
 	</div>
 	<div class="bloque_pagina bloqueMargin txt_centrado">

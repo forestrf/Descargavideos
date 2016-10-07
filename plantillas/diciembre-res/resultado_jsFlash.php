@@ -13,13 +13,14 @@
 		D.g('id<?=$R2['random_id']?>TVURL').value = linkfinal;
 		D.g('id<?=$R2['random_id']?>TVEXT').value = extension;
 		
-		D.g('id<?php echo $R2['random_id'];?>').innerHTML=ReferrerKiller.linkHtml(
+		D.g('id<?=$R2['random_id']?>').innerHTML = "";
+		D.g('id<?php echo $R2['random_id'];?>').appendChild(ReferrerKiller.linkHtml(
 			linkfinal,
 			txtfinal,
 			{target:'_blank'},
 			{verticalAlign:'bottom'},
 			ReferrerKiller.css
-		);
+		));
 	}
 	finalizar = finalizar<?php echo $R2['random_id'];?>;
 </script>
