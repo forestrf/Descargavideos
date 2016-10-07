@@ -147,12 +147,6 @@ var jdownloader = false;
 		Descargavideos.tk Descargavideos.tv | 
 		Code by <a target="_blank" href="http://andresleone.uni.me/"><b>Forest</b></a> - Design by <a target="_blank" href="http://www.fsdesign.es/"><b>FSdesign</b></a>
 		
-		<?php if (IS_MOBILE) { ?>
-			<div class="txt_centrado">
-				<a href="/versionEscritorioMovil.php?modo=movil">Usar la versión móvil</a>
-			</div>
-		<?php } ?>
-		
 		<div class="derecha">
 			<a href="/aviso_legal#contenido"><?php echo TXT_AVISO_LEGAL?></a>
 		</div>
@@ -178,7 +172,7 @@ setTimeout(function(){
 },2000);
 
 <?php if(defined('HAY_RESULTADO')){ ?>
-	scrollTo(D.g("resultado"),20);
+	scrollTo(D.g('formCalculador'), 20);
 <?php } ?>
 
 _gaq.push(["_trackEvent","Interfaz modo","<?php echo $css_modo_cookie;?>"]);

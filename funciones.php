@@ -558,7 +558,7 @@ function TVButton($R_ID, $video, $ext = "mp4", $img = "") {
 		'<input type="hidden" id="id'.$R_ID.'TVURL" name="video" value="'.htmlentities($video).'">'.
 		'<input type="hidden" id="id'.$R_ID.'TVEXT" name="ext" value="'.htmlentities($ext).'">'.
 		'<input type="hidden" id="id'.$R_ID.'TVIMG" name="img" value="'.htmlentities($img).'">'.
-		'<input type="submit" value="" class="TV">'.
+		'<input type="submit" value="Ver online" class="TV">'.
 	'</form>';
 }
 

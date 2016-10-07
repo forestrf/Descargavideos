@@ -266,12 +266,18 @@ input[type="radio"] {
 }
 .invisible{opacity:0;}
 .publi_cabecera {
-	margin-top: 45px;
 	text-align: center;
+	display: block;
+	margin: 45px 20px 50px;
+}
+.publi_cabecera > center {
+	background-color: #fff;
+	display: inline-block;
+	padding: 20px;
+	border-radius: 15px;
 }
 .publi_cabecera > center > span {
     display: inline-block;
-    border: 5px solid #fff;
 }
 .google_publi{
 	text-align:center;
@@ -333,7 +339,7 @@ input[type="radio"] {
 	display:none;
 }
 .cargando::before {
-	content: "Por favor, espere";
+	content: "Por favor, espere...";
 	text-align: center;
 	width: 400px;
 	display: block;
@@ -362,7 +368,7 @@ input[type="radio"] {
 	color: #FFF;
 	font-size: 13px;
 	padding: 3px 20px;
-	margin: 15px auto 40px;
+	margin: 15px auto;
 	display: block;
 	width: 250px;
 	text-align: center;
@@ -400,16 +406,20 @@ input[type="radio"] {
 	min-height:250px;
 	/*max-width:500px;*/
 }
-#resultado .titulo_res{
+#resultado .titulo_res {
 	font-size: 28px;
 	line-height: 1.1em;
 	position: relative;
 	text-shadow: 1px 1px 2px #282828;
-	padding: 40px 10% 0;
+	padding: 25px 10% 25px;
 	text-align: center;
 	border-top: 1px solid #fff;
-	box-shadow: 0 50px 50px -50px #000 inset;
-	margin: 80px 6% 50px;
+	box-shadow: 0 5px 10px 5px #000;
+	box-shadow: 0 5px 10px 5px rgba(0,0,0,0.5);
+	margin: 80px 0 50px;
+	border-bottom: 3px solid #fff;
+	border-width: 3px;
+	background-color: #444;
 }
 #resultado .descripcion_res {
 	color: #CCCCCC;
@@ -463,6 +473,7 @@ input[type="radio"] {
 	text-align: left;
 	background-repeat: no-repeat;
 	border-radius: 10px;
+	min-height: 60px;
 }
 #resultado .instrucciones_descarga a {
 	color: #009607;
@@ -563,11 +574,11 @@ input[type="radio"] {
 	margin-left:7px;
 	display:block;
 	background:url("/img/TV.png") no-repeat scroll 5px 5px #2C41E0;
-	padding:5px 5px 5px 35px;
+	padding: 5px 5px 5px 40px;
 	color:#F8F8F8;
 	float:right;
 	border: 0 none;
-	width: 40px;
+	min-width: 40px;
 	height: 40px;
 	cursor: pointer;
 }
@@ -1152,12 +1163,11 @@ ul.puntuado, ul.puntuado li{
 	}
 	.menu_hueco{
 		height:auto;
-		margin:0 0 30px 0;
 	}
 	.menu_fixed{
 		position:relative;
 		top:0;
-		width:100%;
+		width:auto;
 	}
 	.menu a{
 		border-radius:0;
@@ -1213,7 +1223,6 @@ ul.puntuado, ul.puntuado li{
 
 	#resultado .bloque{
 		margin:5% 5% 0 5%;
-		width:90%;
 	}
 	
 

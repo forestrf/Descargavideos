@@ -30,16 +30,8 @@ generaInnerResultado();
 
 <div class="instrucciones_descarga bloque">
 	<b>Cómo descargar:</b><br/>
-	<ul>
-		<li>- Firefox: Clic derecho sobre el botón naranja, clic sobre "Guardar enlace Como...".</li>
-		<li>- Chrome: Clic derecho sobre el botón naranja, clic sobre "Guardar enlace Como...".</li>
-		<li>- Opera: Clic derecho sobre el botón naranja, clic sobre "Guardar contenido Como...".</li>
-		<li>- Internet Explorer: Clic derecho sobre el botón naranja, clic sobre "Guardar destino Como...".</li>
-	</ul>
+	Clic derecho sobre el botón naranja, clic sobre "Guardar enlace Como...".<br/>
 	<a href="http://www.youtube.com/watch?v=7-Xvmz-jNrg">Ver en YouTube cómo descargar un enlace.</a>
-	<br/><br/>
-	Para descargar un enlace m3u8: <a href="/lab#lab_m3u8-downloader" id="enl">Programa necesario</a>. <a href="http://www.youtube.com/watch?v=bqBBWumxp4c" id="enl">Tutorial en YouTube</a>.
-	</p>
 </div>
 
 <?php
