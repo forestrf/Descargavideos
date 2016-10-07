@@ -26,7 +26,7 @@ if (defined('HAY_RESULTADO') && $R['MODO'] === 'BUSQUEDA') {
 /*? y un número es para forzar la actualización del script y del css tras cambios*/ ?>
 
 <link href="/favicon.ico" rel="icon" type="image/x-icon"/>
-<link rel="stylesheet" href="/css/cssfull.css?25"/>
+<link rel="stylesheet" href="/css/cssfull.css?26"/>
 <link rel="stylesheet" href="/css/modos/<?php echo $css_modo?>.css" id="css2"/>
 <script src="/js/funciones.js?19"></script>
 
@@ -90,7 +90,7 @@ var jdownloader = false;
 					<?php include_once 'plantillaResultado.php';?>
 				</div>
 				
-				<div class="publi_cabecera">
+				<div id="publi_cabecera">
 					<center>
 						<span>
 							<?php echo getPubliJS(300, 250, true)?>
