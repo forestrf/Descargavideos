@@ -39,22 +39,30 @@ webI.onfocus = function() {
 
 D.g("formCalculador").onsubmit = function(e) {
 	var a = D.g('resultado');
-	aC(a, "displaynone");
-	qC(D.g('cargando'), "displaynone");
-	xhr("/?ajax=1", "web=" + encodeURIComponent(D.g("web").value), muestraResultadoAjax, alert);
+	a.innerHTML = "";
+	qC(a, "displaynone");
+	aC(a, "cargando");
+	xhr("/?ajax=1", "web=" + encodeURIComponent(D.g("web").value), muestraResultadoAjax, muestraFalloAjax);
 	return false;
 };
 function muestraResultadoAjax(data) {
 	var a = D.g('resultado');
 	
-	qC(a, "displaynone");
-	aC(D.g('cargando'), "displaynone");
+	qC(a, "cargando");
+	
+	scrollTo(D.g('formCalculador'), 300);
 	
 	a.innerHTML = data;
 	
 	var arr = a.getElementsByTagName('script');
 	for (var n = 0; n < arr.length; n++)
-	    eval(arr[n].innerHTML);//run script inside div
+		eval(arr[n].innerHTML);//run script inside div
+}
+function muestraFalloAjax(data) {
+	var a = D.g('resultado');
+	qC(a, "cargando");
+	a.innerHTML = "Ha habido un problema.";
+	scrollTo(D.g('formCalculador'), 300);
 }
 window.onscroll = function(e) {
 	mueveMenu();

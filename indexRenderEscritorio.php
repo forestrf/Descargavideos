@@ -89,7 +89,6 @@ var jdownloader = false;
 				<div id="resultado">
 					<?php include_once 'plantillaResultado.php';?>
 				</div>
-				<div id="cargando" class="cargando displaynone"></div>
 				
 				<div class="publi_cabecera">
 					<center>
