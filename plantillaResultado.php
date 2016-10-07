@@ -67,7 +67,7 @@ function generaInnerResultado(){
 			switch($res['tipo']){
 				case 'rtmp':
 					$aIncluir = plantillaInclude('resultado_rtmp.php');
-					if(!$extension)$extension = extraeExtension($url, '.');
+					if(!$extension)$extension = extraeExtension($url);
 				break;
 				case 'rtmpConcreto':
 					$aIncluir = plantillaInclude('resultado_rtmpConcreto.php');
@@ -77,12 +77,12 @@ function generaInnerResultado(){
 						$nombre_archivo = generaNombreWindowsValido($matches ? $matches[1] : $titulo.'.mp4');
 					}
 					
-					if(!$extension)$extension = extraeExtension($url,".");
+					if(!$extension)$extension = extraeExtension($url);
 				break;
 				case 'rtmpConcretoHTTP':
 					$aIncluir = plantillaInclude('resultado_rtmpConcretoHTTP.php');
 					if($nombre_archivo == '')$nombre_archivo = 'video.mp4';
-					if(!$extension)$extension = extraeExtension($url, '.');
+					if(!$extension)$extension = extraeExtension($url);
 				break;
 				case 'm3u8':
 					$aIncluir = plantillaInclude('resultado_m3u8.php');
@@ -106,7 +106,7 @@ function generaInnerResultado(){
 				case 'http':
 				default:
 					$aIncluir = plantillaInclude('resultado_url.php');
-					if(!$extension)$extension = extraeExtension($url, '.');
+					if(!$extension)$extension = extraeExtension($url);
 				break;
 			}
 			if($url_txt)
@@ -119,7 +119,6 @@ function generaInnerResultado(){
 				$lastID = 1;
 			
 			$R2['dir_resultado']                               = $url;
-			$R2['dir_resultado_reproductor']                   = urlencode($url);
 			$R2['dir_resultado_txt']                           = htmlentities2($url_txt, ENT_QUOTES);
 			$R2['dir_resultado_rtmpdump_manual']               = $rtmpdump;
 			$R2['dir_resultado_rtmpdump_manual_esc_doblecoma'] = htmlentities2($rtmpdump, ENT_QUOTES);

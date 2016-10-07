@@ -48,7 +48,8 @@ function calcula(){
 			$obtenido['enlaces'][] = array(
 				'url'     => $link['url']."&title=".urlencode(decode_entities($titulo)),
 				'tipo'    => 'http',
-				'url_txt' => $link['p'].' '.$link['ext'].($link['2D-3D']==='3D'?': 3D':'').($link['audio'] ? ' - '.$link['audio'] : '')
+				'url_txt' => $link['p'].' '.$link['ext'].($link['2D-3D']==='3D'?': 3D':'').($link['audio'] ? ' - '.$link['audio'] : ''),
+				'extension' => $link['ext']
 			);
 		}
 

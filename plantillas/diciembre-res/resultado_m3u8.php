@@ -13,7 +13,7 @@
 	<?php } else { ?>
 		<a id="m3u8<?=$R2['random_id']?>a" class="Descarga" target="blank" href="http://127.0.0.1:25430/?url=<?php echo urlencode($R2['dir_resultado'])?>&pass=<?php echo urlencode($R2['pass_m3u8']);?>">Descargar con M3U8-Downloader</a>
 	<?php } ?>
-	<a class="TV" target="_blank" href="/player/?img=<?php echo $R['url_img_res'];?>&ext=<?php echo $R2['extension_res'];?>&video=<?php echo $R2['dir_resultado_reproductor'];?>"></a>
+	<?=TVButton($R2['random_id'], $R2['dir_resultado'], $R2['extension_res'], $R['url_img_res'])?>
 </div>
 <div class="aviso_m3u8" id="m3u8<?=$R2['random_id']?>info">Este enlace require del programa JDownloader (<a href="http://jdownloader.org/download/index">Descargar</a>)
 	<?php if (strlen($R2['cookies']) == 0) { ?>

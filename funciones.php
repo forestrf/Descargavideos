@@ -1,4 +1,7 @@
 <?php
+
+include_once 'definiciones.php';
+
 // Los proxys de este listado deben respetar los header enviados por DV (ejem: Si DV envñia user-agent movil, el proxy usa ese user agent en la llamada que haga).
 function listado_proxys(){
 	global $listado_proxys_array;
@@ -56,20 +59,10 @@ function ReemplazaDeAPor($donde, $desde, $i1, $hasta, $por){
 	return strtr($donde,array($extracto=>$por));
 }
 
-function extraeExtension($de='', $separador='.'){
-	$p = strrpos($de, '/')+1;
-	$ext = substr($de, $p, strlen($de)-$p);
-	if(enString($ext, $separador)){
-		$p = strpos($ext, $separador)+1;
-		$ext = substr($ext, $p, strlen($ext) -$p);
-		if(enString($ext,'?'))
-			$ext = substr($ext, 0, strpos($ext, '?'));
-		if(enString($ext,'#'))
-			$ext = substr($ext, 0, strpos($ext, '#'));
-	}
-	if($ext=='m4v')
-		$ext = 'mp4';
-	return $ext;
+function extraeExtension($de=''){
+	if (preg_match('#\.(mp4|m4v|mp3|ogg|flv|f4v|m3u8?|mpe?g|gifv?|mov|avi|webm|wmv)#i', $de, $matches)) {
+		return $matches[1];
+	} else return 'mp4';
 }
 
 function generaNombreWindowsValido($filename, $max = 50){
@@ -475,23 +468,6 @@ function decode_entities($text){
 	return $text;
 }
 
-function genera_swf_object($swf, $id = 'descargador_archivos'){
-	return '<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="0" height="0" id="'.$id.'">'.
-		'<param name="movie" value="'.$swf.'" />'.
-		'<param name="quality" value="high" />'.
-		'<param name="bgcolor" value="#000" />'.
-		'<param name="allowScriptAccess" value="always" />'.
-		//'<!--[if !IE]>-->'.
-		'<embed src="'.$swf.'" quality="high" bgcolor="#000" '.
-			'width="0" height="0" name="descargador_archivos" align="middle" '.
-			'play="true" loop="true" quality="high" allowScriptAccess="always" '.
-			'type="application/x-shockwave-flash" '.
-			'pluginspage="http://www.macromedia.com/go/getflashplayer">'.
-		'</embed>'.
-		//'<!--<![endif]-->'.
-	'</object>';
-}
-
 function htmlentities2($entrada){
 	return strtr(htmlentities($entrada, ENT_QUOTES), array('%'=>'&#37;'));
 }
@@ -575,6 +551,15 @@ function CheckIfDEV($msgIfNotDev = 'No soportado') {
 		return false;
 	}
 	return true;
+}
+
+function TVButton($R_ID, $video, $ext = "mp4", $img = "") {
+	return '<form method="post" target="_blank" action="/player/" style="display:inline">'.
+		'<input type="hidden" id="id'.$R_ID.'TVURL" name="video" value="'.htmlentities($video).'">'.
+		'<input type="hidden" id="id'.$R_ID.'TVEXT" name="ext" value="'.htmlentities($ext).'">'.
+		'<input type="hidden" id="id'.$R_ID.'TVIMG" name="img" value="'.htmlentities($img).'">'.
+		'<input type="submit" value="" class="TV">'.
+	'</form>';
 }
 
 ?>

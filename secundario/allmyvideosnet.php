@@ -126,8 +126,7 @@ function calcula(){
 	'}'.
 	
 	'if(typeof descargador_archivos === "undefined"){'.
-		'D.g("enlaces").innerHTML += \''.genera_swf_object('/util/fla/f/allmyvideos.net').'\';'.
-		'var descargador_archivos = D.g("descargador_archivos");'.
+		'descargador_archivos = genera_swf_object("/util/fla/f/allmyvideos.net");'.
 	'}'.
 	
 	'lanzaAllMyVideosNet();';

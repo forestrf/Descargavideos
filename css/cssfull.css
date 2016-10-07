@@ -566,6 +566,10 @@ input[type="radio"] {
 	padding:5px 5px 5px 35px;
 	color:#F8F8F8;
 	float:right;
+	border: 0 none;
+	width: 40px;
+	height: 40px;
+	cursor: pointer;
 }
 #resultado .Descarga{
 	border-radius:10px;

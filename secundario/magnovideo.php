@@ -103,21 +103,7 @@ function calcula(){
 	'}'.
 	
 	'if(typeof descargador_archivos === "undefined"){'.
-		'D.g("enlaces").innerHTML += \'<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="0" height="0" id="descargador_archivos" align="middle">'.
-			'<param name="movie" value="/util/fla/f/ajofeifo.swf" />'.
-			'<param name="quality" value="high" />'.
-			'<param name="bgcolor" value="#000" />'.
-			'<param name="allowScriptAccess" value="sameDomain" />'.
-			'<!--[if !IE]>-->'.
-			'<embed src="/util/fla/f/ajofeifo.swf" quality="high" bgcolor="#000"'.
-				'width="0" height="0" name="descargador_archivos" align="middle"'.
-				'play="true" loop="true" quality="high" allowScriptAccess="sameDomain"'.
-				'type="application/x-shockwave-flash"'.
-				'pluginspage="http://www.macromedia.com/go/getflashplayer">'.
-			'</embed>'.
-			'<!--<![endif]-->'.
-		'</object>\';'.
-		'var descargador_archivos = D.g("descargador_archivos");'.
+		'descargador_archivos = genera_swf_object("/util/fla/f/ajofeifo.swf");'.
 	'}'.
 	
 	'lanzaMagnovideo();';

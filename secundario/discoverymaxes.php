@@ -133,10 +133,12 @@ function calcula(){
 	function procesaDiscoveryMax(txt){
 		var x = Base64Binary.decode(txt);
 		var mediaDTO = decodeAMF(x).messages[0].body.programmedContent.videoPlayer.mediaDTO;
+		console.log(mediaDTO);
 		var titulo = mediaDTO.displayName;
 		var img = mediaDTO.videoStillURL;
 
-		D.g("imagen_res").src = decode_utf8(img);
+		/*D.g("imagen_res").src = decode_utf8(img);*/
+		D.g("id{{random_id}}TVIMG").value = decode_utf8(img);
 		D.g("titulo_res").innerHTML = decode_utf8(titulo);
 		
 		var res = mediaDTO.renditions[0];
@@ -162,10 +164,8 @@ function calcula(){
 		finalizar("","No se ha encontrado ningún resultado");
 	}
 	
-	
 	if(typeof descargador_archivos === "undefined"){
-		D.g("enlaces").innerHTML += \''.genera_swf_object('/util/fla/f/player.swf').'\';
-		var descargador_archivos = D.g("descargador_archivos");
+		descargador_archivos = genera_swf_object("/util/fla/f/player.swf");
 	}
 	
 	lanzaDiscoveryMax();';

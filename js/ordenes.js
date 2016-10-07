@@ -56,7 +56,7 @@ function muestraResultadoAjax(data) {
 	
 	var arr = a.getElementsByTagName('script');
 	for (var n = 0; n < arr.length; n++)
-		eval(arr[n].innerHTML);//run script inside div
+		eval.call(window, arr[n].innerHTML);//run script inside div with global scope
 }
 function muestraFalloAjax(data) {
 	var a = D.g('resultado');
