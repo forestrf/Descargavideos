@@ -1,4 +1,4 @@
-<center><?php echo getPubliIFRAME(728, 90, true)?></center>
+<center><?php if (ADS) echo getPubliIFRAME(728, 90, true)?></center>
 
 <div class="pregunta">
 	<div id="lab_m3u8-downloader"></div>

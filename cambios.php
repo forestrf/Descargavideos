@@ -1817,7 +1817,11 @@ elseif($max>count($todos))
 	$max=count($todos);
 else $max=0;
 
-$res='<center>'.getPubliIFRAME(array_rand(Array('728' => 1, '970' => 2), 1), 90, true).'</center>'; 
+if (ADS)
+	$res='<center>'.getPubliIFRAME(array_rand(Array('728' => 1, '970' => 2), 1), 90, true).'</center>'; 
+else
+	$res = '';
+
 
 $res.='<div id="changelog">';
 for($i=0;$i<$max;$i++){
