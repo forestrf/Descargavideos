@@ -10,10 +10,6 @@ a{
 a:hover{
 	text-shadow:1px 1px 0 #000;
 }
-/*RESULTADOS*/
-#resultado{
-	color:#FFF;
-}
 /*RESULTADOS INTERIOR*/
 #resultado a, #resultado a:hover{
 	text-shadow:none;

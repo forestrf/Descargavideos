@@ -20,9 +20,6 @@ a:hover{
 	text-shadow:none;
 }
 
-#resultado{
-	color:#000;
-}
 /*CONTENIDO*/
 .bloque_pagina{
 	box-shadow:0 3px 0 3px rgba(126, 63, 0, 0.4) inset, 0 30px 35px -15px rgba(108, 36, 0, 0.31) inset;
