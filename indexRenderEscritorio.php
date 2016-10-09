@@ -29,7 +29,7 @@ if (defined('HAY_RESULTADO') && $R['MODO'] === 'BUSQUEDA') {
 /*? y un número es para forzar la actualización del script y del css tras cambios*/ ?>
 
 <link href="/favicon.ico" rel="icon" type="image/x-icon"/>
-<link rel="stylesheet" href="/css/cssfull.min.css?27"/>
+<link rel="stylesheet" href="/css/cssfull.min.css?28"/>
 <link rel="stylesheet" href="/css/modos/<?php echo $css_modo?>.css" id="css2"/>
 <script src="/js/funciones.min.js?20"></script>
 
@@ -93,6 +93,7 @@ var jdownloader = false;
 					<?php include_once 'plantillaResultado.php';?>
 				</div>
 				
+				<?php if (ADS) { ?>
 				<div id="publi_cabecera">
 					<center>
 						<span>
@@ -103,6 +104,7 @@ var jdownloader = false;
 						</span>
 					</center>
 				</div>
+				<?php } ?>
 			</div>
 	
 			<div class="social">
@@ -162,7 +164,7 @@ var jdownloader = false;
 
 
 
-<script src="/js/ordenes.min.js?8"></script>
+<script src="/js/ordenes.min.js?9"></script>
 
 
 

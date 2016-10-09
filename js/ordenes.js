@@ -61,7 +61,7 @@ function muestraResultadoAjax(data) {
 function muestraFalloAjax(data) {
 	var a = D.g('resultado');
 	qC(a, "cargando");
-	a.innerHTML = "Ha habido un problema.";
+	a.innerHTML = "<div class='alerta_especifica problema_xhr'>Ha habido un problema.</div>";
 	scrollTo(D.g('formCalculador'), 300);
 }
 window.onscroll = function(e) {
