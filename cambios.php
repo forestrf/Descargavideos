@@ -16,6 +16,17 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'10-Octubre-2016'
+,'add:Nuevo estilo (css).'
+,'add:AJAX para las búsquedas (Más rápido).'
+,'add:Posibilidad de elegir tipo de reproductor: Flash o HTML5.'
+,'fix:Enlaces que eran muy largos no funcionaban en IE11 + script RefererKiller.'
+,'del:Quitadas imágenes de los resultados.'
+,'del:Quitado estilo móvil, ahora se usa en estilo web para móvil.'
+,'del:Quitado feed de twitter de la página principal. Más rápido y menos espacio.'
+);
+
+$todos[]=array(
 '6-Octubre-2016'
 ,'fix:disneychannel.es. Nuevo tipo de vídeos.'
 ,'fix:Todos los formularios ahora usan POST en lugar de GET. Esto ha roto el bookmarklet V1 que ha sido actualizado en <a href="/lab#lab_bookmarklet">/lab</a>.'
