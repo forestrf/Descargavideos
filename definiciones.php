@@ -42,7 +42,7 @@ if(!defined('IS_MOBILE'))
 
 if(!defined('ADS')) {
 	$wantedAdStatus = false;
-	define('ADS', IS_MOBILE && $wantedAdStatus);
+	define('ADS', !IS_MOBILE && $wantedAdStatus);
 }
 
 ?>
