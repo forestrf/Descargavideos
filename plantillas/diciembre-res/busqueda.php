@@ -38,7 +38,7 @@
 	}
 </style>
 
-<script>_gaq.push(["_trackEvent","Busqueda Google",<?=json_encode($R['busqueda'])?>]);</script>
+<script>ga('send', 'event', "Busqueda Google",<?=json_encode($R['busqueda'])?>);</script>
 
 
 

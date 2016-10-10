@@ -1,6 +1,6 @@
 <script>
-	_gaq.push(["_trackEvent","Descargas Realizadas","<?php echo $R['CANAL'];?>"]);
-	_gaq.push(["_trackEvent","Descargas URL",<?=json_encode($web)?>]);
+	ga('send', 'event', "Descargas Realizadas","<?php echo $R['CANAL'];?>");
+	ga('send', 'event', "Descargas URL",<?=json_encode($web)?>);
 	
 	aC(D.g("cabecera"), "conresultado");
 </script>
