@@ -33,6 +33,7 @@ if (defined('HAY_RESULTADO') && $R['MODO'] === 'BUSQUEDA') {
 <link rel="stylesheet" href="/css/modos/<?php echo $css_modo?>.css" id="css2"/>
 <script src="/js/funciones.min.js?20"></script>
 
+<?php if (!defined('DEBUG')) { ?>
 <script>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -42,6 +43,8 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 ga('create', 'UA-29252510-1', 'auto');  // Replace with your property ID.
 ga('send', 'pageview');
 </script>
+<?php } ?>
+
 <!--no se puede juntar por cloudflare-->
 <script>
 var css_user='<?php echo $css_modo?>';
