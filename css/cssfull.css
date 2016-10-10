@@ -281,6 +281,9 @@ input[type="radio"] {
 }
 #publi_cabecera > center > span {
 	display: inline-block;
+	width: 300px;
+	height: 250px;
+	overflow: hidden;
 }
 #cabecera.conresultado .social {
 	display: none;
