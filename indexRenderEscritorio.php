@@ -34,7 +34,13 @@ if (defined('HAY_RESULTADO') && $R['MODO'] === 'BUSQUEDA') {
 <script src="/js/funciones.min.js?18"></script>
 
 <script>
-var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-29252510-1"]);_gaq.push(["_trackPageview"]);(function(){var ga=document.createElement("script");ga.async=true;ga.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga,s);})();
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-29252510-1', 'auto');  // Replace with your property ID.
+ga('send', 'pageview');
 </script>
 <!--no se puede juntar por cloudflare-->
 <script>
@@ -184,11 +190,11 @@ setTimeout(function(){
 	scrollTo(D.g("resultado"),20);
 <?php } ?>
 
-_gaq.push(["_trackEvent","Interfaz modo","<?php echo $css_modo_cookie;?>"]);
+ga('send', 'event', "Interfaz modo","<?php echo $css_modo_cookie;?>");
 var adblock=true;
 </script>
 <script src="/advertisement.js"></script>
-<script>_gaq.push(["_trackEvent","Adblock escritorio", adblock?"Con Adblock":"Sin Adblock"]);</script>
+<script>ga('send', 'event', "Adblock escritorio", adblock?"Con Adblock":"Sin Adblock");</script>
 
 
 
