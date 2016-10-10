@@ -274,7 +274,7 @@ input[type="radio"] {
 	margin-bottom: 150px;
 }
 #publi_cabecera > center {
-	padding: 10px;
+	padding: 10px 10px 0 10px;
 	border-radius: 7px;
 	background-color: #fff;
 	display: inline-block;
@@ -284,6 +284,7 @@ input[type="radio"] {
 	width: 300px;
 	height: 250px;
 	overflow: hidden;
+	margin-bottom: 10px;
 }
 #cabecera.conresultado .social {
 	display: none;
