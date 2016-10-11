@@ -322,7 +322,9 @@ dbug_r($renditions);
 $urls = array();
 for($i = 0, $i_t = count($renditions); $i < $i_t; $i++)
 	$urls[] = $renditions[$i]->getAMFData();
-sortmulti($urls, 'frameWidth', 'DESC');
+usort($urls, function ($a, $b) {
+	return $a['frameWidth'] < $b['frameWidth'];
+});
 dbug_r($urls);
 
 
