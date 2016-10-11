@@ -33,11 +33,36 @@ $ext = isset($_POST['ext'])?$_POST['ext']:"";
 		}
 		.vjs-default-skin .vjs-slider { background: rgba(0,7,21,0.2333333333333333) }
 		.vjs-default-skin .vjs-control-bar { font-size: 95% }
+		
+		.botones:hover {
+			opacity: 1;
+			transition: opacity 0.3s ease;
+		}
+		.botones {
+			opacity: 0;
+			transition: opacity 5s ease-out;
+			background-color: #fff;
+			padding: 10px;
+			border: 1px solid #fff;
+			display: inline-block;
+			border-radius: 0 0 20px 0;
+		}
+		.botones.inicio {
+			opacity: 1;
+			transition: opacity 0s linear;
+		}
 	</style>
 </head>
 <body>
-	<input type="button" onclick="dibujarReproductorFlash()" value="Reproductor Flash">
-	<input type="button" onclick="dibujarReproductorHTML5()" value="Reproductor HTML5">
+	<div id="botones" class="botones inicio">
+		<input type="button" onclick="dibujarReproductorFlash()" value="Reproductor Flash">
+		<input type="button" onclick="dibujarReproductorHTML5()" value="Reproductor HTML5">
+	</div>
+	<script>
+		setTimeout(function() {
+			document.getElementById("botones").className = "botones";
+		}, 3000);
+	</script>
 	<div id="playerContainer"></div>
 	<script>
 		var img = <?=json_encode($img)?>;
