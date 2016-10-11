@@ -59,6 +59,11 @@ function calcula(){
 		http://link.theplatform.com/s/0L7ZPC/EuIyUv4n0nlm?mbr=true&player=P7%20VOD%20Player&policy=40180&switch=progressive&formats=mpeg4&format=SMIL&embedded=true&tracking=true
 		
 		
+		http://static-telemundo.nbcuni.com/MPX/image/NBCU_Telemundo/373/235/161010_3113602_Senora_Acero_3_La_Coyote__Capitulo_56__Vicen.tt
+		http://telemundo-vh.akamaihd.net/z/MPX/video/NBCU_Telemundo/373/235/161010_3113602_Senora_Acero_3_La_Coyote__Capitulo_56__Vicen_200.mp4
+		http://static-telemundo.nbcuni.com/MPX/video/NBCU_Telemundo/373/235/161010_3113602_Senora_Acero_3_La_Coyote__Capitulo_56__Vicen_200.mp4
+		
+		
 		*/
 		
 		if(enString($this->web, '//now.')){
@@ -117,10 +122,23 @@ function calcula(){
 		
 		$ret = CargaWebCurl($player);
 		
-		$releaseUrl = entre1y2($ret, 'releaseUrl="', '"');
-		dbug_($releaseUrl);
-		$releaseUrl .= '&switch=progressive&formats=mpeg4&format=SMIL&embedded=true&tracking=true';
-		dbug_($releaseUrl);
+		if (enString($ret, 'releaseUrl="')) {
+			$releaseUrl = entre1y2($ret, 'releaseUrl="', '"');
+			dbug_($releaseUrl);
+		} else {
+			$ret = entre1y2($this->web_descargada, 'data-src="', '"');
+			$ret = CargaWebCurl($ret);
+			//dbug_($ret);
+			$releaseUrl = entre1y2($ret, 'tp:releaseUrl="', '"');
+			$releaseUrl = decode_entities($releaseUrl);
+			dbug_($releaseUrl);
+		}
+		
+		if ($desde==1)
+			$releaseUrl .= '&format=SMIL&Tracking=true&Embedded=true&formats=MPEG4';
+		else
+			$releaseUrl .= '&format=SMIL&tracking=true&embedded=true&formats=mpeg4&switch=progressive';
+		dbug('Web a descargar: ' . $releaseUrl);
 	
 		$ret = CargaWebCurlProxy($releaseUrl, 'MX');
 		dbug_($ret);
