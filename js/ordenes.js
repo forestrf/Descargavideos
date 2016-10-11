@@ -59,10 +59,13 @@ function muestraResultadoAjax(data) {
 		eval.call(window, arr[n].innerHTML);//run script inside div with global scope
 }
 function muestraFalloAjax(data) {
+	/*
 	var a = D.g('resultado');
 	qC(a, "cargando");
 	a.innerHTML = "<div class='alerta_especifica problema_xhr'>Ha habido un problema.</div>";
 	scrollTo(D.g('formCalculador'), 300);
+	*/
+	D.g("formCalculador").submit();
 }
 window.onscroll = function(e) {
 	mueveMenu();

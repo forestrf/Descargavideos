@@ -16,6 +16,12 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'11-Octubre-2016'
+,'fix:Si AJAX falla intentando dar un resultado se lanzará el formulario por POST como se hacía anteriormente.'
+,'fix:Los botones Flash y HTML5 del reproductor se ven mejor y se esconden automáticamente para no molestar.'
+);
+
+$todos[]=array(
 '10-Octubre-2016'
 ,'add:Nuevo estilo (css).'
 ,'add:AJAX para las búsquedas (Más rápido).'
