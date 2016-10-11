@@ -242,6 +242,8 @@ function dbug_r(&$arr){
 
 //url, contenido post a enviar, retornar cabecera, cabecera custom
 function CargaWebCurl($url,$post='',$cabecera=0,$cookie='',$cabeceras=array(),$sigueLocation=true,$esquivarCache=false,$customIp=false){
+	if (strpos($url, '//') === 0)
+		$url = 'http:' . $url;
 	
 	// Browser headers
 	$cabeceras[] = 'User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:49.0) Gecko/20100101 Firefox/49.0';

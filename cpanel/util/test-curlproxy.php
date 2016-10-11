@@ -19,6 +19,7 @@ foreach ($cargawebcurl_proxyarray as $url) {
 <?php
 
 if (isset($_REQUEST['web'])) {
-	dbug(CargaWebCurlProxy($_REQUEST['web'], $_REQUEST['pais']));
+	echo '<pre>';
+	dbug(htmlentities(CargaWebCurlProxy($_REQUEST['web'], $_REQUEST['pais'])));
 }
 	
