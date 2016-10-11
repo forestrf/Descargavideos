@@ -33,6 +33,34 @@ http://tvnhds.tvolucion.com/z/lgata/delivery//5a/64/5a6429f9-541d-48dd-8bc5-e4ab
 http://tvnhds.tvolucion.com/z/lgata/delivery//5a/64/5a6429f9-541d-48dd-8bc5-e4ab8927e1eb/lgata-c090.mp4
 
 http://m4v.tvolucion.com/m4v/tln/lgata/45201db85a8e3a0ffa8d5f77ce9249e8/lgata-c090.jpg
+
+
+
+
+<title><![CDATA[As� fue el gran final de Un camino hacia el destino]]></title>
+<description><![CDATA[Paulina Goto y Horacio Pancheri finalmente unieron sus vidas ante el altar dentro del gran final de Un camino hacia el destino.]]></description>
+<external_id>362893</external_id>
+<pubDate>2016-07-18 13:39:37 </pubDate>
+<enable>true</enable>
+<alternative_streams>
+<default>http://apps.esmas.com/criticalmedia/files/2016/07/18/27633070-ed9cd597-75b0-4679-be75-52e626d07c12.mp4</default>
+</alternative_streams>
+<image_assets>
+    <image_asset>
+        <key>image_base</key>
+        <url>http://television.televisa.com/television/fotos/videos/2016/07/18/gran-final-camino-hacia-destino-novela-telenovela-paulina-goto.jpg/jcr:content/renditions/cq5dam.thumbnail.624.351.jpg</url>
+    </image_asset>
+</image_assets>
+
+
+
+Esta:
+http://m4vhds.tvolucion.com/z/m4v/ent/pvent/cbd3368c5233e832ceaed413223a5050/33e832ceae-480.mp4
+Ejemplo:
+http://apps.tvolucion.com/m4v/boh/poamo/bb736008968dab82c22dc0480e1aae0a/8dab82c22d-480.mp4
+Resultado:
+http://apps.tvolucion.com/m4v/ent/pvent/cbd3368c5233e832ceaed413223a5050/33e832ceae-480.mp4
+ 
 */
 
 class Televisa extends cadena{
@@ -284,30 +312,31 @@ $titulo=$titulo3['displayName'];
 
 
 
+$renditions = $res_decoded['data']->getAMFData();
+$renditions = $renditions['programmedContent']['videoPlayer']->getAMFData();
+$renditions = $renditions['mediaDTO']->getAMFData();
+$imagen = $renditions['videoStillURL'];
+$renditions = $renditions['renditions'];
+dbug_r($renditions);
+
+$urls = array();
+for($i = 0, $i_t = count($renditions); $i < $i_t; $i++)
+	$urls[] = $renditions[$i]->getAMFData();
+sortmulti($urls, 'frameWidth', 'DESC');
+dbug_r($urls);
 
 
-//scar todas las URL
-//preg_match_all('@http(s)?://[a-z0-9A-Z.?/%_=~-]+@i', $t, $match); 
-preg_match_all('@http(s)?://[a-z0-9A-Z./%_-]+@i', $t, $match); 
-
-//buscar qué URLs son las pics y los vídeos para usarlas
-dbug_r($match[0]);
-
-
-$imagen=$match[0][1];
-
-
-
-
-
-
-$urls_total=count($match[0]);
-for($i=0;$i<$urls_total;$i++){
-	if(esVideoAudioAnon($match[0][$i]))
-		$obtenido['enlaces'][] = array(
-			'url'  => strtr($match[0][$i],array('http://tvnhds.tvolucion.com/z/'=>'http://tvnpod.tvolucion.com/')),
-			'tipo' => 'http'
-		);
+for($i = 0, $i_t = count($urls); $i < $i_t; $i++){
+	$video = $urls[$i];
+	$url = $video['defaultURL'];
+	if (enString($url, '?'))
+		$url = entre1y2($url, 0, '?');
+	$url = preg_replace('@[a-zA-Z0-9]+\.tvolucion\.com/z@', 'apps.tvolucion.com', $url);
+	$obtenido['enlaces'][] = array(
+		'url_txt' => 'Tamaño: ' . $video['frameWidth'] . 'x' . $video['frameHeight'],
+		'url'  => $url,
+		'tipo' => 'http'
+	);
 }
 
 }

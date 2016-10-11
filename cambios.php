@@ -17,6 +17,7 @@ function cambios($max=-1){
 
 $todos[]=array(
 '11-Octubre-2016'
+,'fix:Televisa vuelve a funcionar con algunos vídeos que daban problemas.'
 ,'fix:Si AJAX falla intentando dar un resultado se lanzará el formulario por POST como se hacía anteriormente.'
 ,'fix:Los botones Flash y HTML5 del reproductor se ven mejor y se esconden automáticamente para no molestar.'
 );
