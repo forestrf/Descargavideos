@@ -339,6 +339,8 @@ for($i = 0, $i_t = count($urls); $i < $i_t; $i++){
 	);
 }
 
+$obtenido['alerta_especifica'] = "Puede ser necesario usar un Proxy ya que los vídeos pueden tener GeoBloqueo (restricción por país).";
+
 }
 
 
