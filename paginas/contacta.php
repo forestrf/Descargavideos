@@ -3,8 +3,7 @@
 	<table cellspacing="0" cellpadding="0" border="0">
 		<tr>
 			<?php if (ADS) { ?>
-			<td style="width: 300px; line-height: 0em;">
-				<?php echo getPubliIFRAME(300, 250, true, 'border: 3px solid #fff;')?><br/>
+			<td style="width: 300px; line-height: 0em; background-color: #fff"">
 				<?php echo getPubliIFRAME(300, 250, true, 'border: 3px solid #fff;')?>
 			</td>
 			<?php } ?>
