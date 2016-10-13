@@ -56,6 +56,18 @@ ga('send', 'pageview');
 	margin-top: 70px;
 	padding: 6px 15%;
 }
+.msg a {
+	background-color: #010A2C;
+	text-shadow: none;
+	padding: 5px 20px;
+	border: 1px outset #fff;;
+	margin-top: 8px;
+	display: inline-block;
+}
+.msg a:hover {
+	background-color: #022198;
+	color: #fff;
+}
 </style>
 
 </head>
@@ -72,7 +84,8 @@ ga('send', 'pageview');
 			</div>
 			
 			<div class="msg">
-				Si has llegado a esta web tratando de buscar un vídeo, limpia el cache del navegador o actualiza la página principal.
+				Si has llegado a esta web tratando de buscar un vídeo, limpia el cache del navegador o actualiza la página principal.<br/>
+				<a href="/">Volver a la página principal</a>
 			</div>
 			
 		</div>

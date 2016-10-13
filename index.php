@@ -51,6 +51,11 @@ if(isset($_GET["webdebug"])) {
 	$_POST['web'] = $_GET['webdebug'];
 }
 
+if (isset($_GET['web']) || isset($_GET['web64'])) {
+	header('Location: /404', true, 301);
+	exit;
+}
+
 
 //url a descargar. Si hay algo toca descargar la url. Usar Request ya que puede venir por GET y POST
 if(isset($_POST["web"])){
