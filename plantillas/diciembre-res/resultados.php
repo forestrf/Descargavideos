@@ -1,10 +1,3 @@
-<script>
-	ga('send', 'event', "Descargas Realizadas","<?php echo $R['CANAL'];?>");
-	ga('send', 'event', "Descargas URL",<?=json_encode($web)?>);
-	
-	aC(D.g("cabecera"), "conresultado");
-</script>
-
 <div class="titulo_res">
 	<span id="titulo_res"><?php echo $R['titulo_res'];?></span><br/>
 	<div class="descripcion_res" id="descripcion_res"><?php echo $R['descripcion_res'];?></div>
@@ -33,3 +26,10 @@ generaInnerResultado();
 	if(!defined('IGNORA_AVISO_RAPIDO')) include 'plantillas/extras/aviso_rapido_js.php'
 	?>
 </div>
+
+<script>
+	aC(D.g("cabecera"), "conresultado");
+	
+	ga('send', 'event', "Descargas Realizadas","<?php echo $R['CANAL'];?>");
+	ga('send', 'event', "Descargas URL",<?=json_encode($web)?>);
+</script>
