@@ -158,7 +158,7 @@ var jdownloader = false;
 	<div class="hueco_pie"></div>
 
 	<div id="pie">
-		Descargavideos.tk Descargavideos.tv | 
+		Descargavideos.tv | 
 		Code by <a target="_blank" href="http://andresleone.uni.me/"><b>Forest</b></a> - Design by <a target="_blank" href="http://www.fsdesign.es/"><b>FSdesign</b></a>
 		
 		<div class="derecha">
