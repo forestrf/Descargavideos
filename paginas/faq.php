@@ -16,12 +16,18 @@
 
 <div class="pregunta"><div id="p_q_e_d"></div>¿Qué es Descargavideos?</div>
 <div class="respuesta">
-Descargavideos es un portal web capaz de calcular el enlace de descarga de videos alojados en las <a href="#p_q_c_s_d">webs soportadas</a>.
+Descargavideos es un portal web capaz de averiguar el enlace de descarga de videos alojados en las <a href="#p_q_c_s_d">webs soportadas</a>.
 </div>
 
 <div class="pregunta"><div id="p_c_s_u_d"></div>¿Cómo se usa Descargavideos?</div>
 <div class="respuesta">
-Para hacer uso de esta web necesitas la URL de la web donde se aloja el vídeo del que se quiere conseguir el enlace. Esa web deberá ser una de las listadas en <a href="#p_q_c_s_d">webs soportadas</a> o de lo contrario dará error. Una vez tenemos el enlace de la web, pegamos el mismo en la parte superior de esta web, donde pone "Pega la URL del vídeo...". Por último debemos presionar el botón con una lupa para que la web comience a buscar el enlace. Una vez generado la web lo mostrará.
+Para hacer uso de esta web necesitas la URL de la web donde se aloja el vídeo del que se quiere conseguir el enlace. Esa web deberá ser una de las listadas en <a href="#p_q_c_s_d">webs soportadas</a> o de lo contrario dará error. Una vez tenemos el enlace de la web, pegamos el mismo en la parte superior de esta web, donde pone "Pega la URL del vídeo...". Por último debemos presionar el botón con una lupa para que la web comience a buscar el enlace. Una vez encontrado el enlace del vídeo la web lo mostrará.
+</div>
+
+<div class="pregunta"><div id="p_d_d_s_l_e_d_l_v"></div>¿De dónde salen los enlaces de los vídeos?</div>
+<div class="respuesta">
+Los enlaces provienen de la web que contiene el vídeo. En ocasiones el enlace está escrito en la web y Descargavídeos únicamente lo muestra. Otras veces el enlace al vídeo está más escondido en el reproductor de vídeo de la web y es necesario realizar más pasos para encontrar el enlace original del vídeo. En otras ocasiones no es posible encontrar un enlace.<br/>
+En ningún caso los vídeos son descargados por Desargavídeos o resubidos a ninguna página.
 </div>
 
 <div class="pregunta"><div id="p_c_d_e_v"></div>¿Cómo descargo el vídeo?</div>
@@ -44,14 +50,10 @@ Internet Explorer:<br/>
 -Clicar en "Guardar destino Como..."<br/><br/>
 </div>
 
-<div class="pregunta"><div id="p_c_d_d_l_e_r"></div>¿Cómo descargo de los enlaces RTMP?</div>
+<div class="pregunta"><div id="p_c_d_d_l_e_r"></div>¿Cómo descargo de los enlaces RTMP o M3U8?</div>
 <div class="respuesta">
-Este tipo de enlaces son diferentes a los HTTP (el resto de enlaces que funcionan en esta web y la mayoría son HTTP, y para descargarlos sobra con clicar en ellos.). Para descargarlos se requiere de un procedimiento diferente además de un programa llamado RTMPDump. En <a href="http://descargavid.blogspot.com.es/2012/06/como-usar-rtmpdump-windows.html">esta entrada del blog</a> hay más información sobre como usar el programa y descargar el vídeo en cuestión.
-</div>
-
-<div class="pregunta"><div id="p_u_v_d_m_d_f_r_c_r"></div>¿Un vídeo de mitele da fallo relacionado con RTMP?</div>
-<div class="respuesta">
-Mitele tiene algunos vídeos en formato RTMP que el portal no soporta por culpa de ser en formato RTMP. El problema principal no es que los vídeos estén en este formato, el problema está en que el enlace que se calcula para estos vídeos solo funciona durante unos pocos segundos y además RTMPDump no es capaz de descargar estos vídeos. Estos hechos provocaron que en lugar de mostrar el enlace se muestre el error. Por tanto y hasta nuevo aviso no será posible descargar esos videos mediante esta web.
+Este tipo de enlaces son diferentes a los HTTP (el resto de enlaces que funcionan en esta web y la mayoría son HTTP, y para descargarlos sobra con clicar en ellos.). Para descargar los vídeos que usan RTMP se requiere de un procedimiento diferente además de un programa llamado RTMPDump. En <a href="http://descargavid.blogspot.com.es/2012/06/como-usar-rtmpdump-windows.html">esta entrada del blog</a> hay más información sobre como usar el programa y descargar el vídeo en cuestión.<br/>
+Para los vídeos M3U8 es necesario otro programa como JDownloader o M3U8-Downloader.
 </div>
 
 <div class="pregunta"><div id="p_l_w_f_a_i_d_u_v"></div>La web falla al intentar descargar un vídeo.</div>
@@ -62,7 +64,8 @@ Es probable que exista un bug que provoque dicho fallo, o bien que la web donde 
 <div class="pregunta"><div id="p_q_d_u_v_p_l_w_d_s_e_n_e_e_e_l_d_c_s"></div>Quiero descargar un vídeo pero la web donde se encuentra no está en el listado de canales soportados.</div>
 <div class="respuesta">
 Para descargar un vídeo mediante este portal es necesario que esté en el listado de <a href="#p_q_c_s_d">webs soportadas</a>.<br/>
-En tal caso el vídeo no se podrá descargar a través de esta web. Si te interesa que la web soporte los vídeos de esa web deberás ponerte en contacto mediante el <a href="/contacta#contenido">formulario contacta</a> indicando el canal que te gustaría que se añadiera a Descargavideos. Tras recibir tu petición haremos todo lo posible por incluirlo al listado de canales soportados.
+Si no está en el listado no se podrá descargar a través de esta web.<br/>
+En el pasado aceptaba sugerencias para soportar nuevas webs pero la lista de peticiones es demasiado grande y la dificultad de mantener Descargavídeos aumenta con cada nueva web soportada. Si de todas formas quieres pedir que se añada soporte para una nueva web puedes ponerte en contacto mediante el <a href="/contacta#contenido">formulario contacta</a> indicando el canal que te gustaría que se añadiera a Descargavideos.
 </div>
 
 <div class="pregunta"><div id="p_n_d_a_p"></div>¿Necesito descargar algún programa?</div>
@@ -71,14 +74,9 @@ Exceptuando varios tipos de enlaces, no es necesario descargar ningún programa.
 Estos programas pueden descargarse desde esta web en la <a href="/lab#contenido">sección Lab</a>.
 </div>
 
-<div class="pregunta"><div id="p_n_d_a_p"></div>No puedo descargar más de 6 vídeos de mitele a la vez.</div>
+<div class="pregunta"><div id="p_n_d_a_p"></div>He informado mediante múltiples avisos rápidos de un problema pero todavía sigue estando.</div>
 <div class="respuesta">
-Mitele solo permite descargar como máximo 6 vídeos de forma simultánea.
-</div>
-
-<div class="pregunta"><div id="p_n_d_a_p"></div>He informado mediante múltiples avisos rápidos de un problema y este sigue estando.</div>
-<div class="respuesta">
-En ocasiones es necesario aportar más información sobre el problema para poder arreglarlo. Es muy importante indicar el correo electrónico en el mensaje del aviso rápido para que así podamos contactarte. Si no disponemos de un modo para contactarte en caso de que necesitemos más información para arreglar el problema, no podremos arreglar el problema.
+En ocasiones es necesario aportar más información sobre el problema para poder arreglarlo. Es muy importante indicar el correo electrónico en el mensaje del aviso rápido para que así pueda contactarte. Si no dispongo de un modo para contactarte en caso de que necesite más información para arreglar el problema, no será posible arreglar el problema.
 </div>
 
 <div class="pregunta"><div id="p_q_d_a_l_w"></div>¿Qué datos almacena la web?</div>
@@ -86,7 +84,7 @@ En ocasiones es necesario aportar más información sobre el problema para poder
 La web únicamente almacena los siguientes datos de los usuarios:<br/><br/>
 <ul class="puntuado">
 <li>Dirección de todas las páginas cargadas y errores de programación provocados (Log automático del servidor. Este registro se hace por razones de seguridad).</li>
-<li>Cuando se genera un resultado correcto, se guarda el dominio de la web (Ej. de un enlace de mitele se guardará "Mitele.es") junto con la hora y día. Esto informa qué webs son las más usadas.</li>
+<li>Cuando se genera un resultado correcto, se guarda el dominio de la web (Ej. de un enlace de rtve se guardará "RTVE.es") junto con la hora y día. Esto informa qué webs son las más usadas.</li>
 <li>Qué fondo se está mostrando en Descargavideos (fondo por defecto, o cual de los 10 fondos).</li>
 <li>URL que ha cargado la barra de búsqueda de Descargavideos.</li>
 <li>Cuando se presiona el botón rojo para informar de un resultado incorrecto se guarda el enlace que ha provocado el problema.</li>
@@ -96,15 +94,15 @@ La web únicamente almacena los siguientes datos de los usuarios:<br/><br/>
 
 <div class="pregunta"><div id="p_t_u_s_p_l_p"></div>Tengo una sugerencia para la página.</div>
 <div class="respuesta">
-¡Estupendo! Siempre estamos abiertos a nuevas sugerencias. Si quieres hacernos llegar una solo tienes que dirigirte al <a href="/contacta">formulario contacta</a> e indicar en el todo lo que quieras decirnos.
+¡Estupendo! Siempre estoy abierto a nuevas sugerencias. Si quieres hacerme llegar una sólo tienes que dirigirte al <a href="/contacta">formulario contacta</a> e indicar en el todo lo que quieras.
 </div>
 
 <div class="pregunta"><div id="p_q_c_s_d"></div>¿Qué canales soporta Descargavideos?</div>
 <div class="respuesta">
 A continuación se puede ver el listado de las webs y los canales soportados:<br/>
 <ol>
-	<li><a href="/rtve">rtve.es</a></li>
-	<li><a href="/youtube">youtube.com</a></li>
+	<li>rtve.es</li>
+	<li>youtube.com</li>
 	<li>canalriasbaixas.com</li>
 	<li>aragontelevision.es</li>
 	<li>canalsur.es</li>
@@ -118,7 +116,7 @@ A continuación se puede ver el listado de las webs y los canales soportados:<br
 	<li>veoh.com</li>
 	<li>rtvcm.es</li>
 	<li>rt.com</li>
-	<li><a href="/univision">univision.com</a></li>
+	<li>univision.com</li>
 	<li>vtelevision.es</li>
 	<li>medici.tv</li>
 	<li>goear.com</li>
