@@ -3,12 +3,13 @@
 <div class="listado_preguntas">
 <a href="#p_q_e_d">¿Qué es Descargavideos?</a><br/>
 <a href="#p_c_s_u_d">¿Cómo se usa Descargavideos?</a><br/>
+<a href="#p_d_d_s_l_e_d_l_v">¿De dónde salen los enlaces de los vídeos?</a><br/>
 <a href="#p_c_d_e_v">¿Cómo descargo el vídeo?</a><br/>
-<a href="#p_c_d_d_l_e_r">¿Cómo descargo de los enlaces RTMP?</a><br/>
-<a href="#p_u_v_d_m_d_f_r_c_r">¿Un vídeo de mitele da fallo relacionado con RTMP?</a><br/>
+<a href="#p_c_d_d_l_e_r">¿Cómo descargo de los enlaces RTMP o M3U8?</a><br/>
 <a href="#p_l_w_f_a_i_d_u_v">La web falla al intentar descargar un vídeo.</a><br/>
 <a href="#p_q_d_u_v_p_l_w_d_s_e_n_e_e_e_l_d_c_s">Quiero descargar un vídeo pero la web donde se encuentra no está en el listado de canales soportados.</a><br/>
 <a href="#p_n_d_a_p">¿Necesito descargar algún programa?</a><br/>
+<a href="#p_n_d_a_p">He informado mediante múltiples avisos rápidos de un problema pero todavía sigue estando.</a><br/>
 <a href="#p_q_d_a_l_w">¿Qué datos almacena la web?</a><br/>
 <a href="#p_t_u_s_p_l_p">Tengo una sugerencia para la página.</a><br/>
 <a href="#p_q_c_s_d">¿Qué canales soporta Descargavideos?</a><br/>
