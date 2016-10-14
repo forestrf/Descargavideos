@@ -106,7 +106,7 @@ var jdownloader = false;
 				
 				<?php if (ADS) { ?>
 				<div id="publi_cabecera">
-					<center>
+					<center style="background-color:transparent">
 						<span>
 							<?php echo getPubliJS(300, 250, true)?>
 						</span>
