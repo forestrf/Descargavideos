@@ -41,8 +41,7 @@ if(!defined('IS_MOBILE'))
 		vodafone|o2|pocket|kindle|mobile|psp|treo@i', $_SERVER['HTTP_USER_AGENT'] ));
 
 if(!defined('ADS')) {
-	$wantedAdStatus = false;
-	define('ADS', !IS_MOBILE && $wantedAdStatus);
+	define('ADS', true);
 }
 
 ?>
