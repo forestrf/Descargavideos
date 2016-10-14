@@ -11,10 +11,6 @@ a{
 a:hover{
 	text-shadow:1px 1px 0 #000;
 }
-/*RESULTADOS*/
-#resultado .img{
-	box-shadow:0 0 10px 5px #73532B;
-}
 /*CONTENIDO*/
 .menu a:hover{
 	text-shadow:none;

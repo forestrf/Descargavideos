@@ -20,10 +20,6 @@ a:hover{
 #formCalculador .entrada:hover, #formCalculador .entrada:focus{
 	color:#000;
 }
-/*RESULTADOS*/
-#resultado .img{
-	box-shadow:0 0 10px 5px #396965;
-}
 /*CONTENIDO*/
 .menu{
 	background:rgba(243, 239, 255, 0.22);

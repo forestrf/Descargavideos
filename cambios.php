@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'14-Octubre-2016'
+,'add:Imágenes en los resultados.'
+);
+
+$todos[]=array(
 '11-Octubre-2016'
 ,'fix:Televisa vuelve a funcionar con algunos vídeos que daban problemas.'
 ,'fix:Si AJAX falla intentando dar un resultado se lanzará el formulario por POST como se hacía anteriormente.'

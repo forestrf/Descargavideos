@@ -402,14 +402,14 @@ input[type="radio"] {
 	width: 45%;
 }
 #resultado .img {
-	/*background-color:#343438;*/
-	background-image:url("/img/loading.gif");
+	background-color:#000;
+	background-color:rgba(0, 0, 0, 0.5);
 	background-position:center center;
 	background-repeat:no-repeat;
-	box-shadow:0 0 10px 5px #73532B;
 	float:left;
-	min-height:250px;
-	/*max-width:500px;*/
+	width: 250px;
+	margin: -28px 50px 0 -90px;
+	border: 3px solid #fff;
 }
 #resultado .titulo_res {
 	font-size: 28px;
@@ -1153,6 +1153,15 @@ ul.puntuado, ul.puntuado li{
 		border:2px solid #FFF;
 		border-radius:15px;
 		font-size:40px;
+	}
+}
+
+@media screen and (max-width:1000px){
+	#resultado .img {
+		width: 250px;
+		margin: -50px auto 10px;
+		display: block;
+		float: none;
 	}
 }
 

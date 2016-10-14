@@ -1,4 +1,5 @@
 <div class="titulo_res">
+	<img class="img" id="imagen_res" src="<?php echo $R['url_img_res'];?>">
 	<span id="titulo_res"><?php echo $R['titulo_res'];?></span><br/>
 	<div class="descripcion_res" id="descripcion_res"><?php echo $R['descripcion_res'];?></div>
 </div>

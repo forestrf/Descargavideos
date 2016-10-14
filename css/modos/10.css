@@ -11,10 +11,6 @@ a:hover{
 	color:#95ACFF;
 	text-shadow:1px 1px 5px #5EBACF;
 }
-/*RESULTADOS*/
-#resultado .img{
-	box-shadow:0 0 10px 5px #396965;
-}
 /*CONTENIDO*/
 .menu{
 	background:rgba(243, 239, 255, 0.22);
