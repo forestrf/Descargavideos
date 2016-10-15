@@ -111,7 +111,7 @@ var jdownloader = false;
 							<?php echo getPubliJS(300, 250, true)?>
 						</span>
 						<span>
-							<?php echo getPubliJS(300, 250, true)?>
+							<?php echo getPubliIFRAME(300, 250, true)?>
 						</span>
 					</center>
 				</div>
