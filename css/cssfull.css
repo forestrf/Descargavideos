@@ -708,14 +708,12 @@ input[type="radio"] {
 	color: #ffdacc;
 	display: inline-block;
 	font-size: 22px;
-	left: 50%;
+	left: -20px;
 	line-height: 26px;
-	margin: 0 0 0 -40%;
+	margin: 100px 10% 20px;
 	padding: 20px;
 	position: relative;
 	text-align: center;
-	margin-top: 100px;
-	margin-bottom: 20px;
 	width: 80%;
 }
 #descargador_archivos{
