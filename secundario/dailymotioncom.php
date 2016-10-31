@@ -125,13 +125,20 @@ function fin() {
 	
 	foreach($jsonUrlContenedor as $quality => $urlArr){
 		if($quality != 'auto'){
-			$obtenido['enlaces'][] = array(
-				'titulo'    => $quality.'p',
-				'url'       => $urlArr[0]['url'],
-				'extension' => 'mp4',
-				'url_txt'   => 'Descargar',
-				'tipo'      => 'http'
-			);
+			
+			for ($i=0, $l=count($urlArr); $i < $l; $i++) {
+				if (enString($urlArr[$i]['url'], '.m3u8'))
+					continue;
+				
+				$obtenido['enlaces'][] = array(
+					'titulo'    => $quality.'p',
+					'url'       => $urlArr[0]['url'],
+					'extension' => 'mp4',
+					'url_txt'   => 'Descargar',
+					'tipo'      => 'http'
+				);
+				break;
+			}
 		}
 	}
 	
