@@ -16,6 +16,13 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'31-Octubre-2016'
+,'fix:múltiples vídeos de canalextremadura no siempre funcionaban, mejorada la búsqueda de los enlaces.'
+,'fix:telefe.com ha cambiado la web para añadir geobloqueo. Vuelve a funcionar pero necesita un proxy en Argentina, como <a href="http://hola.org">hola.org</a>.'
+,'fix:vimeo.com. No encontraba el listado de enlaces al vídeo porque buscaba una cadena de texto incorrecta.'
+);
+
+$todos[]=array(
 '14-Octubre-2016'
 ,'add:Imágenes en los resultados.'
 );

@@ -20,7 +20,7 @@ if (preg_match_all('@[0-9]+Label">(.+?)<@', $this->web_descargada, $matches_titu
 	}
 	*/
 
-	if (preg_match_all('@https?://iphonevod.+\.(?:mp4|flv|mp3)@', $this->web_descargada, $matches_urls)) {
+	if (preg_match_all('@https?://.+\.(?:mp4|flv|mp3)@', $this->web_descargada, $matches_urls)) {
 		dbug_r($matches_urls);
 		
 		for ($i = 0, $l = count($matches_titulos[1]); $i < $l; $i++) {
@@ -31,7 +31,7 @@ if (preg_match_all('@[0-9]+Label">(.+?)<@', $this->web_descargada, $matches_titu
 			));
 		}
 	} else dbug("Fallo obteniendo urls");
-} else if (preg_match('@https?://iphonevod.+\.(?:mp4|flv|mp3)@', $this->web_descargada, $matches_url)) {
+} else if (preg_match('@https?://.+\.(?:mp4|flv|mp3)@', $this->web_descargada, $matches_url)) {
 	dbug_r($matches_url);
 	
 	array_push($obtenido['enlaces'],array(

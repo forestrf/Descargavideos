@@ -15,11 +15,14 @@ if (preg_match('@[0-9]+@', $this->web, $matches)) {
 
 $ret = CargaWebCurl('http://player.vimeo.com/video/'.$id);
 
-$ret = desde1a2($ret, '{"', ';');
-$json_respuesta = json_decode($ret, true);
+if (preg_match('@{"[^"]+?":[^;]+@', $ret, $matches)) {
+	dbug_r($matches);
+	
+	$ret = $matches[0];
+	$json_respuesta = json_decode($ret, true);
+	dbug_r($json_respuesta);
+}
 
-
-dbug_r($json_respuesta);
 
 $opciones = $json_respuesta['request']['files']['progressive'];
 dbug_r($opciones);
