@@ -132,11 +132,12 @@ function fin() {
 				
 				$obtenido['enlaces'][] = array(
 					'titulo'    => $quality.'p',
-					'url'       => $urlArr[0]['url'],
+					'url'       => $urlArr[$i]['url'],
 					'extension' => 'mp4',
 					'url_txt'   => 'Descargar',
 					'tipo'      => 'http'
 				);
+				dbug($quality . ' - ' . $i);
 				break;
 			}
 		}

@@ -20,9 +20,6 @@ header("HTTP/1.0 404 Not Found");
 
 <meta name="advertising" content="ask"/>
 
-<meta name="keywords" content="<?php echo $palabras_clave?>"/>
-<meta name="description" content="<?php echo $descripcion?>"/>
-
 <link href="/favicon.ico" rel="icon" type="image/x-icon"/>
 <link rel="stylesheet" href="/css/cssfull.min.css?30"/>
 <link rel="stylesheet" href="/css/modos/2.css" id="css2"/>
