@@ -239,9 +239,10 @@ function convierteID($asset,$modo=array('video','audio')){
 		dbug_($ret);
 		if(preg_match_all('@http://[^<^>]*?\\.(?:mp4|flv|mp3)[^<^>]*@',$ret, $m)){
 			dbug_r($m);
+			$it = 1;
 			foreach($m[0] as $i){
-				dbug('Opcion (1): '.$i);
-				if(!enString($i, '1100000000000') && !enString($i, 'l3-onlinefs.rtve.es')){
+				dbug('Opcion (1), iteracion '.($it++).': '.$i);
+				if(!stringContains($i, array('1100000000000', 'l3-onlinefs.rtve.es', '.m3u8'))){
 					$ret = $this->quita_geobloqueo($i);
 					dbug('Opcion elejida: '.$i);
 					break;
