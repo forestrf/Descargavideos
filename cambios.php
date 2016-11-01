@@ -17,6 +17,7 @@ function cambios($max=-1){
 
 $todos[]=array(
 '1-Noviembre-2016'
+,'fix:8tv.cat vuelve a funcionar. Ahora lista varias calidades y por descarga directa.'
 ,'fix:facebook vuelve a funcionar.'
 ,'fix:Algunos vídeos de telemadrid usan descarga directa en lugar de rtmp. Actualizado para tenerlo en cuenta.'
 ,'fix:13cl ahora usa m3u8.'

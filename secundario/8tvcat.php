@@ -6,6 +6,52 @@ function calcula(){
 
 $obtenido=array('enlaces' => array());
 
+
+if (!enString($this->web_descargada, 'name="@videoPlayer"')) {
+	// <iframe id="entry-player" src="//players.brightcove.net/1589608506001/78ec8cae-ae89-481a-8e95-b434e884e65c_default/index.html?videoId=5165793197001&autoplay"
+	// https://edge.api.brightcove.com/playback/v1/accounts/1589608506001/videos/5165793197001
+	
+	if (preg_match('@//players.brightcove.net/([0-9]+?)/.+?videoId=([0-9]+?)[&"]@', $this->web_descargada, $matches)) {
+		dbug_r($matches);
+		/* Para que la url de la api funcione hay que enviar la cabecera
+		Accept: application/json;pk=BCpkADawqM0yNpRcqDSHVNbUNbcN95zKSM60CvPyMAaTR-Gr8cF3B6l2mV8foou1rmu08m3an1yjj-ikUuwKjVMLSKEolTur7xeCJlf2QrnaAodMX2l4WfINughBDczNizUI6su9QedX7xJ-
+		pk se saca del iframe player
+		policyKey:\"BCpkADawqM0yNpRcqDSHVNbUNbcN95zKSM60CvPyMAaTR-Gr8cF3B6l2mV8foou1rmu08m3an1yjj-ikUuwKjVMLSKEolTur7xeCJlf2QrnaAodMX2l4WfINughBDczNizUI6su9QedX7xJ-\"
+		*/
+		$iframe = CargaWebCurl('http:' . $matches[0]);
+		dbug_($iframe);
+		
+		if (preg_match("@policyKey(?:\\\\?\")?:(?:\\\\?\")?([a-zA-Z0-9-]{15,}+)@", $iframe, $policyKey)) {
+			dbug_r($policyKey);
+			
+			$xhr = 'https://edge.api.brightcove.com/playback/v1/accounts/'.$matches[1].'/videos/'.$matches[2];
+			$xhr = CargaWebCurl($xhr, '', false, '', Array('Accept: application/json;pk='.$policyKey[1]));
+			dbug_($xhr);
+			$xhr = json_decode($xhr, true);
+			$xhr['sources'] = sortmulti($xhr['sources'], 'avg_bitrate', 'desc');
+			dbug_r($xhr);
+			
+			foreach($xhr['sources'] as $source) {
+				if (strpos($source['src'], 'http:') === 0 && !enString($source['src'], '.m3u8')) {
+					$obtenido['enlaces'][] = array(
+						'titulo'  => 'Tamaño: ' . $source['width'] . ' x ' . $source['height'],
+						'url_txt' => 'Descargar',
+						'url'     => $source['src'],
+						'tipo'    => 'http'
+					);
+				}
+			}
+			
+			$obtenido['titulo'] = $xhr['name'];
+			$obtenido['imagen'] = $xhr['poster'];
+			
+			finalCadena($obtenido,false);
+			return;
+		}
+	}
+}
+
+
 if(preg_match('#<param.+?name="@videoPlayer".+?value="(.+?)"#', $this->web_descargada, $matches))
 	$contentId=$matches[1];
 else {
