@@ -11,6 +11,8 @@ dbug_($pageId);
 
 if(preg_match('#"pageId":"'.$pageId.'".+?"urls":\[(.+?)[,\]]#', $this->web_descargada, $matches))
 	$jsonurl = $matches[1];
+elseif(preg_match('#"'.$pageId.'".+?"urls":\[(.+?)[,\]]#', $this->web_descargada, $matches))
+	$jsonurl = $matches[1];
 else {
 	setErrorWebIntera('No se ha encontrado ningún vídeo.');
 	return;
@@ -37,8 +39,14 @@ dbug_($html);
 $app_flash = trim(entre1y2($html, 'app_flash=', '&'));
 dbug_($app_flash);
 
-$ubicacion_fichero = trim(entre1y2($html, 'ubicacion_fichero=', '&'));
-dbug_($ubicacion_fichero);
+if(preg_match('#ubicacion_fichero=(.+)[&\r\n$]#', $html, $matches)) {
+	dbug_r($matches);
+	$ubicacion_fichero = $matches[1];
+	dbug_($ubicacion_fichero);
+} else {
+	setErrorWebIntera('No se ha encontrado ningún vídeo.');
+	return;
+}
 
 $rtmpbase = 'rtmp://178.33.166.26/' . $app_flash;
 
@@ -54,7 +62,10 @@ $obtenido['enlaces'] = array(
 );
 
 $obtenido['titulo']=$titulo;
-$obtenido['imagen']=$imagen;
+if (preg_match('@frame=(.+\.jpg)@', $html, $matches)) {
+	dbug_r($matches);
+	$obtenido['imagen']=$matches[1];
+}
 
 finalCadena($obtenido,false);
 }

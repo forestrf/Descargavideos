@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'1-Noviembre-2016'
+,'fix:Mejorado soporte para arucitys.com. Las descargas son lentas, pero van más rápidas si rtmpdump usa la opción -v'
+);
+
+$todos[]=array(
 '31-Octubre-2016'
 ,'fix:dailymotion ya no muestra enlaces m3u8.'
 ,'fix:múltiples vídeos de canalextremadura no siempre funcionaban, mejorada la búsqueda de los enlaces.'
