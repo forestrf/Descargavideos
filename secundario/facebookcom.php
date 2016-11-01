@@ -15,8 +15,10 @@ function calcula(){
 	
 	
 	
-	$datos = desde1a2($this->web_descargada, '[["params","', '.forEach');
+	$datos = desde1a2($this->web_descargada, '[[\"params\",\"', '.forEach');
 	dbug_($datos);
+	$datos = json_decode('"'.$datos.'"', true);
+	dbug_r($datos);
 	$datos = json_decode($datos, true);
 	dbug_r($datos);
 	
@@ -29,10 +31,10 @@ function calcula(){
 	}
 	dbug_r($datos);
 	
-	if (isset($datos['video_data']['progressive'][0]['hd_src_no_ratelimit']))
-		$hd = $datos['video_data']['progressive'][0]['hd_src_no_ratelimit'];
-	elseif (isset($datos['video_data']['progressive'][0]['hd_src']))
-		$hd = $datos['video_data']['progressive'][0]['hd_src'];
+	if (isset($datos['video_data']['progressive']['hd_src_no_ratelimit']))
+		$hd = $datos['video_data']['progressive']['hd_src_no_ratelimit'];
+	elseif (isset($datos['video_data']['progressive']['hd_src']))
+		$hd = $datos['video_data']['progressive']['hd_src'];
 	
 	if (isset($hd))
 		$obtenido['enlaces'][] = array(
@@ -43,10 +45,10 @@ function calcula(){
 	
 	
 	
-	if (isset($datos['video_data']['progressive'][0]['sd_src_no_ratelimit']))
-		$sd = $datos['video_data']['progressive'][0]['sd_src_no_ratelimit'];
-	elseif (isset($datos['video_data']['progressive'][0]['sd_src']))
-		$sd = $datos['video_data']['progressive'][0]['sd_src'];
+	if (isset($datos['video_data']['progressive']['sd_src_no_ratelimit']))
+		$sd = $datos['video_data']['progressive']['sd_src_no_ratelimit'];
+	elseif (isset($datos['video_data']['progressive']['sd_src']))
+		$sd = $datos['video_data']['progressive']['sd_src'];
 	
 	if (isset($sd))
 		$obtenido['enlaces'][] = array(
