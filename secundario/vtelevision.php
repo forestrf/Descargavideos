@@ -24,7 +24,25 @@ if(enString($this->web_descargada, 'og:video')){
 		'imagen'  => $imagen,
 		'enlaces' => array(
 			array(
+				'url_txt' => 'Descargar',
 				'url'  => $url,
+				'tipo' => 'http'
+			)
+		)
+	);
+}
+elseif(preg_match('@<source src="(.+?)" type="video/mp4">@', $this->web_descargada, $matches)){
+	//http://progresive.vtelevision.es/ANTIGUOS/VTV/pd/2728142669001/201610/2728142669001_5176434641001_4924951631001-vs.jpg?pubId=2728142669001
+	//http://progresive.vtelevision.es/ANTIGUOS/VTV/hd/2728142669001/201610/2728142669001_5176436919001_4924951631001.mp4?pubId=2728142669001%3C/object%3EvideoId=4924951631001
+	dbug_r($matches);
+	
+	$obtenido=array(
+		'titulo'  => $titulo,
+		'imagen'  => $imagen,
+		'enlaces' => array(
+			array(
+				'url_txt' => 'Descargar',
+				'url'  => $matches[1],
 				'tipo' => 'http'
 			)
 		)

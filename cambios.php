@@ -21,6 +21,7 @@ $todos[]=array(
 ,'add:Soporte para lasestrellas.tv, que es la misma web que Televisa. Añadida opción de descarga directa para algunos vídeos.'
 ,'fix:Mensaje informativo para univisión informa de la necesidad de usar JDownloader para descargar calidades altas y así evitar que parezca que no funcionan (y evitar avisos de errores por ello).'
 ,'fix:Discovery Max vuelve a mostrar una miniatura del vídeo en el resultado.'
+,'fix:VTelevision vuelve a funcionar.'
 ,'fix:8tv.cat vuelve a funcionar. Ahora lista varias calidades y por descarga directa.'
 ,'fix:facebook vuelve a funcionar.'
 ,'fix:Algunos vídeos de telemadrid usan descarga directa en lugar de rtmp. Actualizado para tenerlo en cuenta.'
