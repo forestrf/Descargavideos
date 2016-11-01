@@ -19,6 +19,7 @@ $todos[]=array(
 '1-Noviembre-2016'
 ,'add:Extractor de transcripciones de subtítulos de RTVE a srt.'
 ,'add:Soporte para lasestrellas.tv, que es la misma web que Televisa. Añadida opción de descarga directa para algunos vídeos.'
+,'fix:Mensaje informativo para univisión informa de la necesidad de usar JDownloader para descargar calidades altas y así evitar que parezca que no funcionan (y evitar avisos de errores por ello).'
 ,'fix:Discovery Max vuelve a mostrar una miniatura del vídeo en el resultado.'
 ,'fix:8tv.cat vuelve a funcionar. Ahora lista varias calidades y por descarga directa.'
 ,'fix:facebook vuelve a funcionar.'

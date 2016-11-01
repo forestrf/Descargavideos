@@ -179,7 +179,7 @@ function univisionID($id) {
 	$obtenido['titulo'] = $titulo;
 	$obtenido['imagen'] = $imagen;
 	
-	$obtenido['alerta_especifica'] = 'Si no puedes descargar el vídeo necesitas usar proxy.<br/>Descarga el programa ultrasurf (<a href="https://ultrasurf.us/download/u.zip">Descargar ultrasurf</a>), descomprime el archivo, ejecuta el programa y una vez hecho intenta descargar el vídeo de nuevo.<br/>Si 2000kbps da error prueba 1200kbps.';
+	$obtenido['alerta_especifica'] = 'Es <b>necesario</b> usar JDownloader (<a href="http://jdownloader.org/download/index">Descargar</a>) para poder descargar los enlaces con calidad mayor a 800Kbps.<br/>Una vez instalado, ábrelo y reintenta la descarga en Descargavídeos.<br/>Si 2000kbps da error prueba 1200kbps.';
 
 	finalCadena($obtenido, false);
 }
