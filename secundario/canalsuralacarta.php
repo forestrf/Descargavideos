@@ -111,7 +111,7 @@ elseif(enString($this->web_descargada,"var elementos = [];")){
 else{
 	dbug('último case ifelse');
 	
-	$titulo = utf8_encode(entre1y2($this->web_descargada,'<title>','<'));
+	$titulo = entre1y2($this->web_descargada,'<title>','<');
 	
 	if(enString($this->web_descargada,"og:image")){
 		$p=strpos($this->web_descargada,"og:image");
