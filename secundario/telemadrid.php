@@ -213,44 +213,54 @@ else{
 	
 	dbug('$url => '.$url[0]);
 	
-	
-	
-	/*
-	rtmpdump
-	-r "rtmp://telemadrid2-bc-od-flashfs.fplive.net:1935/telemadrid2-bc-od-flash?videoId=3712633770001&lineUpId=&pubId=104403117001&playerId=111787372001&affiliateId="
-	-a "telemadrid2-bc-od-flash?videoId=3712633770001&lineUpId=&pubId=104403117001&playerId=111787372001&affiliateId="
-	-f "WIN 14,0,0,145"
-	-W "http://admin.brightcove.com/viewer/us20140807.1543/federatedVideoUI/BrightcovePlayer.swf?uid=1407518049436"
-	-p "http://www.telemadrid.es/programas/aqui-en-madrid/aqui-en-madrid-04082014"
-	-y "mp4:rtmp_uds/104403117001/201408/951/104403117001_3712803353001_d721fb63-a0b2-4ec6-a3cf-85641c726e34.mp4?videoId=3712633770001&lineUpId=&pubId=104403117001&playerId=111787372001&affiliateId="
-	-o 104403117001_371280335
-	3001_d721fb63-a0b2-4ec6-a3cf-85641c726e34.flv
-	*/
-	
-	/*
-	$dominio = entre1y2($url[0], 'http://','/');
-	dbug($dominio);
-	//$url[0] = strtr($url[0], array($dominio => 'brightcove04.o.brightcove.com'));
-	*/
-	
-	$andpos = strpos($url[0], '&');
-	$end = '?videoId='.$mediaId.'&lineUpId=&pubId='.$publisherId.'&playerId='.$experienceID.'&affiliateId=';
-	
-	$r = substr($url[0], 0, $andpos);
-	if ($r[strlen($r) - 1] === '/') {
-		$r = substr($r, 0, strlen($r) - 1);
+	if (strpos($url[0], 'http') === 0) {
+		// http://telemadrid1-bc-od.hls.adaptive.level3.net/Telemadrid_104403117001/pd/104403117001/201610/2059/104403117001_5175441680001_5175262977001.mp4
+		$obtenido['enlaces']=array(
+			array(
+				'url'       => $url[0],
+				'url_txt'   => 'Descargar',
+				'tipo'      => 'http',
+				'extension' => 'mp4'
+			)
+		);
+	} else {
+		/*
+		rtmpdump
+		-r "rtmp://telemadrid2-bc-od-flashfs.fplive.net:1935/telemadrid2-bc-od-flash?videoId=3712633770001&lineUpId=&pubId=104403117001&playerId=111787372001&affiliateId="
+		-a "telemadrid2-bc-od-flash?videoId=3712633770001&lineUpId=&pubId=104403117001&playerId=111787372001&affiliateId="
+		-f "WIN 14,0,0,145"
+		-W "http://admin.brightcove.com/viewer/us20140807.1543/federatedVideoUI/BrightcovePlayer.swf?uid=1407518049436"
+		-p "http://www.telemadrid.es/programas/aqui-en-madrid/aqui-en-madrid-04082014"
+		-y "mp4:rtmp_uds/104403117001/201408/951/104403117001_3712803353001_d721fb63-a0b2-4ec6-a3cf-85641c726e34.mp4?videoId=3712633770001&lineUpId=&pubId=104403117001&playerId=111787372001&affiliateId="
+		-o 104403117001_371280335
+		3001_d721fb63-a0b2-4ec6-a3cf-85641c726e34.flv
+		*/
+		
+		/*
+		$dominio = entre1y2($url[0], 'http://','/');
+		dbug($dominio);
+		//$url[0] = strtr($url[0], array($dominio => 'brightcove04.o.brightcove.com'));
+		*/
+		
+		$andpos = strpos($url[0], '&');
+		$end = '?videoId='.$mediaId.'&lineUpId=&pubId='.$publisherId.'&playerId='.$experienceID.'&affiliateId=';
+		
+		$r = substr($url[0], 0, $andpos);
+		if ($r[strlen($r) - 1] === '/') {
+			$r = substr($r, 0, strlen($r) - 1);
+		}
+		
+		$obtenido['enlaces']=array(
+			array(
+				'url'            => '-',
+				'rtmpdump'       => '-r "'.$r.$end.'" '.
+									'-y "'.substr($url[0], $andpos+1).$end.'"',
+				'nombre_archivo' => generaNombreWindowsValido($titulo).'.mp4',
+				'tipo'           => 'rtmpConcreto',
+				'extension'      => 'mp4'
+			)
+		);
 	}
-	
-	$obtenido['enlaces']=array(
-		array(
-			'url'            => '-',
-			'rtmpdump'       => '-r "'.$r.$end.'" '.
-								'-y "'.substr($url[0], $andpos+1).$end.'"',
-			'nombre_archivo' => generaNombreWindowsValido($titulo).'.mp4',
-			'tipo'           => 'rtmpConcreto',
-			'extension'      => 'mp4'
-		)
-	);
 }
 
 

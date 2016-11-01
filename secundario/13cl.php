@@ -19,7 +19,7 @@ $obtenido=array(
 	'enlaces' => array(
 		array(
 			'url'     => $url,
-			'tipo'    => 'http',
+			'tipo'    => 'm3u8',
 			'url_txt' => 'Descargar'
 		)
 	)
