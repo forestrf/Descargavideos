@@ -110,13 +110,19 @@ $obtenido=array('enlaces' => array());
 
 
 
-if (preg_match('#<iframe src="https?://amp.televisa.com/embed/embed.php.+?id=([0-9]+)#', $this->web_descargada, $match)) {
+if (preg_match('#<iframe src="(https?://amp.televisa.com/embed/embed.php.+?id=([0-9]+).+?)"#', $this->web_descargada, $match)) {
 	dbug_r($match);
-	$idVideo=$match[1];
+	$idVideo=$match[2];
 	dbug($idVideo);
 	// $this->web='http://amp.televisa.com/embed/embed.php?id='.$idVideo.'&w=620&h=345';
-	$this->web='http://tvolucion.esmas.com/embed/embed.php?id='.$idVideo.'&w=620&h=345';
+	if (enString($this->web, 'lasestrellas.tv')) {
+		$this->web=htmlspecialchars_decode($match[1]);
+	} else {
+		$this->web='http://tvolucion.esmas.com/embed/embed.php?id='.$idVideo.'&w=620&h=345';
+	}
+	dbug_($this->web);
 	$this->web_descargada=CargaWebCurl($this->web,'',0,'',array('Referer: '.$this->web));
+	dbug_($this->web_descargada);
 	if(enString($this->web_descargada,'ya no se encuentra disponible')){
 		setErrorWebIntera('Éste vídeo ya no se encuentra disponible.');
 		return;
@@ -178,9 +184,11 @@ if(enString($this->web_descargada, 'params_dvr.json')){
 	
 	$imagen = $json['channel']['item']['media-group']['media-thumbnail']['@attributes']['url'];
 
+	$i = 1;
 	foreach($json['channel']['item']['media-group']['media-content'] as &$elem){
 		if(enString($elem['@attributes']['url'], '.f4m')){
 			$obtenido['enlaces'][] = array(
+				'titulo' => 'opción ' . ($i++),
 				'url'  => $elem['@attributes']['url'],
 				'nombre_archivo' => generaNombreWindowsValido($titulo),
 				'tipo' => 'f4m'
@@ -188,8 +196,17 @@ if(enString($this->web_descargada, 'params_dvr.json')){
 		}
 		elseif(enString($elem['@attributes']['url'], '.m3u8')){
 			$obtenido['enlaces'][] = array(
+				'titulo' => 'opción ' . ($i++),
 				'url'  => $elem['@attributes']['url'],
 				'tipo' => 'm3u8'
+			);
+		}
+		elseif(enString($elem['@attributes']['url'], '.mp4')){
+			$obtenido['enlaces'][] = array(
+				'titulo' => 'opción ' . ($i++),
+				'url'  => $elem['@attributes']['url'],
+				'url_txt' => 'Descargar',
+				'tipo' => 'http'
 			);
 		}
 	}

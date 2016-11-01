@@ -225,7 +225,7 @@ $cadenas = array(
 		'calcula'
 	)
 	,array(
-		array('televisa.com','esmas.com'),
+		array('televisa.com','esmas.com','lasestrellas.tv'),
 		array('televisa.php'),
 		'Televisa',
 		'calcula'
