@@ -17,6 +17,7 @@ function cambios($max=-1){
 
 $todos[]=array(
 '1-Noviembre-2016'
+,'add:Extractor de transcripciones de subtítulos de RTVE a srt.'
 ,'fix:Discovery Max vuelve a mostrar una miniatura del vídeo en el resultado.'
 ,'fix:8tv.cat vuelve a funcionar. Ahora lista varias calidades y por descarga directa.'
 ,'fix:facebook vuelve a funcionar.'
