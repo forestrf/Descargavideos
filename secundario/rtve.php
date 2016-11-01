@@ -207,6 +207,15 @@ if(isset($asset)){
 		dbug('Agregados subtítulos ('.$subtitle['lang'].')');
 	}
 }
+if(isset($asset)){
+	if (preg_match('@<div class=".+trasBox.+">@', $this->web_descargada)) {
+		$obtenido['enlaces'][] = array(
+			'url'     => 'http://' . DOMINIO . '/util/rtve-transcripcion-2-srt.php?rtveurl=' . urlencode($this->web),
+			'tipo'    => 'srt',
+			'url_txt' => 'Descargar transcripción'
+		);
+	}
+}
 
 $obtenido['alerta_especifica'] = 'Si no funciona el enlace intenta descargarlo de nuevo dentro de varios minutos.';
 
