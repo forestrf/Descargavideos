@@ -6,7 +6,7 @@ function calcula(){
 dbug('empezando RTVE');
 
 if (enString($this->web_descargada, 'css/alacarta20/i/imgError/video.png')) {
-	setErrorWebIntera('El vídeo ya no está disponible debido a restricciones de derechos');
+	setErrorWebIntera('El vídeo ya no está disponible debido a restricciones de derechos o no se puede encontrar ahora mismo.<br/>En ocasiones RTVE falla durante varios minutos, si ese es el caso por favor inténtelo de nuevo más tarde');
 	return;
 }
 
