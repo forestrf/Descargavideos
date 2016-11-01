@@ -100,7 +100,7 @@ function calcula(){
 	'}'.
 	
 	'function lanzaAllMyVideosNet2(txt){'.
-		//'D.g("imagen_res").src = txt.split("\"image\" : \"")[1].split("\"")[0];'.
+		'D.g("imagen_res").src = txt.split("\"image\" : \"")[1].split("\"")[0];'.
 		
 		'if(txt.indexOf(".setup(") !== -1){'.
 			'txt = txt.substr(txt.indexOf(".setup("));'.

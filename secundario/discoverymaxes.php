@@ -137,7 +137,7 @@ function calcula(){
 		var titulo = mediaDTO.displayName;
 		var img = mediaDTO.videoStillURL;
 
-		/*D.g("imagen_res").src = decode_utf8(img);*/
+		D.g("imagen_res").src = decode_utf8(img);
 		D.g("id{{random_id}}TVIMG").value = decode_utf8(img);
 		D.g("titulo_res").innerHTML = decode_utf8(titulo);
 		

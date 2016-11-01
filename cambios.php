@@ -17,6 +17,7 @@ function cambios($max=-1){
 
 $todos[]=array(
 '1-Noviembre-2016'
+,'fix:Discovery Max vuelve a mostrar una miniatura del vídeo en el resultado.'
 ,'fix:8tv.cat vuelve a funcionar. Ahora lista varias calidades y por descarga directa.'
 ,'fix:facebook vuelve a funcionar.'
 ,'fix:Algunos vídeos de telemadrid usan descarga directa en lugar de rtmp. Actualizado para tenerlo en cuenta.'
