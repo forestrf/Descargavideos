@@ -104,6 +104,8 @@ var jdownloader = false;
 					<?php include_once 'plantillaResultado.php';?>
 				</div>
 				
+				<script src="/js/ordenes1.min.js?1"></script>
+				
 				<?php if (ADS) { ?>
 				<div id="publi_cabecera">
 					<center style="background-color:transparent">
@@ -175,7 +177,7 @@ var jdownloader = false;
 
 
 
-<script src="/js/ordenes.min.js?10"></script>
+<script src="/js/ordenes2.min.js?1"></script>
 
 
 
