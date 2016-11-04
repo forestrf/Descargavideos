@@ -113,7 +113,7 @@ var jdownloader = false;
 							<?php echo getPubliJS(300, 250, true)?>
 						</span>
 						<span>
-							<?php echo getPubliIFRAME(300, 250, true)?>
+							<?php echo getPubliJS(300, 250, true)?>
 						</span>
 					</center>
 				</div>
@@ -165,7 +165,7 @@ var jdownloader = false;
 		Descargavideos.tv | 
 		Code by <a target="_blank" href="http://andresleone.uni.me/"><b>Forest</b></a> - Design by <a target="_blank" href="http://www.fsdesign.es/"><b>FSdesign</b></a>
 		
-		<div class="derecha">
+		<div class="derecha" style="right:100px">
 			<a href="/aviso_legal#contenido"><?php echo TXT_AVISO_LEGAL?></a>
 		</div>
 	</div>
