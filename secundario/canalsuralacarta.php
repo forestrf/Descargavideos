@@ -120,14 +120,13 @@ else{
 	else
 		$imagen='http://'.DOMINIO.'/canales/canalsur.png';
 	
-	preg_match("@http://[^ ]*?\.(?:mp4|flv)@i", $this->web_descargada, $matches);
-	
-	$url=$matches[0];
-	$obtenido['enlaces'][]=array(
-		'url'     => $url,
-		'tipo'    => 'http'
-	);
-	
+	if (preg_match("@https?://[^ ]+?\.(?:mp4|mp3|flv)@i", $this->web_descargada, $matches)) {
+		$url=$matches[0];
+		$obtenido['enlaces'][]=array(
+			'url'     => $url,
+			'tipo'    => 'http'
+		);
+	}
 }
 
 $obtenido['titulo']=$titulo;

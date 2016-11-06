@@ -17,6 +17,7 @@ function cambios($max=-1){
 
 $todos[]=array(
 '6-Noviembre-2016'
+,'fix:Soporte para canalsur.es radio.'
 ,'fix:ccma vuelve a funcionar la opción de Calidad alta, pero a través de descarga directa en lugar de rtmp.'
 );
 
