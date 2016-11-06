@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'6-Noviembre-2016'
+,'fix:ccma vuelve a funcionar la opción de Calidad alta, pero a través de descarga directa en lugar de rtmp.'
+);
+
+$todos[]=array(
 '1-Noviembre-2016'
 ,'add:Extractor de transcripciones de subtítulos de RTVE a srt.'
 ,'add:Soporte para lasestrellas.tv, que es la misma web que Televisa. Añadida opción de descarga directa para algunos vídeos.'

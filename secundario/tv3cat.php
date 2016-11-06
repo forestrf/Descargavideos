@@ -12,6 +12,8 @@ http://www.ccma.cat/324/Grecia-haura-de-celebrar-eleccions-despres-de-fracassar-
 http://www.tv3.cat/videos/188877281/Els-ajudants-del-pare-Noel#
 videos/188877281/
 http://www.tv3.cat/pvideo/FLV_bbd_dadesItem.jsp?idint=
+http://mp4-high-dwn.media.tv3.cat/7/4/1477697803947.mp4
+http://mp4-medium-dwn.media.tv3.cat/6/6/1477697760566.mp4
 */
 
 if(enString($this->web,'http://www.tv3.cat/pprogrames/hd/mhdSeccio.jsp')){
@@ -329,9 +331,11 @@ function resuelveIDMetodo2($id, &$enlaces_array, &$titulo, &$imagen, $ignoraCadu
 	dbug('server3='.$server3);
 	$server4='http://www.tv3.cat/pvideo/FLV_bbd_media.jsp?'.'ID='.$id.'&QUALITY=H&PROFILE=APPMOB&FORMAT='.$formato;
 	dbug('server4='.$server4);
+	$server5='http://dinamics.ccma.cat/pvideo/media.jsp?media=video&version=0s&idint='.$id.'&profile=pc';
+	dbug('server5='.$server5);
 
 	$ret=CargaWebCurl($server4);
-	dbug('obtenido=');
+	dbug('obtenido (4)=');
 	dbug_($ret);
 
 	if(enString($ret, 'err.service.expired')){
@@ -357,6 +361,7 @@ function resuelveIDMetodo2($id, &$enlaces_array, &$titulo, &$imagen, $ignoraCadu
 			
 			$enlaces_array[] = array(
 				'titulo'  => 'Calidad media',
+				'url_txt' => 'Descargar',
 				'url'  => $ret,
 				'tipo' => 'http'
 			);
@@ -380,48 +385,25 @@ function resuelveIDMetodo2($id, &$enlaces_array, &$titulo, &$imagen, $ignoraCadu
 		return;
 	}
 	
-	$ret=CargaWebCurl($server3);
-	dbug('obtenido=');
+	$ret=CargaWebCurl($server5);
+	dbug('obtenido (5)=');
 	dbug_($ret);
+	$ret = json_decode(utf8_encode($ret), true);
+	dbug_r($ret);
 
-	if(enString($ret,'<media')){
-		//http://www.tv3.cat/feeds/videos/fitxaVideo.jsp?id=4874451&device=and-h&format=xml&version=1
-		//a sacer el video. si falla la busqueda, entonces hay un error
-		
-		//<media videoname="La Costa Brava en caiac/Thalassa/13042012/BB_THALASS">
-		//rtmp://mp4-500-str.tv3.cat/ondemand/mp4:g/tvcatalunya/2/2/1334322726322.mp4
-		//</media>
-		$p=strrpos($ret,'<media');
-		$ret=entre1y2_a($ret,$p,'>','<');
-
-		if(enString($ret, 'mp4:')){
-			preg_match('@^(.*?/)(mp4:.*?)$@', $ret, $matches);
-			dbug_r($matches);
-			
-			// 4/09/2012 metodo rectificado
-			dbug('urlFinal='.$ret);
-			
-			$enlaces_array[] = array(
-				'titulo'   => 'Calidad alta',
-				'url'      => $ret,
-				'rtmpdump' => '-r "'.$matches[1].'" -y "'.$matches[2].'" -o "'.generaNombreWindowsValido($titulo).'.mp4"',
-				'tipo'     => 'rtmpConcreto',
-				'extension'=>'mp4'
-			);
-		}
-		else{
-			// 2/06/2014
-			dbug('urlFinal='.$ret);
-			$ext = substr($ret,-3,3);
-			
-			$enlaces_array[] = array(
-				'url'      => $ret,
-				'rtmpdump' => '-r "'.$ret.'" -o "'.generaNombreWindowsValido($titulo).'.'.$ext.'"',
-				'tipo'     => 'rtmpConcreto',
-				'extension'=> '.'.$ext
-			);
-		}
-	}
+	$enlaces_array[] = array(
+		'titulo'   => 'Calidad alta',
+		'url_txt'   => 'Descargar',
+		'url'      => $ret['media']['url'],
+		'extension'=>'mp4'
+	);
+	
+	$url = $ret['subtitols']['url'];
+	$enlaces_array[] = array(
+		'url_txt' => 'Subtítulos en formato ' . substr($url, strrposF($url, '.')),
+		'url' => $url,
+		'tipo' => 'srt'
+	);
 }
 
 }
