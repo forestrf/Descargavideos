@@ -112,14 +112,16 @@ var jdownloader = false;
 						<?php
 						$randPubli = mt_rand(0, 1);
 						if ($randPubli === 0) { ?>
-							<span>
-								<?php echo getPubliJS(300, 250, true)?>
-							</span>
-							<span>
-								<?php echo getPubliJS(300, 250, true)?>
-							</span>
-						<?php } else if ($randPubli === 1) { ?>
-						<!-- Begin Adversal 300x250 - descargavideos.tv Code -->
+							<?php if (isSecure()) { ?>
+                                                                <span style="width:728px;height:90px">
+                                                                	<SCRIPT SRC="https://go2.adversal.com/ttj?id=9891541&size=728x90&promo_sizes=468x60,320x50,300x50,216x36" TYPE="text/javascript"></SCRIPT>
+								</span>
+                                                        <?php } else { ?>
+                                                                <span style="width:728px;height:90px">
+									<SCRIPT SRC="http://go.adversal.com/ttj?id=9891541&size=728x90&promo_sizes=468x60,320x50,300x50,216x36" TYPE="text/javascript"></SCRIPT>
+                                                                </span>
+                                                        <?php }
+						} else if ($randPubli === 1) { ?>
 							<?php if (isSecure()) { ?>
 								<span>
 									<SCRIPT SRC="https://go2.adversal.com/ttj?id=9891541&size=300x250&promo_sizes=250x250,200x200,180x150" TYPE="text/javascript"></SCRIPT>
@@ -136,7 +138,6 @@ var jdownloader = false;
 								</span>
 							<?php }
 							} ?>
-						<!-- End Adversal 300x250 - descargavideos.tv Code -->
 					</center>
 				</div>
 				<?php } ?>
