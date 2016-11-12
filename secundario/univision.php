@@ -1,5 +1,12 @@
 <?php
 
+/*
+http://h.univision.com/media/14/01/08/140108_656/140108_2890243_Que_Pobres_Tan_Ricos_Capitulo_3_1389212211_1200.mp4
+http://h.univision.com/media/1203/16/07/21/3215416/160721_3215416_Tres_Veces_Ana_Capitulo_41_1469575170_1800.m3u8
+http://h.univision.com/media/1203/16/07/21/3215416/160721_3215416_Tres_Veces_Ana_Capitulo_41_1469575170_1200.mp4
+http://h.univision.com/media/1203/16/07/21/3215416/160721_3215416_Tres_Veces_Ana_Capitulo_41_1469575170_2500.m3u8
+*/
+
 class Univision extends cadena{
 
 function calculaMovil() {
