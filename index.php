@@ -37,10 +37,6 @@ seteaIdioma();
 
 
 
-if(isset($_POST["web64"])){
-	$_POST["web"] = base64_decode($_POST["web64"]);
-}
-
 
 if(defined('DEBUG') && isset($_GET["web"])) {
 	dbug('Web sacada de GET (debug) a POST');
@@ -51,10 +47,20 @@ if(isset($_GET["webdebug"])) {
 	$_POST['web'] = $_GET['webdebug'];
 }
 
+/*
 if (isset($_GET['web']) || isset($_GET['web64'])) {
 	header('Location: /404', true, 301);
 	exit;
 }
+*/
+if (isset($_GET['web']))
+	$_POST['web'] = $_GET['web'];
+if (isset($_GET['web64']))
+	$_POST['web64'] = $_GET['web64'];
+
+
+if(isset($_POST["web64"]))
+	$_POST["web"] = base64_decode($_POST["web64"]);
 
 
 //url a descargar. Si hay algo toca descargar la url. Usar Request ya que puede venir por GET y POST
