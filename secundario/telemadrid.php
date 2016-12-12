@@ -3,12 +3,19 @@
 class Telemadrid extends cadena{
 	
 function calcula(){
+include 'brightcove-funciones.php';
 
 $obtenido=array('enlaces' => array());
 
 
 if(enString($this->web_descargada,'<param name="publisherID"'))
 	$publisherId=entre1y2($this->web_descargada,'<param name="publisherID" value="','"');
+if(!isset($publisherId)){
+	if (BrightCove_Api($this->web_descargada, $obtenido)) {
+		finalCadena($obtenido,false);
+		return;
+	}
+}
 if(!isset($publisherId)){
 	setErrorWebIntera('No se ha encontrado ningún vídeo.');
 	return;
@@ -36,7 +43,6 @@ $messagebroker='http://c.brightcove.com/services/messagebroker/amf?playerId='.$e
 
 
 
-include 'brightcove-funciones.php';
 
 
 /*

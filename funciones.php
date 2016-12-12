@@ -240,19 +240,26 @@ function dbug_r(&$arr){
 	return true;
 }
 
+function in_array_part($needle, &$haystack) {
+	foreach ($haystack as $elem)
+		if (enString($elem,$needle))
+			return true;
+	return false;
+}
+
 //url, contenido post a enviar, retornar cabecera, cabecera custom
 function CargaWebCurl($url,$post='',$cabecera=0,$cookie='',$cabeceras=array(),$sigueLocation=true,$esquivarCache=false,$customIp=false){
 	if (strpos($url, '//') === 0)
 		$url = 'http:' . $url;
 	
 	// Browser headers
-	$cabeceras[] = 'User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:49.0) Gecko/20100101 Firefox/49.0';
-	$cabeceras[] = 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8';
-	$cabeceras[] = 'Accept-Language: es-ES,es;en-US,en;q=0.5';
-	$cabeceras[] = 'Accept-Encoding: gzip, deflate';
-	$cabeceras[] = 'DNT: 1'; // Do Not Track
-	$cabeceras[] = 'Connection: close';
-
+	if (!in_array_part('User-Agent:', $cabeceras))      $cabeceras[] = 'User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:49.0) Gecko/20100101 Firefox/49.0';
+	if (!in_array_part('Accept:', $cabeceras))          $cabeceras[] = 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8';
+	if (!in_array_part('Accept-Language:', $cabeceras)) $cabeceras[] = 'Accept-Language: es-ES,es;en-US,en;q=0.5';
+	if (!in_array_part('Accept-Encoding:', $cabeceras)) $cabeceras[] = 'Accept-Encoding: gzip, deflate';
+	if (!in_array_part('DNT:', $cabeceras))             $cabeceras[] = 'DNT: 1'; // Do Not Track
+	if (!in_array_part('Connection:', $cabeceras))      $cabeceras[] = 'Connection: close';
+	
 	
 	dbug('cargando web (CURL): '.$url);
 	if(!$esquivarCache){
@@ -284,6 +291,7 @@ function CargaWebCurl($url,$post='',$cabecera=0,$cookie='',$cabeceras=array(),$s
 		curl_setopt($ch, CURLOPT_COOKIE, $cookie);
 	}
 	
+	dbug_r($cabeceras);
 	curl_setopt($ch, CURLOPT_HTTPHEADER, $cabeceras);
 	
 	// https
@@ -408,7 +416,12 @@ function limpiaCDATAXML($que){
  function sortmulti($array,$index,$order,$natsort=FALSE,$case_sensitive=FALSE) {
 	if(is_array($array)&&count($array)>0){
 		foreach(array_keys($array)as $key)
-		$temp[$key]=$array[$key][$index];
+			if (isset($array[$key][$index]))
+				$temp[$key]=$array[$key][$index];
+			else {
+				dbug('index "' . $index . '" not found at key "' . $key . '"');
+				dbug_r($array[$key]);
+			}
 		if(!$natsort){
 			if($order=='asc')
 				asort($temp);
