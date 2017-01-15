@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'16-Enero-2016'
+,'fix:Añadido soporte para vídeos M3U8 en Aragón TV.'
+);
+
+$todos[]=array(
 '12-Diciembre-2016'
 ,'fix:Telemadrid vuelve a funcionar tras cambios con Brightcove.'
 );

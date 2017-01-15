@@ -10,6 +10,8 @@ function calcula(){
 "playlist":[{"url":"mp4:/_archivos/videos/web/4334/4334.mp4"}]
 
 http://alacarta.aragontelevision.es/_archivos/videos/web/4334/4334.mp4
+
+//releases.flowplayer.org/vast/aragontelevision.es/vast.min.js
 */
 
 $imagen='http://'.DOMINIO.'/canales/aragontv.png';
@@ -60,6 +62,7 @@ elseif(enString($this->web_descargada,'list-not-even')){
 		$parte=substr($this->web_descargada,$last,$f-$last);
 		$p=strrpos($parte,'<a');
 		$nombre=entre1y2_a($parte,$p,'title="','"');
+		dbug_($nombre);
 
 		$extracto=CargaWebCurl($url);
 
@@ -75,6 +78,14 @@ finalCadena($obtenido, false);
 
 
 function SacarVideo(&$entrada, $nombre){
+	if (enString($entrada, '.m3u8')) {
+		return $this->sacaVideoM3U8($entrada, $nombre);
+	} else {
+		return $this->sacaVideoM3U8($entrada, $nombre);
+	}
+}
+
+function sacaVideoRTMP(&$entrada, $nombre) {
 	//url:'mp4%3A%2Fweb%2F4311%2F4311.mp4',
 
 	$retfull = strtr($entrada,array(' '=>''));
@@ -91,14 +102,23 @@ function SacarVideo(&$entrada, $nombre){
 	dbug_r($matches);
 	$a = $matches[1];
 	
-	$videos=array(
+	return array(
 		'url'       => 'rtmp://aragontvvodfs.fplive.net/aragontvvod'.$url,
 		'rtmpdump'  => '-r "'.$rtmpbase.'" -a "'.$a.'" -y "'.$url.'" -o "'.generaNombreWindowsValido($nombre).'.mp4"',
 		'tipo'      => 'rtmpConcreto',
 		'extension' => 'mp4'
 	);
-
-	return $videos;
+}
+function sacaVideoM3U8(&$entrada, $nombre) {
+	/*
+	sources: [
+		{ type: "application/x-mpegurl", src: "http://aragontv.vod.aranova.es/vod/web/aragontv/64884.m3u8" }
+	]
+	*/
+	return array(
+		'url'       => entre1y2($entrada, 'src: "', '.m3u8"') . '.m3u8',
+		'tipo'      => 'm3u8'
+	);
 }
 
 
@@ -106,7 +126,7 @@ function SacarVideoPorId(&$entrada,$nombre=''){
 	//titulo
 	if($nombre===''){
 		//<div class="apartado"><h2>ARAGÓN NOTICIAS 1 - 05/05/2012 14:00</h2></div> 
-		$nombre=entre1y2($entrada,'<h1>','<');
+		$nombre=entre1y2_a($entrada, '<h1', '>','<');
 		dbug('nombre. Obtenido en la web ID='.$nombre);
 	}else{
 		dbug('nombre. Obtenido en la web padre='.$nombre);
