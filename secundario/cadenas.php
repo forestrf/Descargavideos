@@ -399,7 +399,7 @@ $cadenas = array(
 		'calcula'
 	)
 	,array(
-		array('nbcuniverso.com'),
+		array('nbcuniverso.com', 'nbcuni.com'),
 		array('nbcuniversocom.php'),
 		'Nbcuniversocom',
 		'calcula'

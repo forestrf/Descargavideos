@@ -18,6 +18,7 @@ function cambios($max=-1){
 $todos[]=array(
 '16-Enero-2016'
 ,'fix:Añadido soporte para vídeos M3U8 en Aragón TV.'
+,'fix:Mejorado soporte para nbcuniverso.com.'
 );
 
 $todos[]=array(

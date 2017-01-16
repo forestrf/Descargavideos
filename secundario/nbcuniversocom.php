@@ -33,12 +33,13 @@ function calcula(){
 		
 		if (enString($this->web_descargada, '<li class="player--nav-item-active">')) {
 			$titulo .= ', parte '.trim(strip_tags(entre1y2($this->web_descargada, '<li class="player--nav-item-active">', '</li')));
+			dbug('$titulo: ' . $titulo);
 		}
 		
-		$player = desde1a2($this->web_descargada, 'http://player.theplatform.com', '"');
-		dbug_($player);
+		$player = 'http:' . desde1a2($this->web_descargada, '//player.theplatform.com', '"');
+		dbug('$player: ' . $player);
 		$player = str_replace('/swf/', '/embed/', $player);
-		dbug_($player);
+		dbug('$player: ' . $player);
 	}
 	
 	$obtenido['titulo']=$titulo;
