@@ -111,22 +111,11 @@ var jdownloader = false;
 					<center style="background-color:transparent">
 						<span>
 							<?php
-							$randPubli = mt_rand(0, 2);
-							if ($randPubli === 0) { ?>
+							$randPubli = mt_rand(0, 1);
+							if (true || $randPubli === 0) { ?>
 								<?php echo getPubliIFRAME(300, 250, true)?>
 							<?php } else if ($randPubli === 1) { ?>
 								<SCRIPT SRC="https://go2.adversal.com/ttj?id=9891541&size=300x250&promo_sizes=250x250,200x200,180x150" TYPE="text/javascript"></SCRIPT>
-							<?php } else { ?>
-								<script type="text/javascript">
-								  ( function() {
-									if (window.CHITIKA === undefined) { window.CHITIKA = { 'units' : [] }; };
-									var unit = {"calltype":"async[2]","publisher":"forestrf","width":300,"height":250,"sid":"Chitika Default"};
-									var placement_id = window.CHITIKA.units.length;
-									window.CHITIKA.units.push(unit);
-									document.write('<div id="chitikaAdBlock-' + placement_id + '"></div>');
-								}());
-								</script>
-								<script type="text/javascript" src="//cdn.chitika.net/getads.js" async></script>
 							<?php } ?>
 						</span>
 						<span>
