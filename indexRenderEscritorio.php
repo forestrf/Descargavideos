@@ -109,32 +109,29 @@ var jdownloader = false;
 				<?php if (ADS) { ?>
 				<div id="publi_cabecera">
 					<center style="background-color:transparent">
-						<?php
-						$randPubli = mt_rand(0, 1);
-						if ($randPubli === 0) { ?>
-							<span>
-								<?php echo getPubliJS(300, 250, true)?>
-							</span>
-							<span>
+						<span>
+							<?php
+							$randPubli = mt_rand(0, 2);
+							if (true || $randPubli === 0) { ?>
 								<?php echo getPubliIFRAME(300, 250, true)?>
-							</span>
-						<?php } else if ($randPubli === 1) { ?>
-							<?php if (isSecure()) { ?>
-								<span>
-									<SCRIPT SRC="https://go2.adversal.com/ttj?id=9891541&size=300x250&promo_sizes=250x250,200x200,180x150" TYPE="text/javascript"></SCRIPT>
-								</span>
-								<span>
-									<SCRIPT SRC="https://go2.adversal.com/ttj?id=9891541&size=300x250&promo_sizes=250x250,200x200,180x150" TYPE="text/javascript"></SCRIPT>
-								</span>
+							<?php } else if ($randPubli === 1) { ?>
+								<SCRIPT SRC="https://go2.adversal.com/ttj?id=9891541&size=300x250&promo_sizes=250x250,200x200,180x150" TYPE="text/javascript"></SCRIPT>
 							<?php } else { ?>
-								<span>
-									<SCRIPT SRC="http://go.adversal.com/ttj?id=9891541&size=300x250&promo_sizes=250x250,200x200,180x150" TYPE="text/javascript"></SCRIPT>
-								</span>
-								<span>
-									<SCRIPT SRC="http://go.adversal.com/ttj?id=9891541&size=300x250&promo_sizes=250x250,200x200,180x150" TYPE="text/javascript"></SCRIPT>
-								</span>
-							<?php }
-						} ?>
+								<script type="text/javascript">
+								  ( function() {
+									if (window.CHITIKA === undefined) { window.CHITIKA = { 'units' : [] }; };
+									var unit = {"calltype":"async[2]","publisher":"forestrf","width":300,"height":250,"sid":"Chitika Default"};
+									var placement_id = window.CHITIKA.units.length;
+									window.CHITIKA.units.push(unit);
+									document.write('<div id="chitikaAdBlock-' + placement_id + '"></div>');
+								}());
+								</script>
+								<script type="text/javascript" src="//cdn.chitika.net/getads.js" async></script>
+							<?php } ?>
+						</span>
+						<span>
+							<?php echo getPubliJS(300, 250, true)?>
+						</span>
 					</center>
 				</div>
 				<?php } ?>
