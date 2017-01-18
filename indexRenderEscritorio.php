@@ -112,7 +112,7 @@ var jdownloader = false;
 						<span>
 							<?php
 							$randPubli = mt_rand(0, 2);
-							if (true || $randPubli === 0) { ?>
+							if ($randPubli === 0) { ?>
 								<?php echo getPubliIFRAME(300, 250, true)?>
 							<?php } else if ($randPubli === 1) { ?>
 								<SCRIPT SRC="https://go2.adversal.com/ttj?id=9891541&size=300x250&promo_sizes=250x250,200x200,180x150" TYPE="text/javascript"></SCRIPT>
