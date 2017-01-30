@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'30-Enero-2016'
+,'fix:RTVE fix, quitados nuevos tipos de enlaces que no funcionan.'
+);
+
+$todos[]=array(
 '16-Enero-2016'
 ,'fix:Añadido soporte para vídeos M3U8 en Aragón TV.'
 ,'fix:Mejorado soporte para nbcuniverso.com.'

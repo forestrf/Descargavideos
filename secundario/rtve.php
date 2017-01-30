@@ -10,6 +10,9 @@ if (enString($this->web_descargada, 'css/alacarta20/i/imgError/video.png')) {
 	return;
 }
 
+// http://hlsvod.lvlt.rtve.es/resources/TE_NGVA//data/nfs/video/tomcat/cms/resources/mp4/1/1/1296036164211.mp4/playlist.m3u8
+// http://mvod.lvlt.rtve.es/resources/TE_NGVA//data/nfs/video/tomcat/cms/resources/mp4/1/1/1296036164211.mp4
+
 //si no se pone / al final de un enlace que lo necesita, se arma parda. aplicar la / en caso de que se necesite.
 /*$p=strrpos($this->web,"/");
 if($p!=strlen($this->web)-1){
@@ -251,7 +254,7 @@ function convierteID($asset,$modo=array('video','audio')){
 			$it = 1;
 			foreach($m[0] as $i){
 				dbug('Opcion (1), iteracion '.($it++).': '.$i);
-				if(!stringContains($i, array('1100000000000', 'l3-onlinefs.rtve.es', '.m3u8'))){
+				if(!stringContains($i, array('1100000000000', 'l3-onlinefs.rtve.es', '.m3u8', '/tomcat/'))){
 					$ret = $this->quita_geobloqueo($i);
 					dbug('Opcion elejida: '.$i);
 					break;
