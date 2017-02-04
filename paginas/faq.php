@@ -163,5 +163,6 @@ A continuación se puede ver el listado de las webs y los canales soportados:<br
 	<li>hamaika.eus</li>
 	<li>viki.com</li>
 	<li>lasestrellas.tv</li>
+	<li>cmmedia.es</li>
 </ol>
 </div>

@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'4-Febrero-2016'
+,'add:cmmedia.es.'
+);
+
+$todos[]=array(
 '30-Enero-2016'
 ,'fix:RTVE fix, quitados nuevos tipos de enlaces que no funcionan.'
 );

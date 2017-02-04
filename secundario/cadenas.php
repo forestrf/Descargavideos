@@ -428,4 +428,10 @@ $cadenas = array(
 		'vikiCOM',
 		'calcula'
 	)
+	,array(
+		array('cmmedia.es'),
+		array('cmmedia.es.php'),
+		'CMMediaEs',
+		'calcula'
+	)
 );

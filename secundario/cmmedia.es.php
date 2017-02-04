@@ -5,8 +5,10 @@ class CMMediaEs extends cadena{
 /*
 http://www.cmmedia.es/programas/tv/castilla-la-mancha-fin-de-semana/informativos-completos/1906
 http://play.rtvcm.webtv.flumotion.com/play/player?pod=1906&player=8&explicit_campaign_id=3
+Necesita referer
 
 http://api.rtvcm.webtv.flumotion.com/config?r=1484525986672
+r se puede ignorar, es un timestamp con 3 números más de precisión
 {"timestamp": 1484525987, "version": "bellucci", "key": "bUxnVQrutS3eKugh"}
 
 http://api.rtvcm.webtv.flumotion.com/pods/1906?extended=true
@@ -58,7 +60,7 @@ return _.extend(a, {
     api_signature: CryptoJS.SHA1(b).toString()
 })
 
-api_signature = SHA1("api_key=bUxnVQrutS3eKugh&api_nonce=36270378&api_referrer=play.rtvcm.webtv.flumotion.com&api_timestamp=14845271509n1IzQrHUwy1uWhaiuHY2w7qk4vK1FUO")
+api_signature = SHA1("api_key=bUxnVQrutS3eKugh&api_nonce=36270378&api_referrer=play.rtvcm.webtv.flumotion.com&api_timestamp=1484527150"."9n1IzQrHUwy1uWhaiuHY2w7qk4vK1FUO")
 
 
 
@@ -102,52 +104,70 @@ http://api.rtvcm.webtv.flumotion.com/pods/1906/streams?
 
 function calcula(){
 	//titulo
-	$titulo='LiveLeak';
+	$titulo = entre1y2($this->web_descargada, '<title>', '<');
 	dbug('titulo='.$titulo);
 	
 	//imagen
-	$imagen=entre1y2($this->web_descargada, 'image: "', '"');
+	$imagen = entre1y2($this->web_descargada, 'property="og:image" content="', '"');
 	dbug('imagen='.$imagen);
 	
-	if (enString($this->web_descargada, 'config: "')) {
-		$config=entre1y2($this->web_descargada, 'config: "', '"');
-		dbug_($config);
-		$config = explode('&', $config);
-		dbug_r($config);
-		
-		$url = '';
-		foreach($config as $elem){
-			if(strpos($elem, 'hd_file_url') === 0){
-				$url = urldecode(substr($elem, strposF($elem, '=')));
-				break;
-			}
-			if(strpos($elem, 'file_url') === 0){
-				$url = urldecode(substr($elem, strposF($elem, '=')));
-			}
-		}
-	} else {
-		preg_match('#file: "(http.*?\.mp4.*?)"#', $this->web_descargada, $matches);
+	if (preg_match('@(https?://play\.rtvcm\.webtv\.flumotion\.com/play/player\?pod=([0-9]+).+?)"@', $this->web_descargada, $matches)) {
 		dbug_r($matches);
-		$url = $matches[1];
-	}
-	
-	
-	dbug_r($url);
-	
-	
-	$obtenido = array(
-		'titulo' => $titulo,
-		'imagen' => $imagen,
-		'enlaces' => array(
-			array(
-				'url_txt' => 'Descargar',
-				'url'  => $url,
+		$url1 = $matches[1];
+		$ret1 = CargaWebCurl($url1, '', false, '', array('Referer: ' . $this->web));
+		dbug_($ret1);
+		$url2 = 'http://api.rtvcm.webtv.flumotion.com/config?r='.time().mt_rand(0, 9).mt_rand(0, 9).mt_rand(0, 9);
+		$ret2 = CargaWebCurl($url2);
+		dbug_($ret2);
+		$json2 = json_decode($ret2, true);
+		dbug_r($json2);
+		
+		$extra = CargaWebCurl('http://api.rtvcm.webtv.flumotion.com/pods/'.$matches[2].'?extended=true');
+		dbug_($extra);
+		$jsonExtra = json_decode($extra, true);
+		dbug_r($jsonExtra);
+		$imagen = $jsonExtra['video_image_url'];
+		
+		$obtenido = array(
+			'titulo' => $titulo,
+			'imagen' => $imagen,
+			'enlaces' => array()
+		);
+		
+		$t = 'api_key='.$json2['key'].'&'.
+			'api_nonce='.floor(1e7 + 9e7 * (mt_rand() / mt_getrandmax())).'&'.
+			'api_referrer=www.cmmedia.es&'.
+			'api_timestamp='.$json2['timestamp'];
+		$api_signature = SHA1($t.'9n1IzQrHUwy1uWhaiuHY2w7qk4vK1FUO');
+		
+		$api = 'http://api.rtvcm.webtv.flumotion.com/pods/'.$matches[2].'/streams?'.$t.'&api_signature='.$api_signature;
+		dbug_($api);
+		$ret = CargaWebCurl($api);
+		dbug_($ret);
+		$json = json_decode($ret, true);
+		dbug_r($json);
+		
+		foreach ($json as $entry) {
+			$obtenido['enlaces'][] = array(
+				'url_txt' => 'Descargar (Calidad '.$entry['bitrate'].')',
+				'url'  => $entry['url'],
 				'tipo' => 'http'
-			)
-		)
-	);
-	
-	finalCadena($obtenido);
+			);
+		}
+		
+		if (isset($jsonExtra['vtt_url']) && trim($jsonExtra['vtt_url']) != '') {
+			$obtenido['enlaces'][] = array(
+				'url'     => $jsonExtra['vtt_url'],
+				'tipo'    => 'srt',
+				'url_txt' => 'Descargar subtítulos'
+			);
+		}
+		
+		finalCadena($obtenido);
+	} else {
+		setErrorWebIntera('No se ha encontrado ningún vídeo');
+		return;
+	}
 }
 
 }
