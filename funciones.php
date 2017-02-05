@@ -161,6 +161,11 @@ function url_exists_full(&$url, $preg_match_prerealizado = false, $timeout = 20)
 	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 	
+	// force ipv4
+	if (defined('CURLOPT_IPRESOLVE') && defined('CURL_IPRESOLVE_V4')) {
+		curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
+	}
+	
 	// auto decoding
 	curl_setopt($ch, CURLOPT_ENCODING, '');
 	
@@ -298,6 +303,11 @@ function CargaWebCurl($url,$post='',$cabecera=0,$cookie='',$cabeceras=array(),$s
 	// https
 	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+	
+	// force ipv4
+	if (defined('CURLOPT_IPRESOLVE') && defined('CURL_IPRESOLVE_V4')) {
+		curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
+	}
 	
 	// auto decoding
 	curl_setopt($ch, CURLOPT_ENCODING, '');

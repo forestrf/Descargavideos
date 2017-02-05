@@ -19,6 +19,7 @@ $todos[]=array(
 '4-Febrero-2016'
 ,'add:cmmedia.es.'
 ,'fix:Webs con espacios no funcionaban.'
+,'fix:Ahora todas las webs se descargan usando ipv4 (ipv6 se usaba a veces causando problemas con webs como youtube).'
 ,'fix:lasestrellas.tv.'
 );
 
