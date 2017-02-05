@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'5-Febrero-2016'
+,'fix:Nuevo tipo de vídeos en RTVE que "esconden" la dirección del vídeo en una imagen.'
+);
+
+$todos[]=array(
 '4-Febrero-2016'
 ,'add:cmmedia.es.'
 ,'fix:Webs con espacios no funcionaban.'

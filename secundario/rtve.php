@@ -276,10 +276,16 @@ function convierteID($asset,$modo=array('video','audio')){
 		if(strpos($ret, 'http') !== 0){
 			dbug('$ret no es una web');
 			if(enString($ret,"code='state-not-valid'")){
-				$ret='';
-				dbug('vídeo posíblemente borrado. Marcar error');
-				setErrorWebIntera('El vídeo ya no está disponible en RTVE. Lo sentimos.');
-				return false;
+				dbug('State not valid. Puede que el vídeo se descargue con el nuevo método de imágenes');
+				// Intentar nuevo método
+				$ret = $this->GetInfoFromImage($asset);
+				
+				if ($ret === false) {
+					$ret='';
+					dbug('vídeo posíblemente borrado. Marcar error');
+					setErrorWebIntera('El vídeo ya no está disponible en RTVE. Lo sentimos.');
+					return false;
+				}
 			}
 			elseif(enString($ret, 'video-id-not-valid')){
 				setErrorWebIntera("No se ha podido encontrar ningún vídeo.");
@@ -397,6 +403,136 @@ static function b64d($encoded){
 	return $decoded;
 }
 
+
+// ztnrThumbnail.js
+function GetInfoFromImage($id) {
+	// default, banebdyede, amonet, apedemak, anat
+	$idManagers = array('default', 'banebdyede', 'amonet', 'apedemak', 'anat');
+	foreach ($idManagers as $idManager) {
+		$img = CargaWebCurl("http://www.rtve.es/ztnr/movil/thumbnail/{$idManager}/videos/{$id}.png");
+		dbug_($img);
+		if ($img != '') {
+			$byteArray = PNG_RTVE_Data::Img2ByteArray($img);
+			
+			$i;
+			$pointer = 8;
+			do {
+				$i = PNG_RTVE_Data::r($byteArray, $pointer);
+				if ("tEXt" === $i['type']) {
+					$s = $i['data'];
+					$h = "";
+					$o = 0;
+					for ($o = 0; $o < count($s); $o++)
+						if (0 !== $s[$o])
+							$h .= chr($s[$o]);
+					dbug_($h);
+					$res = PNG_RTVE_Data::n($h);
+					dbug_($res);
+					return $res;
+				}
+			} while ("IEND" !== $i['type']);
+		}
+	}
+	return false;
+}
+
+
+}
+
+class PNG_RTVE_Data {
+	static function Img2ByteArray($imgDownloaded) {
+		$decoded = base64_decode($imgDownloaded);
+		dbug_($decoded);
+		$byteArray = array();
+		foreach(str_split($decoded) as $byte) {
+			$byteArray[] = bindec(sprintf("%08b", ord($byte)));
+		}
+		return $byteArray;
+	}
+	
+	static function r($byteaArray, &$pointer) {
+		$e = self::readInt($byteaArray, $pointer);
+		dbug_($e);
+		$i = self::readChars($byteaArray, $pointer, 4);
+		dbug_($i);
+		$r = array();
+		if (self::read($byteaArray, $pointer, $r, 0, $e) !== $e)
+			throw "Out of bounds";
+		$pointer += 4;
+		return array(
+			'type' => $i,
+			'data' => $r
+		);
+	}
+	
+	static function readInt($byteaArray, &$pointer) {
+		$t0 = $byteaArray[$pointer++];
+		$t1 = $byteaArray[$pointer++];
+		$t2 = $byteaArray[$pointer++];
+		$t3 = $byteaArray[$pointer++];
+		return $t0 << 24 | $t1 << 16 | $t2 << 8 | $t3;
+	}
+	static function readChars($byteaArray, &$pointer, $t) {
+		for ($r = "", $i = 0; $t > $i; $i++) {
+			$r .= chr($byteaArray[$pointer++]);
+		}
+		return $r;
+	}
+	static function read($byteaArray, &$pointer, &$t, $r, $i) {
+		for ($e = 0; $i > $e;) {
+			$n = $byteaArray[$pointer++];
+			$t[$r + $e] = $n;
+			$e++;
+		}
+		dbug_($e);
+		return $e;
+	}
+	
+	static function n($t) {
+		$s = strpos($t, "#");
+		dbug_($s);
+		$n = self::i(substr($t, 0, $s));
+		dbug_($n);
+		$r = substr($t, $s + 1);
+		dbug_($r);
+		return self::e($r, $n);
+	}
+	
+	static function i($t) {
+		$r = "";
+		$i = 0;
+		$e = 0;
+		$n = 0;
+		for (; $i < strlen($t); $i++)
+			if (0 === $n) {
+				$r .= substr($t, $i, 1);
+				$e = ($e + 1) % 4;
+				$n = $e;
+			} else {
+				$n--;
+			}
+		return $r;
+	}
+	
+	static function e($t, $r) {
+		for ($i = "", $e = 0, $n = 0, $s = 3, $h = 1, $e = 0; $e < strlen($t); $e++) {
+			if (0 === $n) { 
+				$a = 10 * intval(substr($t, $e, 1));
+				$n = 1; 
+			} else {
+				if (0 === $s) {
+					$a += intval(substr($t, $e, 1));
+					$i .= substr($r, $a, 1);
+					$s = ($h + 3) % 4;
+					$n = 0;
+					$h++;
+				} else {
+					$s--;
+				}
+			}
+		}
+		return $i;
+	}
 }
 
 /*

@@ -3,9 +3,9 @@
 ?>
 <script src="/js/funciones.min.js"></script>
 
-<form>
+<form onsubmit="xhr_swf(D.g('url').value); return false;">
 	<input type="text" id="url" placeholder="url" size="50"/>
-	<input type="button" value="Submit" onclick="xhr_swf(D.g('url').value)"/>
+	<input type="submit"/>
 </form>
 
 <textarea id="resultado"></textarea>
@@ -29,8 +29,7 @@
 	}
 	
 	if(typeof descargador_archivos === "undefined"){
-		D.g("enlaces").innerHTML += '<?=genera_swf_object('/util/fla/f/player.swf')?>';
-		var descargador_archivos = D.g("descargador_archivos");
+		var descargador_archivos = genera_swf_object('/util/fla/f/player.swf');
 	}
 </script>
 
