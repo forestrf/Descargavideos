@@ -108,7 +108,8 @@ $web_original = $this->web_descargada;
 
 $obtenido=array('enlaces' => array());
 
-
+$titulo = entre1y2($this->web_descargada, '<title>', '<');
+dbug_($titulo);
 
 if (preg_match('#<iframe src="(https?://amp.televisa.com/embed/embed.php.+?id=([0-9]+).+?)"#', $this->web_descargada, $match)) {
 	dbug_r($match);
@@ -131,9 +132,28 @@ if (preg_match('#<iframe src="(https?://amp.televisa.com/embed/embed.php.+?id=([
 }
 
 
+// para lasestrellas
+if (stringContains($this->web_descargada,array('iniPlayer({'))){
+	if (preg_match('@iniPlayer\((\{[\s\S]+\})\);@m', $this->web_descargada, $matches)) {
+		dbug_r($matches);
+		$json = json_decode($matches[1], true);
+		dbug_r($json);
+		
+		$obtenido['titulo'] = $titulo;
+		$obtenido['imagen'] = $json['thumbnail'];
+		$obtenido['enlaces'][] = array(
+			'url'  => $url = $this->makeValidLink($json['streaming_url']),
+			'url_txt' => 'Descargar',
+			'tipo' => 'http'
+		);
+		$obtenido['alerta_especifica'] = 'Puede ser necesario usar un proxy.';
+		finalCadena($obtenido,false);
+		return;
+	}
+	return;
 
 //para televisa.com/novelas
-if(stringContains($this->web_descargada,array('showVideo(','data-idvideo="','embed.php?id='))){
+} else if(stringContains($this->web_descargada,array('showVideo(','data-idvideo="','embed.php?id='))){
 	if(enString($this->web_descargada,'showVideo(')){
 		dbug('-1-');
 		preg_match('@showVideo\(([0-9]+)\)@',$this->web_descargada,$match);
@@ -350,7 +370,7 @@ for($i = 0, $i_t = count($urls); $i < $i_t; $i++){
 	$url = $video['defaultURL'];
 	if (enString($url, '?'))
 		$url = entre1y2($url, 0, '?');
-	$url = preg_replace('@[a-zA-Z0-9]+\.tvolucion\.com/z@', 'apps.tvolucion.com', $url);
+	$url = $this->makeValidLink($url);
 	$obtenido['enlaces'][] = array(
 		'url_txt' => 'Tamaño: ' . $video['frameWidth'] . 'x' . $video['frameHeight'],
 		'url'  => $url,
@@ -368,6 +388,10 @@ $obtenido['titulo']=$titulo;
 $obtenido['imagen']=$imagen;
 
 finalCadena($obtenido,false);
+}
+
+function makeValidLink($url) {
+	return preg_replace('@[a-zA-Z0-9]+\.tvolucion\.com/z@', 'apps.tvolucion.com', $url);
 }
 
 }
