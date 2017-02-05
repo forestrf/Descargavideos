@@ -67,30 +67,30 @@ class youtube{
 		
 		$typeMap = array();
 
-		$typeMap[38]  = array('38',  'MP4',  'Original', '(MAX x MAX)', '2D', 'ACC 192kbit');
+		$typeMap[38]  = array('38',  'MP4',  'Original', '(MAX x MAX)', '2D', 'AAC 192kbit');
 		$typeMap[45]  = array('46',  'WEBM', '1080p',    '(1920x1080)', '2D', 'Vorbis');
-		$typeMap[37]  = array('37',  'MP4',  '1080p',    '(1920x1080)', '2D', 'ACC 192kbit');
-		$typeMap[22]  = array('22',  'MP4',  '720p',     '(1280x720)',  '2D', 'ACC 128kbit');
+		$typeMap[37]  = array('37',  'MP4',  '1080p',    '(1920x1080)', '2D', 'AAC 192kbit');
+		$typeMap[22]  = array('22',  'MP4',  '720p',     '(1280x720)',  '2D', 'AAC 128kbit');
 		$typeMap[45]  = array('45',  'WEBM', '720p',     '(1280x720)',  '2D', 'Vorbis 192kbit');
-		$typeMap[35]  = array('35',  'FLV',  '480p',     '(854x480)',   '2D', 'ACC 128kbit');
+		$typeMap[35]  = array('35',  'FLV',  '480p',     '(854x480)',   '2D', 'AAC 128kbit');
 		$typeMap[44]  = array('44',  'WEBM', '480p',     '(854x480)',   '2D', 'Vorbis 128kbit');
-		$typeMap[34]  = array('34',  'FLV',  '360p',     '(640x360)',   '2D', 'ACC 128kbit');
+		$typeMap[34]  = array('34',  'FLV',  '360p',     '(640x360)',   '2D', 'AAC 128kbit');
 		$typeMap[43]  = array('43',  'WEBM', '360p',     '(640x360)',   '2D', 'Vorbis 128kbit');
-		$typeMap[18]  = array('18',  'MP4',  '360p',     '(480x360)',   '2D', 'ACC 128kbit');
+		$typeMap[18]  = array('18',  'MP4',  '360p',     '(480x360)',   '2D', 'AAC 128kbit');
 		$typeMap[6]   = array('6',   'FLV',  '270p',     '(640x360)',   '2D', 'MP3 64kbit');
 		$typeMap[5]   = array('5',   'FLV',  '240p',     '(400x226)',   '2D', 'MP3 64kbit');
-		$typeMap[36]  = array('36',  '3GP',  '240p',     '(320x240)',   '2D', 'ACC 48kbit');
-		$typeMap[17]  = array('17',  '3GP',  '144p',     '(176x144)',   '2D', 'ACC 24kbit');
+		$typeMap[36]  = array('36',  '3GP',  '240p',     '(320x240)',   '2D', 'AAC 48kbit');
+		$typeMap[17]  = array('17',  '3GP',  '144p',     '(176x144)',   '2D', 'AAC 24kbit');
 		$typeMap[13]  = array('13',  '3GP',  '-144p',    '(***x***)',   '2D', '---');
 		
 		//3D
-		$typeMap[84]  = array('84',  'MP4',  '720p',     '(1280x720)',  '3D', 'ACC 128kbit');
+		$typeMap[84]  = array('84',  'MP4',  '720p',     '(1280x720)',  '3D', 'AAC 128kbit');
 		$typeMap[102] = array('102', 'WebM', '720p',     '(1280x720)',  '3D', 'Vorbis 192kbit');
-		$typeMap[85]  = array('85',  'MP4',  '520p',     '(960x540)',   '3D', 'ACC 192kbit');
+		$typeMap[85]  = array('85',  'MP4',  '520p',     '(960x540)',   '3D', 'AAC 192kbit');
 		$typeMap[101] = array('101', 'WebM', '360p',     '(640x360)',   '3D', 'Vorbis 192kbit');
 		$typeMap[100] = array('100', 'WebM', '360p',     '(640x360)',   '3D', 'Vorbis 128kbit');
-		$typeMap[82]  = array('82',  'MP4',  '360p',     '(480x360)',   '3D', 'ACC 128kbit');
-		$typeMap[83]  = array('83',  'MP4',  '240p',     '(320x240)',   '3D', 'ACC 96kbit');
+		$typeMap[82]  = array('82',  'MP4',  '360p',     '(480x360)',   '3D', 'AAC 128kbit');
+		$typeMap[83]  = array('83',  'MP4',  '240p',     '(320x240)',   '3D', 'AAC 96kbit');
 
 		//adaptive_fmts. Las calidades más altas de vídeo están aquí en lugar de en el otro listado.
 		// Audio sólo
