@@ -5,9 +5,13 @@ class Eitb extends cadena{
 function calculacom(){
 //titulo
 //<meta property="og:title" content="Alaska y Mario Episodio Extra - Pierrot"/>
-$p=strpos($this->web_descargada,'og:title');
-$titulo=entre1y2_a($this->web_descargada,$p,'content="','"');
-$titulo=limpiaTitulo($titulo);
+if (enString($this->web_descargada, 'og:title')) {
+	$p=strpos($this->web_descargada,'og:title');
+	$titulo=entre1y2_a($this->web_descargada,$p,'content="','"');
+	$titulo=limpiaTitulo($titulo);
+} else {
+	$titulo=entre1y2($this->web_descargada, '<title>', '<');
+}
 dbug('titulo='.$titulo);
 
 //imagen
@@ -44,6 +48,9 @@ if(preg_match('/<div.+?class="player">/', $this->web_descargada)){
 elseif(enString($this->web_descargada, 'insertar_player_video(')){
 	dbug('2');
 	$id=entre1y2($this->web_descargada,'insertar_player_video(',',');
+	if ($id[0] === "'" || $id[0] === '"') {
+		$id = substr($id, 1, strlen($id) - 2);
+	}
 	dbug('id='.$id);
 }
 elseif(preg_match('@/([0-9]+)@', $this->web, $matches)){
