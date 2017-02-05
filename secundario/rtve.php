@@ -5,10 +5,13 @@ class Rtve extends cadena{
 function calcula(){
 dbug('empezando RTVE');
 
+/*
+// Hay vídeos que funcionan y a pesar de ello incluyen esta línea dentro de <noscript>. Por tanto no se puede usar
 if (enString($this->web_descargada, 'css/alacarta20/i/imgError/video.png')) {
 	setErrorWebIntera('El vídeo ya no está disponible debido a restricciones de derechos o no se puede encontrar ahora mismo.<br/>En ocasiones RTVE falla durante varios minutos, si ese es el caso por favor inténtelo de nuevo más tarde');
 	return;
 }
+*/
 
 // http://hlsvod.lvlt.rtve.es/resources/TE_NGVA//data/nfs/video/tomcat/cms/resources/mp4/1/1/1296036164211.mp4/playlist.m3u8
 // http://mvod.lvlt.rtve.es/resources/TE_NGVA//data/nfs/video/tomcat/cms/resources/mp4/1/1/1296036164211.mp4
