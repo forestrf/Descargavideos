@@ -136,7 +136,7 @@ if (preg_match('#<iframe src="(https?://amp.televisa.com/embed/embed.php.+?id=([
 if (stringContains($this->web_descargada,array('iniPlayer({'))){
 	if (preg_match('@iniPlayer\((\{[\s\S]+\})\);@m', $this->web_descargada, $matches)) {
 		dbug_r($matches);
-		$json = json_decode($matches[1], true);
+		$json = json_decode(utf8_encode($matches[1]), true);
 		dbug_r($json);
 		
 		$obtenido['titulo'] = $titulo;
