@@ -36,12 +36,19 @@ if(preg_match('/<div.+?class="player">/', $this->web_descargada)){
 		setErrorWebIntera('No se puede encontrar ningún vídeo.');
 		return;
 	}
+	dbug('1');
 	$p=strpos($this->web_descargada,'<div class="player">');
 	$id=entre1y2_a($this->web_descargada,$p,'detalle_video_','"');
 	dbug('id='.$id);
 }
 elseif(enString($this->web_descargada, 'insertar_player_video(')){
+	dbug('2');
 	$id=entre1y2($this->web_descargada,'insertar_player_video(',',');
+	dbug('id='.$id);
+}
+elseif(preg_match('@/([0-9]+)@', $this->web, $matches)){
+	dbug('3, desde url');
+	$id=$matches[1];
 	dbug('id='.$id);
 }
 $ret=CargaWebCurl('http://www.eitb.com/es/get/multimedia/video/id/'.$id.'/size/grande/');
@@ -59,6 +66,7 @@ if(enString($ret, 'manifest.f4m')){
 		'enlaces' => array(
 			array(
 				'url'  => $url,
+				'url_txt' => 'Descargar',
 				'tipo' => 'http'
 			)
 		)
@@ -73,6 +81,7 @@ elseif(enString($ret, '.mp4') || enString($ret, '.flv')){
 		'enlaces' => array(
 			array(
 				'url'  => $url,
+				'url_txt' => 'Descargar',
 				'tipo' => 'http',
 				'extension' => substr($url,-3,3)
 			)
