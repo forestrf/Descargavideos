@@ -18,6 +18,7 @@ function cambios($max=-1){
 $todos[]=array(
 '4-Febrero-2016'
 ,'add:cmmedia.es.'
+,'fix:Webs con espacios no funcionaban.'
 ,'fix:lasestrellas.tv.'
 );
 
