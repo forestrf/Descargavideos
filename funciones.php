@@ -142,8 +142,7 @@ function url_exists_full(&$url, $preg_match_prerealizado = false, $timeout = 20)
 		$url = strtr($url, array('&'=>''));
 	}
 
-	$url = preg_replace_callback('/[^(\x20-\x7F)]/', 'urlencode_noAscii', $url);
-	$url = str_replace(' ', '%20', $url);
+	$url = preg_replace_callback('/[^ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789\-._~:\/?#[]@!$&\'()*+,;=`.]/', 'urlencode_noAscii', $url);
 	
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_URL, $url);

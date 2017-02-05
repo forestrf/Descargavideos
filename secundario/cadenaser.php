@@ -84,6 +84,27 @@ if(enString($this->web_descargada,"makePlayer")){
 		$obtenido['imagen'] = entre1y2_a($this->web_descargada, strposF($this->web_descargada, '"og:image"'), '"', '"');
 }
 
+if (preg_match('@datosVideo\.id ?= ?\'(.+?)\'@', $this->web_descargada, $matches)) {
+	dbug_r($matches);
+	$json = CargaWebCurl('http://cadenaser.com/vdpep/1/?pepid='.$matches[1]);
+	dbug_($json);
+	$json = json_decode(desde1a2($json, '{', strpos($json, ');')), true);
+	dbug_r($json);
+	
+	//titulo
+	$obtenido = array(
+		'titulo' => $json['titulo'],
+		'imagen' => 'http://cadenaser.com' . $json['caratula'],
+		'enlaces' => array(
+			array(
+				'url_txt' => 'Descargar',
+				'url'     => 'http://cadenaser.com' . $json['mp4'],
+				'tipo'    => 'http'
+			)
+		)
+	);
+}
+
 
 
 finalCadena($obtenido);
