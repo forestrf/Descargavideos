@@ -69,6 +69,10 @@ elseif(enString($this->web, '/infantil/')){
 			$asset=entre1y2_a($preIDURL,$p,"/","/");
 			dbug('asset='.$asset);
 		}
+		
+		if(!is_numeric($asset)){
+			$asset = $this->encuentraAssetEnContenido($this->web_descargada);
+		}
 	}
 	
 }

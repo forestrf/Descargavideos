@@ -19,6 +19,7 @@ $todos[]=array(
 '5-Febrero-2016'
 ,'fix:Nuevo tipo de vídeos en RTVE que "esconden" la dirección del vídeo en una imagen.'
 ,'fix:cadenaser.com vuelve a funcionar.'
+,'fix:Algunos vídeos de RTVE no funcionaban al no buscar correctamente la id del vídeo.'
 );
 
 $todos[]=array(
