@@ -131,6 +131,13 @@ if (preg_match('#<iframe src="(https?://amp.televisa.com/embed/embed.php.+?id=([
 	
 }
 
+if (enString($this->web_descargada, 'players.brightcove.net')) {
+	include_once 'brightcove-funciones.php';
+	BrightCove_Api($this->web_descargada, $obtenido);
+	finalCadena($obtenido);
+	return;
+}
+
 
 // para lasestrellas
 if (stringContains($this->web_descargada,array('iniPlayer({'))){
@@ -153,7 +160,7 @@ if (stringContains($this->web_descargada,array('iniPlayer({'))){
 	return;
 
 //para televisa.com/novelas
-} else if(stringContains($this->web_descargada,array('showVideo(','data-idvideo="','embed.php?id='))){
+} else if(stringContains($this->web_descargada,array('showVideo(','data-idvideo="','data-video-id="','embed.php?id='))){
 	if(enString($this->web_descargada,'showVideo(')){
 		dbug('-1-');
 		preg_match('@showVideo\(([0-9]+)\)@',$this->web_descargada,$match);
@@ -165,6 +172,10 @@ if (stringContains($this->web_descargada,array('iniPlayer({'))){
 	elseif(enString($this->web_descargada,'data-idvideo="')){
 		dbug('-2.5-');
 		preg_match('@data-idvideo="([0-9]+)"@',$this->web_descargada,$match);
+	}
+	elseif(enString($this->web_descargada,'data-video-id="')){
+		dbug('-2.6-');
+		preg_match('@data-video-id="([0-9]+)"@',$this->web_descargada,$match);
 	}
 	elseif(enString($this->web_descargada,'embed.php?id=')){
 		dbug('-3-');
@@ -271,7 +282,7 @@ if(!isset($contentId)){
 dbug('contentId -> '.$contentId);
 
 
-include 'brightcove-funciones.php';
+include_once 'brightcove-funciones.php';
 
 //$aa = 'AAMAAAABAEZjb20uYnJpZ2h0Y292ZS5leHBlcmllbmNlLkV4cGVyaWVuY2VSdW50aW1lRmFjYWRlLmdldERhdGFGb3JFeHBlcmllbmNlAAIvMQAAAe8KAAAAAgIAKDcyOTBiYTVlOTQzZGM0MmI3ZDY4NmE1NjJmOTZkNWI0MGI0ZjE3OTIRCmNjY29tLmJyaWdodGNvdmUuZXhwZXJpZW5jZS5WaWV3ZXJFeHBlcmllbmNlUmVxdWVzdBlleHBlcmllbmNlSWQhY29udGVudE92ZXJyaWRlcxFUVExUb2tlbhlkZWxpdmVyeVR5cGUTcGxheWVyS2V5B1VSTAVCYrdWAacgAAkDAQqBA1Njb20uYnJpZ2h0Y292ZS5leHBlcmllbmNlLkNvbnRlbnRPdmVycmlkZRtjb250ZW50UmVmSWRzDXRhcmdldBVmZWF0dXJlZElkE2NvbnRlbnRJZBdjb250ZW50VHlwZRtmZWF0dXJlZFJlZklkFWNvbnRlbnRJZHMZY29udGVudFJlZklkAQYXdmlkZW9QbGF5ZXIFf////+AAAAAFQoo2IT7sSAAEAAEBAQYBBX/////gAAAABmVBUX5+LEFBQUFFVUEyOHZrfixaWnFYTFl0RnctQURCMlNwZUhmQlIzY3lyQ2t2SXJBZQaBGWh0dHA6Ly9ub3RpY2llcm9zLnRlbGV2aXNhLmNvbS9wcm9ncmFtYXMtbm90aWNpZXJvLWNvbi1qb2FxdWluLWxvcGV6LWRvcmlnYS8=';
 //dbug_r(brightcove_decode(base64_decode($aa)));
