@@ -32,8 +32,9 @@ elseif(enString($this->web_descargada,'.videoid')){
 	$id=$match[1];
 	dbug('video de formato admitido en js (.videoid). id video='.$id);
 }
-elseif(enString($this->web_descargada,'idint="')){
-	$id=entre1y2($this->web_descargada, 'dint="','"');
+elseif(preg_match('@idint="([0-9]+)"@', $this->web_descargada, $matches)){
+	dbug_r($matches);
+	$id=$matches[1];
 	dbug('video de formato admitido en js (dint="). id video='.$id);
 }
 elseif(enString($this->web_descargada,'<div class="SSG cat_videos">')){

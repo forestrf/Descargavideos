@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'8-Febrero-2016'
+,'fix:tv3 detección de la id del vídeo arreglada.'
+);
+
+$todos[]=array(
 '5-Febrero-2016'
 ,'fix:Nuevo tipo de vídeos en RTVE que "esconden" la dirección del vídeo en una imagen.'
 ,'fix:cadenaser.com vuelve a funcionar.'
