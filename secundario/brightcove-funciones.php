@@ -122,7 +122,7 @@ function URLSDelArrayBrightCove($r, $tipo, &$obtenido_enlaces, $titulo){
 }
 
 function BrightCove_Api($web_descargada, &$obtenido) {
-	if (preg_match('@(//players.brightcove.net/([0-9]+?)/.+?(?:videoId=([0-9]+))?)"@', $web_descargada, $matches)) {
+	if (preg_match('@(//players.brightcove.net/([0-9]+?)/(?:.+videoId=([0-9]+)|.+).+)"@', $web_descargada, $matches)) {
 		dbug_r($matches);
 		/* Para que la url de la api funcione hay que enviar la cabecera
 		Accept: application/json;pk=BCpkADawqM0yNpRcqDSHVNbUNbcN95zKSM60CvPyMAaTR-Gr8cF3B6l2mV8foou1rmu08m3an1yjj-ikUuwKjVMLSKEolTur7xeCJlf2QrnaAodMX2l4WfINughBDczNizUI6su9QedX7xJ-
@@ -136,6 +136,7 @@ function BrightCove_Api($web_descargada, &$obtenido) {
 			dbug_r($policyKey);
 			
 			if (!isset($matches[3])) {
+				dbug('id desde url');
 				$matches[3] = entre1y2($web_descargada, 'data-video-id="', '"');
 			}
 			
