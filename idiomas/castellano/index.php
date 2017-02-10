@@ -1,6 +1,6 @@
 <?php
 define('TXT_TITLE', 'Descargar vídeos de YouTube, RTVE y más!');
-define('TXT_SUBTITULO_CABECERA', 'Descarga videos de todos los canales nacionales');
+define('TXT_SUBTITULO_CABECERA', 'Descarga vídeos de todos los canales nacionales');
 define('TXT_COPIA_URL_VIDEO', 'Copia la url donde está el vídeo');
 define('TXT_BUSCA_URL_VIDEO', 'Busca el enlace del vídeo');
 define('TXT_PEGA_URL_VIDEO', 'Pega la URL del vídeo...');
