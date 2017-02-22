@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'22-Febrero-2016'
+,'fix:Enlaces de RTVE con error 404 intentaban funcionar, mostrando una url que no tenía sentido y no funcionaba.'
+);
+
+$todos[]=array(
 '8-Febrero-2016'
 ,'fix:tv3 detección de la id del vídeo arreglada.'
 );

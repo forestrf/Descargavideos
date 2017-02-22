@@ -23,7 +23,12 @@ if($p!=strlen($this->web)-1){
 	if(!enString($analisis,"."))
 		$this->web.='/';
 }*/
-	
+
+if (enString($this->web_descargada, 'Sorry, but the page you\'re trying to view is not available, either because its URL has changed or it doesn\'t exist anymore.')) {
+	setErrorWebIntera('La página solicitada no está disponible por haber cambiado la dirección (URL) o no existir.');
+	return;
+}
+
 //modo audio
 //modo infantil
 //modo alacarta

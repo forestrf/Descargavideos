@@ -138,14 +138,28 @@ class youtube{
 		}
 		else{
 			foreach($foundArray as $format=>$url){
-				$videos[] = array(
-					'ext' => $format,
-					'p' => '',
-					'axb' => '',
-					'2D-3D' => '',
-					'audio' => '',
-					'url' => $url
-				);
+				if (isset($typeMap[$format])) {
+					dbug('YES Found: ' . $format);
+					$meta = $typeMap[$format];
+					$videos[] = array(
+						'ext' => $meta[1],
+						'p' => $meta[2],
+						'axb' => $meta[3],
+						'2D-3D' => $meta[4],
+						'audio' => $meta[5],
+						'url' => $foundArray[$format]
+					);
+				} else {
+					dbug('NOT Found: ' . $format);
+					$videos[] = array(
+						'ext' => $format,
+						'p' => '',
+						'axb' => '',
+						'2D-3D' => '',
+						'audio' => '',
+						'url' => $url
+					);
+				}
 			}
 		}
 		
