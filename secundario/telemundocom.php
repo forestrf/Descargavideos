@@ -196,6 +196,14 @@ function calcula(){
 			}
 		}
 		
+		if (preg_match('@<textstream src="(.+?)".*lang="(.*?)"@', $ret, $matches)) {
+			dbug_r($matches);
+			$obtenido['enlaces'][] = array(
+				'url'     => $matches[1],
+				'url_txt' => 'Subtítulos ('.$matches[2].')',
+				'tipo'    => 'srt'
+			);
+		}
 		
 	} else {
 		dbug('modo antiguo');

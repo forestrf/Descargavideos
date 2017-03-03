@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'3-Marzo-2016'
+,'add:Subtítulos para Telemundo (formato tt).'
+);
+
+$todos[]=array(
 '22-Febrero-2016'
 ,'fix:Enlaces de RTVE con error 404 intentaban funcionar, mostrando una url que no tenía sentido y no funcionaba.'
 );
