@@ -78,12 +78,12 @@ function preparaPagina($cual='pag_principal'){
 	
 	switch($cual){
 		case 'pag_principal':
-			$palabras_clave='Descargar, vídeos, mitele, rtve, youtube, soundcloud, DescargaVideos, online, nacional, '.date('Y').', download';
+			$palabras_clave='Descargar, vídeos, telemundo, rtve, youtube, soundcloud, DescargaVideos, online, nacional, '.date('Y').', download';
 			$descripcion='Descarga tus series favoritas. Simplemente copia y pega la dirección web URL del vídeo que quieres bajar. Ahora puedes descargar vídeos online sin instalar nada, completamente gratis.';
 		break;
 		case 'lab':
 			$seccion=SECCION_LAB;
-			$palabras_clave='Gestor, DescargaVideos, forocoches, mitele, programa, pruebas';
+			$palabras_clave='Gestor, DescargaVideos, forocoches, programa, pruebas';
 			$descripcion='Pruebas relacionadas con la web. En esta sección está el programa bookmarklet de DescargaVideos, programas como M3U8-Downloader y RTMP-Downloader y una utilidad para forocoches entre otras.';
 		break;
 		case 'changelog':
