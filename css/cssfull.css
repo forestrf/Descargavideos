@@ -268,7 +268,7 @@ input[type="radio"] {
 #publi_cabecera {
 	text-align: center;
 	display: block;
-	margin: 45px 20px 50px;
+	margin: 10px 20px 50px;
 }
 #cabecera.conresultado #publi_cabecera {
 	margin-bottom: 150px;
@@ -281,8 +281,8 @@ input[type="radio"] {
 }
 #publi_cabecera > center > span {
 	display: inline-block;
-	width: 300px;
-	height: 250px;
+	/*width: 300px;
+	height: 250px;*/
 	overflow: hidden;
 	margin-bottom: 10px;
 }

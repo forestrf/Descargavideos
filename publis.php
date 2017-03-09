@@ -2,6 +2,7 @@
 $publisUsadas = array();
 
 function getPubliJS($width, $height, $ignorePublisUsadas = false){
+	return "";
 	global $publisUsadas;
 	if (isset($publisUsadas[$width.'x'.$height]) && !$ignorePublisUsadas)
 		return '';
@@ -11,7 +12,9 @@ function getPubliJS($width, $height, $ignorePublisUsadas = false){
 		<!-- END TAG -->';
 }
 function getPubliIFRAME($width, $height, $ignorePublisUsadas = false, $style = ''){
+	return "";
 	global $publisUsadas;
+	$ignorePublisUsadas = true;
 	if (isset($publisUsadas[$width.'x'.$height]) && !$ignorePublisUsadas)
 		return '';
 	$publisUsadas[$width.'x'.$height] = true;

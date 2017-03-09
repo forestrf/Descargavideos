@@ -29,7 +29,7 @@ if (defined('HAY_RESULTADO') && $R['MODO'] === 'BUSQUEDA') {
 /*? y un número es para forzar la actualización del script y del css tras cambios*/ ?>
 
 <link href="/favicon.ico" rel="icon" type="image/x-icon"/>
-<link rel="stylesheet" href="/css/cssfull.min.css?32"/>
+<link rel="stylesheet" href="/css/cssfull.min.css?34"/>
 <link rel="stylesheet" href="/css/modos/<?php echo $css_modo?>.css?1" id="css2"/>
 <script src="/js/funciones.min.js?20"></script>
 
@@ -109,17 +109,25 @@ var jdownloader = false;
 				<?php if (ADS) { ?>
 				<div id="publi_cabecera">
 					<center style="background-color:transparent">
+						<?php /*
 						<span>
-							<?php
-							$randPubli = mt_rand(0, 1);
-							if (true || $randPubli === 0) { ?>
-								<?php echo getPubliIFRAME(300, 250, true)?>
-							<?php } else if ($randPubli === 1) { ?>
+							<?php if (isSecure()) { ?>
 								<SCRIPT SRC="https://go2.adversal.com/ttj?id=9891541&size=300x250&promo_sizes=250x250,200x200,180x150" TYPE="text/javascript"></SCRIPT>
+							<?php } else { ?>
+								<SCRIPT SRC="http://go.adversal.com/ttj?id=9891541&size=300x250&promo_sizes=250x250,200x200,180x150" TYPE="text/javascript"></SCRIPT>
 							<?php } ?>
 						</span>
+						*/ ?>
 						<span>
-							<?php echo getPubliJS(300, 250, true)?>
+							<?php if (isSecure()) { ?>
+								<!-- Begin Adversal 336x280 - descargavideos.tv Code -->
+								<SCRIPT SRC="https://go2.adversal.com/ttj?id=9891541&size=336x280&promo_sizes=300x250" TYPE="text/javascript"></SCRIPT>
+								<!-- End Adversal 336x280 - descargavideos.tv Code -->
+							<?php } else { ?>
+								<!-- Begin Adversal 336x280 - descargavideos.tv Code -->
+								<SCRIPT SRC="http://go.adversal.com/ttj?id=9891541&size=336x280&promo_sizes=300x250" TYPE="text/javascript"></SCRIPT>
+								<!-- End Adversal 336x280 - descargavideos.tv Code -->
+							<?php } ?>
 						</span>
 					</center>
 				</div>
@@ -200,8 +208,6 @@ var adblock=true;
 </script>
 <script src="/advertisement.js"></script>
 <script>ga('send', 'event', "Adblock escritorio", adblock?"Con Adblock":"Sin Adblock");</script>
-
-
 
 </body>
 </html>
