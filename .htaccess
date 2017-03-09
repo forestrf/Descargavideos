@@ -29,6 +29,7 @@
 	RewriteRule ^contacta/?$ index.php?pag=contacta&$1 [NC,L]
 	RewriteRule ^agradecimientos/?$ index.php?pag=agradecimientos&$1 [NC,L]
 	RewriteRule ^aviso_legal/?$ index.php?pag=legal&$1 [NC,L]
+	RewriteRule ^privacidad/?$ index.php?pag=privacidad&$1 [NC,L]
 	RewriteRule ^donar/?$ index.php?pag=donar&$1 [NC,L]
 	
 	

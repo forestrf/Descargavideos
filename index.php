@@ -89,7 +89,7 @@ elseif(!isset($pag)){
 //$a = $_SERVER["REQUEST_URI"]
 //$_SERVER["REQUEST_URI"] => "/changelog#contenido"
 function esPagina($a){
-	$paginas = array('lab','changelog','contacta','faq','agradecimientos','legal','donar');
+	$paginas = array('lab','changelog','contacta','faq','agradecimientos','legal','donar','privacidad');
 	$pag = "";
 	for($i = 0; $i<$i_t=count($paginas); $i++){
 		if(strpos($a, $paginas[$i]) === 1){

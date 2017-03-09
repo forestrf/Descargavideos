@@ -19,6 +19,7 @@ define('TXT_MENU_AGRADECIMIENTOS', 'Agradecimientos');
 define('TXT_MENU_CONTACTA', 'Contacta');
 
 define('TXT_AVISO_LEGAL', 'aviso legal');
+define('TXT_POLITICA_PRIVACIDAD', 'política de privacidad');
 
 define('TXT_BOOKMARKLET', 'Descargar este vídeo');
 ?>

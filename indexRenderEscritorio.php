@@ -181,6 +181,7 @@ var jdownloader = false;
 		
 		<div class="derecha" style="right:100px">
 			<a href="/aviso_legal#contenido"><?php echo TXT_AVISO_LEGAL?></a>
+			 | <a href="/privacidad#contenido"><?php echo TXT_POLITICA_PRIVACIDAD?></a>
 		</div>
 	</div>
 </div>

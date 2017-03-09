@@ -62,6 +62,7 @@ function imprimePagina($cual='pag_principal'){
 		case 'agradecimientos':
 		case 'legal':
 		case 'donar':
+		case 'privacidad':
 			require_once 'paginas/'.$cual.'.php';
 		break;
 	}
@@ -108,8 +109,13 @@ function preparaPagina($cual='pag_principal'){
 		break;
 		case 'legal':
 			$seccion=SECCION_LEGAL;
-			$palabras_clave='Agradecimientos, enlaces';
-			$descripcion='Todos aquellos que de una u otra forma han hecho posible esta web gracias a código, pseudocódigo, explicaciones, ideas o consejos.';
+			$palabras_clave='aviso legal';
+			$descripcion='';
+		break;
+		case 'legal':
+			$seccion=SECCION_PRIVACIDAD;
+			$palabras_clave='política de privacidad';
+			$descripcion='';
 		break;
 		case 'donar':
 			$seccion=SECCION_DONACION;
