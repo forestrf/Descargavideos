@@ -186,7 +186,7 @@ function univisionID($id) {
 	$obtenido['titulo'] = $titulo;
 	$obtenido['imagen'] = $imagen;
 	
-	$obtenido['alerta_especifica'] = 'Es <b>necesario</b> usar JDownloader (<a href="http://jdownloader.org/download/index">Descargar</a>) para poder descargar los enlaces con calidad mayor a 800Kbps.<br/>Una vez instalado, ábrelo y reintenta la descarga en Descargavídeos.<br/>Si 2000kbps da error prueba 1200kbps.';
+	$obtenido['alerta_especifica'] = 'Es necesario usar un proxy si el vídeo no está disponible para su país.<br/>Es <b>necesario</b> usar JDownloader (<a href="http://jdownloader.org/download/index">Descargar</a>) para poder descargar los enlaces con calidad mayor a 800Kbps.<br/>Una vez instalado, ábrelo y reintenta la descarga en Descargavídeos.<br/>Si 2000kbps da error prueba 1200kbps.';
 
 	finalCadena($obtenido, false);
 }

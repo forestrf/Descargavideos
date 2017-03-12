@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'12-Marzo-2016'
+,'fix:Univisión: Aviso de geobloqueo, se recomienda usar proxy si no se puede descargar un vídeo.'
+);
+
+$todos[]=array(
 '3-Marzo-2016'
 ,'add:Subtítulos para Telemundo (formato tt).'
 );
