@@ -176,6 +176,7 @@ function calcula(){
 	$obtenido=array(
 		'titulo'  => $titulo,
 		'imagen'  => $imagen,
+		'alerta_especifica' => 'Ignorar el tamaño de descarga pues no es real (siempre indica 2GB). La descarga se parará cuando esté completa y tendrá un peso distinto.',
 		'enlaces' => array(
 			array(
 				'url'  => strtr($urlJS, array("\t"=>'', "\r"=>'', "\n"=>'')),
