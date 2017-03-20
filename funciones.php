@@ -227,21 +227,38 @@ function parsea_headers($http_response_header, &$responde_code){
 	return $cadena;
 }
 
+
+function dbug_log($name) {
+	if (!defined('DEBUG_2_FILE')) {
+		define('DEBUG_2_FILE', 'logs_saved/'.$name.' - '.time().'.log');
+		if (!file_exists('logs_saved/')) {
+			mkdir('logs_saved/', 0777);
+		}
+		dbug("saving debug to file: ".DEBUG_2_FILE);
+	}
+}
+
 function dbug($msg){
 	if(defined('DEBUG'))
 		echo $msg."<br/>\r\n";
+	if(defined('DEBUG_2_FILE'))
+		file_put_contents(DEBUG_2_FILE, $msg."<br/>\r\n", FILE_APPEND);
 	return true;
 }
 
 function dbug_(&$msg){
 	if(defined('DEBUG'))
 		echo $msg."<br/>\r\n";
+	if(defined('DEBUG_2_FILE'))
+		file_put_contents(DEBUG_2_FILE, $msg."<br/>\r\n", FILE_APPEND);
 	return true;
 }
 
 function dbug_r(&$arr){
 	if(defined('DEBUG'))
 		print_r($arr);
+	if(defined('DEBUG_2_FILE'))
+		file_put_contents(DEBUG_2_FILE, var_export($arr, true), FILE_APPEND);
 	return true;
 }
 
