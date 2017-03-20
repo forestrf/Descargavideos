@@ -109,24 +109,26 @@ var jdownloader = false;
 				<?php if (ADS) { ?>
 				<div id="publi_cabecera">
 					<center style="background-color:transparent">
-						<?php /*
 						<span>
 							<?php if (isSecure()) { ?>
-								<SCRIPT SRC="https://go2.adversal.com/ttj?id=9891541&size=300x250&promo_sizes=250x250,200x200,180x150" TYPE="text/javascript"></SCRIPT>
+<!-- Begin Adversal 300x250 - descargavideos.tv Code -->
+<SCRIPT SRC="https://go2.adversal.com/ttj?id=9891541&size=300x250&promo_sizes=250x250,200x200,180x150" TYPE="text/javascript"></SCRIPT>
+<!-- End Adversal 300x250 - descargavideos.tv Code -->
 							<?php } else { ?>
-								<SCRIPT SRC="http://go.adversal.com/ttj?id=9891541&size=300x250&promo_sizes=250x250,200x200,180x150" TYPE="text/javascript"></SCRIPT>
+<!-- Begin Adversal 300x250 - descargavideos.tv Code -->
+<SCRIPT SRC="http://go.adversal.com/ttj?id=9891541&size=300x250&promo_sizes=250x250,200x200,180x150" TYPE="text/javascript"></SCRIPT>
+<!-- End Adversal 300x250 - descargavideos.tv Code -->
 							<?php } ?>
 						</span>
-						*/ ?>
 						<span>
 							<?php if (isSecure()) { ?>
-								<!-- Begin Adversal 336x280 - descargavideos.tv Code -->
-								<SCRIPT SRC="https://go2.adversal.com/ttj?id=9891541&size=336x280&promo_sizes=300x250" TYPE="text/javascript"></SCRIPT>
-								<!-- End Adversal 336x280 - descargavideos.tv Code -->
+<!-- Begin Adversal 300x250 - descargavideos.tv Code -->
+<SCRIPT SRC="https://go2.adversal.com/ttj?id=9891541&size=300x250&promo_sizes=250x250,200x200,180x150" TYPE="text/javascript"></SCRIPT>
+<!-- End Adversal 300x250 - descargavideos.tv Code -->
 							<?php } else { ?>
-								<!-- Begin Adversal 336x280 - descargavideos.tv Code -->
-								<SCRIPT SRC="http://go.adversal.com/ttj?id=9891541&size=336x280&promo_sizes=300x250" TYPE="text/javascript"></SCRIPT>
-								<!-- End Adversal 336x280 - descargavideos.tv Code -->
+<!-- Begin Adversal 300x250 - descargavideos.tv Code -->
+<SCRIPT SRC="http://go.adversal.com/ttj?id=9891541&size=300x250&promo_sizes=250x250,200x200,180x150" TYPE="text/javascript"></SCRIPT>
+<!-- End Adversal 300x250 - descargavideos.tv Code -->
 							<?php } ?>
 						</span>
 					</center>
