@@ -127,6 +127,10 @@ if(isset($audio)){
 }
 //video
 else{
+	if ($asset == '') {
+		setErrorWebIntera('No se puede encontrar la id de ningún vídeo. Esto puede pasar porque no hay un vídeo en la web introducida, el vídeo que hay ya no está disponible o rara vez aleatoriamente por culpa de rtve');
+		return;
+	}
 	$ret = $this->convierteID($asset);
 	if($ret === false)
 		return;
