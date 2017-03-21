@@ -181,7 +181,7 @@ class youtube{
 		// El contenido de $js_decipher_contenido es demasiado grande para imprimirlo, por no tengo idea qué razón
 		
 		$js_decipher_contenido = strtr($js_decipher_contenido, array("\n"=>''));
-		$expr = '@([a-zA-Z])=[a-zA-Z\.]+?\.split\(""\).*?\}+@';
+		$expr = '@([a-zA-Z])=[a-zA-Z\.]+?\.split\(""\)[^\{^\}]*?\1\.join\(""\);?\}@';
 		preg_match($expr, $js_decipher_contenido, $matches, PREG_OFFSET_CAPTURE);
 		dbug_r($matches);
 		

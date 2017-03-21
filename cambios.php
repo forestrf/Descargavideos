@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'21-Marzo-2016'
+,'fix:Youtube: Algunos vídeos no funcionaban al fallar un regex que se usa en el script.'
+);
+
+$todos[]=array(
 '12-Marzo-2016'
 ,'fix:Univisión: Aviso de geobloqueo, se recomienda usar proxy si no se puede descargar un vídeo.'
 ,'fix:Discovery MAX: Aviso informando de que el tamaño del vídeo que se indica al descargar no es real.'
