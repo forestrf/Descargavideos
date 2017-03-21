@@ -53,10 +53,13 @@ if (isset($_GET['web']) || isset($_GET['web64'])) {
 	exit;
 }
 */
-if (isset($_GET['web']))
-	$_POST['web'] = $_GET['web'];
-if (isset($_GET['web64']))
-	$_POST['web64'] = $_GET['web64'];
+$allow_get = false;
+if ($allow_get) {
+	if (isset($_GET['web']))
+		$_POST['web'] = $_GET['web'];
+	if (isset($_GET['web64']))
+		$_POST['web64'] = $_GET['web64'];
+}
 
 
 if(isset($_POST["web64"]))
