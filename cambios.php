@@ -18,6 +18,7 @@ function cambios($max=-1){
 $todos[]=array(
 '29-Marzo-2016'
 ,'fix:Univision: las url generadas para los vídeos vuelven a ser correctas. Mejor soporte para las miniaturas de los vídeos.'
+,'fix:Mejor mensaje para añadir descargas a JDownloader'
 );
 
 $todos[]=array(

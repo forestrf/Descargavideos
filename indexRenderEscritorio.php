@@ -31,7 +31,7 @@ if (defined('HAY_RESULTADO') && $R['MODO'] === 'BUSQUEDA') {
 <link href="/favicon.ico" rel="icon" type="image/x-icon"/>
 <link rel="stylesheet" href="/css/cssfull.min.css?34"/>
 <link rel="stylesheet" href="/css/modos/<?php echo $css_modo?>.css?1" id="css2"/>
-<script src="/js/funciones.min.js?20"></script>
+<script src="/js/funciones.min.js?21"></script>
 
 <script>
 <?php if (!defined('DEBUG') && !isset($_GET['webdebug'])) { ?>

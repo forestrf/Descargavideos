@@ -378,7 +378,8 @@ function m3u8_JD_callback(form_inputs) {
 		form_inputs.map(function(e){ data.push(e.getAttribute("name") + '=' + encodeURIComponent(e.value)); });
 		
 		xhr("http://127.0.0.1:9666/flashgot", data.join("&"), function(data){
-			alert(data);
+			//alert(data);
+			alert("Intentando agregar enlace a JDownloader\n\n" + data);
 		}, function(){alert('Imposible conectar con JDownloader\n¿Está JDownloader ejecutándose?');});
 		
 		return false;
