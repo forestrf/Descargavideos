@@ -234,10 +234,19 @@ function univisionID($id) {
 		// http://playvideo.univision.com/media/variant1/3302448_1490744755.m3u8
 		// https://usaplusauth.univision.com/api/v1/video-auth/url-signature-token?url=http://playvideo.univision.com/media/variant1/3302448_1490744755.m3u8
 		// {"signature":"http://playvideo.univision.com/media/variant1/3302448_1490744755.m3u8?UNIVOD=exp=1490798353~hmac=f53c406530265838ac241c1c1bc989da8beef666f6236fa598825d17c72f6148"}
-		
+		// {id}_{timestamp}.m3u8/mp4
 		
 		//$m3u8FuenteUrls = 'http://vmscdn-download.s3.amazonaws.com/videos_mcm/variant/' . $id . '.m3u8';
-		$m3u8FuenteUrls = desde1a2($this->web_descargada, 'http://playvideo.univision.com/media/variant1/', '.m3u8') . '.m3u8';
+		if (enString($this->web_descargada, 'http://playvideo.univision.com/media/variant1/')) {
+			$m3u8FuenteUrls = desde1a2($this->web_descargada, 'http://playvideo.univision.com/media/variant1/', '.m3u8') . '.m3u8';
+		} else {
+			$bruteforceTimestamp = entre1y2($this->web_descargada, '<meta itemprop="uploadDate" content="', '"');
+			dbug_($bruteforceTimestamp);
+			$bruteforceTimestamp = strtotime($bruteforceTimestamp);
+			dbug_($bruteforceTimestamp);
+			// $bruteforceTimestamp es similar a uploadDate, pero no es exactamente la misma, por lo que habría que recorrer todas las timestamp cercanas para encontrar el número
+			$m3u8FuenteUrls = 'http://playvideo.univision.com/media/variant1/'.$id.'_'.$bruteforceTimestamp.'.m3u8';
+		}
 		dbug('$m3u8FuenteUrls = ' . $m3u8FuenteUrls);
 		$m3u8FuenteUrls = 'https://usaplusauth.univision.com/api/v1/video-auth/url-signature-token?url=' . $m3u8FuenteUrls;
 
