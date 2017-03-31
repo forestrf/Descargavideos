@@ -262,11 +262,19 @@ function univisionID($id) {
 
 		if (preg_match_all('@(http://.*media.*?)_([0-9]{3,4}).m3u8@', $m3u8FuenteUrls, $matches)) {
 			dbug_r($matches);
+			
+			$calidadesM3U8 = array(6000, 4500, 3400, 2250, 1500, 750, 350);
 
 			$urls = array();
 			for ($i = 0, $i_t = count($matches[0]); $i < $i_t; $i++) {
-				$urls[] = array($matches[0][$i], $matches[2][$i]);
+				if (!in_array($matches[2][$i], $calidadesM3U8)) {
+					$urls[] = array($matches[0][$i], $matches[2][$i]);
+				}
 			}
+			foreach ($calidadesM3U8 as $calidad) {
+				$urls[] = array($matches[1][$i].'_'.$calidad.'.m3u8', $calidad);
+			}
+			$urls = sortmulti($urls, 1, 'asc');
 			$urls[] = array($matches[1][0] . '_800.mp4', 800);
 			//$calidades = array(2000, 1200, 810, 800, 510, 500, 270, 150);
 			
@@ -327,7 +335,7 @@ function univisionID($id) {
 	$obtenido['titulo'] = $titulo;
 	$obtenido['imagen'] = $imagen;
 	
-	$obtenido['alerta_especifica'] = 'Es necesario usar un proxy si el vídeo no está disponible para su país.<br/>Es <b>necesario</b> usar JDownloader (<a href="http://jdownloader.org/download/index">Descargar</a>) para poder descargar los enlaces con calidad distinta a 800Kbps.<br/>Una vez instalado, ábrelo y reintenta la descarga en Descargavídeos.<br/>Si 2000kbps da error prueba 1200kbps.';
+	$obtenido['alerta_especifica'] = 'Es necesario usar un proxy si el vídeo no está disponible para su país.<br/>Es <b>necesario</b> usar JDownloader (<a href="http://jdownloader.org/download/index">Descargar</a>) para poder descargar los enlaces con calidad distinta a 800Kbps.<br/>Una vez instalado, ábrelo y reintenta la descarga en Descargavídeos.<br/>Si no funciona alguna calidad prueba una menor.';
 
 	finalCadena($obtenido, false);
 }

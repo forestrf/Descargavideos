@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'31-Marzo-2016'
+,'fix:Univision: Más calidades para vídeos que sólo mostraban las calidades 750kbps y 800kbps.'
+);
+
+$todos[]=array(
 '29-Marzo-2016'
 ,'fix:Univision: las url generadas para los vídeos vuelven a ser correctas. Mejor soporte para las miniaturas de los vídeos.'
 ,'fix:Mejor mensaje para añadir descargas a JDownloader'
