@@ -272,7 +272,7 @@ function univisionID($id) {
 				}
 			}
 			foreach ($calidadesM3U8 as $calidad) {
-				$urls[] = array($matches[1][$i].'_'.$calidad.'.m3u8', $calidad);
+				$urls[] = array($matches[1][0].'_'.$calidad.'.m3u8', $calidad);
 			}
 			$urls = sortmulti($urls, 1, 'asc');
 			$urls[] = array($matches[1][0] . '_800.mp4', 800);
