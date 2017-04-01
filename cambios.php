@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'1-Abril-2016'
+,'fix:Univision: Url usada en el script ya no funcionaba y daba error.'
+);
+
+$todos[]=array(
 '31-Marzo-2016'
 ,'fix:Univision: Más calidades para vídeos que sólo mostraban las calidades 750kbps y 800kbps.'
 );

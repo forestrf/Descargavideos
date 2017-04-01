@@ -165,124 +165,76 @@ function calculaUVideos() {
 
 function univisionID($id) {
 	dbug('univisionID');
-	$ret = 'http://cdn-download.mcm.univision.com/videos_mcm/' . $id . '.js';
-	dbug('url=' . $ret);
-
-	$ret = CargaWebCurl($ret);
-
-	if(enString($ret, "Access Denied")) {
-		setErrorWebIntera("El vídeo de Univisión está bloqueado.");
-		return;
-	}
 
 	$obtenido = array('enlaces' => array());
 
 	//imagen
-	$imagen = entre1y2($ret, '"src_image_url":"', '"');
-	$imagen = strtr($imagen, array('\\' => ''));
-	if ($imagen == '') {
-		$imagen = entre1y2($this->web_descargada, 'data-cover-image="', '"');
-	}
+	$imagen = entre1y2($this->web_descargada, 'name="twitter:image" content="', '"');
 	dbug('imagen=' . $imagen);
 
 	//titulo
-	$titulo = entre1y2($ret, '"def_title":"', '"');
-	$titulo = jsonRemoveUnicodeSequences($titulo);
+	$titulo = entre1y2($this->web_descargada, 'name="twitter:title" content="', '"');
 	$titulo = limpiaTitulo($titulo);
 	dbug('titulo=' . $titulo);
 
-	if (!enString($ret, '"published_urls":[]')) {
-		dbug('No aparece "published_urls":[]');
-		
-		$json = substr($ret, strposF($ret, '('));
-		$json = substr($json, 0, strrpos($json, ')'));
-		dbug_($json);
-		$json = json_decode($json, true);
-		dbug_r($json);
-		
-		$urls = array();
-		if(isset($json['published_urls'])){
-			foreach($json['published_urls'] as &$url){
-				if(stringContains($url['embed_url'], array('.mp4', '.m3u8'))){
-					$u = $url['embed_url'];
-					dbug_($u);
-					$p = strrposF($u, '_');
-					$f = strpos($u, '.', $p);
-					$calidad = substr($u, $p, $f - $p);
-					if (strlen($calidad) > 5) continue;
-					$urls[] = array(
-						$u,
-						$calidad
-					);
-				}
-			}
-			
-		}
-		
-		dbug('urls: ' . count($urls));
-		
-		//ya tenemos las urls en formato: /120615_2708697_El_Talisman_Capitulo_98_99___Ultimo_capitulo_1339800465_2000.mp4
-		//ordenar
-		if (count($urls) > 0) {
-			$urls = sortmulti($urls, 1, "123", true);
-		}
-	}
+	$urls = array();
 	
-	if (enString($ret, '"published_urls":[]') || (isset($urls) && count($urls) === 0)) {
-		dbug('No se pueden encontrar urls. Usando método 2');
-		// http://vmscdn-download.s3.amazonaws.com/videos_mcm/variant/2912557.m3u8
-		// http://playvideo.univision.com/media/variant1/3302448_1490744755.m3u8
-		// https://usaplusauth.univision.com/api/v1/video-auth/url-signature-token?url=http://playvideo.univision.com/media/variant1/3302448_1490744755.m3u8
-		// {"signature":"http://playvideo.univision.com/media/variant1/3302448_1490744755.m3u8?UNIVOD=exp=1490798353~hmac=f53c406530265838ac241c1c1bc989da8beef666f6236fa598825d17c72f6148"}
-		// {id}_{timestamp}.m3u8/mp4
-		
-		//$m3u8FuenteUrls = 'http://vmscdn-download.s3.amazonaws.com/videos_mcm/variant/' . $id . '.m3u8';
-		if (enString($this->web_descargada, 'http://playvideo.univision.com/media/variant1/')) {
-			$m3u8FuenteUrls = desde1a2($this->web_descargada, 'http://playvideo.univision.com/media/variant1/', '.m3u8') . '.m3u8';
-		} else {
-			$bruteforceTimestamp = entre1y2($this->web_descargada, '<meta itemprop="uploadDate" content="', '"');
-			dbug_($bruteforceTimestamp);
-			$bruteforceTimestamp = strtotime($bruteforceTimestamp);
-			dbug_($bruteforceTimestamp);
-			// $bruteforceTimestamp es similar a uploadDate, pero no es exactamente la misma, por lo que habría que recorrer todas las timestamp cercanas para encontrar el número
-			$m3u8FuenteUrls = 'http://playvideo.univision.com/media/variant1/'.$id.'_'.$bruteforceTimestamp.'.m3u8';
-		}
-		dbug('$m3u8FuenteUrls = ' . $m3u8FuenteUrls);
-		$m3u8FuenteUrls = 'https://usaplusauth.univision.com/api/v1/video-auth/url-signature-token?url=' . $m3u8FuenteUrls;
+	//urls en formato: /120615_2708697_El_Talisman_Capitulo_98_99___Ultimo_capitulo_1339800465_2000.mp4
 
-		$m3u8FuenteUrls = CargaWebCurl($m3u8FuenteUrls);
-		dbug_($m3u8FuenteUrls);
-		
-		$m3u8FuenteUrls = json_decode($m3u8FuenteUrls, true);
-		dbug_r($m3u8FuenteUrls);
-		$m3u8FuenteUrls = $m3u8FuenteUrls['signature'];
-		dbug_($m3u8FuenteUrls);
-		
-		$m3u8FuenteUrls = CargaWebCurl($m3u8FuenteUrls);
-
-		if (preg_match_all('@(http://.*media.*?)_([0-9]{3,4}).m3u8@', $m3u8FuenteUrls, $matches)) {
-			dbug_r($matches);
-			
-			$calidadesM3U8 = array(6000, 4500, 3400, 2250, 1500, 750, 350);
-
-			$urls = array();
-			for ($i = 0, $i_t = count($matches[0]); $i < $i_t; $i++) {
-				if (!in_array($matches[2][$i], $calidadesM3U8)) {
-					$urls[] = array($matches[0][$i], $matches[2][$i]);
-				}
-			}
-			foreach ($calidadesM3U8 as $calidad) {
-				$urls[] = array($matches[1][0].'_'.$calidad.'.m3u8', $calidad);
-			}
-			$urls = sortmulti($urls, 1, 'asc');
-			$urls[] = array($matches[1][0] . '_800.mp4', 800);
-			//$calidades = array(2000, 1200, 810, 800, 510, 500, 270, 150);
-			
-			$urls = array_reverse($urls);
-		} else {
-			dbug("fail");
-		}
+	dbug('No se pueden encontrar urls. Usando método 2');
+	// http://vmscdn-download.s3.amazonaws.com/videos_mcm/variant/2912557.m3u8
+	// http://playvideo.univision.com/media/variant1/3302448_1490744755.m3u8
+	// https://usaplusauth.univision.com/api/v1/video-auth/url-signature-token?url=http://playvideo.univision.com/media/variant1/3302448_1490744755.m3u8
+	// {"signature":"http://playvideo.univision.com/media/variant1/3302448_1490744755.m3u8?UNIVOD=exp=1490798353~hmac=f53c406530265838ac241c1c1bc989da8beef666f6236fa598825d17c72f6148"}
+	// {id}_{timestamp}.m3u8/mp4
+	
+	//$m3u8FuenteUrls = 'http://vmscdn-download.s3.amazonaws.com/videos_mcm/variant/' . $id . '.m3u8';
+	if (enString($this->web_descargada, 'http://playvideo.univision.com/media/variant1/')) {
+		$m3u8FuenteUrls = desde1a2($this->web_descargada, 'http://playvideo.univision.com/media/variant1/', '.m3u8') . '.m3u8';
+	} else {
+		$bruteforceTimestamp = entre1y2($this->web_descargada, '<meta itemprop="uploadDate" content="', '"');
+		dbug_($bruteforceTimestamp);
+		$bruteforceTimestamp = strtotime($bruteforceTimestamp);
+		dbug_($bruteforceTimestamp);
+		// $bruteforceTimestamp es similar a uploadDate, pero no es exactamente la misma, por lo que habría que recorrer todas las timestamp cercanas para encontrar el número
+		$m3u8FuenteUrls = 'http://playvideo.univision.com/media/variant1/'.$id.'_'.$bruteforceTimestamp.'.m3u8';
 	}
+	dbug('$m3u8FuenteUrls = ' . $m3u8FuenteUrls);
+	$m3u8FuenteUrls = 'https://usaplusauth.univision.com/api/v1/video-auth/url-signature-token?url=' . $m3u8FuenteUrls;
+
+	$m3u8FuenteUrls = CargaWebCurl($m3u8FuenteUrls);
+	dbug_($m3u8FuenteUrls);
+	
+	$m3u8FuenteUrls = json_decode($m3u8FuenteUrls, true);
+	dbug_r($m3u8FuenteUrls);
+	$m3u8FuenteUrls = $m3u8FuenteUrls['signature'];
+	dbug_($m3u8FuenteUrls);
+	
+	$m3u8FuenteUrls = CargaWebCurl($m3u8FuenteUrls);
+
+	if (preg_match_all('@(http://.*media.*?)_([0-9]{3,4}).m3u8@', $m3u8FuenteUrls, $matches)) {
+		dbug_r($matches);
+		
+		$calidadesM3U8 = array(6000, 4500, 3400, 2250, 1500, 750, 350);
+
+		$urls = array();
+		for ($i = 0, $i_t = count($matches[0]); $i < $i_t; $i++) {
+			if (!in_array($matches[2][$i], $calidadesM3U8)) {
+				$urls[] = array($matches[0][$i], $matches[2][$i]);
+			}
+		}
+		foreach ($calidadesM3U8 as $calidad) {
+			$urls[] = array($matches[1][0].'_'.$calidad.'.m3u8', $calidad);
+		}
+		$urls = sortmulti($urls, 1, 'asc');
+		$urls[] = array($matches[1][0] . '_800.mp4', 800);
+		//$calidades = array(2000, 1200, 810, 800, 510, 500, 270, 150);
+		
+		$urls = array_reverse($urls);
+	} else {
+		dbug("fail");
+	}
+
 
 	$urls_length = count($urls);
 	for ($i = 0; $i < $urls_length; $i++) {
