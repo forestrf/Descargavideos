@@ -16,49 +16,49 @@ function cambios($max=-1){
 
 
 $todos[]=array(
-'1-Abril-2016'
+'1-Abril-2017'
 ,'fix:Univision: Url usada en el script ya no funcionaba y daba error.'
 );
 
 $todos[]=array(
-'31-Marzo-2016'
+'31-Marzo-2017'
 ,'fix:Univision: Más calidades para vídeos que sólo mostraban las calidades 750kbps y 800kbps.'
 );
 
 $todos[]=array(
-'29-Marzo-2016'
+'29-Marzo-2017'
 ,'fix:Univision: las url generadas para los vídeos vuelven a ser correctas. Mejor soporte para las miniaturas de los vídeos.'
 ,'fix:Mejor mensaje para añadir descargas a JDownloader'
 );
 
 $todos[]=array(
-'21-Marzo-2016'
+'21-Marzo-2017'
 ,'fix:Youtube: Algunos vídeos no funcionaban al fallar un regex que se usa en el script.'
 );
 
 $todos[]=array(
-'12-Marzo-2016'
+'12-Marzo-2017'
 ,'fix:Univisión: Aviso de geobloqueo, se recomienda usar proxy si no se puede descargar un vídeo.'
 ,'fix:Discovery MAX: Aviso informando de que el tamaño del vídeo que se indica al descargar no es real.'
 );
 
 $todos[]=array(
-'3-Marzo-2016'
+'3-Marzo-2017'
 ,'add:Subtítulos para Telemundo (formato tt).'
 );
 
 $todos[]=array(
-'22-Febrero-2016'
+'22-Febrero-2017'
 ,'fix:Enlaces de RTVE con error 404 intentaban funcionar, mostrando una url que no tenía sentido y no funcionaba.'
 );
 
 $todos[]=array(
-'8-Febrero-2016'
+'8-Febrero-2017'
 ,'fix:tv3 detección de la id del vídeo arreglada.'
 );
 
 $todos[]=array(
-'5-Febrero-2016'
+'5-Febrero-2017'
 ,'fix:Nuevo tipo de vídeos en RTVE que "esconden" la dirección del vídeo en una imagen.'
 ,'fix:cadenaser.com vuelve a funcionar.'
 ,'fix:Algunos vídeos de RTVE no funcionaban al no buscar correctamente la id del vídeo.'
@@ -68,7 +68,7 @@ $todos[]=array(
 );
 
 $todos[]=array(
-'4-Febrero-2016'
+'4-Febrero-2017'
 ,'add:cmmedia.es.'
 ,'fix:Webs con espacios no funcionaban.'
 ,'fix:Ahora todas las webs se descargan usando ipv4 (ipv6 se usaba a veces causando problemas con webs como youtube).'
@@ -76,12 +76,12 @@ $todos[]=array(
 );
 
 $todos[]=array(
-'30-Enero-2016'
+'30-Enero-2017'
 ,'fix:RTVE fix, quitados nuevos tipos de enlaces que no funcionan.'
 );
 
 $todos[]=array(
-'16-Enero-2016'
+'16-Enero-2017'
 ,'fix:Añadido soporte para vídeos M3U8 en Aragón TV.'
 ,'fix:Mejorado soporte para nbcuniverso.com.'
 );
