@@ -117,7 +117,11 @@ http://h.univision.com/media/7/17/03/24/3302448/170324_3302448_Capitulo_1___321C
 
 Parece que esto es lo que pone el token:
 http://dst.infinigraph.com/kraken/js/kraken-view-univision.js?1490794362008
- * 
+
+
+
+https://usaplusauth.univision.com/api/v1/video-auth/url-signature-token?url=https://playvideo-univision.akamaized.net/media/650/17/06/12/3331814/170612_3331814_En_un_minuto__Padres_y_madres_solteros_tendr_1497306770_800.mp4
+
 
 */
 
@@ -181,12 +185,18 @@ function univisionID($id) {
 	
 	//urls en formato: /120615_2708697_El_Talisman_Capitulo_98_99___Ultimo_capitulo_1339800465_2000.mp4
 
-	dbug('No se pueden encontrar urls. Usando método 2');
 	// http://vmscdn-download.s3.amazonaws.com/videos_mcm/variant/2912557.m3u8
 	// http://playvideo.univision.com/media/variant1/3302448_1490744755.m3u8
 	// https://usaplusauth.univision.com/api/v1/video-auth/url-signature-token?url=http://playvideo.univision.com/media/variant1/3302448_1490744755.m3u8
 	// {"signature":"http://playvideo.univision.com/media/variant1/3302448_1490744755.m3u8?UNIVOD=exp=1490798353~hmac=f53c406530265838ac241c1c1bc989da8beef666f6236fa598825d17c72f6148"}
 	// {id}_{timestamp}.m3u8/mp4
+	
+	// http://h.univision.com/media/650/17/06/12/3331814/170612_3331814_En_un_minuto__Padres_y_madres_solteros_tendr_1497306770_800.mp4
+	// https://playvideo-univision.akamaized.net/media/650/17/06/12/3331814/170612_3331814_En_un_minuto__Padres_y_madres_solteros_tendr_1497306770_800.mp4
+	
+	// data-rendition-url="https://playvideo-univision.akamaized.net/media/variant1/3331814_1497307069.m3u8"
+	// data-fallback-rendition-url="https://playvideo-univision.akamaized.net/media/650/17/06/12/3331814/170612_3331814_En_un_minuto__Padres_y_madres_solteros_tendr_1497306770_800.mp4"
+
 	
 	//$m3u8FuenteUrls = 'http://vmscdn-download.s3.amazonaws.com/videos_mcm/variant/' . $id . '.m3u8';
 	if (enString($this->web_descargada, 'http://playvideo.univision.com/media/variant1/')) {
@@ -211,30 +221,38 @@ function univisionID($id) {
 	dbug_($m3u8FuenteUrls);
 	
 	$m3u8FuenteUrls = CargaWebCurl($m3u8FuenteUrls);
+	
+	$calidadesM3U8 = array(6000, 4500, 3400, 2250, 1500, 750, 350);
+	$urls = array();
 
-	if (preg_match_all('@(http://.*media.*?)_([0-9]{3,4}).m3u8@', $m3u8FuenteUrls, $matches)) {
+	// http://h.univision.com/media/7/17/03/24/3302448/170324_3302448_Capitulo_1___321Clarissa__las_duras_criticas_1490635969_6000.m3u8
+	$modo1 = preg_match_all('@(https?://.*media.*?)_([0-9]{3,4})\.m3u8@', $m3u8FuenteUrls, $matches);
+	$modo2 = preg_match_all('@(https?://.*media.*?)_([0-9]{3,4})\.mp4@', $this->web_descargada, $matches);
+	if ($modo1 || $modo2) {
 		dbug_r($matches);
 		
-		$calidadesM3U8 = array(6000, 4500, 3400, 2250, 1500, 750, 350);
-
-		$urls = array();
 		for ($i = 0, $i_t = count($matches[0]); $i < $i_t; $i++) {
 			if (!in_array($matches[2][$i], $calidadesM3U8)) {
-				$urls[] = array($matches[0][$i], $matches[2][$i]);
+				$url = $matches[0][$i];
+				if ($modo2)
+					$url = preg_replace('@http.+/media/@', 'http://h.univision.com/media/', $url);
+				$urls[] = array($url, $matches[2][$i]);
 			}
 		}
 		foreach ($calidadesM3U8 as $calidad) {
-			$urls[] = array($matches[1][0].'_'.$calidad.'.m3u8', $calidad);
+			$url = $matches[1][0].'_'.$calidad.'.m3u8';
+			if ($modo2)
+				$url = preg_replace('@http.+/media/@', 'http://h.univision.com/media/', $url);
+			$urls[] = array($url, $calidad);
 		}
-		$urls = sortmulti($urls, 1, 'asc');
 		$urls[] = array($matches[1][0] . '_800.mp4', 800);
 		//$calidades = array(2000, 1200, 810, 800, 510, 500, 270, 150);
-		
-		$urls = array_reverse($urls);
 	} else {
-		dbug("fail");
+		dbug("No se encuentra por m3u8. fail calidades altas.");
 	}
 
+	$urls = sortmulti($urls, 1, 'asc');
+	$urls = array_reverse($urls);
 
 	$urls_length = count($urls);
 	for ($i = 0; $i < $urls_length; $i++) {
