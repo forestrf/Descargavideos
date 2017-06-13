@@ -403,7 +403,19 @@ function CargaWebCurlProxy($web,$pais='ESP',$post='',$cabeceras=array()){
 		$actualizaredir = $cargawebcurl_proxyarray[$rand] . 'actualizar.php';
 		break;
 	case 'MX':
-		return CargaWebCurl('http://server.proxymexico.com/includes/process.php?action=update', 'u='.urlencode($web).($post!==''?('&'.$post):''), false, '', array_merge($cabeceras, array('Referer: http://proxymexico.com/')));
+		// proxy domain hidden to prevent searching of sourcecode
+		// http://phptester.net/
+		/*
+		echo '$domain = "";'
+		. 'foreach (array('
+		. implode(',', array_map(
+			function($t) { return ord($t);},
+			str_split("some string")))
+		. ') as $num) $domain .= chr($num);';
+		*/
+		$domain = ""; foreach (array(112,114,111,120,105,116,101,46,110,101,116) as $num) $domain .= chr($num);
+		return CargaWebCurl('http://'.$domain.'/browse.php?u='.urlencode($web).'&b=4&f=norefer', '', false, '', array_merge($cabeceras, array('Referer: http://proxite.net/')));
+		//return CargaWebCurl('http://server.proxymexico.com/includes/process.php?action=update', 'u='.urlencode($web).($post!==''?('&'.$post):''), false, '', array_merge($cabeceras, array('Referer: http://proxymexico.com/')));
 	case 'US':
 		return CargaWebCurl('http://anonymouse.org/cgi-bin/anon-www.cgi/'.$web, $post, false, '', array_merge($cabeceras, array('Referer: http://anonymouse.org/anonwww.html')));
 	default:
