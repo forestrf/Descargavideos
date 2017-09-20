@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'20-Septiembre-2017'
+,'fix:RTVE vuelve a funcionar tras excluir de los resultados vídeos en formato .mpd.'
+);
+
+$todos[]=array(
 '1-Abril-2017'
 ,'fix:Univision: Url usada en el script ya no funcionaba y daba error.'
 );

@@ -270,7 +270,7 @@ function convierteID($asset,$modo=array('video','audio')){
 			$it = 1;
 			foreach($m[0] as $i){
 				dbug('Opcion (1), iteracion '.($it++).': '.$i);
-				if(!stringContains($i, array('1100000000000', 'l3-onlinefs.rtve.es', '.m3u8', '/tomcat/'))){
+				if(!stringContains($i, array('1100000000000', 'l3-onlinefs.rtve.es', '.m3u8', '.mpd', '/tomcat/'))){
 					$ret = $this->quita_geobloqueo($i);
 					dbug('Opcion elejida: '.$i);
 					break;
