@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'23-Septiembre-2017'
+,'fix:Univisión: Cambio para detectar de nuevo las urls de los archivos .m3u8 que tienen el listado de calidades.'
+);
+
+$todos[]=array(
 '20-Septiembre-2017'
 ,'fix:RTVE vuelve a funcionar tras excluir de los resultados vídeos en formato .mpd.'
 );

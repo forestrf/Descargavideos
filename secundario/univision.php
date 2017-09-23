@@ -199,8 +199,9 @@ function univisionID($id) {
 
 	
 	//$m3u8FuenteUrls = 'http://vmscdn-download.s3.amazonaws.com/videos_mcm/variant/' . $id . '.m3u8';
-	if (enString($this->web_descargada, 'http://playvideo.univision.com/media/variant1/')) {
-		$m3u8FuenteUrls = desde1a2($this->web_descargada, 'http://playvideo.univision.com/media/variant1/', '.m3u8') . '.m3u8';
+	if (preg_match('@https?://(?:playvideo\.univision\.com|playvideo-univision\.akamaized\.net)(/media/variant[0-9]+/(.+?)\.m3u8)@', $this->web_descargada, $matches)) {
+		dbug_r($matches);
+		$m3u8FuenteUrls = 'http://playvideo.univision.com' . $matches[1];
 	} else {
 		$bruteforceTimestamp = entre1y2($this->web_descargada, '<meta itemprop="uploadDate" content="', '"');
 		dbug_($bruteforceTimestamp);
@@ -227,7 +228,7 @@ function univisionID($id) {
 
 	// http://h.univision.com/media/7/17/03/24/3302448/170324_3302448_Capitulo_1___321Clarissa__las_duras_criticas_1490635969_6000.m3u8
 	$modo1 = preg_match_all('@(https?://.*media.*?)_([0-9]{3,4})\.m3u8@', $m3u8FuenteUrls, $matches);
-	$modo2 = preg_match_all('@(https?://.*media.*?)_([0-9]{3,4})\.mp4@', $this->web_descargada, $matches);
+	$modo2 = !$modo1 && preg_match_all('@(https?://.*media.*?)_([0-9]{3,4})\.mp4@', $this->web_descargada, $matches);
 	if ($modo1 || $modo2) {
 		dbug_r($matches);
 		
