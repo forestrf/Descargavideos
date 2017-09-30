@@ -123,6 +123,12 @@ http://dst.infinigraph.com/kraken/js/kraken-view-univision.js?1490794362008
 https://usaplusauth.univision.com/api/v1/video-auth/url-signature-token?url=https://playvideo-univision.akamaized.net/media/650/17/06/12/3331814/170612_3331814_En_un_minuto__Padres_y_madres_solteros_tendr_1497306770_800.mp4
 
 
+http://www.univision.com/novelas/enamorandome-de-ramon/enamorandome-de-ramon-capitulo-28-video
+http://www.univision.com/novelas/enamorandome-de-ramon/enamorandome-de-ramon-capitulo-28-video/embed
+https://playvideo-univision.akamaized.net/media/variant2/3368485_1505802542.m3u8
+http://h-univision.akamaized.net/media/1574/17/09/13/3368485/170913_3368485_Enamorandome_de_Ramon_Capitulo_28_1505793610_6000.m3u8
+
+
 */
 
 class Univision extends cadena{
@@ -135,22 +141,33 @@ function calculaMovil() {
 }
 
 function calcula() {
-	if (enString($this->web_descargada, 'video_id=')) {
-		$id = entre1y2($this->web_descargada, 'video_id=', ',');
-	} elseif (enString($this->web_descargada, 'fw_video_asset_id')) {
-		preg_match("@fw_video_asset_id.*?([0-9]+)@", $this->web_descargada, $match);
-		$id = $match[1];
-	} elseif (enString($this->web_descargada, 'videoEmbedCode')) {
-		preg_match("@videoEmbedCode.*?([0-9]+)@", $this->web_descargada, $match);
-		$id = $match[1];
-	} elseif (enString($this->web_descargada, 'data-video="extId:')) {
-		$id = entre1y2($this->web_descargada, 'data-video="extId:', '"');
-	} else {
-		return;
+	$id = $this->sacaID();
+	if ($id === false && !enString($this->web, '/embed')) {
+		dbug("id no encontrada en la web descargada, probando /embed");
+		// Concatenar la web entera con el embed: web entera tiene la imagen y el título, mientras que el embed tiene el vídeo
+		$this->web_descargada .= CargaWebCurl($this->web . '/embed');
+		$id = $this->sacaID();
 	}
+	if ($id === false) return;
 
 	dbug('id=' . $id);
 	$this->univisionID($id);
+}
+
+function sacaID() {
+	if (enString($this->web_descargada, 'video_id=')) {
+		return entre1y2($this->web_descargada, 'video_id=', ',');
+	} elseif (enString($this->web_descargada, 'fw_video_asset_id')) {
+		preg_match("@fw_video_asset_id.*?([0-9]+)@", $this->web_descargada, $match);
+		return $match[1];
+	} elseif (enString($this->web_descargada, 'videoEmbedCode')) {
+		preg_match("@videoEmbedCode.*?([0-9]+)@", $this->web_descargada, $match);
+		return $match[1];
+	} elseif (enString($this->web_descargada, 'data-video="extId:')) {
+		return entre1y2($this->web_descargada, 'data-video="extId:', '"');
+	} else {
+		return false;
+	}
 }
 
 function calculaUVideos() {

@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'30-Septiembre-2017'
+,'fix:Univisión: Algunos vídeos sólo tienen la información necesaria en el modo de reproductor embedido.'
+);
+
+$todos[]=array(
 '23-Septiembre-2017'
 ,'fix:Univisión: Cambio para detectar de nuevo las urls de los archivos .m3u8 que tienen el listado de calidades.'
 );
