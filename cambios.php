@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'5-Noviembre-2017'
+,'fix:CMMedia vuelve a funcionar tras adaptarse al nuevo reproductor de vídeo de su web.'
+);
+
+$todos[]=array(
 '30-Septiembre-2017'
 ,'fix:Univisión: Algunos vídeos sólo tienen la información necesaria en el modo de reproductor embedido.'
 );
