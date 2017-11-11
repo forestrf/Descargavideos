@@ -115,7 +115,7 @@ else{
 	
 	if(enString($this->web_descargada,"og:image")){
 		$p=strpos($this->web_descargada,"og:image");
-		$imagen=entre1y2_a($this->web_descargada, 'content="', '"');
+		$imagen=entre1y2_a($this->web_descargada, $p, 'content="', '"');
 	}
 	else
 		$imagen='http://'.DOMINIO.'/canales/canalsur.png';

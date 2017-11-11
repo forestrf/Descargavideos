@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'11-Noviembre-2017'
+,'fix:Imágenes de Canalsur desmontaban la página al no ser encontradas.'
+);
+
+$todos[]=array(
 '5-Noviembre-2017'
 ,'fix:CMMedia vuelve a funcionar tras adaptarse al nuevo reproductor de vídeo de su web.'
 );
