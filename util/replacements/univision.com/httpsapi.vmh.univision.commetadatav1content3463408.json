@@ -1,0 +1,230 @@
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 7241
+Connection: keep-alive
+Date: Mon, 15 Jan 2018 22:45:52 GMT
+x-amzn-RequestId: d7228365-fa45-11e7-a34b-ed6a1c96fd59
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Headers: Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token
+Access-Control-Allow-Methods: GET,OPTIONS
+X-Amzn-Trace-Id: Root=1-5a5d2f20-a1fd9cba4c421430bada2348
+X-Cache: Miss from cloudfront
+Via: 1.1 aa57b2c7382ffd8bb60b988a1acdcb61.cloudfront.net (CloudFront)
+X-Amz-Cf-Id: PU1l713pznPBM3cmGDL6Vy5npl1HaeT-ouuCteGj-iTu50iYMOotvw==
+
+{
+  "id" : "univision-3463408",
+  "createdDate" : "2018-01-10T23:53:11+00:00",
+  "modifiedDate" : "2018-01-11T03:15:29+00:00",
+  "videoMetadata" : {
+    "photoVideoMetadataIPTC" : {
+      "identifier" : "3463408",
+      "dateCreated" : "2018-01-02T22:16:38+00:00",
+      "dateReleased" : "2018-01-11T05:00:00+00:00",
+      "episode" : {
+        "number" : 102
+      },
+      "publicationEvents" : [ {
+        "date" : "2018-03-06T05:00:00+00:00",
+        "identifier" : "https://schema.org/expires"
+      }, {
+        "date" : "2018-01-11T00:00:00+00:00",
+        "identifier" : "https://api.vmh.univision.com/cv/v1/codes/dates/broadcast"
+      } ],
+      "ratings" : [ {
+        "ratingValue" : "TV-14",
+        "ratingSourceLink" : "https://www.fcc.gov/vchip"
+      } ],
+      "season" : {
+        "number" : 1
+      },
+      "series" : {
+        "name" : {
+          "es" : "Enamorándome de Ramón"
+        },
+        "identifier" : "https://api.vmh.univision.com/cv/v1/codes/series/1574"
+      },
+      "registryEntries" : [ {
+        "assetIdentifier" : "EP028364830102",
+        "registryIdentifier" : "http://www.gracenote.com/tms-id",
+        "role" : "https://api.vmh.univision.com/cv/v1/codes/registry-roles/gracenote/tms-id"
+      }, {
+        "assetIdentifier" : "ENRA000000000",
+        "registryIdentifier" : "http://www.anvato.com/solutions/media-content-platform/",
+        "role" : "https://api.vmh.univision.com/cv/v1/codes/registry-roles/mcp/prg-external-id"
+      }, {
+        "assetIdentifier" : "enamorandome-de-ramon-capitulo-102",
+        "registryIdentifier" : "http://www.anvato.com/solutions/media-content-platform/",
+        "role" : "https://api.vmh.univision.com/cv/v1/codes/registry-roles/seo/friendly-key"
+      }, {
+        "assetIdentifier" : "ENRA100113003",
+        "registryIdentifier" : "http://www.anvato.com/solutions/media-content-platform/",
+        "role" : "https://api.vmh.univision.com/cv/v1/codes/registry-roles/mcp/external-id"
+      } ],
+      "description" : {
+        "es" : "Margarita y Antonio se casan acompañados de sus seres queridos en una hermosa boda. Sofía está decidida a conquistar a Ramón. Fabiola da a luz a una hermosa niña."
+      },
+      "headline" : {
+        "es" : "Enamorándome de Ramón Capítulo 102"
+      },
+      "keywords" : [ "Enamorándome de Ramón Capítulo 102", "Esmeralda Pimentel", "José Ron", "Marisol del Olmo", "Marcelo Córdoba", "Nuria Bages", "novela", "Enamorándome de Ramón", "Fabiola", "Ramón", "telenovela", "capítulos completos" ],
+      "language" : "es",
+      "title" : {
+        "es" : "Enamorándome de Ramón Capítulo 102"
+      },
+      "transcriptLinks" : [ {
+        "link" : "http://vmsmedia.storage.googleapis.com/iupl/A05/145/A05145B6CACB47A4B17583D4B7107731.scc",
+        "linkQualifier" : "https://api.vmh.univision.com/cv/v1/codes/transcripts/scc/es",
+        "linkQuals_fmg" : {
+          "contentType" : "SCC",
+          "language" : "es"
+        }
+      }, {
+        "link" : "http://vmsmedia.storage.googleapis.com/iupl/D74/2A7/D742A70E20ED4169BFE9B0A0FAB65868.xml",
+        "linkQualifier" : "https://api.vmh.univision.com/cv/v1/codes/transcripts/smpte-tt/es",
+        "linkQuals_fmg" : {
+          "contentType" : "SMPTE-TT",
+          "language" : "es"
+        }
+      }, {
+        "link" : "http://vmsmedia.storage.googleapis.com/iupl/D74/2A7/D742A70E20ED4169BFE9B0A0FAB65868.xml",
+        "linkQualifier" : "https://api.vmh.univision.com/cv/v1/codes/transcripts/dfxp/es",
+        "linkQuals_fmg" : {
+          "contentType" : "DFXP",
+          "language" : "es"
+        }
+      }, {
+        "link" : "https://vmscdn-download.storage.googleapis.com/tmp/synd/0DD70987F0AF4496B8D6E67CE7560996",
+        "linkQualifier" : "https://api.vmh.univision.com/cv/v1/codes/transcripts/vtt/es",
+        "linkQuals_fmg" : {
+          "contentType" : "VTT",
+          "language" : "es"
+        }
+      } ],
+      "snapshotLinks" : [ {
+        "link" : "https://vmscdn-download.storage.googleapis.com/iupl/31B/0AF/31B0AFD0AB6A422EA7136CF1983FB816.jpg",
+        "role" : "preview"
+      } ],
+      "cloudinaryLink" : {
+        "link" : "https://res.cloudinary.com/univision-media/image/upload/v1515635704/prod/3463408.jpg"
+      },
+      "contributors" : [ {
+        "name" : {
+          "es" : "Marisol del Olmo"
+        },
+        "roles" : [ "Actor" ]
+      }, {
+        "name" : {
+          "es" : "Nuria Bages"
+        },
+        "roles" : [ "Actor" ]
+      }, {
+        "name" : {
+          "es" : "José Ron"
+        },
+        "roles" : [ "Actor" ]
+      }, {
+        "name" : {
+          "es" : "Esmeralda Pimentel"
+        },
+        "roles" : [ "Actor" ]
+      }, {
+        "name" : {
+          "es" : "Marcelo Córdoba"
+        },
+        "roles" : [ "Actor" ]
+      }, {
+        "name" : {
+          "es" : "Lucero Suárez"
+        },
+        "roles" : [ "Director" ]
+      } ],
+      "copyrightYear" : 2018,
+      "copyrightOwners" : [ {
+        "name" : {
+          "es" : "© Televisa"
+        }
+      } ],
+      "supplier" : {
+        "name" : {
+          "es" : "Televisa"
+        }
+      },
+      "fileDuration" : 2599,
+      "frameSize" : {
+        "widthPixels" : 1920,
+        "heightPixels" : 1080
+      },
+      "videoBitrate" : 146969
+    },
+    "photoVideoMetadata_fmg" : {
+      "company" : "univision",
+      "network" : "univision",
+      "networks" : [ "univision" ],
+      "videoType" : "long-form",
+      "tvssDomain" : "https://usprauth.univision.com",
+      "accessRules" : [ {
+        "name" : "US/PTO.RICO",
+        "access" : "private",
+        "match" : "any",
+		"conditions" : [ {
+          "scope" : "country",
+          "value" : "US"
+        }, {
+          "scope" : "country",
+          "value" : "PR"
+        }, {
+          "scope" : "country",
+          "value" : "ES"
+        } ]
+      }, {
+        "name" : "15 day authentication rule",
+        "access" : "public",
+        "match" : "all",
+        "conditions" : [ {
+          "scope" : "period",
+          "value" : "publish_date+0:15"
+        } ]
+      } ],
+      "authRequired" : false,
+      "adConfig" : {
+        "contextBased" : "Deny",
+        "inVideo" : "Allow",
+        "inStream" : "Allow",
+        "hasPreRoll" : "Allow",
+        "hasPostRoll" : "Deny"
+      },
+      "adSlots" : [ {
+        "timeSegment" : 821,
+        "duration" : 2
+      }, {
+        "timeSegment" : 1232,
+        "duration" : 2
+      }, {
+        "timeSegment" : 1506,
+        "duration" : 2
+      }, {
+        "timeSegment" : 1751,
+        "duration" : 2
+      }, {
+        "timeSegment" : 2112,
+        "duration" : 2
+      }, {
+        "timeSegment" : 2372,
+        "duration" : 2
+      } ],
+      "titleManagement" : {
+        "tvShowSeason" : "1",
+        "tvShow" : "Enamorándome de Ramón"
+      },
+      "videoSubType" : "Episode",
+      "adContentType" : "Entertainment",
+      "advertiser" : "",
+      "is360" : false
+    }
+  },
+  "source" : {
+    "bucket" : "vmh-prod-xml-storage",
+    "file" : "3463408.xml"
+  }
+}

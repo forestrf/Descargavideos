@@ -98,6 +98,9 @@ https://usaplusauth.univision.com/api/v1/video-auth/url-signature-token?url=http
 http://playvideo.univision.com/media/7/17/03/24/3302448/170324_3302448_Capitulo_1___321Clarissa__las_duras_criticas_1490635969_800.mp4?UNIVOD=exp=1490798353~hmac=931aa6ebf4594adda3dcf7448f7064cd0ec06cb43dd276176e64ed5cbc3ed17b
 http://h.univision.com/media/7/17/03/24/3302448/170324_3302448_Capitulo_1___321Clarissa__las_duras_criticas_1490635969_800.mp4
 
+https://usaplusauth.univision.com/api/v1/video-auth/url-signature-token?url=http://playvideo.univision.com/media/7/17/03/24/3302448/170324_3302448_Capitulo_1___321Clarissa__las_duras_criticas_1490635969_800.mp4
+http://playvideo.univision.com/media/7/17/03/24/3302448/170324_3302448_Capitulo_1___321Clarissa__las_duras_criticas_1490635969_800.mp4?UNIVOD=exp=1516067324~hmac=3ce1c159a5efd5163724db982ecece9fd8748f7fc93aec45dd78e8ec33599061
+
 #EXTM3U
 #EXT-X-MEDIA:TYPE=CLOSED-CAPTIONS,GROUP-ID="cc",LANGUAGE="es",NAME="Spanish",AUTOSELECT=YES,INSTREAM-ID="CC1"
 #EXT-X-STREAM-INF:PROGRAM-ID=1, BANDWIDTH=414000
@@ -148,6 +151,9 @@ function calcula() {
 		$this->web_descargada .= CargaWebCurl($this->web . '/embed');
 		$id = $this->sacaID();
 	}
+	if ($id === false) {
+		// https://api.prizma.tv/videosForVideoContext?partner_id=PB-5764553&user_id=0160fbf8c8fd000bdb47537025e00305f006000d0086e&session_id=1516055873791&ext_id=3463408&url=https%3A%2F%2Fwww.univision.com%2Fnovelas%2Fenamorandome-de-ramon%2Fenamorandome-de-ramon-capitulo-102-video%23&title=Enamor%C3%A1ndome%20de%20Ram%C3%B3n%20Cap%C3%ADtulo%20102&description=Margarita%20y%20Antonio%20se%20casan%20acompa%C3%B1ados%20de%20sus%20seres%20queridos%20en%20una%20hermosa%20boda.%20Sof%C3%ADa%20est%C3%A1%20decidida%20a%20conquistar%20a%20Ram%C3%B3n.%20Fabiola%20da%20a%20luz%20a%20una%20hermosa%20ni%C3%B1a.&num=30
+	}
 	if ($id === false) return;
 
 	dbug('id=' . $id);
@@ -165,6 +171,8 @@ function sacaID() {
 		return $match[1];
 	} elseif (enString($this->web_descargada, 'data-video="extId:')) {
 		return entre1y2($this->web_descargada, 'data-video="extId:', '"');
+	} elseif (enString($this->web_descargada, '"mcpProviderId": "')) {
+		return entre1y2($this->web_descargada, '"mcpProviderId": "', '"');
 	} else {
 		return false;
 	}
@@ -184,8 +192,21 @@ function calculaUVideos() {
 	$this->univisionID($id);
 }
 
+/*
+https://usaplusauth.univision.com/api/v3/video-auth/url-signature-tokens?mcpids=3302448
+
+{
+  "data" : [ {
+    "renditionUrl" : "https://playvideo-univision.akamaized.net/media/variant1/3302448_1503632309.m3u8?UNIVOD=exp=1516065662~hmac=304b622dc0c10fe810e2aff2c71f49d7393237ccd0f55648ac665802bc7e7267",
+    "fallbackRenditionUrl" : "https://playvideo-univision.akamaized.net/media/7/17/03/24/3302448/170324_3302448_Capitulo_1___321Clarissa__las_duras_criticas_1490635969_800.mp4?UNIVOD=exp=1516065662~hmac=c3c530e77386d5bc81a14e5f06677113c20f4b9c0c71ea8b6449ebca7afe63a7",
+    "videoId" : "univision-3302448",
+    "mcpProviderId" : "3302448"
+  } ]
+}
+ */
+
 function univisionID($id) {
-	dbug('univisionID');
+	dbug('univisionID. ID=' . $id);
 
 	$obtenido = array('enlaces' => array());
 
@@ -200,45 +221,73 @@ function univisionID($id) {
 
 	$urls = array();
 	
-	//urls en formato: /120615_2708697_El_Talisman_Capitulo_98_99___Ultimo_capitulo_1339800465_2000.mp4
-
-	// http://vmscdn-download.s3.amazonaws.com/videos_mcm/variant/2912557.m3u8
-	// http://playvideo.univision.com/media/variant1/3302448_1490744755.m3u8
-	// https://usaplusauth.univision.com/api/v1/video-auth/url-signature-token?url=http://playvideo.univision.com/media/variant1/3302448_1490744755.m3u8
-	// {"signature":"http://playvideo.univision.com/media/variant1/3302448_1490744755.m3u8?UNIVOD=exp=1490798353~hmac=f53c406530265838ac241c1c1bc989da8beef666f6236fa598825d17c72f6148"}
-	// {id}_{timestamp}.m3u8/mp4
 	
-	// http://h.univision.com/media/650/17/06/12/3331814/170612_3331814_En_un_minuto__Padres_y_madres_solteros_tendr_1497306770_800.mp4
-	// https://playvideo-univision.akamaized.net/media/650/17/06/12/3331814/170612_3331814_En_un_minuto__Padres_y_madres_solteros_tendr_1497306770_800.mp4
-	
-	// data-rendition-url="https://playvideo-univision.akamaized.net/media/variant1/3331814_1497307069.m3u8"
-	// data-fallback-rendition-url="https://playvideo-univision.akamaized.net/media/650/17/06/12/3331814/170612_3331814_En_un_minuto__Padres_y_madres_solteros_tendr_1497306770_800.mp4"
-
-	
-	//$m3u8FuenteUrls = 'http://vmscdn-download.s3.amazonaws.com/videos_mcm/variant/' . $id . '.m3u8';
-	if (preg_match('@https?://(?:playvideo\.univision\.com|playvideo-univision\.akamaized\.net)(/media/variant[0-9]+/(.+?)\.m3u8)@', $this->web_descargada, $matches)) {
-		dbug_r($matches);
-		$m3u8FuenteUrls = 'http://playvideo.univision.com' . $matches[1];
-	} else {
-		$bruteforceTimestamp = entre1y2($this->web_descargada, '<meta itemprop="uploadDate" content="', '"');
-		dbug_($bruteforceTimestamp);
-		$bruteforceTimestamp = strtotime($bruteforceTimestamp);
-		dbug_($bruteforceTimestamp);
-		// $bruteforceTimestamp es similar a uploadDate, pero no es exactamente la misma, por lo que habría que recorrer todas las timestamp cercanas para encontrar el número
-		$m3u8FuenteUrls = 'http://playvideo.univision.com/media/variant1/'.$id.'_'.$bruteforceTimestamp.'.m3u8';
+	if (true) {
+		/*
+		// https://usaplusauth.univision.com/api/v3/video-auth/url-signature-tokens?mcpids=3302448
+		{
+		  "data" : [ {
+		    "renditionUrl" : "https://playvideo-univision.akamaized.net/media/variant1/3302448_1503632309.m3u8?UNIVOD=exp=1516065662~hmac=304b622dc0c10fe810e2aff2c71f49d7393237ccd0f55648ac665802bc7e7267",
+		    "fallbackRenditionUrl" : "https://playvideo-univision.akamaized.net/media/7/17/03/24/3302448/170324_3302448_Capitulo_1___321Clarissa__las_duras_criticas_1490635969_800.mp4?UNIVOD=exp=1516065662~hmac=c3c530e77386d5bc81a14e5f06677113c20f4b9c0c71ea8b6449ebca7afe63a7",
+		    "videoId" : "univision-3302448",
+		    "mcpProviderId" : "3302448"
+		  } ]
+		}
+		*/
+		$jsonAuthenticated = CargaWebCurl('https://usaplusauth.univision.com/api/v3/video-auth/url-signature-tokens?mcpids=' . entre1y2($this->web_descargada, '"mcpProviderId": "', '"'));
+		dbug_($jsonAuthenticated);
+		$jsonAuthenticated = json_decode($jsonAuthenticated, true);
+		dbug_r($jsonAuthenticated);
+		$m3u8FuenteUrls = $jsonAuthenticated['data'][0]['renditionUrl'];
+		$m3u8FuenteUrls = CargaWebCurl($m3u8FuenteUrls);
 	}
-	dbug('$m3u8FuenteUrls = ' . $m3u8FuenteUrls);
-	$m3u8FuenteUrls = 'https://usaplusauth.univision.com/api/v1/video-auth/url-signature-token?url=' . $m3u8FuenteUrls;
-
-	$m3u8FuenteUrls = CargaWebCurl($m3u8FuenteUrls);
-	dbug_($m3u8FuenteUrls);
 	
-	$m3u8FuenteUrls = json_decode($m3u8FuenteUrls, true);
-	dbug_r($m3u8FuenteUrls);
-	$m3u8FuenteUrls = $m3u8FuenteUrls['signature'];
-	dbug_($m3u8FuenteUrls);
+	if (!isset($m3u8FuenteUrls) || strpos($m3u8FuenteUrls, '.m3u8') === false) {
+		//urls en formato: /120615_2708697_El_Talisman_Capitulo_98_99___Ultimo_capitulo_1339800465_2000.mp4
 	
-	$m3u8FuenteUrls = CargaWebCurl($m3u8FuenteUrls);
+		// http://vmscdn-download.s3.amazonaws.com/videos_mcm/variant/2912557.m3u8
+		// http://playvideo.univision.com/media/variant1/3302448_1490744755.m3u8
+		// https://usaplusauth.univision.com/api/v1/video-auth/url-signature-token?url=http://playvideo.univision.com/media/variant1/3302448_1490744755.m3u8
+		// {"signature":"http://playvideo.univision.com/media/variant1/3302448_1490744755.m3u8?UNIVOD=exp=1490798353~hmac=f53c406530265838ac241c1c1bc989da8beef666f6236fa598825d17c72f6148"}
+		// {id}_{timestamp}.m3u8/mp4
+		
+		// http://h.univision.com/media/650/17/06/12/3331814/170612_3331814_En_un_minuto__Padres_y_madres_solteros_tendr_1497306770_800.mp4
+		// https://playvideo-univision.akamaized.net/media/650/17/06/12/3331814/170612_3331814_En_un_minuto__Padres_y_madres_solteros_tendr_1497306770_800.mp4
+		
+		// data-rendition-url="https://playvideo-univision.akamaized.net/media/variant1/3331814_1497307069.m3u8"
+		// data-fallback-rendition-url="https://playvideo-univision.akamaized.net/media/650/17/06/12/3331814/170612_3331814_En_un_minuto__Padres_y_madres_solteros_tendr_1497306770_800.mp4"
+	
+		
+		//$m3u8FuenteUrls = 'http://vmscdn-download.s3.amazonaws.com/videos_mcm/variant/' . $id . '.m3u8';
+		
+		if (preg_match('@https?://(?:playvideo\.univision\.com|playvideo-univision\.akamaized\.net)(/media/variant[0-9]+/(.+?)\.m3u8)@', $this->web_descargada, $matches)) {
+			dbug_r($matches);
+			$m3u8FuenteUrls = 'http://playvideo.univision.com' . $matches[1];
+		} else {
+			/*
+			// No va
+			$bruteforceTimestamp = entre1y2($this->web_descargada, '<meta itemprop="uploadDate" content="', '"');
+			dbug_($bruteforceTimestamp);
+			$bruteforceTimestamp = strtotime($bruteforceTimestamp);
+			dbug_($bruteforceTimestamp);
+			// $bruteforceTimestamp es similar a uploadDate, pero no es exactamente la misma, por lo que habría que recorrer todas las timestamp cercanas para encontrar el número
+			$m3u8FuenteUrls = 'http://playvideo.univision.com/media/variant1/'.$id.'_'.$bruteforceTimestamp.'.m3u8';
+			*/
+			return;
+		}
+		dbug('$m3u8FuenteUrls = ' . $m3u8FuenteUrls);
+		$m3u8FuenteUrls = 'https://usaplusauth.univision.com/api/v1/video-auth/url-signature-token?url=' . $m3u8FuenteUrls;
+	
+		$m3u8FuenteUrls = CargaWebCurl($m3u8FuenteUrls);
+		dbug_($m3u8FuenteUrls);
+		
+		$m3u8FuenteUrls = json_decode($m3u8FuenteUrls, true);
+		dbug_r($m3u8FuenteUrls);
+		$m3u8FuenteUrls = $m3u8FuenteUrls['signature'];
+		dbug_($m3u8FuenteUrls);
+		
+		$m3u8FuenteUrls = CargaWebCurl($m3u8FuenteUrls);
+	}
 	
 	$calidadesM3U8 = array(6000, 4500, 3400, 2250, 1500, 750, 350);
 	$urls = array();
