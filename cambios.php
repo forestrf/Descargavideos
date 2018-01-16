@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'16-Enero-2018'
+,'fix:Vídeos públicos de Univisión vuelven a funcionar, pero no los que requieren que te identifiques como usuario.'
+);
+
+$todos[]=array(
 '11-Noviembre-2017'
 ,'fix:Imágenes de Canalsur desmontaban la página al no ser encontradas.'
 );
