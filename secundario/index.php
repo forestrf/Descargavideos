@@ -130,6 +130,8 @@ Función del objeto de la class a llamar
 */
 require_once 'cadenas.php';
 
+//Siempre ocultar avisos rápidos
+define('IGNORA_AVISO_RAPIDO', true);
 
 //hora de descargar y mostrar el resultado
 //AVERIGUAR SERVIDOR
