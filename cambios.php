@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'17-Enero-2018'
+,'fix:Vídeos con llave de Univisión vuelven a funcionar.'
+);
+
+$todos[]=array(
 '16-Enero-2018'
 ,'fix:Vídeos públicos de Univisión vuelven a funcionar, pero no los que requieren que te identifiques como usuario.'
 );

@@ -224,20 +224,58 @@ function univisionID($id) {
 	
 	if (true) {
 		/*
-		// https://usaplusauth.univision.com/api/v3/video-auth/url-signature-tokens?mcpids=3302448
-		{
-		  "data" : [ {
-		    "renditionUrl" : "https://playvideo-univision.akamaized.net/media/variant1/3302448_1503632309.m3u8?UNIVOD=exp=1516065662~hmac=304b622dc0c10fe810e2aff2c71f49d7393237ccd0f55648ac665802bc7e7267",
-		    "fallbackRenditionUrl" : "https://playvideo-univision.akamaized.net/media/7/17/03/24/3302448/170324_3302448_Capitulo_1___321Clarissa__las_duras_criticas_1490635969_800.mp4?UNIVOD=exp=1516065662~hmac=c3c530e77386d5bc81a14e5f06677113c20f4b9c0c71ea8b6449ebca7afe63a7",
-		    "videoId" : "univision-3302448",
-		    "mcpProviderId" : "3302448"
-		  } ]
-		}
+Ly8gaHR0cHM6Ly91c2FwbHVzYXV0aC51bml2aXNpb24uY29tL2FwaS92My92aWRlby1hdXRoL3Vy
+bC1zaWduYXR1cmUtdG9rZW5zP21jcGlkcz0zMzAyNDQ4CnsKICAiZGF0YSIgOiBbIHsKICAgICJy
+ZW5kaXRpb25VcmwiIDogImh0dHBzOi8vcGxheXZpZGVvLXVuaXZpc2lvbi5ha2FtYWl6ZWQubmV0
+L21lZGlhL3ZhcmlhbnQxLzMzMDI0NDhfMTUwMzYzMjMwOS5tM3U4P1VOSVZPRD1leHA9MTUxNjA2
+NTY2Mn5obWFjPTMwNGI2MjJkYzBjMTBmZTgxMGUyYWZmMmM3MWY0OWQ3MzkzMjM3Y2NkMGY1NTY0
+OGFjNjY1ODAyYmM3ZTcyNjciLAogICAgImZhbGxiYWNrUmVuZGl0aW9uVXJsIiA6ICJodHRwczov
+L3BsYXl2aWRlby11bml2aXNpb24uYWthbWFpemVkLm5ldC9tZWRpYS83LzE3LzAzLzI0LzMzMDI0
+NDgvMTcwMzI0XzMzMDI0NDhfQ2FwaXR1bG9fMV9fXzMyMUNsYXJpc3NhX19sYXNfZHVyYXNfY3Jp
+dGljYXNfMTQ5MDYzNTk2OV84MDAubXA0P1VOSVZPRD1leHA9MTUxNjA2NTY2Mn5obWFjPWMzYzUz
+MGU3NzM4NmQ1YmM4MWExNGU1ZjA2Njc3MTEzYzIwZjRiOWMwYzcxZWE4YjY0NDllYmNhN2FmZTYz
+YTciLAogICAgInZpZGVvSWQiIDogInVuaXZpc2lvbi0zMzAyNDQ4IiwKICAgICJtY3BQcm92aWRl
+cklkIiA6ICIzMzAyNDQ4IgogIH0gXQp9CgovLyBodHRwczovL2F1dGgudW5pdmlzaW9uLmNvbS9h
+cGkvdjIvdmlkZW8tYXV0aC91cmwtc2lnbmF0dXJlLXRva2Vucz9tY3BpZHM9MzMwMjQ0OAp7CiAg
+ImRhdGEiIDogWyB7CiAgICAicmVuZGl0aW9uVXJsIiA6ICJodHRwczovL3BsYXl2aWRlby11bml2
+aXNpb24uYWthbWFpemVkLm5ldC9tZWRpYS92YXJpYW50MS8zMzAyNDQ4XzE1MDM2MzIzMDkubTN1
+OD9VTklWT0Q9ZXhwPTE1MTYyMTY2Njh+aG1hYz0zNmNiNjkwOTEwNzg0YmVmZGJlOTVkYjRiOTY1
+MTAwYjA0ZTQ5NmI5MzczNTE0Zjk4NDc2Y2FlNGQwZWQ1NTcxIiwKICAgICJmYWxsYmFja1JlbmRp
+dGlvblVybCIgOiAiaHR0cHM6Ly9wbGF5dmlkZW8tdW5pdmlzaW9uLmFrYW1haXplZC5uZXQvbWVk
+aWEvNy8xNy8wMy8yNC8zMzAyNDQ4LzE3MDMyNF8zMzAyNDQ4X0NhcGl0dWxvXzFfX18zMjFDbGFy
+aXNzYV9fbGFzX2R1cmFzX2NyaXRpY2FzXzE0OTA2MzU5NjlfODAwLm1wND9VTklWT0Q9ZXhwPTE1
+MTYyMTY2Njh+aG1hYz00NDEwMDI2OGMxMzU3Mzc4ZGU4OWE3M2MwNmJmYjM3Y2NhMWE5YTdjNTZk
+ODA5OWYwY2QyYzQ4MjUwY2Q1NTAxIiwKICAgICJ2aWRlb0lkIiA6ICIwMDAwMDE1Yi0xMGQ3LWQ4
+NzAtYTk3Yi01OGY3ZGNmYzAwMDAiLAogICAgIm1jcFByb3ZpZGVySWQiIDogIjMzMDI0NDgiCiAg
+fSBdCn0KCi8vIGh0dHBzOi8vdXNhcGx1c2F1dGgudW5pdmlzaW9uLmNvbS9hcGkvdjMvdmlkZW8t
+YXV0aC91cmwtc2lnbmF0dXJlLXRva2Vucz9tY3BpZHM9MzQ2NTk1NAp7CiAgInRpbWVzdGFtcCIg
+OiAiMjAxOC0wMS0xN1QxNjo1OTo1Ny4zNTRaIiwKICAic3RhdHVzIiA6IDQwMywKICAiZXJyb3Ii
+IDogIkZvcmJpZGRlbiIsCiAgIm1lc3NhZ2UiIDogIkZvdW5kIHZpZGVvIHJlcXVpcmluZyBhdXRo
+ZW50aWNhdGlvbiBmb3IgaWQ6IHVuaXZpc2lvbi0zNDY1OTU0IiwKICAicGF0aCIgOiAiL2FwaS92
+My92aWRlby1hdXRoL3VybC1zaWduYXR1cmUtdG9rZW5zIgp9CgovLyBodHRwczovL2F1dGgudW5p
+dmlzaW9uLmNvbS9hcGkvdjIvdmlkZW8tYXV0aC91cmwtc2lnbmF0dXJlLXRva2Vucz9tY3BpZHM9
+MzQ2NTk1NAp7CiAgImRhdGEiIDogWyB7CiAgICAicmVuZGl0aW9uVXJsIiA6ICJodHRwczovL3Bs
+YXl2aWRlby11bml2aXNpb24uYWthbWFpemVkLm5ldC9tZWRpYS92YXJpYW50Mi8zNDY1OTU0XzE1
+MTYxNjIxODIubTN1OD9VTklWT0Q9ZXhwPTE1MTYyMTMzMjB+aG1hYz0yZGY1YjU0Y2Y2YjczM2Zl
+ZDk0YzQ0NmEzNmRlMTUwYzg5YTQ3MjA5NjMzZjUyYTA2ZDAxNmQ3ZGIxMDdiYjVkIiwKICAgICJm
+YWxsYmFja1JlbmRpdGlvblVybCIgOiAiaHR0cHM6Ly9wbGF5dmlkZW8tdW5pdmlzaW9uLmFrYW1h
+aXplZC5uZXQvbWVkaWEvMTYwMi8xOC8wMS8wOS8zNDY1OTU0LzE4MDEwOV8zNDY1OTU0X0NhZXJf
+ZW5fVGVudGFjaW9uX0NhcGl0dWxvXzYyXzE1MTYxNDE3NDhfODAwLm1wND9VTklWT0Q9ZXhwPTE1
+MTYyMTMzMjB+aG1hYz0yZDYyZGNkY2UwYTViYjlhMTcwNWE3NmQyMWM4NGZkMGQxMjc5NzU0MjQ2
+ODI2ODc3OWEzOGI1MTRkMjAyZDAyIiwKICAgICJ2aWRlb0lkIiA6ICIwMDAwMDE2MS0wMWIwLWRm
+NDUtYWQ2Ny1mMWIzMmY5ZDAwMDAiLAogICAgIm1jcFByb3ZpZGVySWQiIDogIjM0NjU5NTQiCiAg
+fSBdCn0=
 		*/
-		$jsonAuthenticated = CargaWebCurl('https://usaplusauth.univision.com/api/v3/video-auth/url-signature-tokens?mcpids=' . entre1y2($this->web_descargada, '"mcpProviderId": "', '"'));
+		$jsonAuthenticated = CargaWebCurl('https://usaplusauth.univision.com/api/v3/video-auth/url-signature-tokens?mcpids=' . $id);
 		dbug_($jsonAuthenticated);
 		$jsonAuthenticated = json_decode($jsonAuthenticated, true);
 		dbug_r($jsonAuthenticated);
+		if (isset($jsonAuthenticated["error"])) {
+			$jsonAuthenticated = CargaWebCurl(base64_decode('aHR0cHM6Ly9hdXRoLnVuaXZpc2lvbi5jb20vYXBpL3YyL3ZpZGVvLWF1dGgvdXJsLXNpZ25hdHVyZS10b2tlbnM/bWNwaWRzPQ==') . $id);
+			dbug_($jsonAuthenticated);
+			$jsonAuthenticated = json_decode($jsonAuthenticated, true);
+			dbug_r($jsonAuthenticated);
+		}
 		$m3u8FuenteUrls = $jsonAuthenticated['data'][0]['renditionUrl'];
 		$m3u8FuenteUrls = CargaWebCurl($m3u8FuenteUrls);
 	}
