@@ -339,6 +339,9 @@ input[type="radio"] {
 	background-color: #fff;
 	border: 7px solid #fff;
 }
+.social .elem a.patreon:hover {
+	border: 0 none;
+}
 .social .elem a.background-image:hover {
 	background-color: #fff;
 	border: 0 none;
