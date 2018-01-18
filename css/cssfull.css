@@ -268,7 +268,7 @@ input[type="radio"] {
 #publi_cabecera {
 	text-align: center;
 	display: block;
-	margin: 10px 20px 50px;
+	margin: 20px 20px 50px;
 }
 #cabecera.conresultado #publi_cabecera {
 	margin-bottom: 150px;
@@ -312,17 +312,25 @@ input[type="radio"] {
 	-o-transition: all .5s ease 0s;
 	transition: all .5s ease 0s;
 }
-.social .elem .fb {
+.social .elem a.patreon {
+	background-image: url("/img/become_a_patron_button.png");
+	background-color: #f96854;
+	background-position: center;
+	border: 0 none;
+	width: 200px;
+	height: 38px;
+}
+.social .elem a.fb {
 	background-color: #3B5998;
 	background-position: -48px 0;
 	border: 7px solid #3B5998;
 }
-.social .elem .tt {
+.social .elem a.tt {
 	background-color: #4099ff;
 	background-position: 0 0;
 	border: 7px solid #4099ff;
 }
-.social .elem .gplus {
+.social .elem a.gplus {
 	background-color: #dd4b39;
 	background-position: -24px 0;
 	border: 7px solid #dd4b39;
@@ -330,6 +338,10 @@ input[type="radio"] {
 .social .elem a:hover {
 	background-color: #fff;
 	border: 7px solid #fff;
+}
+.social .elem a.background-image:hover {
+	background-color: #fff;
+	border: 0 none;
 }
 
 /*Posicionar box coment a la izquierda (Necesario en Chrome)*/

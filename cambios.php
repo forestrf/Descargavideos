@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'18-Enero-2018'
+,'add:Patreon.'
+);
+
+$todos[]=array(
 '17-Enero-2018'
 ,'fix:Vídeos con llave de Univisión vuelven a funcionar.'
 );
