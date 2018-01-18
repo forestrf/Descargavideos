@@ -98,7 +98,7 @@ var jdownloader = false;
 						<div class="flechaDer"></div>
 						<span id="ayuda2txt"><?php echo TXT_BUSCA_URL_VIDEO?></span>
 					</div>
-					<!--<span style="background-color:#000;font-size:.8em">Telemundo no funciona hasta nuevo aviso. <a href="http://descargavid.blogspot.com.es/2017/09/actualizacion-personal.html">Por razones personales no dispongo de tiempo para arreglarlo</a></span>-->
+					<!--<span style="background-color:#000;font-size:.8em">Aviso</span>-->
 				</form>
 				
 				<div id="resultado">
@@ -116,20 +116,6 @@ var jdownloader = false;
 <script async src='//go.adversal.com/do?id=9891541'></script></div>
 <!-- End Adversal Code : descargavideos.tv -->
 						</span>
-<!--
-						<span>
-<script type="text/javascript">
-	atOptions = {
-		'key' : 'd6e58797066b3d9d9ff05a16756f9c52',
-		'format' : 'iframe',
-		'height' : 250,
-		'width' : 300,
-		'params' : {}
-	};
-	document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.bnserving.com/d6e58797066b3d9d9ff05a16756f9c52/invoke.js"></scr' + 'ipt>');
-</script>
-						</span>
--->
 					</center>
 				</div>
 				<?php } ?>
