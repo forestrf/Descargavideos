@@ -122,6 +122,7 @@ function URLSDelArrayBrightCove($r, $tipo, &$obtenido_enlaces, $titulo){
 }
 
 function BrightCove_Api($web_descargada, &$obtenido) {
+	dbug("Ejecutando BrightCove_Api");
 	if (preg_match('@(//players.brightcove.net/([0-9]+)/(?:.*videoId=([0-9]+))?.*)"@', $web_descargada, $matches)) {
 		dbug_r($matches);
 		/* Para que la url de la api funcione hay que enviar la cabecera
@@ -144,17 +145,29 @@ function BrightCove_Api($web_descargada, &$obtenido) {
 			$xhr = CargaWebCurl($xhr, '', false, '', Array('Accept: application/json;pk='.$policyKey[1]));
 			dbug_($xhr);
 			$xhr = json_decode($xhr, true);
-			$xhr['sources'] = sortmulti($xhr['sources'], 'avg_bitrate', 'desc');
+			if (isset($xhr['sources'][0]['avg_bitrate'])) {
+				$xhr['sources'] = sortmulti($xhr['sources'], 'avg_bitrate', 'desc');
+			}
 			dbug_r($xhr);
 			
 			foreach($xhr['sources'] as $source) {
-				if (strpos($source['src'], 'http:') === 0 && !enString($source['src'], '.m3u8')) {
-					$obtenido['enlaces'][] = array(
-						'titulo'  => 'Tamaño: ' . $source['width'] . ' x ' . $source['height'],
-						'url_txt' => 'Descargar',
-						'url'     => $source['src'],
-						'tipo'    => 'http'
-					);
+				if (strpos($source['src'], 'http:') === 0) {
+					$nombre = isset($source['width']) ? 'Tamaño: ' . $source['width'] . ' x ' . $source['height'] : $xhr['name'];
+					if (!enString($source['src'], '.m3u8')) {
+						$obtenido['enlaces'][] = array(
+							'titulo'  => $nombre,
+							'url_txt' => 'Descargar',
+							'url'     => $source['src'],
+							'tipo'    => 'http'
+						);
+					} else {
+						$obtenido['enlaces'][] = array(
+							'titulo'  => $nombre,
+							'url_txt' => 'Descargar',
+							'url'     => $source['src'],
+							'tipo'    => 'm3u8'
+						);
+					}
 				}
 			}
 			

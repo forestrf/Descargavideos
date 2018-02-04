@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'4-Febrero-2018'
+,'fix:Telemadrid vuelve a funcionar tras añadir soporte para m3u8 con Brightcove.'
+);
+
+$todos[]=array(
 '18-Enero-2018'
 ,'add:Patreon.'
 );
