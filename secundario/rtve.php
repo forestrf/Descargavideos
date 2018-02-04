@@ -398,6 +398,7 @@ static function encripta($que){
 		mcrypt_generic_init($cipher, $key, "12345678");
 		$encrypted = mcrypt_generic($cipher, $que.$k);
 		mcrypt_generic_deinit($cipher);
+		$encrypted=base64_encode($encrypted);
 	}
 	return strtr($encrypted, array('+'=>'-', '/'=>'_'));
 }
