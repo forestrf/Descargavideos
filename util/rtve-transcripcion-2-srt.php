@@ -28,7 +28,7 @@ if (preg_match_all('@<p data-config=\'{"init":([0-9]+?)\.?([0-9]*?)}\'>([\s\S]+?
 		else 
 			echo segundosAHora($matches[1][$i] + 60, $matches[2][$i] + 60);
 		echo N;
-		echo trim(strip_tags($matches[3][$i])) . N;
+		echo trim(strip_tags(html_entity_decode($matches[3][$i]))) . N;
 		
 		
 		echo N;

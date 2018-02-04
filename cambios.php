@@ -18,6 +18,7 @@ function cambios($max=-1){
 $todos[]=array(
 '4-Febrero-2018'
 ,'fix:RTVE fix Authorization Required en vídeos ya no es un problema gracias a Vecino398.'
+,'fix:RTVE Transcripciones de subtítulos a SRT ya no hay carácteres extraños en lugar de tildes o signos de puntuación entre otros.'
 ,'fix:RTVE Añadido modo secundario para encontrar enlaces en caso de que falle el primario.'
 ,'fix:Telemadrid vuelve a funcionar tras añadir soporte para m3u8 con Brightcove.'
 );
