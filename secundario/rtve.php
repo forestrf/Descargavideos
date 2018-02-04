@@ -383,37 +383,38 @@ function encuentraAssetEnContenido($web_descargada){
 }
 
 static function encripta($que){
-	$key='yeL&daD3';
-	$iv='12345678';
-	$cipher=mcrypt_module_open(MCRYPT_BLOWFISH,'','ecb','');
+	$key = 'yeL&daD3';
 	
-	$modulo = strlen($que)%8;
-	$completar = (8 - $modulo);
-	$k = "";
-	for($j = 0;$j<$completar;$j++){
-		$k = $k.chr($completar);
+	if (version_compare(PHP_VERSION, '7.1.8') >= 0) { 
+		$encrypted = openssl_encrypt($que, 'BF-ECB', $key, OPENSSL_DONT_ZERO_PAD_KEY);
+	} else {
+		$cipher = mcrypt_module_open(MCRYPT_BLOWFISH,'','ecb','');
+		
+		$modulo = strlen($que) % 8;
+		$completar = (8 - $modulo);
+		$k = "";
+		for($j = 0; $j < $completar; $j++) $k = $k . chr($completar);
+		
+		mcrypt_generic_init($cipher, $key, "12345678");
+		$encrypted = mcrypt_generic($cipher, $que.$k);
+		mcrypt_generic_deinit($cipher);
 	}
-	
-	mcrypt_generic_init($cipher,$key,$iv);
-	$encrypted=mcrypt_generic($cipher,$que.$k);
-	mcrypt_generic_deinit($cipher);
-	
-	$encrypted=base64_encode($encrypted);
-	$encrypted=strtr($encrypted,array('+'=>'-','/'=>'_'));
-	
-	return $encrypted;
+	return strtr($encrypted, array('+'=>'-', '/'=>'_'));
 }
 
 //http://www.rtve.es/ztnr/decrypt.jsp
 static function desencripta($que){
-	$key='yeL&daD3';
-	$iv='12345678';
-	$cipher=mcrypt_module_open(MCRYPT_BLOWFISH,'','ecb','');
+	$key = 'yeL&daD3';
 	
-	mcrypt_generic_init($cipher,$key,$iv);
-	$decrypted=mdecrypt_generic($cipher, self::b64d($que));
-	mcrypt_generic_deinit($cipher);
-	return $decrypted;
+	if (version_compare(PHP_VERSION, '7.1.8') >= 0) { 
+		return openssl_decrypt(self::b64d($que), 'BF-ECB', $key, OPENSSL_DONT_ZERO_PAD_KEY | OPENSSL_RAW_DATA | OPENSSL_ZERO_PADDING);
+	} else {
+		$cipher = mcrypt_module_open(MCRYPT_BLOWFISH, '', 'ecb', '');
+		mcrypt_generic_init($cipher, $key, "12345678");
+		$decrypted = mdecrypt_generic($cipher, self::b64d($que));
+		mcrypt_generic_deinit($cipher);
+		return $decrypted;
+	}
 }
 
 static function b64d($encoded){
@@ -564,6 +565,31 @@ Y me ha devuelto: http://mvod.akcdn.rtve.es/resources/TE_NGVA/mp4/0/6/1340123093
 Al intentar descargarlo así, no funciona, sale acceso denegado.
 Pero si pongo directamente el dominio http://www.rtve.es/ y pego detrás la dirección de esta forma http://www.rtve.es/resources/TE_NGVA/mp4/0/6/1340123093060.mp4 quitando “mvod.akcdn.” si se descarga sin ningún problema.
 Un saludo.
+*/
+
+/*
+4371826_banebdyede_video_es
+
+http://ztnr.rtve.es/ztnr/res/h1cY6ITT9JXlVR7FSV_TCG6mba5nqN8Z7Lpm50K5VNg=
+
+[0] => http://hlsvod2017b.akamaized.net/resources/TE_GL16/mp4/1/1/1513296993011.mp4/playlist.m3u8
+[1] => http://hlsvod.lvlt.rtve.es/resources/TE_GL16/mp4/1/1/1513296993011.mp4/playlist.m3u8
+[2] => http://dashvod2017b.akamaized.net/resources/TE_GL16/mp4/1/1/1513296993011.mp4/video.mpd
+[3] => http://mvod.lvlt.rtve.es/resources/TE_GL16/mp4/1/1/1513296993011.mp4
+[4] => http://mvod2.lvlt.rtve.es/resources/TE_GL16/mp4/1/1/1513296993011.mp4?nvb=20180204161027&nva=20180204181027&token=06cdb70d3598eac8b7eef
+[5] => http://mvod1.akcdn.rtve.es/resources/TE_GL16/mp4/1/1/1513296993011.mp4
+[6] => http://hlsvod2017b.akamaized.net/resources/TE_GL16/mp4/9/0/1513297074209.mp4/playlist.m3u8
+[7] => http://hlsvod.lvlt.rtve.es/resources/TE_GL16/mp4/9/0/1513297074209.mp4/playlist.m3u8
+[8] => http://dashvod2017b.akamaized.net/resources/TE_GL16/mp4/9/0/1513297074209.mp4/video.mpd
+[9] => http://mvod.lvlt.rtve.es/resources/TE_GL16/mp4/9/0/1513297074209.mp4
+[10] => http://mvod2.lvlt.rtve.es/resources/TE_GL16/mp4/9/0/1513297074209.mp4?nvb=20180204161027&nva=20180204181027&token=0c4c7db01221a83fe1d39
+[11] => http://mvod1.akcdn.rtve.es/resources/TE_GL16/mp4/9/0/1513297074209.mp4
+[12] => http://hlsvod2017b.akamaized.net/resources/TE_GL16/mp4/8/7/1513297117578.mp4/playlist.m3u8
+[13] => http://hlsvod.lvlt.rtve.es/resources/TE_GL16/mp4/8/7/1513297117578.mp4/playlist.m3u8
+[14] => http://dashvod2017b.akamaized.net/resources/TE_GL16/mp4/8/7/1513297117578.mp4/video.mpd
+[15] => http://mvod.lvlt.rtve.es/resources/TE_GL16/mp4/8/7/1513297117578.mp4
+[16] => http://mvod2.lvlt.rtve.es/resources/TE_GL16/mp4/8/7/1513297117578.mp4?nvb=20180204161027&nva=20180204181027&token=031f0a11df5ee991908b3
+[17] => http://mvod1.akcdn.rtve.es/resources/TE_GL16/mp4/8/7/1513297117578.mp4
 */
 
 ?>
