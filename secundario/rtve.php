@@ -247,7 +247,8 @@ function quita_geobloqueo($url){
 	if(enString($url, '?')){
 		$url = substr($url, 0, strpos($url, '?'));
 	}
-	$url = preg_replace('#//.*?.rtve.es#', '//mvod.lvlt.rtve.es', $url);
+	$url = preg_replace('#//.*?.rtve.es#', '//www.rtve.es', $url);
+	// URL ok: http://mvod1.akcdn.rtve.es/resources/TE_GL16/mp4/1/1/1513296993011.mp4
 	return $url;
 }
 
@@ -291,10 +292,11 @@ function convierteID($asset,$modo=array('video','audio')){
 		}
 		if(strpos($ret, 'http') !== 0){
 			dbug('$ret no es una web');
-			if(enString($ret,"code='state-not-valid'")){
+			if(enString($ret,"code='state-not-valid'") || !stringContains($ret, array('.mp4', '.m3u8'))){
 				dbug('State not valid. Puede que el vídeo se descargue con el nuevo método de imágenes');
 				// Intentar nuevo método
 				$ret = $this->GetInfoFromImage($asset);
+				// http://hlsvod2017b.akamaized.net/resources/TE_GL16/mp4/9/0/1513297074209.mp4/playlist.m3u8
 				
 				if ($ret === false) {
 					$ret='';
@@ -302,6 +304,9 @@ function convierteID($asset,$modo=array('video','audio')){
 					setErrorWebIntera('El vídeo ya no está disponible en RTVE. Lo sentimos.');
 					return false;
 				}
+				
+				$ret = preg_replace('#//.*?.akamaized.net#', '//www.rtve.es', $ret);
+				$ret = $this->quita_geobloqueo($ret);
 			}
 			elseif(enString($ret, 'video-id-not-valid')){
 				setErrorWebIntera("No se ha podido encontrar ningún vídeo.");
