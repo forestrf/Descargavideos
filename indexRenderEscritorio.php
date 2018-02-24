@@ -123,10 +123,6 @@ var jdownloader = false;
 	
 			<div class="social">
 				<div class="elem">
-					<a target="_blank" class="patreon" href="https://www.patreon.com/bePatron?u=9341189&redirect_uri=http%3A%2F%2Fwww.descargavideos.tv%2F&utm_medium=widget"></a>
-				</div>
-				
-				<div class="elem">
 					<a target="_blank" class="tt" href="https://twitter.com/descargavids"></a>
 				</div>
 	
