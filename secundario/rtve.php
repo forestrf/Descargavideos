@@ -430,7 +430,8 @@ static function b64d($encoded){
 // ztnrThumbnail.js
 function GetInfoFromImage($id) {
 	// default, banebdyede, amonet, apedemak, anat
-	$idManagers = array('default', 'banebdyede', 'amonet', 'apedemak', 'anat');
+	// Cada opción depende del navegador. banebdyede equivale a un navegador de escritorio.
+	$idManagers = array('banebdyede', 'default', 'amonet', 'apedemak', 'anat');
 	foreach ($idManagers as $idManager) {
 		$img = CargaWebCurl("http://www.rtve.es/ztnr/movil/thumbnail/{$idManager}/videos/{$id}.png");
 		dbug_($img);

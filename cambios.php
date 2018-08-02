@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'2-Agosto-2018'
+,'fix:Mejorada calidad para vídeos RTVE.'
+);
+
+$todos[]=array(
 '24-Febrero-2018'
 ,'del:Patreon.'
 );
