@@ -440,6 +440,7 @@ function GetInfoFromImage($id) {
 			
 			$i;
 			$pointer = 8;
+			$encontrados = array();
 			do {
 				$i = PNG_RTVE_Data::r($byteArray, $pointer);
 				if ("tEXt" === $i['type']) {
@@ -451,12 +452,24 @@ function GetInfoFromImage($id) {
 							$h .= chr($s[$o]);
 					dbug_($h);
 					$res = PNG_RTVE_Data::n($h);
-					dbug_($res);
-					return $res;
+					dbug("GetInfoFromImage(): " . $res);
+					$encontrados[] = $res;
 				}
 			} while ("IEND" !== $i['type']);
+			if (count($encontrados) > 0) {
+				dbug_r($encontrados);
+				
+				foreach($encontrados as $urlEncontrada){
+					dbug('Comprobando url encontrada: ' . $urlEncontrada);
+					if(!stringContains($urlEncontrada, array('1100000000000', 'l3-onlinefs.rtve.es', '.m3u8', '.mpd', '.vcl', '/tomcat/'))){
+						$ret = $this->quita_geobloqueo($urlEncontrada);
+						return $urlEncontrada;
+					}
+				}
+			}
 		}
 	}
+	dbug("GetInfoFromImage no ha encontrado nada");
 	return false;
 }
 
