@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'2-Octubre-2018'
+,'fix:Intentando arreglar Univisión gracias a un correo recibido del usuario Jose.'
+);
+
+$todos[]=array(
 '2-Agosto-2018'
 ,'fix:Mejorada calidad para vídeos RTVE.'
 );
