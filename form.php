@@ -1,5 +1,4 @@
 <?php
-error_reporting(0);
 
 header('Content-Type: text/html; charset=UTF-8');
 include_once 'definiciones.php';
@@ -26,35 +25,35 @@ if(isset($_SERVER['HTTP_REFERER'])){
 */
 
 
-$largo=300;
-if(isset($_GET['l'])){
-	$lg=intval($_GET['l']);
-	if(my_is_integer($lg))
-		if($lg>100&&$lg<9999)
-			$largo=$lg;
+$largo = 300;
+if (isset($_GET['l'])) {
+	$lg = intval($_GET['l']);
+	if (my_is_integer($lg))
+		if ($lg > 100 && $lg < 9999)
+			$largo = $lg;
 		else
-			$largo=100;
+			$largo = 100;
 }
 
-$tamano="f2";
-if(isset($_GET['t'])){
-	$tm=$_GET['t'];
-	if($tm=="f1"||$tm=="f2"||$tm=="f3")
-		$tamano=$tm;
+$tamano = 'f2';
+if (isset($_GET['t'])) {
+	$tm = $_GET['t'];
+	if ($tm == 'f1' || $tm == 'f2' || $tm == 'f3')
+		$tamano = $tm;
 }
 
-$color="blanco";
-if(isset($_GET['c'])){
-	$cl=$_GET['c'];
-	if($cl=="blanco"||$cl=="negro")
-		$color=$cl;
+$color='blanco';
+if (isset($_GET['c'])) {
+	$cl = $_GET['c'];
+	if($cl == 'blanco' || $cl == 'negro')
+		$color = $cl;
 }
 
 
 //return 1 = es num
-function my_is_integer($val){
-	$val=str_replace(" ","",trim($val));
-	return eregi("^-?([0-9])+$",$val);
+function my_is_integer($val) {
+	$val = str_replace(' ', '', trim($val));
+	return preg_match('@^-?([0-9])+$@i', $val);
 }
 ?>
 

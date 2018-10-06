@@ -16,8 +16,13 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'7-Octubre-2018'
+,'fix:Formularios externos vuelven a funcionar.'
+);
+
+$todos[]=array(
 '2-Octubre-2018'
-,'fix:Intentando arreglar Univisión gracias a un correo recibido del usuario Jose.'
+,'fix:Intentando arreglar Univisión gracias a un correo recibido del usuario Jose <a href="https://descargavid.blogspot.com/2018/10/univision-funciona-de-nuevo-gracias-al.html">Más información aquí</a>.'
 );
 
 $todos[]=array(
