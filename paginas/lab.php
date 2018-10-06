@@ -98,14 +98,6 @@
 </div>
 
 <div class="pregunta">
-	<div id="addon_ff"></div>
-	<?php echo TXT_ADDONFF_TIT?>
-</div>
-<div class="respuesta">
-	<?php echo TXT_ADDONFF_DESC?>
-</div>
-
-<div class="pregunta">
 	<div id="form_iframe"></div>
 	<?php echo TXT_BARRADV_IFRAME_TIT?>
 </div>
@@ -155,7 +147,7 @@
 				else if(t=="f3")
 					a=30;
 
-				p='<iframe width="'+l+'" height="'+a+'" src="http://<?php echo DOMINIO?>/form.php?l='+l+'&t='+t+'&c='+c+'" name="form_dv" allowtransparency="true" border="0" frameborder="0" scrolling="no"></iframe>';
+				p='<iframe width="'+l+'" height="'+a+'" src="//<?php echo DOMINIO?>/form.php?l='+l+'&t='+t+'&c='+c+'" name="form_dv" allowtransparency="true" border="0" frameborder="0" scrolling="no"></iframe>';
 				D.g("muestra").innerHTML=p
 				D.g("cod_html").innerHTML=p
 			}

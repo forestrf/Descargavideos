@@ -23,10 +23,6 @@ define('TXT_BOOKMARKLET_DESC','El botón azul es un marcador que abre una nueva 
 		<li>Clicar en la pestaña/ventana que se acaba de abrir para poder ver los resultados.
 	</ol>');
 
-define('TXT_ADDONFF_TIT','Add-on para firefox');
-define('TXT_ADDONFF_DESC','La función del add-on es, por ahora, idéntica a la del <a href="#lab_bookmarklet">bookmarklet</a><br/>
-	<a href="https://addons.mozilla.org/es-ES/firefox/addon/descargavideos-helper/">Descárgalo aquí</a>');
-
 define('TXT_BARRADV_IFRAME_TIT','Barra de Descargavideos para insertar en tu web');
 define('TXT_BARRADV_IFRAME_COPYCODE','Copia este código en tu web');
 define('TXT_BARRADV_IFRAME_TAMANO','Tamaño');
