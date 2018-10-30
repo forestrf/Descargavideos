@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'30-Octubre-2018'
+,'fix:Univisión. Soporte para más enlaces que antes daban fallo.'
+);
+
+$todos[]=array(
 '7-Octubre-2018'
 ,'fix:Formularios externos vuelven a funcionar.'
 ,'del:Quitado addon firefox de lab.'

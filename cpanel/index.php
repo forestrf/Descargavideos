@@ -1,6 +1,8 @@
 <?php
 header('Content-Type: text/html; charset=UTF-8');
 
+include_once '../definiciones.php';
+
 $db = new PDO('sqlite:avisos.sqlite');
 
 $result = $db->query('SELECT * FROM avisos;');
@@ -36,7 +38,7 @@ else{
 
 ?>
 
-<a href="http://www.descargavideos.tv/cpanel" target="blank">CPanel DV</a><br/>
+<a href="http://<?php echo DOMINIO?>/cpanel" target="blank">CPanel DV</a><br/>
 <a href="http://localhost/cpanel" target="blank">CPanel LH</a><br/>
 <br/>
 Util:<br/>
@@ -97,7 +99,7 @@ $result = $db->query('SELECT * FROM avisos;');
 foreach($result->fetchAll(PDO::FETCH_ASSOC) as &$elem){
 	echo '<tr><td>'.($i++).'</td>',
 		'<td><a href="?quitar='.$elem['ID'].'">Quitar</a></td>',
-		'<td><a target="blank" href="http://www.descargavideos.tv/?webdebug='.urlencode($elem['url']).'">[DV]</a> <a target="blank" href="http://localhost/?webdebug='.urlencode($elem['url']).'">[LH]</a> <a href="',$elem['url'],'">',$elem['url'],'</a></td>',
+		'<td><a target="blank" href="http://'.DOMINIO.'/?webdebug='.urlencode($elem['url']).'">[DV]</a> <a target="blank" href="http://localhost/?webdebug='.urlencode($elem['url']).'">[LH]</a> <a href="',$elem['url'],'">',$elem['url'],'</a></td>',
 		'<td>',$elem['comentario'],'</td>',
 		'<td>',$elem['ip'],'</td>',
 		'<td>',$elem['fecha'],'</td>',

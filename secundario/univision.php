@@ -272,13 +272,15 @@ fSBdCn0=
 		dbug_($jsonAuthenticated);
 		$jsonAuthenticated = json_decode($jsonAuthenticated, true);
 		dbug_r($jsonAuthenticated);
-		if (isset($jsonAuthenticated["error"])) {
+		if (is_null($jsonAuthenticated) || isset($jsonAuthenticated["error"])) {
+			dbug('isset($jsonAuthenticated["error"])');
 			$jsonAuthenticated = CargaWebCurl(base64_decode('aHR0cHM6Ly9hdXRoLnVuaXZpc2lvbi5jb20vYXBpL3YyL3ZpZGVvLWF1dGgvdXJsLXNpZ25hdHVyZS10b2tlbnM/bWNwaWRzPQ==') . $id);
 			dbug_($jsonAuthenticated);
 			$jsonAuthenticated = json_decode($jsonAuthenticated, true);
 			dbug_r($jsonAuthenticated);
 		}
 		if (empty($jsonAuthenticated)) {
+			dbug('$jsonAuthenticated');
 			$jsonAuthenticated = CargaWebCurl(base64_encode('aHR0cHM6Ly91c2FwbHVzYXV0aC51bml2aXNpb24uY29tL2FwaS92Mi92aWRlby1hdXRoL3VybC1zaWduYXR1cmUtdG9rZW5zP21jcGlkcz0=') . $id);
 			dbug_($jsonAuthenticated);
 			$jsonAuthenticated = json_decode($jsonAuthenticated, true);
