@@ -86,95 +86,95 @@ elseif(enString($this->web, '/infantil/')){
 }
 else{
 	dbug('modo normal');
-	//$retfull=CargaWebCurl($this->web);
 	
 	//assetID=974036_
 	$asset = $this->encuentraAssetEnContenido($this->web_descargada);
 }
 
+$obtenido = array(
+	'enlaces' => array()
+);
 
 //audio
 if(isset($audio)){
 	dbug('audio');
 
 	//file:'/resources/TE_SENTREN/mp3/0/3/1329728190030.mp3'
-	
+
 	//obtener url (boton descargar en pagina)
-	$p=strpos($this->web_descargada,'class="download"');
-	$p=strpos($this->web_descargada,'href="',$p)+6;
-	$f=strpos($this->web_descargada,'"',$p);
-	$ret=substr($this->web_descargada,$p,$f-$p);
-	if(!enString($ret, 'http://') || $ret[0] === '/'){
+	$p = strpos($this->web_descargada,'class="download"');
+	$ret = entre1y2_a($this->web_descargada, $p, 'href="', '"');
+	if (!enString($ret, 'http://') || $ret[0] === '/'){
 		$ret = 'http://www.rtve.es'.$ret;
 	}
 
 
-	if(enString($ret, '.mp3'))
-		dbug('El mp3 estaba en la web');
-	else{
-		dbug('toca sacar el audio por metodo nuevo');
+	if (enString($ret, '.mp3')) {
+		dbug('El mp3 estaba en la web: ' . $ret);
+
+		$obtenido['enlaces'][] = array(
+			'url'     => $ret,
+			'tipo'    => 'http',
+			'url_txt' => 'Descargar'
+		);
+	}
+	else {
+		dbug('Toca sacar el audio por metodo nuevo');
 
 		//$ret=assetdataid
-		$p=strposF($this->web_descargada,'data-assetID="');
-		$f=strpos($this->web_descargada,'_',$p);
-		$asset=substr($this->web_descargada,$p,$f-$p);
-		$ret = $this->convierteID($asset,array('audio','video'));
-		if($ret === false)
+		$asset = entre1y2($this->web_descargada, 'data-assetID="', '_');
+		$links = $this->convierteID($asset, array('audio', 'video'));
+		if($links === false)
 			return;
+		$this->AddLinksFromConvierteID($links, $obtenido['enlaces']);
 	}
-
-	dbug('ret='.$ret);
 }
 //video
-else{
+else {
 	if ($asset == '') {
 		setErrorWebIntera('No se puede encontrar la id de ningún vídeo. Esto puede pasar porque no hay un vídeo en la web introducida, el vídeo que hay ya no está disponible o rara vez aleatoriamente por culpa de rtve');
 		return;
 	}
-	$ret = $this->convierteID($asset);
-	if($ret === false)
+	$links = $this->convierteID($asset);
+	if($links === false)
 		return;
-	dbug('ret='.$ret);
+	$this->AddLinksFromConvierteID($links, $obtenido['enlaces']);
 }
 
-if(isset($asset)){
+if (isset($asset)) {
 	//titulo
-	$opciones=array("videos","audios");
-	$sigue=0;
+	$opciones = array("videos", "audios");
+	$sigue = 0;
 	
-	$opciones_length=count($opciones);
-	for($i=0;$i<$opciones_length&&!$sigue;$i++){
-		$urlmedia='http://www.rtve.es/api/'.$opciones[$i].'/'.$asset.'/config/mmedia.json';
+	$opciones_length = count($opciones);
+	for ($i = 0; $i < $opciones_length && !$sigue; $i++) {
+		$urlmedia = 'http://www.rtve.es/api/'.$opciones[$i].'/'.$asset.'/config/mmedia.json';
 		dbug('urlmedia='.$urlmedia);
-		$retmedia=CargaWebCurl($urlmedia);
-		if(!enString($retmedia,"no existir")&&!enString($retmedia,"Informe de Error")&&strlen($retmedia)>0)
+		$retmedia = CargaWebCurl($urlmedia);
+		if (!enString($retmedia,"no existir") && !enString($retmedia, "Informe de Error") && strlen($retmedia) > 0)
 			$sigue=1;
 	}
-	if($sigue){
-		$sustituir=array('\\"'=>"'");
-		$retmedia=strtr($retmedia, $sustituir);
-		$p=strpos($retmedia,'"title":"')+9;
-		$f=strpos($retmedia,'"',$p);
-		$titulo=substr($retmedia,$p,$f-$p);
-		$titulo=limpiaTitulo($titulo);
+	if ($sigue) {
+		$sustituir = array('\\"'=>"'");
+		$retmedia = strtr($retmedia, $sustituir);
+		$titulo = entre1y2($retmedia, '"title":"', '"');
+		$titulo = limpiaTitulo($titulo);
 
 		//imagen
-		if(enString($retmedia,'"image":null')){
-			$imagen='http://'.DOMINIO.'/canales/rtve.png';
+		if (enString($retmedia, '"image":null')) {
+			$imagen = 'http://'.DOMINIO.'/canales/rtve.png';
 			dbug('imagen null');
 		}
-		else{
-			$p=strpos($retmedia,'"image":"')+9;
-			$f=strpos($retmedia,'"',$p);
-			$imagen=substr($retmedia,$p,$f-$p);
+		else {
+			$imagen=entre1y2($retmedia, '"image":"', '"');
 		}
 	}
-	else{
-		$titulo="RTVE";
-		$imagen='http://'.DOMINIO.'/canales/rtve.png';
+	else {
+		$titulo = "RTVE";
+		$imagen = 'http://'.DOMINIO.'/canales/rtve.png';
 	}
 }
-else{
+else {
 	//titulo
 	if (enString($this->web_descargada, '<meta name="audio_title" content="')) {
 		$titulo = entre1y2($this->web_descargada, '<meta name="audio_title" content="', '"');
@@ -182,33 +182,20 @@ else{
 	} else {
 		$p=strpos($this->web_descargada,'class="header"');
 		$p=strpos($this->web_descargada,'titu',$p);
-		$p=strposF($this->web_descargada,'>',$p);
-		$f=strpos($this->web_descargada,'<',$p);
-		$titulo=substr($this->web_descargada,$p,$f-$p);
+		$titulo=entre1y2_a($this->web_descargada, $p, '>', '<');
 		$titulo=limpiaTitulo($titulo);
 		
 		//imagen
 		$p=strpos($this->web_descargada,'imgPrograma');
-		$p=strposF($this->web_descargada,'src="',$p);
-		$f=strpos($this->web_descargada,'"',$p);
-		$imagen=substr($this->web_descargada,$p,$f-$p);
+		$imagen=entre1y2_a($this->web_descargada, $p, 'src="', '"');
 	}
 }
 dbug('titulo='.$titulo);
 dbug('imagen='.$imagen);
 
 
-$obtenido=array(
-	'titulo'  => $titulo,
-	'imagen'  => $imagen,
-	'enlaces' => array(
-		array(
-			'url'     => $ret,
-			'tipo'    => 'http',
-			'url_txt' => 'Descargar'
-		)
-	)
-);
+$obtenido['titulo'] = $titulo;
+$obtenido['imagen'] = $imagen;
 
 if(isset($asset)){
 	// Buscar subtítulos. Tienen extensión .vtt
@@ -236,7 +223,10 @@ if(isset($asset)){
 	}
 }
 
-$obtenido['alerta_especifica'] = 'Si no funciona el enlace intenta descargarlo de nuevo dentro de varios minutos.';
+$obtenido['alerta_especifica'] =
+	'Las opciones se encuentran ordenadas de mayor a menor calidad. Pruébalas en orden.<p>' .
+	'Los resultados M3U8 en ocasiones tienen más calidad.<p>' .
+	'Reintenta dentro de varios minutos si falla la descarga.';
 
 finalCadena($obtenido, false);
 }
@@ -246,6 +236,7 @@ function quita_geobloqueo($url) {
 	// Quitar lo que hay a continuación del ? en ocasiones supone que el vídeo no funcione o tenga un tamaño incorrecto.
 	// Parece que realizar esta operación no es necesaria ya que no hay geobloqueo, por lo que se quita hasta nuevo aviso.
 	// Además, mvod.rtve.es (no requiere de parámetros GET) retorna tamaños incorrectos de vídeo en ocasiones mientras que mvod2.rtve.es (requiere de parámetros GET) no, pero usar www.rtve.es para conseguir una redirección al enlace usa mvod con parámetros GET (que son ignorados) y el tamaño del vídeo es por tanto, incorrecto
+	
 	$skip = true;
 	if ($skip) return $url;
 	
@@ -258,76 +249,78 @@ function quita_geobloqueo($url) {
 	return $url;
 }
 
-function convierteID($asset, $modo = array('video', 'audio')) {
+function convierteID($asset, $modos = array('video', 'audio')) {
 	$ret="";
-	$modo_length=count($modo);
-	for ($i = 0; $i < $modo_length && $ret == ''; $i++){
-		$codificado=$asset.'_banebdyede_'.$modo[$i].'_es';
+	$links = array();
+	
+	// Intentar nuevo método
+	$ret = $this->GetInfoFromImage($asset);
+	// http://hlsvod2017b.akamaized.net/resources/TE_GL16/mp4/9/0/1513297074209.mp4/playlist.m3u8
+	if ($ret !== false) {
+		$this->FindUrls($ret, $links, false);
+		$this->FindUrls($ret, $links, true);
+	}
+
+	foreach ($modos as $modo) {
+		if (0 !== count($links)) break;
+		
+		$codificado = $asset.'_banebdyede_'.$modo.'_es';
 		$codificado = self::encripta($codificado);
-		$server5='http://ztnr.rtve.es/ztnr/res/'.$codificado;
+		$server5 = 'http://ztnr.rtve.es/ztnr/res/'.$codificado;
 
 		dbug('idasset web='.$server5);
 
-		$ret=CargaWebCurl($server5);
-		$ret = self::desencripta($ret);
+		$content = CargaWebCurl($server5);
+		$content = self::desencripta($content);
 		
-		dbug_($ret);
-		if(preg_match_all('@http://[^<^>]*?\\.(?:mp4|mp3)[^<^>]*@',$ret, $m)){
+		dbug_($content);
+		
+		if (preg_match_all('@http://[^<^>]*?\\.(?:mp4|mp3)[^<^>]*@', $content, $m)) {
 			dbug_r($m);
-			$it = 1;
-			foreach($m[0] as $i){
-				dbug('Opcion (1), iteracion '.($it++).': '.$i);
-				if(!stringContains($i, array('1100000000000', 'l3-onlinefs.rtve.es', '.m3u8', '.mpd', '.vcl', '/tomcat/'))){
-					$ret = $this->quita_geobloqueo($i);
-					dbug('Opción elegida: '.$i);
-					break;
-				}
-			}
-			dbug('Opción final: '.$ret);
+			$this->FindUrls($m[0], $links, false);
+			$this->FindUrls($m[0], $links, true);
 		}
-		if(strpos($ret, 'http') !== 0 && preg_match_all('@http://[^<^>]*?\\.(?:flv)[^<^>]*@',$ret, $m)){
+		
+		if (preg_match_all('@http://[^<^>]*?\\.(?:flv)[^<^>]*@', $content, $m)) {
 			dbug_r($m);
-			foreach($m[0] as $i){
-				dbug('Opcion (2): '.$i);
-				if(!enString($i, '1100000000000')){
-					$ret = $this->quita_geobloqueo($i);
-					dbug('Opción elegida: '.$i);
-					break;
-				}
-			}
-		}
-		if(strpos($ret, 'http') !== 0){
-			dbug('$ret no es una web');
-			if(enString($ret,"code='state-not-valid'") || !stringContains($ret, array('.mp4', '.m3u8'))){
-				dbug('State not valid. Puede que el vídeo se descargue con el nuevo método de imágenes');
-				// Intentar nuevo método
-				$ret = $this->GetInfoFromImage($asset);
-				// http://hlsvod2017b.akamaized.net/resources/TE_GL16/mp4/9/0/1513297074209.mp4/playlist.m3u8
-				
-				if ($ret === false) {
-					$ret='';
-					dbug('vídeo posíblemente borrado. Marcar error');
-					setErrorWebIntera('El vídeo ya no está disponible en RTVE. Lo sentimos.');
-					return false;
-				}
-				
-				$ret = preg_replace('#//.*?.akamaized.net#', '//www.rtve.es', $ret);
-				$ret = $this->quita_geobloqueo($ret);
-			}
-			elseif(enString($ret, 'video-id-not-valid')){
-				setErrorWebIntera("No se ha podido encontrar ningún vídeo.");
-				return false;
-			}
-			else{
-				if(enString($ret, 'rtmpe://rtveod.fms.c.footprint.net/rtveod')){
-					$ret = strtr($ret, array('rtmpe://rtveod.fms.c.footprint.net/rtveod/' => 'http://mvod.lvlt.rtve.es/'));
-				}
-				$ret='http://'.entre1y2($ret,'http://','<');
-				$ret = $this->quita_geobloqueo($ret);
-			}
+			$this->FindUrls($m[0], $links, false);
 		}
 	}
-	return str_replace('/playlist.m3u8', '', $ret);
+	
+	if (0 === count($links)) {
+		setErrorWebIntera("No se ha podido encontrar ningún vídeo.");
+		return false;
+	}
+	
+	return $links;
+	//return str_replace('/playlist.m3u8', '', $ret);
+}
+
+function FindUrls(&$raw_urls, &$links, $m3u8) {
+	dbug('FindUrls $m3u8 = ' . ($m3u8 ? 'TRUE' : 'FALSE'));
+	foreach ($raw_urls as $i) {
+		if (!stringContains($i, array('1100000000000', 'l3-onlinefs.rtve.es', '.mpd', '.vcl', '/tomcat/'))) {
+			if ($m3u8 && (!enString($i, '.m3u8') || !enString($i, '.rtve.es/'))) continue;
+			if (!$m3u8 && enString($i, '.m3u8')) continue;
+
+			dbug('Opción encontrada ('.$m3u8.'): '.$i);
+			$i = $this->quita_geobloqueo($i);
+			$links[] = $i;
+		}
+	}
+}
+
+function AddLinksFromConvierteID($links, &$enlaces) {
+	dbug('Enlaces encontrados:');
+	dbug_r($links);
+	
+	for ($i = 0, $i_t = count($links); $i < $i_t; $i++) {
+		$enlaces[] = array(
+			'url'     => $links[$i],
+			'tipo'    => enString($links[$i], '.m3u8') ? 'm3u8' : 'http',
+			'url_txt' => 'Descargar (opción ' . ($i + 1) . ')'
+		);
+	}
 }
 
 function encuentraAssetEnContenido($web_descargada){
@@ -464,14 +457,7 @@ function GetInfoFromImage($id) {
 			} while ("IEND" !== $i['type']);
 			if (count($encontrados) > 0) {
 				dbug_r($encontrados);
-				
-				foreach($encontrados as $urlEncontrada){
-					dbug('Comprobando url encontrada: ' . $urlEncontrada);
-					if(!stringContains($urlEncontrada, array('1100000000000', 'l3-onlinefs.rtve.es', '.m3u8', '.mpd', '.vcl', '/tomcat/'))){
-						$ret = $this->quita_geobloqueo($urlEncontrada);
-						return $urlEncontrada;
-					}
-				}
+				return $encontrados;
 			}
 		}
 	}

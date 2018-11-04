@@ -66,28 +66,28 @@ function extraeExtension($de=''){
 }
 
 function generaNombreWindowsValido($filename, $max = 50){
-	if(mb_strlen($filename, 'UTF-8') > $max) $filename = mb_substr($filename, 0, $max, 'UTF-8') . '... ';
-	$bad=array_merge(
-		array_map('chr',range(0,31)),
+	if (mb_strlen($filename, 'UTF-8') > $max) $filename = mb_substr($filename, 0, $max, 'UTF-8') . '... ';
+	$bad = array_merge(
+		array_map('chr',range(0, 31)),
 		array('<','>',':','"','/','\\','|','?','*')
 	);
 	return str_replace($bad, '', $filename);
 }
 
-function limpiaTitulo($titulo, $max=200){
-	if(mb_strlen($titulo, 'UTF-8') > $max)
+function limpiaTitulo($titulo, $max = 200){
+	if (mb_strlen($titulo, 'UTF-8') > $max)
 		$titulo = mb_substr($titulo, 0, $max, 'UTF-8').'...';
 	return trim(strtr($titulo, array('%27'=>'', '*'=>'',"'"=>'')));
 }
 
-function strposF($donde, $que, $desde=0){
-	return strpos($donde, $que, $desde) +strlen($que);
+function strposF($donde, $que, $desde = 0){
+	return strpos($donde, $que, $desde) + strlen($que);
 }
-function strrposF($donde, $que, $desde=0){
-	return strrpos($donde, $que, $desde) +strlen($que);
+function strrposF($donde, $que, $desde = 0){
+	return strrpos($donde, $que, $desde) + strlen($que);
 }
 
-function entre1y2_a(&$que, $desfaseInicio=0, $start, $fin = null){
+function entre1y2_a(&$que, $desfaseInicio = 0, $start, $fin = null){
 	if(is_int($start))
 		$p = $start;
 	else
@@ -117,8 +117,8 @@ function desde1a2(&$que, $start, $fin = null, $incluyeFinal = false){
 }
 
 function stringContains($donde, $arr_substrs){
-	foreach($arr_substrs as $word)
-		if(enString($donde, $word))
+	foreach ($arr_substrs as &$word)
+		if (enString($donde, $word))
 			return true;
 	return false;
 }
