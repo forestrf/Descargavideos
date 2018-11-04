@@ -16,6 +16,11 @@ function cambios($max=-1){
 
 
 $todos[]=array(
+'4-Noviembre-2018'
+,'fix:RTVE. Algunos vídeos no se descargan o tienen un tamaño incorrecto inferior a lo esperado.'
+);
+
+$todos[]=array(
 '30-Octubre-2018'
 ,'fix:Univisión. Soporte para más enlaces que antes daban fallo.'
 );

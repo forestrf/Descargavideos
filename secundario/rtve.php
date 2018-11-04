@@ -241,10 +241,16 @@ $obtenido['alerta_especifica'] = 'Si no funciona el enlace intenta descargarlo d
 finalCadena($obtenido, false);
 }
 
-// Ya no quita geobloqueo, retorna la url tal cual
-function quita_geobloqueo($url){
+// Ya casinunca quita geobloqueo, retorna la url tal cual
+function quita_geobloqueo($url) {
+	// Quitar lo que hay a continuación del ? en ocasiones supone que el vídeo no funcione o tenga un tamaño incorrecto.
+	// Parece que realizar esta operación no es necesaria ya que no hay geobloqueo, por lo que se quita hasta nuevo aviso.
+	// Además, mvod.rtve.es (no requiere de parámetros GET) retorna tamaños incorrectos de vídeo en ocasiones mientras que mvod2.rtve.es (requiere de parámetros GET) no, pero usar www.rtve.es para conseguir una redirección al enlace usa mvod con parámetros GET (que son ignorados) y el tamaño del vídeo es por tanto, incorrecto
+	$skip = true;
+	if ($skip) return $url;
+	
 	if (strpos($url, '.mp3') !== false) return $url;
-	if(enString($url, '?')){
+	if (enString($url, '?')) {
 		$url = substr($url, 0, strpos($url, '?'));
 	}
 	$url = preg_replace('#//.*?.rtve.es#', '//www.rtve.es', $url);
@@ -252,10 +258,10 @@ function quita_geobloqueo($url){
 	return $url;
 }
 
-function convierteID($asset,$modo=array('video','audio')){
+function convierteID($asset, $modo = array('video', 'audio')) {
 	$ret="";
 	$modo_length=count($modo);
-	for($i=0;$i<$modo_length&&$ret=='';$i++){
+	for ($i = 0; $i < $modo_length && $ret == ''; $i++){
 		$codificado=$asset.'_banebdyede_'.$modo[$i].'_es';
 		$codificado = self::encripta($codificado);
 		$server5='http://ztnr.rtve.es/ztnr/res/'.$codificado;
@@ -273,11 +279,11 @@ function convierteID($asset,$modo=array('video','audio')){
 				dbug('Opcion (1), iteracion '.($it++).': '.$i);
 				if(!stringContains($i, array('1100000000000', 'l3-onlinefs.rtve.es', '.m3u8', '.mpd', '.vcl', '/tomcat/'))){
 					$ret = $this->quita_geobloqueo($i);
-					dbug('Opcion elejida: '.$i);
+					dbug('Opción elegida: '.$i);
 					break;
 				}
 			}
-			dbug('Opcion final: '.$ret);
+			dbug('Opción final: '.$ret);
 		}
 		if(strpos($ret, 'http') !== 0 && preg_match_all('@http://[^<^>]*?\\.(?:flv)[^<^>]*@',$ret, $m)){
 			dbug_r($m);
@@ -285,7 +291,7 @@ function convierteID($asset,$modo=array('video','audio')){
 				dbug('Opcion (2): '.$i);
 				if(!enString($i, '1100000000000')){
 					$ret = $this->quita_geobloqueo($i);
-					dbug('Opcion elejida: '.$i);
+					dbug('Opción elegida: '.$i);
 					break;
 				}
 			}
@@ -472,7 +478,6 @@ function GetInfoFromImage($id) {
 	dbug("GetInfoFromImage no ha encontrado nada");
 	return false;
 }
-
 
 }
 
