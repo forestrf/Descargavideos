@@ -17,7 +17,7 @@ function cambios($max=-1){
 
 $todos[]=array(
 '4-Noviembre-2018'
-,'fix:RTVE. Mejora para mostrar múltiples opciones que antes se ocultaban. En caso de que la primera opción mostrada no funcione correctamente, es posible que sí lo hagan las otras mostradas.'
+,'fix:RTVE. Mejora para mostrar múltiples opciones que antes se ocultaban. En caso de que la primera opción mostrada no funcione correctamente, es posible que sí lo hagan las otras mostradas. <a href="https://descargavid.blogspot.com/2018/11/mejoras-para-rtve.html">Más información aquí</a>.'
 ,'fix:RTVE. Algunos vídeos no se descargan o tienen un tamaño incorrecto inferior a lo esperado.'
 );
 
