@@ -32,7 +32,7 @@ generaInnerResultado();
 			<li>Si estás en el ordenador y no puedes cerrar la página de publicidad, apreta a la vez las teclas <b>ALT</b> y <b>F4</b>.</li>
 		</ul>
 		
-		<a class="bookmarklet" style="margin:25px;display:inline-block;" href="https://www.megdexchange.com/jump/next.php?r=2213175">Soporta Descargavideos clicando aquí</a><br/>
+		<a target="_blank" class="bookmarklet" style="margin:25px;display:inline-block;" href="https://www.megdexchange.com/jump/next.php?r=2213175">Soporta Descargavideos clicando aquí</a><br/>
 		
 		Esto es un experimento para financiar Descargavideos. Si surge algún problema, por favor contáctame usando el <a href="/contacta#contenido">formulario de contacto</a>.
 	</div>
