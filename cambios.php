@@ -18,6 +18,7 @@ function cambios($max=-1){
 $todos[]=array(
 '20-Noviembre-2018'
 ,'fix:YouTube. Títulos incorrectos.'
+,'fix:RTVE. Prevención de geobloqueo reañadida como una opción extra, pero algunos vídeos no funcionan con esta opción.'
 );
 
 $todos[]=array(

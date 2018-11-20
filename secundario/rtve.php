@@ -233,12 +233,10 @@ finalCadena($obtenido, false);
 
 // Ya casinunca quita geobloqueo, retorna la url tal cual
 function quita_geobloqueo($url) {
+	dbug('quita_geobloqueo para: '.$url);
 	// Quitar lo que hay a continuación del ? en ocasiones supone que el vídeo no funcione o tenga un tamaño incorrecto.
-	// Parece que realizar esta operación no es necesaria ya que no hay geobloqueo, por lo que se quita hasta nuevo aviso.
-	// Además, mvod.rtve.es (no requiere de parámetros GET) retorna tamaños incorrectos de vídeo en ocasiones mientras que mvod2.rtve.es (requiere de parámetros GET) no, pero usar www.rtve.es para conseguir una redirección al enlace usa mvod con parámetros GET (que son ignorados) y el tamaño del vídeo es por tanto, incorrecto
-	
-	$skip = true;
-	if ($skip) return $url;
+	// Pero parece que hay vídeos que tienen geobloqueo dado que tras quitar el geobloqueo, algunas personas empezaron a tener problemas.
+	// mvod.rtve.es (no requiere de parámetros GET) retorna tamaños incorrectos de vídeo en ocasiones mientras que mvod2.rtve.es (requiere de parámetros GET) no, pero usar www.rtve.es para conseguir una redirección al enlace usa mvod con parámetros GET (que son ignorados) y el tamaño del vídeo es por tanto, incorrecto
 	
 	if (strpos($url, '.mp3') !== false) return $url;
 	if (enString($url, '?')) {
@@ -304,7 +302,6 @@ function FindUrls(&$raw_urls, &$links, $m3u8) {
 			if (!$m3u8 && enString($i, '.m3u8')) continue;
 
 			dbug('Opción encontrada ('.$m3u8.'): '.$i);
-			$i = $this->quita_geobloqueo($i);
 			$links[] = $i;
 		}
 	}
@@ -320,6 +317,14 @@ function AddLinksFromConvierteID($links, &$enlaces) {
 			'tipo'    => enString($links[$i], '.m3u8') ? 'm3u8' : 'http',
 			'url_txt' => 'Descargar (opción ' . ($i + 1) . ')'
 		);
+		
+		if (!enString($links[$i], '.m3u8')) {
+			$enlaces[] = array(
+				'url'     => $this->quita_geobloqueo($links[$i]),
+				'tipo'    => 'http',
+				'url_txt' => 'Descargar (opción ' . ($i + 1) . ', sin geobloqueo)'
+			);
+		}
 	}
 }
 
