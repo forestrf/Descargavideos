@@ -110,10 +110,15 @@ var jdownloader = false;
 				<?php if (ADS) { ?>
 				<div id="publi_cabecera">
 					<center style="background-color:transparent">
-						<span>
+						<span style="min-width:450px;min-height:360px;">
 <!-- Begin Adversal Code : descargavideos.tv -->
-<div data-adversal-element='300x250' data-up-transform='false'>
-<script async src='//go.adversal.com/do?id=9891541'></script></div>
+<?php if (false) { ?>
+		<div data-adversal-element='336x280' data-up-transform='true'>
+		<script async src='//go.adversal.com/do?id=9891541'></script></div>
+<?php } else { ?>
+		<div data-adversal-element='outstream'>
+		<script async src='//go.adversal.com/do?id=9891541'></script></div>
+<?php } ?>
 <!-- End Adversal Code : descargavideos.tv -->
 						</span>
 					</center>
@@ -164,9 +169,12 @@ var jdownloader = false;
 
 	<div id="pie">
 		Descargavideos.tv | 
-		Code by <a target="_blank" href="http://andresleone.uni.me/"><b>Forest</b></a> - Design by <a target="_blank" href="http://www.fsdesign.es/"><b>FSdesign</b></a>
+		Code by <b>Forest</b> - Design by <a target="_blank" href="http://www.fsdesign.es/"><b>FSdesign</b></a>
 		
 		<div class="derecha" style="right:100px">
+			<div class="adv-consent-link-section" style="display:none;">
+				<a href="#" class="adv-consent-link">Review Consent</a>
+			</div>
 			<a href="/aviso_legal#contenido"><?php echo TXT_AVISO_LEGAL?></a>
 			 | <a href="/privacidad#contenido"><?php echo TXT_POLITICA_PRIVACIDAD?></a>
 		</div>
