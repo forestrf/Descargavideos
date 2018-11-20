@@ -23,6 +23,20 @@ generaInnerResultado();
 		<a href="http://www.youtube.com/watch?v=7-Xvmz-jNrg">Ver en YouTube cómo descargar un enlace.</a>
 	</div>
 	
+	<div class="instrucciones_descarga">
+		Al clicar en el siguiente botón se abrirá una página web con publicidad. Mientras visitas dicha web:<br/>
+		<ul style="list-style:inside;list-style-type:square;padding:10px;">
+			<li>No instales ningún programa. Ni añadas ningún complemento.</li>
+			<li>No des ningún dato (nombre, número de teléfono, etc).</li>
+			<li>No pagues dinero. Si es demasiado bueno para ser cierto, no es cierto.</li>
+			<li>Si estás en el ordenador y no puedes cerrar la página de publicidad, apreta a la vez las teclas <b>ALT</b> y <b>F4</b>.</li>
+		</ul>
+		
+		<a class="bookmarklet" style="margin:25px;display:inline-block;" href="https://www.megdexchange.com/jump/next.php?r=2213175">Soporta Descargavideos clicando aquí</a><br/>
+		
+		Esto es un experimento para financiar Descargavideos. Si surge algún problema, por favor contactame usando el <a href="/contacta#contenido">formulario de contacto</a>.
+	</div>
+	
 	<?php
 	if(!defined('IGNORA_AVISO_RAPIDO')) include 'plantillas/extras/aviso_rapido_js.php'
 	?>
