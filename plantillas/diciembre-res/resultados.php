@@ -34,7 +34,7 @@ generaInnerResultado();
 		
 		<a class="bookmarklet" style="margin:25px;display:inline-block;" href="https://www.megdexchange.com/jump/next.php?r=2213175">Soporta Descargavideos clicando aquí</a><br/>
 		
-		Esto es un experimento para financiar Descargavideos. Si surge algún problema, por favor contactame usando el <a href="/contacta#contenido">formulario de contacto</a>.
+		Esto es un experimento para financiar Descargavideos. Si surge algún problema, por favor contáctame usando el <a href="/contacta#contenido">formulario de contacto</a>.
 	</div>
 	
 	<?php
