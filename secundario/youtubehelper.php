@@ -40,7 +40,7 @@ function calcula(){
 		//https://i1.ytimg.com/vi/8GLNKyfdnQg/0.jpg
 		$imagen='https://i1.ytimg.com/vi/'.$vars['v'].'/0.jpg';
 
-		$titulo=entre1y2($this->web_descargada,'<meta name="title" content="','"');
+		$titulo=entre1y2($this->web_descargada,'"title":"','"');
 		$titulo=limpiaTitulo($titulo);
 
 		foreach($links as &$link){
