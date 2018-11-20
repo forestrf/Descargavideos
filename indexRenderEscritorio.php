@@ -172,8 +172,8 @@ var jdownloader = false;
 		Code by <b>Forest</b> - Design by <a target="_blank" href="http://www.fsdesign.es/"><b>FSdesign</b></a>
 		
 		<div class="derecha" style="right:100px">
-			<div class="adv-consent-link-section" style="display:none;">
-				<a href="#" class="adv-consent-link">Review Consent</a>
+			<div class="adv-consent-link-section" style="display:inline;">
+				<a href="#" class="adv-consent-link">Review Consent</a> | 
 			</div>
 			<a href="/aviso_legal#contenido"><?php echo TXT_AVISO_LEGAL?></a>
 			 | <a href="/privacidad#contenido"><?php echo TXT_POLITICA_PRIVACIDAD?></a>
