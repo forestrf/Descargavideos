@@ -3,17 +3,10 @@
 function cambios($max=-1){
 //tipo='simple' o 'todos'
 
-
-
-//actualizar las FAQ
-//TV3 MEDIO REESCRITA. COMPROBAR CÓDIGO EXTRA
-
-//creo que ya esta hecho bien, pero por si acaso dejo la anotación como 'tengo que probarlo' (por ejemplo, con soundcloud o antena 3, que tiene multivideo, y rtve, de uno solo)
-//ACTUALIZAR GESTOR A NUEVA WEB
-//si resultados=1, nombre=nombre principal
-//si son varios, el nombre será el titulo/nombre del enlace (solo estará uno de los dos presentes)
-
-
+$todos[]=array(
+'13-Enero-2019'
+,'fix:TV3. Calidad alta vuelve a funcionar gracias al <a href="https://github.com/forestrf/Descargavideos/pull/3">PR de davidgfnet</a>.'
+);
 
 $todos[]=array(
 '20-Noviembre-2018'
