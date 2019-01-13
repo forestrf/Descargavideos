@@ -392,10 +392,23 @@ function resuelveIDMetodo2($id, &$enlaces_array, &$titulo, &$imagen, $ignoraCadu
 	$ret = json_decode(utf8_encode($ret), true);
 	dbug_r($ret);
 
+	// a veces la URL puede ser un array, con diferentes calidades de video
+	if (is_array($ret['media']['url'])) {
+		$byquality = array();
+		foreach ($ret['media']['url'] as $urlc)
+			$byquality[$urlc['label']] = $urlc['file'];
+		// preferir la calidad mas alta disponible :)
+		foreach (array("480p", "720p", "1080p") as $q)
+			if (isset($byquality[$q]))
+				$hdurl = $byquality[$q];
+	}else{
+		$hdurl = $ret['media']['url'];
+	}
+
 	$enlaces_array[] = array(
 		'titulo'   => 'Calidad alta',
 		'url_txt'   => 'Descargar',
-		'url'      => $ret['media']['url'],
+		'url'      => $hdurl,
 		'extension'=>'mp4'
 	);
 	
