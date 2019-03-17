@@ -109,13 +109,25 @@ var jdownloader = false;
 				
 				<?php if (ADS) { ?>
 				<div id="publi_cabecera">
+<style>
+.adv-container {
+	position: unset !important;
+	top: unset !important;
+	left: unset !important;
+	padding: unset !important;
+}
+#publi_cabecera .adv-spacer,
+.adv-close {
+	display: none !important;
+}
+</style>
 					<center style="background-color:transparent">
 						<span style="min-width:450px;min-height:360px;">
 <!-- Begin Adversal Code : descargavideos.tv -->
 <?php if (false) { ?>
 		<div data-adversal-element='336x280' data-up-transform='true'>
 		<script async src='//go.adversal.com/do?id=9891541'></script></div>
-<?php } else { ?>
+<?php } else if (true) { ?>
 		<div data-adversal-element='outstream'>
 		<script async src='//go.adversal.com/do?id=9891541'></script></div>
 <?php } ?>
