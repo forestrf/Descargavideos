@@ -1,4 +1,5 @@
 <center>
+<!--
 	<?php echo TXT_CONTACTA_INFO_URLS?><br/><br/>
 	<table cellspacing="0" cellpadding="0" border="0">
 		<tr>
@@ -12,5 +13,9 @@
 			</td>
 		</tr>
 	</table>
-	También puedes enviar un correo a <a href="mailto:info@descargavideos.tv">info@descargavideos.tv</a>
+-->
+	<p>
+	Puedes contar conmigo enviando un correo a <a href="mailto:info@descargavideos.tv">info@descargavideos.tv</a>
+	<p>
+	Se recomienda leer lo siguiente antes de contactar: <a href="http://descargavid.blogspot.com/2019/03/futuro.html">http://descargavid.blogspot.com/2019/03/futuro.html</a>.
 </center>
