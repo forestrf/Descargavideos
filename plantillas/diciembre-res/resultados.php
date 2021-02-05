@@ -23,6 +23,7 @@ generaInnerResultado();
 		<a href="http://www.youtube.com/watch?v=7-Xvmz-jNrg">Ver en YouTube cómo descargar un enlace.</a>
 	</div>
 	
+	<!--
 	<div class="instrucciones_descarga">
 		Al clicar en el siguiente botón se abrirá una página web con publicidad. Mientras visitas dicha web:<br/>
 		<ul style="list-style:inside;list-style-type:square;padding:10px;">
@@ -36,6 +37,32 @@ generaInnerResultado();
 		
 		Esto es un experimento para financiar Descargavideos. Si surge algún problema, por favor contáctame usando el <a href="/contacta#contenido">formulario de contacto</a>.
 	</div>
+	-->
+	
+	<?php /* Publi añadida 8/dic/2020 */ ?>
+	<?php if (!isset($_GET['ajax'])) { ?>
+	<div>
+		<center>
+			<script type="text/javascript">
+				atOptions = {
+					'key' : 'd6e58797066b3d9d9ff05a16756f9c52',
+					'format' : 'iframe',
+					'height' : 250,
+					'width' : 300,
+					'params' : {}
+				};
+				document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.displaycontentprofit.com/d6e58797066b3d9d9ff05a16756f9c52/invoke.js"></scr' + 'ipt>');
+			</script>
+			<!--
+			<script data-cfasync="false" type="text/javascript" src="https://www.onclickperformance.com/a/display.php?r=1884219"></script>
+			-->
+			<!--
+			<script async="async" data-cfasync="false" src="//pl14993934.toprevenuecpmnetwork.com/c58fd67095746e638729e5c8c7290549/invoke.js"></script>
+			<div id="container-c58fd67095746e638729e5c8c7290549"></div>
+			-->
+		</center>
+	</div>
+	<?php } ?>
 	
 	<?php
 	if(!defined('IGNORA_AVISO_RAPIDO')) include 'plantillas/extras/aviso_rapido_js.php'
