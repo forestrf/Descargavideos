@@ -104,7 +104,7 @@ if(isset($audio)){
 	//obtener url (boton descargar en pagina)
 	$p = strpos($this->web_descargada,'class="download"');
 	$ret = entre1y2_a($this->web_descargada, $p, 'href="', '"');
-	if (!enString($ret, 'http://') || $ret[0] === '/'){
+	if (!enString($ret, '://') || $ret[0] === '/'){
 		$ret = 'http://www.rtve.es'.$ret;
 	}
 
