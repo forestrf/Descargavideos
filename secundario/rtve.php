@@ -363,19 +363,34 @@ function encuentraAssetEnContenido($web_descargada){
 			dbug('asset, prueba 3. No se realiza.');
 	}
 	if(stringContains($asset,array('"','{','}','<','>',' '))){
-		preg_match_all('@data-assetid="(\d+)_@i', $web_descargada, $matches);
-		$asset=$matches[1][0];
-		dbug('asset, prueba 3.5: '.$asset);
+		if (preg_match_all('@data-assetid="?(\d+)@i', $web_descargada, $matches)) {
+			dbug_r($matches);
+			$asset=$matches[1][0];
+			dbug('asset, prueba 3.5: '.$asset);
+		}
+		else dbug('asset, prueba 3.5 fallida');
 	}
 	if(stringContains($asset,array('"','{','}','<','>',' '))){
-		preg_match_all('@DC.identifier" ?content="(\d+)"@', $web_descargada, $matches);
-		$asset=$matches[1][0];
-		dbug('asset, prueba 4: '.$asset);
+		if (preg_match_all('@data-idasset="?(\d+)@i', $web_descargada, $matches)) {
+			dbug_r($matches);
+			$asset=$matches[1][0];
+			dbug('asset, prueba 3.6: '.$asset);
+		}
+		else dbug('asset, prueba 3.6 fallida');
 	}
 	if(stringContains($asset,array('"','{','}','<','>',' '))){
-		preg_match_all('@/(\d+)/@', $this->web, $matches);
-		$asset=$matches[1][0];
-		dbug('asset, prueba 3 (de la url): '.$asset);
+		if (preg_match_all('@DC.identifier" ?content="(\d+)"@', $web_descargada, $matches)) {
+			$asset=$matches[1][0];
+			dbug('asset, prueba 4: '.$asset);
+		}
+		else dbug('asset, prueba 4 fallida');
+	}
+	if(stringContains($asset,array('"','{','}','<','>',' '))){
+		if (preg_match_all('@/(\d+)/@', $this->web, $matches)) {
+			$asset=$matches[1][0];
+			dbug('asset, prueba 3 (de la url): '.$asset);
+		}
+		else dbug('asset, prueba 3 (de la url) fallida');
 	}
 	if (!is_numeric($asset) && preg_match('#class="M[ "][\s\S]*?<a href=.*/([0-9]+)/#', $web_descargada, $matches)) {
 		dbug_r($matches);
