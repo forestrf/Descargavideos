@@ -169,7 +169,7 @@ function url_exists_full(&$url, $preg_match_prerealizado = false, $timeout = 20)
 	curl_setopt($ch, CURLOPT_ENCODING, '');
 	
 	$cabeceras = array(
-		'User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:49.0) Gecko/20100101 Firefox/49.0',
+		'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0',
 		'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
 		'Accept-Language: es-ES,es;en-US,en;q=0.5',
 		'Accept-Encoding: gzip, deflate',
@@ -183,6 +183,7 @@ function url_exists_full(&$url, $preg_match_prerealizado = false, $timeout = 20)
 	if($t === false){
 		dbug('problema al descargar la url');
 		dbug('Curl error: '.curl_error($ch));
+		
 		return false;
 	}
 	
@@ -201,8 +202,10 @@ function url_exists_full(&$url, $preg_match_prerealizado = false, $timeout = 20)
 	
 	guarda_web_curl_obtenida($t,$url,'','',$cabeceras,true);
 	
-	$z=intval(substr($web_descargada_headers[0], 9, 3));
-	dbug('code response: '.$z);
+	dbug_r($web_descargada_headers);
+	
+	$z=intval(substr($web_descargada_headers[0], strpos($web_descargada_headers[0], " ") + 1, 3));
+	dbug('Response code (200, 301, 404, etc...): '.$z);
 	
 	if(($z>=200 && $z<350) || $z===403 || $z===409 || $z===410 || $z===0)
 		return true;
