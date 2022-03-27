@@ -5,7 +5,12 @@ include_once '../definiciones.php';
 
 $db = new PDO('sqlite:avisos.sqlite');
 
+try {
 $result = $db->query('SELECT * FROM avisos;');
+}
+catch (PDOException $Exception) {
+	$result = false;
+}
 if($result === false){
 	$db->query('CREATE TABLE avisos (ID INTEGER PRIMARY KEY AUTOINCREMENT, url STRING, comentario STRING, ip STRING, referer STRING, useragent STRING, fecha DATETIME DEFAULT current_timestamp);');
 	echo 'Recarga la página';
