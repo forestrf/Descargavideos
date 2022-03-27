@@ -116,7 +116,7 @@ $cadenas = array(
 		'calcula'
 	)
 	,array(
-		array('canalsuralacarta.es','canalsur.es'),
+		array('canalsuralacarta.es','canalsur.es','canalsurmas.es'),
 		array('canalsuralacarta.php'),
 		'Canalsuralacarta',
 		'calcula'

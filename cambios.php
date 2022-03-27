@@ -5,7 +5,8 @@ function cambios($max=-1){
 
 $todos[]=array(
 '27-Marzo-2022'
-,'fix:EITB no funcionaba tras cambios en sus vídeos.'
+,'fix:EITB no funcionaba tras cambios en sus vídeos.',
+,'fix:Canalsur no funcionaba tras cambios en sus vídeos (nuevo dominio canalsurmas.es).',
 );
 
 $todos[]=array(

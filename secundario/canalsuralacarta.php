@@ -120,7 +120,18 @@ else{
 	else
 		$imagen='http://'.DOMINIO.'/canales/canalsur.png';
 	
-	if (preg_match("@https?://[^ ]+?\.(?:mp4|mp3|flv)@i", $this->web_descargada, $matches)) {
+	if (preg_match('@direct_url:(".*?")@', $this->web_descargada, $matches)) {
+		//direct_url:"https:\u002F\u002Fcdn.rtva.interactvty.com\u002Fasrun_ott\u002Fnoticias_fin_de_semana\u002F0000124880\u002F0000124880_1080p.mp4"
+		dbug_r($matches);
+		
+		$titulo=entre1y2($this->web_descargada,'title>','<');
+		$obtenido['enlaces'][]=array(
+			'url'     => json_decode($matches[1], true),
+			'tipo'    => 'http',
+			'url_txt' => 'Descargar'
+		);
+	}
+	elseif (preg_match("@https?://[^ ]+?\.(?:mp4|mp3|flv)@i", $this->web_descargada, $matches)) {
 		$url=$matches[0];
 		$obtenido['enlaces'][]=array(
 			'url'     => $url,
