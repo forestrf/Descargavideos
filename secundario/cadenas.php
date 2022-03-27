@@ -434,4 +434,10 @@ $cadenas = array(
 		'CMMediaEs',
 		'calcula'
 	)
+	,array(
+		array('apuntmedia.es'),
+		array('apuntmedia.es.php'),
+		'APuntMediaEs',
+		'calcula'
+	)
 );
