@@ -35,6 +35,8 @@ http://www.eitb.com/multimediahd/videos/2013/02/15/1045086/20130215_15532024_000
 http://www.eitb.com/multimedia/videos/2011/10/24/558362/PIRINEOS_ES_20111024_101408.flv
 */
 
+$idMode = true;
+
 if(preg_match('/<div.+?class="player">/', $this->web_descargada)){
 	if(!enString($this->web_descargada, 'detalle_video_')){
 		setErrorWebIntera('No se puede encontrar ningún vídeo.');
@@ -53,34 +55,11 @@ elseif(enString($this->web_descargada, 'insertar_player_video(')){
 	}
 	dbug('id='.$id);
 }
-elseif(preg_match('@/([0-9]+)@', $this->web, $matches)){
-	dbug('3, desde url');
-	$id=$matches[1];
-	dbug('id='.$id);
-}
-$ret=CargaWebCurl('http://www.eitb.com/es/get/multimedia/video/id/'.$id.'/size/grande/');
-
-$imagen=entre1y2($ret,'thumbnail url="','"');
-
-if(enString($ret, 'manifest.f4m')){
-	$p=strpos($ret,'<media:content url="');
-	//$p=strpos($ret,'url="',$p);
-	$url='http://www.eitb.com/'.entre1y2_a($ret,$p,'z/','/manifest.f4m');
+elseif(preg_match('@"contentUrl":(".*?")@i', $this->web_descargada, $matches)) {
+	$idMode = false;
+	dbug_r($matches);
+	$url=json_decode($matches[1], true);
 	
-	$obtenido=array(
-		'titulo'  => $titulo,
-		'imagen'  => $imagen,
-		'enlaces' => array(
-			array(
-				'url'  => $url,
-				'url_txt' => 'Descargar',
-				'tipo' => 'http'
-			)
-		)
-	);
-}
-elseif(enString($ret, '.mp4') || enString($ret, '.flv')){
-	$url='http://www.eitb.com/'.entre1y2($ret,'<media:content url="','"');
 	
 	$obtenido=array(
 		'titulo'  => $titulo,
@@ -95,16 +74,98 @@ elseif(enString($ret, '.mp4') || enString($ret, '.flv')){
 		)
 	);
 }
+elseif(preg_match('@/([0-9]+)@', $this->web, $matches)){
+	dbug('3, desde url');
+	$id=$matches[1];
+	dbug('id='.$id);
+}
+
+if ($idMode) {
+	$ret=CargaWebCurl('http://www.eitb.com/es/get/multimedia/video/id/'.$id.'/size/grande/');
+
+	$imagen=entre1y2($ret,'thumbnail url="','"');
+
+	if(enString($ret, 'manifest.f4m')){
+		$p=strpos($ret,'<media:content url="');
+		//$p=strpos($ret,'url="',$p);
+		$url='http://www.eitb.com/'.entre1y2_a($ret,$p,'z/','/manifest.f4m');
+		
+		$obtenido=array(
+			'titulo'  => $titulo,
+			'imagen'  => $imagen,
+			'enlaces' => array(
+				array(
+					'url'  => $url,
+					'url_txt' => 'Descargar',
+					'tipo' => 'http'
+				)
+			)
+		);
+	}
+	elseif(enString($ret, '.mp4') || enString($ret, '.flv')){
+		$url='http://www.eitb.com/'.entre1y2($ret,'<media:content url="','"');
+		
+		$obtenido=array(
+			'titulo'  => $titulo,
+			'imagen'  => $imagen,
+			'enlaces' => array(
+				array(
+					'url'  => $url,
+					'url_txt' => 'Descargar',
+					'tipo' => 'http',
+					'extension' => substr($url,-3,3)
+				)
+			)
+		);
+	}
+}
 
 //a la carta: Ni idea
 /*
 http://www.eitb.tv/es/#/video/2142574288001
 http://www.eitb.tv/es/get/videoplaylist/2142574288001/
-
-
 */
 
+/*
+http://www.eitb.com/es/get/multimedia/video/id/6156/size/grande/
+http://www.eitb.eus/es/get/multimedia/video/id/6156/size/grande/
 
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:jwplayer="http://developer.longtailvideo.com/trac/wiki/FlashFormats">
+  <channel>
+    <title></title>
+    <link>http://www.eitb.eus</link>
+    <description></description>
+    <bcid>dfsdf</bcid>
+    <item>
+      <id></id>
+      <title></title>
+      <link>http://www.eitb.eus</link>
+      <description></description>
+      <media:content url="http://hdstreameitb-f.akamaihd.net/z//manifest.f4m" type="video/x-flv"/>
+      <media:thumbnail url=""/>
+      <pubdate></pubdate>
+      <category></category>
+      <jwplayer:provider>rtmp</jwplayer:provider>
+      <jwplayer:streamer>rtmp://flashvod.eitb.com/ondemand/</jwplayer:streamer>
+    </item>
+  </channel>
+</rss>
+*/
+
+/*
+https://www.eitb.eus/es/nahieran/programas/vascos-por-el-mundo/napoles/detalle/6156/198386/
+https://mam.eitb.eus/mam/REST/ServiceMultiweb/Video2/MULTIWEBTV/198386/
+
+"contentUrl":"https:\/\/euskalspmd-vh.akamaihd.net\/vod\/geozone0\/2022\/03\/03\/0014295066\/0014295066_1280x720_2560000_12fb589eFiqA0lCh7r6z.mp4"
+http://euskalspmd-vh.akamaihd.net/vod/geozone0/2022/03/03/0014295066/0014295066_1280x720_2560000_12fb589eFiqA0lCh7r6z.mp4
+
+https://mam.eitb.eus/mam/REST/ServiceMultiweb/DomainRestrictedSecurity/TokenAuth/
+	{"token":"exp=1648368045~acl=\/i\/*~hmac=a307fb135d8a8517d1e482503b432fd06b994cf48272771af418b14fad4d33a4","inicio_validez":"2022-03-27 07:00:45","fin_validez":"2022-03-27 10:00:45"}
+	
+https://euskalspmd-vh.akamaihd.net/vod/geozone0/2022/03/03/0014295066/1646921237_0014295066_3_1.vtt
+https://euskalsvod-vh.akamaihd.net/i/2022/03/03/0014295066/0014295066_,1280x720_2560000_12fb589eFiqA0lCh7r6z,320x180_256000_183ae7bcZpkq9wI7bJCu,480x270_512000_bbef9ce6cF27lsY0bGmv,480x270_768000_cd1b8067KF4VAu7JSXYR,.mp4.csmil/master.m3u8?hdnts=exp=1648368045~acl=/i/*~hmac=a307fb135d8a8517d1e482503b432fd06b994cf48272771af418b14fad4d33a4
+*/
 
 
 finalCadena($obtenido);

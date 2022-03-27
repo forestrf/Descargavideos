@@ -4,6 +4,11 @@ function cambios($max=-1){
 //tipo='simple' o 'todos'
 
 $todos[]=array(
+'27-Marzo-2022'
+,'fix:EITB no funcionaba tras cambios en sus vídeos.'
+);
+
+$todos[]=array(
 '13-Enero-2019'
 ,'fix:TV3. Calidad alta vuelve a funcionar gracias al <a href="https://github.com/forestrf/Descargavideos/pull/3">PR de davidgfnet</a>.'
 );
