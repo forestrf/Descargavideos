@@ -31,7 +31,7 @@ if (preg_match('@multimedia-account="(.*?)"@', $this->web_descargada, $matches))
 		$pk = entre1y2($js, 'policyKey:"', '"');
 		dbug('pk='.$pk);
 		
-		$ret = CargaWebCurl('https://edge.api.brightcove.com/playback/v1/accounts/'.$account.'/videos/'.$video_id, '', false, '', array(
+		$ret = CargaWebCurlProxy('https://edge.api.brightcove.com/playback/v1/accounts/'.$account.'/videos/'.$video_id, 'ESP', '', array(
 			'Referer: '.$this->web,
 			'Origin: https://www.apuntmedia.es',
 			'Accept: application/json;pk='.$pk

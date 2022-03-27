@@ -382,17 +382,19 @@ function carga_web_curl_obtenida($url='',$post='',$cookie='',$cabeceras=array(),
 }
 
 $cargawebcurl_proxyarray = array(
+	/*
 	'http://descvid.webcindario.com/'
 	,'http://vddvd.webcindario.com/'
 	,'http://jorll.webcindario.com/'
 	,'http://omgrolff.webcindario.com/'
 	,'http://descv.webcindario.com/'
+	*/
+	'http://dvidsayuda.webcindario.com/'
 );
 
 function CargaWebCurlProxy($web,$pais='ESP',$post='',$cabeceras=array()){
 	global $cargawebcurl_proxyarray;
 	$redir='';
-	$actualizaredir='';
 	
 	// http://teleport.to
 	// http://www.publicproxyservers.com/proxy/list1.html
@@ -400,10 +402,10 @@ function CargaWebCurlProxy($web,$pais='ESP',$post='',$cabeceras=array()){
 	dbug('cargando web (Proxy): '.$web);
 	
 	switch ($pais) {
+	case 'ES':
 	case 'ESP':
 		$rand = rand(0, count($cargawebcurl_proxyarray) - 1);
 		$redir          = $cargawebcurl_proxyarray[$rand] . 'redir.php?a=';
-		$actualizaredir = $cargawebcurl_proxyarray[$rand] . 'actualizar.php';
 		break;
 	case 'MX':
 		// proxy domain hidden to prevent searching of sourcecode
@@ -434,11 +436,6 @@ function CargaWebCurlProxy($web,$pais='ESP',$post='',$cabeceras=array()){
 	dbug('<a href="'.$urlPreparada.'">'.$urlPreparada.'</a>');
 
 	$retfull=CargaWebCurl($urlPreparada);
-	if(enString($retfull,'solicitada no existe') || enString($retfull,'class="error_404"') || enString($retfull,'Page Not Found')){
-		dbug('actualizando redir...');
-		CargaWebCurl($actualizaredir);
-		$retfull=CargaWebCurl($urlPreparada,'',0,'',array(),true,true);
-	}
 	if($retfull === '' || !$retfull || enString($retfull,'solicitada no existe') || enString($retfull,'class="error_404"') || enString($retfull,'Page Not Found')){
 		$retfull=CargaWebCurl($web,$post,0,'',$cabeceras);
 	}
