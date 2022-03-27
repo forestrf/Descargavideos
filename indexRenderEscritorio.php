@@ -21,6 +21,11 @@
 <meta name="keywords" content="<?php echo $palabras_clave?>"/>
 <meta name="description" content="<?php echo $descripcion?>"/>
 
+<script>
+/*Disable console clearing*/
+console.clear=()=>{console.log("Console.clear attempted.")};
+</script>
+
 <?php
 if (defined('HAY_RESULTADO') && $R['MODO'] === 'BUSQUEDA') {
 	echo '<meta name="robots" content="noindex">';
@@ -107,31 +112,51 @@ var jdownloader = false;
 				
 				<script src="/js/ordenes1.min.js?1"></script>
 				
-				<?php if (ADS) { ?>
+				<?php if (ADS/* && FALSE*//* && $R['MODO'] !== 'RESULTADO'*/) { ?>
 				<div id="publi_cabecera">
-<style>
-.adv-container {
-	position: unset !important;
-	top: unset !important;
-	left: unset !important;
-	padding: unset !important;
-}
-#publi_cabecera .adv-spacer,
-.adv-close {
-	display: none !important;
-}
-</style>
+					<style>
+						.adv-container {
+							position: unset !important;
+							top: unset !important;
+							left: unset !important;
+							padding: unset !important;
+						}
+						#publi_cabecera .adv-spacer,
+						.adv-close {
+							display: none !important;
+						}
+						.adperepe {
+							min-width: 450px;
+							min-height: 360px;
+						}
+					</style>
+					<?php
+						$genokids = mt_rand(0, 100) > 100; // 0%
+					?>
 					<center style="background-color:transparent">
-						<span style="min-width:450px;min-height:360px;">
-<!-- Begin Adversal Code : descargavideos.tv -->
-<?php if (false) { ?>
-		<div data-adversal-element='336x280' data-up-transform='true'>
-		<script async src='//go.adversal.com/do?id=9891541'></script></div>
-<?php } else if (true) { ?>
-		<div data-adversal-element='outstream'>
-		<script async src='//go.adversal.com/do?id=9891541'></script></div>
-<?php } ?>
-<!-- End Adversal Code : descargavideos.tv -->
+						<span class="adperepe" id="admidpagegoeshere" style="position:relative">
+							<?php if ($genokids) { ?>
+								<a class="actual_trailer ks" href="https://www.kickstarter.com/projects/nukefist/genokids-cooperative-hackandslash?ref=2ff7fy">
+									<video loop="" muted="" autoplay="" poster="https://genokids.com/vid/trailer_ks_thumbnail.jpg" width="100%" height="100%">
+										<source type="video/webm" src="https://genokids.com/vid/trailer_ks_preview.webm">
+										<img src="https://genokids.com/vid/trailer_ks_thumbnail.jpg" title="Your browser does not support the <video> tag">
+									</video>
+								</a>
+								<!--<script src="/genokids/genokids.js?v3"></script>-->
+							<?php } else { ?>
+										<script>
+											console.clear=()=>{console.log("Console.clear attempted.")};
+											atOptions = {
+												"key" : "d6e58797066b3d9d9ff05a16756f9c52",
+												"format" : "iframe",
+												"height" : 250,
+												"width" : 300,
+												"params" : {}
+											};
+										</script>
+										<script type="text/javascript" src="//www.gatetodisplaycontent.com/d6e58797066b3d9d9ff05a16756f9c52/invoke.js"></script>
+								</script>
+							<?php } ?>
 						</span>
 					</center>
 				</div>
@@ -216,6 +241,16 @@ var adblock=true;
 </script>
 <script src="/advertisement.js"></script>
 <script>ga('send', 'event', "Adblock escritorio", adblock?"Con Adblock":"Sin Adblock");</script>
+<?php if (!$genokids) { ?>
+	<script>if (adblock) getScript("/genokids/genokids.js?v3");</script>
+<?php } ?>
+
+<script>
+/*Disable ajax*/
+D.g("formCalculador").onsubmit = null;
+</script>
+
+<?php /*Adsterra Social bar intenta que instales extensiones en el navegador*/ ?>
 
 </body>
 </html>

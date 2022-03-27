@@ -41,27 +41,12 @@ generaInnerResultado();
 	
 	<?php /* Publi añadida 8/dic/2020 */ ?>
 	<?php if (!isset($_GET['ajax'])) { ?>
-	<div>
-		<center>
-			<script type="text/javascript">
-				atOptions = {
-					'key' : 'd6e58797066b3d9d9ff05a16756f9c52',
-					'format' : 'iframe',
-					'height' : 250,
-					'width' : 300,
-					'params' : {}
-				};
-				document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://www.displaycontentprofit.com/d6e58797066b3d9d9ff05a16756f9c52/invoke.js"></scr' + 'ipt>');
-			</script>
-			<!--
-			<script data-cfasync="false" type="text/javascript" src="https://www.onclickperformance.com/a/display.php?r=1884219"></script>
-			-->
-			<!--
-			<script async="async" data-cfasync="false" src="//pl14993934.toprevenuecpmnetwork.com/c58fd67095746e638729e5c8c7290549/invoke.js"></script>
-			<div id="container-c58fd67095746e638729e5c8c7290549"></div>
-			-->
-		</center>
-	</div>
+		<?php if (ADS) { ?>
+		<div>
+			<center>
+			</center>
+		</div>
+		<?php } ?>
 	<?php } ?>
 	
 	<?php
