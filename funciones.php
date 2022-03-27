@@ -87,7 +87,7 @@ function strrposF($donde, $que, $desde = 0){
 	return strrpos($donde, $que, $desde) + strlen($que);
 }
 
-function entre1y2_a(&$que, $desfaseInicio = 0, $start, $fin = null){
+function entre1y2_a(&$que, $desfaseInicio, $start, $fin = null){
 	if(is_int($start))
 		$p = $start;
 	else
@@ -104,7 +104,7 @@ function entre1y2(&$que, $start, $fin = null){
 	return entre1y2_a($que, 0, $start, $fin);
 }
 
-function desde1a2_a(&$que, $desfaseInicio=0, $start, $fin = null, $incluyeFinal = false){
+function desde1a2_a(&$que, $desfaseInicio, $start, $fin = null, $incluyeFinal = false){
 	$t = entre1y2_a($que, $desfaseInicio, $start, $fin);
 	if ($incluyeFinal && !is_int($fin))
 		$t .= $fin;
