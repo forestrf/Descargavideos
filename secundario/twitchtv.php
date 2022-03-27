@@ -6,7 +6,7 @@ function calcula(){
 	preg_match('@/[a-z]/[0-9]+@', $this->web, $matches);
 	
 	dbug_r($matches);
-	
+
 	$url = 'https://api.twitch.tv/api/videos/'.str_replace('/', '', $matches[0]).'?as3=t';
 	dbug_($url);
 	

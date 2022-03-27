@@ -191,7 +191,7 @@ function calcula(){
 						'tipo'    => 'http'
 					);
 				}
-				
+
 				$obtenido['alerta_especifica'] = 'No se ha podido encontrar ningún enlace para el vídeo pero alguno de los siguientes podría funcionar.';
 			}
 		}
