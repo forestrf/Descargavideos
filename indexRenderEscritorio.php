@@ -1,5 +1,4 @@
 <?php setcookie("modoEscritorio", "1")?>
-
 <!DOCTYPE html>
 <html>
 <head>

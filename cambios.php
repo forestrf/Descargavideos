@@ -4,6 +4,11 @@ function cambios($max=-1){
 //tipo='simple' o 'todos'
 
 $todos[]=array(
+'7-Abril-2022'
+,'fix:EITB.'
+);
+
+$todos[]=array(
 '27-Marzo-2022'
 ,'add:APunt.'
 ,'fix:EITB no funcionaba tras cambios en sus vídeos.'

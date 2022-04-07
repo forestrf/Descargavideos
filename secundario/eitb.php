@@ -37,25 +37,7 @@ http://www.eitb.com/multimedia/videos/2011/10/24/558362/PIRINEOS_ES_20111024_101
 
 $idMode = true;
 
-if(preg_match('/<div.+?class="player">/', $this->web_descargada)){
-	if(!enString($this->web_descargada, 'detalle_video_')){
-		setErrorWebIntera('No se puede encontrar ningún vídeo.');
-		return;
-	}
-	dbug('1');
-	$p=strpos($this->web_descargada,'<div class="player">');
-	$id=entre1y2_a($this->web_descargada,$p,'detalle_video_','"');
-	dbug('id='.$id);
-}
-elseif(enString($this->web_descargada, 'insertar_player_video(')){
-	dbug('2');
-	$id=entre1y2($this->web_descargada,'insertar_player_video(',',');
-	if ($id[0] === "'" || $id[0] === '"') {
-		$id = substr($id, 1, strlen($id) - 2);
-	}
-	dbug('id='.$id);
-}
-elseif(preg_match('@"contentUrl":(".*?")@i', $this->web_descargada, $matches)) {
+if(preg_match('@"contentUrl":.*(".*?")@i', $this->web_descargada, $matches)) {
 	$idMode = false;
 	dbug_r($matches);
 	$url=json_decode($matches[1], true);
@@ -73,6 +55,24 @@ elseif(preg_match('@"contentUrl":(".*?")@i', $this->web_descargada, $matches)) {
 			)
 		)
 	);
+}
+elseif(preg_match('/<div.+?class="player">/', $this->web_descargada)){
+	if(!enString($this->web_descargada, 'detalle_video_')){
+		setErrorWebIntera('No se puede encontrar ningún vídeo.');
+		return;
+	}
+	dbug('1');
+	$p=strpos($this->web_descargada,'<div class="player">');
+	$id=entre1y2_a($this->web_descargada,$p,'detalle_video_','"');
+	dbug('id='.$id);
+}
+elseif(enString($this->web_descargada, 'insertar_player_video(')){
+	dbug('2');
+	$id=entre1y2($this->web_descargada,'insertar_player_video(',',');
+	if ($id[0] === "'" || $id[0] === '"') {
+		$id = substr($id, 1, strlen($id) - 2);
+	}
+	dbug('id='.$id);
 }
 elseif(preg_match('@/([0-9]+)@', $this->web, $matches)){
 	dbug('3, desde url');
