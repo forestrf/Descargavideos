@@ -37,7 +37,8 @@ http://www.eitb.com/multimedia/videos/2011/10/24/558362/PIRINEOS_ES_20111024_101
 
 $idMode = true;
 
-if(preg_match('@"contentUrl":.*(".*?")@i', $this->web_descargada, $matches)) {
+if(preg_match('@"contentUrl":.*?(".*?")@i', $this->web_descargada, $matches)) {
+	dbug("contentUrl mode");
 	$idMode = false;
 	dbug_r($matches);
 	$url=json_decode($matches[1], true);
