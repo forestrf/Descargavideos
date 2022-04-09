@@ -155,25 +155,60 @@ if ($idMode) {
 		
 		//$imagen = $ret['web_media'][0]['THUMBNAIL_URL'];
 		
-		$ret = CargaWebCurl('https://mam.eitb.eus/mam/REST/ServiceMultiweb/Promo/NAHIERAN/EU/MULTIWEBTV/'.$id.'/');
+		//https://mam.eitb.eus/mam/REST/ServiceMultiweb/Video2/MULTIWEBTV/175012/
+		$ret = CargaWebCurl('https://mam.eitb.eus/mam/REST/ServiceMultiweb/Video2/MULTIWEBTV/'.$id.'/');
 		dbug($ret);
 		$ret = json_decode($ret, true);
 		dbug_r($ret);
 		
-		$url = $ret['web_media'][0]['RENDITIONS'][0]['PMD_URL']; // Add all options?
-
 		$obtenido=array(
 			'titulo'  => $titulo,
 			'imagen'  => $imagen,
-			'enlaces' => array(
-				array(
-					'url'  => $url,
-					'url_txt' => 'Descargar',
-					'tipo' => 'http',
-					'extension' => substr($url,-3,3)
-				)
-			)
+			'enlaces' => array()
 		);
+		
+		if (count($ret['web_media'][0]['RENDITIONS']) > 0) {
+			$url = $ret['web_media'][0]['RENDITIONS'][0]['PMD_URL']; // Add all options?
+		
+			$obtenido['enlaces'][] = array(
+				'url' => $url,
+				'url_txt' => 'Descargar',
+				'tipo' => 'http',
+				'extension' => substr($url,-3,3)
+			);
+		}
+		else {
+			// https://www.eitb.eus/es/nahieran/actualidad/teleberri/09-04-2022/detalle/7286/198812/
+			// https://multimedia.eitb.eus/live-content/etb2hd-hls/master.m3u8?start=1649509104&end=1649512007
+			// ['STR_HLS_URL'] https://multimedia.eitb.eus/live-content/etb2hd-hls/master.m3u8
+			$url = $ret['web_media'][0]['STR_HLS_URL'];
+			$url .= '?start='.$ret['web_media'][0]['STR_START'].'&end='.$ret['web_media'][0]['STR_END'];
+			
+		
+			$obtenido['enlaces'][] = array(
+				'url' => $url,
+				//'url_txt' => 'Descargar',
+				'tipo' => 'm3u8'
+			);
+		}
+		
+		/*
+		// M3U8 version (working)
+		$token = CargaWebCurl('https://mam.eitb.eus/mam/REST/ServiceMultiweb/DomainRestrictedSecurity/TokenAuth/');
+		dbug($token);
+		$token = json_decode($token, true);
+		dbug_r($token);
+
+		$url = $ret['web_media'][0]['HLS_SURL'] . '?hdnts=' . $token['token'];
+		// https://euskalsvod-vh.akamaihd.net/i/2022/04/08/0014656963/0014656963_,1280x720_2560000_9ac54416w7j2GhtNoSB1,320x180_256000_dcb804cbZ2eLoptSVsBg,480x270_512000_8fdd16e3acfZKCLbrzpE,480x270_768000_01e8d8c2uTpFeQXOZAVv,.mp4.csmil/master.m3u8
+		// https://euskalsvod-vh.akamaihd.net/i/2022/04/08/0014656963/0014656963_,1280x720_2560000_9ac54416w7j2GhtNoSB1,320x180_256000_dcb804cbZ2eLoptSVsBg,480x270_512000_8fdd16e3acfZKCLbrzpE,480x270_768000_01e8d8c2uTpFeQXOZAVv,.mp4.csmil/master.m3u8?hdnts=exp=1649524791~acl=/i/*~hmac=a9f54f25122537ef03adcbdff894fc3517a71fbc1b4c692082108b2b80bda78b
+		
+		$obtenido['enlaces'][] = array(
+			'url'  => $url,
+			//'url_txt' => 'Descargar',
+			'tipo' => 'm3u8'
+		);
+		*/
 	}
 }
 
