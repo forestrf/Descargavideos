@@ -130,18 +130,24 @@ if ($idMode) {
 	else {
 		if(preg_match('@[^0-9]/([0-9]+)(?:/?(?:#.*?)?)$@', $this->web, $matches)){
 			dbug("Lista de reproduccion");
-			/*
-			$ret = CargaWebCurl('https://mam.eitb.eus/mam/REST/ServiceMultiweb/Grouplist/ByGroup/MULTIWEBTV/8/'.$id.'/');
+			
+			$isGroup = true;
+			if ($isGroup) {
+				$ret = CargaWebCurl('https://mam.eitb.eus/mam/REST/ServiceMultiweb/Grouplist/ByGroup/MULTIWEBTV/8/'.$id.'/');
+				dbug($ret);
+				$ret = json_decode($ret, true);
+				dbug_r($ret);
+				$id = $ret['web_group'][0]['web_playlist'][0]['ID'];
+			}
+			
 			$ret = CargaWebCurl('https://mam.eitb.eus/mam/REST/ServiceMultiweb/Playlist2/MULTIWEBTV/'.$id.'/');
 			dbug($ret);
 			$ret = json_decode($ret, true);
 			dbug_r($ret);
-			
 			$id = $ret['web_media'][0]['ID_WEB_MEDIA'];
-			*/
-					
-			setErrorWebIntera('Listas de vídeos no soportadas. En vez de clicar en "Ver ahora", clica en el título de vídeo y asegúrate de que el enlace que copias lleva al vídeo directamente.');
-			return;
+			
+			//setErrorWebIntera('Listas de vídeos no soportadas. En vez de clicar en "Ver ahora", clica en el título de vídeo y asegúrate de que el enlace que copias lleva al vídeo directamente.');
+			//return;
 		}
 		else {
 			dbug("Vídeo individual");
