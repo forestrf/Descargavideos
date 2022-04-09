@@ -140,7 +140,7 @@ if ($idMode) {
 			$id = $ret['web_media'][0]['ID_WEB_MEDIA'];
 			*/
 					
-			setErrorWebIntera('Listas de vídeos no soportadas. En vez de clicar en "Ver ahora", clica en uno de los vídeos disponibles.');
+			setErrorWebIntera('Listas de vídeos no soportadas. En vez de clicar en "Ver ahora", clica en el título de vídeo y asegúrate de que el enlace que copias lleva al vídeo directamente.');
 			return;
 		}
 		else {
