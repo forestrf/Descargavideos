@@ -450,10 +450,14 @@ static function b64d($encoded){
 function GetInfoFromImage($id) {
 	// default, banebdyede, amonet, apedemak, anat
 	// Cada opción depende del navegador. banebdyede equivale a un navegador de escritorio.
-	$idManagers = array('banebdyede', 'default', 'amonet', 'apedemak', 'anat');
+	$idManagers = array('default', 'banebdyede', 'amonet', 'apedemak', 'anat', 'rtveplayw');
 	foreach ($idManagers as $idManager) {
 		$img = CargaWebCurl("http://www.rtve.es/ztnr/movil/thumbnail/{$idManager}/videos/{$id}.png");
 		dbug_($img);
+		if (enString($img, 'Informe de Error</title>')) {
+			dbug("El server java de RTVE ha fallado. Esto pasa cuando el server de RTVE está saturado.");
+			return array();
+		}
 		if ($img != '') {
 			$byteArray = PNG_RTVE_Data::Img2ByteArray($img);
 			
@@ -617,5 +621,8 @@ http://ztnr.rtve.es/ztnr/res/h1cY6ITT9JXlVR7FSV_TCG6mba5nqN8Z7Lpm50K5VNg=
 [16] => http://mvod2.lvlt.rtve.es/resources/TE_GL16/mp4/8/7/1513297117578.mp4?nvb=20180204161027&nva=20180204181027&token=031f0a11df5ee991908b3
 [17] => http://mvod1.akcdn.rtve.es/resources/TE_GL16/mp4/8/7/1513297117578.mp4
 */
+
+// https://ztnr.rtve.es/ztnr/6543984.mpd?web=true
+// /deliverty/main/resources/m4a/5/5/1653051296355.m4a
 
 ?>
