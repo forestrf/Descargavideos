@@ -253,6 +253,8 @@ function convierteID($asset, $modos = array('video', 'audio')) {
 	
 	// Intentar nuevo método
 	$ret = $this->GetInfoFromImage($asset);
+	if ($ret === "error") return false;
+	
 	// http://hlsvod2017b.akamaized.net/resources/TE_GL16/mp4/9/0/1513297074209.mp4/playlist.m3u8
 	if ($ret !== false) {
 		$this->FindUrls($ret, $links, false);
@@ -455,8 +457,9 @@ function GetInfoFromImage($id) {
 		$img = CargaWebCurl("http://www.rtve.es/ztnr/movil/thumbnail/{$idManager}/videos/{$id}.png");
 		dbug_($img);
 		if (enString($img, 'Informe de Error</title>')) {
-			dbug("El server java de RTVE ha fallado. Esto pasa cuando el server de RTVE está saturado.");
-			return array();
+			dbug("El server java de RTVE ha fallado. Esto pasa cuando el server de RTVE está saturado.");			
+			setErrorWebIntera('RTVE parece tener problemas ahora mismo, por favor inténtelo dentro de unas horas. Si el problema persiste considera reportarlo.');
+			return "error";
 		}
 		if ($img != '') {
 			$byteArray = PNG_RTVE_Data::Img2ByteArray($img);
