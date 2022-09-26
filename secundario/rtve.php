@@ -300,11 +300,19 @@ function FindUrls(&$raw_urls, &$links, $m3u8) {
 	dbug('FindUrls $m3u8 = ' . ($m3u8 ? 'TRUE' : 'FALSE'));
 	foreach ($raw_urls as $i) {
 		if (!stringContains($i, array('1100000000000', 'l3-onlinefs.rtve.es', '.mpd', '.vcl', '/tomcat/'))) {
-			if ($m3u8 && (!enString($i, '.m3u8') || !enString($i, '.rtve.es/'))) continue;
-			if (!$m3u8 && enString($i, '.m3u8')) continue;
+			if (enString($i, '.mp4/video.m3u8')) {
+				
+				$i = desde1a2($i, 'http', '.mp4', true);
+				dbug('Opción encontrada (modo nuevo, quitando m3u8): '.$i);
+				$links[] = $i;
+			}
+			else {
+				if ($m3u8 && (!enString($i, '.m3u8') || !enString($i, '.rtve.es/'))) continue;
+				if (!$m3u8 && enString($i, '.m3u8')) continue;
 
-			dbug('Opción encontrada ('.$m3u8.'): '.$i);
-			$links[] = $i;
+				dbug('Opción encontrada ('.$m3u8.'): '.$i);
+				$links[] = $i;
+			}
 		}
 	}
 }
@@ -452,9 +460,10 @@ static function b64d($encoded){
 function GetInfoFromImage($id) {
 	// default, banebdyede, amonet, apedemak, anat
 	// Cada opción depende del navegador. banebdyede equivale a un navegador de escritorio.
-	$idManagers = array('default', 'banebdyede', 'amonet', 'apedemak', 'anat', 'rtveplayw');
+	$idManagers = array('rtveplayw', 'default', 'banebdyede', 'amonet', 'apedemak', 'anat');
 	foreach ($idManagers as $idManager) {
-		$img = CargaWebCurl("http://www.rtve.es/ztnr/movil/thumbnail/{$idManager}/videos/{$id}.png");
+		//$img = CargaWebCurl("http://www.rtve.es/ztnr/movil/thumbnail/{$idManager}/videos/{$id}.png"); // Antiguo, los videos que retorna son menores de 1080p
+		$img = CargaWebCurl("http://ztnr.rtve.es/ztnr/movil/thumbnail/{$idManager}/videos/{$id}.png?q=v2");
 		dbug_($img);
 		if (enString($img, 'Informe de Error</title>')) {
 			dbug("El server java de RTVE ha fallado. Esto pasa cuando el server de RTVE está saturado.");			
@@ -591,13 +600,11 @@ class PNG_RTVE_Data {
 }
 
 /*
-Hola, vera he estado desde ayer intentando descargar capítulos de la serie de amar en tiempos revueltos usando su página web y me ha sido imposible, me sale todo el rato “Access Denied”.
-Hoy lo he conseguido de una forma muy simple, le cuento como lo he hecho por si sirviese de ayuda:
-He pegado este link (en su página): http://www.rtve.es/alacarta/videos/amar-en-tiempos-revueltos/amar-tiempos-revueltos-t7-capitulo-200/1441367/
-Y me ha devuelto: http://mvod.akcdn.rtve.es/resources/TE_NGVA/mp4/0/6/1340123093060.mp4
-Al intentar descargarlo así, no funciona, sale acceso denegado.
-Pero si pongo directamente el dominio http://www.rtve.es/ y pego detrás la dirección de esta forma http://www.rtve.es/resources/TE_NGVA/mp4/0/6/1340123093060.mp4 quitando “mvod.akcdn.” si se descarga sin ningún problema.
-Un saludo.
+http://www.rtve.es/alacarta/videos/amar-en-tiempos-revueltos/amar-tiempos-revueltos-t7-capitulo-200/1441367/
+http://mvod.akcdn.rtve.es/resources/TE_NGVA/mp4/0/6/1340123093060.mp4
+acceso denegado.
+http://www.rtve.es/resources/TE_NGVA/mp4/0/6/1340123093060.mp4
+funciona
 */
 
 /*
@@ -623,6 +630,24 @@ http://ztnr.rtve.es/ztnr/res/h1cY6ITT9JXlVR7FSV_TCG6mba5nqN8Z7Lpm50K5VNg=
 [15] => http://mvod.lvlt.rtve.es/resources/TE_GL16/mp4/8/7/1513297117578.mp4
 [16] => http://mvod2.lvlt.rtve.es/resources/TE_GL16/mp4/8/7/1513297117578.mp4?nvb=20180204161027&nva=20180204181027&token=031f0a11df5ee991908b3
 [17] => http://mvod1.akcdn.rtve.es/resources/TE_GL16/mp4/8/7/1513297117578.mp4
+*/
+
+
+/*
+https://www.rtve.es/play/videos/serengueti/episodio-5-exodo/5924746/
+
+https://api2.rtve.es/api/videos/5924746/subtitulos.json
+{"page":{"items":[{"src":"http://www.rtve.es/resources/vtt/9/2/1623311421629.vtt","lang":"es"}],"number":1,"size":1,"offset":0,"total":1,"totalPages":1,"numElements":1}}
+https://www.rtve.es/resources/vtt/9/2/1623311421629.vtt
+
+https://ztnr.rtve.es/ztnr/movil/thumbnail/rtveplayw/videos/5924746.png?q=v2
+
+iVBORw0KGgoAAAANSUhEUgAAAsAAAAGMAQMAAADuk4YmAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAADlJREFUeF7twDEBAAAAwiD7p7bGDlgYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAGJrAABgPqdWQAAApx0RVh0eG9PdyZTU1JsSVlIOG4wa21DS0VxN0JseHNuNk9RbUtiJkF2QEZ6SiZZY0hWYXNObi45RjVzZlJ1eTRXeTY/V1NWbE9lQUBtN2xrdDMzAGxpQ0Q2c0hQOV9JMFhUTDpEekk1OE5keW5paTN4NEVwNDhqajU9LU9JZkd4L0pMOlh5R0R1cUg3OEZDX0JvTVQxLVZnZUZ3aHJnXz1aWiZhOGxVcVQ5ODItaEktS2p3TlhlZFJfJiM1MDU2OTMwMzUwNDU3MzE4NjUwNTA0NDk0MzA5NjQ2MjAzMDEzNDcxMjA1NjQ2OTYzMTQwMTE0NDUzMDE1NDA2NDM1Mjg1MzAyODA3MDI2OTEwMzk2MDMyMDMwMTc0NzE0MDE1MTI5NzAxNDA0MDM5MTgzMDI3MDQwMDMyNzExMDE3ODE0NTE1NDQ4MDE1MDg0NjY0Njk2NzIwNzQ0MzAxMDUzNTUwMzI2NDI3MDE3NzIwMTI1MDQ3NDI5NjUwMDc2ODMxMDI3NDIwMjA1NzI3MDIwNDg0NzM5NDI4NDExOTE4NDYyNDM0MDQ0MzI5MzM0MjM0OTI3MTQwNzk1MDUzNzMzNjQ2NjUwNjI2MzYxNDQ2MzYyMDMwMzIwNDUzNTQ0MjI3ODEzODQ3MzE5MTQyNDc0MzQ2MjA0NDkxNjQzNTMxNDAwMzA3MDUwNTE1NzkxMjA4MjQyNTYyMDcyNTIwMzc1NTk2ODMxMTgwNjMwNjE0MTUxNTYxMzExNTQ0ODUyNDMwMzUzMTU3NDQ1NjE1ODU0NjAxNjExMTMyNDQzNjM0MzA2NDQwMDUyNzEwMTQ4NjM0NzMxNDAxMzgxNjUwMTUzMzA3MDM3MDQ4MjYyNDAwMTIwNjI2NDIyNDIzMzI5NDQzNTOdWPc4AAACSHRFWHRHVzI2OlVseGxjU2tuR184V1dnamlab2h5dU1IPWZLTFo4NzFMWm93JldrcEhzSFEzL0RGdkhBcDhhLWhALnJzeUx1aXhnZCZZRC56d2wALV95YjlSWHFTNFp0Q3BhS1hNQy9zJkJLUXVlQWQzeVIuS1QvWDRGeVhISXNKOkQwbzhwNkVAUFhzLUBpZTpObmVfcD10SkliM1JGdGZtSGk0T1dQVlRBP0t5YXhYUjU1MzcxaWZsIzIyNTAzMzUzMTUyNDAyMTY0Njg1NTEyOTE3MDkyNjI0NTM1MjMxNTQxNzI3NzQzNzExNDgyNjgxMDA0MDkyODczMTA3NjkzMDQ0NTU3NzMwNDg1NDIwNTY1MzUyNjE1MzA3NDY2NzQ1NzE4ODE0Njk2MDc1MjU3MjY4MDgzODM3MTc3MjEwMzkyODY4MjM1NjEwMTE3OTI2NzU1ODA2NzE4MDA5MTQyMDIwODU1MDM1NzcxODM4MTE0Mzk0NTUyMjM3NzEwMjExNDA0NTYyNDczMzUxMjAyNTYwNjAxMDc5NjIyNDIyMjQ4NjE0Njk1NzA4MTE5NjU5MTA3OTE0MDc0NTEwNDEwODQxNjgyNzk0NjA2MTM4MjM1MTczMDUwNjUwNjgyOTU1NDIxNDQ2NDIyMjgyNDEwMjYxOTI3MTAyODgyMTIyODU3MDA5NDM4NDYzMzMyMjIyMzg2NzY2MDEwMTgyODM0NzExMzgxNDgwODU3MzA1NTU2ODYzMDE5MzMwMDE0ODY2NzI4NDA0NjUzMXBdCuQAAAMadEVYdGYwTzRZOGZWOF8uYmNncmdnaHAmNzEvNU5uSVAtRzZATFE1NT9TYkhvRFlkP3NEZThOVy9rMGtWMUlzM1JFMUM9Rk4mMGhVME1Ib0FsbwA9OmFsdlZleVBpdEpkam1pMEVWWjh6WC5AR2d1L3ZORFNrUDFTQjRneDJpVFQyOWVTZmQmdGxJdDFsTng4d2JnP3hTNG9XSi1aUTBAU3JCMS1xOUxDL054Njh2S2plPXpzUXREM3AjMjc0Nzc1MjU4MjcxMjEzMDIzMTA5MDU5NjQ3MjU4MDIyMzM1ODA1MTU5MzcyODc1MDMwNjQwNzgzNDA2MjMzMTU2MzU1NjU3NjA5NTQ0MzIzODQ3MTE1MjAwNDE0ODUwNTAwMjY2NTQyNjAyNTUxMDAwMjE0MDAxODYxNTU2NTI1NTI3MTY1MjQwNjgxMzQwMDUyMDI0MTMzMDUzMDMwNTIwNjk2MDcyNTc4MzAxODE0NjQ4MDI2NTE4MjA1NTAwMTA0ODAwMDU5NDkzODgwNjQzNDY2MjQ0NDMwODI2ODQzNTMwODE5MTIxMDQ1OTM3MjE3NzE1NDgwODA5MTE0NTIwOTEzNDA0ODkyMzEwNTEyNDU3NDAzNzEyMjg0NTg0MDc2ODM0NjQyNDE2MTIyMzExNDQxMTg2MjA0MzM3NzA2MTU0NDE4NTc0NzgzNzg2MzYyNDIxODE2ODU4NjA1MjYwMjY5MTE0Njg1NDQxNjU3NTgwNTg1NTg4MTA2NDIwNzE2MDM2ODM1NDQ4NjY5NDE3NjA1MTQwNzc3NDc2NTE2MTM0NDE3ODcxMjQ3NzQ3MTcyNTQ4NTI1MjM1MDI3ODAwNDQ3MTAzMTMzODYyNjI3ODk0NzYwMTQwNDc0NjI2NzYxNjA0NDIyNzAxMDg4NDc0Nzc2MjMxNTI0NzgyMzA4ODAyODc1ODQ3MjE2MjgxNTgxMDEwNzIwNjk2NTEwNDEwMzU3MzI1MDQyNzI1MDUwNjY0ODI1Mzg2NTQyMDI1MTM1MjM0MzcwNDg1MDgyMTA2NDU2MDQ3Njc1NjMxNjYxMDY4mu1dbQAAAABJRU5ErkJggg==
+
+https://rtvehlsvodlote7.rtve.es/mediavodv2/resources/TE_SSERENG/mp4/6/5/1622542900356.mp4/video.m3u8?hls_no_audio_only=true&idasset=5924746
+https://rtvehlsvodlote7.rtve.es/mediavodv2/resources/TE_SSERENG/mp4/6/5/1622542900356.mp4/1622542900356-audio=192231-video=2750000.m3u8?idasset=5924746
+https://rtvehlsvodlote7.rtve.es/mediavodv2/resources/TE_SSERENG/mp4/6/5/1622542900356.mp4/1622542900356-audio=192231-video=2750000-2.ts?idasset=5924746
+https://rtvehlsvodlote7.rtve.es/mediavodv2/resources/TE_SSERENG/mp4/6/5/1622542900356.mp4
 */
 
 // https://ztnr.rtve.es/ztnr/6543984.mpd?web=true
