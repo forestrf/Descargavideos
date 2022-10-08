@@ -4,6 +4,11 @@ function cambios($max=-1){
 //tipo='simple' o 'todos'
 
 $todos[]=array(
+'9-Octubre-2022'
+,'fix:RTVE. Vídeos de alta calidad vuelven a funcionar y filtrado de resultados duplicados.'
+);
+
+$todos[]=array(
 '7-Abril-2022'
 ,'fix:EITB.'
 );
