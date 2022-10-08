@@ -328,6 +328,7 @@ function AddLinksFromConvierteID($links, &$enlaces) {
 			'url_txt' => 'Descargar (opción ' . ($i + 1) . ')'
 		);
 		
+		/*
 		if (!enString($links[$i], '.m3u8')) {
 			$enlaces[] = array(
 				'url'     => $this->quita_geobloqueo($links[$i]),
@@ -335,6 +336,7 @@ function AddLinksFromConvierteID($links, &$enlaces) {
 				'url_txt' => 'Descargar (opción ' . ($i + 1) . ', sin geobloqueo)'
 			);
 		}
+		*/
 	}
 }
 
@@ -468,6 +470,11 @@ function GetInfoFromImage($id) {
 		if (enString($img, 'Informe de Error</title>')) {
 			dbug("El server java de RTVE ha fallado. Esto pasa cuando el server de RTVE está saturado.");			
 			setErrorWebIntera('RTVE parece tener problemas ahora mismo, por favor inténtelo dentro de unas horas. Si el problema persiste considera reportarlo.');
+			return "error";
+		}
+		if (enString($img, 'Asset is not published')) {
+			dbug("Asset is not published");			
+			setErrorWebIntera('RTVE indica que el vídeo no se encuentra disponible.');
 			return "error";
 		}
 		if ($img != '') {
