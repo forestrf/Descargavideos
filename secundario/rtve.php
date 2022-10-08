@@ -287,12 +287,40 @@ function convierteID($asset, $modos = array('video', 'audio')) {
 		}
 	}
 	
+	dbug("Links");
+	dbug_r($links);
+	
 	if (0 === count($links)) {
 		setErrorWebIntera("No se ha podido encontrar ningún vídeo.");
 		return false;
 	}
 	
-	return $links;
+	// Sort links, first those without ?, then with
+	$links = array_unique($links);
+	$linksSorted = array();
+	foreach ($links as $item) if (!enString($item, "?")) $linksSorted[] = $item;
+	foreach ($links as $item) {
+		if (enString($item, "?")) {
+			$p=strrpos($item,'/');
+			
+			$filename = entre1y2($item, "resources/", "?");
+			dbug($filename);
+			
+			$found = false;
+			foreach ($links as $item2) {
+				if (!enString($item2, "?")) {
+					if (enString($item2, $filename)) {
+						$found = true;
+						break;
+					}
+				}
+			}
+			
+			if (!$found) $linksSorted[] = $item;
+		}		
+	}
+	
+	return $linksSorted;
 	//return str_replace('/playlist.m3u8', '', $ret);
 }
 
@@ -462,50 +490,63 @@ static function b64d($encoded){
 function GetInfoFromImage($id) {
 	// default, banebdyede, amonet, apedemak, anat
 	// Cada opción depende del navegador. banebdyede equivale a un navegador de escritorio.
+	// rtveplayw => alta calidad
+	// default => baja calidad
 	$idManagers = array('rtveplayw', 'default', 'banebdyede', 'amonet', 'apedemak', 'anat');
-	foreach ($idManagers as $idManager) {
-		//$img = CargaWebCurl("http://www.rtve.es/ztnr/movil/thumbnail/{$idManager}/videos/{$id}.png"); // Antiguo, los videos que retorna son menores de 1080p
-		$img = CargaWebCurl("http://ztnr.rtve.es/ztnr/movil/thumbnail/{$idManager}/videos/{$id}.png?q=v2");
-		dbug_($img);
-		if (enString($img, 'Informe de Error</title>')) {
-			dbug("El server java de RTVE ha fallado. Esto pasa cuando el server de RTVE está saturado.");			
-			setErrorWebIntera('RTVE parece tener problemas ahora mismo, por favor inténtelo dentro de unas horas. Si el problema persiste considera reportarlo.');
-			return "error";
-		}
-		if (enString($img, 'Asset is not published')) {
-			dbug("Asset is not published");			
-			setErrorWebIntera('RTVE indica que el vídeo no se encuentra disponible.');
-			return "error";
-		}
-		if ($img != '') {
-			$byteArray = PNG_RTVE_Data::Img2ByteArray($img);
-			
-			$i;
-			$pointer = 8;
-			$encontrados = array();
-			do {
-				$i = PNG_RTVE_Data::r($byteArray, $pointer);
-				if ("tEXt" === $i['type']) {
-					$s = $i['data'];
-					$h = "";
-					$o = 0;
-					for ($o = 0; $o < count($s); $o++)
-						if (0 !== $s[$o])
-							$h .= chr($s[$o]);
-					dbug_($h);
-					$res = PNG_RTVE_Data::n($h);
-					dbug("GetInfoFromImage(): " . $res);
-					$encontrados[] = $res;
-				}
-			} while ("IEND" !== $i['type']);
-			if (count($encontrados) > 0) {
-				dbug_r($encontrados);
-				return $encontrados;
+
+	$img = CargaWebCurl("http://www.rtve.es/ztnr/movil/thumbnail/{$idManagers[0]}/videos/{$id}.png"); // Antiguo, los videos que retorna son menores de 1080p
+	$r1 = $this->GetInfoFromImageBase($img);
+	$img = CargaWebCurl("http://www.rtve.es/ztnr/movil/thumbnail/{$idManagers[1]}/videos/{$id}.png"); // Antiguo, los videos que retorna son menores de 1080p
+	$r2 = $this->GetInfoFromImageBase($img);
+	
+	if ($r1 === "error" && $r2 === "error") return false;
+	
+	$r = array();
+	if (is_array($r1)) $r = array_merge($r, $r1);
+	if (is_array($r2)) $r = array_merge($r, $r2);
+	
+	$r = array_unique($r);
+	
+	return $r;
+}
+function GetInfoFromImageBase($img) {
+	dbug_($img);
+	if (enString($img, 'Informe de Error</title>')) {
+		dbug("El server java de RTVE ha fallado. Esto pasa cuando el server de RTVE está saturado.");			
+		setErrorWebIntera('RTVE parece tener problemas ahora mismo, por favor inténtelo dentro de unas horas. Si el problema persiste considera reportarlo.');
+		return "error";
+	}
+	if (enString($img, 'Asset is not published')) {
+		dbug("Asset is not published");			
+		setErrorWebIntera('RTVE indica que el vídeo no se encuentra disponible.');
+		return "error";
+	}
+	if ($img != '') {
+		$byteArray = PNG_RTVE_Data::Img2ByteArray($img);
+		
+		$i;
+		$pointer = 8;
+		$encontrados = array();
+		do {
+			$i = PNG_RTVE_Data::r($byteArray, $pointer);
+			if ("tEXt" === $i['type']) {
+				$s = $i['data'];
+				$h = "";
+				$o = 0;
+				for ($o = 0; $o < count($s); $o++)
+					if (0 !== $s[$o])
+						$h .= chr($s[$o]);
+				dbug_($h);
+				$res = PNG_RTVE_Data::n($h);
+				dbug("GetInfoFromImage(): " . $res);
+				$encontrados[] = $res;
 			}
+		} while ("IEND" !== $i['type']);
+		if (count($encontrados) > 0) {
+			dbug_r($encontrados);
+			return $encontrados;
 		}
 	}
-	dbug("GetInfoFromImage no ha encontrado nada");
-	return false;
 }
 
 }
