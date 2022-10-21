@@ -4,6 +4,11 @@ function cambios($max=-1){
 //tipo='simple' o 'todos'
 
 $todos[]=array(
+'21-Octubre-2022'
+,'fix:RTVE. Geobloqueo daba problemas para encontrar el enlace a algunos vídeos.'
+);
+
+$todos[]=array(
 '9-Octubre-2022'
 ,'fix:RTVE. Vídeos de alta calidad vuelven a funcionar y filtrado de resultados duplicados.'
 );

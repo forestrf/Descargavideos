@@ -289,7 +289,6 @@ function convierteID($asset, $modos = array('video', 'audio')) {
 	
 	dbug("Links");
 	dbug_r($links);
-	
 	if (0 === count($links)) {
 		setErrorWebIntera("No se ha podido encontrar ningún vídeo.");
 		return false;
@@ -492,12 +491,13 @@ function GetInfoFromImage($id) {
 	// Cada opción depende del navegador. banebdyede equivale a un navegador de escritorio.
 	// rtveplayw => alta calidad
 	// default => baja calidad
-	$idManagers = array('rtveplayw', 'default', 'banebdyede', 'amonet', 'apedemak', 'anat');
+	//$idManagers = array('rtveplayw', 'default', 'banebdyede', 'amonet', 'apedemak', 'anat');
 
-	$img = CargaWebCurl("http://www.rtve.es/ztnr/movil/thumbnail/{$idManagers[0]}/videos/{$id}.png"); // Antiguo, los videos que retorna son menores de 1080p
+	$img = CargaWebCurlProxy("http://ztnr.rtve.es/ztnr/movil/thumbnail/rtveplayw/videos/{$id}.png?q=v2", "ESP"); // Nuevo, los videos que retorna son 1080p
 	$r1 = $this->GetInfoFromImageBase($img);
-	$img = CargaWebCurl("http://www.rtve.es/ztnr/movil/thumbnail/{$idManagers[1]}/videos/{$id}.png"); // Antiguo, los videos que retorna son menores de 1080p
+	$img = CargaWebCurl("http://www.rtve.es/ztnr/movil/thumbnail/default/videos/{$id}.png"); // Antiguo, los videos que retorna son menores de 1080p
 	$r2 = $this->GetInfoFromImageBase($img);
+	
 	
 	if ($r1 === "error" && $r2 === "error") return false;
 	
