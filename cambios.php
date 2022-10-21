@@ -6,6 +6,7 @@ function cambios($max=-1){
 $todos[]=array(
 '21-Octubre-2022'
 ,'fix:RTVE. Geobloqueo daba problemas para encontrar el enlace a algunos vídeos.'
+,'fix:Canalsur. Añadido regex nuevo para encontrar la url del vídeo.'
 );
 
 $todos[]=array(

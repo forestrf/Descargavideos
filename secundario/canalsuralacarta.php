@@ -120,7 +120,7 @@ else{
 	else
 		$imagen='http://'.DOMINIO.'/canales/canalsur.png';
 	
-	if (preg_match('@direct_url:(".*?")@', $this->web_descargada, $matches)) {
+	if (preg_match('@direct_url:("http.*?")@', $this->web_descargada, $matches)) {
 		//direct_url:"https:\u002F\u002Fcdn.rtva.interactvty.com\u002Fasrun_ott\u002Fnoticias_fin_de_semana\u002F0000124880\u002F0000124880_1080p.mp4"
 		dbug_r($matches);
 		
@@ -132,7 +132,19 @@ else{
 		);
 	}
 	elseif (preg_match("@https?://[^ ]+?\.(?:mp4|mp3|flv)@i", $this->web_descargada, $matches)) {
+		dbug_r($matches);
+		
 		$url=$matches[0];
+		$obtenido['enlaces'][]=array(
+			'url'     => $url,
+			'tipo'    => 'http'
+		);
+	}
+	elseif (preg_match("@\"https?:[^ ]+?\.(?:mp4|mp3|flv)\"@i", $this->web_descargada, $matches)) {
+		//"https:\u002F\u002Fcdn.rtva.interactvty.com\u002Farchivo_ott\u002Farrayan\u002FPTT_20010227_ARRY_013_m2317_M\u002FPTT_20010227_ARRY_013_m2317_M_576p.mp4"
+		dbug_r($matches);
+		
+		$url=json_decode($matches[0]);
 		$obtenido['enlaces'][]=array(
 			'url'     => $url,
 			'tipo'    => 'http'
