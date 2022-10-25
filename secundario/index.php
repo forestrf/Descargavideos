@@ -181,6 +181,8 @@ define('IGNORA_AVISO_RAPIDO', true);
 					$intento < $intentos &&
 					dbug('Intento '.$intento) &&
 					!($exito = url_exists_full($web, true, 4 + $intento * 3))){
+				$web = str_replace(' ', "%20", $web);
+				$web = str_replace("\t", "%09", $web);
 				$intento++;
 			}
 			
