@@ -142,49 +142,32 @@ function url_exists_full(&$url, $preg_match_prerealizado = false, $timeout = 20)
 		$url = strtr($url, array('&'=>''));
 	}
 
-	$url = preg_replace_callback('/[^ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789\-._~:\/?#[]@!$&\'()*+,;=`.]/', 'urlencode_noAscii', $url);
+	$url = preg_replace_callback('/[^ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789\-._~:\/?#[]@!$&\'()*+,;=`]/', 'urlencode_noAscii', $url);
+	//dbug('Comprobando URL (2) => '.$url);
 	
-	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, $url);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($ch, CURLOPT_HEADER, 1);
 	
-	//CURLOPT_CONNECTTIMEOUT - The number of seconds to wait while trying to connect. Use 0 to wait indefinitely.
-	//CURLOPT_TIMEOUT - The maximum number of seconds to allow cURL functions to execute.
-	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10); 
-	curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
-
-	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+	$t = CargaWebCurl($url, '', true, '', array(), false); // Why not resolve automatically? because some webs return a wrong location: header and the url makes CURL fail
 	
-	// https
-	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-	
-	// force ipv4
-	if (defined('CURLOPT_IPRESOLVE') && defined('CURL_IPRESOLVE_V4')) {
-		curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
+	if($t === false) {
+		dbug('problema al descargar la url');
+		dbug('Curl error "'.curl_error($ch).'" code "'.curl_errno($ch).'" http status "'.$z.'"');
+		return false;
 	}
 	
-	// auto decoding
-	curl_setopt($ch, CURLOPT_ENCODING, '');
+	$GLOBALS['web_descargada'] = &$t;
 	
-	$cabeceras = array(
-		'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0',
-		'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-		'Accept-Language: es-ES,es;en-US,en;q=0.5',
-		'Accept-Encoding: gzip, deflate',
-		'DNT: 1',
-		'Connection: close'
-	);
-	curl_setopt($ch, CURLOPT_HTTPHEADER, $cabeceras);
+	$web_descargada_headers = explode("\r\n", substr($t, 0, strpos($t, "\r\n\r\n")));
 	
-	$t = curl_exec($ch);
+	$GLOBALS['web_descargada_headers'] = &$web_descargada_headers;
 	
-	if($t === false){
-		dbug('problema al descargar la url');
-		dbug('Curl error: '.curl_error($ch));
-		
-		return false;
+	
+	$z=intval(substr($web_descargada_headers[0], strpos($web_descargada_headers[0], " ") + 1, 3));
+	if ($z >= 300 && $z <= 308) {
+		for ($i = 0, $l = count($web_descargada_headers); $i < $l; $i++) {
+			if (strstr($web_descargada_headers[$i], "location: ") !== 0) continue;
+			$url = entre1y2($web_descargada_headers[$i], 'location: ');
+			return url_exists_full($url, $preg_match_prerealizado, $timeout);
+		}
 	}
 	
 	if(!enString(strtolower($t), 'content-type: text')){
@@ -194,17 +177,8 @@ function url_exists_full(&$url, $preg_match_prerealizado = false, $timeout = 20)
 	
 	dbug('Petición indica mimetype text');
 	
-	$GLOBALS['web_descargada'] = &$t;
-	
-	$web_descargada_headers = explode("\r\n", substr($t, 0, strpos($t, "\r\n\r\n")));
-	
-	$GLOBALS['web_descargada_headers'] = &$web_descargada_headers;
-	
-	guarda_web_curl_obtenida($t,$url,'','',$cabeceras,true);
-	
 	dbug_r($web_descargada_headers);
 	
-	$z=intval(substr($web_descargada_headers[0], strpos($web_descargada_headers[0], " ") + 1, 3));
 	dbug('Response code (200, 301, 404, etc...): '.$z);
 	
 	if(($z>=200 && $z<350) || $z===403 || $z===409 || $z===410 || $z===0)
@@ -278,7 +252,7 @@ function CargaWebCurl($url,$post='',$cabecera=0,$cookie='',$cabeceras=array(),$s
 		$url = 'http:' . $url;
 	
 	// Browser headers
-	if (!in_array_part('User-Agent:', $cabeceras))      $cabeceras[] = 'User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:49.0) Gecko/20100101 Firefox/49.0';
+	if (!in_array_part('User-Agent:', $cabeceras))      $cabeceras[] = 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:106.0) Gecko/20100101 Firefox/106.0';
 	if (!in_array_part('Accept:', $cabeceras))          $cabeceras[] = 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8';
 	if (!in_array_part('Accept-Language:', $cabeceras)) $cabeceras[] = 'Accept-Language: es-ES,es;en-US,en;q=0.5';
 	if (!in_array_part('Accept-Encoding:', $cabeceras)) $cabeceras[] = 'Accept-Encoding: gzip, deflate';
@@ -364,6 +338,7 @@ function guarda_web_curl_obtenida(&$t,$url='',$post='',$cookie='',$cabeceras=arr
 }
 function carga_web_curl_obtenida($url='',$post='',$cookie='',$cabeceras=array(),$sigueLocation=true){
 	global $listado_web_curl_obtenidas;
+	if (!isset($listado_web_curl_obtenidas)) return '';
 	$total=count($listado_web_curl_obtenidas);
 	dbug('Webs cargadas en caché: '.$total);
 	for($i=0; $i<$total; $i++){
