@@ -163,10 +163,13 @@ function url_exists_full(&$url, $preg_match_prerealizado = false, $timeout = 20)
 	
 	$z=intval(substr($web_descargada_headers[0], strpos($web_descargada_headers[0], " ") + 1, 3));
 	if ($z >= 300 && $z <= 308) {
+		dbug("Buscando location");
 		for ($i = 0, $l = count($web_descargada_headers); $i < $l; $i++) {
-			if (strstr($web_descargada_headers[$i], "location: ") !== 0) continue;
-			$url = entre1y2($web_descargada_headers[$i], 'location: ');
-			return url_exists_full($url, $preg_match_prerealizado, $timeout);
+			if (preg_match('@location: (.*)@i', $web_descargada_headers[$i], $matches)) {
+				dbug("Location encontrado: {$matches[1]}");
+				$url = $matches[1];
+				return url_exists_full($url, $preg_match_prerealizado, $timeout);
+			}
 		}
 	}
 	
