@@ -4,6 +4,7 @@ class Rtve extends cadena{
 
 function calcula(){
 dbug('empezando RTVE');
+//dbug_r($this->web_descargada);
 
 /*
 // Hay vídeos que funcionan y a pesar de ello incluyen esta línea dentro de <noscript>. Por tanto no se puede usar
@@ -492,6 +493,10 @@ function GetInfoFromImage($id) {
 	// rtveplayw => alta calidad
 	// default => baja calidad
 	//$idManagers = array('rtveplayw', 'default', 'banebdyede', 'amonet', 'apedemak', 'anat');
+	if ($id === "or rellenar") {
+		// Chapucilla
+		return false;
+	}
 
 	$img = CargaWebCurlProxy("http://ztnr.rtve.es/ztnr/movil/thumbnail/rtveplayw/videos/{$id}.png?q=v2", "ESP"); // Nuevo, los videos que retorna son 1080p
 	$r1 = $this->GetInfoFromImageBase($img);
