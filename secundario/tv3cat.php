@@ -398,7 +398,7 @@ function resuelveIDMetodo2($id, &$enlaces_array, &$titulo, &$imagen, $ignoraCadu
 		foreach ($ret['media']['url'] as $urlc)
 			$byquality[$urlc['label']] = $urlc['file'];
 		// preferir la calidad mas alta disponible :)
-		foreach (array("480p", "720p", "1080p") as $q)
+		foreach (array("480p", "576p", "720p", "1080p") as $q)
 			if (isset($byquality[$q]))
 				$hdurl = $byquality[$q];
 	}else{
