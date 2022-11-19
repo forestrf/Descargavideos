@@ -440,4 +440,10 @@ $cadenas = array(
 		'APuntMediaEs',
 		'calcula'
 	)
+	,array(
+		array('players.brightcove.net'),
+		array('players.brightcove.net.php'),
+		'PlayersBrightcove',
+		'calcula'
+	)
 );

@@ -433,8 +433,9 @@ function limpiaCDATAXML($que){
 			if (isset($array[$key][$index]))
 				$temp[$key]=$array[$key][$index];
 			else {
-				dbug('index "' . $index . '" not found at key "' . $key . '"');
+				dbug('index "' . $index . '" not found at key "' . $key . '". The element was:');
 				dbug_r($array[$key]);
+				$temp[$key]=0;
 			}
 		if(!$natsort){
 			if($order=='asc')

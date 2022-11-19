@@ -4,6 +4,11 @@ function cambios($max=-1){
 //tipo='simple' o 'todos'
 
 $todos[]=array(
+'19-Noviembre-2022'
+,'add:Brightcove player.'
+);
+
+$todos[]=array(
 '21-Octubre-2022'
 ,'fix:RTVE. Geobloqueo daba problemas para encontrar el enlace a algunos vídeos.'
 ,'fix:Canalsur. Añadido regex nuevo para encontrar la url del vídeo.'

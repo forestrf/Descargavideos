@@ -145,13 +145,18 @@ function BrightCove_Api($web_descargada, &$obtenido) {
 			$xhr = CargaWebCurl($xhr, '', false, '', Array('Accept: application/json;pk='.$policyKey[1]));
 			dbug_($xhr);
 			$xhr = json_decode($xhr, true);
+			dbug("Check for avg_bitrate");
 			if (isset($xhr['sources'][0]['avg_bitrate'])) {
+				dbug("avg_bitrate found");
+				dbug("Number of keys: " . count($xhr['sources']));
+				dbug_r($xhr['sources']);
+				
 				$xhr['sources'] = sortmulti($xhr['sources'], 'avg_bitrate', 'desc');
 			}
 			dbug_r($xhr);
 			
 			foreach($xhr['sources'] as $source) {
-				if (strpos($source['src'], 'http:') === 0) {
+				if (strpos($source['src'], 'http') === 0) {
 					$nombre = isset($source['width']) ? 'Tamaño: ' . $source['width'] . ' x ' . $source['height'] : $xhr['name'];
 					if (!enString($source['src'], '.m3u8')) {
 						$obtenido['enlaces'][] = array(
