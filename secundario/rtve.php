@@ -499,7 +499,7 @@ function GetInfoFromImage($id) {
 	}
 
 	$img = CargaWebCurlProxy("http://ztnr.rtve.es/ztnr/movil/thumbnail/rtveplayw/videos/{$id}.png?q=v2", "ESP"); // Nuevo, los videos que retorna son 1080p
-	$r1 = $this->GetInfoFromImageBase($img);
+	$r1 = !enString($img, '{"error":"Asset ') ? $this->GetInfoFromImageBase($img) : "error";
 	$img = CargaWebCurl("http://www.rtve.es/ztnr/movil/thumbnail/default/videos/{$id}.png"); // Antiguo, los videos que retorna son menores de 1080p
 	$r2 = $this->GetInfoFromImageBase($img);
 	
