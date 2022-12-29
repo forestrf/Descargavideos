@@ -242,6 +242,10 @@ function dbug_r(&$arr){
 	return true;
 }
 
+function dbug_exit(){
+	if(defined('DEBUG')) exit;
+}
+
 function in_array_part($needle, &$haystack) {
 	foreach ($haystack as $elem)
 		if (enString($elem,$needle))

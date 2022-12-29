@@ -521,7 +521,7 @@ function GetInfoFromImageBase($img) {
 		setErrorWebIntera('RTVE parece tener problemas ahora mismo, por favor inténtelo dentro de unas horas. Si el problema persiste considera reportarlo.');
 		return "error";
 	}
-	if (enString($img, 'Asset is not published')) {
+	if (enString($img, 'is not published')) {
 		dbug("Asset is not published");			
 		setErrorWebIntera('RTVE indica que el vídeo no se encuentra disponible.');
 		return "error";
