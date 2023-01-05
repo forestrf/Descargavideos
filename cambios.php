@@ -4,6 +4,11 @@ function cambios($max=-1){
 //tipo='simple' o 'todos'
 
 $todos[]=array(
+'5-Enero-2023'
+,'fix:RTVE añadida supuesta opción sin Geobloqueo.'
+);
+
+$todos[]=array(
 '19-Noviembre-2022'
 ,'fix:Toda la web. Fallo con URLs que redireccionaban a otras URL.'
 ,'fix:TV3. Vídeos con calidad 576p no funcionaban.'

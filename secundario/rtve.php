@@ -243,8 +243,10 @@ function quita_geobloqueo($url) {
 	if (enString($url, '?')) {
 		$url = substr($url, 0, strpos($url, '?'));
 	}
-	$url = preg_replace('#//.*?.rtve.es#', '//www.rtve.es', $url);
-	// URL ok: http://mvod1.akcdn.rtve.es/resources/TE_GL16/mp4/1/1/1513296993011.mp4
+	$url = preg_replace('#//rtvehlsvodlote7\.rtve\.es/mediavodv2/#', '//www.rtve.es/', $url);
+	//$url = preg_replace('#//.*?.rtve.es#', '//www.rtve.es', $url);
+	// URL ok (not anymore): http://mvod1.akcdn.rtve.es/resources/TE_GL16/mp4/1/1/1513296993011.mp4
+	// URL ok: https://mediavod-lvlt.rtve.es/resources/TE_SESPANO/mp4/6/4/1671882383646.mp4
 	return $url;
 }
 
@@ -356,15 +358,13 @@ function AddLinksFromConvierteID($links, &$enlaces) {
 			'url_txt' => 'Descargar (opción ' . ($i + 1) . ')'
 		);
 		
-		/*
 		if (!enString($links[$i], '.m3u8')) {
 			$enlaces[] = array(
 				'url'     => $this->quita_geobloqueo($links[$i]),
 				'tipo'    => 'http',
-				'url_txt' => 'Descargar (opción ' . ($i + 1) . ', sin geobloqueo)'
+				'url_txt' => 'Descargar (opción ' . ($i + 1) . ', supuestamente sin geobloqueo)'
 			);
 		}
-		*/
 	}
 }
 
