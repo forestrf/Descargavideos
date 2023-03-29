@@ -262,6 +262,7 @@ function convierteID($asset, $modos = array('video', 'audio')) {
 	
 	// Intentar nuevo método
 	$ret = $this->GetInfoFromImage($asset);
+	if ($ret === false) return false;
 	if ($ret === "error") return false;
 	
 	// http://hlsvod2017b.akamaized.net/resources/TE_GL16/mp4/9/0/1513297074209.mp4/playlist.m3u8
@@ -505,10 +506,13 @@ function GetInfoFromImage($id) {
 	}
 
 	$img = CargaWebCurlProxy("http://ztnr.rtve.es/ztnr/movil/thumbnail/rtveplayw/videos/{$id}.png?q=v2", "ESP"); // Nuevo, los videos que retorna son 1080p
+	dbug_($img);
 	$r1 = !enString($img, '{"error":"Asset ') ? $this->GetInfoFromImageBase($img) : "error";
+
 	$img = CargaWebCurl("http://www.rtve.es/ztnr/movil/thumbnail/default/videos/{$id}.png"); // Antiguo, los videos que retorna son menores de 1080p
-	$r2 = $this->GetInfoFromImageBase($img);
-	
+	dbug_($img);
+	$r2 = !enString($img, '{"error":"Asset ') ? $this->GetInfoFromImageBase($img) : "error";
+
 	
 	if ($r1 === "error" && $r2 === "error") return false;
 	
@@ -691,7 +695,6 @@ http://ztnr.rtve.es/ztnr/res/h1cY6ITT9JXlVR7FSV_TCG6mba5nqN8Z7Lpm50K5VNg=
 [17] => http://mvod1.akcdn.rtve.es/resources/TE_GL16/mp4/8/7/1513297117578.mp4
 */
 
-
 /*
 https://www.rtve.es/play/videos/serengueti/episodio-5-exodo/5924746/
 
@@ -712,4 +715,15 @@ https://rtvehlsvodlote7.rtve.es/mediavodv2/resources/TE_SSERENG/mp4/6/5/16225429
 // https://ztnr.rtve.es/ztnr/6543984.mpd?web=true
 // /deliverty/main/resources/m4a/5/5/1653051296355.m4a
 
+/*
+DRM:
+https://www.rtve.es/play/videos/cine-internacional/match-point/6823459/
+
+Vídeo: https://rtvedrmstaging.rtve.es/59/34/6823459/6823459_drm.mpd?idasset=6823459
+DRM: https://api.rtve.es/api/token/6823459
+Dentro hay un json, la key siguiente es clave "widevineURL":"https://3e6900a5.drm-widevine-licensing.axprod.net/AcquireLicense?AxDrmMessage=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJzaW9uIjoxLCJjb21fa2V5X2lkIjoiOWRlYWZhMWUtN2UzNy00MzRhLWJkYWYtYWY1MDAxMGVlMTNhIiwibWVzc2FnZSI6eyJ0eXBlIjoiZW50aXRsZW1lbnRfbWVzc2FnZSIsInZlcnNpb24iOjIsImxpY2Vuc2UiOnsic3RhcnRfZGF0ZXRpbWUiOiIyMDIzLTAzLTI4VDAxOjUzOjU0LjUxN1oiLCJleHBpcmF0aW9uX2RhdGV0aW1lIjoiMjAyMy0wNC0wNVQwMTo1Mzo1NC41MTdaIiwiYWxsb3dfcGVyc2lzdGVuY2UiOnRydWV9LCJjb250ZW50X2tleXNfc291cmNlIjp7ImlubGluZSI6W3siaWQiOiJiMGQ5ZTNlMS0wNjE5LTY1N2YtMjA5OC05M2YyYTNmMDI0OWEiLCJ1c2FnZV9wb2xpY3kiOiJQb2xpY3kgQSJ9XX0sImNvbnRlbnRfa2V5X3VzYWdlX3BvbGljaWVzIjpbeyJuYW1lIjoiUG9saWN5IEEiLCJmYWlycGxheSI6eyJoZGNwIjoiVFlQRTAifSwicGxheXJlYWR5Ijp7Im1pbl9kZXZpY2Vfc2VjdXJpdHlfbGV2ZWwiOjE1MCwicGxheV9lbmFibGVycyI6WyI3ODY2MjdEOC1DMkE2LTQ0QkUtOEY4OC0wOEFFMjU1QjAxQTciXX19XX0sImJlZ2luX2RhdGUiOiIyMDIzLTAzLTI4VDAxOjUzOjU0LjUxN1oiLCJleHBpcmF0aW9uX2RhdGUiOiIyMDIzLTA0LTA1VDAxOjUzOjU0LjUxN1oifQ.5SBicqtaOGRcTga_wPP0kJ_T1U6IP0zxSxhS5Um0bkk"
+
+Puesto el vídeo aquí https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html
+Clicar en Show Options, DRM options, Widevine, pegar la url indicada antes y reproduce el vídeo.
+*/
 ?>
