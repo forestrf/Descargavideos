@@ -4,6 +4,11 @@ function cambios($max=-1){
 //tipo='simple' o 'todos'
 
 $todos[]=array(
+'29-Marzo-2023'
+,'fix:RTVE subtítulos no funcionan.'
+);
+
+$todos[]=array(
 '5-Enero-2023'
 ,'fix:RTVE añadida supuesta opción sin Geobloqueo.'
 );

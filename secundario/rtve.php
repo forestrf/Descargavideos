@@ -200,9 +200,15 @@ $obtenido['imagen'] = $imagen;
 
 if(isset($asset)){
 	// Buscar subtítulos. Tienen extensión .vtt
-	$subs = CargaWebCurl('http://www.rtve.es/api/videos/'.$asset.'/subtitulos.json');
+	// Nueva url https://api2.rtve.es/api/videos/6625005/subtitulos.json
+	$subs = CargaWebCurl('http://api2.rtve.es/api/videos/'.$asset.'/subtitulos.json');
 	$subs = json_decode($subs, true);
 	dbug_r($subs);
+	if (!isset($subs['page']['items'][0])) {
+		$subs = CargaWebCurl('http://www.rtve.es/api/videos/'.$asset.'/subtitulos.json');
+		$subs = json_decode($subs, true);
+		dbug_r($subs);
+	}
 	if (isset($subs['page']['items'][0])) {
 		foreach($subs['page']['items'] as $subtitle) {
 			$obtenido['enlaces'][] = array(
