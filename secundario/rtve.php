@@ -337,7 +337,7 @@ function FindUrls(&$raw_urls, &$links, $m3u8) {
 	dbug('FindUrls $m3u8 = ' . ($m3u8 ? 'TRUE' : 'FALSE'));
 	foreach ($raw_urls as $i) {
 		if (!stringContains($i, array('1100000000000', 'l3-onlinefs.rtve.es', '.mpd', '.vcl', '/tomcat/'))) {
-			if (enString($i, '.mp4/video.m3u8')) {
+			if (preg_match("@\.mp4/.*\.m3u8@", $i)) {
 				
 				$i = desde1a2($i, 'http', '.mp4', true);
 				dbug('Opción encontrada (modo nuevo, quitando m3u8): '.$i);
