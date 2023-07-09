@@ -238,7 +238,7 @@ $obtenido['alerta_especifica'] =
 finalCadena($obtenido, false);
 }
 
-// Ya casinunca quita geobloqueo, retorna la url tal cual
+// Ya casinunca quita geobloqueo, retorna la url tal cual. NO, vuelve a haber geobloqueo en muchos videos.
 function quita_geobloqueo($url) {
 	dbug('quita_geobloqueo para: '.$url);
 	// Quitar lo que hay a continuación del ? en ocasiones supone que el vídeo no funcione o tenga un tamaño incorrecto.
@@ -250,6 +250,23 @@ function quita_geobloqueo($url) {
 		$url = substr($url, 0, strpos($url, '?'));
 	}
 	$url = preg_replace('#//rtvehlsvodlote7\.rtve\.es/mediavodv2/#', '//www.rtve.es/', $url);
+	//$url = preg_replace('#//.*?.rtve.es#', '//www.rtve.es', $url);
+	// URL ok (not anymore): http://mvod1.akcdn.rtve.es/resources/TE_GL16/mp4/1/1/1513296993011.mp4
+	// URL ok: https://mediavod-lvlt.rtve.es/resources/TE_SESPANO/mp4/6/4/1671882383646.mp4
+	return $url;
+}
+function quita_geobloqueo2($url) {
+	dbug('quita_geobloqueo para: '.$url);
+	// Quitar lo que hay a continuación del ? en ocasiones supone que el vídeo no funcione o tenga un tamaño incorrecto.
+	// Pero parece que hay vídeos que tienen geobloqueo dado que tras quitar el geobloqueo, algunas personas empezaron a tener problemas.
+	// mvod.rtve.es (no requiere de parámetros GET) retorna tamaños incorrectos de vídeo en ocasiones mientras que mvod2.rtve.es (requiere de parámetros GET) no, pero usar www.rtve.es para conseguir una redirección al enlace usa mvod con parámetros GET (que son ignorados) y el tamaño del vídeo es por tanto, incorrecto
+	
+	if (strpos($url, '.mp3') !== false) return $url;
+	if (enString($url, '?')) {
+		$url = substr($url, 0, strpos($url, '?'));
+	}
+	$url = preg_replace('#//rtvehlsvodlote7\.rtve\.es/mediavodv2/#', '//mvod.lvlt.rtve.es/', $url);
+	$url = str_replace('https://', 'http://', $url);
 	//$url = preg_replace('#//.*?.rtve.es#', '//www.rtve.es', $url);
 	// URL ok (not anymore): http://mvod1.akcdn.rtve.es/resources/TE_GL16/mp4/1/1/1513296993011.mp4
 	// URL ok: https://mediavod-lvlt.rtve.es/resources/TE_SESPANO/mp4/6/4/1671882383646.mp4
@@ -367,9 +384,14 @@ function AddLinksFromConvierteID($links, &$enlaces) {
 		
 		if (!enString($links[$i], '.m3u8')) {
 			$enlaces[] = array(
+				'url'     => $this->quita_geobloqueo2($links[$i]),
+				'tipo'    => 'http',
+				'url_txt' => 'Descargar (opción ' . ($i + 1) . ', sin geobloqueo v1)'
+			);
+			$enlaces[] = array(
 				'url'     => $this->quita_geobloqueo($links[$i]),
 				'tipo'    => 'http',
-				'url_txt' => 'Descargar (opción ' . ($i + 1) . ', supuestamente sin geobloqueo)'
+				'url_txt' => 'Descargar (opción ' . ($i + 1) . ', sin geobloqueo v2)'
 			);
 		}
 	}
