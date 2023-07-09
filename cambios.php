@@ -7,6 +7,7 @@ $todos[]=array(
 '9-Julio-2023'
 ,'fix:RTVE geobloqueo.'
 ,'fix:CRTVG.'
+,'fix:CMMedia.'
 );
 
 $todos[]=array(

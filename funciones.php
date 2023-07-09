@@ -429,6 +429,19 @@ function enString($cual,$que,$desde=0){
 	return strpos($cual,$que,$desde)!==false;
 }
 
+function startsWith($haystack, $needle) {
+	$length = strlen($needle);
+	return substr($haystack, 0, $length) === $needle;
+}
+
+function endsWith($haystack, $needle) {
+	$length = strlen($needle);
+	if (!$length) {
+		return true;
+	}
+	return substr($haystack, -$length) === $needle;
+}
+
 function limpiaCDATAXML($que){
 	return strtr($que,array('<![CDATA['=>'',']]>'=>''));
 }

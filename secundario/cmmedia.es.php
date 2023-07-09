@@ -508,7 +508,68 @@ function calcula(){
 		);
 		
 		finalCadena($obtenido);
-	} else {
+	}
+	else if (preg_match("@thumbnail\\\/entry_id\\\/(.*?)\\\/version@", $this->web_descargada, $matches)) {
+		dbug_r($matches);
+		$id = $matches[1];
+		// https://cdnapisec.kaltura.com/p/2288691/sp/228869100/playManifest/entryId/1_gskixgjv/protocol/https/format/applehttp/flavorIds/1_o88f5ln0,1_phrtw7lo/a.m3u8?uiConfId=51754702&playSessionId=aaede945-d17d-fc8f-1f8a-1ce588947167:e89a4864-dfa4-ef7e-9f2c-223dc7738288&referrer=aHR0cHM6Ly93d3cuY21tZWRpYS5lcy9wbGF5L3R2L2VuLWNvbXBhbmlhL2NvbXBhbmlhLTA2LTA3LTIwMjMuaHRtbA==&clientTag=html5:v7.66
+		// https://cdnapisec.kaltura.com/p/2288691/sp/2288691/playManifest/entryId/1_gskixgjv/flavorIds/1_o88f5ln0,1_phrtw7lo/deliveryProfileId/5642/protocol/https/format/url/name/a.mp4
+		// http://cdnapi.kaltura.com/p/2288691/sp/2288691/playManifest/entryId/1_gskixgjv/flavorIds/1_o88f5ln0,1_phrtw7lo/deliveryProfileId/72/protocol/http/format/url/name/a.mp4
+		// https://cdnapisec.kaltura.com/p/2288691/sp/2288691/playManifest/entryId/1_gskixgjv/flavorIds/1_o88f5ln0,1_phrtw7lo/deliveryProfileId/92/protocol/https/format/url/name/a.mp4
+		// https://cdnapisec.kaltura.com/p/2288691/sp/2288691/playManifest/entryId/1_gskixgjv/flavorIds/1_o88f5ln0,1_phrtw7lo/deliveryProfileId/5552/protocol/https/format/url/name/a.mp4
+		
+		// La siguiente URL tiene los enlaces que quiero:
+		// POST https://cdnapisec.kaltura.com/api_v3/service/multirequest
+		// POST DATA: {"1":{"service":"session","action":"startWidgetSession","widgetId":"_2288691"},"2":{"service":"baseEntry","action":"list","ks":"{1:result:ks}","filter":{"redirectFromEntryId":"1_gskixgjv"},"responseProfile":{"type":1,"fields":"id,referenceId,name,description,thumbnailUrl,dataUrl,duration,msDuration,flavorParamsIds,mediaType,type,tags,dvrStatus,externalSourceType,status,createdAt,endDate"}},"3":{"service":"baseEntry","action":"getPlaybackContext","entryId":"{2:result:objects:0:id}","ks":"{1:result:ks}","contextDataParams":{"objectType":"KalturaContextDataParams","flavorTags":"all"}},"4":{"service":"metadata_metadata","action":"list","filter":{"objectType":"KalturaMetadataFilter","objectIdEqual":"{2:result:objects:0:id}","metadataObjectTypeEqual":"1"},"ks":"{1:result:ks}"},"apiVersion":"3.3.0","format":1,"ks":"","clientTag":"html5:v3.14.6","partnerId":"2288691"}
+
+		// http://cfvod.kaltura.com/p/2288691/p\/228869100/thumbnail/entry_id/1_gskixgjv/version/100041
+		
+		
+		// https://www.cmmedia.es/kaltura/config.json
+		// {"partner_id":"2288691","video_ui_id":"51789822","audio_ui_id":"51754702","ads_config":{"adTagUrl":"https:\/\/pubads.g.doubleclick.net\/gampad\/ads?iu=\/22526134856\/cmmedia.es\/video\u0026description_url=https%3A%2F%2Fcmmedia.es\u0026sz=300x250%7C400x300%7C640x480\u0026ciu_szs=300x250\u0026gdfp_req=1\u0026ad_rule=1\u0026output=vmap\u0026unviewed_position_start=1\u0026env=vp\u0026impl=s\u0026cmsid=496\u0026vid=short_onecue\u0026correlator=\u0026cust_params="},"ads_config_live":{"adTagUrl":"https:\/\/pubads.g.doubleclick.net\/gampad\/live\/ads?iu=\/22526134856\/cmmedia.es\/video\u0026description_url=https%3A%2F%2Fcmmedia.es\u0026sz=300x250%7C400x300%7C640x480\u0026cust_params=tipo-duracion%3Ddirecto\u0026ciu_szs=300x250\u0026gdfp_req=1\u0026ad_rule=1\u0026output=vmap\u0026unviewed_position_start=1\u0026env=vp\u0026impl=s\u0026cmsid=496\u0026vid=short_onecue\u0026correlator="}}
+		$ret = CargaWebCurl(
+			'https://cdnapisec.kaltura.com/api_v3/service/multirequest',
+			'{"1":{"service":"session","action":"startWidgetSession","widgetId":"_2288691"},"2":{"service":"baseEntry","action":"list","ks":"{1:result:ks}","filter":{"redirectFromEntryId":"'.$id.'"},"responseProfile":{"type":1,"fields":"id,referenceId,name,description,thumbnailUrl,dataUrl,duration,msDuration,flavorParamsIds,mediaType,type,tags,dvrStatus,externalSourceType,status,createdAt,endDate"}},"3":{"service":"baseEntry","action":"getPlaybackContext","entryId":"{2:result:objects:0:id}","ks":"{1:result:ks}","contextDataParams":{"objectType":"KalturaContextDataParams","flavorTags":"all"}},"4":{"service":"metadata_metadata","action":"list","filter":{"objectType":"KalturaMetadataFilter","objectIdEqual":"{2:result:objects:0:id}","metadataObjectTypeEqual":"1"},"ks":"{1:result:ks}"},"apiVersion":"3.3.0","format":1,"ks":"","clientTag":"html5:v3.14.6","partnerId":"2288691"}',
+			false, '', array(
+				'TE: trailers',
+				'Origin: https://www.cmmedia.es',
+				'Referer: https://www.cmmedia.es/',
+				'Sec-Fetch-Dest: empty',
+				'Sec-Fetch-Mode: cors',
+				'Sec-Fetch-Site: cross-site',
+				'Content-Type: application/json'
+			));
+		dbug_($ret);
+		// [{"partnerId":2288691,"ks":"djJ8MjI4ODY5MXzvEuvA3HoeHj1NKbx3B_i8SQIFOJSpZgM1obLAI6yE4i4i1RlmgzWy1cj3q5rx743xqFnVSk6sr7XpIt-X-An8TlcLKUG_qrcr7gm39SIGSg==","userId":0,"objectType":"KalturaStartWidgetSessionResponse"},{"objects":[{"mediaType":1,"dataUrl":"https:\/\/cdnapisec.kaltura.com\/p\/2288691\/sp\/228869100\/playManifest\/entryId\/1_gskixgjv\/format\/url\/protocol\/https","flavorParamsIds":"0,487061,487071","duration":7586,"msDuration":7585588,"id":"1_gskixgjv","name":"E06723EB_EN COMPA\u00d1IA_060723","description":"","tags":"","status":2,"type":1,"createdAt":1688664631,"thumbnailUrl":"https:\/\/cfvod.kaltura.com\/p\/2288691\/sp\/228869100\/thumbnail\/entry_id\/1_gskixgjv\/version\/100041","referenceId":"E06723EB","objectType":"KalturaMediaEntry"}],"totalCount":1,"objectType":"KalturaBaseEntryListResponse"},{"sources":[{"deliveryProfileId":5642,"format":"url","protocols":"http,https","flavorIds":"1_o88f5ln0,1_phrtw7lo","url":"https:\/\/cdnapisec.kaltura.com\/p\/2288691\/sp\/2288691\/playManifest\/entryId\/1_gskixgjv\/flavorIds\/1_o88f5ln0,1_phrtw7lo\/deliveryProfileId\/5642\/protocol\/https\/format\/url\/name\/a.mp4","drm":[],"objectType":"KalturaPlaybackSource"},{"deliveryProfileId":3382,"format":"hdnetworkmanifest","protocols":"https","flavorIds":"1_o88f5ln0,1_phrtw7lo","url":"https:\/\/cdnapisec.kaltura.com\/p\/2288691\/sp\/2288691\/playManifest\/entryId\/1_gskixgjv\/flavorIds\/1_o88f5ln0,1_phrtw7lo\/deliveryProfileId\/3382\/protocol\/https\/format\/hdnetworkmanifest\/manifest.f4m","drm":[],"objectType":"KalturaPlaybackSource"},{"deliveryProfileId":4662,"format":"mpegdash","protocols":"http,https","flavorIds":"1_o88f5ln0,1_phrtw7lo","url":"https:\/\/cdnapisec.kaltura.com\/p\/2288691\/sp\/2288691\/playManifest\/entryId\/1_gskixgjv\/flavorIds\/1_o88f5ln0,1_phrtw7lo\/deliveryProfileId\/4662\/protocol\/https\/format\/mpegdash\/manifest.mpd","drm":[],"objectType":"KalturaPlaybackSource"},{"deliveryProfileId":72,"format":"url","protocols":"http","flavorIds":"1_o88f5ln0,1_phrtw7lo","url":"http:\/\/cdnapi.kaltura.com\/p\/2288691\/sp\/2288691\/playManifest\/entryId\/1_gskixgjv\/flavorIds\/1_o88f5ln0,1_phrtw7lo\/deliveryProfileId\/72\/protocol\/http\/format\/url\/name\/a.mp4","drm":[],"objectType":"KalturaPlaybackSource"},{"deliveryProfileId":92,"format":"url","protocols":"http,https","flavorIds":"1_o88f5ln0,1_phrtw7lo","url":"https:\/\/cdnapisec.kaltura.com\/p\/2288691\/sp\/2288691\/playManifest\/entryId\/1_gskixgjv\/flavorIds\/1_o88f5ln0,1_phrtw7lo\/deliveryProfileId\/92\/protocol\/https\/format\/url\/name\/a.mp4","drm":[],"objectType":"KalturaPlaybackSource"},{"deliveryProfileId":102,"format":"hdnetwork","protocols":"http,https","flavorIds":"1_o88f5ln0,1_phrtw7lo","url":"https:\/\/cdnapisec.kaltura.com\/p\/2288691\/sp\/2288691\/playManifest\/entryId\/1_gskixgjv\/flavorIds\/1_o88f5ln0,1_phrtw7lo\/deliveryProfileId\/102\/protocol\/https\/format\/hdnetwork\/manifest.f4m","drm":[],"objectType":"KalturaPlaybackSource"},{"deliveryProfileId":13942,"format":"applehttp","protocols":"http,https","flavorIds":"1_o88f5ln0,1_phrtw7lo","url":"https:\/\/cdnapisec.kaltura.com\/p\/2288691\/sp\/2288691\/playManifest\/entryId\/1_gskixgjv\/flavorIds\/1_o88f5ln0,1_phrtw7lo\/deliveryProfileId\/13942\/protocol\/https\/format\/applehttp\/a.m3u8","drm":[],"objectType":"KalturaPlaybackSource"},{"deliveryProfileId":122,"format":"rtsp","protocols":"http,https","flavorIds":"1_o88f5ln0,1_phrtw7lo","url":"https:\/\/cdnapisec.kaltura.com\/p\/2288691\/sp\/2288691\/playManifest\/entryId\/1_gskixgjv\/flavorIds\/1_o88f5ln0,1_phrtw7lo\/deliveryProfileId\/122\/protocol\/https\/format\/rtsp\/name\/a.3gp","drm":[],"objectType":"KalturaPlaybackSource"},{"deliveryProfileId":13952,"format":"applehttp","protocols":"http,https","flavorIds":"1_o88f5ln0,1_phrtw7lo","url":"https:\/\/cdnapisec.kaltura.com\/p\/2288691\/sp\/2288691\/playManifest\/entryId\/1_gskixgjv\/flavorIds\/1_o88f5ln0,1_phrtw7lo\/deliveryProfileId\/13952\/protocol\/https\/format\/applehttp\/a.m3u8","drm":[],"objectType":"KalturaPlaybackSource"},{"deliveryProfileId":21633,"format":"applehttp","protocols":"http,https","flavorIds":"1_o88f5ln0,1_phrtw7lo","url":"https:\/\/cdnapisec.kaltura.com\/p\/2288691\/sp\/2288691\/playManifest\/entryId\/1_gskixgjv\/flavorIds\/1_o88f5ln0,1_phrtw7lo\/deliveryProfileId\/21633\/protocol\/https\/format\/applehttp\/a.m3u8","drm":[],"objectType":"KalturaPlaybackSource"},{"deliveryProfileId":132,"format":"hdnetworkmanifest","protocols":"http","flavorIds":"1_o88f5ln0,1_phrtw7lo","url":"http:\/\/cdnapi.kaltura.com\/p\/2288691\/sp\/2288691\/playManifest\/entryId\/1_gskixgjv\/flavorIds\/1_o88f5ln0,1_phrtw7lo\/deliveryProfileId\/132\/protocol\/http\/format\/hdnetworkmanifest\/manifest.f4m","drm":[],"objectType":"KalturaPlaybackSource"},{"deliveryProfileId":152,"format":"rtmp","protocols":"rtmp,rtmpe,rtmpt,rtmpte","flavorIds":"1_o88f5ln0,1_phrtw7lo","url":"http:\/\/cdnapi.kaltura.com\/p\/2288691\/sp\/2288691\/playManifest\/entryId\/1_gskixgjv\/flavorIds\/1_o88f5ln0,1_phrtw7lo\/deliveryProfileId\/152\/protocol\/http\/format\/rtmp\/a.f4m","drm":[],"objectType":"KalturaPlaybackSource"},{"deliveryProfileId":162,"format":"rtmp","protocols":"rtmp,rtmpe,rtmpt,rtmpte","flavorIds":"1_o88f5ln0,1_phrtw7lo","url":"http:\/\/cdnapi.kaltura.com\/p\/2288691\/sp\/2288691\/playManifest\/entryId\/1_gskixgjv\/flavorIds\/1_o88f5ln0,1_phrtw7lo\/deliveryProfileId\/162\/protocol\/http\/format\/rtmp\/a.f4m","drm":[],"objectType":"KalturaPlaybackSource"},{"deliveryProfileId":12972,"format":"mpegdash","protocols":"http,https","flavorIds":"1_o88f5ln0,1_phrtw7lo","url":"https:\/\/cdnapisec.kaltura.com\/p\/2288691\/sp\/2288691\/playManifest\/entryId\/1_gskixgjv\/flavorIds\/1_o88f5ln0,1_phrtw7lo\/deliveryProfileId\/12972\/protocol\/https\/format\/mpegdash\/manifest.mpd","drm":[],"objectType":"KalturaPlaybackSource"},{"deliveryProfileId":5552,"format":"url","protocols":"http,https","flavorIds":"1_o88f5ln0,1_phrtw7lo","url":"https:\/\/cdnapisec.kaltura.com\/p\/2288691\/sp\/2288691\/playManifest\/entryId\/1_gskixgjv\/flavorIds\/1_o88f5ln0,1_phrtw7lo\/deliveryProfileId\/5552\/protocol\/https\/format\/url\/name\/a.mp4","drm":[],"objectType":"KalturaPlaybackSource"},{"deliveryProfileId":5612,"format":"hdnetworkmanifest","protocols":"http,https","flavorIds":"1_o88f5ln0,1_phrtw7lo","url":"https:\/\/cdnapisec.kaltura.com\/p\/2288691\/sp\/2288691\/playManifest\/entryId\/1_gskixgjv\/flavorIds\/1_o88f5ln0,1_phrtw7lo\/deliveryProfileId\/5612\/protocol\/https\/format\/hdnetworkmanifest\/manifest.f4m","drm":[],"objectType":"KalturaPlaybackSource"},{"deliveryProfileId":5622,"format":"hdnetworkmanifest","protocols":"http,https","flavorIds":"1_o88f5ln0,1_phrtw7lo","url":"https:\/\/cdnapisec.kaltura.com\/p\/2288691\/sp\/2288691\/playManifest\/entryId\/1_gskixgjv\/flavorIds\/1_o88f5ln0,1_phrtw7lo\/deliveryProfileId\/5622\/protocol\/https\/format\/hdnetworkmanifest\/manifest.f4m","drm":[],"objectType":"KalturaPlaybackSource"}],"playbackCaptions":[],"flavorAssets":[{"flavorParamsId":487061,"width":960,"height":540,"bitrate":918,"frameRate":25,"isOriginal":false,"isWeb":true,"containerFormat":"isom","videoCodecId":"avc1","status":2,"language":"Undefined","isDefault":false,"id":"1_o88f5ln0","entryId":"1_gskixgjv","partnerId":2288691,"version":"1","size":850512,"tags":"mobile,web,mbr,ipad,ipadnew,iphone,iphonenew,dash","fileExt":"mp4","createdAt":1688664816,"updatedAt":1688666790,"description":"","sizeInBytes":"870924522","objectType":"KalturaFlavorAsset"},{"flavorParamsId":487071,"width":1280,"height":720,"bitrate":1486,"frameRate":25,"isOriginal":false,"isWeb":true,"containerFormat":"isom","videoCodecId":"avc1","status":2,"language":"Undefined","isDefault":false,"id":"1_phrtw7lo","entryId":"1_gskixgjv","partnerId":2288691,"version":"1","size":1376065,"tags":"mobile,web,mbr,ipad,ipadnew,iphone,iphonenew,dash","fileExt":"mp4","createdAt":1688664816,"updatedAt":1688667535,"description":"","sizeInBytes":"1409091185","objectType":"KalturaFlavorAsset"}],"actions":[],"messages":[],"bumperData":[],"objectType":"KalturaPlaybackContext"},{"objects":[],"totalCount":0,"objectType":"KalturaMetadataListResponse"}]<br/>
+
+		$json = json_decode($ret, true);
+		
+		dbug_r($json);
+		
+		
+		$obtenido = array(
+			'titulo' => $titulo,
+			'imagen' => $imagen,
+			'enlaces' => array()
+		);
+		
+		$sources = $json[2]['sources'];
+		$j = 1;
+		for ($i = 0, $i_l = count($sources); $i < $i_l; $i++) {
+			$url = $sources[$i]['url'];
+		
+			if (endsWith($url, '.mp4')) {
+				$obtenido['enlaces'][] = array(
+					'url_txt' => 'Descargar (Opción '.$j++.')',
+					'url'  => $url,
+					'tipo' => 'http'
+				);
+			}
+		}
+		
+		finalCadena($obtenido);
+	}
+	else {
 		setErrorWebIntera('No se ha encontrado ningún vídeo');
 		return;
 	}
