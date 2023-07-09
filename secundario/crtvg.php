@@ -60,17 +60,41 @@ if (enString($this->web_descargada, "id=$(this).attr('id').split('|');")) {
 	
 	$this->parsefragment($obtenido['enlaces'], $this->web_descargada, $titulo);
 } else {
-	$url = desde1a2($this->web_descargada, 'http://media1.crtvg.es/', '.m3u8', true);
 	$obtenido = array(
-		'titulo'  => entre1y2($this->web_descargada, 'og:title" content="', '"'),
-		'imagen'  => entre1y2($this->web_descargada, 'og:image" content="', '"'),
-		'enlaces' => array(
+		'titulo' => entre1y2($this->web_descargada, 'og:title" content="', '"'),
+		'imagen' => entre1y2($this->web_descargada, 'og:image" content="', '"')
+	);
+	
+	$url = desde1a2($this->web_descargada, 'http://media1.crtvg.es/', '.m3u8', true);
+	
+	if (!enString($url, '<script')) {
+		$obtenido['enlaces'] = array(
 			array(
 				'url'  => $url,
 				'tipo' => 'm3u8'
 			)
-		)
-	);
+		);
+	}
+	else if (preg_match('@url = "(https?://.*?\.mp4.*?)"@i', $this->web_descargada, $matches)) {
+		dbug_r($matches);
+		
+		$url = $matches[1];
+		
+		$url = str_replace('ondemand-crtvg-origin.flumotion.com', 'www.crtvg.es', $url);
+		
+		$obtenido['enlaces'] = array(
+			array(
+				'url'     => $url,
+				'url_txt' => 'Descargar',
+				'tipo'    => 'http'
+			)
+		);
+	}
+}
+
+
+if (enString($url, '<script')) {
+	return;
 }
 
 finalCadena($obtenido);
@@ -118,4 +142,9 @@ function parsefragment(&$arr, $html, $titulo, $multiple = false) {
 	}
 }
 
+/*
+http://ondemand-crtvg-origin.flumotion.com/videos/MD/2023/07/bb476e72-608f-4c4a-821d-b6f50f880725.mp4
+http://ondemand-crtvg-origin.flumotion.com/videos/MD/2023/07/bb476e72-608f-4c4a-821d-b6f50f880725.mp4/playlist.m3u8
+http://www.crtvg.es/videos/MD/2023/07/bb476e72-608f-4c4a-821d-b6f50f880725.mp4
+*/
 }
