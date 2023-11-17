@@ -170,10 +170,6 @@ var jdownloader = false;
 				<div class="elem">
 					<a target="_blank" class="fb" href="https://www.facebook.com/descargavids"></a>
 				</div>
-				
-				<div class="elem">
-					<a target="_blank" class="gplus" href="https://plus.google.com/share?url=http://www.descargavideos.tv/"></a>
-				</div>
 			</div>
 		</div>
 	</div>
@@ -213,6 +209,7 @@ var jdownloader = false;
 			</div>
 			<a href="/aviso_legal#contenido"><?php echo TXT_AVISO_LEGAL?></a>
 			 | <a href="/privacidad#contenido"><?php echo TXT_POLITICA_PRIVACIDAD?></a>
+			 | <a href="https://www.rarapercepcion.com">Rara Percepcion</a>
 		</div>
 	</div>
 </div>

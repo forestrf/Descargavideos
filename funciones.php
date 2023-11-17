@@ -259,7 +259,7 @@ function CargaWebCurl($url,$post='',$cabecera=0,$cookie='',$cabeceras=array(),$s
 		$url = 'http:' . $url;
 	
 	// Browser headers
-	if (!in_array_part('User-Agent:', $cabeceras))      $cabeceras[] = 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:106.0) Gecko/20100101 Firefox/106.0';
+	if (!in_array_part('User-Agent:', $cabeceras))      $cabeceras[] = 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0';
 	if (!in_array_part('Accept:', $cabeceras))          $cabeceras[] = 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8';
 	if (!in_array_part('Accept-Language:', $cabeceras)) $cabeceras[] = 'Accept-Language: es-ES,es;en-US,en;q=0.5';
 	if (!in_array_part('Accept-Encoding:', $cabeceras)) $cabeceras[] = 'Accept-Encoding: gzip, deflate';
@@ -371,7 +371,6 @@ $cargawebcurl_proxyarray = array(
 	,'http://omgrolff.webcindario.com/'
 	,'http://descv.webcindario.com/'
 	*/
-	'http://dvidsayuda.webcindario.com/'
 );
 
 function CargaWebCurlProxy($web,$pais='ESP',$post='',$cabeceras=array()){

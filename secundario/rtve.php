@@ -231,9 +231,7 @@ if(isset($asset)){
 }
 
 $obtenido['alerta_especifica'] =
-	'Las opciones se encuentran ordenadas de mayor a menor calidad. Pruébalas en orden.<p>' .
-	'Los resultados M3U8 en ocasiones tienen más calidad.<p>' .
-	'Reintenta dentro de varios minutos si falla la descarga.';
+	'<b style="font-size:200%">Algunos vídeos sólo son accesibles desde España</b>.<p>Necesitas usar un proxy o VPN para simular estar en España.<p>';
 
 finalCadena($obtenido, false);
 }
@@ -324,6 +322,7 @@ function convierteID($asset, $modos = array('video', 'audio')) {
 	// Sort links, first those without ?, then with
 	$links = array_unique($links);
 	$linksSorted = array();
+	foreach ($links as $item) if (enString($item, "?")) $linksSorted[] = $item;
 	foreach ($links as $item) if (!enString($item, "?")) $linksSorted[] = $item;
 	foreach ($links as $item) {
 		if (enString($item, "?")) {
@@ -379,19 +378,23 @@ function AddLinksFromConvierteID($links, &$enlaces) {
 		$enlaces[] = array(
 			'url'     => $links[$i],
 			'tipo'    => enString($links[$i], '.m3u8') ? 'm3u8' : 'http',
-			'url_txt' => 'Descargar (opción ' . ($i + 1) . ')'
+			'url_txt' => 'Opción ' . ($i + 1) . ' (Sólo funciona desde España)'
 		);
 		
 		if (!enString($links[$i], '.m3u8')) {
+			/*
 			$enlaces[] = array(
 				'url'     => $this->quita_geobloqueo2($links[$i]),
 				'tipo'    => 'http',
 				'url_txt' => 'Descargar (opción ' . ($i + 1) . ', sin geobloqueo v1)'
 			);
+			*/
+			$urlNoGeo = $this->quita_geobloqueo($links[$i]);
+			
 			$enlaces[] = array(
-				'url'     => $this->quita_geobloqueo($links[$i]),
+				'url'     => $urlNoGeo,
 				'tipo'    => 'http',
-				'url_txt' => 'Descargar (opción ' . ($i + 1) . ', sin geobloqueo v2)'
+				'url_txt' => 'Opción ' . ($i + 1) . ' (Sin geobloqueo. No funciona)'
 			);
 		}
 	}
@@ -747,5 +750,92 @@ Dentro hay un json, la key siguiente es clave "widevineURL":"https://3e6900a5.dr
 
 Puesto el vídeo aquí https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html
 Clicar en Show Options, DRM options, Widevine, pegar la url indicada antes y reproduce el vídeo.
+*/
+/*
+YES
+https://rtvehlsvodlote7.rtve.es/mediavodv2/resources/TE_SLAPROM/mp4/9/5/1689243005859.mp4                     [GEO]
+http://rtve-mediavod-lote3.rtve.es/resources/TE_SLAPROM/mp4/9/5/1689243005859.mp4?idasset=6934169             [GEO]
+
+NO
+http://mvod.lvlt.rtve.es/resources/TE_SLAPROM/mp4/9/5/1689243005859.mp4        [missing DNS route]
+https://www.rtve.es/resources/TE_SLAPROM/mp4/9/5/1689243005859.mp4             [403]
+http://mediavod-lvlt.rtve.es/resources/TE_SLAPROM/mp4/9/5/1689243005859.mp4    [403]
+
+
+
+
+https://media-lab-pro.rtve.es/resources/TE_SLAPROM/mp4/9/5/1689243005859.mp4
+blogchojin.rtve.es/resources/TE_SLAPROM/mp4/9/5/1689243005859.mp4
+datos2.rtve.es/resources/TE_SLAPROM/mp4/9/5/1689243005859.mp4
+foroaguilaroja.rtve.es/resources/TE_SLAPROM/mp4/9/5/1689243005859.mp4
+fororadio3.rtve.es/resources/TE_SLAPROM/mp4/9/5/1689243005859.mp4
+hlsvod2018a-tcdn.rtve.es/resources/TE_SLAPROM/mp4/9/5/1689243005859.mp4
+loteria-nino.rtve.es/resources/TE_SLAPROM/mp4/9/5/1689243005859.mp4
+origin-lab-pre.rtve.es/resources/TE_SLAPROM/mp4/9/5/1689243005859.mp4
+rtvelivestream-lvlt.rtve.es/resources/TE_SLAPROM/mp4/9/5/1689243005859.mp4
+swf.rtve.es/resources/TE_SLAPROM/mp4/9/5/1689243005859.mp4
+
+
+https://mediavod-lvlt.rtve.es/fitoycalamaro/videos/flaca.flv
+https://www.rtve.es/fitoycalamaro/videos/flaca.flv
+www.rtve.es/contenidos/secretos/video4.flv
+www.rtve.es/contenidos/secretos/video3.flv
+www.rtve.es/resources/flv/2/8/1210771547882.flv
+www.rtve.es/resources/TE_SLAPROM/mp4/9/5/1689243005859.mp4    
+www.rtve.es/resources/mp4/9/5/1689243005859.mp4    
+http://mediavod-lvlt.rtve.es/contenidos/2009/berlin/videos/id336584.flv
+http://flash.1.multimedia.cdn.rtve.es/resources/TE_SLAPROM/mp4/9/5/1689243005859.mp4     [500]
+http://flash.2.multimedia.cdn.rtve.es/resources/TE_SLAPROM/mp4/9/5/1689243005859.mp4     [500]
+http://flash.multimedia.cdn.rtve.es/resources/TE_SLAPROM/mp4/9/5/1689243005859.mp4
+http://vod18.1.hd4flash.cdn.rtve.es/z/resources/TE_SLAPROM/mp4/9/5/1689243005859.mp4.smil/manifest.f4m?hdnea=exp=1691359761~hmac=229ae064be54e1a561089faaf45b7ffe5d48072a57fab535cd02cee9b9238fd4    [No va]
+
+
+https://mediavod-lvlt.rtve.es/resources/TE_SBANER3/mp3/4/5/1689334250254.mp3
+https://mediavod-lvlt.rtve.es/resources/TE_SLAPROM/mp4/9/5/1689243005859.mp4
+
+/deliverty/main/resources/m4a/9/1/1643820244719.m4a
+
+
+
+https://rtve-mediavod-lote3.rtve.es/resources/TE_SDISPO/mp3/1/5/1311361221851.mp3?idasset=1159505
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sep-2023
+https://www.rtve.es/play/videos/grand-prix/final-alfacar-aguilar-campoo/6958866/
+https://api-ztnr.rtve.es/api/videos/6958866.json
+{"page":{"items":[{"uri":"https://www.rtve.es/api/videos/6958866","htmlUrl":"https://www.rtve.es/play/videos/grand-prix/final-alfacar-aguilar-campoo/6958866/","htmlShortUrl":"https://www.rtve.es/v/6958866/","id":"6958866","language":"es","anteTitle":null,"anteTitleUrl":null,"longTitle":"Grand Prix - Programa 7 - Final: Alfacar (Granada) vs Aguilar de Campoo (Palencia)","shortTitle":"Final: Alfacar (Granada) vs Aguilar de Campoo (Palencia)","mainCategoryRef":"https://www.rtve.es/api/tematicas/174712","popularity":"0.0","popHistoric":"0.0","numVisits":"0","publicationDate":"05-09-2023 00:55:00","modificationDate":"05-09-2023 09:18:20","pubState":{"code":"ENPUB","description":"En publicación"},"mainTopic":"Televisión/Programas de TVE/Concursos/Grand Prix","topicsName":[],"breadCrumbRef":"https://www.rtve.es/api/videos/6958866/breadcrumb","imageSEO":"https://img2.rtve.es/v/final-alfacar-aguilar-campoo_6958866.png","thumbnail":"https://img2.rtve.es/imagenes/grand-prix-programa-7-final-alfacar-granada-vs-aguilar-campoo-palencia/1693817804573.jpg","previews":{"horizontal":null,"horizontal2":null,"vertical":"https://img2.rtve.es/imagenes/grand-prix-programa-7-final-alfacar-granada-vs-aguilar-campoo-palencia/1693818683746.jpg","vertical2":null,"square":null,"square2":null},"expirationDate":"23-07-2025 00:55:00","dateOfEmission":"05-09-2023 00:55:00","publicationDateTimestamp":1693868100000,"productionDate":null,"contentType":"video","consumption":"EMPAQUETADO","type":{"id":39816,"name":"Completo"},"subType":null,"assetType":"video","statistics":{"numComentarios":0,"numCompartidas":0},"alt":"Grand Prix - Programa 7 - Final: Alfacar (Granada) vs Aguilar de Campoo (Palencia) - Ver ahora","foot":null,"shortDescription":"¡Llega la gran final del Grand Prix del Verano! Se enfrentan por el trofeo los pueblos de Alfacar, desde Granada y Aguilar de Campoo, desde Palencia.","description":"¡Llega la gran final del Grand Prix del Verano! Los dos pueblos finalistas, Alfacar desde Granada y Aguilar de Campoo desde Palencia, se enfrentan en un emocionante programa para alzarse con el trofeo. Los nervios y la emoción envuelven el plató del Grand Prix con Eduardo Casanova animando al equipo de Andalucía y Camela animando al equipo de Castilla y León ¿quién ganará? Ramón García, el maestro de ceremonias del Grand Prix del Verano, nos presenta los juegos de siempre y los nuevos de esta temporada, incluido al temible dinosaurio al que llamamos Niko. Michelle Calvó, la embajadora de los pueblos acompaña a los alcaldes y anima en las gradas. Cristina López, más conocida en las redes como Cristinini, es la encargada de retransmitir los juegos desde su cabina. Wilbur, aporta la comedia al programa haciendo las pruebas de una forma muy particular y, por último, no puede faltar la vaquilla, que molesta a los concursantes manteniendo el espíritu del Grand Prix de siempre.","otherTopicsRefs":"https://www.rtve.es/api/videos/6958866/tematicas","qualities":[{"identifier":5875491,"filePath":"http://ztnr.rtve.es/ztnr/res/_PROVIDER_/video/hd_full/_TOKEN_","preset":"HD_FULL","filesize":5018989775,"type":"application/mp4","duration":8513520,"bitRate":6000,"bitRateUnit":"bps","language":"es","previewPath":"https://img2.rtve.es/imagenes/final-alfacar-granada-vs-aguilar-campoo-palencia/1693817804677.jpg","height":1080,"width":1920},{"identifier":5875492,"filePath":"http://ztnr.rtve.es/ztnr/res/_PROVIDER_/video/hd_ready/_TOKEN_","preset":"HD_READY","filesize":3149315114,"type":"application/mp4","duration":8513520,"bitRate":4000,"bitRateUnit":"bps","language":"es","previewPath":"https://img2.rtve.es/imagenes/final-alfacar-granada-vs-aguilar-campoo-palencia/1693817804817.jpg","height":720,"width":1280},{"identifier":5875493,"filePath":"http://ztnr.rtve.es/ztnr/res/_PROVIDER_/video/hq/_TOKEN_","preset":"HQ","filesize":2127059418,"type":"application/mp4","duration":8513520,"bitRate":2500,"bitRateUnit":"bps","language":"es","previewPath":"https://img2.rtve.es/imagenes/final-alfacar-granada-vs-aguilar-campoo-palencia/1693817804897.jpg","height":576,"width":1024},{"identifier":5875494,"filePath":"http://ztnr.rtve.es/ztnr/res/_PROVIDER_/video/high/_TOKEN_","preset":"HIGH","filesize":1222652200,"type":"application/mp4","duration":8513520,"bitRate":1500,"bitRateUnit":"bps","language":"es","previewPath":"https://img2.rtve.es/imagenes/final-alfacar-granada-vs-aguilar-campoo-palencia/1693817805058.jpg","height":360,"width":450}],"qualitiesRef":"https://www.rtve.es/api/videos/6958866/calidades","duration":8513520,"programInfo":{"id":"174712","title":"Grand Prix","htmlUrl":"https://www.rtve.es/play/videos/grand-prix/","channelPermalink":"la1","ageRangeUid":"IF_REDAD0","ageRange":"Recomendado para todos los públicos","programType":"Concursos","programTypeId":"132871","outOfEmission":false},"sgce":"P221PGS00230007","dg":"DG00143849","sip":null,"commentOptions":null,"cuePointsRef":"https://www.rtve.es/api/videos/6958866/cuepoints","configPlayerRef":"https://www.rtve.es/api/videos/6958866/config/video","transcriptionRef":"https://www.rtve.es/api/videos/6958866/transcripcion","temporadaId":null,"temporadasRef":"https://www.rtve.es/api/videos/6958866/temporadas","temporada":null,"temporadaShortTitle":null,"temporadaOrden":null,"programRef":"https://www.rtve.es/api/programas/174712","relacionadosRef":"https://www.rtve.es/api/videos/6958866/relacionados","relManualesRef":"https://www.rtve.es/api/videos/6958866/relacionados/manuales","publicidadRef":null,"comentariosRef":"https://www.rtve.es/api/videos/6958866/comentarios","relatedByLangRef":"https://www.rtve.es/api/videos/6958866/relacionados/relacionados-por-idioma","sign":{"ctvId":null,"name":null,"firma":null,"photo":null,"twitter":null,"facebook":null,"otras":null,"publicationDate":null,"numPublications":null,"instagram":null},"estadisticasRef":"https://www.rtve.es/api/videos/6958866/estadisticas","ageRangeUid":"IF_REDAD0","ageRange":"Programas para todos los públicos","contentInitDate":null,"contentEndDate":null,"disabledAlacarta":false,"notDownloadable":false,"noRegistrationRequired":false,"promoTitle":null,"promoDesc":null,"episode":7,"subtitleRef":"https://www.rtve.es/api/videos/6958866/subtitulos","aspectRatio":"f16x9","title":"Final: Alfacar (Granada) vs Aguilar de Campoo (Palencia)","idWiki":null,"idImdb":null,"director":null,"producedBy":null,"showMan":null,"casting":null,"generos":[{"generoInf":"Humor","generoInfUid":"GEN_HUMOR","generoId":"136634"}],"technicalTeam":null,"audioDescription":null,"audioOriginal":null,"allowedInCountry":true,"paidContent":false,"geolocalizado":false,"consumptionUid":"D_PACK","country":"ES","hasDRM":true,"paidCountries":null}],"number":1,"size":1,"offset":0,"total":1,"totalPages":1,"numElements":1}}
+
+https://api.rtve.es/api/token/6958866
+{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJzaW9uIjoxLCJjb21fa2V5X2lkIjoiOWRlYWZhMWUtN2UzNy00MzRhLWJkYWYtYWY1MDAxMGVlMTNhIiwibWVzc2FnZSI6eyJ0eXBlIjoiZW50aXRsZW1lbnRfbWVzc2FnZSIsInZlcnNpb24iOjIsImxpY2Vuc2UiOnsic3RhcnRfZGF0ZXRpbWUiOiIyMDIzLTA5LTA0VDE2OjIwOjAxLjc0NloiLCJleHBpcmF0aW9uX2RhdGV0aW1lIjoiMjAyMy0wOS0xMlQxNjoyMDowMS43NDZaIiwiYWxsb3dfcGVyc2lzdGVuY2UiOnRydWV9LCJjb250ZW50X2tleXNfc291cmNlIjp7ImlubGluZSI6W3siaWQiOiI4ZmM1YjJiOS1kZjhlLWJkODktNGNiNS1mNGRiNTZjNWM0YmMiLCJ1c2FnZV9wb2xpY3kiOiJQb2xpY3kgQSJ9XX0sImNvbnRlbnRfa2V5X3VzYWdlX3BvbGljaWVzIjpbeyJuYW1lIjoiUG9saWN5IEEiLCJmYWlycGxheSI6eyJoZGNwIjoiVFlQRTAifSwicGxheXJlYWR5Ijp7Im1pbl9kZXZpY2Vfc2VjdXJpdHlfbGV2ZWwiOjE1MCwicGxheV9lbmFibGVycyI6WyI3ODY2MjdEOC1DMkE2LTQ0QkUtOEY4OC0wOEFFMjU1QjAxQTciXX19XX0sImJlZ2luX2RhdGUiOiIyMDIzLTA5LTA0VDE2OjIwOjAxLjc0NloiLCJleHBpcmF0aW9uX2RhdGUiOiIyMDIzLTA5LTEyVDE2OjIwOjAxLjc0NloifQ.3y8gzXq8WZJ8n5LJQmU_k7InZBofa9ujLIJThxBPFJE","widevineURL":"https://3e6900a5.drm-widevine-licensing.axprod.net/AcquireLicense?AxDrmMessage=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJzaW9uIjoxLCJjb21fa2V5X2lkIjoiOWRlYWZhMWUtN2UzNy00MzRhLWJkYWYtYWY1MDAxMGVlMTNhIiwibWVzc2FnZSI6eyJ0eXBlIjoiZW50aXRsZW1lbnRfbWVzc2FnZSIsInZlcnNpb24iOjIsImxpY2Vuc2UiOnsic3RhcnRfZGF0ZXRpbWUiOiIyMDIzLTA5LTA0VDE2OjIwOjAxLjc0NloiLCJleHBpcmF0aW9uX2RhdGV0aW1lIjoiMjAyMy0wOS0xMlQxNjoyMDowMS43NDZaIiwiYWxsb3dfcGVyc2lzdGVuY2UiOnRydWV9LCJjb250ZW50X2tleXNfc291cmNlIjp7ImlubGluZSI6W3siaWQiOiI4ZmM1YjJiOS1kZjhlLWJkODktNGNiNS1mNGRiNTZjNWM0YmMiLCJ1c2FnZV9wb2xpY3kiOiJQb2xpY3kgQSJ9XX0sImNvbnRlbnRfa2V5X3VzYWdlX3BvbGljaWVzIjpbeyJuYW1lIjoiUG9saWN5IEEiLCJmYWlycGxheSI6eyJoZGNwIjoiVFlQRTAifSwicGxheXJlYWR5Ijp7Im1pbl9kZXZpY2Vfc2VjdXJpdHlfbGV2ZWwiOjE1MCwicGxheV9lbmFibGVycyI6WyI3ODY2MjdEOC1DMkE2LTQ0QkUtOEY4OC0wOEFFMjU1QjAxQTciXX19XX0sImJlZ2luX2RhdGUiOiIyMDIzLTA5LTA0VDE2OjIwOjAxLjc0NloiLCJleHBpcmF0aW9uX2RhdGUiOiIyMDIzLTA5LTEyVDE2OjIwOjAxLjc0NloifQ.3y8gzXq8WZJ8n5LJQmU_k7InZBofa9ujLIJThxBPFJE","fairplayURL":"https://3e6900a5.drm-fairplay-licensing.axprod.net/AcquireLicense?AxDrmMessage=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJzaW9uIjoxLCJjb21fa2V5X2lkIjoiOWRlYWZhMWUtN2UzNy00MzRhLWJkYWYtYWY1MDAxMGVlMTNhIiwibWVzc2FnZSI6eyJ0eXBlIjoiZW50aXRsZW1lbnRfbWVzc2FnZSIsInZlcnNpb24iOjIsImxpY2Vuc2UiOnsic3RhcnRfZGF0ZXRpbWUiOiIyMDIzLTA5LTA0VDE2OjIwOjAxLjc0NloiLCJleHBpcmF0aW9uX2RhdGV0aW1lIjoiMjAyMy0wOS0xMlQxNjoyMDowMS43NDZaIiwiYWxsb3dfcGVyc2lzdGVuY2UiOnRydWV9LCJjb250ZW50X2tleXNfc291cmNlIjp7ImlubGluZSI6W3siaWQiOiI4ZmM1YjJiOS1kZjhlLWJkODktNGNiNS1mNGRiNTZjNWM0YmMiLCJ1c2FnZV9wb2xpY3kiOiJQb2xpY3kgQSJ9XX0sImNvbnRlbnRfa2V5X3VzYWdlX3BvbGljaWVzIjpbeyJuYW1lIjoiUG9saWN5IEEiLCJmYWlycGxheSI6eyJoZGNwIjoiVFlQRTAifSwicGxheXJlYWR5Ijp7Im1pbl9kZXZpY2Vfc2VjdXJpdHlfbGV2ZWwiOjE1MCwicGxheV9lbmFibGVycyI6WyI3ODY2MjdEOC1DMkE2LTQ0QkUtOEY4OC0wOEFFMjU1QjAxQTciXX19XX0sImJlZ2luX2RhdGUiOiIyMDIzLTA5LTA0VDE2OjIwOjAxLjc0NloiLCJleHBpcmF0aW9uX2RhdGUiOiIyMDIzLTA5LTEyVDE2OjIwOjAxLjc0NloifQ.3y8gzXq8WZJ8n5LJQmU_k7InZBofa9ujLIJThxBPFJE","fairplayCert":"https://portal.axinom.com/api/testing-certificates/3e6900a5-2803-4fde-a7f1-849e9aed5750_58f3c208-4d5a-4ba7-82dc-af51009a3297.cer"}
+
+https://ztnr.rtve.es/ztnr/6958866.mpd
+file that may deencrypt video?
+
+More of the same:
+https://rtvedrmstaging.rtve.es/66/88/6958866/6958866_drm.mpd?idasset=6958866
+
+https://rtvedrmstaging.rtve.es/66/88/6958866/dash_drm/hq/init_v.m4s?assetid=6958866
+https://rtvedrmstaging.rtve.es/66/88/6958866/dash_drm/es/a_1.m4s?assetid=6958866
+
+
+No va:
+https://rtvehlsvodlote7.rtve.es/mediavodv2/resources/TE_SGRAPRI/mp4/8/9/1693391686798.mp4
+
+Va:
+http://rtve-mediavod-lote3.rtve.es/resources/TE_SGRAPRI/mp4/8/9/1693391686798.mp4?idasset=6958866
+
 */
 ?>
