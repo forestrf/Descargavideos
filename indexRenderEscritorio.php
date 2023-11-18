@@ -71,27 +71,12 @@ var jdownloader = false;
 			<a href="/" title="Ir al inicio"><h1>DescargaVideos<span class="tv">.TV</span></h1></a>
 			<h2><?php echo TXT_SUBTITULO_CABECERA?></h2>
 	
-			<div id="esquina" class="esquina">
-				<div class="interior_esquina"><div>
-					<a href="/cambiaCabecera.php?modo=1" id="prevpic1" ><span class="m1 img"></span></a><a
-					href="/cambiaCabecera.php?modo=2"    id="prevpic2" ><span class="m2 img"></span></a><a
-					href="/cambiaCabecera.php?modo=3"    id="prevpic3" ><span class="m3 img"></span></a><a
-					href="/cambiaCabecera.php?modo=4"    id="prevpic4" ><span class="m4 img"></span></a></div><div><a
-					href="/cambiaCabecera.php?modo=5"    id="prevpic5" ><span class="m5 img"></span></a><a
-					href="/cambiaCabecera.php?modo=6"    id="prevpic6" ><span class="m6 img"></span></a><a
-					href="/cambiaCabecera.php?modo=7"    id="prevpic7" ><span class="m7 img"></span></a></div><div><a
-					href="/cambiaCabecera.php?modo=8"    id="prevpic8" ><span class="m8 img"></span></a><a
-					href="/cambiaCabecera.php?modo=9"    id="prevpic9" ><span class="m9 img"></span></a></div><div><a
-					href="/cambiaCabecera.php?modo=10"   id="prevpic10"><span class="m10 img"></span></a>
-				</div></div>
-			</div>
-	
 			<div class="centro">
 				<form action="/" method="post" name="formCalculador" id="formCalculador">
 					<div class="fondo_input_web">
-						<input type="text" name="web" id="web" class="entrada" placeholder="Pega la URL del vídeo..." value="<?php if(isset($web) && $web!="")echo htmlentities2($web)?>" title="URL a obtener">
+						<input type="text" name="web" id="web" class="entrada" placeholder="Pega la URL del vídeo..." role="search" value="<?php if(isset($web) && $web!="")echo htmlentities2($web)?>" title="URL a obtener">
 					</div>
-					<input type="submit" id="submitBtn" value=" " class="boton">
+					<input type="submit" id="submitBtn" value=" " class="boton" aria-label="Enviar el enlace">
 	
 					<div id="ayuda1" class="letra_ayuda">
 						<div class="flechaIzq"></div>
@@ -112,7 +97,7 @@ var jdownloader = false;
 				<script src="/js/ordenes1.min.js?1"></script>
 				
 				<?php if (ADS/* && FALSE*//* && $R['MODO'] !== 'RESULTADO'*/) { ?>
-				<div id="publi_cabecera">
+				<nav id="publi_cabecera" aria-label="Publicidad">
 					<style>
 						.adv-container {
 							position: unset !important;
@@ -158,19 +143,34 @@ var jdownloader = false;
 							<?php } ?>
 						</span>
 					</center>
-				</div>
+				</nav>
 				<?php } ?>
 			</div>
 	
-			<div class="social">
+			<nav id="esquina" class="esquina" aria-label="Elegir imágen de fondo" role="complementary">
+				<div class="interior_esquina"><div>
+					<a href="/cambiaCabecera.php?modo=1" id="prevpic1"  aria-label="opción 1" ><span class="m1 img"></span></a><a
+					href="/cambiaCabecera.php?modo=2"    id="prevpic2"  aria-label="opción 2" ><span class="m2 img"></span></a><a
+					href="/cambiaCabecera.php?modo=3"    id="prevpic3"  aria-label="opción 3" ><span class="m3 img"></span></a><a
+					href="/cambiaCabecera.php?modo=4"    id="prevpic4"  aria-label="opción 4" ><span class="m4 img"></span></a></div><div><a
+					href="/cambiaCabecera.php?modo=5"    id="prevpic5"  aria-label="opción 5" ><span class="m5 img"></span></a><a
+					href="/cambiaCabecera.php?modo=6"    id="prevpic6"  aria-label="opción 6" ><span class="m6 img"></span></a><a
+					href="/cambiaCabecera.php?modo=7"    id="prevpic7"  aria-label="opción 7" ><span class="m7 img"></span></a></div><div><a
+					href="/cambiaCabecera.php?modo=8"    id="prevpic8"  aria-label="opción 8" ><span class="m8 img"></span></a><a
+					href="/cambiaCabecera.php?modo=9"    id="prevpic9"  aria-label="opción 9" ><span class="m9 img"></span></a></div><div><a
+					href="/cambiaCabecera.php?modo=10"   id="prevpic10" aria-label="opción 10"><span class="m10 img"></span></a>
+				</div></div>
+			</nav>
+	
+			<nav class="social" aria-label="Compartir en redes sociales">
 				<div class="elem">
-					<a target="_blank" class="tt" href="https://twitter.com/descargavids"></a>
+					<a target="_blank" class="tt" href="https://twitter.com/descargavids" aria-label="Twitter"></a>
 				</div>
 	
 				<div class="elem">
-					<a target="_blank" class="fb" href="https://www.facebook.com/descargavids"></a>
+					<a target="_blank" class="fb" href="https://www.facebook.com/descargavids" aria-label="Facebook"></a>
 				</div>
-			</div>
+			</nav>
 		</div>
 	</div>
 
@@ -178,7 +178,7 @@ var jdownloader = false;
 
 	<div id="contenido">
 		<div class="menu_hueco">
-			<div class="menu" id="menu_scroll">
+			<nav class="menu" id="menu_scroll" aria-label="Menú principal">
 				<a href="/" class="inicio"><?php echo TXT_MENU_INICIO?></a><a
 				href="/faq#contenido" class="preguntas_frecuentes"><?php echo TXT_MENU_FAQ?></a><a
 				target="_blank" href="http://descargavid.blogspot.com.es/" class="blog"><?php echo TXT_MENU_BLOG?></a><a
@@ -187,7 +187,7 @@ var jdownloader = false;
 				href="/agradecimientos#contenido" class="agradecimientos"><?php echo TXT_MENU_AGRADECIMIENTOS?></a><a
 				href="https://github.com/forestrf/Descargavideos" class="github">GitHub</a><a
 				href="/contacta#contenido" class="contacta"><?php echo TXT_MENU_CONTACTA?></a>
-			</div>
+			</nav>
 		</div>
 		<div class="wrapp">
 			<div class="interior">

@@ -1,16 +1,16 @@
 <div class="titulo_res">
-	<img class="img" id="imagen_res" src="<?php echo $R['url_img_res'];?>">
-	<span id="titulo_res"><?php echo $R['titulo_res'];?></span><br/>
+	<img class="img" id="imagen_res" alt="Imagen miniatura del vídeo" src="<?php echo $R['url_img_res'];?>">
+	<span id="titulo_res" aria-label="Título del vídeo"><?php echo $R['titulo_res'];?></span><br/>
 	<div class="descripcion_res" id="descripcion_res"><?php echo $R['descripcion_res'];?></div>
 </div>
-<div id="enlaces" class="bloque">
+<nav id="enlaces" class="bloque" aria-label="Listado de enlaces encontrados">
 
 <?php
 // Aquí va la selección de qué tipo de resultado(s) van para luego completarlos
 generaInnerResultado();
 ?>
 
-</div>
+</nav>
 
 <div class="infoExtraResultado bloque">
 	<?php if(isset($R['alerta_especifica'])){ ?>
