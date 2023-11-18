@@ -1,4 +1,4 @@
-<?php $INLINE = true; ?>
+<?php $INLINE = true; /*Referrer Killer no es compatible con lectores de pantalla en Chrome, pero tampoco es ya necesario, rel="noreferrer" ahora sí funciona. */ ?>
 <div>
 	<span id="id<?php echo $R2['random_id'];?>" class="Descarga2">
 	<?php if ($INLINE) { ?>
