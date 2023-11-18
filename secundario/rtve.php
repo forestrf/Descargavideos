@@ -524,7 +524,7 @@ function GetInfoFromImage($id) {
 	// Cada opción depende del navegador. banebdyede equivale a un navegador de escritorio.
 	// rtveplayw => alta calidad
 	// default => baja calidad
-	//$idManagers = array('rtveplayw', 'default', 'banebdyede', 'amonet', 'apedemak', 'anat');
+	//$idManagers = array('rtveplayw', 'rtveplaym', 'default', 'banebdyede', 'amonet', 'apedemak', 'anat');
 	if ($id === "or rellenar") {
 		// Chapucilla
 		return false;
@@ -568,16 +568,18 @@ function GetInfoFromImageBase($img) {
 		$pointer = 8;
 		$encontrados = array();
 		do {
-			$i = PNG_RTVE_Data::r($byteArray, $pointer);
+			$i = PNG_RTVE_Data::readChunk($byteArray, $pointer);
 			if ("tEXt" === $i['type']) {
-				$s = $i['data'];
+				$data = $i['data'];
 				$h = "";
 				$o = 0;
-				for ($o = 0; $o < count($s); $o++)
-					if (0 !== $s[$o])
-						$h .= chr($s[$o]);
+				for ($o = 0; $o < count($data); $o++)
+					if (0 !== $data[$o])
+						$h .= chr($data[$o]);
 				dbug_($h);
-				$res = PNG_RTVE_Data::n($h);
+                $h = strpos($h, '%%') === false ? $h : explode('#', $h)[0] . '#' . explode('%%', explode('#', $h)[1])[1];
+				dbug_($h);
+				$res = PNG_RTVE_Data::getSource($h);
 				dbug("GetInfoFromImage(): " . $res);
 				$encontrados[] = $res;
 			}
@@ -602,7 +604,7 @@ class PNG_RTVE_Data {
 		return $byteArray;
 	}
 	
-	static function r($byteaArray, &$pointer) {
+	static function readChunk($byteaArray, &$pointer) {
 		$e = self::readInt($byteaArray, $pointer);
 		dbug_($e);
 		$i = self::readChars($byteaArray, $pointer, 4);
@@ -640,17 +642,17 @@ class PNG_RTVE_Data {
 		return $e;
 	}
 	
-	static function n($t) {
-		$s = strpos($t, "#");
+	static function getSource($item) {
+		$s = strpos($item, "#");
 		dbug_($s);
-		$n = self::i(substr($t, 0, $s));
+		$n = self::getAlfabet(substr($item, 0, $s));
 		dbug_($n);
-		$r = substr($t, $s + 1);
+		$r = substr($item, $s + 1);
 		dbug_($r);
-		return self::e($r, $n);
+		return self::getURL($r, $n);
 	}
 	
-	static function i($t) {
+	static function getAlfabet($t) {
 		$r = "";
 		$i = 0;
 		$e = 0;
@@ -666,15 +668,15 @@ class PNG_RTVE_Data {
 		return $r;
 	}
 	
-	static function e($t, $r) {
-		for ($i = "", $e = 0, $n = 0, $s = 3, $h = 1, $e = 0; $e < strlen($t); $e++) {
+	static function getURL($texto, $alfabeto) {
+		for ($i = "", $e = 0, $n = 0, $s = 3, $h = 1, $e = 0; $e < strlen($texto); $e++) {
 			if (0 === $n) { 
-				$a = 10 * intval(substr($t, $e, 1));
+				$a = 10 * intval(substr($texto, $e, 1));
 				$n = 1; 
 			} else {
 				if (0 === $s) {
-					$a += intval(substr($t, $e, 1));
-					$i .= substr($r, $a, 1);
+					$a += intval(substr($texto, $e, 1));
+					$i .= substr($alfabeto, $a, 1);
 					$s = ($h + 3) % 4;
 					$n = 0;
 					$h++;
@@ -727,7 +729,10 @@ https://api2.rtve.es/api/videos/5924746/subtitulos.json
 {"page":{"items":[{"src":"http://www.rtve.es/resources/vtt/9/2/1623311421629.vtt","lang":"es"}],"number":1,"size":1,"offset":0,"total":1,"totalPages":1,"numElements":1}}
 https://www.rtve.es/resources/vtt/9/2/1623311421629.vtt
 
+DESKTOP
 https://ztnr.rtve.es/ztnr/movil/thumbnail/rtveplayw/videos/5924746.png?q=v2
+MOBILE
+https://ztnr.rtve.es/ztnr/movil/thumbnail/rtveplaym/videos/5924746.png?q=v2
 
 iVBORw0KGgoAAAANSUhEUgAAAsAAAAGMAQMAAADuk4YmAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAADlJREFUeF7twDEBAAAAwiD7p7bGDlgYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAGJrAABgPqdWQAAApx0RVh0eG9PdyZTU1JsSVlIOG4wa21DS0VxN0JseHNuNk9RbUtiJkF2QEZ6SiZZY0hWYXNObi45RjVzZlJ1eTRXeTY/V1NWbE9lQUBtN2xrdDMzAGxpQ0Q2c0hQOV9JMFhUTDpEekk1OE5keW5paTN4NEVwNDhqajU9LU9JZkd4L0pMOlh5R0R1cUg3OEZDX0JvTVQxLVZnZUZ3aHJnXz1aWiZhOGxVcVQ5ODItaEktS2p3TlhlZFJfJiM1MDU2OTMwMzUwNDU3MzE4NjUwNTA0NDk0MzA5NjQ2MjAzMDEzNDcxMjA1NjQ2OTYzMTQwMTE0NDUzMDE1NDA2NDM1Mjg1MzAyODA3MDI2OTEwMzk2MDMyMDMwMTc0NzE0MDE1MTI5NzAxNDA0MDM5MTgzMDI3MDQwMDMyNzExMDE3ODE0NTE1NDQ4MDE1MDg0NjY0Njk2NzIwNzQ0MzAxMDUzNTUwMzI2NDI3MDE3NzIwMTI1MDQ3NDI5NjUwMDc2ODMxMDI3NDIwMjA1NzI3MDIwNDg0NzM5NDI4NDExOTE4NDYyNDM0MDQ0MzI5MzM0MjM0OTI3MTQwNzk1MDUzNzMzNjQ2NjUwNjI2MzYxNDQ2MzYyMDMwMzIwNDUzNTQ0MjI3ODEzODQ3MzE5MTQyNDc0MzQ2MjA0NDkxNjQzNTMxNDAwMzA3MDUwNTE1NzkxMjA4MjQyNTYyMDcyNTIwMzc1NTk2ODMxMTgwNjMwNjE0MTUxNTYxMzExNTQ0ODUyNDMwMzUzMTU3NDQ1NjE1ODU0NjAxNjExMTMyNDQzNjM0MzA2NDQwMDUyNzEwMTQ4NjM0NzMxNDAxMzgxNjUwMTUzMzA3MDM3MDQ4MjYyNDAwMTIwNjI2NDIyNDIzMzI5NDQzNTOdWPc4AAACSHRFWHRHVzI2OlVseGxjU2tuR184V1dnamlab2h5dU1IPWZLTFo4NzFMWm93JldrcEhzSFEzL0RGdkhBcDhhLWhALnJzeUx1aXhnZCZZRC56d2wALV95YjlSWHFTNFp0Q3BhS1hNQy9zJkJLUXVlQWQzeVIuS1QvWDRGeVhISXNKOkQwbzhwNkVAUFhzLUBpZTpObmVfcD10SkliM1JGdGZtSGk0T1dQVlRBP0t5YXhYUjU1MzcxaWZsIzIyNTAzMzUzMTUyNDAyMTY0Njg1NTEyOTE3MDkyNjI0NTM1MjMxNTQxNzI3NzQzNzExNDgyNjgxMDA0MDkyODczMTA3NjkzMDQ0NTU3NzMwNDg1NDIwNTY1MzUyNjE1MzA3NDY2NzQ1NzE4ODE0Njk2MDc1MjU3MjY4MDgzODM3MTc3MjEwMzkyODY4MjM1NjEwMTE3OTI2NzU1ODA2NzE4MDA5MTQyMDIwODU1MDM1NzcxODM4MTE0Mzk0NTUyMjM3NzEwMjExNDA0NTYyNDczMzUxMjAyNTYwNjAxMDc5NjIyNDIyMjQ4NjE0Njk1NzA4MTE5NjU5MTA3OTE0MDc0NTEwNDEwODQxNjgyNzk0NjA2MTM4MjM1MTczMDUwNjUwNjgyOTU1NDIxNDQ2NDIyMjgyNDEwMjYxOTI3MTAyODgyMTIyODU3MDA5NDM4NDYzMzMyMjIyMzg2NzY2MDEwMTgyODM0NzExMzgxNDgwODU3MzA1NTU2ODYzMDE5MzMwMDE0ODY2NzI4NDA0NjUzMXBdCuQAAAMadEVYdGYwTzRZOGZWOF8uYmNncmdnaHAmNzEvNU5uSVAtRzZATFE1NT9TYkhvRFlkP3NEZThOVy9rMGtWMUlzM1JFMUM9Rk4mMGhVME1Ib0FsbwA9OmFsdlZleVBpdEpkam1pMEVWWjh6WC5AR2d1L3ZORFNrUDFTQjRneDJpVFQyOWVTZmQmdGxJdDFsTng4d2JnP3hTNG9XSi1aUTBAU3JCMS1xOUxDL054Njh2S2plPXpzUXREM3AjMjc0Nzc1MjU4MjcxMjEzMDIzMTA5MDU5NjQ3MjU4MDIyMzM1ODA1MTU5MzcyODc1MDMwNjQwNzgzNDA2MjMzMTU2MzU1NjU3NjA5NTQ0MzIzODQ3MTE1MjAwNDE0ODUwNTAwMjY2NTQyNjAyNTUxMDAwMjE0MDAxODYxNTU2NTI1NTI3MTY1MjQwNjgxMzQwMDUyMDI0MTMzMDUzMDMwNTIwNjk2MDcyNTc4MzAxODE0NjQ4MDI2NTE4MjA1NTAwMTA0ODAwMDU5NDkzODgwNjQzNDY2MjQ0NDMwODI2ODQzNTMwODE5MTIxMDQ1OTM3MjE3NzE1NDgwODA5MTE0NTIwOTEzNDA0ODkyMzEwNTEyNDU3NDAzNzEyMjg0NTg0MDc2ODM0NjQyNDE2MTIyMzExNDQxMTg2MjA0MzM3NzA2MTU0NDE4NTc0NzgzNzg2MzYyNDIxODE2ODU4NjA1MjYwMjY5MTE0Njg1NDQxNjU3NTgwNTg1NTg4MTA2NDIwNzE2MDM2ODM1NDQ4NjY5NDE3NjA1MTQwNzc3NDc2NTE2MTM0NDE3ODcxMjQ3NzQ3MTcyNTQ4NTI1MjM1MDI3ODAwNDQ3MTAzMTMzODYyNjI3ODk0NzYwMTQwNDc0NjI2NzYxNjA0NDIyNzAxMDg4NDc0Nzc2MjMxNTI0NzgyMzA4ODAyODc1ODQ3MjE2MjgxNTgxMDEwNzIwNjk2NTEwNDEwMzU3MzI1MDQyNzI1MDUwNjY0ODI1Mzg2NTQyMDI1MTM1MjM0MzcwNDg1MDgyMTA2NDU2MDQ3Njc1NjMxNjYxMDY4mu1dbQAAAABJRU5ErkJggg==
 
@@ -836,6 +841,22 @@ https://rtvehlsvodlote7.rtve.es/mediavodv2/resources/TE_SGRAPRI/mp4/8/9/16933916
 
 Va:
 http://rtve-mediavod-lote3.rtve.es/resources/TE_SGRAPRI/mp4/8/9/1693391686798.mp4?idasset=6958866
+
+
+
+
+// https://api-ztnr.rtve.es/api/videos/7007122.json
+// https://www.rtve.es/api/videos/7007122
+
+
+// audioOriginal: "/deliverty/main/resources/m4a/3/8/1699461936983.m4a"
+
+
+https://ztnr.rtve.es/ztnr/7007122.m3u8
+https://rtvehlsvodlote7.rtve.es/mediavodv2/resources/TE_SFE24TI/mp4/7/6/1699461663967.mp4/video.m3u8?hls_no_audio_only=true&idasset=7007122
+https://ztnr.rtve.es/ztnr/7007122.mp4
+http://rtve-mediavod-lote3.rtve.es/resources/TE_SFE24TI/mp4/7/6/1699461663967.mp4?idasset=7007122
+
 
 */
 ?>
