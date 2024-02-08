@@ -4,6 +4,11 @@ function cambios($max=-1){
 //tipo='simple' o 'todos'
 
 $todos[]=array(
+'9-Febrero-2024'
+,'add:Soporte para xabarin.gal (sólo m3u8).'
+);
+
+$todos[]=array(
 '18-Noviembre-2023'
 ,'add:Código para intentar hacer la web más usable con lectores de pantalla.'
 ,'fix:Quitado el uso del script KillerReferrer. Su uso era necesario para el funcionamiento de algunos enlaces pero causa problemas con lectores de pantalla en Chrome, además de que parece no ser necesario ya que ahora los navegadores no ignoran rel="nofererrer" en los enlaces.'

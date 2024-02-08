@@ -170,6 +170,12 @@ $cadenas = array(
 		'calcula'
 	)
 	,array(
+		array('xabarin.gal'),
+		array('crtvg.php'),
+		'Crtvg',
+		'calculaXabarin'
+	)
+	,array(
 		array('mtv.es'),
 		array('mtves.php'),
 		'Mtves',
@@ -447,3 +453,5 @@ $cadenas = array(
 		'calcula'
 	)
 );
+
+include_once "cadenas2.php";

@@ -364,7 +364,9 @@ function carga_web_curl_obtenida($url='',$post='',$cookie='',$cabeceras=array(),
 }
 
 $cargawebcurl_proxyarray = array(
+	'http://192.168.191.35:8084/'
 	/*
+	'https://dvidhelper.webcindario.com/'
 	'http://descvid.webcindario.com/'
 	,'http://vddvd.webcindario.com/'
 	,'http://jorll.webcindario.com/'
