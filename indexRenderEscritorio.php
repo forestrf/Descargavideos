@@ -23,7 +23,9 @@
 <script>
 /*Disable console clearing*/
 console.clear=()=>{console.log("Console.clear attempted.")};
+var adblock=true;
 </script>
+<script src="/ad-engine.js"></script>
 
 <?php
 if (defined('HAY_RESULTADO') && $R['MODO'] === 'BUSQUEDA') {
@@ -51,7 +53,7 @@ if (defined('HAY_RESULTADO') && $R['MODO'] === 'BUSQUEDA') {
 <?php } ?>
 </script>
 
-<!--no se puede juntar por cloudflare-->
+<!--no se puede juntar por culpa de cloudflare-->
 <script>
 var css_user='<?php echo $css_modo?>';
 var rtmpdownloader = false;
@@ -116,6 +118,7 @@ var jdownloader = false;
 					</style>
 					<?php
 						$genokids = mt_rand(0, 100) > 100; // 0%
+						$genokids = false;
 					?>
 					<center style="background-color:transparent">
 						<span class="adperepe" id="admidpagegoeshere" style="position:relative">
@@ -128,18 +131,22 @@ var jdownloader = false;
 								</a>
 								<!--<script src="/genokids/genokids.js?v3"></script>-->
 							<?php } else { ?>
-										<script>
-											console.clear=()=>{console.log("Console.clear attempted.")};
-											atOptions = {
-												"key" : "d6e58797066b3d9d9ff05a16756f9c52",
-												"format" : "iframe",
-												"height" : 250,
-												"width" : 300,
-												"params" : {}
-											};
-										</script>
-										<script type="text/javascript" src="//www.gatetodisplaycontent.com/d6e58797066b3d9d9ff05a16756f9c52/invoke.js"></script>
-								</script>
+									<script>
+										console.clear=()=>{console.log("Console.clear attempted.")};
+										atOptions = {
+											"key" : "d6e58797066b3d9d9ff05a16756f9c52",
+											"format" : "iframe",
+											"height" : 250,
+											"width" : 300,
+											"params" : {}
+										};
+										if (adblock) {
+											/*document.write('<scr' + 'ipt type="text/javascript" src="//kzt2afc1rp52.com/d6e58797066b3d9d9ff05a16756f9c52//invoke.js"></scr' + 'ipt>');*/
+										}
+										else {
+											document.write('<scr' + 'ipt type="text/javascript" src="//gatetodisplaycontent.com/d6e58797066b3d9d9ff05a16756f9c52/invoke.js"></scr' + 'ipt>');
+										}
+									</script>
 							<?php } ?>
 						</span>
 					</center>
@@ -233,13 +240,11 @@ function setModoPic(d){if(d==1){D.g('web').placeholder="<?php echo TXT_PEGA_URL_
 <?php } ?>
 
 ga('send', 'event', "Interfaz modo","<?php echo $css_modo_cookie;?>");
-var adblock=true;
 </script>
-<script src="/advertisement.js"></script>
 <script>ga('send', 'event', "Adblock escritorio", adblock?"Con Adblock":"Sin Adblock");</script>
-<?php if (!$genokids) { ?>
-	<script>if (adblock) getScript("/genokids/genokids.js?v3");</script>
-<?php } ?>
+<?php if (!$genokids) { /*?>
+	<script>if (adblock) getScript("/genokids/genokids.js?v4");</script>
+<?php*/ } ?>
 
 <script>
 /*Disable ajax*/

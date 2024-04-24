@@ -2,19 +2,19 @@
 
 //print_r($R);
 
-
-switch($R['MODO']){
-	case 'RESULTADO':
-		include plantillaInclude('resultados.php');
-	break;
-	case 'BUSQUEDA':
-		include plantillaInclude('busqueda.php');
-	break;
-	case 'ERROR':
-		include plantillaInclude('fallo.php');
-	break;
+if (isset($R['MODO'])) {
+	switch($R['MODO']) {
+		case 'RESULTADO':
+			include plantillaInclude('resultados.php');
+		break;
+		case 'BUSQUEDA':
+			include plantillaInclude('busqueda.php');
+		break;
+		case 'ERROR':
+			include plantillaInclude('fallo.php');
+		break;
+	}
 }
-
 
 
 // Únicamente necesita de la variable $R
@@ -64,7 +64,7 @@ function generaInnerResultado(){
 		
 		//$tipo = "http" o "rtmp"
 		if($url){
-			switch($res['tipo']){
+			switch (isset($res['tipo']) ? $res['tipo'] : "") {
 				case 'rtmp':
 					$aIncluir = plantillaInclude('resultado_rtmp.php');
 					if(!$extension)$extension = extraeExtension($url);

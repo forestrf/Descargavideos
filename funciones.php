@@ -254,12 +254,12 @@ function in_array_part($needle, &$haystack) {
 }
 
 //url, contenido post a enviar, retornar cabecera, cabecera custom
-function CargaWebCurl($url,$post='',$cabecera=0,$cookie='',$cabeceras=array(),$sigueLocation=true,$esquivarCache=false,$customIp=false){
+function CargaWebCurl($url,$post='',$cabecera=0,$cookie='',$cabeceras=array(),$sigueLocation=true,$esquivarCache=false,$customIp=false,$http2=false,$impersonate=false){
 	if (strpos($url, '//') === 0)
 		$url = 'http:' . $url;
 	
 	// Browser headers
-	if (!in_array_part('User-Agent:', $cabeceras))      $cabeceras[] = 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0';
+	if (!in_array_part('User-Agent:', $cabeceras))      $cabeceras[] = 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:122.0) Gecko/20100101 Firefox/122.0';
 	if (!in_array_part('Accept:', $cabeceras))          $cabeceras[] = 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8';
 	if (!in_array_part('Accept-Language:', $cabeceras)) $cabeceras[] = 'Accept-Language: es-ES,es;en-US,en;q=0.5';
 	if (!in_array_part('Accept-Encoding:', $cabeceras)) $cabeceras[] = 'Accept-Encoding: gzip, deflate';
@@ -276,7 +276,16 @@ function CargaWebCurl($url,$post='',$cabecera=0,$cookie='',$cabeceras=array(),$s
 		}
 	}
 	
-	$ch = curl_init();
+	if ($impersonate) {
+		require 'vendor/autoload.php';
+		$chi = new CurlImpersonate\CurlImpersonate();
+		dbug('using impersonate CURL');
+	}
+	else {
+		$ch = curl_init();
+		dbug('using common CURL');
+	}
+	
 	if ($customIp !== false) {
 		$domain = getDomain($url);
 		dbug("Using as Host: $domain");
@@ -284,41 +293,70 @@ function CargaWebCurl($url,$post='',$cabecera=0,$cookie='',$cabeceras=array(),$s
 		$url = str_replace($domain, $customIp, $url);
 		dbug("New url after ip change: $url");
 	}
-	curl_setopt($ch, CURLOPT_URL, $url);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($ch, CURLOPT_HEADER, $cabecera ? 1 : 0);
+
+	if ($impersonate) {
+		$chi->setopt(CURLCMDOPT_URL, $url);
+		$chi->setopt(CURLCMDOPT_ENGINE, "/home/forest/curl-impersonate/curl_ff117");
+		$chi->setopt(CURLCMDOPT_HEADER, $cabecera ? 1 : 0);
+	}
+	else {
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_HEADER, $cabecera ? 1 : 0);
+		if ($http2) curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_2_0);
+
+		if($sigueLocation){
+			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+			curl_setopt($ch, CURLOPT_COOKIEFILE, ""); // Esto es para que en las redirecciones use las cookies que salgan durante las redirecciones
+		}
 	
-	if($sigueLocation){
-		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-		curl_setopt($ch, CURLOPT_COOKIEFILE, ""); // Esto es para que en las redirecciones use las cookies que salgan durante las redirecciones
+		if($cookie !== ''){
+			curl_setopt($ch, CURLOPT_COOKIE, $cookie);
+		}
 	}
 	
-	if($cookie !== ''){
-		curl_setopt($ch, CURLOPT_COOKIE, $cookie);
+	if ($impersonate) {
+		dbug('Custom headers are being ignored');
+		//$chi->setopt(CURLCMDOPT_HTTP_HEADERS, $cabeceras);
+	}
+	else {
+		dbug_r($cabeceras);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $cabeceras);
+	
+		// https
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0); 
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+	
+		// force ipv4
+		if (defined('CURLOPT_IPRESOLVE') && defined('CURL_IPRESOLVE_V4')) {
+			curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
+		}
+	
+		// auto decoding
+		curl_setopt($ch, CURLOPT_ENCODING, '');
 	}
 	
-	dbug_r($cabeceras);
-	curl_setopt($ch, CURLOPT_HTTPHEADER, $cabeceras);
-	
-	// https
-	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-	
-	// force ipv4
-	if (defined('CURLOPT_IPRESOLVE') && defined('CURL_IPRESOLVE_V4')) {
-		curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
+	if ($impersonate) {
+		if($post != ''){
+			$chi->setopt(CURLCMDOPT_METHOD, 'POST');
+			$chi->setopt(CURLCMDOPT_POSTFIELDS, $post);
+			dbug('activando post en la actual curl: ' . $post);
+		}
+	}
+	else {
+		if($post != ''){
+			curl_setopt($ch, CURLOPT_POST, 1); 
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+			dbug('activando post en la actual curl: ' . $post);
+		}
 	}
 	
-	// auto decoding
-	curl_setopt($ch, CURLOPT_ENCODING, '');
-	
-	if($post != ''){
-		curl_setopt($ch, CURLOPT_POST, 1); 
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-		dbug('activando post en la actual curl: ' . $post);
+	if ($impersonate) {
+		$t = $chi->execStandard();
 	}
-	
-	$t = curl_exec($ch);
+	else {
+		$t = curl_exec($ch);
+	}
 
 	guarda_web_curl_obtenida($t,$url,$post,$cookie,$cabeceras,$sigueLocation);
 	return $t;
@@ -364,7 +402,8 @@ function carga_web_curl_obtenida($url='',$post='',$cookie='',$cabeceras=array(),
 }
 
 $cargawebcurl_proxyarray = array(
-	'http://192.168.191.35:8084/'
+	//'http://192.168.191.35:8084/'
+	'http://127.0.0.1:8182/'
 	/*
 	'https://dvidhelper.webcindario.com/'
 	'http://descvid.webcindario.com/'
@@ -388,7 +427,7 @@ function CargaWebCurlProxy($web,$pais='ESP',$post='',$cabeceras=array()){
 	case 'ES':
 	case 'ESP':
 		$rand = rand(0, count($cargawebcurl_proxyarray) - 1);
-		$redir          = $cargawebcurl_proxyarray[$rand] . 'redir.php?a=';
+		$redir = $cargawebcurl_proxyarray[$rand] . 'redir.php?a=';
 		break;
 	case 'MX':
 		// proxy domain hidden to prevent searching of sourcecode
@@ -419,7 +458,8 @@ function CargaWebCurlProxy($web,$pais='ESP',$post='',$cabeceras=array()){
 	dbug('<a href="'.$urlPreparada.'">'.$urlPreparada.'</a>');
 
 	$retfull=CargaWebCurl($urlPreparada);
-	if($retfull === '' || !$retfull || enString($retfull,'solicitada no existe') || enString($retfull,'class="error_404"') || enString($retfull,'Page Not Found')){
+	dbug_($retfull);
+	if($retfull === '' || !$retfull || enString($retfull,'No clients connected. Fail.') || enString($retfull,'solicitada no existe') || enString($retfull,'class="error_404"') || enString($retfull,'Page Not Found')){
 		$retfull=CargaWebCurl($web,$post,0,'',$cabeceras);
 	}
 	
@@ -612,5 +652,34 @@ function TVButton($R_ID, $video, $ext = "mp4", $img = "") {
 		'<input type="submit" value="Ver online" class="TV">'.
 	'</form>';
 }
+
+
+
+
+
+function shutdown() {
+	$error = error_get_last();
+	if($error == null) return; // No errors
+	if ($error['type'] !== E_ERROR) return; // No fatal error
+
+	$trace = debug_backtrace();
+	
+	ob_flush();
+	ob_start();
+	echo "----------------------------------------\n";
+	echo "URI: ".$_SERVER['REQUEST_URI']."?".$_SERVER['QUERY_STRING']."\n";
+	if (isset($_SERVER["HTTP_REFERER"])) echo "REFERER: ".$_SERVER['HTTP_REFERER']."\n";
+	if (isset($_REQUEST["web"])) {
+		echo "Web: ".$_REQUEST["web"]."\n";
+		echo "Is bookmarklet: ".$_REQUEST["bookmarklet"]."\n";
+	}
+	echo "Last error:\n";
+	var_dump($error);
+	echo "debug_backtrace:\n";
+	var_dump($trace);
+	$file = "/var/www/descargavideos/error-logs-pls/php-errors.log";
+	error_log(ob_get_clean(), 3, $file);
+}
+register_shutdown_function('shutdown');
 
 ?>

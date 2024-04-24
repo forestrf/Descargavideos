@@ -1,0 +1,5 @@
+{
+    "require": {
+        "kelvinzer0/curl-impersonate-php": "^3.2"
+    }
+}
