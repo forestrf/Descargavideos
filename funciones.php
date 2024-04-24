@@ -130,7 +130,9 @@ function urlencode_noAscii($c){
 }
 
 //Aquí se rellena web_descargada. también se corrige $url en caso de ser corregible.
-function url_exists_full(&$url, $preg_match_prerealizado = false, $timeout = 20){
+function url_exists_full(&$url, $preg_match_prerealizado = false, $timeout = 20, $recursion = 0) {
+	if ($recursion >= 5) return false;
+	
 	dbug('Comprobando URL => '.$url);
 	if(!$preg_match_prerealizado){
 		if(!preg_match('@^https?://(([^/^\.]+\.)+?[^/^\.]+?)(/.*)?$@i',$url)){
@@ -150,7 +152,6 @@ function url_exists_full(&$url, $preg_match_prerealizado = false, $timeout = 20)
 	
 	if($t === false) {
 		dbug('problema al descargar la url');
-		dbug('Curl error "'.curl_error($ch).'" code "'.curl_errno($ch).'" http status "'.$z.'"');
 		return false;
 	}
 	
@@ -168,7 +169,7 @@ function url_exists_full(&$url, $preg_match_prerealizado = false, $timeout = 20)
 			if (preg_match('@location: (.*)@i', $web_descargada_headers[$i], $matches)) {
 				dbug("Location encontrado: {$matches[1]}");
 				$url = $matches[1];
-				return url_exists_full($url, $preg_match_prerealizado, $timeout);
+				return url_exists_full($url, $preg_match_prerealizado, $timeout, $recursion + 1);
 			}
 		}
 	}
@@ -334,6 +335,10 @@ function CargaWebCurl($url,$post='',$cabecera=0,$cookie='',$cabeceras=array(),$s
 	
 		// auto decoding
 		curl_setopt($ch, CURLOPT_ENCODING, '');
+		
+		// Limit download size, to avoid downloading videos or whatever thing user sends me and fill the whole ram
+		curl_setopt($ch, CURLOPT_NOPROGRESS, 0);
+		curl_setopt($ch, CURLOPT_PROGRESSFUNCTION, 'curl_progress_callback_limit8MB');
 	}
 	
 	if ($impersonate) {
@@ -356,11 +361,24 @@ function CargaWebCurl($url,$post='',$cabecera=0,$cookie='',$cabeceras=array(),$s
 	}
 	else {
 		$t = curl_exec($ch);
+		
+		if($t === false) {
+			dbug('Curl error "'.curl_error($ch).'" code "'.curl_errno($ch).'"');
+		}
 	}
 
 	guarda_web_curl_obtenida($t,$url,$post,$cookie,$cabeceras,$sigueLocation);
 	return $t;
 }
+
+function curl_progress_callback_limit8MB($ch, $dltotal, $dlnow, $ultotal, $ulnow) {
+	$limitBytes = 1024 * 1024 * 8;
+	if ($dltotal > $limitBytes || $dlnow > $limitBytes) {
+		dbug("Download canceled manually: dltotal ($dltotal) > limitBytes ($limitBytes) || dlnow ($dlnow) > limitBytes ($limitBytes)");		
+		return 1; // Abort transfer by returning non-zero
+	}
+}
+
 
 function getDomain($url) {
 	$parse = parse_url($url);
