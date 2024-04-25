@@ -569,6 +569,7 @@ function GetInfoFromImageBase($img) {
 		$encontrados = array();
 		do {
 			$i = PNG_RTVE_Data::readChunk($byteArray, $pointer);
+			if ($i === false) break;
 			if ("tEXt" === $i['type']) {
 				$data = $i['data'];
 				$h = "";
@@ -607,11 +608,15 @@ class PNG_RTVE_Data {
 	static function readChunk($byteaArray, &$pointer) {
 		$e = self::readInt($byteaArray, $pointer);
 		dbug_($e);
+		if ($e === false) return false;
 		$i = self::readChars($byteaArray, $pointer, 4);
 		dbug_($i);
+		if ($i === false) return false;
 		$r = array();
-		if (self::read($byteaArray, $pointer, $r, 0, $e) !== $e)
+		if (self::read($byteaArray, $pointer, $r, 0, $e) !== $e) {
+			dbug("Out of bounds");
 			throw "Out of bounds";
+		}
 		$pointer += 4;
 		return array(
 			'type' => $i,
@@ -620,6 +625,7 @@ class PNG_RTVE_Data {
 	}
 	
 	static function readInt($byteaArray, &$pointer) {
+		if ($pointer + 4 > count($byteaArray)) return false;
 		$t0 = $byteaArray[$pointer++];
 		$t1 = $byteaArray[$pointer++];
 		$t2 = $byteaArray[$pointer++];
@@ -627,16 +633,17 @@ class PNG_RTVE_Data {
 		return $t0 << 24 | $t1 << 16 | $t2 << 8 | $t3;
 	}
 	static function readChars($byteaArray, &$pointer, $t) {
-		for ($r = "", $i = 0; $t > $i; $i++) {
+		if ($pointer + $t > count($byteaArray)) return false;
+		for ($r = "", $i = 0; $i < $t; $i++) {
 			$r .= chr($byteaArray[$pointer++]);
 		}
 		return $r;
 	}
 	static function read($byteaArray, &$pointer, &$t, $r, $i) {
-		for ($e = 0; $i > $e;) {
+		if ($pointer + $i > count($byteaArray)) return false;
+		for ($e = 0; $e < $i; $e++) {
 			$n = $byteaArray[$pointer++];
 			$t[$r + $e] = $n;
-			$e++;
 		}
 		dbug_($e);
 		return $e;

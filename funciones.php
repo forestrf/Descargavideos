@@ -477,7 +477,8 @@ function CargaWebCurlProxy($web,$pais='ESP',$post='',$cabeceras=array()){
 
 	$retfull=CargaWebCurl($urlPreparada);
 	dbug_($retfull);
-	if($retfull === '' || !$retfull || enString($retfull,'No clients connected. Fail.') || enString($retfull,'solicitada no existe') || enString($retfull,'class="error_404"') || enString($retfull,'Page Not Found')){
+	if($retfull === '' || !$retfull || enString($retfull,'No clients connected. Fail.') || enString($retfull,'solicitada no existe') || enString($retfull,'class="error_404"') || enString($retfull,'Page Not Found') || enString($retfull,'WS Fail') || enString($retfull,'No clients connected. Fail.')){
+		dbug("Proxy ha fallado. Usar curl normal");
 		$retfull=CargaWebCurl($web,$post,0,'',$cabeceras);
 	}
 	
