@@ -291,7 +291,7 @@ function convierteID($asset, $modos = array('video', 'audio')) {
 		
 		$codificado = $asset.'_banebdyede_'.$modo.'_es';
 		$codificado = self::encripta($codificado);
-		$server5 = 'http://ztnr.rtve.es/ztnr/res/'.$codificado;
+		$server5 = 'https://ztnr.rtve.es/ztnr/res/'.$codificado;
 
 		dbug('idasset web='.$server5);
 
@@ -530,11 +530,11 @@ function GetInfoFromImage($id) {
 		return false;
 	}
 
-	$img = CargaWebCurlProxy("http://ztnr.rtve.es/ztnr/movil/thumbnail/rtveplayw/videos/{$id}.png?q=v2", "ESP"); // Nuevo, los videos que retorna son 1080p
+	$img = CargaWebCurlProxy("https://ztnr.rtve.es/ztnr/movil/thumbnail/rtveplayw/videos/{$id}.png?q=v2", "ESP"); // Nuevo, los videos que retorna son 1080p
 	dbug_($img);
 	$r1 = !enString($img, '{"error":"Asset ') ? $this->GetInfoFromImageBase($img) : "error";
 
-	$img = CargaWebCurl("http://www.rtve.es/ztnr/movil/thumbnail/default/videos/{$id}.png"); // Antiguo, los videos que retorna son menores de 1080p
+	$img = CargaWebCurl("https://www.rtve.es/ztnr/movil/thumbnail/default/videos/{$id}.png"); // Antiguo, los videos que retorna son menores de 1080p
 	dbug_($img);
 	$r2 = !enString($img, '{"error":"Asset ') ? $this->GetInfoFromImageBase($img) : "error";
 
@@ -863,6 +863,16 @@ https://ztnr.rtve.es/ztnr/7007122.m3u8
 https://rtvehlsvodlote7.rtve.es/mediavodv2/resources/TE_SFE24TI/mp4/7/6/1699461663967.mp4/video.m3u8?hls_no_audio_only=true&idasset=7007122
 https://ztnr.rtve.es/ztnr/7007122.mp4
 http://rtve-mediavod-lote3.rtve.es/resources/TE_SFE24TI/mp4/7/6/1699461663967.mp4?idasset=7007122
+
+
+
+
+
+https://www.rtve.es/play/videos/cine-en-el-archivo-de-rtve/mala-racha-jose-luis-cuerda-1987/16111211/
+https://rtvehlsvodlote7.rtve.es/mediavodv2/resources/TE_SCIARCH/mp4/1/7/1715949344371.mp4/video.m3u8?hls_no_audio_only=true&hls_client_manifest_version=3&idasset=16111211
+https://rtvehlsvodlote7.rtve.es/mediavodv2/resources/TE_SCIARCH/mp4/1/7/1715949344371.mp4/video.mpd?idasset=16111211
+http://rtve-mediavod-lote3.rtve.es/resources/TE_SCIARCH/mp4/1/7/1715949344371.mp4?idasset=16111211
+
 
 
 */
