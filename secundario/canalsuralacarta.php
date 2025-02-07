@@ -108,6 +108,36 @@ elseif(enString($this->web_descargada,"var elementos = [];")){
 		);
 	}
 }
+elseif(enString($this->web_descargada, '{content:{id:')) {
+	// https://www.canalsurmas.es/videos/35265-11112021
+	dbug("Alacarta nuevo");
+	$id = entre1y2($this->web_descargada, '{content:{id:', ',');
+	$titulo = entre1y2($this->web_descargada,'{content:{id:'.$id.',name:"', '"');
+	dbug_($id);
+	// https://api-rtva.interactvty.com/api/2.0/contents/content_resources/35265/?optional_fields=type,videotype,media_url,is_initial,assets,drm_token,test,plain,url_app_web,thumbnail_track_url
+	$whereToGetJSON = "https://api-rtva.interactvty.com/api/2.0/contents/content_resources/$id/?optional_fields=type,videotype,media_url,is_initial,assets,drm_token,test,plain,url_app_web,thumbnail_track_url";
+	dbug_($whereToGetJSON);
+	$token = "dG9rZW4gM2U1MzkxZDMxODFhYzU2NmJiNWE2YWM5ZGZmNDEyN2M3NGE0NzU3NA=="; // This works, but may not in the future
+	$token = base64_decode($token);
+	// Headers: Authorization: jwtok eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDA5NzUyLCJpYXQiOjE3Mzg5NTU3NTIsImp0aSI6ImRhMjk0MzVkZjFkMzQzMGU4N2UwZWZhODUyM2QyNzYzIiwidXNlcl9pZCI6MzMwMCwiY2xpZW50X2lkIjoiY2FuYWxzdXIiLCJpc19kZW1vIjp0cnVlfQ.CQdZUgGQmt-T_5mQek4asarCyXGi2lo5RvcJ0CRzgwg
+	// access:                      "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDA5NzUyLCJpYXQiOjE3Mzg5NTU3NTIsImp0aSI6ImRhMjk0MzVkZjFkMzQzMGU4N2UwZWZhODUyM2QyNzYzIiwidXNlcl9pZCI6MzMwMCwiY2xpZW50X2lkIjoiY2FuYWxzdXIiLCJpc19kZW1vIjp0cnVlfQ.CQdZUgGQmt-T_5mQek4asarCyXGi2lo5RvcJ0CRzgwg"
+	// refresh:                     "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc1NDUwNzc1MiwiaWF0IjoxNzM4OTU1NzUyLCJqdGkiOiJiZjI4NjM0MTdjMDU0OGU2OTY2ZTM2NjE1NTliNmUyYyIsInVzZXJfaWQiOjMzMDAsImNsaWVudF9pZCI6ImNhbmFsc3VyIiwiaXNfZGVtbyI6dHJ1ZX0.IsfzXs_2cIJLsnyXwMIHziss0N9AmM_vhBVDPiJhw0s"
+	
+	$ret = CargaWebCurl($whereToGetJSON, '', 0, '', array('Authorization: '.$token));
+	dbug_($ret);
+	$ret = json_decode($ret, true);
+	dbug_r($ret);
+	// Response: {"count":2,"next":null,"previous":null,"results":[{"id":42048,"name":"compromiso canal sur  15/11/2021","type":"VID","videotype":"URL","media_url":"https://cdn.rtva.interactvty.com/ingesta_ott/compromiso_canal_sur/0000121995/0000121995_1080p.mp4","is_initial":false,"assets":null,"drm_token":"","test":null,"plain":null,"url_app_web":"","thumbnail_track_url":""},{"id":42046,"name":"compromiso canal sur  15/11/2021","type":"VID","videotype":"DIR","media_url":"https://cdn.rtva.interactvty.com/ingesta_ott/compromiso_canal_sur/0000121995/0000121995_3R.m3u8","is_initial":true,"assets":null,"drm_token":"","test":null,"plain":null,"url_app_web":"","thumbnail_track_url":""}]}
+	
+	// https://cdn.rtva.interactvty.com/ingesta_ott/compromiso_canal_sur/0000121995/0000121995_1080p.mp4
+	// https://cdn.rtva.interactvty.com/ingesta_ott/compromiso_canal_sur/0000121995/0000121995_3R.m3u8
+	
+	$obtenido['enlaces'][]=array(
+		'url'     => $ret['results'][0]['media_url'],
+		'tipo'    => 'http',
+		'url_txt' => 'Descargar'
+	);
+}
 else{
 	dbug('último case ifelse');
 	

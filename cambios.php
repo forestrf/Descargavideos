@@ -4,6 +4,11 @@ function cambios($max=-1){
 //tipo='simple' o 'todos'
 
 $todos[]=array(
+'7-Febrero-2025'
+,'fix:Canalsurmas alacarta.'
+);
+
+$todos[]=array(
 '9-Febrero-2024'
 ,'add:Soporte para xabarin.gal (sólo m3u8).'
 );
