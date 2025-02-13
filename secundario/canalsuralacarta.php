@@ -138,6 +138,28 @@ elseif(enString($this->web_descargada, '{content:{id:')) {
 		'url_txt' => 'Descargar'
 	);
 }
+elseif(preg_match('#videos/([0-9]+)-#', $this->web, $matches) == 1) {
+	dbug_r($matches);
+	// https://www.canalsurmas.es/videos/35265-11112021
+	dbug("Alacarta nuevo 2");
+	$id = $matches[1];
+	$titulo = "Canalsur alacarta";
+	dbug_($id);
+	$whereToGetJSON = "https://api-rtva.interactvty.com/api/2.0/contents/content_resources/$id/?optional_fields=type,videotype,media_url,is_initial,assets,drm_token,test,plain,url_app_web,thumbnail_track_url";
+	dbug_($whereToGetJSON);
+	$token = "dG9rZW4gM2U1MzkxZDMxODFhYzU2NmJiNWE2YWM5ZGZmNDEyN2M3NGE0NzU3NA=="; // This works, but may not in the future
+	$token = base64_decode($token);
+	$ret = CargaWebCurl($whereToGetJSON, '', 0, '', array('Authorization: '.$token));
+	dbug_($ret);
+	$ret = json_decode($ret, true);
+	dbug_r($ret);
+	
+	$obtenido['enlaces'][]=array(
+		'url'     => $ret['results'][0]['media_url'],
+		'tipo'    => 'http',
+		'url_txt' => 'Descargar'
+	);
+}
 else{
 	dbug('último case ifelse');
 	
