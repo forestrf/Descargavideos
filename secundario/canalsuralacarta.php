@@ -132,16 +132,31 @@ elseif(enString($this->web_descargada, '{content:{id:')) {
 	// https://cdn.rtva.interactvty.com/ingesta_ott/compromiso_canal_sur/0000121995/0000121995_1080p.mp4
 	// https://cdn.rtva.interactvty.com/ingesta_ott/compromiso_canal_sur/0000121995/0000121995_3R.m3u8
 	
-	$obtenido['enlaces'][]=array(
-		'url'     => $ret['results'][0]['media_url'],
-		'tipo'    => 'http',
-		'url_txt' => 'Descargar'
-	);
+	$found = false;
+	for ($i = 0; $i < count($ret['results']); $i++) {
+		if (enString($ret['results'][$i]['media_url'], ".mp4")) {
+			$obtenido['enlaces'][]=array(
+				'url'     => $ret['results'][$i]['media_url'],
+				'tipo'    => 'http',
+				'url_txt' => 'Descargar'
+			);
+			$found = true;
+			break;
+		}
+	}
+	
+	if (!$found) {
+		$obtenido['enlaces'][]=array(
+			'url'     => $ret['results'][0]['media_url'],
+			'tipo'    => 'http',
+			'url_txt' => 'Descargar'
+		);
+	}		
 }
 elseif(preg_match('#videos/([0-9]+)-#', $this->web, $matches) == 1) {
+	dbug("Alacarta nuevo 2");
 	dbug_r($matches);
 	// https://www.canalsurmas.es/videos/35265-11112021
-	dbug("Alacarta nuevo 2");
 	$id = $matches[1];
 	$titulo = "Canalsur alacarta";
 	dbug_($id);
@@ -154,11 +169,19 @@ elseif(preg_match('#videos/([0-9]+)-#', $this->web, $matches) == 1) {
 	$ret = json_decode($ret, true);
 	dbug_r($ret);
 	
-	$obtenido['enlaces'][]=array(
-		'url'     => $ret['results'][0]['media_url'],
-		'tipo'    => 'http',
-		'url_txt' => 'Descargar'
-	);
+	
+	for ($i = 0; $i < count($ret['results']); $i++) {
+		if (enString($ret['results'][$i]['media_url'], ".mp4")) {
+			$obtenido['enlaces'][]=array(
+				'url'     => $ret['results'][$i]['media_url'],
+				'tipo'    => 'http',
+				'url_txt' => 'Descargar'
+			);
+			$found = true;
+			break;
+		}
+	}
+	
 }
 else{
 	dbug('último case ifelse');
