@@ -37,6 +37,9 @@ function prefered_language(array $available_languages, $http_accept_language) {
 		}
 
 	}
+	if (is_null($langs)) {
+		return array("en"=>"0.5"); //exit; // Very probably a bot, browsers do send lang.
+	}
 	arsort($langs);
 
 	return $langs;
