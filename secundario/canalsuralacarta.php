@@ -108,122 +108,116 @@ elseif(enString($this->web_descargada,"var elementos = [];")){
 		);
 	}
 }
-elseif(enString($this->web_descargada, '{content:{id:')) {
-	// https://www.canalsurmas.es/videos/35265-11112021
-	dbug("Alacarta nuevo");
-	$id = entre1y2($this->web_descargada, '{content:{id:', ',');
-	$titulo = entre1y2($this->web_descargada,'{content:{id:'.$id.',name:"', '"');
-	dbug_($id);
-	// https://api-rtva.interactvty.com/api/2.0/contents/content_resources/35265/?optional_fields=type,videotype,media_url,is_initial,assets,drm_token,test,plain,url_app_web,thumbnail_track_url
-	$whereToGetJSON = "https://api-rtva.interactvty.com/api/2.0/contents/content_resources/$id/?optional_fields=type,videotype,media_url,is_initial,assets,drm_token,test,plain,url_app_web,thumbnail_track_url";
-	dbug_($whereToGetJSON);
-	$token = "dG9rZW4gM2U1MzkxZDMxODFhYzU2NmJiNWE2YWM5ZGZmNDEyN2M3NGE0NzU3NA=="; // This works, but may not in the future
-	$token = base64_decode($token);
-	// Headers: Authorization: jwtok eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDA5NzUyLCJpYXQiOjE3Mzg5NTU3NTIsImp0aSI6ImRhMjk0MzVkZjFkMzQzMGU4N2UwZWZhODUyM2QyNzYzIiwidXNlcl9pZCI6MzMwMCwiY2xpZW50X2lkIjoiY2FuYWxzdXIiLCJpc19kZW1vIjp0cnVlfQ.CQdZUgGQmt-T_5mQek4asarCyXGi2lo5RvcJ0CRzgwg
-	// access:                      "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDA5NzUyLCJpYXQiOjE3Mzg5NTU3NTIsImp0aSI6ImRhMjk0MzVkZjFkMzQzMGU4N2UwZWZhODUyM2QyNzYzIiwidXNlcl9pZCI6MzMwMCwiY2xpZW50X2lkIjoiY2FuYWxzdXIiLCJpc19kZW1vIjp0cnVlfQ.CQdZUgGQmt-T_5mQek4asarCyXGi2lo5RvcJ0CRzgwg"
-	// refresh:                     "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc1NDUwNzc1MiwiaWF0IjoxNzM4OTU1NzUyLCJqdGkiOiJiZjI4NjM0MTdjMDU0OGU2OTY2ZTM2NjE1NTliNmUyYyIsInVzZXJfaWQiOjMzMDAsImNsaWVudF9pZCI6ImNhbmFsc3VyIiwiaXNfZGVtbyI6dHJ1ZX0.IsfzXs_2cIJLsnyXwMIHziss0N9AmM_vhBVDPiJhw0s"
+else {
+	// Find ID
+	if (enString($this->web_descargada, '{content:{id:')) {
+		dbug("Alacarta nuevo");
+		$id = entre1y2($this->web_descargada, '{content:{id:', ',');
+		$titulo = entre1y2($this->web_descargada,'{content:{id:'.$id.',name:"', '"');
+	}
+	elseif (preg_match('#videos/(?:[^0-9]*/)*([0-9]+)-#', $this->web, $matches) == 1) {
+		dbug("Alacarta nuevo 2");
+		dbug_r($matches);
+		$id = $matches[1];
+	}
 	
-	$ret = CargaWebCurl($whereToGetJSON, '', 0, '', array('Authorization: '.$token));
-	dbug_($ret);
-	$ret = json_decode($ret, true);
-	dbug_r($ret);
-	// Response: {"count":2,"next":null,"previous":null,"results":[{"id":42048,"name":"compromiso canal sur  15/11/2021","type":"VID","videotype":"URL","media_url":"https://cdn.rtva.interactvty.com/ingesta_ott/compromiso_canal_sur/0000121995/0000121995_1080p.mp4","is_initial":false,"assets":null,"drm_token":"","test":null,"plain":null,"url_app_web":"","thumbnail_track_url":""},{"id":42046,"name":"compromiso canal sur  15/11/2021","type":"VID","videotype":"DIR","media_url":"https://cdn.rtva.interactvty.com/ingesta_ott/compromiso_canal_sur/0000121995/0000121995_3R.m3u8","is_initial":true,"assets":null,"drm_token":"","test":null,"plain":null,"url_app_web":"","thumbnail_track_url":""}]}
+	if (!isset($titulo) || strlen($titulo) > 100 || enString($titulo, '<')) $titulo = entre1y2($this->web_descargada, '<meta property="og:title" content="', '"');
+	if (!isset($titulo) || strlen($titulo) > 100 || enString($titulo, '<')) $titulo = entre1y2($this->web_descargada, 'title>', '</');
+	if (!isset($titulo) || strlen($titulo) > 100 || enString($titulo, '<')) $titulo = "Canalsur alacarta";
+	$imagen = entre1y2($this->web_descargada, '<meta property="og:image" content="', '"');
 	
-	// https://cdn.rtva.interactvty.com/ingesta_ott/compromiso_canal_sur/0000121995/0000121995_1080p.mp4
-	// https://cdn.rtva.interactvty.com/ingesta_ott/compromiso_canal_sur/0000121995/0000121995_3R.m3u8
-	
-	$found = false;
-	for ($i = 0; $i < count($ret['results']); $i++) {
-		if (enString($ret['results'][$i]['media_url'], ".mp4")) {
+	if (isset($id) && is_numeric($id)) {
+		dbug("ID found");
+		
+		dbug_($id);
+		dbug_($titulo);
+		
+		
+		
+		
+		// https://www.canalsurmas.es/videos/35265-11112021
+		// https://api-rtva.interactvty.com/api/2.0/contents/content_resources/35265/?optional_fields=type,videotype,media_url,is_initial,assets,drm_token,test,plain,url_app_web,thumbnail_track_url
+		// https://api-rtva.interactvty.com/api/2.0/contents/content_resources/301522/?optional_fields=type,videotype,media_url,is_initial,assets,drm_token,test,plain,url_app_web,thumbnail_track_url,product,remote_product_id,brightcove_drm_source,has_p2p
+		$whereToGetJSON = "https://api-rtva.interactvty.com/api/2.0/contents/content_resources/$id/?optional_fields=type,videotype,media_url,is_initial,assets,drm_token,test,plain,url_app_web,thumbnail_track_url,product,remote_product_id,brightcove_drm_source,has_p2p";
+		dbug_($whereToGetJSON);
+		$token = "dG9rZW4gM2U1MzkxZDMxODFhYzU2NmJiNWE2YWM5ZGZmNDEyN2M3NGE0NzU3NA=="; // This works, but may not in the future
+		$token = base64_decode($token);
+		// Headers: Authorization: jwtok eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDA5NzUyLCJpYXQiOjE3Mzg5NTU3NTIsImp0aSI6ImRhMjk0MzVkZjFkMzQzMGU4N2UwZWZhODUyM2QyNzYzIiwidXNlcl9pZCI6MzMwMCwiY2xpZW50X2lkIjoiY2FuYWxzdXIiLCJpc19kZW1vIjp0cnVlfQ.CQdZUgGQmt-T_5mQek4asarCyXGi2lo5RvcJ0CRzgwg
+		// access:                      "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5MDA5NzUyLCJpYXQiOjE3Mzg5NTU3NTIsImp0aSI6ImRhMjk0MzVkZjFkMzQzMGU4N2UwZWZhODUyM2QyNzYzIiwidXNlcl9pZCI6MzMwMCwiY2xpZW50X2lkIjoiY2FuYWxzdXIiLCJpc19kZW1vIjp0cnVlfQ.CQdZUgGQmt-T_5mQek4asarCyXGi2lo5RvcJ0CRzgwg"
+		// refresh:                     "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc1NDUwNzc1MiwiaWF0IjoxNzM4OTU1NzUyLCJqdGkiOiJiZjI4NjM0MTdjMDU0OGU2OTY2ZTM2NjE1NTliNmUyYyIsInVzZXJfaWQiOjMzMDAsImNsaWVudF9pZCI6ImNhbmFsc3VyIiwiaXNfZGVtbyI6dHJ1ZX0.IsfzXs_2cIJLsnyXwMIHziss0N9AmM_vhBVDPiJhw0s"
+		
+		$ret = CargaWebCurl($whereToGetJSON, '', 0, '', array('Authorization: '.$token));
+		dbug_($ret);
+		$ret = json_decode($ret, true);
+		dbug_r($ret);
+		// Response: {"count":2,"next":null,"previous":null,"results":[{"id":42048,"name":"compromiso canal sur  15/11/2021","type":"VID","videotype":"URL","media_url":"https://cdn.rtva.interactvty.com/ingesta_ott/compromiso_canal_sur/0000121995/0000121995_1080p.mp4","is_initial":false,"assets":null,"drm_token":"","test":null,"plain":null,"url_app_web":"","thumbnail_track_url":""},{"id":42046,"name":"compromiso canal sur  15/11/2021","type":"VID","videotype":"DIR","media_url":"https://cdn.rtva.interactvty.com/ingesta_ott/compromiso_canal_sur/0000121995/0000121995_3R.m3u8","is_initial":true,"assets":null,"drm_token":"","test":null,"plain":null,"url_app_web":"","thumbnail_track_url":""}]}
+		
+		// https://cdn.rtva.interactvty.com/ingesta_ott/compromiso_canal_sur/0000121995/0000121995_1080p.mp4
+		// https://cdn.rtva.interactvty.com/ingesta_ott/compromiso_canal_sur/0000121995/0000121995_3R.m3u8
+		
+		$found = false;
+		for ($i = 0; $i < count($ret['results']); $i++) {
+			if (enString($ret['results'][$i]['media_url'], ".mp4")) {
+				$obtenido['enlaces'][]=array(
+					'url'     => $ret['results'][$i]['media_url'],
+					'tipo'    => 'http',
+					'url_txt' => 'Descargar'
+				);
+				$found = true;
+				break;
+			}
+		}
+		
+		if (!$found) {
 			$obtenido['enlaces'][]=array(
-				'url'     => $ret['results'][$i]['media_url'],
+				'url'     => $ret['results'][0]['media_url'],
 				'tipo'    => 'http',
 				'url_txt' => 'Descargar'
 			);
-			$found = true;
-			break;
 		}
 	}
-	
-	if (!$found) {
-		$obtenido['enlaces'][]=array(
-			'url'     => $ret['results'][0]['media_url'],
-			'tipo'    => 'http',
-			'url_txt' => 'Descargar'
-		);
-	}		
-}
-elseif(preg_match('#videos/([0-9]+)-#', $this->web, $matches) == 1) {
-	dbug("Alacarta nuevo 2");
-	dbug_r($matches);
-	// https://www.canalsurmas.es/videos/35265-11112021
-	$id = $matches[1];
-	$titulo = "Canalsur alacarta";
-	dbug_($id);
-	$whereToGetJSON = "https://api-rtva.interactvty.com/api/2.0/contents/content_resources/$id/?optional_fields=type,videotype,media_url,is_initial,assets,drm_token,test,plain,url_app_web,thumbnail_track_url";
-	dbug_($whereToGetJSON);
-	$token = "dG9rZW4gM2U1MzkxZDMxODFhYzU2NmJiNWE2YWM5ZGZmNDEyN2M3NGE0NzU3NA=="; // This works, but may not in the future
-	$token = base64_decode($token);
-	$ret = CargaWebCurl($whereToGetJSON, '', 0, '', array('Authorization: '.$token));
-	dbug_($ret);
-	$ret = json_decode($ret, true);
-	dbug_r($ret);
-	
-	
-	for ($i = 0; $i < count($ret['results']); $i++) {
-		if (enString($ret['results'][$i]['media_url'], ".mp4")) {
+	else{
+		dbug('último case ifelse');
+		
+		$titulo = entre1y2($this->web_descargada,'<title>','<');
+		
+		if(enString($this->web_descargada,"og:image")){
+			$p=strpos($this->web_descargada,"og:image");
+			$imagen=entre1y2_a($this->web_descargada, $p, 'content="', '"');
+		}
+		else
+			$imagen='http://'.DOMINIO.'/canales/canalsur.png';
+		
+		if (preg_match('@direct_url:("http.*?")@', $this->web_descargada, $matches)) {
+			//direct_url:"https:\u002F\u002Fcdn.rtva.interactvty.com\u002Fasrun_ott\u002Fnoticias_fin_de_semana\u002F0000124880\u002F0000124880_1080p.mp4"
+			dbug_r($matches);
+			
+			$titulo=entre1y2($this->web_descargada,'title>','<');
 			$obtenido['enlaces'][]=array(
-				'url'     => $ret['results'][$i]['media_url'],
+				'url'     => json_decode($matches[1], true),
 				'tipo'    => 'http',
 				'url_txt' => 'Descargar'
 			);
-			$found = true;
-			break;
 		}
-	}
-	
-}
-else{
-	dbug('último case ifelse');
-	
-	$titulo = entre1y2($this->web_descargada,'<title>','<');
-	
-	if(enString($this->web_descargada,"og:image")){
-		$p=strpos($this->web_descargada,"og:image");
-		$imagen=entre1y2_a($this->web_descargada, $p, 'content="', '"');
-	}
-	else
-		$imagen='http://'.DOMINIO.'/canales/canalsur.png';
-	
-	if (preg_match('@direct_url:("http.*?")@', $this->web_descargada, $matches)) {
-		//direct_url:"https:\u002F\u002Fcdn.rtva.interactvty.com\u002Fasrun_ott\u002Fnoticias_fin_de_semana\u002F0000124880\u002F0000124880_1080p.mp4"
-		dbug_r($matches);
-		
-		$titulo=entre1y2($this->web_descargada,'title>','<');
-		$obtenido['enlaces'][]=array(
-			'url'     => json_decode($matches[1], true),
-			'tipo'    => 'http',
-			'url_txt' => 'Descargar'
-		);
-	}
-	elseif (preg_match("@https?://[^ ]+?\.(?:mp4|mp3|flv)@i", $this->web_descargada, $matches)) {
-		dbug_r($matches);
-		
-		$url=$matches[0];
-		$obtenido['enlaces'][]=array(
-			'url'     => $url,
-			'tipo'    => 'http'
-		);
-	}
-	elseif (preg_match("@\"https?:[^ ]+?\.(?:mp4|mp3|flv)\"@i", $this->web_descargada, $matches)) {
-		//"https:\u002F\u002Fcdn.rtva.interactvty.com\u002Farchivo_ott\u002Farrayan\u002FPTT_20010227_ARRY_013_m2317_M\u002FPTT_20010227_ARRY_013_m2317_M_576p.mp4"
-		dbug_r($matches);
-		
-		$url=json_decode($matches[0]);
-		$obtenido['enlaces'][]=array(
-			'url'     => $url,
-			'tipo'    => 'http'
-		);
+		elseif (preg_match("@https?://[^ ]+?\.(?:mp4|mp3|flv)@i", $this->web_descargada, $matches)) {
+			dbug_r($matches);
+			
+			$url=$matches[0];
+			$obtenido['enlaces'][]=array(
+				'url'     => $url,
+				'tipo'    => 'http'
+			);
+		}
+		elseif (preg_match("@\"https?:[^ ]+?\.(?:mp4|mp3|flv)\"@i", $this->web_descargada, $matches)) {
+			//"https:\u002F\u002Fcdn.rtva.interactvty.com\u002Farchivo_ott\u002Farrayan\u002FPTT_20010227_ARRY_013_m2317_M\u002FPTT_20010227_ARRY_013_m2317_M_576p.mp4"
+			dbug_r($matches);
+			
+			$url=json_decode($matches[0]);
+			$obtenido['enlaces'][]=array(
+				'url'     => $url,
+				'tipo'    => 'http'
+			);
+		}
 	}
 }
 

@@ -4,6 +4,11 @@ function cambios($max=-1){
 //tipo='simple' o 'todos'
 
 $todos[]=array(
+'15-Agosto-2026'
+,'fix:Canalsurmas alacarta.'
+);
+
+$todos[]=array(
 '7-Febrero-2025'
 ,'fix:Canalsurmas alacarta.'
 );

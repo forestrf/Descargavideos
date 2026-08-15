@@ -532,11 +532,11 @@ function GetInfoFromImage($id) {
 
 	$img = CargaWebCurlProxy("https://ztnr.rtve.es/ztnr/movil/thumbnail/rtveplayw/videos/{$id}.png?q=v2", "ESP"); // Nuevo, los videos que retorna son 1080p
 	dbug_($img);
-	$r1 = !enString($img, '{"error":"Asset ') ? $this->GetInfoFromImageBase($img) : "error";
+	$r1 = !enString($img, '{"error":"Asset ') && !enString($img, 'P&aacute;gina no encontrada') ? $this->GetInfoFromImageBase($img) : "error";
 
 	$img = CargaWebCurl("https://www.rtve.es/ztnr/movil/thumbnail/default/videos/{$id}.png"); // Antiguo, los videos que retorna son menores de 1080p
 	dbug_($img);
-	$r2 = !enString($img, '{"error":"Asset ') ? $this->GetInfoFromImageBase($img) : "error";
+	$r2 = !enString($img, '{"error":"Asset ') && !enString($img, 'P&aacute;gina no encontrada') ? $this->GetInfoFromImageBase($img) : "error";
 
 	
 	if ($r1 === "error" && $r2 === "error") return false;

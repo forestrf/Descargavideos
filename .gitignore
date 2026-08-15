@@ -1,2 +1,3 @@
 .project
-x/
+composer.lock
+vendor/

@@ -421,7 +421,7 @@ function carga_web_curl_obtenida($url='',$post='',$cookie='',$cabeceras=array(),
 
 $cargawebcurl_proxyarray = array(
 	//'http://192.168.191.35:8084/'
-	'http://127.0.0.1:8182/'
+	'http://127.0.0.1:8182/' // Commented because node spikes cpu to 100% continually for a split second
 	/*
 	'https://dvidhelper.webcindario.com/'
 	'http://descvid.webcindario.com/'

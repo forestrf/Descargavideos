@@ -98,7 +98,7 @@ var jdownloader = false;
 				
 				<script src="/js/ordenes1.min.js?1"></script>
 				
-				<?php if (ADS/* && FALSE*//* && $R['MODO'] !== 'RESULTADO'*/) { ?>
+				<?php if (ADS /* && false*/  && $R['MODO'] !== 'RESULTADO') { ?>
 				<nav id="publi_cabecera" aria-label="Publicidad">
 					<style>
 						.adv-container {

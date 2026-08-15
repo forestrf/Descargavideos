@@ -1,5 +1,3 @@
 User-agent: *
 Disallow: /util/
 Disallow: /flag.php
-
-Sitemap: http://www.descargavideos.tv/sitemap.xml

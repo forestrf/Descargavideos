@@ -43,6 +43,16 @@ if(!defined('IS_MOBILE'))
 
 if(!defined('ADS')) {
 	define('ADS', true);
+	/*
+	$adCookieName = "AdsSeen";
+	if (isset($_COOKIE[$adCookieName]) && $_COOKIE[$adCookieName] == true) {
+		define('ADS', false);
+	}
+	else {
+		setcookie($adCookieName, true, time() + (60 * 60));  // expire in 1 hour
+		define('ADS', true);
+	}
+	*/
 }
 
 ?>
